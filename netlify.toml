@@ -31,4 +31,8 @@
   to = "/index.html"
   status = 200
 
-
+# Force HTTPS redirects
+[[redirects]]
+  from = "http://seniorease.nl/*"
+  to = "https://seniorease.nl/:splat"
+  status = 301
