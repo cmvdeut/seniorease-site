@@ -12,8 +12,8 @@
     <!-- Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- ZXing voor betere barcode scanning -->
-    <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+    <!-- QuaggaJS voor barcode scanning -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
     
     <!-- jsPDF voor PDF export -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -718,57 +718,9 @@
             return 'Onbekend';
         }
 
-        // Valideer handmatig ingevoerde codes
-        function validateManualInput() {
-            const input = document.getElementById('itemBarcode');
-            const code = input.value.trim();
-            
-            if (code.length === 0) return;
-            
-            const codeType = detectCodeType(code);
-            
-            // Toon validatie feedback
-            if (codeType !== 'Onbekend') {
-                input.classList.remove('border-red-500');
-                input.classList.add('border-green-500');
-                
-                // Toon code type info
-                const existingInfo = document.getElementById('barcodeInfo');
-                if (existingInfo) existingInfo.remove();
-                
-                const infoDiv = document.createElement('div');
-                infoDiv.id = 'barcodeInfo';
-                infoDiv.className = 'text-sm text-green-600 mt-1';
-                infoDiv.textContent = `✓ ${codeType} gedetecteerd`;
-                input.parentNode.appendChild(infoDiv);
-                
-                // Converteer ISBN-10 naar ISBN-13 indien nodig
-                if (codeType === 'ISBN-10') {
-                    const isbn13 = convertISBN10to13(code);
-                    input.value = isbn13;
-                    infoDiv.textContent = `✓ ISBN-10 → ISBN-13: ${isbn13}`;
-                }
-            } else {
-                input.classList.remove('border-green-500');
-                input.classList.add('border-red-500');
-                
-                const existingInfo = document.getElementById('barcodeInfo');
-                if (existingInfo) existingInfo.remove();
-                
-                const infoDiv = document.createElement('div');
-                infoDiv.id = 'barcodeInfo';
-                infoDiv.className = 'text-sm text-red-600 mt-1';
-                infoDiv.textContent = '⚠ Ongeldige barcode/ISBN';
-                input.parentNode.appendChild(infoDiv);
-            }
-        }
 
-        // ZXing barcode scanner implementatie
-        let codeReader = null;
-        let videoElement = null;
-
-        // Barcode scanning - ZXing implementatie
-        async function startBarcodeScan() {
+        // Barcode scanning - Werkende QuaggaJS implementatie
+        function startBarcodeScan() {
             document.getElementById('scannerOverlay').style.display = 'block';
             scannerActive = true;
             
@@ -781,130 +733,95 @@
                 stopBarcodeScan();
                 return;
             }
-
-            // Controleer ZXing ondersteuning
-            if (typeof ZXing === 'undefined') {
-                alert('Barcode scanner wordt niet ondersteund. Voer de barcode handmatig in.');
-                stopBarcodeScan();
-                return;
-            }
-
-            try {
-                // Initialize ZXing
-                codeReader = new ZXing.BrowserMultiFormatReader();
-                
-                // Configure specifiek voor ISBN en muziek barcodes
-                codeReader.hints = new Map([
-                    [ZXing.DecodeHintType.POSSIBLE_FORMATS, [
-                        // ISBN codes (EAN-13 met 978/979 prefix)
-                        ZXing.BarcodeFormat.EAN_13,
-                        // CD/LP barcodes (meestal EAN-13 of UPC-A)
-                        ZXing.BarcodeFormat.UPC_A,
-                        ZXing.BarcodeFormat.UPC_E,
-                        // Alternatieve formaten voor muziek
-                        ZXing.BarcodeFormat.EAN_8,
-                        ZXing.BarcodeFormat.CODE_128,
-                        ZXing.BarcodeFormat.CODE_39
-                    ]],
-                    [ZXing.DecodeHintType.TRY_HARDER, true],
-                    [ZXing.DecodeHintType.CHARACTER_SET, 'UTF-8'],
-                    // Specifieke hints voor muziek media
-                    [ZXing.DecodeHintType.ASSUME_GS1, false]
-                ]);
-
-                // Start decoding
-                await codeReader.decodeFromVideoDevice(
-                    undefined, // Laat ZXing de beste camera kiezen
-                    document.getElementById('scannerVideo'),
-                    (result, err) => {
-                        if (result) {
-                            console.log('Barcode gevonden:', result.text);
-                            const code = result.text;
-                            
-                            // Valideer en verwerk de barcode
-                            if (code && code.length >= 8) {
-                                const codeType = detectCodeType(code);
-                                let processedCode = code;
-                                let message = `Barcode gevonden: ${code}`;
-                                
-                                // Specifieke verwerking voor verschillende code types
-                                if (codeType === 'ISBN-10') {
-                                    // Converteer ISBN-10 naar ISBN-13 voor consistentie
-                                    processedCode = convertISBN10to13(code);
-                                    message = `ISBN-10 gevonden: ${code} → ISBN-13: ${processedCode}`;
-                                } else if (codeType === 'ISBN-13') {
-                                    message = `ISBN-13 gevonden: ${code}`;
-                                } else if (codeType === 'UPC-A (CD/LP)') {
-                                    message = `CD/LP barcode gevonden: ${code}`;
-                                } else if (codeType === 'EAN-13') {
-                                    message = `EAN-13 barcode gevonden: ${code}`;
-                                } else {
-                                    message = `Barcode gevonden: ${code} (${codeType})`;
-                                }
-                                
-                                // Voer de verwerkte code in
-                                document.getElementById('itemBarcode').value = processedCode;
-                                stopBarcodeScan();
-                                
-                                // Toon uitgebreide succesmelding
-                                const statusDiv = document.createElement('div');
-                                statusDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50 max-w-sm';
-                                statusDiv.innerHTML = `
-                                    <div class="font-semibold">✅ ${codeType}</div>
-                                    <div class="text-sm">${message}</div>
-                                `;
-                                document.body.appendChild(statusDiv);
-                                setTimeout(() => statusDiv.remove(), 4000);
-                            }
-                        }
-                        if (err && !(err instanceof ZXing.NotFoundException)) {
-                            console.error('Scan error:', err);
-                        }
+            
+            // QuaggaJS configuratie
+            Quagga.init({
+                inputStream: {
+                    name: "Live",
+                    type: "LiveStream",
+                    target: document.querySelector('#scannerVideo'),
+                    constraints: {
+                        width: { min: 640, ideal: 1280, max: 1920 },
+                        height: { min: 480, ideal: 720, max: 1080 },
+                        facingMode: { ideal: "environment" },
+                        frameRate: { ideal: 30, max: 60 }
                     },
-                    {
-                        // Betere video constraints voor barcode scanning
-                        video: {
-                            width: { min: 640, ideal: 1280, max: 1920 },
-                            height: { min: 480, ideal: 720, max: 1080 },
-                            facingMode: { ideal: "environment" }, // Voorkeur achtercamera
-                            frameRate: { ideal: 30, max: 60 }
-                        }
+                    area: { // Focus op het midden van het scherm
+                        top: "20%",
+                        right: "20%",
+                        left: "20%",
+                        bottom: "20%"
                     }
-                );
-
-            } catch (error) {
-                console.error('Camera error:', error);
-                
-                // Toon meer specifieke foutmeldingen
-                let errorMessage = 'Camera kon niet worden gestart.\n\n';
-                
-                if (error.name === 'NotAllowedError') {
-                    errorMessage += 'Camera toegang is geweigerd. Ga naar browser instellingen en sta camera toegang toe.';
-                } else if (error.name === 'NotFoundError') {
-                    errorMessage += 'Geen camera gevonden. Controleer of er een camera is aangesloten.';
-                } else if (error.name === 'NotSupportedError') {
-                    errorMessage += 'Camera wordt niet ondersteund door deze browser.';
-                } else {
-                    errorMessage += 'Fout: ' + error.message + '\n\nControleer of camera toegang is toegestaan.';
+                },
+                decoder: {
+                    readers: [
+                        "code_128_reader", 
+                        "ean_reader", 
+                        "ean_8_reader", 
+                        "code_39_reader", 
+                        "code_39_vin_reader", 
+                        "codabar_reader", 
+                        "upc_reader", 
+                        "upc_e_reader", 
+                        "i2of5_reader",
+                        "code_93_reader"
+                    ],
+                    debug: {
+                        showCanvas: false,
+                        showPatches: false,
+                        showFoundPatches: false,
+                        showSkeleton: false,
+                        showLabels: false,
+                        showPatchLabels: false,
+                        showBoundingBox: false,
+                        showBoundingBoxes: false
+                    }
+                },
+                locate: true,
+                locator: {
+                    patchSize: "medium",
+                    halfSample: true
+                },
+                numOfWorkers: navigator.hardwareConcurrency || 4,
+                frequency: 10
+            }, function(err) {
+                if (err) {
+                    console.error('Quagga initialization error:', err);
+                    alert('Camera kon niet worden gestart. Controleer of camera toegang is toegestaan en probeer opnieuw.');
+                    stopBarcodeScan();
+                    return;
                 }
+                console.log('Quagga initialized successfully');
+                Quagga.start();
+            });
+            
+            // Barcode detectie
+            Quagga.onDetected(function(data) {
+                console.log('Barcode detected:', data.codeResult.code);
+                const code = data.codeResult.code;
                 
-                errorMessage += '\n\nU kunt de barcode ook handmatig invoeren.';
-                
-                alert(errorMessage);
-                stopBarcodeScan();
-            }
+                // Valideer barcode lengte
+                if (code && code.length >= 8) {
+                    document.getElementById('itemBarcode').value = code;
+                    stopBarcodeScan();
+                    
+                    // Toon succesmelding
+                    const statusDiv = document.createElement('div');
+                    statusDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50';
+                    statusDiv.textContent = `Barcode gevonden: ${code}`;
+                    document.body.appendChild(statusDiv);
+                    setTimeout(() => statusDiv.remove(), 3000);
+                }
+            });
         }
 
         function stopBarcodeScan() {
             if (scannerActive) {
                 try {
-                    if (codeReader) {
-                        codeReader.reset();
-                        codeReader = null;
-                    }
+                    Quagga.stop();
                     scannerActive = false;
                 } catch (error) {
-                    console.error('Error stopping scanner:', error);
+                    console.error('Error stopping Quagga:', error);
                 }
             }
             document.getElementById('scannerOverlay').style.display = 'none';
@@ -985,13 +902,6 @@
 
         document.getElementById('scannerOverlay').addEventListener('click', function(e) {
             if (e.target === this) stopBarcodeScan();
-        });
-
-        // Valideer handmatige invoer
-        document.getElementById('itemBarcode').addEventListener('input', function() {
-            // Debounce de validatie
-            clearTimeout(this.validationTimeout);
-            this.validationTimeout = setTimeout(validateManualInput, 500);
         });
     </script>
 </body>
