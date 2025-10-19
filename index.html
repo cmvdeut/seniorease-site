@@ -125,17 +125,6 @@
                         </div>
                     </div>
                     
-                    <!-- Navigation buttons -->
-                    <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-se-brown text-white p-2 rounded-full hover:bg-se-dark-brown transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                        </svg>
-                    </button>
-                    <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-se-brown text-white p-2 rounded-full hover:bg-se-dark-brown transition-colors">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                        </svg>
-                    </button>
                     
                     <!-- Dots indicator -->
                     <div class="flex justify-center mt-6 space-x-2">
@@ -241,8 +230,6 @@
         const totalSlides = 5;
         const carouselTrack = document.getElementById('carousel-track');
         const dots = document.querySelectorAll('.dot');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
 
         function updateCarousel() {
             const translateX = -currentSlide * 100;
@@ -259,15 +246,6 @@
             currentSlide = (currentSlide + 1) % totalSlides;
             updateCarousel();
         }
-
-        function prevSlide() {
-            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        // Event listeners voor carousel
-        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
-        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
         
         // Dot navigation
         dots.forEach((dot, index) => {
@@ -277,7 +255,7 @@
             });
         });
 
-        // Auto-play carousel (optioneel)
+        // Auto-play carousel
         setInterval(nextSlide, 5000); // Wissel elke 5 seconden
     </script>
 </body>
