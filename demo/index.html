@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase Demo</title>
+    <meta name="description" content="Probeer de beperkte SeniorEase demo: scan tot vijf items, bewaar ze en exporteer als PDF.">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="/icons/icon-192.png">
+    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="lib/jspdf.umd.min.js"></script>
+    <!-- QuaggaJS voor betrouwbare barcode scanning -->
+    <script defer src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+    <script defer src="app.js"></script>
+</head>
+<body>
+    <header class="app-header">
+        <div class="branding">
+            <img src="/icons/icon-192.png" alt="SeniorEase hartlogo" class="logo">
+            <div>
+                <h1>SeniorEase demo</h1>
+                <p>Scan, bewaar en deel tot vijf items.</p>
+            </div>
+        </div>
+        <button id="clearDemo" class="secondary-action" type="button">Reset demo</button>
+    </header>
+
+    <main class="app-main">
+        <section class="notice" id="limitNotice" aria-live="polite"></section>
+
+        <section class="card">
+            <h2>Nieuw item</h2>
+            <p class="help-text">Scan een barcode of vul de gegevens handmatig in. De demo bewaart maximaal vijf items.</p>
+            <form id="itemForm" autocomplete="off">
+                <div class="field-group">
+                    <label for="title">Titel</label>
+                    <input id="title" name="title" type="text" required placeholder="Bijv. De avonden">
+                </div>
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="type">Type</label>
+                        <select id="type" name="type">
+                            <option value="Boek">Boek</option>
+                            <option value="Muziek">Muziek</option>
+                            <option value="Anders">Anders</option>
+                        </select>
+                    </div>
+                    <div class="field-group">
+                        <label for="creator">Auteur / artiest</label>
+                        <input id="creator" name="creator" type="text" placeholder="Bijv. Gerard Reve">
+                    </div>
+                </div>
+                <div class="field-row">
+                    <div class="field-group">
+                        <label for="code">Barcode / code</label>
+                        <input id="code" name="code" type="text" inputmode="numeric" placeholder="Scan of voer handmatig in">
+                    </div>
+                    <div class="field-group scanner-controls">
+                        <label>Barcode scannen</label>
+                        <div class="button-row">
+                            <button id="startScan" type="button" class="primary-action">Start</button>
+                            <button id="stopScan" type="button" class="secondary-action" disabled>Stop</button>
+                        </div>
+                        <p id="scanStatus" class="help-text"></p>
+                        <div id="samsungHint" class="help-text" style="display: none;">
+                            <strong>Samsung telefoon tips:</strong><br>
+                            • Sluit de camera app voordat je de scanner start<br>
+                            • Ga naar Instellingen > Apps > Browser > Machtigingen > Camera<br>
+                            • Zorg dat "Sensors off" uitgeschakeld is in snelle instellingen
+                        </div>
+                    </div>
+                </div>
+                <div class="field-group">
+                    <label for="notes">Notitie (optioneel)</label>
+                    <textarea id="notes" name="notes" rows="2" placeholder="Bijzonderheden of herinneringen"></textarea>
+                </div>
+                <div class="form-actions">
+                    <button id="addItem" type="submit" class="primary-action">Bewaar item</button>
+                </div>
+            </form>
+                   <!-- Camera Popup Modal -->
+                   <div id="cameraModal" class="camera-modal hidden">
+                       <button class="camera-close" onclick="closeCameraModal()">×</button>
+                       <div class="camera-container" id="camera-container">
+                           <div class="camera-overlay">
+                               <div class="camera-frame"></div>
+                               <p class="camera-instructions">Richt de camera op de barcode</p>
+                           </div>
+                       </div>
+                   </div>
+        </section>
+
+        <section class="card">
+            <div class="section-heading">
+                <h2>Mijn demo-items</h2>
+                <span id="itemCount" class="badge">0 / 5</span>
+            </div>
+            <ul id="itemList" class="item-list" aria-live="polite" aria-label="Opgeslagen demo-items"></ul>
+            <p id="emptyState" class="help-text">Nog geen items toegevoegd. Voeg tot vijf items toe om ze als PDF te delen.</p>
+        </section>
+
+        <section class="card">
+            <h2>Delen en exporteren</h2>
+            <p class="help-text">Exporteer uw demo-items naar een PDF-bestand en deel het via e-mail of bericht.</p>
+            <div class="button-row">
+                <button id="downloadPdf" type="button" class="primary-action" disabled>Download PDF</button>
+                <button id="sharePdf" type="button" class="secondary-action" disabled>Deel PDF</button>
+            </div>
+            <p id="shareHint" class="help-text"></p>
+        </section>
+    </main>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js').catch(() => {
+                    console.warn('Service worker kon niet worden geregistreerd voor de demo.');
+                });
+            });
+        }
+    </script>
+</body>
+</html>

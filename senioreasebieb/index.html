@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEaseBieb - Uw digitale bibliotheek</title>
+    <meta name="description" content="Beheer uw boeken, muziek, DVD's en games eenvoudig. Scan barcodes, voeg items toe en houd uw collectie bij.">
+    <meta name="theme-color" content="#8B5E3C">
+    <link rel="manifest" href="/senioreasebieb/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="../icons/icon-192.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- ZXing voor betere barcode scanning -->
+    <script src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
+    
+    <!-- jsPDF voor PDF export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        .scanning-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 1000;
+            display: none;
+        }
+        .scanning-video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .scanning-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        .item-card {
+            transition: transform 0.2s ease;
+        }
+        .item-card:hover {
+            transform: translateY(-2px);
+        }
+        .search-highlight {
+            background-color: #FEF3C7;
+            padding: 2px 4px;
+            border-radius: 3px;
+        }
+    </style>
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'se': {
+                            'beige': '#F5EEE6',
+                            'brown': '#8B5E3C',
+                            'dark-brown': '#6E492F',
+                            'text': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-se-beige text-se-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b border-se-brown/20">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-4">
+                    <img src="../icons/icon-512.png" alt="SeniorEase logo" class="w-12 h-12">
+                    <div>
+                        <h1 class="text-2xl font-bold text-se-brown">SeniorEaseBieb</h1>
+                        <p class="text-sm text-se-dark-brown">Uw digitale bibliotheek</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center space-x-4">
+                    <button onclick="exportToPDF()" class="bg-se-brown text-white px-4 py-2 rounded-lg hover:bg-se-dark-brown transition-colors">
+                        Export PDF
+                    </button>
+                    <button onclick="backupData()" class="bg-se-dark-brown text-white px-4 py-2 rounded-lg hover:bg-se-brown transition-colors">
+                        Backup
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-4 py-8">
+        <!-- Search and Add Section -->
+        <section class="mb-8">
+            <div class="bg-white rounded-lg shadow-lg p-6">
+                <div class="flex flex-col md:flex-row gap-4 mb-6">
+                    <!-- Search -->
+                    <div class="flex-1">
+                        <input type="text" id="searchInput" placeholder="Zoek in uw collectie..." 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                    </div>
+                    
+                    <!-- Filter -->
+                    <select id="typeFilter" class="px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown">
+                        <option value="">Alle types</option>
+                        <option value="boek">Boeken</option>
+                        <option value="muziek">Muziek</option>
+                        <option value="dvd">DVD's</option>
+                        <option value="game">Games</option>
+                    </select>
+                    
+                    <!-- Add Button -->
+                    <button onclick="openAddModal()" class="bg-se-brown text-white px-6 py-3 rounded-lg hover:bg-se-dark-brown transition-colors font-semibold">
+                        + Item toevoegen
+                    </button>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div class="text-center p-3 bg-se-beige rounded-lg">
+                        <div class="text-2xl font-bold text-se-brown" id="totalItems">0</div>
+                        <div class="text-sm text-se-dark-brown">Totaal items</div>
+                    </div>
+                    <div class="text-center p-3 bg-se-beige rounded-lg">
+                        <div class="text-2xl font-bold text-se-brown" id="booksCount">0</div>
+                        <div class="text-sm text-se-dark-brown">Boeken</div>
+                    </div>
+                    <div class="text-center p-3 bg-se-beige rounded-lg">
+                        <div class="text-2xl font-bold text-se-brown" id="musicCount">0</div>
+                        <div class="text-sm text-se-dark-brown">Muziek</div>
+                    </div>
+                    <div class="text-center p-3 bg-se-beige rounded-lg">
+                        <div class="text-2xl font-bold text-se-brown" id="otherCount">0</div>
+                        <div class="text-sm text-se-dark-brown">Overig</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Items Grid -->
+        <section id="itemsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Items will be dynamically loaded here -->
+        </section>
+
+        <!-- Empty State -->
+        <div id="emptyState" class="text-center py-12 hidden">
+            <div class="w-24 h-24 bg-se-brown/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span class="text-4xl">📚</span>
+            </div>
+            <h3 class="text-xl font-semibold text-se-brown mb-2">Nog geen items</h3>
+            <p class="text-gray-600 mb-6">Voeg uw eerste boek, muziek of andere items toe aan uw collectie.</p>
+            <button onclick="openAddModal()" class="bg-se-brown text-white px-6 py-3 rounded-lg hover:bg-se-dark-brown transition-colors">
+                Eerste item toevoegen
+            </button>
+        </div>
+    </main>
+
+    <!-- Add Item Modal -->
+    <div id="addModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-se-brown">Item toevoegen</h2>
+                <button onclick="closeAddModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    ×
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <form id="addItemForm" class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Titel *</label>
+                        <input type="text" id="itemTitle" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Type *</label>
+                            <select id="itemType" required 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                                <option value="">Selecteer type</option>
+                                <option value="boek">Boek</option>
+                                <option value="muziek">Muziek</option>
+                                <option value="dvd">DVD</option>
+                                <option value="game">Game</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Auteur/Artiest</label>
+                            <input type="text" id="itemAuthor" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Barcode/ISBN</label>
+                            <div class="flex gap-2">
+                                <input type="text" id="itemBarcode" 
+                                       placeholder="Scan ISBN (boek) of barcode (CD/LP)"
+                                       inputmode="numeric"
+                                       pattern="[0-9]*"
+                                       class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                                <button type="button" onclick="startBarcodeScan()" 
+                                        class="bg-se-brown text-white px-4 py-3 rounded-lg hover:bg-se-dark-brown transition-colors">
+                                    📷 Scan
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Taal</label>
+                            <select id="itemLanguage" 
+                                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
+                                <option value="Nederlands">Nederlands</option>
+                                <option value="Engels">Engels</option>
+                                <option value="Anders">Anders</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Status</label>
+                        <div class="flex gap-4">
+                            <label class="flex items-center">
+                                <input type="radio" name="itemStatus" value="in_bezit" checked class="mr-2">
+                                <span>In bezit</span>
+                            </label>
+                            <label class="flex items-center">
+                                <input type="radio" name="itemStatus" value="gelezen" class="mr-2">
+                                <span>Gelezen/Beluisterd</span>
+                            </label>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-end space-x-4 pt-4">
+                        <button type="button" onclick="closeAddModal()" 
+                                class="px-6 py-3 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                            Annuleren
+                        </button>
+                        <button type="submit" 
+                                class="px-6 py-3 bg-se-brown text-white rounded-lg hover:bg-se-dark-brown transition-colors">
+                            Opslaan
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barcode Scanner Overlay -->
+    <div id="scannerOverlay" class="scanning-overlay">
+        <div class="relative w-full h-full">
+            <video id="scannerVideo" class="scanning-video"></video>
+            
+            <!-- Scanner targeting frame -->
+            <div class="absolute inset-0 flex items-center justify-center">
+                <div class="w-64 h-32 border-2 border-white rounded-lg relative">
+                    <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-green-400"></div>
+                    <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-green-400"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-green-400"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-green-400"></div>
+                </div>
+            </div>
+            
+            <!-- Instructions -->
+            <div class="absolute top-8 left-1/2 transform -translate-x-1/2 text-center text-white">
+                <p class="text-lg font-semibold">Scan ISBN of muziek barcode</p>
+                <p class="text-sm opacity-80">Richt op de barcode achterop het boek/CD/LP</p>
+                <p class="text-xs opacity-60 mt-1">Zorg voor goede verlichting en houd de camera stil</p>
+            </div>
+            
+            <!-- Controls -->
+            <div class="scanning-controls">
+                <button onclick="stopBarcodeScan()" class="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-colors">
+                    Stop scannen
+                </button>
+            </div>
+            
+            <!-- Samsung hint -->
+            <div class="absolute bottom-20 left-4 right-4 bg-black bg-opacity-50 text-white p-3 rounded-lg text-sm" id="samsungHint" style="display: none;">
+                <strong>Samsung telefoon tips:</strong><br>
+                • Sluit de camera app voordat je de scanner start<br>
+                • Ga naar Instellingen > Apps > Browser > Machtigingen > Camera<br>
+                • Zorg dat "Sensors off" uitgeschakeld is in snelle instellingen
+            </div>
+        </div>
+    </div>
+
+    <!-- Item Details Modal -->
+    <div id="itemModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                <h2 class="text-2xl font-bold text-se-brown">Item Details</h2>
+                <button onclick="closeItemModal()" class="text-gray-500 hover:text-gray-700 text-2xl font-bold">
+                    ×
+                </button>
+            </div>
+            
+            <div class="p-6">
+                <div id="itemDetails" class="space-y-4">
+                    <!-- Item details will be populated here -->
+                </div>
+                
+                <div class="flex justify-end space-x-4 pt-6">
+                    <button onclick="deleteItem()" class="px-6 py-3 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-colors">
+                        Verwijderen
+                    </button>
+                    <button onclick="editItem()" class="px-6 py-3 bg-se-brown text-white rounded-lg hover:bg-se-dark-brown transition-colors">
+                        Bewerken
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registratie
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                console.log('Service Worker ondersteund, registreren...');
+                try {
+                    navigator.serviceWorker.register('/senioreasebieb/sw.js')
+                        .then(function(registration) {
+                            console.log('✅ Service Worker succesvol geregistreerd:', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.error('❌ Service Worker registratie mislukt:', error);
+                        });
+                } catch (error) {
+                    console.error('❌ Service Worker niet ondersteund:', error);
+                }
+            } else {
+                console.log('❌ Service Worker niet ondersteund door deze browser');
+            }
+        });
+    </script>
+
+    <script>
+        // Global variables
+        let items = JSON.parse(localStorage.getItem('senioreasebieb_items')) || [];
+        let currentEditingItem = null;
+        let scannerActive = false;
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            loadItems();
+            setupEventListeners();
+            updateStats();
+        });
+
+        // Event listeners
+        function setupEventListeners() {
+            document.getElementById('searchInput').addEventListener('input', filterItems);
+            document.getElementById('typeFilter').addEventListener('change', filterItems);
+            document.getElementById('addItemForm').addEventListener('submit', saveItem);
+        }
+
+        // Load items from localStorage
+        function loadItems() {
+            const itemsGrid = document.getElementById('itemsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (items.length === 0) {
+                itemsGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            itemsGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            
+            itemsGrid.innerHTML = items.map((item, index) => `
+                <div class="item-card bg-white rounded-lg shadow-lg p-6 cursor-pointer" onclick="showItemDetails(${index})">
+                    <div class="flex items-start justify-between mb-4">
+                        <div class="w-12 h-12 bg-se-brown rounded-full flex items-center justify-center">
+                            <span class="text-white text-xl">${getTypeIcon(item.type)}</span>
+                        </div>
+                        <span class="px-3 py-1 bg-se-beige text-se-brown text-sm rounded-full">${item.type}</span>
+                    </div>
+                    
+                    <h3 class="font-semibold text-lg mb-2 line-clamp-2">${item.title}</h3>
+                    ${item.author ? `<p class="text-gray-600 text-sm mb-2">${item.author}</p>` : ''}
+                    ${item.barcode ? `<p class="text-xs text-gray-500">ISBN: ${item.barcode}</p>` : ''}
+                    
+                    <div class="mt-4 flex items-center justify-between">
+                        <span class="px-2 py-1 bg-${getStatusColor(item.status)} text-white text-xs rounded-full">
+                            ${getStatusText(item.status)}
+                        </span>
+                        <span class="text-xs text-gray-500">${item.language}</span>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Get type icon
+        function getTypeIcon(type) {
+            const icons = {
+                'boek': '📚',
+                'muziek': '🎵',
+                'dvd': '💿',
+                'game': '🎮'
+            };
+            return icons[type] || '📄';
+        }
+
+        // Get status color
+        function getStatusColor(status) {
+            return status === 'gelezen' ? 'green' : 'blue';
+        }
+
+        // Get status text
+        function getStatusText(status) {
+            return status === 'gelezen' ? 'Gelezen' : 'In bezit';
+        }
+
+        // Filter items
+        function filterItems() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+            const typeFilter = document.getElementById('typeFilter').value;
+            
+            const filteredItems = items.filter(item => {
+                const matchesSearch = item.title.toLowerCase().includes(searchTerm) ||
+                                    (item.author && item.author.toLowerCase().includes(searchTerm));
+                const matchesType = !typeFilter || item.type === typeFilter;
+                return matchesSearch && matchesType;
+            });
+            
+            displayFilteredItems(filteredItems);
+        }
+
+        // Display filtered items
+        function displayFilteredItems(filteredItems) {
+            const itemsGrid = document.getElementById('itemsGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (filteredItems.length === 0) {
+                itemsGrid.classList.add('hidden');
+                emptyState.classList.remove('hidden');
+                return;
+            }
+            
+            itemsGrid.classList.remove('hidden');
+            emptyState.classList.add('hidden');
+            
+            itemsGrid.innerHTML = filteredItems.map((item, index) => {
+                const originalIndex = items.indexOf(item);
+                return `
+                    <div class="item-card bg-white rounded-lg shadow-lg p-6 cursor-pointer" onclick="showItemDetails(${originalIndex})">
+                        <div class="flex items-start justify-between mb-4">
+                            <div class="w-12 h-12 bg-se-brown rounded-full flex items-center justify-center">
+                                <span class="text-white text-xl">${getTypeIcon(item.type)}</span>
+                            </div>
+                            <span class="px-3 py-1 bg-se-beige text-se-brown text-sm rounded-full">${item.type}</span>
+                        </div>
+                        
+                        <h3 class="font-semibold text-lg mb-2 line-clamp-2">${highlightSearch(item.title)}</h3>
+                        ${item.author ? `<p class="text-gray-600 text-sm mb-2">${highlightSearch(item.author)}</p>` : ''}
+                        ${item.barcode ? `<p class="text-xs text-gray-500">ISBN: ${item.barcode}</p>` : ''}
+                        
+                        <div class="mt-4 flex items-center justify-between">
+                            <span class="px-2 py-1 bg-${getStatusColor(item.status)} text-white text-xs rounded-full">
+                                ${getStatusText(item.status)}
+                            </span>
+                            <span class="text-xs text-gray-500">${item.language}</span>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // Highlight search terms
+        function highlightSearch(text) {
+            const searchTerm = document.getElementById('searchInput').value;
+            if (!searchTerm) return text;
+            
+            const regex = new RegExp(`(${searchTerm})`, 'gi');
+            return text.replace(regex, '<span class="search-highlight">$1</span>');
+        }
+
+        // Update statistics
+        function updateStats() {
+            const totalItems = items.length;
+            const booksCount = items.filter(item => item.type === 'boek').length;
+            const musicCount = items.filter(item => item.type === 'muziek').length;
+            const otherCount = totalItems - booksCount - musicCount;
+            
+            document.getElementById('totalItems').textContent = totalItems;
+            document.getElementById('booksCount').textContent = booksCount;
+            document.getElementById('musicCount').textContent = musicCount;
+            document.getElementById('otherCount').textContent = otherCount;
+        }
+
+        // Modal functions
+        function openAddModal() {
+            document.getElementById('addModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeAddModal() {
+            document.getElementById('addModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+            document.getElementById('addItemForm').reset();
+            currentEditingItem = null;
+        }
+
+        function openItemModal() {
+            document.getElementById('itemModal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeItemModal() {
+            document.getElementById('itemModal').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Save item
+        function saveItem(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(e.target);
+            const item = {
+                id: currentEditingItem ? currentEditingItem.id : Date.now(),
+                title: document.getElementById('itemTitle').value,
+                type: document.getElementById('itemType').value,
+                author: document.getElementById('itemAuthor').value,
+                barcode: document.getElementById('itemBarcode').value,
+                language: document.getElementById('itemLanguage').value,
+                status: document.querySelector('input[name="itemStatus"]:checked').value,
+                dateAdded: currentEditingItem ? currentEditingItem.dateAdded : new Date().toISOString()
+            };
+            
+            if (currentEditingItem) {
+                const index = items.findIndex(i => i.id === currentEditingItem.id);
+                items[index] = item;
+            } else {
+                items.push(item);
+            }
+            
+            localStorage.setItem('senioreasebieb_items', JSON.stringify(items));
+            loadItems();
+            updateStats();
+            closeAddModal();
+        }
+
+        // Show item details
+        function showItemDetails(index) {
+            const item = items[index];
+            currentEditingItem = item;
+            
+            document.getElementById('itemDetails').innerHTML = `
+                <div class="space-y-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Titel</label>
+                        <p class="text-lg font-semibold">${item.title}</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Type</label>
+                            <p class="text-se-brown font-medium">${item.type}</p>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Status</label>
+                            <p class="text-se-brown font-medium">${getStatusText(item.status)}</p>
+                        </div>
+                    </div>
+                    
+                    ${item.author ? `
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Auteur/Artiest</label>
+                            <p>${item.author}</p>
+                        </div>
+                    ` : ''}
+                    
+                    ${item.barcode ? `
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700">Barcode/ISBN</label>
+                            <p>${item.barcode}</p>
+                        </div>
+                    ` : ''}
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Taal</label>
+                        <p>${item.language}</p>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700">Toegevoegd op</label>
+                        <p>${new Date(item.dateAdded).toLocaleDateString('nl-NL')}</p>
+                    </div>
+                </div>
+            `;
+            
+            openItemModal();
+        }
+
+        // Edit item
+        function editItem() {
+            closeItemModal();
+            
+            document.getElementById('itemTitle').value = currentEditingItem.title;
+            document.getElementById('itemType').value = currentEditingItem.type;
+            document.getElementById('itemAuthor').value = currentEditingItem.author || '';
+            document.getElementById('itemBarcode').value = currentEditingItem.barcode || '';
+            document.getElementById('itemLanguage').value = currentEditingItem.language;
+            document.querySelector(`input[name="itemStatus"][value="${currentEditingItem.status}"]`).checked = true;
+            
+            openAddModal();
+        }
+
+        // Delete item
+        function deleteItem() {
+            if (confirm('Weet je zeker dat je dit item wilt verwijderen?')) {
+                const index = items.findIndex(i => i.id === currentEditingItem.id);
+                items.splice(index, 1);
+                localStorage.setItem('senioreasebieb_items', JSON.stringify(items));
+                loadItems();
+                updateStats();
+                closeItemModal();
+            }
+        }
+
+        // Detecteer Samsung apparaten en toon hints
+        function detectSamsungDevice() {
+            const userAgent = navigator.userAgent.toLowerCase();
+            const isSamsung = userAgent.includes('samsung') || userAgent.includes('sm-');
+            
+            if (isSamsung) {
+                const hint = document.getElementById('samsungHint');
+                if (hint) {
+                    hint.style.display = 'block';
+                }
+            }
+        }
+
+        // ISBN validatie en conversie functies
+        function validateISBN(code) {
+            // Verwijder alle niet-numerieke karakters behalve X voor ISBN-10
+            const cleanCode = code.replace(/[^0-9X]/gi, '');
+            
+            if (cleanCode.length === 10) {
+                return validateISBN10(cleanCode);
+            } else if (cleanCode.length === 13) {
+                return validateISBN13(cleanCode);
+            }
+            return false;
+        }
+
+        function validateISBN10(isbn) {
+            if (isbn.length !== 10) return false;
+            
+            let sum = 0;
+            for (let i = 0; i < 9; i++) {
+                sum += parseInt(isbn[i]) * (10 - i);
+            }
+            
+            const checkDigit = isbn[9].toUpperCase() === 'X' ? 10 : parseInt(isbn[9]);
+            return (sum + checkDigit) % 11 === 0;
+        }
+
+        function validateISBN13(isbn) {
+            if (isbn.length !== 13) return false;
+            
+            let sum = 0;
+            for (let i = 0; i < 12; i++) {
+                sum += parseInt(isbn[i]) * (i % 2 === 0 ? 1 : 3);
+            }
+            
+            const checkDigit = (10 - (sum % 10)) % 10;
+            return checkDigit === parseInt(isbn[12]);
+        }
+
+        function convertISBN10to13(isbn10) {
+            // Converteer ISBN-10 naar ISBN-13
+            const prefix = '978';
+            const isbnWithoutCheck = prefix + isbn10.substring(0, 9);
+            
+            let sum = 0;
+            for (let i = 0; i < 12; i++) {
+                sum += parseInt(isbnWithoutCheck[i]) * (i % 2 === 0 ? 1 : 3);
+            }
+            
+            const checkDigit = (10 - (sum % 10)) % 10;
+            return isbnWithoutCheck + checkDigit;
+        }
+
+        function detectCodeType(code) {
+            const cleanCode = code.replace(/[^0-9]/g, '');
+            
+            if (cleanCode.length === 10) {
+                return validateISBN10(cleanCode) ? 'ISBN-10' : 'Onbekend';
+            } else if (cleanCode.length === 13) {
+                if (cleanCode.startsWith('978') || cleanCode.startsWith('979')) {
+                    return validateISBN13(cleanCode) ? 'ISBN-13' : 'Onbekend';
+                } else if (cleanCode.startsWith('0') || cleanCode.startsWith('1')) {
+                    return 'UPC-A (CD/LP)';
+                } else {
+                    return 'EAN-13';
+                }
+            } else if (cleanCode.length === 8) {
+                return 'EAN-8';
+            } else if (cleanCode.length === 12) {
+                return 'UPC-A';
+            }
+            
+            return 'Onbekend';
+        }
+
+        // Valideer handmatig ingevoerde codes
+        function validateManualInput() {
+            const input = document.getElementById('itemBarcode');
+            const code = input.value.trim();
+            
+            if (code.length === 0) return;
+            
+            const codeType = detectCodeType(code);
+            
+            // Toon validatie feedback
+            if (codeType !== 'Onbekend') {
+                input.classList.remove('border-red-500');
+                input.classList.add('border-green-500');
+                
+                // Toon code type info
+                const existingInfo = document.getElementById('barcodeInfo');
+                if (existingInfo) existingInfo.remove();
+                
+                const infoDiv = document.createElement('div');
+                infoDiv.id = 'barcodeInfo';
+                infoDiv.className = 'text-sm text-green-600 mt-1';
+                infoDiv.textContent = `✓ ${codeType} gedetecteerd`;
+                input.parentNode.appendChild(infoDiv);
+                
+                // Converteer ISBN-10 naar ISBN-13 indien nodig
+                if (codeType === 'ISBN-10') {
+                    const isbn13 = convertISBN10to13(code);
+                    input.value = isbn13;
+                    infoDiv.textContent = `✓ ISBN-10 → ISBN-13: ${isbn13}`;
+                }
+            } else {
+                input.classList.remove('border-green-500');
+                input.classList.add('border-red-500');
+                
+                const existingInfo = document.getElementById('barcodeInfo');
+                if (existingInfo) existingInfo.remove();
+                
+                const infoDiv = document.createElement('div');
+                infoDiv.id = 'barcodeInfo';
+                infoDiv.className = 'text-sm text-red-600 mt-1';
+                infoDiv.textContent = '⚠ Ongeldige barcode/ISBN';
+                input.parentNode.appendChild(infoDiv);
+            }
+        }
+
+        // ZXing barcode scanner implementatie
+        let codeReader = null;
+        let videoElement = null;
+
+        // Barcode scanning - ZXing implementatie
+        async function startBarcodeScan() {
+            document.getElementById('scannerOverlay').style.display = 'block';
+            scannerActive = true;
+            
+            // Detecteer Samsung apparaten voor hints
+            detectSamsungDevice();
+            
+            // Controleer camera ondersteuning
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+                alert('Camera wordt niet ondersteund door deze browser. Voer de barcode handmatig in.');
+                stopBarcodeScan();
+                return;
+            }
+
+            // Controleer ZXing ondersteuning
+            if (typeof ZXing === 'undefined') {
+                alert('Barcode scanner wordt niet ondersteund. Voer de barcode handmatig in.');
+                stopBarcodeScan();
+                return;
+            }
+
+            try {
+                // Initialize ZXing
+                codeReader = new ZXing.BrowserMultiFormatReader();
+                
+                // Configure specifiek voor ISBN en muziek barcodes
+                codeReader.hints = new Map([
+                    [ZXing.DecodeHintType.POSSIBLE_FORMATS, [
+                        // ISBN codes (EAN-13 met 978/979 prefix)
+                        ZXing.BarcodeFormat.EAN_13,
+                        // CD/LP barcodes (meestal EAN-13 of UPC-A)
+                        ZXing.BarcodeFormat.UPC_A,
+                        ZXing.BarcodeFormat.UPC_E,
+                        // Alternatieve formaten voor muziek
+                        ZXing.BarcodeFormat.EAN_8,
+                        ZXing.BarcodeFormat.CODE_128,
+                        ZXing.BarcodeFormat.CODE_39
+                    ]],
+                    [ZXing.DecodeHintType.TRY_HARDER, true],
+                    [ZXing.DecodeHintType.CHARACTER_SET, 'UTF-8'],
+                    // Specifieke hints voor muziek media
+                    [ZXing.DecodeHintType.ASSUME_GS1, false]
+                ]);
+
+                // Start decoding
+                await codeReader.decodeFromVideoDevice(
+                    undefined, // Laat ZXing de beste camera kiezen
+                    document.getElementById('scannerVideo'),
+                    (result, err) => {
+                        if (result) {
+                            console.log('Barcode gevonden:', result.text);
+                            const code = result.text;
+                            
+                            // Valideer en verwerk de barcode
+                            if (code && code.length >= 8) {
+                                const codeType = detectCodeType(code);
+                                let processedCode = code;
+                                let message = `Barcode gevonden: ${code}`;
+                                
+                                // Specifieke verwerking voor verschillende code types
+                                if (codeType === 'ISBN-10') {
+                                    // Converteer ISBN-10 naar ISBN-13 voor consistentie
+                                    processedCode = convertISBN10to13(code);
+                                    message = `ISBN-10 gevonden: ${code} → ISBN-13: ${processedCode}`;
+                                } else if (codeType === 'ISBN-13') {
+                                    message = `ISBN-13 gevonden: ${code}`;
+                                } else if (codeType === 'UPC-A (CD/LP)') {
+                                    message = `CD/LP barcode gevonden: ${code}`;
+                                } else if (codeType === 'EAN-13') {
+                                    message = `EAN-13 barcode gevonden: ${code}`;
+                                } else {
+                                    message = `Barcode gevonden: ${code} (${codeType})`;
+                                }
+                                
+                                // Voer de verwerkte code in
+                                document.getElementById('itemBarcode').value = processedCode;
+                                stopBarcodeScan();
+                                
+                                // Toon uitgebreide succesmelding
+                                const statusDiv = document.createElement('div');
+                                statusDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50 max-w-sm';
+                                statusDiv.innerHTML = `
+                                    <div class="font-semibold">✅ ${codeType}</div>
+                                    <div class="text-sm">${message}</div>
+                                `;
+                                document.body.appendChild(statusDiv);
+                                setTimeout(() => statusDiv.remove(), 4000);
+                            }
+                        }
+                        if (err && !(err instanceof ZXing.NotFoundException)) {
+                            console.error('Scan error:', err);
+                        }
+                    },
+                    {
+                        // Betere video constraints voor barcode scanning
+                        video: {
+                            width: { min: 640, ideal: 1280, max: 1920 },
+                            height: { min: 480, ideal: 720, max: 1080 },
+                            facingMode: { ideal: "environment" }, // Voorkeur achtercamera
+                            frameRate: { ideal: 30, max: 60 }
+                        }
+                    }
+                );
+
+            } catch (error) {
+                console.error('Camera error:', error);
+                
+                // Toon meer specifieke foutmeldingen
+                let errorMessage = 'Camera kon niet worden gestart.\n\n';
+                
+                if (error.name === 'NotAllowedError') {
+                    errorMessage += 'Camera toegang is geweigerd. Ga naar browser instellingen en sta camera toegang toe.';
+                } else if (error.name === 'NotFoundError') {
+                    errorMessage += 'Geen camera gevonden. Controleer of er een camera is aangesloten.';
+                } else if (error.name === 'NotSupportedError') {
+                    errorMessage += 'Camera wordt niet ondersteund door deze browser.';
+                } else {
+                    errorMessage += 'Fout: ' + error.message + '\n\nControleer of camera toegang is toegestaan.';
+                }
+                
+                errorMessage += '\n\nU kunt de barcode ook handmatig invoeren.';
+                
+                alert(errorMessage);
+                stopBarcodeScan();
+            }
+        }
+
+        function stopBarcodeScan() {
+            if (scannerActive) {
+                try {
+                    if (codeReader) {
+                        codeReader.reset();
+                        codeReader = null;
+                    }
+                    scannerActive = false;
+                } catch (error) {
+                    console.error('Error stopping scanner:', error);
+                }
+            }
+            document.getElementById('scannerOverlay').style.display = 'none';
+            
+            // Cleanup video stream
+            const video = document.getElementById('scannerVideo');
+            if (video && video.srcObject) {
+                const tracks = video.srcObject.getTracks();
+                tracks.forEach(track => track.stop());
+                video.srcObject = null;
+            }
+        }
+
+        // Export functions
+        function exportToPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('SeniorEaseBieb - Collectie Overzicht', 20, 20);
+            
+            let y = 40;
+            items.forEach((item, index) => {
+                if (y > 280) {
+                    doc.addPage();
+                    y = 20;
+                }
+                
+                doc.setFontSize(12);
+                doc.text(`${index + 1}. ${item.title}`, 20, y);
+                y += 8;
+                
+                if (item.author) {
+                    doc.setFontSize(10);
+                    doc.text(`   Auteur: ${item.author}`, 20, y);
+                    y += 6;
+                }
+                
+                doc.setFontSize(10);
+                doc.text(`   Type: ${item.type} | Status: ${getStatusText(item.status)}`, 20, y);
+                y += 6;
+                
+                if (item.barcode) {
+                    doc.text(`   ISBN: ${item.barcode}`, 20, y);
+                    y += 6;
+                }
+                
+                y += 4;
+            });
+            
+            doc.save('senioreasebieb-collectie.pdf');
+        }
+
+        function backupData() {
+            const data = {
+                items: items,
+                exportDate: new Date().toISOString(),
+                version: '1.0'
+            };
+            
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `senioreasebieb-backup-${new Date().toISOString().split('T')[0]}.json`;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('addModal').addEventListener('click', function(e) {
+            if (e.target === this) closeAddModal();
+        });
+
+        document.getElementById('itemModal').addEventListener('click', function(e) {
+            if (e.target === this) closeItemModal();
+        });
+
+        document.getElementById('scannerOverlay').addEventListener('click', function(e) {
+            if (e.target === this) stopBarcodeScan();
+        });
+
+        // Valideer handmatige invoer
+        document.getElementById('itemBarcode').addEventListener('input', function() {
+            // Debounce de validatie
+            clearTimeout(this.validationTimeout);
+            this.validationTimeout = setTimeout(validateManualInput, 500);
+        });
+    </script>
+</body>
+</html>

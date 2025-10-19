@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase – Eenvoudige digitale hulpmiddelen</title>
+    <meta name="description" content="Uw boeken & muziek eenvoudig beheerd. Eenmalig, geen abonnement. Digitale hulpmiddelen die wél eenvoudig zijn.">
+    <meta name="theme-color" content="#8B5E3C">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="/icons/icon-192.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'se': {
+                            'beige': '#F5EEE6',
+                            'brown': '#8B5E3C',
+                            'dark-brown': '#6E492F',
+                            'text': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-se-beige text-se-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-se-beige shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-start space-x-8">
+                <!-- Logo links -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="icons/icon-512.png" alt="SeniorEase hartlogo" class="w-32 h-32">
+                </div>
+                
+                <!-- Titel rechts -->
+                <div class="flex-1 pt-4">
+                    <h1 class="text-5xl font-bold text-se-brown mb-2">SeniorEase</h1>
+                    <p class="text-2xl text-se-dark-brown">Uw boeken & muziek eenvoudig beheerd</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <section class="text-center mb-16">
+            <p class="text-xl text-se-dark-brown mb-12 max-w-3xl mx-auto font-bold">Eenmalig – geen abonnement. Tijdelijk met alle extra functies inbegrepen.</p>
+            
+            <!-- Three main buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+                <!-- Koop knop -->
+                <!-- Vervang dit door je Stripe/Mollie Payment Link -->
+                <a href="#koop" class="bg-se-brown hover:bg-se-dark-brown text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    Eenmalig €2,99 – Koop nu
+                </a>
+                
+                <!-- Demo knop -->
+                <a href="#demo" class="bg-white hover:bg-gray-50 text-se-brown font-bold py-4 px-6 rounded-lg text-lg border-2 border-se-brown transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    Probeer de demo
+                </a>
+                
+                <!-- Installeren als app knop -->
+                <button id="installBtn" class="bg-se-dark-brown hover:bg-se-brown text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    Installeer als app
+                </button>
+            </div>
+        </section>
+
+        <!-- Demo Section -->
+        <section id="demo" class="mb-16">
+            <h3 class="text-3xl font-bold text-se-brown mb-8 text-center">Demo functionaliteit</h3>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto">
+                <ul class="space-y-4 text-lg">
+                    <li class="flex items-center">
+                        <span class="w-6 h-6 bg-se-brown rounded-full mr-4"></span>
+                        Boek toevoegen
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-6 h-6 bg-se-brown rounded-full mr-4"></span>
+                        Album toevoegen
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-6 h-6 bg-se-brown rounded-full mr-4"></span>
+                        Export naar PDF/CSV (volledige versie)
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Koop Section -->
+        <section id="koop" class="mb-16">
+            <h3 class="text-3xl font-bold text-se-brown mb-8 text-center">Koop SeniorEase</h3>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto text-center">
+                <p class="text-lg mb-6">Hier komt binnenkort de betaal-link voor uw eenmalige aankoop van €2,99.</p>
+                <p class="text-base text-se-dark-brown">
+                    Heeft u vragen? Neem contact op via 
+                    <a href="mailto:support@seniorease.nl" class="text-se-brown hover:text-se-dark-brown underline">support@seniorease.nl</a>
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-se-dark-brown text-white py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-4">&copy; 2025 SeniorEase</p>
+            <div class="flex justify-center space-x-6">
+                <a href="privacy.html" class="hover:text-se-beige transition-colors">Privacybeleid</a>
+                <a href="hulp.html" class="hover:text-se-beige transition-colors">Hulp</a>
+                <a href="mailto:support@seniorease.nl" class="hover:text-se-beige transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registratie
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                console.log('Service Worker ondersteund, registreren...');
+                try {
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(function(registration) {
+                            console.log('✅ Service Worker succesvol geregistreerd:', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.error('❌ Service Worker registratie mislukt:', error);
+                        });
+                } catch (error) {
+                    console.error('❌ Service Worker niet ondersteund:', error);
+                }
+            } else {
+                console.log('❌ Service Worker niet ondersteund door deze browser');
+            }
+        });
+
+        // Installeren als app functionaliteit
+        let deferredPrompt;
+        const installBtn = document.getElementById('installBtn');
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('📱 beforeinstallprompt event ontvangen - app kan geïnstalleerd worden');
+            // Voorkom dat de browser de install prompt automatisch toont
+            e.preventDefault();
+            // Bewaar het event voor later gebruik
+            deferredPrompt = e;
+            // Toon de install knop
+            installBtn.style.display = 'block';
+            console.log('✅ Install knop wordt getoond');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            console.log('🔧 Install knop geklikt');
+            if (deferredPrompt) {
+                console.log('📱 Install prompt wordt getoond...');
+                // Toon de install prompt
+                deferredPrompt.prompt();
+                // Wacht op de gebruiker om te reageren op de prompt
+                const { outcome } = await deferredPrompt.userChoice;
+                console.log(`📱 Gebruiker ${outcome} de install prompt`);
+                // Reset de deferredPrompt
+                deferredPrompt = null;
+            } else {
+                console.log('⚠️ Install prompt niet beschikbaar, toon instructies');
+                // Als beforeinstallprompt niet beschikbaar is
+                alert('Om SeniorEase als app te installeren:\n\n1. Open Chrome\n2. Klik op het menu (⋮)\n3. Selecteer "App installeren"');
+            }
+        });
+
+        // Verberg de install knop als de app al geïnstalleerd is
+        window.addEventListener('appinstalled', () => {
+            console.log('🎉 SeniorEase app succesvol geïnstalleerd!');
+            installBtn.style.display = 'none';
+            deferredPrompt = null;
+        });
+    </script>
+</body>
+</html>

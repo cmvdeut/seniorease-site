@@ -1,0 +1,27 @@
+{
+  "name": "SeniorEase Demo",
+  "short_name": "SE Demo",
+  "description": "Probeer de beperkte SeniorEase demo: scan en beheer tot vijf items en exporteer ze als PDF.",
+  "start_url": "/demo/",
+  "scope": "/demo/",
+  "display": "standalone",
+  "background_color": "#F5EEE6",
+  "theme_color": "#8B5E3C",
+  "permissions": [
+    "camera"
+  ],
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
