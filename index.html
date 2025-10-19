@@ -92,45 +92,68 @@
             </div>
         </section>
 
-        <!-- Koop Section -->
+        <!-- Hoe werkt het Section -->
         <section id="koop" class="mb-16">
-            <h3 class="text-3xl font-bold text-se-brown mb-8 text-center">Koop SeniorEase</h3>
-            <div class="bg-white rounded-lg shadow-lg p-8 max-w-2xl mx-auto text-center">
-                <div class="mb-6">
-                    <h4 class="text-xl font-semibold text-se-brown mb-4">Eenmalig €2,99 - Geen abonnement</h4>
-                    <p class="text-lg mb-6">Krijg toegang tot alle functies van SeniorEase</p>
+            <h3 class="text-3xl font-bold text-se-brown mb-8 text-center">Hoe werkt het</h3>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                <p class="text-lg text-center text-se-dark-brown mb-8">SeniorEase is zo eenvoudig dat iedereen het kan gebruiken. Bekijk hoe het werkt:</p>
+                
+                <!-- Screenshot Carousel -->
+                <div class="relative">
+                    <div id="carousel" class="overflow-hidden rounded-lg">
+                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_1.png" alt="SeniorEase - Startscherm" class="w-full h-auto rounded-lg shadow-lg">
+                                <p class="text-center text-se-dark-brown mt-4 font-semibold">1. Start met een lege bibliotheek</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_2.png" alt="SeniorEase - Item toevoegen" class="w-full h-auto rounded-lg shadow-lg">
+                                <p class="text-center text-se-dark-brown mt-4 font-semibold">2. Voeg items toe via barcode scanner</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_3.png" alt="SeniorEase - Bibliotheek overzicht" class="w-full h-auto rounded-lg shadow-lg">
+                                <p class="text-center text-se-dark-brown mt-4 font-semibold">3. Bekijk je collectie overzicht</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_4.png" alt="SeniorEase - Export functie" class="w-full h-auto rounded-lg shadow-lg">
+                                <p class="text-center text-se-dark-brown mt-4 font-semibold">4. Exporteer naar PDF of CSV</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_5.png" alt="SeniorEase - App installatie" class="w-full h-auto rounded-lg shadow-lg">
+                                <p class="text-center text-se-dark-brown mt-4 font-semibold">5. Installeer als app op je telefoon</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Navigation buttons -->
+                    <button id="prevBtn" class="absolute left-4 top-1/2 transform -translate-y-1/2 bg-se-brown text-white p-2 rounded-full hover:bg-se-dark-brown transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <button id="nextBtn" class="absolute right-4 top-1/2 transform -translate-y-1/2 bg-se-brown text-white p-2 rounded-full hover:bg-se-dark-brown transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Dots indicator -->
+                    <div class="flex justify-center mt-6 space-x-2">
+                        <button class="dot w-3 h-3 rounded-full bg-se-brown" data-slide="0"></button>
+                        <button class="dot w-3 h-3 rounded-full bg-gray-300" data-slide="1"></button>
+                        <button class="dot w-3 h-3 rounded-full bg-gray-300" data-slide="2"></button>
+                        <button class="dot w-3 h-3 rounded-full bg-gray-300" data-slide="3"></button>
+                        <button class="dot w-3 h-3 rounded-full bg-gray-300" data-slide="4"></button>
+                    </div>
                 </div>
                 
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-center justify-center">
-                        <span class="w-6 h-6 bg-green-500 rounded-full mr-3"></span>
-                        <span>Onbeperkt items toevoegen</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <span class="w-6 h-6 bg-green-500 rounded-full mr-3"></span>
-                        <span>PDF en CSV export</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <span class="w-6 h-6 bg-green-500 rounded-full mr-3"></span>
-                        <span>Barcode scanner</span>
-                    </div>
-                    <div class="flex items-center justify-center">
-                        <span class="w-6 h-6 bg-green-500 rounded-full mr-3"></span>
-                        <span>Backup en restore</span>
-                    </div>
-                </div>
-                
-                <div class="bg-se-beige p-4 rounded-lg mb-6">
-                    <p class="text-se-brown font-semibold">✅ Nu beschikbaar!</p>
-                    <p class="text-sm text-se-dark-brown mt-2">Koop SeniorEase direct via onze veilige Stripe checkout.</p>
-                </div>
-                
-                <div class="space-y-3">
+                <!-- Call to action -->
+                <div class="text-center mt-8">
                     <a href="https://buy.stripe.com/cNi3co3yC45O70b4NM6c000" target="_blank"
-                       class="block bg-se-brown hover:bg-se-dark-brown text-white font-bold py-3 px-6 rounded-lg transition-colors duration-200">
+                       class="inline-block bg-se-brown hover:bg-se-dark-brown text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200">
                         💳 Koop nu voor €2,99
                     </a>
-                    <p class="text-sm text-se-dark-brown">
+                    <p class="text-sm text-se-dark-brown mt-3">
                         Veilig betalen via Stripe • 
                         <a href="mailto:support@seniorease.nl" class="text-se-brown hover:text-se-dark-brown underline">Vragen? Neem contact op</a>
                     </p>
@@ -212,6 +235,50 @@
             installBtn.style.display = 'none';
             deferredPrompt = null;
         });
+
+        // Screenshot Carousel functionaliteit
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const carouselTrack = document.getElementById('carousel-track');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+
+        function updateCarousel() {
+            const translateX = -currentSlide * 100;
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-se-brown', index === currentSlide);
+                dot.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+
+        function prevSlide() {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateCarousel();
+        }
+
+        // Event listeners voor carousel
+        if (nextBtn) nextBtn.addEventListener('click', nextSlide);
+        if (prevBtn) prevBtn.addEventListener('click', prevSlide);
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto-play carousel (optioneel)
+        setInterval(nextSlide, 5000); // Wissel elke 5 seconden
     </script>
 </body>
 </html>
