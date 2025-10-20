@@ -44,3 +44,14 @@ foreach ($d in $dirs) {
 
 Write-Host "Done. Output: $dist"
 
+# Also emit a _redirects file so that manual/CLI deploys honor SPA & folder passthroughs
+$redirects = @(
+    "/demo/*\t/demo/:splat\t200",
+    "/senioreasebieb/*\t/senioreasebieb/:splat\t200",
+    "/senioreasebieb\t/senioreasebieb/\t301",
+    "/*\t/index.html\t200"
+)
+$redirectsPath = Join-Path $dist "_redirects"
+$redirects -join "`n" | Out-File -FilePath $redirectsPath -Encoding UTF8 -Force
+Write-Host "_redirects written"
+
