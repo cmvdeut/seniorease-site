@@ -28,6 +28,16 @@
   status = 301
 
 [[redirects]]
+  from = "/demo/*"
+  to = "/demo/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/senioreasebieb/*"
+  to = "/senioreasebieb/:splat"
+  status = 200
+
+[[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
