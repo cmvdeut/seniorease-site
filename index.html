@@ -52,22 +52,88 @@
         <section class="text-center mb-16">
             <p class="text-xl text-se-dark-brown mb-12 max-w-3xl mx-auto font-bold">Eenmalig – geen abonnement. Tijdelijk met alle extra functies inbegrepen.</p>
             
-            <!-- Three main buttons -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            <!-- Two main buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
                 <!-- Koop knop -->
                 <a href="https://buy.stripe.com/cNi3co3yC45O70b4NM6c000" target="_blank" class="bg-se-brown hover:bg-se-dark-brown text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-                    Eenmalig €2,99 – Koop nu
+                    Koop nu voor €2,99
                 </a>
                 
                 <!-- Demo knop -->
                 <a href="/demo/" class="bg-white hover:bg-gray-50 text-se-brown font-bold py-4 px-6 rounded-lg text-lg border-2 border-se-brown transition-colors duration-200 shadow-lg hover:shadow-xl">
-                    Probeer de demo
+                    Probeer gratis demo
                 </a>
+            </div>
+        </section>
+
+        <!-- Hoe werkt het Section -->
+        <section id="how-it-works" class="mb-8 md:mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-se-brown mb-4 md:mb-6 text-center">Hoe werkt het</h3>
+            <div class="bg-white rounded-lg shadow-lg p-4 md:p-8 max-w-4xl mx-auto">
+                <p class="text-base md:text-lg text-center text-se-dark-brown mb-4 md:mb-6">SeniorEase is zo eenvoudig dat iedereen het kan gebruiken. Bekijk hoe het werkt:</p>
                 
-                <!-- Installeren als app knop -->
-                <button id="installBtn" class="bg-se-dark-brown hover:bg-se-brown text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
-                    Installeer als app
-                </button>
+                <!-- Screenshot Carousel -->
+                <div class="relative">
+                    <div id="carousel" class="overflow-hidden rounded-lg">
+                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_1.png" alt="SeniorEase - Startscherm" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">1. Installeer de app op uw tablet of telefoon</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_2.png" alt="SeniorEase - Item toevoegen" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">2. Voeg items toe via barcode scanner</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_3.png" alt="SeniorEase - Bibliotheek overzicht" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">3. Bekijk je collectie overzicht</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_4.png" alt="SeniorEase - Export functie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">4. Zoek informatie via Google</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_5.png" alt="SeniorEase - App installatie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">5. Exporteer de lijst</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dots indicator -->
+                    <div class="flex justify-center mt-4 md:mt-6 space-x-2">
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-se-brown" data-slide="0"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="1"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="2"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="3"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="4"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hoe installeer ik de demo? -->
+        <section class="mb-12 bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold text-se-brown mb-4 text-center">💡 Hoe werkt de gratis demo?</h3>
+            <div class="space-y-4 text-lg">
+                <p class="text-se-dark-brown">
+                    <strong>De demo werkt direct in uw browser - geen download nodig!</strong>
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-se-dark-brown">
+                    <li>Klik op <strong>"Probeer gratis demo"</strong></li>
+                    <li>De demo opent direct in uw browser</li>
+                    <li>Probeer alle functies uit (max. 5 items)</li>
+                    <li><strong>Optioneel:</strong> Installeer als app op uw telefoon:
+                        <ul class="list-disc list-inside ml-6 mt-2">
+                            <li><strong>Android Chrome:</strong> Menu (⋮) → "App installeren"</li>
+                            <li><strong>iPhone Safari:</strong> Deel knop → "Voeg toe aan beginscherm"</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="bg-se-beige border-l-4 border-se-brown p-4 rounded">
+                    <p class="font-semibold text-se-dark-brown">
+                        ✨ Na installatie werkt de app zelfs zonder internet!
+                    </p>
+                </div>
             </div>
         </section>
 
@@ -189,63 +255,6 @@
             </div>
         </section>
 
-        <!-- Hoe werkt het Section -->
-        <section id="koop" class="mb-8 md:mb-12">
-            <h3 class="text-2xl md:text-3xl font-bold text-se-brown mb-4 md:mb-6 text-center">Hoe werkt het</h3>
-            <div class="bg-white rounded-lg shadow-lg p-4 md:p-8 max-w-4xl mx-auto">
-                <p class="text-base md:text-lg text-center text-se-dark-brown mb-4 md:mb-6">SeniorEase is zo eenvoudig dat iedereen het kan gebruiken. Bekijk hoe het werkt:</p>
-                
-                <!-- Screenshot Carousel -->
-                <div class="relative">
-                    <div id="carousel" class="overflow-hidden rounded-lg">
-                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
-                            <div class="w-full flex-shrink-0">
-                                <img src="screenshots/Screenshot_1.png" alt="SeniorEase - Startscherm" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">1. Installeer de app op uw tablet of telefoon</p>
-                            </div>
-                            <div class="w-full flex-shrink-0">
-                                <img src="screenshots/Screenshot_2.png" alt="SeniorEase - Item toevoegen" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">2. Voeg items toe via barcode scanner</p>
-                            </div>
-                            <div class="w-full flex-shrink-0">
-                                <img src="screenshots/Screenshot_3.png" alt="SeniorEase - Bibliotheek overzicht" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">3. Bekijk je collectie overzicht</p>
-                            </div>
-                            <div class="w-full flex-shrink-0">
-                                <img src="screenshots/Screenshot_4.png" alt="SeniorEase - Export functie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">4. Zoek informatie via Google</p>
-                            </div>
-                            <div class="w-full flex-shrink-0">
-                                <img src="screenshots/Screenshot_5.png" alt="SeniorEase - App installatie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
-                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">5. Exporteer de lijst</p>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    
-                    <!-- Dots indicator -->
-                    <div class="flex justify-center mt-4 md:mt-6 space-x-2">
-                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-se-brown" data-slide="0"></button>
-                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="1"></button>
-                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="2"></button>
-                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="3"></button>
-                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="4"></button>
-                    </div>
-                </div>
-                
-                <!-- Call to action -->
-                <div class="text-center mt-4 md:mt-8">
-                    <a href="https://buy.stripe.com/cNi3co3yC45O70b4NM6c000" target="_blank"
-                       class="inline-block bg-se-brown hover:bg-se-dark-brown text-white font-bold py-2 px-6 md:py-3 md:px-8 rounded-lg transition-colors duration-200 text-sm md:text-base">
-                        💳 Koop nu voor €2,99
-                    </a>
-                    <p class="text-xs md:text-sm text-se-dark-brown mt-2 md:mt-3">
-                        Veilig betalen via Stripe • 
-                        <a href="mailto:support@seniorease.nl" class="text-se-brown hover:text-se-dark-brown underline">Vragen? Neem contact op</a>
-                    </p>
-                </div>
-            </div>
-        </section>
     </main>
 
     <!-- Footer -->
@@ -282,43 +291,18 @@
             }
         });
 
-        // Installeren als app functionaliteit
+        // PWA Install functionaliteit (voor volledige versie)
         let deferredPrompt;
-        const installBtn = document.getElementById('installBtn');
 
         window.addEventListener('beforeinstallprompt', (e) => {
             console.log('📱 beforeinstallprompt event ontvangen - app kan geïnstalleerd worden');
-            // Voorkom dat de browser de install prompt automatisch toont
             e.preventDefault();
-            // Bewaar het event voor later gebruik
             deferredPrompt = e;
-            // Toon de install knop
-            installBtn.style.display = 'block';
-            console.log('✅ Install knop wordt getoond');
+            console.log('✅ PWA installeerbaar');
         });
 
-        installBtn.addEventListener('click', async () => {
-            console.log('🔧 Install knop geklikt');
-            if (deferredPrompt) {
-                console.log('📱 Install prompt wordt getoond...');
-                // Toon de install prompt
-                deferredPrompt.prompt();
-                // Wacht op de gebruiker om te reageren op de prompt
-                const { outcome } = await deferredPrompt.userChoice;
-                console.log(`📱 Gebruiker ${outcome} de install prompt`);
-                // Reset de deferredPrompt
-                deferredPrompt = null;
-            } else {
-                console.log('⚠️ Install prompt niet beschikbaar, toon instructies');
-                // Als beforeinstallprompt niet beschikbaar is
-                alert('Om SeniorEase als app te installeren:\n\n1. Open Chrome\n2. Klik op het menu (⋮)\n3. Selecteer "App installeren"');
-            }
-        });
-
-        // Verberg de install knop als de app al geïnstalleerd is
         window.addEventListener('appinstalled', () => {
             console.log('🎉 SeniorEase app succesvol geïnstalleerd!');
-            installBtn.style.display = 'none';
             deferredPrompt = null;
         });
 
@@ -353,7 +337,7 @@
         });
 
         // Auto-play carousel
-        setInterval(nextSlide, 5000); // Wissel elke 5 seconden
+        setInterval(nextSlide, 3000); // Wissel elke 3 seconden
     </script>
 </body>
 </html>

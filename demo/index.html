@@ -3,21 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#8B4513">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="SeniorEase Demo">
     <title>SeniorEase Demo</title>
     <meta name="description" content="Probeer de beperkte SeniorEase demo: scan tot vijf items, bewaar ze en exporteer als PDF.">
-    <link rel="manifest" href="/manifest.webmanifest">
-    <link rel="icon" type="image/png" href="/icons/icon-192.png">
-    <link rel="apple-touch-icon" href="/icons/icon-192.png">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" type="image/png" href="../icons/icon-192.png">
+    <link rel="apple-touch-icon" href="../icons/icon-192.png">
     <link rel="stylesheet" href="style.css">
-    <script defer src="lib/jspdf.umd.min.js"></script>
-    <!-- QuaggaJS voor betrouwbare barcode scanning -->
-    <script defer src="https://unpkg.com/@zxing/library@latest/umd/index.min.js"></script>
-    <script defer src="app.js"></script>
+    <!-- Libraries ZONDER defer zodat ze voor de app laden -->
+    <script src="lib/jspdf.umd.min.js"></script>
+    <!-- ZXing library for barcode scanning -->
+    <script src="lib/zxing.min.js"></script>
+    <!-- QuaggaJS fallback for devices that struggle with ZXing -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <!-- Main app with scanner implementation - DEFER zodat libraries eerst laden -->
+    <script defer src="app-zxing.js"></script>
+    <script>
+        // Register Service Worker for PWA functionality
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js')
+                    .then((registration) => {
+                        console.log('SW registered: ', registration);
+                    })
+                    .catch((registrationError) => {
+                        console.log('SW registration failed: ', registrationError);
+                    });
+            });
+        }
+
+        // Demo version - no install prompt (only for paid version)
+    </script>
 </head>
 <body>
     <header class="app-header">
         <div class="branding">
-            <img src="/icons/icon-192.png" alt="SeniorEase hartlogo" class="logo">
+            <img src="../icons/icon-192.png" alt="SeniorEase hartlogo" class="logo">
             <div>
                 <h1>SeniorEase demo</h1>
                 <p>Scan, bewaar en deel tot vijf items.</p>
@@ -81,7 +105,7 @@
             </form>
                    <!-- Camera Popup Modal -->
                    <div id="cameraModal" class="camera-modal hidden">
-                       <button class="camera-close" onclick="closeCameraModal()">×</button>
+                       <button class="camera-close" onclick="closeCameraModal()">&times;</button>
                        <div class="camera-container" id="camera-container">
                            <div class="camera-overlay">
                                <div class="camera-frame"></div>

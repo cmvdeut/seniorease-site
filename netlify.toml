@@ -1,6 +1,6 @@
 [build]
   publish = "dist"
-  command = "powershell -ExecutionPolicy Bypass -Command \"Remove-Item -Recurse -Force dist -ErrorAction SilentlyContinue; New-Item -ItemType Directory -Path dist | Out-Null; Copy-Item index.html,manifest.webmanifest,sw.js,privacy.html,hulp.html -Destination dist -ErrorAction SilentlyContinue; robocopy icons dist\\icons /E | Out-Null; robocopy screenshots dist\\screenshots /E | Out-Null; robocopy demo dist\\demo /E | Out-Null; robocopy senioreasebieb dist\\senioreasebieb /E | Out-Null; Set-Content -Path dist\\_redirects -Value '/demo/* /demo/:splat 200`n/senioreasebieb/* /senioreasebieb/:splat 200`n/senioreasebieb /senioreasebieb/ 301`n/* /index.html 200'\""
+  command = "powershell -ExecutionPolicy Bypass -File scripts/build-dist.ps1"
 
 [[headers]]
   for = "/*"
@@ -9,6 +9,7 @@
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+    Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
 
 [[headers]]
   for = "/demo/*"

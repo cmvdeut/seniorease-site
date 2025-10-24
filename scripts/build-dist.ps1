@@ -26,8 +26,9 @@ Write-Host 'Building minimal dist/ for Netlify…'
 # Copy single files if they exist
 $singleFiles = @('index.html', 'manifest.webmanifest', 'sw.js', 'privacy.html', 'hulp.html')
 foreach ($f in $singleFiles) {
-    if (Test-Path -LiteralPath (Join-Path $Root $f)) {
-        Copy-Item -LiteralPath (Join-Path $Root $f) -Destination $dist -Force
+    $srcFile = Join-Path $Root $f
+    if (Test-Path -LiteralPath $srcFile) {
+        Copy-Item -LiteralPath $srcFile -Destination $dist -Force
         Write-Host "  ✓ $f"
     }
 }
@@ -35,9 +36,11 @@ foreach ($f in $singleFiles) {
 # Copy needed directories if they exist
 $dirs = @('icons', 'screenshots', 'demo', 'senioreasebieb')
 foreach ($d in $dirs) {
-    $src = Join-Path $Root $d
-    if (Test-Path -LiteralPath $src) {
-        Copy-Item -LiteralPath $src -Destination (Join-Path $dist $d) -Recurse -Force
+    $srcDir = Join-Path $Root $d
+    $destDir = Join-Path $dist $d
+    if (Test-Path -LiteralPath $srcDir) {
+        Ensure-Directory $destDir
+        Copy-Item -Path (Join-Path $srcDir '*') -Destination $destDir -Recurse -Force
         Write-Host "  ✓ $d/"
     }
 }
@@ -54,4 +57,3 @@ $redirects = @(
 $redirectsPath = Join-Path $dist "_redirects"
 $redirects -join "`n" | Out-File -FilePath $redirectsPath -Encoding UTF8 -Force
 Write-Host "_redirects written"
-

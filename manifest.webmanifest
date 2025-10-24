@@ -1,15 +1,12 @@
 {
-  "name": "SeniorEase Demo",
-  "short_name": "SE Demo",
-  "description": "Probeer de beperkte SeniorEase demo: scan en beheer tot vijf items en exporteer ze als PDF.",
-  "start_url": "/demo/",
-  "scope": "/demo/",
+  "name": "SeniorEase",
+  "short_name": "SeniorEase",
+  "description": "Scan en beheer uw boeken, CD's en LP's collectie. Exporteer naar PDF en deel met anderen.",
+  "start_url": "/",
+  "scope": "/",
   "display": "standalone",
   "background_color": "#F5EEE6",
   "theme_color": "#8B5E3C",
-  "permissions": [
-    "camera"
-  ],
   "icons": [
     {
       "src": "icons/icon-192.png",

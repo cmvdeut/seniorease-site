@@ -33,7 +33,15 @@ let codeReader = null;
 let videoElement = null;
 
 function scannerSupported() {
-    return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia) && typeof ZXing !== 'undefined';
+    // Check if camera API is available
+    const hasCameraAPI = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    
+    // Check if ZXing is loaded (it loads as a global object)
+    const hasZXing = typeof ZXing !== 'undefined';
+    
+    console.log('Scanner support check:', { hasCameraAPI, hasZXing, ZXingAvailable: typeof ZXing });
+    
+    return hasCameraAPI && hasZXing;
 }
 
 async function startScanning() {
@@ -365,28 +373,62 @@ function sharePdf() {
     
     const pdfBlob = doc.output('blob');
     
-    if (navigator.share && navigator.canShare({ files: [pdfBlob] })) {
-        navigator.share({
-            title: 'SeniorEase Demo Items',
-            text: 'Mijn SeniorEase demo items',
-            files: [new File([pdfBlob], 'seniorease-demo-items.pdf', { type: 'application/pdf' })]
-        }).catch(err => {
-            console.error('Share failed:', err);
-            elements.shareHint.textContent = 'Delen mislukt. Gebruik Download PDF.';
-        });
+    if (navigator.share) {
+        try {
+            const pdfFile = new File([pdfBlob], 'seniorease-demo-items.pdf', { type: 'application/pdf' });
+            if (navigator.canShare && navigator.canShare({ files: [pdfFile] })) {
+                navigator.share({
+                    title: 'SeniorEase Demo Items',
+                    text: 'Mijn SeniorEase demo items',
+                    files: [pdfFile]
+                }).catch(err => {
+                    console.error('Share failed:', err);
+                    elements.shareHint.textContent = 'Delen mislukt. Gebruik Download PDF.';
+                });
+            } else {
+                // Fallback: share without files
+                navigator.share({
+                    title: 'SeniorEase Demo Items',
+                    text: 'Mijn SeniorEase demo items - download de PDF via de app'
+                }).catch(err => {
+                    console.error('Share failed:', err);
+                    elements.shareHint.textContent = 'Delen mislukt. Gebruik Download PDF.';
+                });
+            }
+        } catch (err) {
+            console.error('Share setup failed:', err);
+            elements.shareHint.textContent = 'Delen niet ondersteund. Gebruik Download PDF.';
+        }
     } else {
         elements.shareHint.textContent = 'Uw apparaat ondersteunt waarschijnlijk geen delen van PDF-bestanden. Gebruik Download PDF.';
     }
 }
 
 function checkScannerSupport() {
-    if (!scannerSupported()) {
-        elements.startScan.disabled = true;
-        setScanStatus('Barcode scannen wordt niet ondersteund in deze browser.', true);
-    } else {
-        elements.startScan.disabled = false;
-        setScanStatus('');
-    }
+    // Re-check after a short delay to ensure libraries are loaded
+    setTimeout(() => {
+        if (!scannerSupported()) {
+            elements.startScan.disabled = true;
+            
+            // Provide helpful error message
+            const hasCameraAPI = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+            const hasZXing = typeof ZXing !== 'undefined';
+            
+            if (!hasCameraAPI) {
+                setScanStatus('Camera niet beschikbaar. Gebruik een moderne browser (Chrome/Safari).', true);
+            } else if (!hasZXing) {
+                setScanStatus('Scanner bibliotheek aan het laden... Probeer opnieuw over enkele seconden.', false);
+                // Retry check after additional delay
+                setTimeout(checkScannerSupport, 2000);
+            } else {
+                setScanStatus('Barcode scannen wordt niet ondersteund in deze browser.', true);
+            }
+        } else {
+            elements.startScan.disabled = false;
+            setScanStatus('');
+            console.log('✅ Scanner ready: ZXing loaded successfully');
+        }
+    }, 500); // Give libraries time to load
 }
 
 function checkShareSupport() {
@@ -407,6 +449,11 @@ elements.clearDemo.addEventListener('click', clearDemo);
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('🚀 App initializing...');
+    console.log('ZXing available:', typeof ZXing !== 'undefined');
+    console.log('Quagga available:', typeof Quagga !== 'undefined');
+    console.log('jsPDF available:', typeof window.jspdf !== 'undefined');
+    
     checkScannerSupport();
     checkShareSupport();
     updateItemCount();
@@ -439,4 +486,9 @@ document.addEventListener('DOMContentLoaded', () => {
         return result;
     };
 });
+
+
+
+
+
 

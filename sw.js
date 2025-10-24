@@ -1,12 +1,14 @@
-const CACHE_NAME = 'seniorease-v2';
+const CACHE_NAME = 'seniorease-v3';
 const urlsToCache = [
   '/',
   '/index.html',
   '/demo/',
   '/demo/index.html',
   '/demo/style.css',
-  '/demo/app.js',
+  '/demo/app-zxing.js',
   '/demo/lib/jspdf.umd.min.js',
+  '/demo/lib/zxing.min.js',
+  '/demo/manifest.webmanifest',
   '/privacy.html',
   '/hulp.html',
   '/manifest.webmanifest',
