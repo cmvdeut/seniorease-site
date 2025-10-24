@@ -89,10 +89,15 @@ D:\MAUREEN\DEV\Seniorease\
 
 ## 🌐 Deploy
 
-### Optie 1: Vercel (aanbevolen)
-1. Upload bestanden naar GitHub repository
-2. Connect met Vercel: [vercel.com](https://vercel.com)
-3. Auto-deploy bij elke push
+### Netlify (actief) ✅
+- **Live URL**: [seniorease.nl](https://seniorease.nl)
+- **GitHub**: [github.com/cmvdeut/seniorease-site](https://github.com/cmvdeut/seniorease-site)
+- **Auto-deploy**: Elke push naar `main` branch triggert automatisch een nieuwe deployment
+
+### Handmatige deployment via CLI:
+```bash
+netlify deploy --prod
+```
 
 ### Optie 2: STRATO
 1. Upload alle bestanden naar `public_html` folder
