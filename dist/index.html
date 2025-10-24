@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase – Eenvoudige digitale hulpmiddelen</title>
+    <meta name="description" content="Uw boeken & muziek eenvoudig beheerd. Eenmalig, geen abonnement. Digitale hulpmiddelen die wél eenvoudig zijn.">
+    <meta name="theme-color" content="#8B5E3C">
+    <link rel="manifest" href="/manifest.webmanifest">
+    <link rel="icon" type="image/png" href="/icons/icon-192.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'se': {
+                            'beige': '#F5EEE6',
+                            'brown': '#8B5E3C',
+                            'dark-brown': '#6E492F',
+                            'text': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-se-beige text-se-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-se-beige shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-start space-x-8">
+                <!-- Logo links -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="icons/icon-512.png" alt="SeniorEase hartlogo" class="w-32 h-32">
+                </div>
+                
+                <!-- Titel rechts -->
+                <div class="flex-1 pt-4">
+                    <h1 class="text-5xl font-bold text-se-brown mb-2">SeniorEase</h1>
+                    <p class="text-2xl text-se-dark-brown">Uw boeken & muziek eenvoudig beheerd</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <main class="max-w-6xl mx-auto px-4 py-12">
+        <section class="text-center mb-16">
+            <p class="text-xl text-se-dark-brown mb-12 max-w-3xl mx-auto font-bold">Eenmalig – geen abonnement. Tijdelijk met alle extra functies inbegrepen.</p>
+            
+            <!-- Two main buttons -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+                <!-- Koop knop -->
+                <a href="https://buy.stripe.com/cNi3co3yC45O70b4NM6c000" target="_blank" class="bg-se-brown hover:bg-se-dark-brown text-white font-bold py-4 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    Koop nu voor €2,99
+                </a>
+                
+                <!-- Demo knop -->
+                <a href="/demo/" class="bg-white hover:bg-gray-50 text-se-brown font-bold py-4 px-6 rounded-lg text-lg border-2 border-se-brown transition-colors duration-200 shadow-lg hover:shadow-xl">
+                    Probeer gratis demo
+                </a>
+            </div>
+        </section>
+
+        <!-- Hoe werkt het Section -->
+        <section id="how-it-works" class="mb-8 md:mb-12">
+            <h3 class="text-2xl md:text-3xl font-bold text-se-brown mb-4 md:mb-6 text-center">Hoe werkt het</h3>
+            <div class="bg-white rounded-lg shadow-lg p-4 md:p-8 max-w-4xl mx-auto">
+                <p class="text-base md:text-lg text-center text-se-dark-brown mb-4 md:mb-6">SeniorEase is zo eenvoudig dat iedereen het kan gebruiken. Bekijk hoe het werkt:</p>
+                
+                <!-- Screenshot Carousel -->
+                <div class="relative">
+                    <div id="carousel" class="overflow-hidden rounded-lg">
+                        <div class="flex transition-transform duration-500 ease-in-out" id="carousel-track">
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_1.png" alt="SeniorEase - Startscherm" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">1. Installeer de app op uw tablet of telefoon</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_2.png" alt="SeniorEase - Item toevoegen" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">2. Voeg items toe via barcode scanner</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_3.png" alt="SeniorEase - Bibliotheek overzicht" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">3. Bekijk je collectie overzicht</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_4.png" alt="SeniorEase - Export functie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">4. Zoek informatie via Google</p>
+                            </div>
+                            <div class="w-full flex-shrink-0">
+                                <img src="screenshots/Screenshot_5.png" alt="SeniorEase - App installatie" class="w-full h-auto rounded-lg shadow-lg max-w-sm md:max-w-md mx-auto">
+                                <p class="text-center text-se-dark-brown mt-2 md:mt-4 font-semibold text-sm md:text-base">5. Exporteer de lijst</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dots indicator -->
+                    <div class="flex justify-center mt-4 md:mt-6 space-x-2">
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-se-brown" data-slide="0"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="1"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="2"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="3"></button>
+                        <button class="dot w-2 h-2 md:w-3 md:h-3 rounded-full bg-gray-300" data-slide="4"></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hoe installeer ik de demo? -->
+        <section class="mb-12 bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+            <h3 class="text-2xl font-bold text-se-brown mb-4 text-center">💡 Hoe werkt de gratis demo?</h3>
+            <div class="space-y-4 text-lg">
+                <p class="text-se-dark-brown">
+                    <strong>De demo werkt direct in uw browser - geen download nodig!</strong>
+                </p>
+                <ol class="list-decimal list-inside space-y-2 text-se-dark-brown">
+                    <li>Klik op <strong>"Probeer gratis demo"</strong></li>
+                    <li>De demo opent direct in uw browser</li>
+                    <li>Probeer alle functies uit (max. 5 items)</li>
+                    <li><strong>Optioneel:</strong> Installeer als app op uw telefoon:
+                        <ul class="list-disc list-inside ml-6 mt-2">
+                            <li><strong>Android Chrome:</strong> Menu (⋮) → "App installeren"</li>
+                            <li><strong>iPhone Safari:</strong> Deel knop → "Voeg toe aan beginscherm"</li>
+                        </ul>
+                    </li>
+                </ol>
+                <div class="bg-se-beige border-l-4 border-se-brown p-4 rounded">
+                    <p class="font-semibold text-se-dark-brown">
+                        ✨ Na installatie werkt de app zelfs zonder internet!
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Demo vs Volledige Versie Vergelijking -->
+        <section id="demo" class="mb-16">
+            <h3 class="text-3xl font-bold text-se-brown mb-8 text-center">Wat u krijgt in de gratis demo en in de volledige versie</h3>
+            <div class="bg-white rounded-lg shadow-lg p-8 max-w-4xl mx-auto">
+                <div class="overflow-x-auto">
+                    <table class="w-full border-collapse">
+                        <thead>
+                            <tr class="bg-se-beige">
+                                <th class="border border-se-brown px-4 py-3 text-left font-semibold text-se-dark-brown">Functie</th>
+                                <th class="border border-se-brown px-4 py-3 text-center font-semibold text-se-dark-brown">Gratis Demo</th>
+                                <th class="border border-se-brown px-4 py-3 text-center font-semibold text-se-dark-brown">Volledige Versie</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Boeken scannen</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">CD's/LP's scannen</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Handmatig items toevoegen</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Bibliotheek overzicht</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Items zoeken</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Google informatie zoeken</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Export naar PDF</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-red-500 font-bold">✗</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Export naar CSV</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-red-500 font-bold">✗</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">Aantal items</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-orange-500 font-bold">5 items</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">Onbeperkt</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-gray-50">
+                                <td class="border border-se-brown px-4 py-3 font-medium text-se-dark-brown">App installatie</td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-red-500 font-bold">✗</span>
+                                </td>
+                                <td class="border border-se-brown px-4 py-3 text-center">
+                                    <span class="text-green-600 font-bold">✓</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- Call to action -->
+                <div class="text-center mt-8">
+                    <a href="https://buy.stripe.com/cNi3co3yC45O70b4NM6c000" target="_blank"
+                       class="inline-block bg-se-dark-brown hover:bg-se-brown text-white font-bold py-3 px-8 rounded-lg transition-colors duration-200">
+                        💳 Koop volledige versie
+                    </a>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-se-dark-brown text-white py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-4">&copy; 2025 SeniorEase</p>
+            <div class="flex justify-center space-x-6">
+                <a href="privacy.html" class="hover:text-se-beige transition-colors">Privacybeleid</a>
+                <a href="hulp.html" class="hover:text-se-beige transition-colors">Hulp</a>
+                <a href="mailto:support@seniorease.nl" class="hover:text-se-beige transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registratie
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                console.log('Service Worker ondersteund, registreren...');
+                try {
+                    navigator.serviceWorker.register('./sw.js')
+                        .then(function(registration) {
+                            console.log('✅ Service Worker succesvol geregistreerd:', registration.scope);
+                        })
+                        .catch(function(error) {
+                            console.error('❌ Service Worker registratie mislukt:', error);
+                        });
+                } catch (error) {
+                    console.error('❌ Service Worker niet ondersteund:', error);
+                }
+            } else {
+                console.log('❌ Service Worker niet ondersteund door deze browser');
+            }
+        });
+
+        // PWA Install functionaliteit (voor volledige versie)
+        let deferredPrompt;
+
+        window.addEventListener('beforeinstallprompt', (e) => {
+            console.log('📱 beforeinstallprompt event ontvangen - app kan geïnstalleerd worden');
+            e.preventDefault();
+            deferredPrompt = e;
+            console.log('✅ PWA installeerbaar');
+        });
+
+        window.addEventListener('appinstalled', () => {
+            console.log('🎉 SeniorEase app succesvol geïnstalleerd!');
+            deferredPrompt = null;
+        });
+
+        // Screenshot Carousel functionaliteit
+        let currentSlide = 0;
+        const totalSlides = 5;
+        const carouselTrack = document.getElementById('carousel-track');
+        const dots = document.querySelectorAll('.dot');
+
+        function updateCarousel() {
+            const translateX = -currentSlide * 100;
+            carouselTrack.style.transform = `translateX(${translateX}%)`;
+            
+            // Update dots
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('bg-se-brown', index === currentSlide);
+                dot.classList.toggle('bg-gray-300', index !== currentSlide);
+            });
+        }
+
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateCarousel();
+        }
+        
+        // Dot navigation
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                currentSlide = index;
+                updateCarousel();
+            });
+        });
+
+        // Auto-play carousel
+        setInterval(nextSlide, 3000); // Wissel elke 3 seconden
+    </script>
+</body>
+</html>

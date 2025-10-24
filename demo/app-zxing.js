@@ -7,6 +7,59 @@ const state = {
     maxItems: 5
 };
 
+// Improved localStorage handling with delays and error catching
+function saveISBNCache(isbn, bookData) {
+    try {
+        setTimeout(() => {
+            const cacheKey = 'isbn_cache_' + isbn;
+            const cacheData = {
+                data: bookData,
+                timestamp: Date.now(),
+                expires: Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 dagen cache
+            };
+            localStorage.setItem(cacheKey, JSON.stringify(cacheData));
+            console.log('ISBN cache saved:', isbn);
+        }, 100);
+    } catch(e) {
+        console.error('ISBN cache storage failed:', e);
+    }
+}
+
+function getISBNCache(isbn) {
+    try {
+        const cacheKey = 'isbn_cache_' + isbn;
+        const cached = localStorage.getItem(cacheKey);
+        if (!cached) return null;
+        
+        const cacheData = JSON.parse(cached);
+        // Check if expired
+        if (Date.now() > cacheData.expires) {
+            localStorage.removeItem(cacheKey);
+            return null;
+        }
+        console.log('ISBN cache hit:', isbn);
+        return cacheData.data;
+    } catch(e) {
+        console.error('ISBN cache retrieval failed:', e);
+        return null;
+    }
+}
+
+function saveItemsToStorage() {
+    try {
+        setTimeout(() => {
+            localStorage.setItem('seniorease-demo-items', JSON.stringify(state.items));
+            console.log('Items saved to storage:', state.items.length);
+        }, 100);
+    } catch(e) {
+        console.error('Storage failed:', e);
+        // Gebruiker waarschuwen als opslag vol is
+        if (e.name === 'QuotaExceededError') {
+            alert('Uw browser opslag is vol. Verwijder oude items of wis browsercache.');
+        }
+    }
+}
+
 const elements = {
     itemForm: document.getElementById('itemForm'),
     title: document.getElementById('title'),
@@ -25,7 +78,9 @@ const elements = {
     sharePdf: document.getElementById('sharePdf'),
     shareHint: document.getElementById('shareHint'),
     clearDemo: document.getElementById('clearDemo'),
-    limitNotice: document.getElementById('limitNotice')
+    limitNotice: document.getElementById('limitNotice'),
+    lookupStatus: document.getElementById('lookupStatus'),
+    googleLookup: document.getElementById('googleLookup')
 };
 
 // ZXing barcode scanner implementation
@@ -65,46 +120,88 @@ async function startScanning() {
         const cameraModal = document.getElementById('cameraModal');
         cameraModal.classList.remove('hidden');
 
-        // Initialize ZXing
+        // Initialize ZXing with focused configuration (speeds up detection)
         codeReader = new ZXing.BrowserMultiFormatReader();
-        
-        // Get available video devices
-        const videoInputDevices = await ZXing.BrowserMultiFormatReader.listVideoInputDevices();
-        
-        // Find back camera (environment facing)
-        let backCamera = null;
-        for (const device of videoInputDevices) {
-            if (device.label.toLowerCase().includes('back') || 
-                device.label.toLowerCase().includes('rear') ||
-                device.label.toLowerCase().includes('environment')) {
-                backCamera = device.deviceId;
-                break;
-            }
-        }
 
-        // Create video element
+        // Restrict to retail formats used in demo for better reliability
+        codeReader.hints = new Map([
+            [ZXing.DecodeHintType.POSSIBLE_FORMATS, [
+                ZXing.BarcodeFormat.EAN_13,
+                ZXing.BarcodeFormat.EAN_8,
+                ZXing.BarcodeFormat.UPC_A,
+                ZXing.BarcodeFormat.UPC_E,
+                ZXing.BarcodeFormat.CODE_128
+            ]],
+            [ZXing.DecodeHintType.TRY_HARDER, true],
+            [ZXing.DecodeHintType.CHARACTER_SET, 'UTF-8'],
+            [ZXing.DecodeHintType.ASSUME_GS1, false],
+            [ZXing.DecodeHintType.PURE_BARCODE, false]
+        ]);
+        
+        // Create video element with better constraints
         const cameraContainer = document.getElementById('camera-container');
-        cameraContainer.innerHTML = '<video id="scanner-video" style="width: 100%; height: 100%; object-fit: cover;"></video>';
+        cameraContainer.innerHTML = '<video id="scanner-video" playsinline muted autoplay style="width: 100%; height: 100%; object-fit: cover;"></video>';
         videoElement = document.getElementById('scanner-video');
 
-        // Start decoding
-        const result = await codeReader.decodeFromVideoDevice(
-            backCamera || undefined, // Use back camera if available
-            videoElement,
-            (result, err) => {
-                if (result) {
-                    console.log('Barcode gevonden:', result.text);
-                    const code = result.text;
-                    
-                    elements.code.value = code;
-                    setScanStatus(`Barcode gevonden: ${code}`, false, true);
-                    stopScanning();
+        // Prefer the back camera if available
+        let preferredDeviceId = undefined;
+        try {
+            const devices = await ZXing.BrowserCodeReader.listVideoInputDevices();
+            const back = devices.find(d => /back|rear|environment/i.test(d.label));
+            preferredDeviceId = back ? back.deviceId : (devices[0] ? devices[0].deviceId : undefined);
+        } catch (_) {}
+
+        // Start decoding with better configuration
+        try {
+            await codeReader.decodeFromVideoDevice(
+                preferredDeviceId,
+                videoElement,
+                (result, err) => {
+                    if (result) {
+                        console.log('Barcode gevonden:', result.text);
+                        const code = result.text;
+                        
+                        // Ensure the input field exists and is accessible
+                        const codeInput = document.getElementById('code');
+                        if (codeInput) {
+                            codeInput.value = code;
+                            codeInput.dispatchEvent(new Event('input', { bubbles: true }));
+                            codeInput.dispatchEvent(new Event('change', { bubbles: true }));
+                            // Force focus to trigger any validation
+                            codeInput.focus();
+                            codeInput.blur();
+                        }
+                        
+                        setScanStatus(`Barcode gevonden: ${code}`, false, true);
+                        stopScanning();
+                    }
+                    // Ignore NotFound (no barcode in frame); log others for debugging
+                    if (err && !(err instanceof ZXing.NotFoundException)) {
+                        console.error('Scan error:', err);
+                    }
+                },
+                {
+                    // Better video constraints for barcode scanning
+                    video: {
+                        width: { min: 640, ideal: 1280 },
+                        height: { min: 480, ideal: 720 },
+                        facingMode: { ideal: 'environment' },
+                        frameRate: { ideal: 30, max: 60 },
+                        focusMode: 'continuous'
+                    }
                 }
-                if (err && !(err instanceof ZXing.NotFoundException)) {
-                    console.error('Scan error:', err);
-                }
+            );
+        } catch (error) {
+            console.error('ZXing error:', error);
+            // Fallback to QuaggaJS on devices that fail with ZXing
+            try {
+                await startQuaggaFallback();
+                setScanStatus('Fallback scanner actief. Richt op de barcode.', false);
+                return;
+            } catch (e) {
+                throw error; // propagate original if fallback also fails
             }
-        );
+        }
 
         setScanStatus('Camera actief. Richt op de barcode.', false);
 
@@ -113,6 +210,59 @@ async function startScanning() {
         setScanStatus('Camera kon niet worden gestart: ' + error.message, true);
         stopScanning();
     }
+}
+
+async function startQuaggaFallback() {
+    return new Promise((resolve, reject) => {
+        if (typeof Quagga === 'undefined') {
+            return reject(new Error('QuaggaJS niet geladen'));
+        }
+        const config = {
+            inputStream: {
+                name: 'Live',
+                type: 'LiveStream',
+                target: document.getElementById('scanner-video'),
+                constraints: {
+                    facingMode: 'environment',
+                    width: { ideal: 1280 },
+                    height: { ideal: 720 }
+                },
+                area: { top: '20%', right: '20%', left: '20%', bottom: '20%' }
+            },
+            decoder: { readers: ['ean_reader', 'ean_8_reader', 'upc_reader', 'upc_e_reader', 'code_128_reader'] },
+            locate: true,
+            locator: { patchSize: 'medium', halfSample: true },
+            numOfWorkers: navigator.hardwareConcurrency || 2
+        };
+
+        Quagga.init(config, (err) => {
+            if (err) {
+                console.error('Quagga init error:', err);
+                return reject(err);
+            }
+            Quagga.start();
+            resolve();
+        });
+
+        Quagga.onDetected((data) => {
+            const code = data?.codeResult?.code;
+            if (code) {
+                // Ensure the input field exists and is accessible
+                const codeInput = document.getElementById('code');
+                if (codeInput) {
+                    codeInput.value = code;
+                    codeInput.dispatchEvent(new Event('input', { bubbles: true }));
+                    codeInput.dispatchEvent(new Event('change', { bubbles: true }));
+                    // Force focus to trigger any validation
+                    codeInput.focus();
+                    codeInput.blur();
+                }
+                setScanStatus(`Barcode gevonden: ${code}`, false, true);
+                stopScanning();
+                try { Quagga.stop(); } catch (_) {}
+            }
+        });
+    });
 }
 
 function stopScanning() {
@@ -128,6 +278,15 @@ function stopScanning() {
     if (codeReader) {
         codeReader.reset();
         codeReader = null;
+    }
+    
+    // Stop QuaggaJS if running
+    try {
+        if (typeof Quagga !== 'undefined') {
+            Quagga.stop();
+        }
+    } catch (e) {
+        console.warn('QuaggaJS stop error:', e);
     }
     
     // Clear video element
@@ -208,6 +367,232 @@ function escapeHtml(text) {
     return div.innerHTML;
 }
 
+function setLookupStatus(message, tone = 'info') {
+    if (!elements.lookupStatus) {
+        return;
+    }
+    const statusEl = elements.lookupStatus;
+    if (!message) {
+        statusEl.textContent = '';
+        statusEl.style.display = 'none';
+        statusEl.style.color = '';
+        return;
+    }
+    statusEl.textContent = message;
+    statusEl.style.display = 'block';
+    const toneColors = {
+        success: '#047857',
+        error: '#b91c1c',
+        warning: '#92400e',
+        info: '#4b5563'
+    };
+    statusEl.style.color = toneColors[tone] || toneColors.info;
+}
+
+function handleCodeChange() {
+    if (!elements.code) {
+        return;
+    }
+    const code = elements.code.value.trim();
+    if (!code) {
+        setLookupStatus('');
+        return;
+    }
+    lookupCodeDetails(code);
+}
+
+async function lookupCodeDetails(rawCode) {
+    const code = (rawCode || '').trim();
+    if (!code) {
+        setLookupStatus('');
+        return;
+    }
+
+    const cleanCode = code.replace(/[^0-9X]/gi, '');
+    if (cleanCode.length < 8) {
+        setLookupStatus('');
+        return;
+    }
+
+    const type = detectCodeType(code);
+    if (type !== 'ISBN-10' && type !== 'ISBN-13') {
+        setLookupStatus(`Barcodetype: ${type}. Gebruik de knop "Zoek via Google" voor meer informatie.`, 'warning');
+        return;
+    }
+
+    const isbn = cleanCode.length === 10 ? convertISBN10to13(cleanCode) : cleanCode;
+    if (!isbn) {
+        setLookupStatus('Ongeldige ISBN-code. Controleer de barcode.', 'error');
+        return;
+    }
+
+    // Check cache first
+    const cachedDetails = getISBNCache(isbn);
+    if (cachedDetails) {
+        applyLookupDetails(cachedDetails);
+        const summary = cachedDetails.title ? cachedDetails.title : 'boek';
+        setLookupStatus(`Automatisch ingevuld: ${summary} (uit cache)`, 'success');
+        return;
+    }
+
+    setLookupStatus('Zoeken naar boekinformatie...', 'info');
+
+    let details = null;
+    let hadNetworkError = false;
+
+    try {
+        details = await fetchOpenLibraryData(isbn);
+    } catch (error) {
+        console.warn('OpenLibrary lookup failed', error);
+        hadNetworkError = true;
+    }
+
+    if (!details) {
+        try {
+            details = await fetchGoogleBooksData(isbn);
+        } catch (error) {
+            console.warn('Google Books lookup failed', error);
+            hadNetworkError = true;
+        }
+    }
+
+    if (details) {
+        // Save to cache
+        saveISBNCache(isbn, details);
+        applyLookupDetails(details);
+        const summary = details.title ? details.title : 'boek';
+        setLookupStatus(`Automatisch ingevuld: ${summary}`, 'success');
+    } else if (hadNetworkError) {
+        setLookupStatus('Zoeken mislukt. Controleer uw internetverbinding en probeer opnieuw.', 'error');
+    } else {
+        setLookupStatus('Geen boekinformatie gevonden. Vul de velden handmatig in.', 'warning');
+    }
+}
+
+async function fetchOpenLibraryData(isbn) {
+    const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        if (response.status === 404) {
+            return null;
+        }
+        throw new Error(`OpenLibrary responded with ${response.status}`);
+    }
+    const data = await response.json();
+    const entry = data[`ISBN:${isbn}`];
+    if (!entry) {
+        return null;
+    }
+    return {
+        title: entry.title || '',
+        author: Array.isArray(entry.authors) && entry.authors.length ? entry.authors[0].name : '',
+        type: 'Boek'
+    };
+}
+
+async function fetchGoogleBooksData(isbn) {
+    const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+    const response = await fetch(url);
+    if (!response.ok) {
+        if (response.status === 404) {
+            return null;
+        }
+        throw new Error(`Google Books responded with ${response.status}`);
+    }
+    const data = await response.json();
+    if (!data.items || !data.items.length) {
+        return null;
+    }
+    const info = data.items[0].volumeInfo || {};
+    return {
+        title: info.title || '',
+        author: Array.isArray(info.authors) ? info.authors.join(', ') : '',
+        type: 'Boek'
+    };
+}
+
+function validateISBN10(isbn) {
+    if (isbn.length !== 10) {
+        return false;
+    }
+    let sum = 0;
+    for (let i = 0; i < 9; i++) {
+        sum += parseInt(isbn[i], 10) * (10 - i);
+    }
+    const checkDigit = isbn[9].toUpperCase() === 'X' ? 10 : parseInt(isbn[9], 10);
+    return (sum + checkDigit) % 11 === 0;
+}
+
+function validateISBN13(isbn) {
+    if (isbn.length !== 13) {
+        return false;
+    }
+    let sum = 0;
+    for (let i = 0; i < 12; i++) {
+        sum += parseInt(isbn[i], 10) * (i % 2 === 0 ? 1 : 3);
+    }
+    const checkDigit = (10 - (sum % 10)) % 10;
+    return checkDigit === parseInt(isbn[12], 10);
+}
+
+function convertISBN10to13(isbn10) {
+    const prefix = '978';
+    const core = prefix + isbn10.substring(0, 9);
+    let sum = 0;
+    for (let i = 0; i < 12; i++) {
+        sum += parseInt(core[i], 10) * (i % 2 === 0 ? 1 : 3);
+    }
+    const checkDigit = (10 - (sum % 10)) % 10;
+    return core + checkDigit;
+}
+
+function detectCodeType(code) {
+    const cleanCode = code.replace(/[^0-9X]/gi, '');
+    if (cleanCode.length === 10) {
+        return validateISBN10(cleanCode) ? 'ISBN-10' : 'Onbekend';
+    }
+    if (cleanCode.length === 13) {
+        if (cleanCode.startsWith('978') || cleanCode.startsWith('979')) {
+            return validateISBN13(cleanCode) ? 'ISBN-13' : 'Onbekend';
+        }
+        if (cleanCode.startsWith('0') || cleanCode.startsWith('1')) {
+            return 'UPC-A';
+        }
+        return 'EAN-13';
+    }
+    if (cleanCode.length === 12) {
+        return 'UPC-A';
+    }
+    if (cleanCode.length === 8) {
+        return 'EAN-8';
+    }
+    return 'Onbekend';
+}
+
+function applyLookupDetails(details) {
+    if (details.title && elements.title && !elements.title.value) {
+        elements.title.value = details.title;
+    }
+    if (details.author && elements.creator && !elements.creator.value) {
+        elements.creator.value = details.author;
+    }
+    if (details.type && elements.type) {
+        elements.type.value = details.type;
+    }
+}
+
+function searchCodeOnGoogle() {
+    const code = elements.code ? elements.code.value.trim() : '';
+    if (!code) {
+        alert('Voer eerst een barcode of ISBN in.');
+        return;
+    }
+    const type = detectCodeType(code);
+    const query = type.startsWith('ISBN') ? `ISBN ${code}` : code;
+    const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    window.open(url, '_blank', 'noopener,noreferrer');
+}
+
 function addItem(event) {
     event.preventDefault();
     
@@ -231,7 +616,9 @@ function addItem(event) {
     }
 
     state.items.push(item);
+    saveItemsToStorage(); // Gebruik nieuwe safe storage functie
     elements.itemForm.reset();
+    setLookupStatus('');
     renderItems();
     updateItemCount();
     setScanStatus('');
@@ -252,6 +639,7 @@ function editItem(index) {
 function deleteItem(index) {
     if (confirm('Weet je zeker dat je dit item wilt verwijderen?')) {
         state.items.splice(index, 1);
+        saveItemsToStorage(); // Gebruik nieuwe safe storage functie
         renderItems();
         updateItemCount();
     }
@@ -260,9 +648,11 @@ function deleteItem(index) {
 function clearDemo() {
     if (confirm('Weet je zeker dat je alle demo-items wilt verwijderen?')) {
         state.items = [];
+        saveItemsToStorage(); // Gebruik nieuwe safe storage functie
         renderItems();
         updateItemCount();
         setScanStatus('');
+        setLookupStatus('');
     }
 }
 
@@ -446,6 +836,12 @@ elements.stopScan.addEventListener('click', stopScanning);
 elements.downloadPdf.addEventListener('click', downloadPdf);
 elements.sharePdf.addEventListener('click', sharePdf);
 elements.clearDemo.addEventListener('click', clearDemo);
+if (elements.code) {
+    elements.code.addEventListener('change', handleCodeChange);
+}
+if (elements.googleLookup) {
+    elements.googleLookup.addEventListener('click', searchCodeOnGoogle);
+}
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -453,42 +849,36 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('ZXing available:', typeof ZXing !== 'undefined');
     console.log('Quagga available:', typeof Quagga !== 'undefined');
     console.log('jsPDF available:', typeof window.jspdf !== 'undefined');
+    setLookupStatus('');
     
     checkScannerSupport();
     checkShareSupport();
     updateItemCount();
     renderItems();
     
-    // Load saved items
-    const saved = localStorage.getItem('seniorease-demo-items');
-    if (saved) {
-        try {
+    // Load saved items with improved error handling
+    try {
+        const saved = localStorage.getItem('seniorease-demo-items');
+        if (saved) {
             state.items = JSON.parse(saved);
+            console.log('✅ Loaded items from storage:', state.items.length);
             renderItems();
             updateItemCount();
-        } catch (e) {
-            console.error('Failed to load saved items:', e);
+        }
+    } catch (e) {
+        console.error('❌ Failed to load saved items:', e);
+        // Als corrupt data, probeer te clearen
+        try {
+            localStorage.removeItem('seniorease-demo-items');
+            console.log('🧹 Cleared corrupt storage data');
+        } catch (clearError) {
+            console.error('❌ Could not clear corrupt data:', clearError);
         }
     }
     
-    // Save items on change
-    const originalPush = state.items.push;
-    state.items.push = function(...args) {
-        const result = originalPush.apply(this, args);
-        localStorage.setItem('seniorease-demo-items', JSON.stringify(state.items));
-        return result;
-    };
-    
-    const originalSplice = state.items.splice;
-    state.items.splice = function(...args) {
-        const result = originalSplice.apply(this, args);
-        localStorage.setItem('seniorease-demo-items', JSON.stringify(state.items));
-        return result;
-    };
+    if (elements.code && elements.code.value) {
+        handleCodeChange();
+    }
 });
-
-
-
-
 
 

@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacybeleid – SeniorEase</title>
+    <meta name="description" content="Privacybeleid van SeniorEase. Uw gegevens blijven privé en lokaal opgeslagen.">
+    <meta name="theme-color" content="#8B5E3C">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'se': {
+                            'beige': '#F5EEE6',
+                            'brown': '#8B5E3C',
+                            'dark-brown': '#6E492F',
+                            'text': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-se-beige text-se-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-se-beige shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-start space-x-8">
+                <!-- Logo links -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="icons/icon-512.png" alt="SeniorEase hartlogo" class="w-32 h-32">
+                </div>
+                
+                <!-- Titel rechts -->
+                <div class="flex-1 pt-4">
+                    <h1 class="text-5xl font-bold text-se-brown mb-2">SeniorEase</h1>
+                    <p class="text-2xl text-se-dark-brown">Uw boeken & muziek eenvoudig beheerd</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-se-brown mb-8 text-center">Privacybeleid</h1>
+            
+            <!-- Wat wij wel en niet opslaan -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Wat wij wel en niet opslaan</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p>Uw gegevens worden alleen lokaal opgeslagen in uw browser of app. Dit betekent dat uw boekenlijst en muziekcollectie alleen op uw eigen apparaat staan.</p>
+                    <p>Wij kunnen uw persoonlijke gegevens niet zien. SeniorEase heeft geen toegang tot uw boekenlijst, muziekalbums of andere informatie die u invoert.</p>
+                    <p>Alleen wanneer u zelf kiest om uw gegevens te exporteren (naar PDF of CSV), deelt u deze informatie. Dit doet u volledig op eigen initiatief.</p>
+                </div>
+            </section>
+
+            <!-- Cookies en analyse -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Cookies en analyse</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p>SeniorEase gebruikt geen tracking cookies of analyse-tools die uw gedrag volgen. Wij verzamelen geen gegevens over hoe u de app gebruikt.</p>
+                    <p>De enige bestanden die worden opgeslagen zijn strikt noodzakelijk voor de werking van de app als PWA (Progressive Web App). Dit zijn technische bestanden voor de service worker cache.</p>
+                </div>
+            </section>
+
+            <!-- Bewaren en verwijderen -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Bewaren en verwijderen</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p>U kunt uw gegevens op elk moment exporteren naar PDF of CSV bestanden. Deze bestanden kunt u bewaren op uw eigen computer.</p>
+                    <p>Om uw gegevens te verwijderen, kunt u dit doen via de instellingen van uw browser of app. In de volledige versie van SeniorEase vindt u ook een "Verwijder alle gegevens" optie.</p>
+                    <p>Wanneer u de app verwijdert van uw apparaat, worden ook alle lokale gegevens automatisch verwijderd.</p>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Contact</h2>
+                <div class="text-lg leading-relaxed">
+                    <p>Heeft u vragen over dit privacybeleid of over hoe SeniorEase omgaat met uw gegevens?</p>
+                    <p class="mt-3">
+                        Neem contact op via: 
+                        <a href="mailto:support@seniorease.nl" class="text-se-brown hover:text-se-dark-brown underline font-semibold">support@seniorease.nl</a>
+                    </p>
+                </div>
+            </section>
+
+            <!-- Terug naar startpagina -->
+            <div class="text-center mt-12">
+                <a href="index.html" class="bg-se-brown hover:bg-se-dark-brown text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl inline-block">
+                    Terug naar startpagina
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-se-dark-brown text-white py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-4">&copy; 2025 SeniorEase</p>
+            <div class="flex justify-center space-x-6">
+                <a href="privacy.html" class="hover:text-se-beige transition-colors">Privacybeleid</a>
+                <a href="#" class="hover:text-se-beige transition-colors">Hulp</a>
+                <a href="mailto:support@seniorease.nl" class="hover:text-se-beige transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registratie
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('Service Worker geregistreerd:', registration);
+                        })
+                        .catch(function(error) {
+                            console.log('Service Worker registratie mislukt:', error);
+                        });
+                } catch (error) {
+                    console.log('Service Worker niet ondersteund:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

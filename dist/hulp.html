@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hulp – SeniorEase</title>
+    <meta name="description" content="Hulp en ondersteuning voor SeniorEase. Eenvoudige uitleg voor senioren.">
+    <meta name="theme-color" content="#8B5E3C">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="icon" href="icons/icon-192.png">
+    
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'se': {
+                            'beige': '#F5EEE6',
+                            'brown': '#8B5E3C',
+                            'dark-brown': '#6E492F',
+                            'text': '#1F1F1F'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-se-beige text-se-text min-h-screen">
+    <!-- Header -->
+    <header class="bg-se-beige shadow-sm">
+        <div class="max-w-6xl mx-auto px-4 py-8">
+            <div class="flex items-start space-x-8">
+                <!-- Logo links -->
+                <div class="flex-shrink-0 flex items-center">
+                    <img src="icons/icon-512.png" alt="SeniorEase hartlogo" class="w-32 h-32">
+                </div>
+                
+                <!-- Titel rechts -->
+                <div class="flex-1 pt-4">
+                    <h1 class="text-5xl font-bold text-se-brown mb-2">SeniorEase</h1>
+                    <p class="text-2xl text-se-dark-brown">Uw boeken & muziek eenvoudig beheerd</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-4 py-12">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-4xl font-bold text-se-brown mb-8 text-center">Hulp & Ondersteuning</h1>
+            
+            <!-- Hoe werkt SeniorEase -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Hoe werkt SeniorEase?</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p>SeniorEase is een eenvoudige app om uw boeken en muziekalbums bij te houden. U kunt deze informatie invoeren en later terugvinden.</p>
+                    <p>De app werkt volledig op uw eigen apparaat. Uw gegevens blijven privé en worden niet gedeeld met anderen.</p>
+                </div>
+            </section>
+
+            <!-- Eerste stappen -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Eerste stappen</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p><strong>1. App installeren:</strong> Klik op "Installeer als app" om SeniorEase op uw apparaat te installeren.</p>
+                    <p><strong>2. Boek toevoegen:</strong> Klik op "Boek toevoegen" en vul de titel en auteur in.</p>
+                    <p><strong>3. Muziekalbum toevoegen:</strong> Klik op "Album toevoegen" en vul de artiest en albumnaam in.</p>
+                    <p><strong>4. Uw collectie bekijken:</strong> Alle toegevoegde items verschijnen in uw overzicht.</p>
+                </div>
+            </section>
+
+            <!-- Veelgestelde vragen -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Veelgestelde vragen</h2>
+                <div class="text-lg leading-relaxed space-y-4">
+                    <div>
+                        <p class="font-semibold text-se-brown">Kan ik mijn gegevens exporteren?</p>
+                        <p>Ja, in de volledige versie kunt u uw boekenlijst en muziekcollectie exporteren naar PDF of CSV bestanden.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-se-brown">Werkt SeniorEase zonder internet?</p>
+                        <p>Ja, SeniorEase werkt volledig offline. U heeft alleen internet nodig voor de eerste installatie.</p>
+                    </div>
+                    <div>
+                        <p class="font-semibold text-se-brown">Kan ik de app op meerdere apparaten gebruiken?</p>
+                        <p>Uw gegevens staan alleen op het apparaat waar u de app gebruikt. Voor meerdere apparaten moet u de gegevens exporteren en importeren.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Problemen oplossen -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Problemen oplossen</h2>
+                <div class="text-lg leading-relaxed space-y-3">
+                    <p><strong>App werkt niet:</strong> Probeer de pagina te verversen (F5) of de app opnieuw te installeren.</p>
+                    <p><strong>Gegevens verdwenen:</strong> Controleer of u de juiste browser gebruikt waar u de app heeft geïnstalleerd.</p>
+                    <p><strong>Installatie lukt niet:</strong> Zorg ervoor dat u Chrome, Edge of een andere moderne browser gebruikt.</p>
+                </div>
+            </section>
+
+            <!-- Contact -->
+            <section class="mb-8">
+                <h2 class="text-2xl font-bold text-se-dark-brown mb-4">Contact</h2>
+                <div class="text-lg leading-relaxed">
+                    <p>Heeft u nog vragen of werkt iets niet zoals verwacht?</p>
+                    <p class="mt-3">
+                        Neem contact op via: 
+                        <a href="mailto:support@seniorease.nl" class="text-se-brown hover:text-se-dark-brown underline font-semibold">support@seniorease.nl</a>
+                    </p>
+                    <p class="mt-3 text-base text-se-dark-brown">
+                        Wij helpen u graag verder en zorgen ervoor dat SeniorEase voor u werkt.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Terug naar startpagina -->
+            <div class="text-center mt-12">
+                <a href="index.html" class="bg-se-brown hover:bg-se-dark-brown text-white font-bold py-3 px-6 rounded-lg text-lg transition-colors duration-200 shadow-lg hover:shadow-xl inline-block">
+                    Terug naar startpagina
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-se-dark-brown text-white py-8 mt-16">
+        <div class="max-w-6xl mx-auto px-4 text-center">
+            <p class="mb-4">&copy; 2025 SeniorEase</p>
+            <div class="flex justify-center space-x-6">
+                <a href="privacy.html" class="hover:text-se-beige transition-colors">Privacybeleid</a>
+                <a href="hulp.html" class="hover:text-se-beige transition-colors">Hulp</a>
+                <a href="mailto:support@seniorease.nl" class="hover:text-se-beige transition-colors">Contact</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Service Worker registratie
+        window.addEventListener('load', function() {
+            if ('serviceWorker' in navigator) {
+                try {
+                    navigator.serviceWorker.register('/sw.js')
+                        .then(function(registration) {
+                            console.log('Service Worker geregistreerd:', registration);
+                        })
+                        .catch(function(error) {
+                            console.log('Service Worker registratie mislukt:', error);
+                        });
+                } catch (error) {
+                    console.log('Service Worker niet ondersteund:', error);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -46,7 +46,3 @@ self.addEventListener('activate', (event) => {
     })
   );
 });
-
-
-
-

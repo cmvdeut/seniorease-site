@@ -1,0 +1,24 @@
+{
+  "name": "SeniorEase",
+  "short_name": "SeniorEase",
+  "description": "Scan en beheer uw boeken, CD's en LP's collectie. Exporteer naar PDF en deel met anderen.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#F5EEE6",
+  "theme_color": "#8B5E3C",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

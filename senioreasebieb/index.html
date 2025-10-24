@@ -205,7 +205,7 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div>
                             <label class="block text-sm font-medium text-gray-700 mb-2">Barcode/ISBN</label>
-                            <div class="flex gap-2">
+                            <div class="flex flex-wrap gap-2">
                                 <input type="text" id="itemBarcode" 
                                        placeholder="Scan ISBN (boek) of barcode (CD/LP)"
                                        inputmode="numeric"
@@ -213,9 +213,14 @@
                                        class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-se-brown focus:border-transparent">
                                 <button type="button" onclick="startBarcodeScan()" 
                                         class="bg-se-brown text-white px-4 py-3 rounded-lg hover:bg-se-dark-brown transition-colors">
-                                    📷 Scan
+                                    Scan
+                                </button>
+                                <button type="button" onclick="searchBarcodeOnGoogle()" 
+                                        class="px-4 py-3 border border-se-brown text-se-brown rounded-lg hover:bg-se-beige transition-colors">
+                                    Zoek via Google
                                 </button>
                             </div>
+                            <p id="barcodeLookupStatus" class="mt-2 text-sm hidden" aria-live="polite"></p>
                         </div>
                         
                         <div>
@@ -261,7 +266,7 @@
     <!-- Barcode Scanner Overlay -->
     <div id="scannerOverlay" class="scanning-overlay">
         <div class="relative w-full h-full">
-            <video id="scannerVideo" class="scanning-video"></video>
+            <video id="scannerVideo" class="scanning-video" autoplay playsinline muted></video>
             
             <!-- Scanner targeting frame -->
             <div class="absolute inset-0 flex items-center justify-center">
@@ -352,6 +357,7 @@
         let items = JSON.parse(localStorage.getItem('senioreasebieb_items')) || [];
         let currentEditingItem = null;
         let scannerActive = false;
+        let quaggaDetectedHandler = null;
 
         // Initialize app
         document.addEventListener('DOMContentLoaded', function() {
@@ -365,6 +371,10 @@
             document.getElementById('searchInput').addEventListener('input', filterItems);
             document.getElementById('typeFilter').addEventListener('change', filterItems);
             document.getElementById('addItemForm').addEventListener('submit', saveItem);
+            const barcodeInput = document.getElementById('itemBarcode');
+            if (barcodeInput) {
+                barcodeInput.addEventListener('change', handleBarcodeInput);
+            }
         }
 
         // Load items from localStorage
@@ -506,6 +516,7 @@
         function openAddModal() {
             document.getElementById('addModal').classList.remove('hidden');
             document.body.style.overflow = 'hidden';
+            setBarcodeLookupStatus('', 'info');
         }
 
         function closeAddModal() {
@@ -513,6 +524,7 @@
             document.body.style.overflow = 'auto';
             document.getElementById('addItemForm').reset();
             currentEditingItem = null;
+            setBarcodeLookupStatus('', 'info');
         }
 
         function openItemModal() {
@@ -718,11 +730,214 @@
             return 'Onbekend';
         }
 
+        function setBarcodeLookupStatus(message, tone) {
+            const statusEl = document.getElementById('barcodeLookupStatus');
+            if (!statusEl) {
+                return;
+            }
+            const classesToRemove = ['text-se-brown', 'text-green-600', 'text-red-600', 'text-yellow-600'];
+            statusEl.classList.remove(...classesToRemove);
+            if (!message) {
+                statusEl.textContent = '';
+                statusEl.classList.add('hidden');
+                return;
+            }
+            statusEl.textContent = message;
+            statusEl.classList.remove('hidden');
+            if (tone === 'success') {
+                statusEl.classList.add('text-green-600');
+            } else if (tone === 'error') {
+                statusEl.classList.add('text-red-600');
+            } else if (tone === 'warning') {
+                statusEl.classList.add('text-yellow-600');
+            } else {
+                statusEl.classList.add('text-se-brown');
+            }
+        }
+
+        function handleBarcodeInput() {
+            const input = document.getElementById('itemBarcode');
+            if (!input) {
+                return;
+            }
+            const code = input.value.trim();
+            if (!code) {
+                setBarcodeLookupStatus('', 'info');
+                return;
+            }
+            lookupBarcodeDetails(code);
+        }
+
+        async function lookupBarcodeDetails(rawCode) {
+            const code = rawCode.trim();
+            if (!code) {
+                setBarcodeLookupStatus('', 'info');
+                return;
+            }
+
+            const type = detectCodeType(code);
+            if (type !== 'ISBN-10' && type !== 'ISBN-13') {
+                if (code.length >= 8) {
+                    setBarcodeLookupStatus(`Barcodetype: ${type}. Gebruik \"Zoek via Google\" voor meer informatie.`, 'warning');
+                } else {
+                    setBarcodeLookupStatus('', 'info');
+                }
+                return;
+            }
+
+            const isbn = code.length === 10 ? convertISBN10to13(code) : code;
+            if (!isbn) {
+                setBarcodeLookupStatus('Ongeldige ISBN-code. Controleer de barcode.', 'error');
+                return;
+            }
+
+            setBarcodeLookupStatus('Gegevens worden opgezocht...', 'info');
+
+            let details = null;
+            let hadNetworkError = false;
+
+            try {
+                details = await fetchOpenLibraryData(isbn);
+            } catch (error) {
+                console.warn('OpenLibrary lookup failed', error);
+                hadNetworkError = true;
+            }
+
+            if (!details) {
+                try {
+                    details = await fetchGoogleBooksData(isbn);
+                } catch (error) {
+                    console.warn('Google Books lookup failed', error);
+                    hadNetworkError = true;
+                }
+            }
+
+            if (details) {
+                applyBookDetails(details);
+                const title = details.title ? details.title : 'Boekgegevens gevonden';
+                setBarcodeLookupStatus(`Automatisch ingevuld: ${title}`, 'success');
+            } else if (hadNetworkError) {
+                setBarcodeLookupStatus('Zoeken mislukt. Controleer uw internetverbinding of probeer het later opnieuw.', 'error');
+            } else {
+                setBarcodeLookupStatus('Geen boekinformatie gevonden. Vul de velden handmatig in.', 'warning');
+            }
+        }
+
+        async function fetchOpenLibraryData(isbn) {
+            const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    return null;
+                }
+                throw new Error(`OpenLibrary responded with ${response.status}`);
+            }
+            const data = await response.json();
+            const entry = data[`ISBN:${isbn}`];
+            if (!entry) {
+                return null;
+            }
+            const title = entry.title || '';
+            const author = Array.isArray(entry.authors) && entry.authors.length ? entry.authors[0].name : '';
+            let language = null;
+            if (Array.isArray(entry.languages) && entry.languages.length) {
+                language = entry.languages[0].key;
+            }
+            return {
+                title,
+                author,
+                language: mapLanguageCode(language)
+            };
+        }
+
+        async function fetchGoogleBooksData(isbn) {
+            const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
+            const response = await fetch(url);
+            if (!response.ok) {
+                if (response.status === 404) {
+                    return null;
+                }
+                throw new Error(`Google Books responded with ${response.status}`);
+            }
+            const data = await response.json();
+            if (!data.items || !data.items.length) {
+                return null;
+            }
+            const info = data.items[0].volumeInfo || {};
+            return {
+                title: info.title || '',
+                author: Array.isArray(info.authors) ? info.authors.join(', ') : '',
+                language: mapLanguageCode(info.language)
+            };
+        }
+
+        function mapLanguageCode(code) {
+            if (!code) {
+                return null;
+            }
+            const value = code.toLowerCase();
+            if (value.includes('dut') || value.includes('nld') || value === 'nl') {
+                return 'Nederlands';
+            }
+            if (value.includes('eng') || value === 'en') {
+                return 'Engels';
+            }
+            return 'Anders';
+        }
+
+        function applyBookDetails(details) {
+            const titleInput = document.getElementById('itemTitle');
+            if (details.title && titleInput && !titleInput.value) {
+                titleInput.value = details.title;
+            }
+
+            const authorInput = document.getElementById('itemAuthor');
+            if (details.author && authorInput && !authorInput.value) {
+                authorInput.value = details.author;
+            }
+
+            const typeSelect = document.getElementById('itemType');
+            if (typeSelect && (!typeSelect.value || typeSelect.value === '')) {
+                typeSelect.value = 'boek';
+            }
+
+            if (details.language) {
+                const languageSelect = document.getElementById('itemLanguage');
+                if (languageSelect) {
+                    const match = Array.from(languageSelect.options).find(option => option.value.toLowerCase() === details.language.toLowerCase());
+                    if (match) {
+                        languageSelect.value = match.value;
+                    }
+                }
+            }
+        }
+
+        function searchBarcodeOnGoogle() {
+            const input = document.getElementById('itemBarcode');
+            if (!input) {
+                return;
+            }
+            const code = input.value.trim();
+            if (!code) {
+                alert('Voer eerst een barcode of ISBN in.');
+                return;
+            }
+            const type = detectCodeType(code);
+            const query = type.startsWith('ISBN') ? `ISBN ${code}` : code;
+            const url = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+            window.open(url, '_blank', 'noopener,noreferrer');
+        }
+
 
         // Barcode scanning - Werkende QuaggaJS implementatie
         function startBarcodeScan() {
             document.getElementById('scannerOverlay').style.display = 'block';
             scannerActive = true;
+            
+            if (typeof Quagga !== 'undefined' && quaggaDetectedHandler) {
+                Quagga.offDetected(quaggaDetectedHandler);
+                quaggaDetectedHandler = null;
+            }
             
             // Detecteer Samsung apparaten voor hints
             detectSamsungDevice();
@@ -796,28 +1011,40 @@
             });
             
             // Barcode detectie
-            Quagga.onDetected(function(data) {
-                console.log('Barcode detected:', data.codeResult.code);
+            quaggaDetectedHandler = function(data) {
+                if (!data || !data.codeResult || !data.codeResult.code) {
+                    return;
+                }
                 const code = data.codeResult.code;
+                console.log('Barcode detected:', code);
                 
-                // Valideer barcode lengte
                 if (code && code.length >= 8) {
+                    if (typeof Quagga !== 'undefined' && quaggaDetectedHandler) {
+                        Quagga.offDetected(quaggaDetectedHandler);
+                        quaggaDetectedHandler = null;
+                    }
                     document.getElementById('itemBarcode').value = code;
                     stopBarcodeScan();
                     
-                    // Toon succesmelding
                     const statusDiv = document.createElement('div');
                     statusDiv.className = 'fixed top-4 right-4 bg-green-500 text-white px-4 py-2 rounded-lg z-50';
                     statusDiv.textContent = `Barcode gevonden: ${code}`;
                     document.body.appendChild(statusDiv);
                     setTimeout(() => statusDiv.remove(), 3000);
+                    
+                    lookupBarcodeDetails(code);
                 }
-            });
+            };
+            Quagga.onDetected(quaggaDetectedHandler);
         }
 
         function stopBarcodeScan() {
             if (scannerActive) {
                 try {
+                    if (typeof Quagga !== 'undefined' && quaggaDetectedHandler) {
+                        Quagga.offDetected(quaggaDetectedHandler);
+                        quaggaDetectedHandler = null;
+                    }
                     Quagga.stop();
                     scannerActive = false;
                 } catch (error) {

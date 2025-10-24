@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SeniorEase – Scanner test</title>
+  <style>
+    body { font-family: system-ui, sans-serif; background:#F5EEE6; color:#1F1F1F; margin:0; }
+    .wrap { max-width: 720px; margin: 24px auto; padding: 16px; }
+    video { width: 100%; max-height: 60vh; border-radius: 12px; background:#000; }
+    .row { display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin:12px 0; }
+    button, select { padding:10px 14px; border-radius:10px; border:1px solid #8B5E3C; background:#fff; color:#6E492F; font-weight:600; }
+    button.primary { background:#8B5E3C; color:#fff; border-color:#8B5E3C; }
+    pre { background:#fff; padding:12px; border-radius:10px; border:1px solid #e6d8c8; max-height:30vh; overflow:auto; }
+    .ok { color:#157a20; font-weight:700 }
+    .warn { color:#b35a00; font-weight:700 }
+    .err { color:#9c1c1c; font-weight:700 }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Scanner test</h1>
+    <p>Als de camera werkt maar niets gelezen wordt, probeer eerst het licht te verbeteren en houd een streepjescode op ~15–25 cm afstand in beeld.</p>
+
+    <div class="row">
+      <label for="cams">Camera</label>
+      <select id="cams"></select>
+      <button id="start" class="primary">Start scannen</button>
+      <button id="stop">Stop</button>
+      <button id="torch" disabled>Zaklamp</button>
+    </div>
+
+    <video id="video" playsinline muted></video>
+
+    <h3>Resultaat</h3>
+    <pre id="out">Nog geen resultaat…</pre>
+  </div>
+
+  <script type="module">
+    import {
+      BrowserMultiFormatReader,
+      BrowserCodeReader,
+      BarcodeFormat,
+      DecodeHintType
+    } from 'https://cdn.jsdelivr.net/npm/@zxing/browser@0.1.5/+esm';
+
+    const video   = document.getElementById('video');
+    const camsSel = document.getElementById('cams');
+    const out     = document.getElementById('out');
+    const btnStart= document.getElementById('start');
+    const btnStop = document.getElementById('stop');
+    const btnTorch= document.getElementById('torch');
+
+    let stopStream = null;
+    let currentTrack = null;
+    let lastText = null;
+
+    // hints: probeer harder en sta alle veelgebruikte formats toe
+    const hints = new Map();
+    hints.set(DecodeHintType.TRY_HARDER, true);
+    hints.set(DecodeHintType.POSSIBLE_FORMATS, [
+      BarcodeFormat.EAN_13, BarcodeFormat.EAN_8,
+      BarcodeFormat.UPC_A,  BarcodeFormat.UPC_E,
+      BarcodeFormat.CODE_128, BarcodeFormat.CODE_39,
+      BarcodeFormat.ITF, BarcodeFormat.QR_CODE
+    ]);
+
+    const reader = new BrowserMultiFormatReader(hints, 100); // small delay
+
+    // vraag alvast permissie (zodat labels zichtbaar worden)
+    try {
+      await navigator.mediaDevices.getUserMedia({ video: { facingMode: { ideal: 'environment' } } });
+    } catch (e) {
+      out.innerHTML = `<span class="err">Camera-toestemming geweigerd of niet beschikbaar.</span>\n${e}`;
+    }
+
+    // lijst camera's
+    const devices = await BrowserCodeReader.listVideoInputDevices();
+    if (!devices.length) out.innerHTML = '<span class="err">Geen camera's gevonden.</span>';
+    devices.forEach((d, i) => {
+      const opt = document.createElement('option');
+      opt.value = d.deviceId;
+      opt.textContent = d.label || `Camera ${i+1}`;
+      camsSel.appendChild(opt);
+    });
+    const back = devices.find(d => /back|rear|environment/i.test(d.label));
+    if (back) camsSel.value = back.deviceId;
+
+    // torch capability
+    function updateTorchCapability(track) {
+      currentTrack = track;
+      const caps = track?.getCapabilities?.();
+      const hasTorch = !!caps?.torch;
+      btnTorch.disabled = !hasTorch;
+    }
+
+    btnTorch.addEventListener('click', async () => {
+      if (!currentTrack) return;
+      const settings = currentTrack.getSettings();
+      const torchOn = !settings.torch;
+      try {
+        await currentTrack.applyConstraints({ advanced: [{ torch: torchOn }] });
+        btnTorch.textContent = torchOn ? 'Zaklamp uit' : 'Zaklamp';
+      } catch(e) {
+        console.warn('Torch niet beschikbaar:', e);
+      }
+    });
+
+    btnStart.addEventListener('click', async () => {
+      out.textContent = 'Scannen…';
+      lastText = null;
+
+      // stop eventuele vorige sessie
+      if (stopStream) { stopStream(); stopStream = null; }
+
+      // start decode
+      stopStream = await reader.decodeFromVideoDevice(
+        camsSel.value || null,
+        video,
+        (result, err, controls) => {
+          // video track voor torch
+          const ms = video.srcObject;
+          const track = ms && ms.getVideoTracks && ms.getVideoTracks()[0];
+          if (track) updateTorchCapability(track);
+
+          if (result) {
+            const text = result.getText();
+            // simpele de-dup
+            if (text !== lastText) {
+              lastText = text;
+              navigator.vibrate?.(30);
+              out.innerHTML =
+                `<span class="ok">Gelezen:</span> ${text}\n` +
+                `Format: ${result.getBarcodeFormat?.() ?? 'onbekend'}`;
+              // -> HIER kun je doorgeven aan je app
+              // controls.stop(); // stop na eerste hit (optioneel)
+            }
+          } else if (err) {
+            // typische decode errors rustig negeren
+            if (String(err).includes('NotFoundException')) return;
+            if (String(err).includes('ChecksumException')) return;
+            if (String(err).includes('FormatException')) return;
+            console.debug('Decode error:', err);
+          }
+        }
+      );
+    });
+
+    btnStop.addEventListener('click', () => {
+      if (stopStream) stopStream();
+      stopStream = null;
+      out.textContent = 'Gestopt.';
+      // camera uit
+      const ms = video.srcObject;
+      ms?.getTracks()?.forEach(t => t.stop());
+    });
+  </script>
+</body>
+</html>
+
+
+

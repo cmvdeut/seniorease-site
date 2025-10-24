@@ -1,0 +1,4 @@
+﻿/demo/* /demo/:splat 200
+/senioreasebieb/* /senioreasebieb/:splat 200
+/senioreasebieb /senioreasebieb/ 301
+/* /index.html 200
