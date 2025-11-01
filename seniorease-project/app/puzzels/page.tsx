@@ -68,7 +68,7 @@ function Sudoku() {
     ];
 
     // Verwijder ~40 nummers voor makkelijke moeilijkheidsgraad
-    const puzzle = solution.map(row => [...row]);
+    const puzzle: (number | null)[][] = solution.map(row => [...row]);
     const cellsToRemove = 40;
     let removed = 0;
     
