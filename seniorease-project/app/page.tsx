@@ -42,7 +42,7 @@ export default function Home() {
           </div>
 
           {/* Apps Grid */}
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {/* Grote Klok App */}
             <Link 
               href="/klok" 
@@ -63,6 +63,31 @@ export default function Home() {
                 </p>
                 <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all">
                   <span className="text-senior-sm">Open applicatie</span>
+                  <span className="text-xl">→</span>
+                </div>
+              </div>
+            </Link>
+
+            {/* Dagelijkse Puzzel */}
+            <Link 
+              href="/puzzels" 
+              className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-neutral-stone hover:border-primary overflow-hidden"
+            >
+              <div className="p-10">
+                <div className="flex items-center gap-4 mb-6">
+                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-4xl">
+                    🧩
+                  </div>
+                  <h3 className="text-senior-xl font-bold text-gray-800">
+                    Dagelijkse Puzzel
+                  </h3>
+                </div>
+                <p className="text-senior-sm text-gray-600 leading-relaxed mb-6">
+                  Elke dag een nieuwe puzzel! Sudoku, woordzoeker, memory en meer.
+                  Train je brein met leuke uitdagingen.
+                </p>
+                <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all">
+                  <span className="text-senior-sm">Speel vandaag</span>
                   <span className="text-xl">→</span>
                 </div>
               </div>
