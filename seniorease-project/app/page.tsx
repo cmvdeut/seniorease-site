@@ -93,25 +93,29 @@ export default function Home() {
               </div>
             </Link>
 
-            {/* Toekomstige app */}
-            <div className="bg-white rounded-xl shadow-md border-2 border-dashed border-neutral-warm overflow-hidden opacity-75">
+            {/* Mijn Bibliotheek */}
+            <Link 
+              href="/bibliotheek" 
+              className="group bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 border-2 border-neutral-stone hover:border-primary overflow-hidden"
+            >
               <div className="p-10">
                 <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 bg-gray-100 rounded-lg flex items-center justify-center text-4xl">
-                    💊
+                  <div className="w-16 h-16 bg-primary/10 rounded-lg flex items-center justify-center text-4xl">
+                    📚
                   </div>
-                  <h3 className="text-senior-xl font-bold text-gray-500">
-                    Medicatie Manager
+                  <h3 className="text-senior-xl font-bold text-gray-800">
+                    Mijn Bibliotheek
                   </h3>
                 </div>
-                <p className="text-senior-sm text-gray-500 leading-relaxed mb-6">
-                  Herinneringen voor medicijninname en overzicht van uw medicatieschema.
+                <p className="text-senior-sm text-gray-600 leading-relaxed mb-6">
+                  Beheer uw boeken, CD's, DVD's en games. Scan barcodes en exporteer uw collectie.
                 </p>
-                <div className="inline-block bg-gray-200 text-gray-500 px-6 py-3 rounded-lg font-semibold">
-                  Binnenkort beschikbaar
+                <div className="flex items-center text-primary font-semibold group-hover:gap-3 gap-2 transition-all">
+                  <span className="text-senior-sm">Open bibliotheek</span>
+                  <span className="text-xl">→</span>
                 </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </section>
