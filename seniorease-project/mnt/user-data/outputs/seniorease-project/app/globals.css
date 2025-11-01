@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #1a1a1a;
+    --foreground: #ffffff;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /* Senior-friendly defaults */
+  button, a {
+    @apply text-senior-base;
+    min-height: 48px; /* Minimale klikbare area voor senioren */
+    min-width: 48px;
+  }
+  
+  h1 {
+    @apply text-senior-3xl font-bold;
+  }
+  
+  h2 {
+    @apply text-senior-2xl font-bold;
+  }
+  
+  h3 {
+    @apply text-senior-xl font-bold;
+  }
+  
+  p {
+    @apply text-senior-base leading-relaxed;
+  }
+}
