@@ -25,6 +25,7 @@ export default function BibliotheekPage() {
   const [loadError, setLoadError] = useState<string | null>(null);
   const [detectedBarcode, setDetectedBarcode] = useState<string | null>(null);
   const [countdown, setCountdown] = useState<number>(0);
+  const [showMenu, setShowMenu] = useState(false);
 
   // Load items from localStorage
   useEffect(() => {
@@ -44,6 +45,22 @@ export default function BibliotheekPage() {
       localStorage.setItem('seniorease-library', JSON.stringify(items));
     }
   }, [items]);
+
+  // Sluit menu bij klikken buiten het menu
+  useEffect(() => {
+    if (!showMenu) return;
+    
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      const menu = document.querySelector('[data-menu="options"]');
+      if (menu && !menu.contains(target)) {
+        setShowMenu(false);
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showMenu]);
 
   // Add new item
   function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
@@ -85,6 +102,122 @@ export default function BibliotheekPage() {
     link.href = URL.createObjectURL(blob);
     link.download = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
+    setShowMenu(false);
+  }
+
+  // Backup maken
+  function backupMaken() {
+    const backup = {
+      date: new Date().toISOString(),
+      items: items
+    };
+    const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `seniorease-backup-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    setShowMenu(false);
+    alert('Backup succesvol gedownload!');
+  }
+
+  // Backup terugzetten
+  function backupTerugzetten() {
+    const input = document.createElement('input');
+    input.type = 'file';
+    input.accept = '.json';
+    input.onchange = (e: any) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      
+      const reader = new FileReader();
+      reader.onload = (event: any) => {
+        try {
+          const backup = JSON.parse(event.target.result);
+          if (backup.items && Array.isArray(backup.items)) {
+            if (confirm(`Weet u zeker dat u de backup van ${new Date(backup.date).toLocaleDateString('nl-NL')} wilt terugzetten? Dit overschrijft alle huidige data.`)) {
+              setItems(backup.items);
+              alert('Backup succesvol teruggezet!');
+            }
+          } else {
+            alert('Ongeldig backup bestand.');
+          }
+        } catch (error) {
+          alert('Fout bij het lezen van het backup bestand.');
+        }
+      };
+      reader.readAsText(file);
+    };
+    input.click();
+    setShowMenu(false);
+  }
+
+  // Delen via WhatsApp
+  function delenWhatsApp() {
+    const total = items.length;
+    const boeken = items.filter(i => i.type === 'book').length;
+    const muziek = items.filter(i => i.type === 'music').length;
+    
+    const tekst = `Mijn SeniorEase Bibliotheek\n\n📚 Totaal: ${total} items\n📖 Boeken: ${boeken}\n💿 Albums/CD's: ${muziek}\n\nBekijk mijn collectie op seniorease.nl`;
+    const url = `https://wa.me/?text=${encodeURIComponent(tekst)}`;
+    window.open(url, '_blank');
+    setShowMenu(false);
+  }
+
+  // Toon statistieken
+  function toonStatistieken() {
+    const total = items.length;
+    const boeken = items.filter(i => i.type === 'book').length;
+    const muziek = items.filter(i => i.type === 'music').length;
+    
+    const statistieken = `
+📊 Mijn Bibliotheek Statistieken
+
+📚 Totaal aantal items: ${total}
+📖 Boeken: ${boeken}
+💿 Albums/CD's: ${muziek}
+
+${total > 0 ? `\nLaatste toevoeging: ${new Date(Math.max(...items.map(i => new Date(i.dateAdded).getTime()))).toLocaleDateString('nl-NL')}` : ''}
+    `.trim();
+    
+    alert(statistieken);
+    setShowMenu(false);
+  }
+
+  // Toon privacybeleid
+  function toonPrivacybeleid() {
+    const privacyTekst = `
+🔒 Privacybeleid SeniorEase Bibliotheek
+
+Uw gegevens blijven privé:
+• Alle data wordt alleen lokaal opgeslagen in uw browser
+• Geen gegevens worden naar servers gestuurd
+• U heeft volledige controle over uw data
+• U kunt op elk moment een backup maken of alles wissen
+
+Backup & Veiligheid:
+• Maak regelmatig een backup van uw collectie
+• Deel backups alleen met mensen die u vertrouwt
+• Wis uw data wanneer u de app niet meer gebruikt
+
+Voor vragen: bezoek seniorease.nl
+    `.trim();
+    
+    alert(privacyTekst);
+    setShowMenu(false);
+  }
+
+  // Alle data wissen
+  function wisAlleData() {
+    if (confirm('WAARSCHUWING: Weet u zeker dat u alle data wilt wissen? Dit kan niet ongedaan worden gemaakt!\n\nGebruik eerst "Backup maken" om uw data te bewaren.')) {
+      if (confirm('Laatste bevestiging: alle data wordt nu permanent verwijderd.')) {
+        setItems([]);
+        localStorage.removeItem('seniorease-library');
+        setSearchQuery('');
+        setFilterType('all');
+        alert('Alle data is gewist.');
+        setShowMenu(false);
+      }
+    }
   }
 
   // Valideer ISBN/EAN code
@@ -694,16 +827,91 @@ export default function BibliotheekPage() {
                     {items.length} item{items.length !== 1 ? 's' : ''} in collectie
                   </p>
                 </div>
-                <button
-                  onClick={exportToCSV}
-                  disabled={items.length === 0}
-                  className="bg-accent text-white px-8 py-4 rounded-xl text-senior-base font-bold
-                           hover:bg-accent-dark disabled:opacity-50 disabled:cursor-not-allowed
-                           transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
-                >
-                  <span className="text-2xl">📄</span>
-                  <span>Exporteer CSV</span>
-                </button>
+                {/* Menu Dropdown */}
+                <div className="relative" data-menu="options">
+                  <button
+                    onClick={() => setShowMenu(!showMenu)}
+                    disabled={items.length === 0}
+                    className="bg-accent text-white px-8 py-4 rounded-xl text-senior-base font-bold
+                             hover:bg-accent-dark disabled:opacity-50 disabled:cursor-not-allowed
+                             transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
+                  >
+                    <span className="text-2xl">⚙️</span>
+                    <span>Opties</span>
+                    <span className="text-xl">{showMenu ? '▲' : '▼'}</span>
+                  </button>
+                  
+                  {/* Dropdown Menu */}
+                  {showMenu && (
+                    <div className="absolute right-0 mt-2 w-72 bg-white rounded-xl shadow-2xl border-2 border-gray-200 z-50 overflow-hidden" data-menu="options">
+                      <div className="py-2">
+                        <button
+                          onClick={exportToCSV}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📄</span>
+                          <span>Exporteer CSV</span>
+                        </button>
+                        
+                        <div className="border-t border-gray-200 my-1"></div>
+                        
+                        <button
+                          onClick={backupMaken}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">💾</span>
+                          <span>Backup maken</span>
+                        </button>
+                        
+                        <button
+                          onClick={backupTerugzetten}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📥</span>
+                          <span>Backup terugzetten</span>
+                        </button>
+                        
+                        <div className="border-t border-gray-200 my-1"></div>
+                        
+                        <button
+                          onClick={delenWhatsApp}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📱</span>
+                          <span>Delen (WhatsApp)</span>
+                        </button>
+                        
+                        <button
+                          onClick={toonStatistieken}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📊</span>
+                          <span>Statistieken</span>
+                        </button>
+                        
+                        <div className="border-t border-gray-200 my-1"></div>
+                        
+                        <button
+                          onClick={toonPrivacybeleid}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">🔒</span>
+                          <span>Privacybeleid</span>
+                        </button>
+                        
+                        <div className="border-t border-gray-200 my-1"></div>
+                        
+                        <button
+                          onClick={wisAlleData}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-red-50 text-red-600 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">🗑️</span>
+                          <span>Alle data wissen</span>
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
@@ -719,14 +927,28 @@ export default function BibliotheekPage() {
                   <label className="block text-senior-base font-bold text-gray-700 mb-2">
                     Zoeken:
                   </label>
-                  <input
-                    type="text"
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    placeholder="Zoek op titel, auteur of barcode..."
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                             focus:border-primary focus:outline-none"
-                  />
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Zoek op titel, auteur of barcode..."
+                      className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg text-senior-base
+                               focus:border-primary focus:outline-none"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery('')}
+                        className="absolute right-3 top-1/2 transform -translate-y-1/2
+                                 text-gray-500 hover:text-gray-700 text-2xl font-bold
+                                 w-8 h-8 flex items-center justify-center rounded-full
+                                 hover:bg-gray-100 transition-colors"
+                        aria-label="Wis zoekopdracht"
+                      >
+                        ✗
+                      </button>
+                    )}
+                  </div>
                 </div>
                 <div>
                   <label className="block text-senior-base font-bold text-gray-700 mb-2">
