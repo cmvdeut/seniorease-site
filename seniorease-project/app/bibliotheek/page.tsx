@@ -89,40 +89,99 @@ export default function BibliotheekPage() {
 
   // Start barcode scanner
   function startScanner() {
-    if (typeof window !== 'undefined' && (window as any).Quagga) {
-      setShowScanner(true);
-      
-      setTimeout(() => {
-        const Quagga = (window as any).Quagga;
-        Quagga.init({
-          inputStream: {
-            name: "Live",
-            type: "LiveStream",
-            target: document.querySelector('#scanner-container'),
-            constraints: {
-              width: 640,
-              height: 480,
-              facingMode: "environment"
-            },
-          },
-          decoder: {
-            readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader"]
-          },
-        }, function(err: any) {
-          if (err) {
-            console.error(err);
-            alert('Camera kon niet worden gestart. Controleer de permissies.');
-            stopScanner();
-            return;
-          }
-          Quagga.start();
-        });
+    if (typeof window === 'undefined' || !(window as any).Quagga) {
+      alert('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
+      return;
+    }
 
+    setShowScanner(true);
+    setDetectedBarcode(null);
+    setCountdown(0);
+    setLoadError(null);
+    
+    // Wacht tot de scanner container in de DOM staat
+    setTimeout(() => {
+      const Quagga = (window as any).Quagga;
+      const container = document.querySelector('#scanner-container');
+      
+      if (!container) {
+        alert('Scanner container niet gevonden. Probeer de pagina te vernieuwen.');
+        stopScanner();
+        return;
+      }
+
+      // Verwijder oude event listeners als die er zijn
+      Quagga.offDetected();
+      
+      Quagga.init({
+        inputStream: {
+          name: "Live",
+          type: "LiveStream",
+          target: container,
+          constraints: {
+            width: { min: 640, ideal: 1280, max: 1920 },
+            height: { min: 480, ideal: 720, max: 1080 },
+            facingMode: "environment"
+          },
+          area: { // Focus gebied voor betere detectie
+            top: "20%",
+            right: "20%",
+            left: "20%",
+            bottom: "20%"
+          }
+        },
+        locator: {
+          patchSize: "medium",
+          halfSample: true
+        },
+        numOfWorkers: 2,
+        decoder: {
+          readers: [
+            "ean_reader",
+            "ean_8_reader", 
+            "code_128_reader",
+            "code_39_reader",
+            "code_39_vin_reader",
+            "codabar_reader",
+            "upc_reader",
+            "upc_e_reader"
+          ],
+          debug: {
+            showCanvas: false,
+            showPatches: false,
+            showFoundPatches: false,
+            showSkeleton: false,
+            showLabels: false,
+            showPatchLabels: false,
+            showBoundingBox: false,
+            showBoundingBoxes: false
+          }
+        },
+        locate: true
+      }, function(err: any) {
+        if (err) {
+          console.error('Quagga init error:', err);
+          alert('Camera kon niet worden gestart. Controleer de permissies en zorg dat de camera beschikbaar is.');
+          stopScanner();
+          return;
+        }
+        
+        console.log('Quagga gestart, wacht op barcode...');
+        Quagga.start();
+        
+        // Registreer detection handler NA dat Quagga is gestart
         Quagga.onDetected(async (result: any) => {
           const code = result.codeResult.code;
           console.log('Barcode detected:', code);
           
+          // Verifieer dat we een geldige code hebben
+          if (!code || code.length < 5) {
+            console.warn('Ongeldige barcode gedetecteerd:', code);
+            return;
+          }
+          
           // Stop scanner direct
+          Quagga.stop();
           stopScanner();
           
           // Toon formulier en vul barcode in
@@ -150,18 +209,23 @@ export default function BibliotheekPage() {
             await lookupBarcode(code);
           }, 4000);
         });
-      }, 100);
-    } else {
-      alert('Scanner bibliotheek wordt geladen...');
-    }
+      });
+    }, 200); // Iets langer wachten voor DOM ready
   }
 
   // Stop barcode scanner
   function stopScanner() {
     if (typeof window !== 'undefined' && (window as any).Quagga) {
-      (window as any).Quagga.stop();
+      try {
+        (window as any).Quagga.stop();
+        (window as any).Quagga.offDetected();
+      } catch (e) {
+        console.error('Error stopping scanner:', e);
+      }
     }
     setShowScanner(false);
+    setDetectedBarcode(null);
+    setCountdown(0);
   }
 
   // Lookup barcode in online databases
@@ -642,17 +706,62 @@ export default function BibliotheekPage() {
             {showScanner && (
               <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
                 <div className="relative w-full max-w-2xl p-4">
-                  <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden" />
+                  {/* Waarschuwing banner */}
+                  <div className="mb-4 bg-yellow-500 border-2 border-yellow-600 rounded-xl p-4 shadow-lg">
+                    <div className="flex items-start gap-3">
+                      <span className="text-3xl">📱</span>
+                      <div>
+                        <p className="text-senior-base font-bold text-yellow-900 mb-1">
+                          💡 Tip: Barcode scanner werkt het beste op telefoon of tablet
+                        </p>
+                        <p className="text-senior-sm text-yellow-800">
+                          Gebruik de achtercamera voor het beste resultaat. Op computer kan het scannen soms moeizamer gaan.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Scanner Container met Overlay */}
+                  <div className="relative w-full">
+                    <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden relative" />
+                    
+                    {/* Scanner Kader Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      {/* Buitenste overlay (donker) */}
+                      <div className="absolute inset-0 bg-black bg-opacity-60">
+                        {/* Transparant venster in het midden */}
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                                      w-64 h-48 border-4 border-white rounded-lg shadow-2xl">
+                          {/* Hoek decoraties */}
+                          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+                          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+                          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+                          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Instructie tekst */}
+                    <div className="absolute bottom-20 left-0 right-0 text-center pointer-events-none">
+                      <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
+                        Houd de barcode in het kader
+                      </p>
+                      <p className="text-white text-senior-base drop-shadow-lg">
+                        Zorg dat de barcode helemaal zichtbaar is en goed verlicht
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Sluit knop */}
                   <button
                     onClick={stopScanner}
-                    className="absolute top-8 right-8 bg-red-600 text-white px-6 py-3 rounded-lg
-                             text-senior-base font-bold hover:bg-red-700"
+                    className="absolute top-8 right-8 bg-red-600 text-white px-8 py-4 rounded-xl
+                             text-senior-lg font-bold hover:bg-red-700 transition-all shadow-xl
+                             flex items-center gap-2 min-h-[70px]"
                   >
-                    ✗ Sluiten
+                    <span className="text-2xl">✗</span>
+                    <span>Sluiten</span>
                   </button>
-                  <p className="text-white text-center mt-4 text-senior-base">
-                    Houd de barcode voor de camera...
-                  </p>
                 </div>
               </div>
             )}
