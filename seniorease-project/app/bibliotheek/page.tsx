@@ -624,17 +624,47 @@ export default function BibliotheekPage() {
             {showScanner && (
               <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
                 <div className="relative w-full max-w-2xl p-4">
-                  <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden" />
+                  {/* Scanner Container met Overlay */}
+                  <div className="relative w-full">
+                    <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden relative" />
+                    
+                    {/* Scanner Kader Overlay */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                      {/* Buitenste overlay (donker) */}
+                      <div className="absolute inset-0 bg-black bg-opacity-60">
+                        {/* Transparant venster in het midden */}
+                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                                      w-64 h-48 border-4 border-white rounded-lg shadow-2xl">
+                          {/* Hoek decoraties */}
+                          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+                          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+                          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+                          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Instructie tekst */}
+                    <div className="absolute bottom-20 left-0 right-0 text-center pointer-events-none">
+                      <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
+                        Houd de barcode in het kader
+                      </p>
+                      <p className="text-white text-senior-base drop-shadow-lg">
+                        Zorg dat de barcode helemaal zichtbaar is
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Sluit knop */}
                   <button
                     onClick={stopScanner}
-                    className="absolute top-8 right-8 bg-red-600 text-white px-6 py-3 rounded-lg
-                             text-senior-base font-bold hover:bg-red-700"
+                    className="absolute top-8 right-8 bg-red-600 text-white px-8 py-4 rounded-xl
+                             text-senior-lg font-bold hover:bg-red-700 transition-all shadow-xl
+                             flex items-center gap-2 min-h-[70px]"
                   >
-                    ✗ Sluiten
+                    <span className="text-2xl">✗</span>
+                    <span>Sluiten</span>
                   </button>
-                  <p className="text-white text-center mt-4 text-senior-base">
-                    Houd de barcode voor de camera...
-                  </p>
                 </div>
               </div>
             )}
