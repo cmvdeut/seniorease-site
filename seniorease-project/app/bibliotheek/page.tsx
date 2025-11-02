@@ -23,8 +23,8 @@ export default function BibliotheekPage() {
   const [quaggaLoaded, setQuaggaLoaded] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
-  const [lastDetectedCode, setLastDetectedCode] = useState<string | null>(null);
-  const [detectionCount, setDetectionCount] = useState(0);
+  const [detectedBarcode, setDetectedBarcode] = useState<string | null>(null);
+  const [countdown, setCountdown] = useState<number>(0);
 
   // Load items from localStorage
   useEffect(() => {
@@ -122,34 +122,33 @@ export default function BibliotheekPage() {
           const code = result.codeResult.code;
           console.log('Barcode detected:', code);
           
-          // Debounce: wacht tot dezelfde code 3x achter elkaar wordt gedetecteerd
-          // Dit geeft senioren tijd om de camera goed te richten
-          if (lastDetectedCode === code) {
-            const newCount = detectionCount + 1;
-            setDetectionCount(newCount);
-            
-            // Wacht tot code 3x is gedetecteerd (ongeveer 1-2 seconden)
-            if (newCount >= 3) {
-              stopScanner();
-              
-              // Toon formulier en start met zoeken
-              setShowAddForm(true);
-              setIsLoadingData(true);
-              setLoadError(null);
-              setFormData(prev => ({ ...prev, barcode: code }));
-              
-              // Reset detection state
-              setLastDetectedCode(null);
-              setDetectionCount(0);
-              
-              // Probeer gegevens op te halen
-              await lookupBarcode(code);
-            }
-          } else {
-            // Nieuwe code gedetecteerd, reset counter
-            setLastDetectedCode(code);
-            setDetectionCount(1);
-          }
+          // Stop scanner direct
+          stopScanner();
+          
+          // Toon formulier en vul barcode in
+          setShowAddForm(true);
+          setFormData(prev => ({ ...prev, barcode: code }));
+          setDetectedBarcode(code);
+          setCountdown(4);
+          setLoadError(null);
+          
+          // Start countdown en wacht 4 seconden voordat we gaan zoeken
+          const interval = setInterval(() => {
+            setCountdown((prev) => {
+              if (prev <= 1) {
+                clearInterval(interval);
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+          
+          // Wacht 4 seconden, dan zoek online
+          setTimeout(async () => {
+            clearInterval(interval);
+            setCountdown(0);
+            await lookupBarcode(code);
+          }, 4000);
         });
       }, 100);
     } else {
@@ -163,9 +162,6 @@ export default function BibliotheekPage() {
       (window as any).Quagga.stop();
     }
     setShowScanner(false);
-    // Reset detection state
-    setLastDetectedCode(null);
-    setDetectionCount(0);
   }
 
   // Lookup barcode in online databases
@@ -376,15 +372,10 @@ export default function BibliotheekPage() {
 
   return (
     <>
-      {/* Load QuaggaJS for barcode scanning - Lazy loaded voor betere performance */}
+      {/* Load QuaggaJS for barcode scanning */}
       <Script 
         src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"
-        strategy="lazyOnload"
         onLoad={() => setQuaggaLoaded(true)}
-        onError={() => {
-          console.error('QuaggaJS kon niet worden geladen');
-          alert('Scanner bibliotheek kon niet worden geladen. Probeer de pagina te vernieuwen.');
-        }}
       />
 
       <div className="min-h-screen bg-neutral-cream">
@@ -478,17 +469,8 @@ export default function BibliotheekPage() {
                          transition-all shadow-lg hover:shadow-xl
                          flex items-center justify-center gap-3 min-h-[70px]"
               >
-                {!quaggaLoaded ? (
-                  <>
-                    <span className="animate-spin text-3xl">⏳</span>
-                    <span>Scanner wordt geladen...</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-3xl">📷</span>
-                    <span>Barcode scannen met camera</span>
-                  </>
-                )}
+                <span className="text-3xl">📷</span>
+                <span>Barcode scannen met camera</span>
               </button>
             </div>
 
@@ -499,7 +481,24 @@ export default function BibliotheekPage() {
                   Nieuw item toevoegen
                 </h2>
                 
-                {/* Loading indicator */}
+                {/* Countdown timer - toont 4 seconden aftelling */}
+                {countdown > 0 && (
+                  <div className="mb-6 p-6 bg-blue-50 rounded-xl border-2 border-blue-300">
+                    <div className="flex items-center gap-4">
+                      <div className="text-4xl animate-pulse">⏱️</div>
+                      <div>
+                        <p className="text-senior-base font-bold text-blue-900">
+                          Barcode gedetecteerd! Zoeken start over {countdown} seconde{countdown !== 1 ? 'n' : ''}...
+                        </p>
+                        <p className="text-senior-sm text-blue-700 mt-1">
+                          U kunt nu de camera goed richten. De informatie wordt automatisch opgehaald.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Loading indicator - tijdens het zoeken */}
                 {isLoadingData && (
                   <div className="mb-6 p-6 bg-primary/10 rounded-xl border-2 border-primary">
                     <div className="flex items-center gap-4">
@@ -562,9 +561,8 @@ export default function BibliotheekPage() {
                       required
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      disabled={isLoadingData}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                               focus:border-primary focus:outline-none"
                       placeholder="Titel van het item"
                     />
                   </div>
@@ -578,9 +576,8 @@ export default function BibliotheekPage() {
                       required
                       value={formData.author}
                       onChange={(e) => setFormData({ ...formData, author: e.target.value })}
-                      disabled={isLoadingData}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                               focus:border-primary focus:outline-none"
                       placeholder={formData.type === 'book' ? 'Naam van de auteur' : 'Naam van de artiest'}
                     />
                   </div>
@@ -589,31 +586,14 @@ export default function BibliotheekPage() {
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
                       Barcode:
                     </label>
-                    <div className="flex gap-2">
-                      <input
-                        type="text"
-                        value={formData.barcode}
-                        onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
-                        disabled={isLoadingData}
-                        className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                                 focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
-                        placeholder="ISBN of EAN code"
-                      />
-                      {formData.barcode && !isLoadingData && (
-                        <button
-                          type="button"
-                          onClick={() => lookupBarcode(formData.barcode)}
-                          className="bg-secondary text-white px-6 py-3 rounded-lg text-senior-base font-bold
-                                   hover:bg-secondary-dark transition-colors whitespace-nowrap"
-                          title="Zoek gegevens op"
-                        >
-                          🔍 Zoek
-                        </button>
-                      )}
-                    </div>
-                    <p className="text-senior-xs text-gray-500 mt-2">
-                      Scan met camera of voer handmatig in. Klik op "Zoek" om automatisch gegevens op te halen.
-                    </p>
+                    <input
+                      type="text"
+                      value={formData.barcode}
+                      onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
+                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
+                               focus:border-primary focus:outline-none"
+                      placeholder="ISBN of EAN code"
+                    />
                   </div>
 
                   <div>
@@ -662,72 +642,17 @@ export default function BibliotheekPage() {
             {showScanner && (
               <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
                 <div className="relative w-full max-w-2xl p-4">
-                  {/* Waarschuwing banner */}
-                  <div className="mb-4 bg-yellow-500 border-2 border-yellow-600 rounded-xl p-4 shadow-lg">
-                    <div className="flex items-start gap-3">
-                      <span className="text-3xl">📱</span>
-                      <div>
-                        <p className="text-senior-base font-bold text-yellow-900 mb-1">
-                          💡 Tip: Barcode scanner werkt het beste op telefoon of tablet
-                        </p>
-                        <p className="text-senior-sm text-yellow-800">
-                          Gebruik de achtercamera voor het beste resultaat. Op computer kan het scannen soms moeizamer gaan.
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  
-                  {/* Scanner Container met Overlay */}
-                  <div className="relative w-full">
-                    <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden relative" />
-                    
-                    {/* Scanner Kader Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      {/* Buitenste overlay (donker) */}
-                      <div className="absolute inset-0 bg-black bg-opacity-60">
-                        {/* Transparant venster in het midden */}
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                      w-64 h-48 border-4 border-white rounded-lg shadow-2xl">
-                          {/* Hoek decoraties */}
-                          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-                          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
-                          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
-                          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Instructie tekst */}
-                    <div className="absolute bottom-20 left-0 right-0 text-center pointer-events-none">
-                      <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
-                        Houd de barcode in het kader
-                      </p>
-                      <p className="text-white text-senior-base drop-shadow-lg mb-2">
-                        Zorg dat de barcode helemaal zichtbaar is
-                      </p>
-                      {detectionCount > 0 && detectionCount < 3 && (
-                        <div className="mt-4 bg-primary/80 rounded-lg px-6 py-3 inline-block">
-                          <p className="text-white text-senior-base font-bold">
-                            📷 Barcode gedetecteerd... ({detectionCount}/3)
-                          </p>
-                          <p className="text-white text-senior-sm mt-1">
-                            Houd de barcode stil voor nog {3 - detectionCount} moment{3 - detectionCount !== 1 ? 'en' : ''}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                  
-                  {/* Sluit knop */}
+                  <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden" />
                   <button
                     onClick={stopScanner}
-                    className="absolute top-8 right-8 bg-red-600 text-white px-8 py-4 rounded-xl
-                             text-senior-lg font-bold hover:bg-red-700 transition-all shadow-xl
-                             flex items-center gap-2 min-h-[70px]"
+                    className="absolute top-8 right-8 bg-red-600 text-white px-6 py-3 rounded-lg
+                             text-senior-base font-bold hover:bg-red-700"
                   >
-                    <span className="text-2xl">✗</span>
-                    <span>Sluiten</span>
+                    ✗ Sluiten
                   </button>
+                  <p className="text-white text-center mt-4 text-senior-base">
+                    Houd de barcode voor de camera...
+                  </p>
                 </div>
               </div>
             )}
