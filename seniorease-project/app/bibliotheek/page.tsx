@@ -26,6 +26,7 @@ export default function BibliotheekPage() {
   const [detectedBarcode, setDetectedBarcode] = useState<string | null>(null);
   const [countdown, setCountdown] = useState<number>(0);
   const [showMenu, setShowMenu] = useState(false);
+  const [editingItem, setEditingItem] = useState<string | null>(null);
 
   // Load items from localStorage
   useEffect(() => {
@@ -785,8 +786,54 @@ Voor vragen: bezoek seniorease.nl
       alert('Vul minimaal een titel en auteur/artiest in');
       return;
     }
-    addItem(formData);
+    
+    if (editingItem) {
+      // Bewerk bestaand item
+      updateItem(editingItem, formData);
+      setEditingItem(null);
+    } else {
+      // Voeg nieuw item toe
+      addItem(formData);
+    }
+    
     setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
+    setShowAddForm(false);
+  }
+
+  // Update item
+  function updateItem(id: string, updatedData: Omit<LibraryItem, 'id' | 'dateAdded'>) {
+    setItems(items.map(item => 
+      item.id === id 
+        ? { ...item, ...updatedData }
+        : item
+    ));
+  }
+
+  // Start bewerken van item
+  function startEdit(item: LibraryItem) {
+    setFormData({
+      type: item.type,
+      title: item.title,
+      author: item.author,
+      barcode: item.barcode,
+      notes: item.notes || ''
+    });
+    setEditingItem(item.id);
+    setShowAddForm(true);
+    // Scroll naar formulier
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  // Zoek item op Google
+  function zoekOpGoogle(item: LibraryItem) {
+    let query = '';
+    if (item.type === 'book') {
+      query = `${item.title} ${item.author}`;
+    } else {
+      query = `${item.title} ${item.author} album`;
+    }
+    const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    window.open(googleUrl, '_blank');
   }
 
   const typeIcons: Record<LibraryItem['type'], string> = {
@@ -971,7 +1018,11 @@ Voor vragen: bezoek seniorease.nl
             {/* Action Buttons - EXTRA GROOT VOOR SENIOREN */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
-                onClick={() => setShowAddForm(!showAddForm)}
+                onClick={() => {
+                  setEditingItem(null);
+                  setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
+                  setShowAddForm(!showAddForm);
+                }}
                 className="bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
                          hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
                          flex items-center justify-center gap-3 min-h-[70px]"
@@ -996,7 +1047,7 @@ Voor vragen: bezoek seniorease.nl
             {showAddForm && (
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-6">
-                  Nieuw item toevoegen
+                  {editingItem ? 'Item bewerken' : 'Nieuw item toevoegen'}
                 </h2>
                 
                 {/* Countdown timer - toont 4 seconden aftelling */}
@@ -1136,12 +1187,13 @@ Voor vragen: bezoek seniorease.nl
                                flex items-center justify-center gap-3 min-h-[70px]"
                     >
                       <span className="text-2xl">✓</span>
-                      <span>Opslaan</span>
+                      <span>{editingItem ? 'Bijwerken' : 'Opslaan'}</span>
                     </button>
                     <button
                       type="button"
                       onClick={() => {
                         setShowAddForm(false);
+                        setEditingItem(null);
                         setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
                       }}
                       className="bg-gray-500 text-white px-10 py-5 rounded-xl text-senior-lg font-bold
@@ -1263,13 +1315,29 @@ Voor vragen: bezoek seniorease.nl
                           </p>
                         </div>
                       </div>
-                      <button
-                        onClick={() => deleteItem(item.id)}
-                        className="ml-4 text-red-600 hover:text-red-800 text-senior-xl font-bold"
-                        title="Verwijderen"
-                      >
-                        🗑️
-                      </button>
+                      <div className="ml-4 flex flex-col gap-2">
+                        <button
+                          onClick={() => deleteItem(item.id)}
+                          className="text-red-600 hover:text-red-800 text-senior-xl font-bold transition-colors"
+                          title="Verwijderen"
+                        >
+                          🗑️
+                        </button>
+                        <button
+                          onClick={() => startEdit(item)}
+                          className="text-blue-600 hover:text-blue-800 text-senior-xl font-bold transition-colors"
+                          title="Bewerken"
+                        >
+                          ✏️
+                        </button>
+                        <button
+                          onClick={() => zoekOpGoogle(item)}
+                          className="text-green-600 hover:text-green-800 text-senior-xl font-bold transition-colors"
+                          title="Zoeken op Google"
+                        >
+                          🔍
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))
