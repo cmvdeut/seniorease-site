@@ -17,16 +17,16 @@ export default function MobileDownload() {
       {currentUrl && (
         <QRCodeSVG
           value={`${currentUrl}/betalen`}
-          size={180}
+          size={140}
           level="H"
           includeMargin={true}
         />
       )}
-      <p className="text-senior-sm font-bold text-gray-700 mt-3 mb-1 text-center">
-        Scan de QR code
+      <p className="text-senior-xs font-bold text-gray-700 mt-2 mb-1 text-center">
+        Scan QR code
       </p>
       <p className="text-senior-xs text-gray-600 text-center">
-        Met uw telefoon camera
+        Met telefoon camera
       </p>
     </>
   );
