@@ -426,7 +426,7 @@ Voor vragen: bezoek seniorease.nl
     let detectionTimeout: NodeJS.Timeout | null = null;
     
     // Wacht tot de scanner container in de DOM staat
-    setTimeout(() => {
+    setTimeout(async () => {
       const Quagga = (window as any).Quagga;
       
       // Check of Quagga geladen is
@@ -463,31 +463,71 @@ Voor vragen: bezoek seniorease.nl
       // Detecteer of het mobiel is voor andere constraints
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
       
+      setDebugLogs(prev => [...prev, 'Vraag camera permissie...']);
+      
+      // Vraag eerst expliciet camera permissie voordat Quagga.init() wordt aangeroepen
+      const requestCameraPermission = async () => {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({
+            video: {
+              facingMode: "environment",
+              width: { ideal: 640 },
+              height: { ideal: 480 }
+            }
+          });
+          // Stop de test stream
+          stream.getTracks().forEach(track => track.stop());
+          setDebugLogs(prev => [...prev, '✓ Camera permissie verkregen']);
+          return true;
+        } catch (permError: any) {
+          const errorMsg = permError.message || 'Camera permissie geweigerd';
+          setDebugLogs(prev => [...prev, `❌ Camera permissie: ${errorMsg}`]);
+          alert(`Camera permissie nodig: ${errorMsg}. Controleer de instellingen van uw browser.`);
+          stopScanner();
+          return false;
+        }
+      };
+      
+      // Vraag permissie eerst
+      const hasPermission = await requestCameraPermission();
+      if (!hasPermission) {
+        return;
+      }
+      
       setDebugLogs(prev => [...prev, 'Initialiseer Quagga...']);
       
       // Voeg een timeout toe om te zien of init callback wordt aangeroepen
       const initTimeout = setTimeout(() => {
         setDebugLogs(prev => [...prev, '⏱️ Init timeout - callback niet aangeroepen na 5 sec']);
+        // Probeer Quagga te stoppen als die vastloopt
+        try {
+          if ((window as any).Quagga) {
+            (window as any).Quagga.stop();
+          }
+        } catch (e) {
+          console.error('Error stopping Quagga:', e);
+        }
       }, 5000);
       
       try {
         console.log('Aanroepen Quagga.init()...');
         setDebugLogs(prev => [...prev, 'Quagga.init() aangeroepen...']);
         
+        // Simpelere constraints voor mobiel
+        const videoConstraints = isMobile ? {
+          facingMode: "environment"
+        } : {
+          width: { min: 640, ideal: 1280, max: 1920 },
+          height: { min: 480, ideal: 720, max: 1080 },
+          facingMode: "environment"
+        };
+        
         Quagga.init({
         inputStream: {
           name: "Live",
           type: "LiveStream",
           target: container,
-          constraints: isMobile ? {
-            width: { ideal: 640 },
-            height: { ideal: 480 },
-            facingMode: "environment"
-          } : {
-            width: { min: 640, ideal: 1280, max: 1920 },
-            height: { min: 480, ideal: 720, max: 1080 },
-            facingMode: "environment"
-          },
+          constraints: videoConstraints,
           area: { // Focus gebied voor betere detectie (centraal - aangepast aan kader grootte)
             top: "20%",
             right: "12.5%",
