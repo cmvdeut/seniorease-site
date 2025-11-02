@@ -23,6 +23,8 @@ export default function BibliotheekPage() {
   const [quaggaLoaded, setQuaggaLoaded] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
+  const [lastDetectedCode, setLastDetectedCode] = useState<string | null>(null);
+  const [detectionCount, setDetectionCount] = useState(0);
 
   // Load items from localStorage
   useEffect(() => {
@@ -119,16 +121,35 @@ export default function BibliotheekPage() {
         Quagga.onDetected(async (result: any) => {
           const code = result.codeResult.code;
           console.log('Barcode detected:', code);
-          stopScanner();
           
-          // Toon formulier en start met zoeken
-          setShowAddForm(true);
-          setIsLoadingData(true);
-          setLoadError(null);
-          setFormData(prev => ({ ...prev, barcode: code }));
-          
-          // Probeer gegevens op te halen
-          await lookupBarcode(code);
+          // Debounce: wacht tot dezelfde code 3x achter elkaar wordt gedetecteerd
+          // Dit geeft senioren tijd om de camera goed te richten
+          if (lastDetectedCode === code) {
+            const newCount = detectionCount + 1;
+            setDetectionCount(newCount);
+            
+            // Wacht tot code 3x is gedetecteerd (ongeveer 1-2 seconden)
+            if (newCount >= 3) {
+              stopScanner();
+              
+              // Toon formulier en start met zoeken
+              setShowAddForm(true);
+              setIsLoadingData(true);
+              setLoadError(null);
+              setFormData(prev => ({ ...prev, barcode: code }));
+              
+              // Reset detection state
+              setLastDetectedCode(null);
+              setDetectionCount(0);
+              
+              // Probeer gegevens op te halen
+              await lookupBarcode(code);
+            }
+          } else {
+            // Nieuwe code gedetecteerd, reset counter
+            setLastDetectedCode(code);
+            setDetectionCount(1);
+          }
         });
       }, 100);
     } else {
@@ -142,6 +163,9 @@ export default function BibliotheekPage() {
       (window as any).Quagga.stop();
     }
     setShowScanner(false);
+    // Reset detection state
+    setLastDetectedCode(null);
+    setDetectionCount(0);
   }
 
   // Lookup barcode in online databases
@@ -678,9 +702,19 @@ export default function BibliotheekPage() {
                       <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
                         Houd de barcode in het kader
                       </p>
-                      <p className="text-white text-senior-base drop-shadow-lg">
+                      <p className="text-white text-senior-base drop-shadow-lg mb-2">
                         Zorg dat de barcode helemaal zichtbaar is
                       </p>
+                      {detectionCount > 0 && detectionCount < 3 && (
+                        <div className="mt-4 bg-primary/80 rounded-lg px-6 py-3 inline-block">
+                          <p className="text-white text-senior-base font-bold">
+                            📷 Barcode gedetecteerd... ({detectionCount}/3)
+                          </p>
+                          <p className="text-white text-senior-sm mt-1">
+                            Houd de barcode stil voor nog {3 - detectionCount} moment{3 - detectionCount !== 1 ? 'en' : ''}
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                   
