@@ -29,6 +29,7 @@ export default function BibliotheekPage() {
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
+  const [debugLogs, setDebugLogs] = useState<string[]>([]);
 
   // Check licentie (alleen voor mobiele apparaten)
   useEffect(() => {
@@ -418,6 +419,7 @@ Voor vragen: bezoek seniorease.nl
     setDetectedBarcode(null);
     setCountdown(0);
     setLoadError(null);
+    setDebugLogs(['Scanner wordt gestart...']);
     
     // Verzamel meerdere detecties voor betrouwbaarheid
     let detectionCounts: Map<string, number> = new Map();
@@ -497,35 +499,44 @@ Voor vragen: bezoek seniorease.nl
         }
         
         console.log('Quagga gestart, wacht op barcode...');
+        const settingsMsg = `Instellingen: Mobiel=${isMobile}, Workers=2, PatchSize=medium`;
         console.log('Scanner instellingen:', {
           isMobile,
           area: { top: "20%", right: "12.5%", left: "12.5%", bottom: "20%" },
           patchSize: isMobile ? "medium" : "medium",
           workers: isMobile ? 2 : 2
         });
+        setDebugLogs(prev => [...prev, 'Scanner gestart', settingsMsg, 'Wacht op barcode...']);
         Quagga.start();
         
         // Registreer detection handler NA dat Quagga is gestart
         Quagga.onDetected(async (result: any) => {
           const rawCode = result.codeResult?.code;
+          const codeFormat = result.codeResult?.format || 'onbekend';
+          
           console.log('=== Barcode Detection ===');
           console.log('Raw result:', result);
           console.log('Raw code:', rawCode);
-          console.log('Code type:', result.codeResult?.format);
+          console.log('Code type:', codeFormat);
+          
+          setDebugLogs(prev => [...prev.slice(-4), `🔍 Detectie: ${rawCode || 'geen code'} (${codeFormat})`]);
           
           if (!rawCode) {
             console.warn('Geen code gevonden in result');
+            setDebugLogs(prev => [...prev, '⚠️ Geen code gevonden']);
             return;
           }
           
           // Valideer en normaliseer de code
           if (!isValidBarcode(rawCode)) {
             console.warn('Ongeldige barcode gedetecteerd:', rawCode);
+            setDebugLogs(prev => [...prev, `❌ Ongeldig: ${rawCode}`]);
             return;
           }
           
           const normalizedCode = normalizeBarcode(rawCode);
           console.log('Barcode normalized:', normalizedCode);
+          setDebugLogs(prev => [...prev, `✓ Genormaliseerd: ${normalizedCode}`]);
           
           // Tel hoe vaak deze code is gedetecteerd
           const currentCount = (detectionCounts.get(normalizedCode) || 0) + 1;
@@ -540,6 +551,8 @@ Voor vragen: bezoek seniorease.nl
           
           // Accepteer code na 1 consistente detectie (verlaagd voor betere mobiele detectie), of na timeout
           if (currentCount >= 1) {
+            setDebugLogs(prev => [...prev, `✅ Code geaccepteerd: ${normalizedCode} (${currentCount}x)`]);
+            
             // Stop scanner
             Quagga.stop();
             stopScanner();
@@ -633,6 +646,7 @@ Voor vragen: bezoek seniorease.nl
     setShowScanner(false);
     setDetectedBarcode(null);
     setCountdown(0);
+    setDebugLogs([]);
   }
 
   // Handle search button click - zoek online informatie voor ingevulde barcode
@@ -1536,9 +1550,26 @@ Voor vragen: bezoek seniorease.nl
                   <p className="text-white text-base sm:text-senior-lg font-bold mb-2 drop-shadow-lg">
                     Houd de barcode in het kader
                   </p>
-                  <p className="text-white text-sm sm:text-senior-base drop-shadow-lg">
+                  <p className="text-white text-sm sm:text-senior-base drop-shadow-lg mb-3">
                     Zorg dat de barcode helemaal zichtbaar is en goed verlicht
                   </p>
+                  
+                  {/* Debug panel - toon laatste detecties */}
+                  <div className="mt-3 bg-black bg-opacity-50 rounded-lg p-3 max-h-32 overflow-y-auto">
+                    <p className="text-white text-xs font-bold mb-1">Status:</p>
+                    <div className="text-left space-y-0.5">
+                      {debugLogs.slice(-5).map((log, idx) => (
+                        <p key={idx} className="text-white text-xs font-mono break-all">
+                          {log}
+                        </p>
+                      ))}
+                      {debugLogs.length === 0 && (
+                        <p className="text-white text-xs font-mono text-gray-400">
+                          Wacht op barcode...
+                        </p>
+                      )}
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Sluit knop - rechtsboven */}
