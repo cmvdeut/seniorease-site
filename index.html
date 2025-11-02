@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" href="/icons/icon-192.png">
     
     <!-- Tailwind CSS via CDN -->
+    <!-- Note: CDN wordt gebruikt voor snelle deployment. Voor optimale performance zou Tailwind gebuild moeten worden -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -271,14 +272,18 @@
 
     <!-- Service Worker Registration -->
     <script>
+        // Production mode: minder console logs
+        const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const log = isDev ? console.log.bind(console) : () => {};
+        
         // Service Worker registratie
         window.addEventListener('load', function() {
             if ('serviceWorker' in navigator) {
-                console.log('Service Worker ondersteund, registreren...');
+                log('Service Worker ondersteund, registreren...');
                 try {
                     navigator.serviceWorker.register('./sw.js')
                         .then(function(registration) {
-                            console.log('✅ Service Worker succesvol geregistreerd:', registration.scope);
+                            log('✅ Service Worker succesvol geregistreerd:', registration.scope);
                         })
                         .catch(function(error) {
                             console.error('❌ Service Worker registratie mislukt:', error);
@@ -286,24 +291,13 @@
                 } catch (error) {
                     console.error('❌ Service Worker niet ondersteund:', error);
                 }
-            } else {
-                console.log('❌ Service Worker niet ondersteund door deze browser');
             }
         });
 
         // PWA Install functionaliteit (voor volledige versie)
-        let deferredPrompt;
-
-        window.addEventListener('beforeinstallprompt', (e) => {
-            console.log('📱 beforeinstallprompt event ontvangen - app kan geïnstalleerd worden');
-            e.preventDefault();
-            deferredPrompt = e;
-            console.log('✅ PWA installeerbaar');
-        });
-
+        // We laten het default browser install prompt zien (geen custom prompt voor demo)
         window.addEventListener('appinstalled', () => {
-            console.log('🎉 SeniorEase app succesvol geïnstalleerd!');
-            deferredPrompt = null;
+            log('🎉 SeniorEase app succesvol geïnstalleerd!');
         });
 
         // Screenshot Carousel functionaliteit

@@ -18,33 +18,23 @@ export default function BetalenPage() {
     }
   }, [router]);
 
-  // Simuleer betaling (later te vervangen met echte payment gateway)
+  // Redirect naar Stripe Payment Link
   function handleBetalen() {
     if (!email) {
       alert('Vul uw e-mailadres in');
       return;
     }
 
-    // Simuleer betaling proces
-    setBetaalStatus('pending');
+    // Sla email tijdelijk op in sessionStorage voor na betaling
+    sessionStorage.setItem('seniorease-payment-email', email);
     
-    // Na 2 seconden: betaling "geslaagd"
-    setTimeout(() => {
-      // Genereer unieke licentie code
-      const code = `SE-${Date.now()}-${Math.random().toString(36).substr(2, 9).toUpperCase()}`;
-      
-      // Sla licentie op
-      const licentieData = {
-        code: code,
-        email: email,
-        date: new Date().toISOString(),
-        valid: true
-      };
-      
-      localStorage.setItem('seniorease-licentie', JSON.stringify(licentieData));
-      setLicentieCode(code);
-      setBetaalStatus('paid');
-    }, 2000);
+    // Redirect naar Stripe Payment Link
+    // Voeg email toe als query parameter voor Stripe (optioneel, afhankelijk van Stripe config)
+    const stripeUrl = new URL('https://buy.stripe.com/cNi3co3yC45O70b4NM6c000');
+    stripeUrl.searchParams.set('client_reference_id', email);
+    
+    // Redirect naar Stripe
+    window.location.href = stripeUrl.toString();
   }
 
   if (betaalStatus === 'paid') {
@@ -196,10 +186,10 @@ export default function BetalenPage() {
               {/* Betaalmethoden info */}
               <div className="text-center">
                 <p className="text-senior-xs text-gray-500 mb-2">
-                  Veilig betalen via iDEAL, creditcard of PayPal
+                  Veilig betalen via Stripe
                 </p>
                 <p className="text-senior-xs text-gray-400">
-                  ⚠️ Dit is een demo versie. In productie wordt een echte payment gateway gebruikt.
+                  iDEAL, creditcard, bancontact en meer betaalmethoden beschikbaar
                 </p>
               </div>
             </div>

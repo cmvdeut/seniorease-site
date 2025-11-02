@@ -8,26 +8,26 @@ const state = {
 };
 
 // Improved localStorage handling with delays and error catching
-function saveISBNCache(isbn, bookData) {
+function saveCodeCache(code, data) {
     try {
         setTimeout(() => {
-            const cacheKey = 'isbn_cache_' + isbn;
+            const cacheKey = 'code_cache_' + code;
             const cacheData = {
-                data: bookData,
+                data: data,
                 timestamp: Date.now(),
                 expires: Date.now() + (30 * 24 * 60 * 60 * 1000) // 30 dagen cache
             };
             localStorage.setItem(cacheKey, JSON.stringify(cacheData));
-            console.log('ISBN cache saved:', isbn);
+            console.log('Code cache saved:', code);
         }, 100);
     } catch(e) {
-        console.error('ISBN cache storage failed:', e);
+        console.error('Code cache storage failed:', e);
     }
 }
 
-function getISBNCache(isbn) {
+function getCodeCache(code) {
     try {
-        const cacheKey = 'isbn_cache_' + isbn;
+        const cacheKey = 'code_cache_' + code;
         const cached = localStorage.getItem(cacheKey);
         if (!cached) return null;
         
@@ -37,12 +37,21 @@ function getISBNCache(isbn) {
             localStorage.removeItem(cacheKey);
             return null;
         }
-        console.log('ISBN cache hit:', isbn);
+        console.log('Code cache hit:', code);
         return cacheData.data;
     } catch(e) {
-        console.error('ISBN cache retrieval failed:', e);
+        console.error('Code cache retrieval failed:', e);
         return null;
     }
+}
+
+// Backward compatibility aliases
+function saveISBNCache(isbn, bookData) {
+    saveCodeCache(isbn, bookData);
+}
+
+function getISBNCache(isbn) {
+    return getCodeCache(isbn);
 }
 
 function saveItemsToStorage() {
@@ -87,6 +96,40 @@ const elements = {
 let codeReader = null;
 let videoElement = null;
 
+// Detect Android device
+function isAndroidDevice() {
+    return /Android/i.test(navigator.userAgent);
+}
+
+// Detect mobile device
+function isMobileDevice() {
+    return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
+// Detect if device is a phone (not tablet)
+function isPhoneDevice() {
+    const ua = navigator.userAgent;
+    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+    // Phones typically have smaller screens and no "tablet" in user agent
+    const isTablet = /Tablet|iPad/i.test(ua);
+    return isMobile && !isTablet;
+}
+
+// Check camera permissions
+async function checkCameraPermissions() {
+    try {
+        if (navigator.permissions && navigator.permissions.query) {
+            const permission = await navigator.permissions.query({ name: 'camera' });
+            console.log('📷 Camera permission status:', permission.state);
+            return permission.state === 'granted' || permission.state === 'prompt';
+        }
+        return true; // Permissions API not supported, assume OK
+    } catch (e) {
+        console.warn('⚠️ Permission check failed:', e);
+        return true; // Assume OK if check fails
+    }
+}
+
 function scannerSupported() {
     // Check if camera API is available
     const hasCameraAPI = !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
@@ -94,7 +137,13 @@ function scannerSupported() {
     // Check if ZXing is loaded (it loads as a global object)
     const hasZXing = typeof ZXing !== 'undefined';
     
-    console.log('Scanner support check:', { hasCameraAPI, hasZXing, ZXingAvailable: typeof ZXing });
+    console.log('Scanner support check:', { 
+        hasCameraAPI, 
+        hasZXing, 
+        ZXingAvailable: typeof ZXing,
+        isAndroid: isAndroidDevice(),
+        isMobile: isMobileDevice()
+    });
     
     return hasCameraAPI && hasZXing;
 }
@@ -109,10 +158,20 @@ async function startScanning() {
         return;
     }
 
+    // Check permissions first (especially important for phones)
+    const hasPermission = await checkCameraPermissions();
+    if (!hasPermission) {
+        setScanStatus('Camera toegang geweigerd. Controleer browser instellingen.', true);
+        return;
+    }
+
     try {
         state.scanning = true;
         elements.startScan.disabled = true;
         elements.stopScan.disabled = false;
+        
+        const deviceType = isPhoneDevice() ? 'telefoon' : (isAndroidDevice() ? 'tablet' : 'desktop');
+        console.log(`📱 Start scanning op ${deviceType}`);
         
         setScanStatus('Camera wordt gestart...', false);
 
@@ -138,10 +197,17 @@ async function startScanning() {
             [ZXing.DecodeHintType.PURE_BARCODE, false]
         ]);
         
-        // Create video element with better constraints
+        // Create video element with Android-optimized attributes
         const cameraContainer = document.getElementById('camera-container');
-        cameraContainer.innerHTML = '<video id="scanner-video" playsinline muted autoplay style="width: 100%; height: 100%; object-fit: cover;"></video>';
+        // Android requires playsinline, muted, autoplay for smooth camera access
+        cameraContainer.innerHTML = '<video id="scanner-video" playsinline webkit-playsinline muted autoplay style="width: 100%; height: 100%; object-fit: cover;"></video>';
         videoElement = document.getElementById('scanner-video');
+        
+        // Android-specific: Ensure video element is ready
+        if (isAndroidDevice()) {
+            videoElement.setAttribute('playsinline', 'true');
+            videoElement.setAttribute('webkit-playsinline', 'true');
+        }
 
         // Prefer the back camera if available
         let preferredDeviceId = undefined;
@@ -167,13 +233,27 @@ async function startScanning() {
                             codeInput.value = code;
                             codeInput.dispatchEvent(new Event('input', { bubbles: true }));
                             codeInput.dispatchEvent(new Event('change', { bubbles: true }));
-                            // Force focus to trigger any validation
-                            codeInput.focus();
-                            codeInput.blur();
                         }
                         
                         setScanStatus(`Barcode gevonden: ${code}`, false, true);
+                        
+                        // Stop scanner eerst
                         stopScanning();
+                        
+                        // Device-specific delay: phones need more time than tablets
+                        let delay = 300; // Default desktop
+                        if (isPhoneDevice()) {
+                            delay = 1200; // Phones need most time
+                        } else if (isAndroidDevice()) {
+                            delay = 800; // Android tablets
+                        }
+                        console.log(`⏱️ Waiting ${delay}ms before lookup (Device: ${isPhoneDevice() ? 'telefoon' : (isAndroidDevice() ? 'tablet' : 'desktop')})`);
+                        
+                        // Start lookup NADAT camera gestopt is (cruciaal voor Android!)
+                        setTimeout(() => {
+                            console.log('🔍 Starting lookup for:', code);
+                            lookupCodeDetails(code);
+                        }, delay);
                     }
                     // Ignore NotFound (no barcode in frame); log others for debugging
                     if (err && !(err instanceof ZXing.NotFoundException)) {
@@ -181,24 +261,71 @@ async function startScanning() {
                     }
                 },
                 {
-                    // Better video constraints for barcode scanning
-                    video: {
-                        width: { min: 640, ideal: 1280 },
-                        height: { min: 480, ideal: 720 },
-                        facingMode: { ideal: 'environment' },
-                        frameRate: { ideal: 30, max: 60 },
-                        focusMode: 'continuous'
-                    }
+                    // Device-specific video constraints for barcode scanning
+                    video: (() => {
+                        if (isPhoneDevice()) {
+                            // Phones: Very conservative constraints for older/slower devices
+                            console.log('📱 Using phone-optimized camera constraints');
+                            return {
+                                width: { min: 320, ideal: 480, max: 640 },
+                                height: { min: 240, ideal: 360, max: 480 },
+                                facingMode: { ideal: 'environment' },
+                                frameRate: { ideal: 10, max: 20 },
+                                aspectRatio: { ideal: 1.7777777778 } // 16:9
+                            };
+                        } else if (isAndroidDevice()) {
+                            // Android tablets: Moderate constraints
+                            console.log('📱 Using Android tablet camera constraints');
+                            return {
+                                width: { min: 320, ideal: 640, max: 1280 },
+                                height: { min: 240, ideal: 480, max: 720 },
+                                facingMode: { ideal: 'environment' },
+                                frameRate: { ideal: 15, max: 30 },
+                                aspectRatio: { ideal: 1.7777777778 } // 16:9
+                            };
+                        } else {
+                            // Desktop/iPhone: Best quality
+                            console.log('💻 Using desktop/iPhone camera constraints');
+                            return {
+                                width: { min: 640, ideal: 1280 },
+                                height: { min: 480, ideal: 720 },
+                                facingMode: { ideal: 'environment' },
+                                frameRate: { ideal: 30, max: 60 },
+                                focusMode: 'continuous'
+                            };
+                        }
+                    })()
                 }
             );
         } catch (error) {
             console.error('ZXing error:', error);
+            const errorMsg = error.message || error.toString();
+            
+            // Phone-specific error handling
+            if (isPhoneDevice()) {
+                if (errorMsg.includes('Permission') || errorMsg.includes('NotAllowedError')) {
+                    setScanStatus('Camera toegang geweigerd. Ga naar browser instellingen → Site-instellingen → Camera → Toestaan', true);
+                    stopScanning();
+                    return;
+                } else if (errorMsg.includes('NotFoundError') || errorMsg.includes('DevicesNotFoundError')) {
+                    setScanStatus('Geen camera gevonden. Controleer of uw telefoon een achtercamera heeft.', true);
+                    stopScanning();
+                    return;
+                } else if (errorMsg.includes('NotReadableError') || errorMsg.includes('TrackStartError')) {
+                    setScanStatus('Camera wordt al gebruikt door een andere app. Sluit andere apps en probeer opnieuw.', true);
+                    stopScanning();
+                    return;
+                }
+            }
+            
             // Fallback to QuaggaJS on devices that fail with ZXing
             try {
+                console.log('🔄 Trying QuaggaJS fallback...');
                 await startQuaggaFallback();
                 setScanStatus('Fallback scanner actief. Richt op de barcode.', false);
                 return;
             } catch (e) {
+                console.error('QuaggaJS fallback also failed:', e);
                 throw error; // propagate original if fallback also fails
             }
         }
@@ -207,7 +334,22 @@ async function startScanning() {
 
     } catch (error) {
         console.error('Camera error:', error);
-        setScanStatus('Camera kon niet worden gestart: ' + error.message, true);
+        const errorMsg = error.message || error.toString();
+        
+        // More helpful error messages for phones
+        if (isPhoneDevice()) {
+            if (errorMsg.includes('Permission') || errorMsg.includes('NotAllowedError')) {
+                setScanStatus('❌ Camera toegang geweigerd. Controleer browser instellingen.', true);
+            } else if (errorMsg.includes('NotFoundError')) {
+                setScanStatus('❌ Geen camera gevonden op dit apparaat.', true);
+            } else if (errorMsg.includes('NotReadableError')) {
+                setScanStatus('❌ Camera wordt gebruikt door andere app. Sluit apps en probeer opnieuw.', true);
+            } else {
+                setScanStatus('❌ Camera fout: ' + errorMsg.substring(0, 50), true);
+            }
+        } else {
+            setScanStatus('Camera kon niet worden gestart: ' + errorMsg.substring(0, 50), true);
+        }
         stopScanning();
     }
 }
@@ -253,13 +395,27 @@ async function startQuaggaFallback() {
                     codeInput.value = code;
                     codeInput.dispatchEvent(new Event('input', { bubbles: true }));
                     codeInput.dispatchEvent(new Event('change', { bubbles: true }));
-                    // Force focus to trigger any validation
-                    codeInput.focus();
-                    codeInput.blur();
                 }
                 setScanStatus(`Barcode gevonden: ${code}`, false, true);
+                
+                // Stop scanner eerst
                 stopScanning();
                 try { Quagga.stop(); } catch (_) {}
+                
+                // Device-specific delay: phones need more time than tablets
+                let delay = 300; // Default desktop
+                if (isPhoneDevice()) {
+                    delay = 1200; // Phones need most time
+                } else if (isAndroidDevice()) {
+                    delay = 800; // Android tablets
+                }
+                console.log(`⏱️ Waiting ${delay}ms before lookup (Device: ${isPhoneDevice() ? 'telefoon' : (isAndroidDevice() ? 'tablet' : 'desktop')})`);
+                
+                // Start lookup NADAT camera gestopt is (cruciaal voor Android!)
+                setTimeout(() => {
+                    console.log('🔍 Starting lookup for:', code);
+                    lookupCodeDetails(code);
+                }, delay);
             }
         });
     });
@@ -272,11 +428,26 @@ function stopScanning() {
     
     // Hide camera modal
     const cameraModal = document.getElementById('cameraModal');
-    cameraModal.classList.add('hidden');
+    if (cameraModal) {
+        cameraModal.classList.add('hidden');
+    }
+    
+    // Android: Stop all camera tracks first
+    if (videoElement && videoElement.srcObject) {
+        const tracks = videoElement.srcObject.getTracks();
+        tracks.forEach(track => {
+            track.stop();
+            console.log('📱 Camera track gestopt:', track.kind);
+        });
+    }
     
     // Stop ZXing
     if (codeReader) {
-        codeReader.reset();
+        try {
+            codeReader.reset();
+        } catch (e) {
+            console.warn('ZXing reset error:', e);
+        }
         codeReader = null;
     }
     
@@ -289,15 +460,22 @@ function stopScanning() {
         console.warn('QuaggaJS stop error:', e);
     }
     
-    // Clear video element
+    // Clear video element (Android needs explicit cleanup)
     if (videoElement) {
         videoElement.srcObject = null;
+        videoElement.pause();
+        videoElement.removeAttribute('src');
+        videoElement.load(); // Reset video element
         videoElement = null;
     }
     
     // Clear camera container
     const container = document.querySelector('#camera-container');
-    container.innerHTML = '<div class="camera-overlay"><div class="camera-frame"></div><p class="camera-instructions">Richt de camera op de barcode</p></div>';
+    if (container) {
+        container.innerHTML = '<div class="camera-overlay"><div class="camera-frame"></div><p class="camera-instructions">Richt de camera op de barcode</p></div>';
+    }
+    
+    console.log('📱 Camera volledig gestopt');
 }
 
 function closeCameraModal() {
@@ -402,113 +580,411 @@ function handleCodeChange() {
 }
 
 async function lookupCodeDetails(rawCode) {
+    console.log('🔍 lookupCodeDetails called with:', rawCode);
+    
     const code = (rawCode || '').trim();
     if (!code) {
+        console.log('⚠️ Empty code, skipping lookup');
         setLookupStatus('');
         return;
     }
 
     const cleanCode = code.replace(/[^0-9X]/gi, '');
+    console.log('Cleaned code:', cleanCode);
+    
     if (cleanCode.length < 8) {
+        console.log('⚠️ Code too short:', cleanCode.length);
         setLookupStatus('');
         return;
     }
 
-    const type = detectCodeType(code);
-    if (type !== 'ISBN-10' && type !== 'ISBN-13') {
-        setLookupStatus(`Barcodetype: ${type}. Gebruik de knop "Zoek via Google" voor meer informatie.`, 'warning');
-        return;
-    }
-
-    const isbn = cleanCode.length === 10 ? convertISBN10to13(cleanCode) : cleanCode;
-    if (!isbn) {
-        setLookupStatus('Ongeldige ISBN-code. Controleer de barcode.', 'error');
-        return;
-    }
-
+    const codeType = detectCodeType(code);
+    console.log('Detected code type:', codeType);
+    
     // Check cache first
-    const cachedDetails = getISBNCache(isbn);
+    console.log('Checking cache for:', cleanCode);
+    const cachedDetails = getCodeCache(cleanCode);
     if (cachedDetails) {
+        console.log('✅ Cache hit!');
         applyLookupDetails(cachedDetails);
-        const summary = cachedDetails.title ? cachedDetails.title : 'boek';
+        const summary = cachedDetails.title ? cachedDetails.title : (cachedDetails.type === 'Muziek' ? 'muziek' : 'boek');
         setLookupStatus(`Automatisch ingevuld: ${summary} (uit cache)`, 'success');
         return;
     }
 
-    setLookupStatus('Zoeken naar boekinformatie...', 'info');
-
     let details = null;
     let hadNetworkError = false;
 
-    try {
-        details = await fetchOpenLibraryData(isbn);
-    } catch (error) {
-        console.warn('OpenLibrary lookup failed', error);
-        hadNetworkError = true;
-    }
+    // Handle ISBN codes (books)
+    if (codeType === 'ISBN-10' || codeType === 'ISBN-13') {
+        const isbn = cleanCode.length === 10 ? convertISBN10to13(cleanCode) : cleanCode;
+        
+        if (!isbn) {
+            console.error('❌ Invalid ISBN conversion');
+            setLookupStatus('Ongeldige ISBN-code. Controleer de barcode.', 'error');
+            return;
+        }
 
-    if (!details) {
+        console.log('Cache miss, fetching book data from API...');
+        setLookupStatus('Zoeken naar boekinformatie...', 'info');
+
         try {
-            details = await fetchGoogleBooksData(isbn);
+            details = await fetchOpenLibraryData(isbn);
         } catch (error) {
-            console.warn('Google Books lookup failed', error);
+            console.warn('OpenLibrary lookup failed', error);
             hadNetworkError = true;
         }
+
+        if (!details) {
+            try {
+                details = await fetchGoogleBooksData(isbn);
+            } catch (error) {
+                console.warn('Google Books lookup failed', error);
+                hadNetworkError = true;
+            }
+        }
+
+        if (details) {
+            details.type = 'Boek';
+        }
+    }
+    // Handle EAN/UPC codes (likely music)
+    else if (codeType === 'EAN-13' || codeType === 'EAN-8' || codeType === 'UPC-A') {
+        console.log('Cache miss, fetching music data from API...');
+        setLookupStatus('Zoeken naar muziekinformatie...', 'info');
+
+        try {
+            details = await fetchDiscogsData(cleanCode);
+        } catch (error) {
+            console.warn('Discogs lookup failed', error);
+            // Only mark as network error if it's a timeout
+            if (error.message && error.message.includes('timeout')) {
+                hadNetworkError = true;
+            }
+        }
+
+        if (!details) {
+            try {
+                details = await fetchMusicBrainzData(cleanCode);
+            } catch (error) {
+                console.warn('MusicBrainz lookup failed', error);
+                // Only mark as network error if it's a timeout
+                if (error.message && error.message.includes('timeout')) {
+                    hadNetworkError = true;
+                }
+            }
+        }
+
+        if (details) {
+            details.type = 'Muziek';
+        } else {
+            // Set type to Muziek even if lookup failed, so user can fill manually
+            // This helps UX - user knows it's likely music
+            if (elements.type) {
+                elements.type.value = 'Muziek';
+            }
+        }
+    } else {
+        setLookupStatus(`Barcodetype: ${codeType}. Gebruik de knop "Zoek via Google" voor meer informatie.`, 'warning');
+        return;
     }
 
     if (details) {
+        console.log('✅ Lookup successful:', details);
         // Save to cache
-        saveISBNCache(isbn, details);
+        saveCodeCache(cleanCode, details);
         applyLookupDetails(details);
-        const summary = details.title ? details.title : 'boek';
+        const summary = details.title ? details.title : (details.type === 'Muziek' ? 'muziek' : 'boek');
         setLookupStatus(`Automatisch ingevuld: ${summary}`, 'success');
     } else if (hadNetworkError) {
+        console.error('❌ Network error during lookup');
         setLookupStatus('Zoeken mislukt. Controleer uw internetverbinding en probeer opnieuw.', 'error');
     } else {
-        setLookupStatus('Geen boekinformatie gevonden. Vul de velden handmatig in.', 'warning');
+        console.warn('⚠️ No information found');
+        const itemType = codeType === 'EAN-13' || codeType === 'EAN-8' || codeType === 'UPC-A' ? 'muziek' : 'boek';
+        setLookupStatus(`Geen ${itemType}informatie gevonden. Vul de velden handmatig in.`, 'warning');
     }
 }
 
 async function fetchOpenLibraryData(isbn) {
     const url = `https://openlibrary.org/api/books?bibkeys=ISBN:${isbn}&format=json&jscmd=data`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        if (response.status === 404) {
+    console.log('📚 Fetching from OpenLibrary:', isbn);
+    
+    try {
+        // Device-specific timeout: phones need more time for slower connections
+        const timeoutDuration = isPhoneDevice() ? 15000 : (isAndroidDevice() ? 10000 : 8000);
+        const controller = (isAndroidDevice() || isPhoneDevice()) ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => {
+            if (controller) controller.abort();
+        }, timeoutDuration) : null;
+        
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+            cache: 'default'
+        };
+        
+        if (controller) {
+            fetchOptions.signal = controller.signal;
+        }
+        
+        const response = await fetch(url, fetchOptions);
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            console.warn('OpenLibrary response not OK:', response.status);
+            if (response.status === 404) {
+                return null;
+            }
+            throw new Error(`OpenLibrary responded with ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('OpenLibrary data:', data);
+        
+        const entry = data[`ISBN:${isbn}`];
+        if (!entry) {
+            console.log('No OpenLibrary entry found for ISBN:', isbn);
             return null;
         }
-        throw new Error(`OpenLibrary responded with ${response.status}`);
+        
+        console.log('✅ OpenLibrary success:', entry.title);
+        return {
+            title: entry.title || '',
+            author: Array.isArray(entry.authors) && entry.authors.length ? entry.authors[0].name : '',
+            type: 'Boek'
+        };
+    } catch (error) {
+        // Android: Better error messages for network issues
+        if (error.name === 'AbortError') {
+            console.error('❌ OpenLibrary timeout (Android)');
+            throw new Error('Network timeout - controleer uw internetverbinding');
+        }
+        console.error('❌ OpenLibrary fetch error:', error);
+        throw error;
     }
-    const data = await response.json();
-    const entry = data[`ISBN:${isbn}`];
-    if (!entry) {
-        return null;
-    }
-    return {
-        title: entry.title || '',
-        author: Array.isArray(entry.authors) && entry.authors.length ? entry.authors[0].name : '',
-        type: 'Boek'
-    };
 }
 
 async function fetchGoogleBooksData(isbn) {
     const url = `https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`;
-    const response = await fetch(url);
-    if (!response.ok) {
-        if (response.status === 404) {
+    console.log('📖 Fetching from Google Books:', isbn);
+    
+    try {
+        // Device-specific timeout: phones need more time for slower connections
+        const timeoutDuration = isPhoneDevice() ? 15000 : (isAndroidDevice() ? 10000 : 8000);
+        const controller = (isAndroidDevice() || isPhoneDevice()) ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => {
+            if (controller) controller.abort();
+        }, timeoutDuration) : null;
+        
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+            },
+            cache: 'default'
+        };
+        
+        if (controller) {
+            fetchOptions.signal = controller.signal;
+        }
+        
+        const response = await fetch(url, fetchOptions);
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            console.warn('Google Books response not OK:', response.status);
+            if (response.status === 404) {
+                return null;
+            }
+            throw new Error(`Google Books responded with ${response.status}`);
+        }
+        
+        const data = await response.json();
+        console.log('Google Books data:', data);
+        
+        if (!data.items || !data.items.length) {
+            console.log('No Google Books entry found for ISBN:', isbn);
             return null;
         }
-        throw new Error(`Google Books responded with ${response.status}`);
+        
+        const info = data.items[0].volumeInfo || {};
+        console.log('✅ Google Books success:', info.title);
+        
+        return {
+            title: info.title || '',
+            author: Array.isArray(info.authors) ? info.authors.join(', ') : '',
+            type: 'Boek'
+        };
+    } catch (error) {
+        // Android: Better error messages for network issues
+        if (error.name === 'AbortError') {
+            console.error('❌ Google Books timeout (Android)');
+            throw new Error('Network timeout - controleer uw internetverbinding');
+        }
+        console.error('❌ Google Books fetch error:', error);
+        throw error;
     }
-    const data = await response.json();
-    if (!data.items || !data.items.length) {
+}
+
+async function fetchDiscogsData(ean) {
+    // Discogs API via CORS proxy for demo purposes
+    // Note: In production, use a proper backend proxy or Discogs API with OAuth
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://api.discogs.com/database/search?barcode=${ean}&type=release`)}`;
+    console.log('🎵 Fetching from Discogs:', ean);
+    
+    try {
+        const timeoutDuration = isPhoneDevice() ? 15000 : (isAndroidDevice() ? 10000 : 8000);
+        const controller = (isAndroidDevice() || isPhoneDevice()) ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => {
+            if (controller) controller.abort();
+        }, timeoutDuration) : null;
+        
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+            cache: 'default'
+        };
+        
+        if (controller) {
+            fetchOptions.signal = controller.signal;
+        }
+        
+        const response = await fetch(proxyUrl, fetchOptions);
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            console.warn('Discogs proxy response not OK:', response.status);
+            return null;
+        }
+        
+        const proxyData = await response.json();
+        if (!proxyData.contents) {
+            return null;
+        }
+        
+        const data = JSON.parse(proxyData.contents);
+        console.log('Discogs data:', data);
+        
+        if (!data.results || !data.results.length) {
+            console.log('No Discogs entry found for EAN:', ean);
+            return null;
+        }
+        
+        const release = data.results[0];
+        console.log('✅ Discogs success:', release.title);
+        
+        // Extract artist and title from Discogs format "Artist - Title"
+        let artist = '';
+        let title = release.title || '';
+        
+        if (title.includes(' - ')) {
+            const parts = title.split(' - ');
+            artist = parts[0].trim();
+            title = parts.slice(1).join(' - ').trim();
+        } else {
+            // Try to get artist from extra artist info
+            if (release.extraartists && release.extraartists.length > 0) {
+                artist = release.extraartists[0].name;
+            } else if (release.artist) {
+                artist = release.artist;
+            }
+        }
+        
+        return {
+            title: title || '',
+            author: artist || '',
+            type: 'Muziek'
+        };
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            console.error('❌ Discogs timeout');
+            throw new Error('Network timeout - controleer uw internetverbinding');
+        }
+        // CORS or other errors - return null to try next API
+        console.warn('❌ Discogs fetch error (may be CORS):', error.message);
         return null;
     }
-    const info = data.items[0].volumeInfo || {};
-    return {
-        title: info.title || '',
-        author: Array.isArray(info.authors) ? info.authors.join(', ') : '',
-        type: 'Boek'
-    };
+}
+
+async function fetchMusicBrainzData(ean) {
+    // MusicBrainz uses barcode lookup via their web service
+    // Note: MusicBrainz requires proper User-Agent header and may have CORS restrictions
+    // Using a CORS proxy for demo purposes
+    const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(`https://musicbrainz.org/ws/2/release?query=barcode:${ean}&fmt=json&limit=1`)}`;
+    console.log('🎵 Fetching from MusicBrainz:', ean);
+    
+    try {
+        const timeoutDuration = isPhoneDevice() ? 15000 : (isAndroidDevice() ? 10000 : 8000);
+        const controller = (isAndroidDevice() || isPhoneDevice()) ? new AbortController() : null;
+        const timeoutId = controller ? setTimeout(() => {
+            if (controller) controller.abort();
+        }, timeoutDuration) : null;
+        
+        const fetchOptions = {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json'
+            },
+            cache: 'default'
+        };
+        
+        if (controller) {
+            fetchOptions.signal = controller.signal;
+        }
+        
+        const response = await fetch(proxyUrl, fetchOptions);
+        
+        if (timeoutId) clearTimeout(timeoutId);
+        
+        if (!response.ok) {
+            console.warn('MusicBrainz proxy response not OK:', response.status);
+            return null;
+        }
+        
+        const proxyData = await response.json();
+        if (!proxyData.contents) {
+            return null;
+        }
+        
+        const data = JSON.parse(proxyData.contents);
+        console.log('MusicBrainz data:', data);
+        
+        if (!data.releases || !data.releases.length) {
+            console.log('No MusicBrainz entry found for EAN:', ean);
+            return null;
+        }
+        
+        const release = data.releases[0];
+        console.log('✅ MusicBrainz success:', release.title);
+        
+        // Get artist from artist-credit array
+        let artist = '';
+        if (release['artist-credit'] && release['artist-credit'].length > 0) {
+            artist = release['artist-credit'][0].name || '';
+        }
+        
+        return {
+            title: release.title || '',
+            author: artist || '',
+            type: 'Muziek'
+        };
+    } catch (error) {
+        if (error.name === 'AbortError') {
+            console.error('❌ MusicBrainz timeout');
+            throw new Error('Network timeout - controleer uw internetverbinding');
+        }
+        // CORS or other errors - return null
+        console.warn('❌ MusicBrainz fetch error (may be CORS):', error.message);
+        return null;
+    }
 }
 
 function validateISBN10(isbn) {
@@ -558,6 +1034,7 @@ function detectCodeType(code) {
         if (cleanCode.startsWith('0') || cleanCode.startsWith('1')) {
             return 'UPC-A';
         }
+        // EAN-13 codes that are not ISBN are likely music (CD/LP)
         return 'EAN-13';
     }
     if (cleanCode.length === 12) {
@@ -837,11 +1314,41 @@ elements.downloadPdf.addEventListener('click', downloadPdf);
 elements.sharePdf.addEventListener('click', sharePdf);
 elements.clearDemo.addEventListener('click', clearDemo);
 if (elements.code) {
+    // Debounce timer voor input event
+    let lookupTimeout = null;
+    
+    elements.code.addEventListener('input', () => {
+        // Clear vorige timeout
+        if (lookupTimeout) {
+            clearTimeout(lookupTimeout);
+        }
+        // Wacht 500ms na laatste input voordat lookup start
+        lookupTimeout = setTimeout(() => {
+            handleCodeChange();
+        }, 500);
+    });
+    
     elements.code.addEventListener('change', handleCodeChange);
 }
 if (elements.googleLookup) {
     elements.googleLookup.addEventListener('click', searchCodeOnGoogle);
 }
+
+// Android-specific: Stop camera when app goes to background
+document.addEventListener('visibilitychange', () => {
+    if (document.hidden && state.scanning) {
+        console.log('📱 App naar achtergrond - camera stoppen');
+        stopScanning();
+    }
+});
+
+// Android-specific: Stop camera before page unload
+window.addEventListener('beforeunload', () => {
+    if (state.scanning) {
+        console.log('📱 Page unloading - camera stoppen');
+        stopScanning();
+    }
+});
 
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
@@ -849,6 +1356,14 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('ZXing available:', typeof ZXing !== 'undefined');
     console.log('Quagga available:', typeof Quagga !== 'undefined');
     console.log('jsPDF available:', typeof window.jspdf !== 'undefined');
+    console.log('Device info:', { 
+        isAndroid: isAndroidDevice(), 
+        isMobile: isMobileDevice(),
+        isPhone: isPhoneDevice(),
+        deviceType: isPhoneDevice() ? 'telefoon' : (isAndroidDevice() ? 'tablet' : 'desktop'),
+        userAgent: navigator.userAgent,
+        screenSize: `${window.innerWidth}x${window.innerHeight}`
+    });
     setLookupStatus('');
     
     checkScannerSupport();

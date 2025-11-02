@@ -35,7 +35,14 @@
             });
         }
 
-        // Demo version - no install prompt (only for paid version)
+        // Demo version - prevent install prompt
+        // Onderdruk het automatische "App installeren" prompt op Android telefoons
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault(); // Voorkom automatisch install prompt
+            e.stopImmediatePropagation(); // Stop propagation
+            console.log('📱 Install prompt onderdrukt voor demo versie');
+            return false;
+        });
     </script>
 </head>
 <body>

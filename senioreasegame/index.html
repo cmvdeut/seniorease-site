@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seniorease - Dagelijkse Sudoku Puzzel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Seniorease Sudoku</h1>
+            <p class="subtitle">Uw dagelijkse puzzel</p>
+        </header>
+
+        <div class="game-controls">
+            <div class="difficulty-selector">
+                <h2>Kies moeilijkheidsgraad:</h2>
+                <div class="difficulty-buttons">
+                    <button id="easy-btn" class="difficulty-btn active">Gemakkelijk</button>
+                    <button id="medium-btn" class="difficulty-btn">Gemiddeld</button>
+                </div>
+            </div>
+            
+            <div class="puzzle-info">
+                <div class="date-display">
+                    <span id="puzzle-date"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-area">
+            <div id="sudoku-grid" class="sudoku-grid"></div>
+            
+            <div class="controls">
+                <div class="number-selector">
+                    <h3>Kies een cijfer:</h3>
+                    <div class="number-buttons">
+                        <button class="number-btn" data-value="1">1</button>
+                        <button class="number-btn" data-value="2">2</button>
+                        <button class="number-btn" data-value="3">3</button>
+                        <button class="number-btn" data-value="4">4</button>
+                        <button class="number-btn" data-value="5">5</button>
+                        <button class="number-btn" data-value="6">6</button>
+                        <button class="number-btn" data-value="7">7</button>
+                        <button class="number-btn" data-value="8">8</button>
+                        <button class="number-btn" data-value="9">9</button>
+                        <button class="number-btn clear" data-value="0">Wissen</button>
+                    </div>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="check-btn" class="action-btn">Controleer</button>
+                    <button id="reset-btn" class="action-btn">Opnieuw beginnen</button>
+                    <button id="hint-btn" class="action-btn">Hint</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="message" class="message"></div>
+    </div>
+
+    <script src="sudoku.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
+

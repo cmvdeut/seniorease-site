@@ -3,7 +3,7 @@
   "short_name": "SeniorEase Demo",
   "description": "Probeer de beperkte SeniorEase demo: scan tot vijf items, bewaar ze en exporteer als PDF.",
   "start_url": "/demo/",
-  "display": "standalone",
+  "display": "browser",
   "background_color": "#ffffff",
   "theme_color": "#8B4513",
   "orientation": "portrait",
