@@ -28,6 +28,7 @@ export default function BibliotheekPage() {
   const [showMenu, setShowMenu] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
   const [hasLicense, setHasLicense] = useState<boolean | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
 
   // Check licentie (alleen voor mobiele apparaten)
   useEffect(() => {
@@ -56,6 +57,37 @@ export default function BibliotheekPage() {
     }
     setHasLicense(false);
   }, []);
+
+  // Blokkeer PWA install prompt totdat er een licentie is
+  useEffect(() => {
+    const handleBeforeInstallPrompt = (e: Event) => {
+      // ALTIJD voorkomen dat de browser prompt automatisch toont
+      e.preventDefault();
+      
+      // Alleen de prompt opslaan als er een licentie is
+      if (hasLicense === true) {
+        setDeferredPrompt(e);
+      } else {
+        // Zonder licentie: prompt weggooien en niet tonen
+        setDeferredPrompt(null);
+      }
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
+    };
+  }, [hasLicense]);
+
+  // Wanneer licentie wordt toegevoegd, check of er al een prompt was
+  useEffect(() => {
+    if (hasLicense === true && typeof window !== 'undefined') {
+      // Als er al een prompt was geweest maar we die hadden geblokkeerd,
+      // kan de gebruiker nu handmatig installeren via browser menu
+      // We kunnen ook een eigen install button toevoegen als we de prompt hebben
+    }
+  }, [hasLicense]);
 
   // Load items from localStorage
   useEffect(() => {
@@ -277,6 +309,37 @@ Voor vragen: bezoek seniorease.nl
     
     alert(privacyTekst);
     setShowMenu(false);
+  }
+
+  // Installeer app (alleen met licentie)
+  async function installeerApp() {
+    if (!deferredPrompt) {
+      alert('De installatie optie is niet beschikbaar. U kunt de app installeren via het menu van uw browser (meestal drie puntjes of hamburger menu).');
+      setShowMenu(false);
+      return;
+    }
+
+    try {
+      // Toon de install prompt
+      deferredPrompt.prompt();
+
+      // Wacht op gebruiker response
+      const { outcome } = await deferredPrompt.userChoice;
+
+      if (outcome === 'accepted') {
+        alert('De app wordt geïnstalleerd. Bedankt!');
+        setDeferredPrompt(null);
+      } else {
+        // Gebruiker heeft geannuleerd
+      }
+
+      setDeferredPrompt(null);
+      setShowMenu(false);
+    } catch (error) {
+      console.error('Error installing app:', error);
+      alert('Er ging iets mis bij de installatie. Probeer het opnieuw of installeer via het browser menu.');
+      setShowMenu(false);
+    }
   }
 
   // Alle data wissen
@@ -1083,6 +1146,20 @@ Voor vragen: bezoek seniorease.nl
                         </button>
                         
                         <div className="border-t border-gray-200 my-1"></div>
+                        
+                        {/* Install app button - alleen met licentie */}
+                        {hasLicense === true && deferredPrompt && (
+                          <>
+                            <button
+                              onClick={installeerApp}
+                              className="w-full text-left px-6 py-4 text-senior-base hover:bg-green-50 text-green-700 flex items-center gap-3 transition-colors border-l-4 border-green-500"
+                            >
+                              <span className="text-2xl">📲</span>
+                              <span>Installeer als app</span>
+                            </button>
+                            <div className="border-t border-gray-200 my-1"></div>
+                          </>
+                        )}
                         
                         <button
                           onClick={delenWhatsApp}
