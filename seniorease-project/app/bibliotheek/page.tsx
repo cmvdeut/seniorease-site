@@ -939,17 +939,12 @@ export default function BibliotheekPage() {
               <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
                 <div className="relative w-full max-w-2xl p-4">
                   {/* Waarschuwing banner */}
-                  <div className="mb-4 bg-yellow-500 border-2 border-yellow-600 rounded-xl p-4 shadow-lg">
-                    <div className="flex items-start gap-3">
-                      <span className="text-3xl">📱</span>
-                      <div>
-                        <p className="text-senior-base font-bold text-yellow-900 mb-1">
-                          💡 Tip: Barcode scanner werkt het beste op telefoon of tablet
-                        </p>
-                        <p className="text-senior-sm text-yellow-800">
-                          Gebruik de achtercamera voor het beste resultaat. Op computer kan het scannen soms moeizamer gaan.
-                        </p>
-                      </div>
+                  <div className="mb-4 bg-yellow-100 border-2 border-yellow-300 rounded-xl p-4 shadow-lg">
+                    <div className="flex items-center gap-3">
+                      <span className="text-2xl">💡</span>
+                      <p className="text-senior-base font-bold text-yellow-900">
+                        Tip: Barcode scanner werkt het beste op telefoon of tablet
+                      </p>
                     </div>
                   </div>
                   
@@ -987,12 +982,12 @@ export default function BibliotheekPage() {
                   {/* Sluit knop */}
                   <button
                     onClick={stopScanner}
-                    className="absolute top-8 right-8 bg-red-600 text-white px-8 py-4 rounded-xl
-                             text-senior-lg font-bold hover:bg-red-700 transition-all shadow-xl
-                             flex items-center gap-2 min-h-[70px]"
+                    className="absolute top-8 right-8 bg-white border-4 border-red-600 rounded-full
+                             w-16 h-16 flex items-center justify-center hover:bg-red-50 
+                             transition-all shadow-xl hover:shadow-2xl"
+                    aria-label="Sluiten"
                   >
-                    <span className="text-2xl">✗</span>
-                    <span>Sluiten</span>
+                    <span className="text-3xl text-red-600 font-bold">✗</span>
                   </button>
                 </div>
               </div>
