@@ -4,8 +4,9 @@ import { join } from 'path';
 
 export async function GET(request: NextRequest) {
   try {
-    // In productie zou je hier de licentie server-side verifiëren
-    // Voor nu: client-side licentie check is voldoende voor basic beveiliging
+    // Note: Licentie wordt client-side gecheckt voordat gebruiker naar deze URL gaat
+    // In productie zou je hier server-side licentie verificatie kunnen toevoegen
+    // Voor nu: client-side check + redirect naar betalen pagina als geen licentie
     
     // Lees APK bestand (als die bestaat)
     const apkPath = join(process.cwd(), 'public', 'Seniorease-Bibliotheek.apk');

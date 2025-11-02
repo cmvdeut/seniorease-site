@@ -5,14 +5,32 @@ import { useState, useEffect } from 'react';
 
 export default function MobileDownload() {
   const [currentUrl, setCurrentUrl] = useState('');
+  const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   
   useEffect(() => {
     // Gebruik de huidige URL voor de QR code
     setCurrentUrl(window.location.origin);
+    
+    // Check licentie
+    const licentie = localStorage.getItem('seniorease-licentie');
+    if (licentie) {
+      try {
+        const licentieData = JSON.parse(licentie);
+        setHasLicense(licentieData.valid === true);
+      } catch (e) {
+        setHasLicense(false);
+      }
+    } else {
+      setHasLicense(false);
+    }
   }, []);
 
-  // QR code linkt naar download pagina (voor gebruikers met licentie) of betalen pagina
-  const qrUrl = currentUrl ? `${currentUrl}/download` : '';
+  // QR code linkt direct naar APK download als licentie actief is, anders naar betalen
+  const qrUrl = currentUrl 
+    ? (hasLicense 
+        ? `${currentUrl}/api/download-app` 
+        : `${currentUrl}/betalen`)
+    : '';
 
   return (
     <>

@@ -96,13 +96,17 @@ function DownloadContent() {
               </h2>
               <div className="flex flex-col items-center">
                 <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-6">
-                  {downloadUrl && (
+                  {downloadUrl ? (
                     <QRCodeSVG
                       value={downloadUrl}
                       size={250}
                       level="H"
                       includeMargin={true}
                     />
+                  ) : (
+                    <div className="w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded">
+                      <p className="text-senior-sm text-gray-500">QR code wordt geladen...</p>
+                    </div>
                   )}
                 </div>
                 <p className="text-senior-base text-gray-700 text-center font-bold mb-2">
