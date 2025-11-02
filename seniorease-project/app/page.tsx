@@ -56,23 +56,23 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Rechter deel - 40% (2/5) - Feature highlights */}
-              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center">
-                <div className="grid grid-cols-1 gap-3 w-full">
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📚</div>
-                    <h3 className="text-senior-base font-bold text-gray-800 mb-1">Boeken</h3>
-                    <p className="text-senior-xs text-gray-600">Bewaar op één plek</p>
+              {/* Rechter deel - 40% (2/5) - Feature highlights horizontaal */}
+              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-end">
+                <div className="grid grid-cols-3 gap-3 w-full">
+                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                    <div className="text-3xl mb-1">📚</div>
+                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Boeken</h3>
+                    <p className="text-senior-xs text-gray-600">Bewaar</p>
                   </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">💿</div>
-                    <h3 className="text-senior-base font-bold text-gray-800 mb-1">Muziek</h3>
-                    <p className="text-senior-xs text-gray-600">Albums & CD's</p>
+                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                    <div className="text-3xl mb-1">💿</div>
+                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Muziek</h3>
+                    <p className="text-senior-xs text-gray-600">Albums</p>
                   </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📷</div>
-                    <h3 className="text-senior-base font-bold text-gray-800 mb-1">Barcode</h3>
-                    <p className="text-senior-xs text-gray-600">Scan snel</p>
+                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                    <div className="text-3xl mb-1">📷</div>
+                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Barcode</h3>
+                    <p className="text-senior-xs text-gray-600">Scan</p>
                   </div>
                 </div>
               </div>
