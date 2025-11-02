@@ -27,9 +27,40 @@ export default function BibliotheekPage() {
   const [countdown, setCountdown] = useState<number>(0);
   const [showMenu, setShowMenu] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
+  const [hasLicense, setHasLicense] = useState<boolean | null>(null);
+
+  // Check licentie (alleen voor mobiele apparaten)
+  useEffect(() => {
+    // Check of het een mobiel apparaat is
+    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
+                     (window.innerWidth <= 768 && window.innerHeight <= 1024);
+    
+    if (!isMobile) {
+      // Desktop: altijd toegang
+      setHasLicense(true);
+      return;
+    }
+
+    // Mobiel: check licentie
+    const licentie = localStorage.getItem('seniorease-licentie');
+    if (licentie) {
+      try {
+        const licentieData = JSON.parse(licentie);
+        if (licentieData.valid) {
+          setHasLicense(true);
+          return;
+        }
+      } catch (e) {
+        console.error('Error checking license:', e);
+      }
+    }
+    setHasLicense(false);
+  }, []);
 
   // Load items from localStorage
   useEffect(() => {
+    if (!hasLicense) return;
+    
     const saved = localStorage.getItem('seniorease-library');
     if (saved) {
       try {
@@ -38,7 +69,7 @@ export default function BibliotheekPage() {
         console.error('Error loading library:', e);
       }
     }
-  }, []);
+  }, [hasLicense]);
 
   // Save items to localStorage
   useEffect(() => {
@@ -845,6 +876,66 @@ Voor vragen: bezoek seniorease.nl
     book: 'Boek',
     music: 'Album/CD'
   };
+
+  // Licentie check overlay
+  if (hasLicense === false) {
+    return (
+      <div className="min-h-screen bg-neutral-cream flex items-center justify-center p-6">
+        <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
+          <div className="text-center">
+            <div className="text-6xl mb-6">🔒</div>
+            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-4">
+              Mobiele versie vereist
+            </h1>
+            <p className="text-senior-lg text-gray-700 mb-6">
+              Om de bibliotheek app te gebruiken op uw telefoon of tablet, heeft u een licentie nodig.
+            </p>
+            
+            <div className="bg-neutral-cream rounded-xl p-6 mb-6 border-2 border-gray-200">
+              <p className="text-senior-base font-bold text-gray-800 mb-2">
+                Wat krijgt u?
+              </p>
+              <ul className="text-left text-senior-sm text-gray-700 space-y-2">
+                <li>✓ Volledige bibliotheek app</li>
+                <li>✓ Barcode scanner</li>
+                <li>✓ Offline werken</li>
+                <li>✓ Levenslange licentie</li>
+              </ul>
+            </div>
+
+            <div className="space-y-4">
+              <Link
+                href="/betalen"
+                className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-xl font-bold
+                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
+              >
+                💳 Koop licentie voor € 2,99
+              </Link>
+              
+              <Link
+                href="/"
+                className="block text-senior-base text-primary hover:underline"
+              >
+                ← Terug naar home
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Loading state
+  if (hasLicense === null) {
+    return (
+      <div className="min-h-screen bg-neutral-cream flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin text-6xl mb-4">⏳</div>
+          <p className="text-senior-lg text-gray-700">Laden...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

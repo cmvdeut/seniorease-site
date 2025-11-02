@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import MobileDownload from './components/MobileDownload';
 
 export default function Home() {
   return (
@@ -134,6 +135,9 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Mobile Download Section */}
+      <MobileDownload />
 
       {/* Features Section */}
       <section className="bg-white py-16 border-t-2 border-neutral-stone">
