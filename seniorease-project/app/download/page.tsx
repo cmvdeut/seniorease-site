@@ -88,47 +88,28 @@ function DownloadContent() {
             </p>
           </div>
 
-          {/* Download opties */}
-          <div className="grid md:grid-cols-2 gap-6 mb-8">
-            {/* QR Code */}
-            <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6">
-              <h2 className="text-senior-xl font-bold text-primary mb-4 text-center">
-                Scan QR Code
+          {/* QR Code voor download */}
+          <div className="max-w-md mx-auto mb-8">
+            <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8">
+              <h2 className="text-senior-xl font-bold text-primary mb-6 text-center">
+                📱 Scan QR Code om te downloaden
               </h2>
               <div className="flex flex-col items-center">
-                <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-4">
+                <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-6">
                   {downloadUrl && (
                     <QRCodeSVG
                       value={downloadUrl}
-                      size={200}
+                      size={250}
                       level="H"
                       includeMargin={true}
                     />
                   )}
                 </div>
-                <p className="text-senior-sm text-gray-600 text-center">
-                  Scan met uw telefoon camera om de app te downloaden
+                <p className="text-senior-base text-gray-700 text-center font-bold mb-2">
+                  Scan met uw telefoon camera
                 </p>
-              </div>
-            </div>
-
-            {/* Direct Download */}
-            <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6">
-              <h2 className="text-senior-xl font-bold text-primary mb-4 text-center">
-                Direct Download
-              </h2>
-              <div className="flex flex-col items-center gap-4">
-                <a
-                  href={downloadUrl}
-                  download="Seniorease-Bibliotheek.apk"
-                  className="bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                           hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
-                           text-center w-full"
-                >
-                  📥 Download APK
-                </a>
-                <p className="text-senior-xs text-gray-600 text-center">
-                  Klik hier om direct te downloaden op dit apparaat
+                <p className="text-senior-sm text-gray-600 text-center">
+                  De download start automatisch na het scannen
                 </p>
               </div>
             </div>

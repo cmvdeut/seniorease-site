@@ -107,15 +107,10 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Rechter deel - 40% (2/5) - QR Code en features */}
-              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center">
-                <div className="w-full space-y-4">
-                  {/* QR Code */}
-                  <div className="flex flex-col items-center">
-                    <div className="bg-white p-3 rounded-xl shadow-lg border-2 border-gray-200">
-                      <MobileDownload />
-                    </div>
-                  </div>
+              {/* Rechter deel - 40% (2/5) - QR Code met instructies */}
+              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center justify-center">
+                <MobileDownload />
+              </div>
                   
                   {/* Features lijst */}
                   <div className="bg-neutral-cream rounded-xl p-4 border-2 border-gray-200">
