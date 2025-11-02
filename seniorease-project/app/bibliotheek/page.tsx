@@ -428,23 +428,45 @@ Voor vragen: bezoek seniorease.nl
     // Wacht tot de scanner container in de DOM staat
     setTimeout(() => {
       const Quagga = (window as any).Quagga;
+      
+      // Check of Quagga geladen is
+      if (!Quagga) {
+        const errorMsg = 'Quagga bibliotheek niet geladen';
+        setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
+        alert('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
+        stopScanner();
+        return;
+      }
+      
+      setDebugLogs(prev => [...prev, '✓ Quagga bibliotheek geladen']);
+      
       const container = document.querySelector('#scanner-container');
       
       if (!container) {
+        const errorMsg = 'Scanner container niet gevonden';
+        setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
         alert('Scanner container niet gevonden. Probeer de pagina te vernieuwen.');
         stopScanner();
         return;
       }
+      
+      setDebugLogs(prev => [...prev, '✓ Container gevonden']);
 
       // Verwijder oude event listeners als die er zijn
-      Quagga.offDetected();
+      try {
+        Quagga.offDetected();
+        setDebugLogs(prev => [...prev, '✓ Oude listeners verwijderd']);
+      } catch (e) {
+        // Negeer als er geen oude listeners zijn
+      }
       
       // Detecteer of het mobiel is voor andere constraints
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
       
       setDebugLogs(prev => [...prev, 'Initialiseer Quagga...']);
       
-      Quagga.init({
+      try {
+        Quagga.init({
         inputStream: {
           name: "Live",
           type: "LiveStream",
@@ -495,8 +517,8 @@ Voor vragen: bezoek seniorease.nl
       }, function(err: any) {
         if (err) {
           console.error('Quagga init error:', err);
-          const errorMsg = `Fout: ${err.message || 'Camera niet beschikbaar'}`;
-          setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
+          const errorMsg = `Fout: ${err.message || err.toString() || 'Camera niet beschikbaar'}`;
+          setDebugLogs(prev => [...prev, `❌ Init fout: ${errorMsg}`]);
           alert('Camera kon niet worden gestart. Controleer de permissies en zorg dat de camera beschikbaar is.');
           stopScanner();
           return;
@@ -646,8 +668,15 @@ Voor vragen: bezoek seniorease.nl
             }, 1000);
           }
         });
-      });
-    }, 200); // Iets langer wachten voor DOM ready
+        });
+      } catch (initError: any) {
+        console.error('Quagga.init() exception:', initError);
+        const errorMsg = `Init exception: ${initError.message || initError.toString()}`;
+        setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
+        alert('Scanner kon niet worden geïnitialiseerd. Probeer de pagina te vernieuwen.');
+        stopScanner();
+      }
+      }, 300); // Iets langer wachten voor DOM ready
   }
 
   // Stop barcode scanner
