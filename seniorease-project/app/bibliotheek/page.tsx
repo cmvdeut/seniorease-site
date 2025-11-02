@@ -463,34 +463,21 @@ Voor vragen: bezoek seniorease.nl
       // Detecteer of het mobiel is voor andere constraints
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
       
-      setDebugLogs(prev => [...prev, 'Vraag camera permissie...']);
+      setDebugLogs(prev => [...prev, 'Test camera beschikbaarheid...']);
       
-      // Vraag eerst expliciet camera permissie voordat Quagga.init() wordt aangeroepen
-      const requestCameraPermission = async () => {
-        try {
-          const stream = await navigator.mediaDevices.getUserMedia({
-            video: {
-              facingMode: "environment",
-              width: { ideal: 640 },
-              height: { ideal: 480 }
-            }
-          });
-          // Stop de test stream
-          stream.getTracks().forEach(track => track.stop());
-          setDebugLogs(prev => [...prev, '✓ Camera permissie verkregen']);
-          return true;
-        } catch (permError: any) {
-          const errorMsg = permError.message || 'Camera permissie geweigerd';
-          setDebugLogs(prev => [...prev, `❌ Camera permissie: ${errorMsg}`]);
-          alert(`Camera permissie nodig: ${errorMsg}. Controleer de instellingen van uw browser.`);
-          stopScanner();
-          return false;
-        }
-      };
-      
-      // Vraag permissie eerst
-      const hasPermission = await requestCameraPermission();
-      if (!hasPermission) {
+      // Test of camera beschikbaar is en permissie gegeven kan worden
+      try {
+        const testStream = await navigator.mediaDevices.getUserMedia({
+          video: { facingMode: "environment" }
+        });
+        // Stop test stream onmiddellijk
+        testStream.getTracks().forEach(track => track.stop());
+        setDebugLogs(prev => [...prev, '✓ Camera beschikbaar en toegestaan']);
+      } catch (permError: any) {
+        const errorMsg = permError.message || 'Camera permissie geweigerd';
+        setDebugLogs(prev => [...prev, `❌ Camera fout: ${errorMsg}`]);
+        alert(`Camera permissie nodig: ${errorMsg}. Controleer de instellingen van uw browser.`);
+        stopScanner();
         return;
       }
       
@@ -513,56 +500,35 @@ Voor vragen: bezoek seniorease.nl
         console.log('Aanroepen Quagga.init()...');
         setDebugLogs(prev => [...prev, 'Quagga.init() aangeroepen...']);
         
-        // Simpelere constraints voor mobiel
-        const videoConstraints = isMobile ? {
-          facingMode: "environment"
-        } : {
-          width: { min: 640, ideal: 1280, max: 1920 },
-          height: { min: 480, ideal: 720, max: 1080 },
-          facingMode: "environment"
+        // Eenvoudigste configuratie mogelijk voor mobiel compatibiliteit
+        const initConfig: any = {
+          inputStream: {
+            type: "LiveStream",
+            target: container,
+            constraints: {
+              facingMode: "environment"
+            }
+          },
+          locator: {
+            patchSize: "medium",
+            halfSample: false
+          },
+          numOfWorkers: 0, // Geen workers voor betere compatibiliteit
+          frequency: 10,
+          decoder: {
+            readers: [
+              "ean_reader",
+              "ean_8_reader",
+              "upc_reader",
+              "upc_e_reader"
+            ]
+          },
+          locate: true
         };
         
-        Quagga.init({
-        inputStream: {
-          name: "Live",
-          type: "LiveStream",
-          target: container,
-          constraints: videoConstraints,
-          area: { // Focus gebied voor betere detectie (centraal - aangepast aan kader grootte)
-            top: "20%",
-            right: "12.5%",
-            left: "12.5%",
-            bottom: "20%"
-          }
-        },
-        locator: {
-          patchSize: isMobile ? "medium" : "medium",
-          halfSample: false
-        },
-        numOfWorkers: isMobile ? 2 : 2,
-        decoder: {
-          readers: [
-            "ean_reader",
-            "ean_8_reader",
-            "upc_reader",
-            "upc_e_reader",
-            "upc_a_reader",
-            "code_128_reader"
-          ],
-          multiple: true,
-          debug: {
-            showCanvas: false,
-            showPatches: false,
-            showFoundPatches: false,
-            showSkeleton: false,
-            showLabels: false,
-            showPatchLabels: false,
-            showBoundingBox: false,
-            showBoundingBoxes: false
-          }
-        },
-        locate: true
-      }, function(err: any) {
+        setDebugLogs(prev => [...prev, `Config: ${JSON.stringify(initConfig).substring(0, 100)}...`]);
+        
+        Quagga.init(initConfig, function(err: any) {
         // Clear timeout omdat callback is aangeroepen
         clearTimeout(initTimeout);
         
@@ -749,6 +715,17 @@ Voor vragen: bezoek seniorease.nl
     setDetectedBarcode(null);
     setCountdown(0);
     setDebugLogs([]);
+    
+    // Stop eventuele camera streams
+    if (typeof window !== 'undefined' && navigator.mediaDevices) {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          stream.getTracks().forEach(track => track.stop());
+        })
+        .catch(() => {
+          // Negeer errors bij het stoppen
+        });
+    }
   }
 
   // Handle search button click - zoek online informatie voor ingevulde barcode
