@@ -1493,23 +1493,23 @@ Voor vragen: bezoek seniorease.nl
                 </div>
                 
                 {/* Scanner Container met Overlay */}
-                <div className="relative w-full max-w-2xl mx-auto flex items-center justify-center px-2">
+                <div className="relative w-full max-w-2xl mx-auto flex items-center justify-center px-4 sm:px-2">
                   <div id="scanner-container" className="w-full aspect-video bg-black rounded-lg overflow-hidden relative max-w-full" />
                   
                   {/* Scanner Kader Overlay - perfect gecentreerd en binnen scherm */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     {/* Buitenste overlay (donker) */}
                     <div className="absolute inset-0 bg-black bg-opacity-60">
-                      {/* Transparant venster in het midden - responsief en binnen scherm */}
+                      {/* Transparant venster in het midden - kleiner op mobiel, perfect gecentreerd */}
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                    w-[280px] h-[200px] sm:w-64 sm:h-48 
-                                    max-w-[calc(100vw-4rem)] 
+                                    w-[75%] max-w-[240px] h-[45%] max-h-[180px]
+                                    sm:w-64 sm:h-48
                                     border-4 border-white rounded-lg shadow-2xl">
                         {/* Hoek decoraties */}
-                        <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-                        <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
-                        <div className="absolute -bottom-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
-                        <div className="absolute -bottom-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
+                        <div className="absolute -top-2 -left-2 w-5 h-5 sm:w-8 sm:h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+                        <div className="absolute -top-2 -right-2 w-5 h-5 sm:w-8 sm:h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+                        <div className="absolute -bottom-2 -left-2 w-5 h-5 sm:w-8 sm:h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+                        <div className="absolute -bottom-2 -right-2 w-5 h-5 sm:w-8 sm:h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
                       </div>
                     </div>
                   </div>
