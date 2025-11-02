@@ -78,10 +78,34 @@ function SuccessContent() {
               → Open Mijn Bibliotheek
             </Link>
             
-            <p className="text-senior-sm text-gray-600">
-              De app is nu beschikbaar op dit apparaat. 
-              U kunt de app installeren via het menu van uw browser.
-            </p>
+            {/* Installatie Instructies */}
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mt-4">
+              <h3 className="text-senior-base font-bold text-blue-900 mb-3">
+                📱 App installeren op uw telefoon:
+              </h3>
+              <div className="text-left space-y-3 text-senior-sm text-blue-800">
+                <div>
+                  <p className="font-bold mb-1">Op Android (Chrome/Samsung Internet):</p>
+                  <ol className="list-decimal list-inside space-y-1 ml-2">
+                    <li>Klik op de drie puntjes (⋮) rechtsboven in de browser</li>
+                    <li>Kies "Installeer app" of "Toevoegen aan startscherm"</li>
+                    <li>Bevestig met "Toevoegen"</li>
+                  </ol>
+                </div>
+                <div>
+                  <p className="font-bold mb-1">Op iPhone/iPad (Safari):</p>
+                  <ol className="list-decimal list-inside space-y-1 ml-2">
+                    <li>Klik op het deel-icoon (vierkant met pijl omhoog)</li>
+                    <li>Scroll naar beneden en kies "Voeg toe aan beginscherm"</li>
+                    <li>Klik op "Toevoegen"</li>
+                  </ol>
+                </div>
+                <div className="mt-4 pt-3 border-t border-blue-200">
+                  <p className="font-bold text-blue-900">💡 Tip:</p>
+                  <p>Na installatie verschijnt de app op uw startscherm. U kunt de app ook installeren via het Opties menu (⚙️) in de bibliotheek app.</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
