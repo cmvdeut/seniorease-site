@@ -253,15 +253,37 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-800 text-white py-4">
+      <footer className="bg-gray-800 text-white py-6">
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto text-center">
-            <p className="text-senior-xs mb-1">
-              © 2025 SeniorEase.nl
-            </p>
-            <p className="text-senior-xs text-gray-400">
-              Handige technologie zonder gedoe
-            </p>
+          <div className="max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-4">
+              <div className="text-center md:text-left">
+                <h3 className="text-senior-base font-bold mb-2">Privacybeleid</h3>
+                <Link href="/privacy" className="text-senior-xs text-gray-300 hover:text-white transition-colors">
+                  Lees ons privacybeleid
+                </Link>
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-senior-base font-bold mb-2">Hulp</h3>
+                <Link href="/hulp" className="text-senior-xs text-gray-300 hover:text-white transition-colors">
+                  Veelgestelde vragen
+                </Link>
+              </div>
+              <div className="text-center md:text-left">
+                <h3 className="text-senior-base font-bold mb-2">Contact</h3>
+                <Link href="/contact" className="text-senior-xs text-gray-300 hover:text-white transition-colors">
+                  Neem contact op
+                </Link>
+              </div>
+            </div>
+            <div className="border-t border-gray-700 pt-4 text-center">
+              <p className="text-senior-xs mb-1">
+                © 2025 SeniorEase.nl
+              </p>
+              <p className="text-senior-xs text-gray-400">
+                Handige technologie zonder gedoe
+              </p>
+            </div>
           </div>
         </div>
       </footer>
