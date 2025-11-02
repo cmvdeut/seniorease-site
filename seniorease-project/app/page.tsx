@@ -28,26 +28,26 @@ export default function Home() {
         </div>
       </header>
 
-      {/* Hero Section - Bibliotheek en Mobiele Download naast elkaar */}
+      {/* Hero Section - Bibliotheek en Mobiele Download onder elkaar */}
       <section className="container mx-auto px-6 py-16">
-        <div className="max-w-6xl mx-auto">
-          {/* Grid layout: 60% bibliotheek, 40% mobiele download */}
-          <div className="grid md:grid-cols-5 gap-6 mb-16">
-            {/* Bibliotheek Hero Card - 60% (3/5) */}
-            <div className="md:col-span-3 bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden h-full flex flex-col">
-              <div className="bg-gradient-to-r from-primary/20 to-primary/10 p-8 md:p-10">
-                <div className="flex flex-col items-center gap-6">
-                  <div className="text-6xl md:text-7xl">📚</div>
-                  <div className="text-center">
-                    <h2 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-3">
+        <div className="max-w-6xl mx-auto space-y-8">
+          {/* Bibliotheek Hero Card - 60-40 interne verdeling */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="grid md:grid-cols-5 gap-0">
+              {/* Linker deel - 60% (3/5) */}
+              <div className="md:col-span-3 bg-gradient-to-r from-primary/20 to-primary/10 p-8 md:p-12">
+                <div className="flex flex-col items-center md:items-start gap-6">
+                  <div className="text-7xl md:text-8xl">📚</div>
+                  <div className="text-center md:text-left">
+                    <h2 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-4">
                       Mijn Bibliotheek
                     </h2>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    <p className="text-senior-lg md:text-senior-xl text-gray-700 leading-relaxed mb-6">
                       Beheer uw boeken en muziek collectie. Scan barcodes met uw camera of voer handmatig in.
                     </p>
                     <Link 
                       href="/bibliotheek"
-                      className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
+                      className="inline-block bg-primary text-white px-10 py-5 rounded-xl text-senior-xl font-bold
                                hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
                       → Open Mijn Bibliotheek
@@ -56,31 +56,93 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Feature highlights */}
-              <div className="p-6 md:p-8 bg-white flex-1">
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📚</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Boeken</h3>
-                    <p className="text-senior-xs text-gray-600">Bewaar op één plek</p>
+              {/* Rechter deel - 40% (2/5) - Feature highlights */}
+              <div className="md:col-span-2 bg-white p-8 md:p-12 flex items-center">
+                <div className="grid grid-cols-1 gap-4 w-full">
+                  <div className="text-center p-6 bg-neutral-cream rounded-xl">
+                    <div className="text-5xl mb-3">📚</div>
+                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">Boeken</h3>
+                    <p className="text-senior-sm text-gray-600">Bewaar al uw boeken op één plek</p>
                   </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">💿</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Muziek</h3>
-                    <p className="text-senior-xs text-gray-600">Albums & CD's</p>
+                  <div className="text-center p-6 bg-neutral-cream rounded-xl">
+                    <div className="text-5xl mb-3">💿</div>
+                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">Muziek</h3>
+                    <p className="text-senior-sm text-gray-600">Albums en CD's bijhouden</p>
                   </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📷</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Barcode</h3>
-                    <p className="text-senior-xs text-gray-600">Scan snel</p>
+                  <div className="text-center p-6 bg-neutral-cream rounded-xl">
+                    <div className="text-5xl mb-3">📷</div>
+                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">Barcode Scan</h3>
+                    <p className="text-senior-sm text-gray-600">Scan snel met uw camera</p>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Mobiele Download - 40% (2/5) */}
-            <div className="md:col-span-2">
-              <MobileDownload />
+          {/* Mobiele Download Card - 60-40 interne verdeling */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="grid md:grid-cols-5 gap-0">
+              {/* Linker deel - 60% (3/5) */}
+              <div className="md:col-span-3 bg-gradient-to-br from-primary/10 to-secondary/10 p-8 md:p-12">
+                <div className="flex flex-col items-center md:items-start gap-6">
+                  <div className="text-7xl md:text-8xl">📱</div>
+                  <div className="text-center md:text-left">
+                    <h2 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-4">
+                      Gebruik op uw telefoon of tablet
+                    </h2>
+                    <p className="text-senior-lg md:text-senior-xl text-gray-700 leading-relaxed mb-2">
+                      Installeer de app op uw mobiele apparaat
+                    </p>
+                    <p className="text-senior-base text-gray-600 mb-6">
+                      € 2,99 eenmalig • Geen abonnement
+                    </p>
+                    <a
+                      href="/betalen"
+                      className="inline-block bg-primary text-white px-10 py-5 rounded-xl text-senior-xl font-bold
+                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                    >
+                      💳 Download mobiele versie
+                    </a>
+                  </div>
+                </div>
+              </div>
+              
+              {/* Rechter deel - 40% (2/5) - QR Code en features */}
+              <div className="md:col-span-2 bg-white p-8 md:p-12 flex items-center">
+                <div className="w-full space-y-6">
+                  {/* QR Code */}
+                  <div className="flex flex-col items-center">
+                    <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200">
+                      <MobileDownload />
+                    </div>
+                  </div>
+                  
+                  {/* Features lijst */}
+                  <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
+                    <h3 className="text-senior-base font-bold text-gray-800 mb-3 text-center">
+                      Wat krijgt u?
+                    </h3>
+                    <ul className="space-y-2 text-senior-sm text-gray-700">
+                      <li className="flex items-start gap-2">
+                        <span className="text-green-600 font-bold">✓</span>
+                        <span>Volledige bibliotheek app</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-green-600 font-bold">✓</span>
+                        <span>Barcode scanner</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-green-600 font-bold">✓</span>
+                        <span>Offline werken</span>
+                      </li>
+                      <li className="flex items-start gap-2">
+                        <span className="text-green-600 font-bold">✓</span>
+                        <span>Levenslange licentie</span>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
