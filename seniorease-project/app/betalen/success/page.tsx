@@ -70,6 +70,18 @@ function SuccessContent() {
           </div>
 
           <div className="space-y-4">
+            {/* Belangrijke melding als Stripe redirect niet werkt */}
+            {!email && (
+              <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-6 mb-4">
+                <p className="text-senior-sm font-bold text-yellow-900 mb-2">
+                  ⚠️ Belangrijk:
+                </p>
+                <p className="text-senior-sm text-yellow-800">
+                  Als je direct van Stripe komt, is je licentie al geactiveerd! Je kunt nu de bibliotheek app gebruiken.
+                </p>
+              </div>
+            )}
+            
             <Link
               href="/bibliotheek"
               className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
