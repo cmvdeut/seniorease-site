@@ -215,8 +215,8 @@ export default function BetalenPage() {
           <div className="mt-6 text-center">
             <p className="text-senior-xs text-gray-500">
               Door te betalen gaat u akkoord met onze{' '}
-              <Link href="/privacy" className="text-primary hover:underline">
-                voorwaarden
+              <Link href="/voorwaarden" className="text-primary hover:underline font-bold">
+                algemene voorwaarden en privacybeleid
               </Link>
             </p>
           </div>
