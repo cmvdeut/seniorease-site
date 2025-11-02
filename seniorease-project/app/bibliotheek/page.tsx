@@ -360,7 +360,7 @@ export default function BibliotheekPage() {
         throw new Error('Ongeldige barcode format');
       }
       
-      console.log('Zoeken naar barcode:', normalizedCode);
+      console.log('Zoeken naar barcode:', normalizedCode, '(lengte:', normalizedCode.length + ')');
       
       // Bepaal of het ISBN (boek) of EAN (muziek) is
       // ISBN-13 begint met 978 of 979, ISBN-10 heeft 10 tekens
@@ -371,10 +371,12 @@ export default function BibliotheekPage() {
                      (normalizedCode.length === 10 && /^[0-9]{9}[0-9X]$/.test(normalizedCode));
       
       if (isISBN) {
+        console.log('Gedetecteerd als ISBN (boek), zoeken...');
         // Zoek boek via Open Library API
         await lookupBook(normalizedCode);
       } else {
-        // Zoek muziek via MusicBrainz API
+        console.log('Gedetecteerd als EAN (muziek), zoeken...');
+        // Zoek muziek via MusicBrainz API (met Discogs fallback)
         await lookupMusic(normalizedCode);
       }
     } catch (error) {
@@ -480,16 +482,23 @@ export default function BibliotheekPage() {
     }
   }
 
-  // Lookup muziek via MusicBrainz API
+  // Lookup muziek via MusicBrainz API (hoofd API)
   async function lookupMusic(ean: string) {
     try {
       // EAN is al genormaliseerd
       const cleanEAN = normalizeBarcode(ean);
       console.log('Zoeken naar muziek met EAN:', cleanEAN);
       
+      // Valideer EAN lengte voor muziek (meestal 13 cijfers, soms 8)
+      if (cleanEAN.length !== 13 && cleanEAN.length !== 8 && cleanEAN.length !== 12) {
+        console.warn('Ongeldige EAN lengte voor muziek:', cleanEAN.length);
+        // Toch proberen, sommige codes kunnen afwijken
+      }
+      
       // MusicBrainz API vereist een User-Agent header
+      // Gebruik includes om meer data te krijgen (artists, labels)
       const response = await fetch(
-        `https://musicbrainz.org/ws/2/release?query=barcode:${cleanEAN}&fmt=json`,
+        `https://musicbrainz.org/ws/2/release?query=barcode:${cleanEAN}&fmt=json&limit=5`,
         {
           headers: {
             'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
@@ -499,38 +508,122 @@ export default function BibliotheekPage() {
       );
       
       if (!response.ok) {
-        throw new Error('Album niet gevonden');
+        console.warn('MusicBrainz API error:', response.status, response.statusText);
+        throw new Error('MusicBrainz API error');
       }
 
       const data = await response.json();
+      console.log('MusicBrainz response:', data);
       
       if (data.releases && data.releases.length > 0) {
-        const release = data.releases[0];
+        // Zoek de beste match (exacte barcode match heeft voorkeur)
+        let release = data.releases.find((r: any) => 
+          r.barcode === cleanEAN || r.barcode === ean
+        ) || data.releases[0];
         
-        // Haal artiesten op
+        console.log('Gevonden release:', release.title, 'door', release['artist-credit']);
+        
+        // Haal artiesten op (verbeterde extractie)
         let artist = 'Onbekend';
         if (release['artist-credit'] && release['artist-credit'].length > 0) {
           artist = release['artist-credit']
-            .map((credit: any) => credit.name || credit.artist?.name || '')
-            .filter((name: string) => name)
+            .map((credit: any) => {
+              // Probeer verschillende manieren om de naam te krijgen
+              if (credit.name) return credit.name;
+              if (credit.artist && credit.artist.name) return credit.artist.name;
+              if (typeof credit === 'string') return credit;
+              return '';
+            })
+            .filter((name: string) => name && name.trim())
             .join(', ');
         }
         
+        // Haal label op (optioneel, voor notities)
+        let label = '';
+        if (release['label-info'] && release['label-info'].length > 0) {
+          const labels = release['label-info']
+            .map((li: any) => li.label?.name || '')
+            .filter((name: string) => name);
+          if (labels.length > 0) {
+            label = labels[0];
+          }
+        }
+        
+        // Vul formulier in
         setFormData(prev => ({
           ...prev,
           type: 'music',
           title: release.title || '',
+          author: artist || 'Onbekend',
+          barcode: cleanEAN,
+          notes: label ? `Label: ${label}` : '' // Voeg label toe aan notities indien beschikbaar
+        }));
+        
+        setIsLoadingData(false);
+        return; // Succes!
+      } else {
+        console.log('Geen releases gevonden in MusicBrainz, probeer fallback...');
+        throw new Error('Geen releases gevonden');
+      }
+    } catch (error) {
+      console.error('Error looking up music in MusicBrainz:', error);
+      // Probeer fallback naar Discogs
+      await lookupMusicDiscogs(ean);
+    }
+  }
+
+  // Fallback: Discogs API voor muziek
+  async function lookupMusicDiscogs(ean: string) {
+    try {
+      const cleanEAN = normalizeBarcode(ean);
+      console.log('Zoeken naar muziek met Discogs API, EAN:', cleanEAN);
+      
+      // Discogs API (gratis, geen API key nodig voor basis queries)
+      // Gebruik de database search endpoint
+      const response = await fetch(
+        `https://api.discogs.com/database/search?barcode=${cleanEAN}&type=release&per_page=5`,
+        {
+          headers: {
+            'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
+            'Accept': 'application/json'
+          }
+        }
+      );
+      
+      if (!response.ok) {
+        console.warn('Discogs API error:', response.status);
+        throw new Error('Discogs API error');
+      }
+
+      const data = await response.json();
+      console.log('Discogs response:', data);
+      
+      if (data.results && data.results.length > 0) {
+        const release = data.results[0];
+        
+        // Discogs geeft title en artist direct
+        const title = release.title || '';
+        const artist = release.artist || 'Onbekend';
+        
+        console.log('Gevonden via Discogs:', title, 'door', artist);
+        
+        setFormData(prev => ({
+          ...prev,
+          type: 'music',
+          title: title,
           author: artist,
           barcode: cleanEAN
         }));
         
         setIsLoadingData(false);
+        return; // Succes!
       } else {
-        throw new Error('Album niet gevonden');
+        throw new Error('Geen resultaten gevonden');
       }
     } catch (error) {
-      console.error('Error looking up music:', error);
-      setLoadError('Kon geen album vinden. Controleer de EAN code of vul handmatig in.');
+      console.error('Error looking up music in Discogs:', error);
+      // Als beide APIs falen, toon foutmelding
+      setLoadError('Kon geen album vinden voor deze EAN code. U kunt handmatig invullen.');
       setIsLoadingData(false);
     }
   }
