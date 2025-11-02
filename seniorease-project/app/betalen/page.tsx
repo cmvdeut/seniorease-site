@@ -28,12 +28,11 @@ export default function BetalenPage() {
     // Sla email tijdelijk op in sessionStorage voor na betaling
     sessionStorage.setItem('seniorease-payment-email', email);
     
-    // Redirect naar Stripe Payment Link
-    // Voeg email toe als query parameter voor Stripe (optioneel, afhankelijk van Stripe config)
+    // Redirect direct naar Stripe Payment Link (geen loading state nodig)
     const stripeUrl = new URL('https://buy.stripe.com/cNi3co3yC45O70b4NM6c000');
     stripeUrl.searchParams.set('client_reference_id', email);
     
-    // Redirect naar Stripe
+    // Redirect direct - geen state update nodig, gebruiker gaat naar Stripe
     window.location.href = stripeUrl.toString();
   }
 
@@ -165,22 +164,13 @@ export default function BetalenPage() {
               {/* Betaal knop */}
               <button
                 onClick={handleBetalen}
-                disabled={betaalStatus === 'pending' || !email}
+                disabled={!email}
                 className="w-full bg-primary text-white px-10 py-6 rounded-xl text-senior-xl font-bold
                          hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed
                          transition-all shadow-lg hover:shadow-xl flex items-center justify-center gap-3"
               >
-                {betaalStatus === 'pending' ? (
-                  <>
-                    <span className="animate-spin text-2xl">⏳</span>
-                    <span>Verwerken...</span>
-                  </>
-                ) : (
-                  <>
-                    <span className="text-3xl">💳</span>
-                    <span>Betaal € 2,99</span>
-                  </>
-                )}
+                <span className="text-3xl">💳</span>
+                <span>Betaal € 2,99</span>
               </button>
 
               {/* Betaalmethoden info */}
