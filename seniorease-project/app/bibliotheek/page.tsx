@@ -352,10 +352,15 @@ export default function BibliotheekPage() {
 
   return (
     <>
-      {/* Load QuaggaJS for barcode scanning */}
+      {/* Load QuaggaJS for barcode scanning - Lazy loaded voor betere performance */}
       <Script 
         src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"
+        strategy="lazyOnload"
         onLoad={() => setQuaggaLoaded(true)}
+        onError={() => {
+          console.error('QuaggaJS kon niet worden geladen');
+          alert('Scanner bibliotheek kon niet worden geladen. Probeer de pagina te vernieuwen.');
+        }}
       />
 
       <div className="min-h-screen bg-neutral-cream">
@@ -449,8 +454,17 @@ export default function BibliotheekPage() {
                          transition-all shadow-lg hover:shadow-xl
                          flex items-center justify-center gap-3 min-h-[70px]"
               >
-                <span className="text-3xl">📷</span>
-                <span>Barcode scannen met camera</span>
+                {!quaggaLoaded ? (
+                  <>
+                    <span className="animate-spin text-3xl">⏳</span>
+                    <span>Scanner wordt geladen...</span>
+                  </>
+                ) : (
+                  <>
+                    <span className="text-3xl">📷</span>
+                    <span>Barcode scannen met camera</span>
+                  </>
+                )}
               </button>
             </div>
 
