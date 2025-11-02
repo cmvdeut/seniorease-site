@@ -38,7 +38,7 @@ export default function Home() {
               <div className="md:col-span-3 bg-gradient-to-r from-primary/20 to-primary/10 p-6 md:p-8">
                 <div className="flex flex-col items-center md:items-start gap-4">
                   <div className="text-5xl md:text-6xl">📚</div>
-                  <div className="text-center md:text-left">
+                  <div className="text-center md:text-left w-full">
                     <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
                       Mijn Bibliotheek
                     </h2>
@@ -48,33 +48,36 @@ export default function Home() {
                     <Link 
                       href="/bibliotheek"
                       className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
-                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 mb-4"
                     >
                       → Open Mijn Bibliotheek
                     </Link>
+                    
+                    {/* Feature highlights onder de knop */}
+                    <div className="grid grid-cols-3 gap-3 mt-4">
+                      <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                        <div className="text-3xl mb-1">📚</div>
+                        <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Boeken</h3>
+                        <p className="text-senior-xs text-gray-600">Bewaar</p>
+                      </div>
+                      <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                        <div className="text-3xl mb-1">💿</div>
+                        <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Muziek</h3>
+                        <p className="text-senior-xs text-gray-600">Albums</p>
+                      </div>
+                      <div className="text-center p-3 bg-neutral-cream rounded-xl">
+                        <div className="text-3xl mb-1">📷</div>
+                        <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Barcode</h3>
+                        <p className="text-senior-xs text-gray-600">Scan</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
               
-              {/* Rechter deel - 40% (2/5) - Feature highlights horizontaal */}
-              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-end">
-                <div className="grid grid-cols-3 gap-3 w-full">
-                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
-                    <div className="text-3xl mb-1">📚</div>
-                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Boeken</h3>
-                    <p className="text-senior-xs text-gray-600">Bewaar</p>
-                  </div>
-                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
-                    <div className="text-3xl mb-1">💿</div>
-                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Muziek</h3>
-                    <p className="text-senior-xs text-gray-600">Albums</p>
-                  </div>
-                  <div className="text-center p-3 bg-neutral-cream rounded-xl">
-                    <div className="text-3xl mb-1">📷</div>
-                    <h3 className="text-senior-xs font-bold text-gray-800 mb-0.5">Barcode</h3>
-                    <p className="text-senior-xs text-gray-600">Scan</p>
-                  </div>
-                </div>
+              {/* Rechter deel - 40% (2/5) - Leeg of andere content */}
+              <div className="md:col-span-2 bg-white p-6 md:p-8">
+                {/* Leeg gelaten of kan later gebruikt worden voor andere content */}
               </div>
             </div>
           </div>
