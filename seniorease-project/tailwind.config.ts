@@ -42,6 +42,7 @@ const config: Config = {
         'senior-xl': '2.5rem',     // 40px
         'senior-2xl': '3rem',      // 48px
         'senior-3xl': '4rem',      // 64px
+        'senior-4xl': '5rem',      // 80px
       },
     },
   },

@@ -6,9 +6,9 @@ import Script from 'next/script';
 
 interface LibraryItem {
   id: string;
-  type: 'book' | 'cd' | 'dvd' | 'game';
+  type: 'book' | 'music'; // Alleen boeken en muziek
   title: string;
-  author: string;
+  author: string; // Auteur voor boeken, artiest voor muziek
   barcode: string;
   dateAdded: string;
   notes?: string;
@@ -63,7 +63,7 @@ export default function BibliotheekPage() {
   function exportToCSV() {
     const headers = ['Type', 'Titel', 'Auteur/Artiest', 'Barcode', 'Datum toegevoegd', 'Notities'];
     const rows = filteredItems.map(item => [
-      item.type,
+      typeNames[item.type], // Gebruik leesbare naam (Boek of Album/CD)
       item.title,
       item.author,
       item.barcode,
@@ -149,7 +149,7 @@ export default function BibliotheekPage() {
   const [formData, setFormData] = useState({
     type: 'book' as LibraryItem['type'],
     title: '',
-    author: '',
+    author: '', // Auteur (boeken) of artiest (muziek)
     barcode: '',
     notes: ''
   });
@@ -166,16 +166,12 @@ export default function BibliotheekPage() {
 
   const typeIcons: Record<LibraryItem['type'], string> = {
     book: '📚',
-    cd: '💿',
-    dvd: '📀',
-    game: '🎮'
+    music: '💿'
   };
 
   const typeNames: Record<LibraryItem['type'], string> = {
     book: 'Boek',
-    cd: 'CD/LP',
-    dvd: 'DVD',
-    game: 'Game'
+    music: 'Album/CD'
   };
 
   return (
@@ -209,11 +205,12 @@ export default function BibliotheekPage() {
                 <button
                   onClick={exportToCSV}
                   disabled={items.length === 0}
-                  className="bg-accent text-white px-6 py-3 rounded-lg text-senior-base font-bold
+                  className="bg-accent text-white px-8 py-4 rounded-xl text-senior-base font-bold
                            hover:bg-accent-dark disabled:opacity-50 disabled:cursor-not-allowed
-                           transition-colors"
+                           transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
                 >
-                  📄 Exporteer CSV
+                  <span className="text-2xl">📄</span>
+                  <span>Exporteer CSV</span>
                 </button>
               </div>
             </div>
@@ -251,31 +248,33 @@ export default function BibliotheekPage() {
                   >
                     <option value="all">Alle items</option>
                     <option value="book">📚 Boeken</option>
-                    <option value="cd">💿 CD/LP</option>
-                    <option value="dvd">📀 DVD</option>
-                    <option value="game">🎮 Games</option>
+                    <option value="music">💿 Albums/CD's</option>
                   </select>
                 </div>
               </div>
             </div>
 
-            {/* Action Buttons */}
-            <div className="flex flex-wrap gap-4">
+            {/* Action Buttons - EXTRA GROOT VOOR SENIOREN */}
+            <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => setShowAddForm(!showAddForm)}
-                className="bg-primary text-white px-8 py-4 rounded-lg text-senior-base font-bold
-                         hover:bg-primary-dark transition-colors"
+                className="bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
+                         flex items-center justify-center gap-3 min-h-[70px]"
               >
-                ➕ Item toevoegen
+                <span className="text-3xl">➕</span>
+                <span>Item handmatig toevoegen</span>
               </button>
               <button
                 onClick={startScanner}
                 disabled={!quaggaLoaded}
-                className="bg-secondary text-white px-8 py-4 rounded-lg text-senior-base font-bold
+                className="bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
                          hover:bg-secondary-dark disabled:opacity-50 disabled:cursor-not-allowed
-                         transition-colors"
+                         transition-all shadow-lg hover:shadow-xl
+                         flex items-center justify-center gap-3 min-h-[70px]"
               >
-                📷 Scan barcode
+                <span className="text-3xl">📷</span>
+                <span>Barcode scannen met camera</span>
               </button>
             </div>
 
@@ -290,18 +289,19 @@ export default function BibliotheekPage() {
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
                       Type:
                     </label>
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                      {(['book', 'cd', 'dvd', 'game'] as const).map(type => (
+                    <div className="grid grid-cols-2 gap-4">
+                      {(['book', 'music'] as const).map(type => (
                         <button
                           key={type}
                           type="button"
                           onClick={() => setFormData({ ...formData, type })}
-                          className={`p-4 rounded-lg border-2 text-senior-base font-bold transition-colors
+                          className={`p-6 rounded-lg border-2 text-senior-lg font-bold transition-colors
                             ${formData.type === type 
                               ? 'border-primary bg-primary text-white' 
-                              : 'border-gray-300 hover:border-primary'}`}
+                              : 'border-gray-300 hover:border-primary bg-white'}`}
                         >
-                          {typeIcons[type]} {typeNames[type]}
+                          <span className="text-4xl block mb-2">{typeIcons[type]}</span>
+                          {typeNames[type]}
                         </button>
                       ))}
                     </div>
@@ -324,7 +324,7 @@ export default function BibliotheekPage() {
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Auteur/Artiest: *
+                      {formData.type === 'book' ? 'Auteur:' : 'Artiest:'} *
                     </label>
                     <input
                       type="text"
@@ -333,7 +333,7 @@ export default function BibliotheekPage() {
                       onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
-                      placeholder="Naam auteur of artiest"
+                      placeholder={formData.type === 'book' ? 'Naam van de auteur' : 'Naam van de artiest'}
                     />
                   </div>
 
@@ -365,13 +365,15 @@ export default function BibliotheekPage() {
                     />
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-col sm:flex-row gap-4">
                     <button
                       type="submit"
-                      className="bg-primary text-white px-8 py-3 rounded-lg text-senior-base font-bold
-                               hover:bg-primary-dark transition-colors"
+                      className="bg-primary text-white px-10 py-5 rounded-xl text-senior-lg font-bold
+                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
+                               flex items-center justify-center gap-3 min-h-[70px]"
                     >
-                      ✓ Opslaan
+                      <span className="text-2xl">✓</span>
+                      <span>Opslaan</span>
                     </button>
                     <button
                       type="button"
@@ -379,10 +381,12 @@ export default function BibliotheekPage() {
                         setShowAddForm(false);
                         setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
                       }}
-                      className="bg-gray-500 text-white px-8 py-3 rounded-lg text-senior-base font-bold
-                               hover:bg-gray-600 transition-colors"
+                      className="bg-gray-500 text-white px-10 py-5 rounded-xl text-senior-lg font-bold
+                               hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl
+                               flex items-center justify-center gap-3 min-h-[70px]"
                     >
-                      ✗ Annuleren
+                      <span className="text-2xl">✗</span>
+                      <span>Annuleren</span>
                     </button>
                   </div>
                 </form>
@@ -438,7 +442,7 @@ export default function BibliotheekPage() {
                             </span>
                           </div>
                           <p className="text-senior-base text-gray-600 mb-2">
-                            <strong>Door:</strong> {item.author}
+                            <strong>{item.type === 'book' ? 'Auteur:' : 'Artiest:'}</strong> {item.author}
                           </p>
                           {item.barcode && (
                             <p className="text-senior-sm text-gray-500 mb-2">
@@ -473,4 +477,5 @@ export default function BibliotheekPage() {
     </>
   );
 }
+
 
