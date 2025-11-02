@@ -45,10 +45,16 @@ export default function HulpPage() {
                 <div className="text-senior-base text-gray-700 space-y-2">
                   <p><strong>Op Android:</strong></p>
                   <ol className="list-decimal list-inside ml-4 space-y-1">
-                    <li>Open de bibliotheek app in Chrome</li>
-                    <li>Klik op de drie puntjes (⋮) rechtsboven</li>
-                    <li>Kies "Installeer app" of "Toevoegen aan startscherm"</li>
-                    <li>Bevestig met "Toevoegen"</li>
+                    <li>Open de bibliotheek app in Chrome of Samsung Internet</li>
+                    <li>Zoek rechtsboven naar het menu icoon:
+                      <ul className="list-disc list-inside ml-4 mt-1 space-y-1 text-sm">
+                        <li>Drie puntjes (⋮), drie streepjes (☰), of menu knop</li>
+                        <li>Dit staat meestal rechtsboven naast de adresbalk</li>
+                      </ul>
+                    </li>
+                    <li>Klik op dit menu icoon</li>
+                    <li>Scroll door het menu en zoek "Installeer app" of "Toevoegen aan startscherm"</li>
+                    <li>Klik hierop en bevestig met "Toevoegen"</li>
                   </ol>
                   <p className="mt-3"><strong>Op iPhone/iPad:</strong></p>
                   <ol className="list-decimal list-inside ml-4 space-y-1">

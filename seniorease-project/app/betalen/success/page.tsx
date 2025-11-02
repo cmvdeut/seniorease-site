@@ -99,9 +99,17 @@ function SuccessContent() {
                 <div>
                   <p className="font-bold mb-1">Op Android (Chrome/Samsung Internet):</p>
                   <ol className="list-decimal list-inside space-y-1 ml-2">
-                    <li>Klik op de drie puntjes (⋮) rechtsboven in de browser</li>
-                    <li>Kies "Installeer app" of "Toevoegen aan startscherm"</li>
+                    <li>Zoek rechtsboven in de browser naar het menu icoon:
+                      <ul className="list-disc list-inside ml-4 mt-1 space-y-1">
+                        <li>Drie puntjes (⋮) of</li>
+                        <li>Drie streepjes (☰) of</li>
+                        <li>Menu knop</li>
+                      </ul>
+                    </li>
+                    <li>Klik op dit menu icoon</li>
+                    <li>Zoek en klik op "Installeer app" of "Toevoegen aan startscherm"</li>
                     <li>Bevestig met "Toevoegen"</li>
+                    <li className="text-xs text-blue-600 mt-2">💡 Kan niet vinden? Scroll door het menu naar beneden.</li>
                   </ol>
                 </div>
                 <div>
