@@ -82,13 +82,22 @@ function SuccessContent() {
               </div>
             )}
             
-            <Link
-              href="/bibliotheek"
-              className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                       hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
-            >
-              → Open Mijn Bibliotheek
-            </Link>
+            <div className="space-y-4">
+              <Link
+                href="/download"
+                className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
+              >
+                📱 Download App (Android)
+              </Link>
+              <Link
+                href="/bibliotheek"
+                className="block bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                         hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl text-center"
+              >
+                → Open Mijn Bibliotheek (Web)
+              </Link>
+            </div>
             
             {/* Installatie Instructies */}
             <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mt-4">
