@@ -465,7 +465,15 @@ Voor vragen: bezoek seniorease.nl
       
       setDebugLogs(prev => [...prev, 'Initialiseer Quagga...']);
       
+      // Voeg een timeout toe om te zien of init callback wordt aangeroepen
+      const initTimeout = setTimeout(() => {
+        setDebugLogs(prev => [...prev, '⏱️ Init timeout - callback niet aangeroepen na 5 sec']);
+      }, 5000);
+      
       try {
+        console.log('Aanroepen Quagga.init()...');
+        setDebugLogs(prev => [...prev, 'Quagga.init() aangeroepen...']);
+        
         Quagga.init({
         inputStream: {
           name: "Live",
@@ -515,6 +523,9 @@ Voor vragen: bezoek seniorease.nl
         },
         locate: true
       }, function(err: any) {
+        // Clear timeout omdat callback is aangeroepen
+        clearTimeout(initTimeout);
+        
         if (err) {
           console.error('Quagga init error:', err);
           const errorMsg = `Fout: ${err.message || err.toString() || 'Camera niet beschikbaar'}`;
@@ -524,8 +535,8 @@ Voor vragen: bezoek seniorease.nl
           return;
         }
         
-        console.log('Quagga init succesvol');
-        setDebugLogs(prev => [...prev, '✓ Quagga geïnitialiseerd']);
+        console.log('Quagga init succesvol - callback uitgevoerd');
+        setDebugLogs(prev => [...prev, '✓ Callback ontvangen', '✓ Quagga geïnitialiseerd']);
         
         console.log('Quagga gestart, wacht op barcode...');
         const settingsMsg = `Instellingen: Mobiel=${isMobile}, Workers=2, PatchSize=medium`;
@@ -669,7 +680,12 @@ Voor vragen: bezoek seniorease.nl
           }
         });
         });
+        
+        console.log('Quagga.init() call voltooid, wacht op callback...');
+        setDebugLogs(prev => [...prev, '✓ Init call voltooid, wacht op callback...']);
+        
       } catch (initError: any) {
+        clearTimeout(initTimeout);
         console.error('Quagga.init() exception:', initError);
         const errorMsg = `Init exception: ${initError.message || initError.toString()}`;
         setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
