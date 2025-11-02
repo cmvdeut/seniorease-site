@@ -21,6 +21,8 @@ export default function BibliotheekPage() {
   const [showScanner, setShowScanner] = useState(false);
   const [filterType, setFilterType] = useState<string>('all');
   const [quaggaLoaded, setQuaggaLoaded] = useState(false);
+  const [isLoadingData, setIsLoadingData] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   // Load items from localStorage
   useEffect(() => {
@@ -114,13 +116,19 @@ export default function BibliotheekPage() {
           Quagga.start();
         });
 
-        Quagga.onDetected((result: any) => {
+        Quagga.onDetected(async (result: any) => {
           const code = result.codeResult.code;
           console.log('Barcode detected:', code);
           stopScanner();
-          // Auto-fill barcode in form
+          
+          // Toon formulier en start met zoeken
           setShowAddForm(true);
+          setIsLoadingData(true);
+          setLoadError(null);
           setFormData(prev => ({ ...prev, barcode: code }));
+          
+          // Probeer gegevens op te halen
+          await lookupBarcode(code);
         });
       }, 100);
     } else {
@@ -134,6 +142,174 @@ export default function BibliotheekPage() {
       (window as any).Quagga.stop();
     }
     setShowScanner(false);
+  }
+
+  // Lookup barcode in online databases
+  async function lookupBarcode(code: string) {
+    setIsLoadingData(true);
+    setLoadError(null);
+
+    try {
+      // Bepaal of het ISBN (boek) of EAN (muziek) is
+      // ISBN-13 begint met 978 of 979, ISBN-10 heeft 10 cijfers
+      // EAN voor muziek is meestal 13 cijfers maar niet 978/979
+      
+      const isISBN = code.startsWith('978') || code.startsWith('979') || code.length === 10;
+      
+      if (isISBN) {
+        // Zoek boek via Open Library API
+        await lookupBook(code);
+      } else {
+        // Zoek muziek via MusicBrainz API
+        await lookupMusic(code);
+      }
+    } catch (error) {
+      console.error('Error looking up barcode:', error);
+      setLoadError('Kon geen gegevens vinden voor deze barcode. U kunt handmatig invullen.');
+      setIsLoadingData(false);
+    }
+  }
+
+  // Lookup boek via Open Library API
+  async function lookupBook(isbn: string) {
+    try {
+      // Normaliseer ISBN (verwijder streepjes)
+      const cleanISBN = isbn.replace(/[-\s]/g, '');
+      
+      // Probeer Open Library API
+      const response = await fetch(`https://openlibrary.org/isbn/${cleanISBN}.json`);
+      
+      if (!response.ok) {
+        throw new Error('Boek niet gevonden');
+      }
+
+      const data = await response.json();
+      
+      // Haal uitgebreide gegevens op
+      let title = data.title || '';
+      let authors: string[] = [];
+      
+      if (data.authors && data.authors.length > 0) {
+        // Haal auteur details op
+        const authorPromises = data.authors.slice(0, 3).map(async (author: any) => {
+          if (author.key) {
+            try {
+              const authorRes = await fetch(`https://openlibrary.org${author.key}.json`);
+              if (authorRes.ok) {
+                const authorData = await authorRes.json();
+                return authorData.name || '';
+              }
+            } catch (e) {
+              console.error('Error fetching author:', e);
+            }
+          }
+          return '';
+        });
+        
+        authors = (await Promise.all(authorPromises)).filter(a => a);
+      }
+      
+      // Vul formulier in
+      setFormData(prev => ({
+        ...prev,
+        type: 'book',
+        title: title,
+        author: authors.join(', ') || 'Onbekend',
+        barcode: cleanISBN
+      }));
+      
+      setIsLoadingData(false);
+    } catch (error) {
+      console.error('Error looking up book:', error);
+      // Probeer Google Books als fallback
+      await lookupBookGoogle(isbn);
+    }
+  }
+
+  // Fallback: Google Books API
+  async function lookupBookGoogle(isbn: string) {
+    try {
+      const cleanISBN = isbn.replace(/[-\s]/g, '');
+      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${cleanISBN}`);
+      
+      if (!response.ok) {
+        throw new Error('Boek niet gevonden');
+      }
+
+      const data = await response.json();
+      
+      if (data.items && data.items.length > 0) {
+        const book = data.items[0].volumeInfo;
+        const authors = book.authors ? book.authors.join(', ') : 'Onbekend';
+        
+        setFormData(prev => ({
+          ...prev,
+          type: 'book',
+          title: book.title || '',
+          author: authors,
+          barcode: cleanISBN
+        }));
+        
+        setIsLoadingData(false);
+      } else {
+        throw new Error('Boek niet gevonden');
+      }
+    } catch (error) {
+      console.error('Error looking up book in Google Books:', error);
+      setLoadError('Kon geen boek vinden. Controleer de ISBN of vul handmatig in.');
+      setIsLoadingData(false);
+    }
+  }
+
+  // Lookup muziek via MusicBrainz API
+  async function lookupMusic(ean: string) {
+    try {
+      // MusicBrainz API vereist een User-Agent header
+      const response = await fetch(
+        `https://musicbrainz.org/ws/2/release?query=barcode:${ean}&fmt=json`,
+        {
+          headers: {
+            'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
+            'Accept': 'application/json'
+          }
+        }
+      );
+      
+      if (!response.ok) {
+        throw new Error('Album niet gevonden');
+      }
+
+      const data = await response.json();
+      
+      if (data.releases && data.releases.length > 0) {
+        const release = data.releases[0];
+        
+        // Haal artiesten op
+        let artist = 'Onbekend';
+        if (release['artist-credit'] && release['artist-credit'].length > 0) {
+          artist = release['artist-credit']
+            .map((credit: any) => credit.name || credit.artist?.name || '')
+            .filter((name: string) => name)
+            .join(', ');
+        }
+        
+        setFormData(prev => ({
+          ...prev,
+          type: 'music',
+          title: release.title || '',
+          author: artist,
+          barcode: ean
+        }));
+        
+        setIsLoadingData(false);
+      } else {
+        throw new Error('Album niet gevonden');
+      }
+    } catch (error) {
+      console.error('Error looking up music:', error);
+      setLoadError('Kon geen album vinden. Controleer de EAN code of vul handmatig in.');
+      setIsLoadingData(false);
+    }
   }
 
   // Filter items
@@ -284,6 +460,38 @@ export default function BibliotheekPage() {
                 <h2 className="text-senior-xl font-bold text-primary mb-6">
                   Nieuw item toevoegen
                 </h2>
+                
+                {/* Loading indicator */}
+                {isLoadingData && (
+                  <div className="mb-6 p-6 bg-primary/10 rounded-xl border-2 border-primary">
+                    <div className="flex items-center gap-4">
+                      <div className="animate-spin text-4xl">⏳</div>
+                      <div>
+                        <p className="text-senior-base font-bold text-primary">
+                          Gegevens ophalen...
+                        </p>
+                        <p className="text-senior-sm text-gray-600 mt-1">
+                          Zoeken in online database...
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Error message */}
+                {loadError && (
+                  <div className="mb-6 p-6 bg-yellow-50 rounded-xl border-2 border-yellow-300">
+                    <div className="flex items-start gap-4">
+                      <span className="text-3xl">⚠️</span>
+                      <div>
+                        <p className="text-senior-base font-bold text-yellow-800">
+                          {loadError}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
@@ -316,8 +524,9 @@ export default function BibliotheekPage() {
                       required
                       value={formData.title}
                       onChange={(e) => setFormData({ ...formData, title: e.target.value })}
+                      disabled={isLoadingData}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none"
+                               focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder="Titel van het item"
                     />
                   </div>
@@ -331,8 +540,9 @@ export default function BibliotheekPage() {
                       required
                       value={formData.author}
                       onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                      disabled={isLoadingData}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none"
+                               focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                       placeholder={formData.type === 'book' ? 'Naam van de auteur' : 'Naam van de artiest'}
                     />
                   </div>
@@ -341,14 +551,31 @@ export default function BibliotheekPage() {
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
                       Barcode:
                     </label>
-                    <input
-                      type="text"
-                      value={formData.barcode}
-                      onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none"
-                      placeholder="ISBN of EAN code"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={formData.barcode}
+                        onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
+                        disabled={isLoadingData}
+                        className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
+                                 focus:border-primary focus:outline-none disabled:opacity-50 disabled:cursor-not-allowed"
+                        placeholder="ISBN of EAN code"
+                      />
+                      {formData.barcode && !isLoadingData && (
+                        <button
+                          type="button"
+                          onClick={() => lookupBarcode(formData.barcode)}
+                          className="bg-secondary text-white px-6 py-3 rounded-lg text-senior-base font-bold
+                                   hover:bg-secondary-dark transition-colors whitespace-nowrap"
+                          title="Zoek gegevens op"
+                        >
+                          🔍 Zoek
+                        </button>
+                      )}
+                    </div>
+                    <p className="text-senior-xs text-gray-500 mt-2">
+                      Scan met camera of voer handmatig in. Klik op "Zoek" om automatisch gegevens op te halen.
+                    </p>
                   </div>
 
                   <div>
