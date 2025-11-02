@@ -624,6 +624,21 @@ export default function BibliotheekPage() {
             {showScanner && (
               <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
                 <div className="relative w-full max-w-2xl p-4">
+                  {/* Waarschuwing banner */}
+                  <div className="mb-4 bg-yellow-500 border-2 border-yellow-600 rounded-xl p-4 shadow-lg">
+                    <div className="flex items-start gap-3">
+                      <span className="text-3xl">📱</span>
+                      <div>
+                        <p className="text-senior-base font-bold text-yellow-900 mb-1">
+                          💡 Tip: Barcode scanner werkt het beste op telefoon of tablet
+                        </p>
+                        <p className="text-senior-sm text-yellow-800">
+                          Gebruik de achtercamera voor het beste resultaat. Op computer kan het scannen soms moeizamer gaan.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
                   {/* Scanner Container met Overlay */}
                   <div className="relative w-full">
                     <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden relative" />
