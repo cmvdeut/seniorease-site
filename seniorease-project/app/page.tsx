@@ -111,33 +111,6 @@ export default function Home() {
               <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center justify-center">
                 <MobileDownload />
               </div>
-                  
-                  {/* Features lijst */}
-                  <div className="bg-neutral-cream rounded-xl p-4 border-2 border-gray-200">
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-2 text-center">
-                      Wat krijgt u?
-                    </h3>
-                    <ul className="space-y-1.5 text-senior-xs text-gray-700">
-                      <li className="flex items-start gap-2">
-                        <span className="text-green-600 font-bold">✓</span>
-                        <span>Volledige app</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-green-600 font-bold">✓</span>
-                        <span>Barcode scanner</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-green-600 font-bold">✓</span>
-                        <span>Offline werken</span>
-                      </li>
-                      <li className="flex items-start gap-2">
-                        <span className="text-green-600 font-bold">✓</span>
-                        <span>Levenslang</span>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
