@@ -137,19 +137,60 @@ export default function BibliotheekPage() {
     setShowMenu(false);
   }
 
-  // Backup maken
-  function backupMaken() {
+  // Backup maken - met keuze van opslaglocatie
+  async function backupMaken() {
     const backup = {
       date: new Date().toISOString(),
       items: items
     };
     const blob = new Blob([JSON.stringify(backup, null, 2)], { type: 'application/json' });
-    const link = document.createElement('a');
-    link.href = URL.createObjectURL(blob);
-    link.download = `seniorease-backup-${new Date().toISOString().split('T')[0]}.json`;
-    link.click();
-    setShowMenu(false);
-    alert('Backup succesvol gedownload!');
+    const fileName = `seniorease-backup-${new Date().toISOString().split('T')[0]}.json`;
+    
+    try {
+      // Probeer moderne File System Access API (Chrome, Edge, Opera)
+      // Dit geeft de gebruiker een dialoog om de locatie te kiezen
+      if ('showSaveFilePicker' in window) {
+        const fileHandle = await (window as any).showSaveFilePicker({
+          suggestedName: fileName,
+          types: [{
+            description: 'JSON Backup Bestand',
+            accept: { 'application/json': ['.json'] }
+          }]
+        });
+        
+        const writable = await fileHandle.createWritable();
+        await writable.write(blob);
+        await writable.close();
+        
+        setShowMenu(false);
+        alert('Backup succesvol opgeslagen!');
+      } else {
+        // Fallback voor browsers zonder File System Access API
+        // Gebruik standaard download (browser vraagt meestal wel om locatie)
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(blob);
+        link.download = fileName;
+        link.click();
+        URL.revokeObjectURL(link.href);
+        setShowMenu(false);
+        alert('Backup wordt gedownload. U kunt in uw browser kiezen waar u deze wilt opslaan.');
+      }
+    } catch (error: any) {
+      // Gebruiker heeft de dialoog geannuleerd
+      if (error.name === 'AbortError') {
+        return; // Stil afbreken, gebruiker heeft geannuleerd
+      }
+      
+      // Als er een fout is, val terug op standaard download
+      console.error('Error saving backup:', error);
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = fileName;
+      link.click();
+      URL.revokeObjectURL(link.href);
+      setShowMenu(false);
+      alert('Backup wordt gedownload. U kunt in uw browser kiezen waar u deze wilt opslaan.');
+    }
   }
 
   // Backup terugzetten
