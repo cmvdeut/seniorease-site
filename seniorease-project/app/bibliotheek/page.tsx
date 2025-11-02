@@ -511,6 +511,38 @@ Voor vragen: bezoek seniorease.nl
     setCountdown(0);
   }
 
+  // Handle search button click - zoek online informatie voor ingevulde barcode
+  async function handleSearchBarcode() {
+    if (!formData.barcode.trim()) {
+      return;
+    }
+    
+    const normalizedCode = normalizeBarcode(formData.barcode);
+    
+    if (!isValidBarcode(normalizedCode)) {
+      setLoadError('Ongeldige barcode format. Voer een geldige ISBN of EAN code in.');
+      return;
+    }
+    
+    // Bepaal automatisch het type op basis van de barcode
+    const isISBN = normalizedCode.startsWith('978') || 
+                   normalizedCode.startsWith('979') || 
+                   (normalizedCode.length === 10 && /^[0-9]{9}[0-9X]$/.test(normalizedCode));
+    
+    // Update formData type voordat we zoeken
+    setFormData(prev => ({
+      ...prev,
+      type: isISBN ? 'book' : 'music',
+      barcode: normalizedCode
+    }));
+    
+    // Wacht even zodat de type update doorwerkt
+    await new Promise(resolve => setTimeout(resolve, 100));
+    
+    // Start de lookup
+    await lookupBarcode(normalizedCode);
+  }
+
   // Lookup barcode in online databases
   async function lookupBarcode(code: string) {
     setIsLoadingData(true);
@@ -1246,14 +1278,40 @@ Voor vragen: bezoek seniorease.nl
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
                       Barcode:
                     </label>
-                    <input
-                      type="text"
-                      value={formData.barcode}
-                      onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none"
-                      placeholder="ISBN of EAN code"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        value={formData.barcode}
+                        onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && formData.barcode.trim() && isValidBarcode(formData.barcode)) {
+                            e.preventDefault();
+                            handleSearchBarcode();
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
+                                 focus:border-primary focus:outline-none"
+                        placeholder="ISBN of EAN code"
+                      />
+                      <button
+                        type="button"
+                        onClick={handleSearchBarcode}
+                        disabled={!formData.barcode.trim() || !isValidBarcode(formData.barcode) || isLoadingData}
+                        className="bg-secondary text-white px-6 py-3 rounded-lg text-senior-base font-bold
+                                 hover:bg-secondary-dark disabled:opacity-50 disabled:cursor-not-allowed
+                                 transition-all shadow-lg hover:shadow-xl whitespace-nowrap
+                                 flex items-center justify-center gap-2"
+                        title="Zoek informatie online op"
+                      >
+                        <span className="text-xl">🔍</span>
+                        <span className="hidden sm:inline">Zoeken</span>
+                      </button>
+                    </div>
+                    {formData.barcode.trim() && !isValidBarcode(formData.barcode) && (
+                      <p className="mt-2 text-senior-sm text-red-600">
+                        ⚠️ Voer een geldige ISBN of EAN code in (minimaal 10 cijfers)
+                      </p>
+                    )}
                   </div>
 
                   <div>
