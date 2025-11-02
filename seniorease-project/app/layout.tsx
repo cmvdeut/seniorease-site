@@ -1,6 +1,5 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import PWAInstall from "./components/PWAInstall";
 
 export const metadata: Metadata = {
   title: "SeniorEase - Mijn Bibliotheek",
@@ -33,7 +32,6 @@ export default function RootLayout({
       </head>
       <body className="antialiased">
         {children}
-        <PWAInstall />
       </body>
     </html>
   );

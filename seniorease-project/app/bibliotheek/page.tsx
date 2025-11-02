@@ -968,21 +968,22 @@ export default function BibliotheekPage() {
                       </div>
                     </div>
                     
-                    {/* Instructie tekst */}
-                    <div className="absolute bottom-20 left-0 right-0 text-center pointer-events-none">
-                      <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
-                        Houd de barcode in het kader
-                      </p>
-                      <p className="text-white text-senior-base drop-shadow-lg">
-                        Zorg dat de barcode helemaal zichtbaar is en goed verlicht
-                      </p>
-                    </div>
                   </div>
                   
-                  {/* Sluit knop */}
+                  {/* Instructie tekst - onder het scanner kader */}
+                  <div className="mt-4 text-center">
+                    <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
+                      Houd de barcode in het kader
+                    </p>
+                    <p className="text-white text-senior-base drop-shadow-lg">
+                      Zorg dat de barcode helemaal zichtbaar is en goed verlicht
+                    </p>
+                  </div>
+                  
+                  {/* Sluit knop - lager geplaatst */}
                   <button
                     onClick={stopScanner}
-                    className="absolute top-8 right-8 bg-white border-4 border-red-600 rounded-full
+                    className="absolute top-20 right-8 bg-white border-4 border-red-600 rounded-full
                              w-16 h-16 flex items-center justify-center hover:bg-red-50 
                              transition-all shadow-xl hover:shadow-2xl"
                     aria-label="Sluiten"
