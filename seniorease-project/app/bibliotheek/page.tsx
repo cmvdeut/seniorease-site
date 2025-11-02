@@ -442,6 +442,8 @@ Voor vragen: bezoek seniorease.nl
       // Detecteer of het mobiel is voor andere constraints
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
       
+      setDebugLogs(prev => [...prev, 'Initialiseer Quagga...']);
+      
       Quagga.init({
         inputStream: {
           name: "Live",
@@ -493,10 +495,15 @@ Voor vragen: bezoek seniorease.nl
       }, function(err: any) {
         if (err) {
           console.error('Quagga init error:', err);
+          const errorMsg = `Fout: ${err.message || 'Camera niet beschikbaar'}`;
+          setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
           alert('Camera kon niet worden gestart. Controleer de permissies en zorg dat de camera beschikbaar is.');
           stopScanner();
           return;
         }
+        
+        console.log('Quagga init succesvol');
+        setDebugLogs(prev => [...prev, '✓ Quagga geïnitialiseerd']);
         
         console.log('Quagga gestart, wacht op barcode...');
         const settingsMsg = `Instellingen: Mobiel=${isMobile}, Workers=2, PatchSize=medium`;
@@ -506,10 +513,20 @@ Voor vragen: bezoek seniorease.nl
           patchSize: isMobile ? "medium" : "medium",
           workers: isMobile ? 2 : 2
         });
-        setDebugLogs(prev => [...prev, 'Scanner gestart', settingsMsg, 'Wacht op barcode...']);
-        Quagga.start();
+        setDebugLogs(prev => [...prev, 'Start camera...', settingsMsg]);
+        
+        try {
+          Quagga.start();
+          setDebugLogs(prev => [...prev, '✓ Camera gestart, wacht op barcode...']);
+          console.log('Quagga.start() aangeroepen');
+        } catch (startError: any) {
+          console.error('Quagga.start() error:', startError);
+          setDebugLogs(prev => [...prev, `❌ Start fout: ${startError.message || 'Onbekend'}`]);
+        }
         
         // Registreer detection handler NA dat Quagga is gestart
+        setDebugLogs(prev => [...prev, 'Detectie handler geregistreerd']);
+        
         Quagga.onDetected(async (result: any) => {
           const rawCode = result.codeResult?.code;
           const codeFormat = result.codeResult?.format || 'onbekend';
