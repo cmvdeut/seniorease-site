@@ -437,38 +437,42 @@ Voor vragen: bezoek seniorease.nl
       // Verwijder oude event listeners als die er zijn
       Quagga.offDetected();
       
+      // Detecteer of het mobiel is voor andere constraints
+      const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
+      
       Quagga.init({
         inputStream: {
           name: "Live",
           type: "LiveStream",
           target: container,
-          constraints: {
+          constraints: isMobile ? {
+            width: { ideal: 640 },
+            height: { ideal: 480 },
+            facingMode: "environment"
+          } : {
             width: { min: 640, ideal: 1280, max: 1920 },
             height: { min: 480, ideal: 720, max: 1080 },
             facingMode: "environment"
           },
-          area: { // Focus gebied voor betere detectie
-            top: "20%",
-            right: "20%",
-            left: "20%",
-            bottom: "20%"
+          area: { // Focus gebied voor betere detectie (centraal)
+            top: "25%",
+            right: "25%",
+            left: "25%",
+            bottom: "25%"
           }
         },
         locator: {
-          patchSize: "medium",
+          patchSize: isMobile ? "small" : "medium",
           halfSample: true
         },
-        numOfWorkers: 2,
+        numOfWorkers: isMobile ? 1 : 2,
         decoder: {
           readers: [
             "ean_reader",
-            "ean_8_reader", 
-            "code_128_reader",
-            "code_39_reader",
-            "code_39_vin_reader",
-            "codabar_reader",
+            "ean_8_reader",
             "upc_reader",
-            "upc_e_reader"
+            "upc_e_reader",
+            "code_128_reader"
           ],
           debug: {
             showCanvas: false,
@@ -1477,61 +1481,58 @@ Voor vragen: bezoek seniorease.nl
 
             {/* Scanner Overlay */}
             {showScanner && (
-              <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex items-center justify-center">
-                <div className="relative w-full max-w-2xl p-4">
-                  {/* Waarschuwing banner */}
-                  <div className="mb-4 bg-yellow-100 border-2 border-yellow-300 rounded-xl p-4 shadow-lg">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">💡</span>
-                      <p className="text-senior-base font-bold text-yellow-900">
-                        Tip: Barcode scanner werkt het beste op telefoon of tablet
-                      </p>
-                    </div>
+              <div className="fixed inset-0 bg-black bg-opacity-90 z-50 flex flex-col items-center justify-center p-4">
+                {/* Waarschuwing banner */}
+                <div className="mb-4 bg-yellow-100 border-2 border-yellow-300 rounded-xl p-3 sm:p-4 shadow-lg max-w-2xl w-full">
+                  <div className="flex items-center gap-3">
+                    <span className="text-xl sm:text-2xl">💡</span>
+                    <p className="text-sm sm:text-senior-base font-bold text-yellow-900">
+                      Tip: Barcode scanner werkt het beste op telefoon of tablet
+                    </p>
                   </div>
+                </div>
+                
+                {/* Scanner Container met Overlay */}
+                <div className="relative w-full max-w-2xl flex items-center justify-center">
+                  <div id="scanner-container" className="w-full aspect-video bg-black rounded-lg overflow-hidden relative" />
                   
-                  {/* Scanner Container met Overlay */}
-                  <div className="relative w-full">
-                    <div id="scanner-container" className="w-full h-96 bg-black rounded-lg overflow-hidden relative" />
-                    
-                    {/* Scanner Kader Overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                      {/* Buitenste overlay (donker) */}
-                      <div className="absolute inset-0 bg-black bg-opacity-60">
-                        {/* Transparant venster in het midden */}
-                        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                      w-64 h-48 border-4 border-white rounded-lg shadow-2xl">
-                          {/* Hoek decoraties */}
-                          <div className="absolute -top-2 -left-2 w-8 h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
-                          <div className="absolute -top-2 -right-2 w-8 h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
-                          <div className="absolute -bottom-2 -left-2 w-8 h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
-                          <div className="absolute -bottom-2 -right-2 w-8 h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
-                        </div>
+                  {/* Scanner Kader Overlay - perfect gecentreerd */}
+                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {/* Buitenste overlay (donker) */}
+                    <div className="absolute inset-0 bg-black bg-opacity-60">
+                      {/* Transparant venster in het midden - responsief */}
+                      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
+                                    w-3/4 sm:w-64 h-1/2 sm:h-48 border-4 border-white rounded-lg shadow-2xl">
+                        {/* Hoek decoraties */}
+                        <div className="absolute -top-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-l-4 border-primary rounded-tl-lg"></div>
+                        <div className="absolute -top-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 border-t-4 border-r-4 border-primary rounded-tr-lg"></div>
+                        <div className="absolute -bottom-2 -left-2 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-l-4 border-primary rounded-bl-lg"></div>
+                        <div className="absolute -bottom-2 -right-2 w-6 h-6 sm:w-8 sm:h-8 border-b-4 border-r-4 border-primary rounded-br-lg"></div>
                       </div>
                     </div>
-                    
                   </div>
-                  
-                  {/* Instructie tekst - onder het scanner kader */}
-                  <div className="mt-4 text-center">
-                    <p className="text-white text-senior-lg font-bold mb-2 drop-shadow-lg">
-                      Houd de barcode in het kader
-                    </p>
-                    <p className="text-white text-senior-base drop-shadow-lg">
-                      Zorg dat de barcode helemaal zichtbaar is en goed verlicht
-                    </p>
-                  </div>
-                  
-                  {/* Sluit knop - lager geplaatst */}
-                  <button
-                    onClick={stopScanner}
-                    className="absolute top-20 right-8 bg-white border-4 border-red-600 rounded-full
-                             w-16 h-16 flex items-center justify-center hover:bg-red-50 
-                             transition-all shadow-xl hover:shadow-2xl"
-                    aria-label="Sluiten"
-                  >
-                    <span className="text-3xl text-red-600 font-bold">✗</span>
-                  </button>
                 </div>
+                
+                {/* Instructie tekst - onder het scanner kader */}
+                <div className="mt-4 text-center max-w-2xl">
+                  <p className="text-white text-base sm:text-senior-lg font-bold mb-2 drop-shadow-lg">
+                    Houd de barcode in het kader
+                  </p>
+                  <p className="text-white text-sm sm:text-senior-base drop-shadow-lg">
+                    Zorg dat de barcode helemaal zichtbaar is en goed verlicht
+                  </p>
+                </div>
+                
+                {/* Sluit knop - rechtsboven */}
+                <button
+                  onClick={stopScanner}
+                  className="absolute top-4 sm:top-8 right-4 sm:right-8 bg-white border-4 border-red-600 rounded-full
+                           w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center hover:bg-red-50 
+                           transition-all shadow-xl hover:shadow-2xl z-10"
+                  aria-label="Sluiten"
+                >
+                  <span className="text-2xl sm:text-3xl text-red-600 font-bold">✗</span>
+                </button>
               </div>
             )}
 
