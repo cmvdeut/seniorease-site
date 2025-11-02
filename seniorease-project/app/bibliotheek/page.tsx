@@ -454,26 +454,28 @@ Voor vragen: bezoek seniorease.nl
             height: { min: 480, ideal: 720, max: 1080 },
             facingMode: "environment"
           },
-          area: { // Focus gebied voor betere detectie (centraal)
-            top: "25%",
-            right: "25%",
-            left: "25%",
-            bottom: "25%"
+          area: { // Focus gebied voor betere detectie (centraal - aangepast aan kader grootte)
+            top: "20%",
+            right: "12.5%",
+            left: "12.5%",
+            bottom: "20%"
           }
         },
         locator: {
-          patchSize: isMobile ? "small" : "medium",
-          halfSample: true
+          patchSize: isMobile ? "medium" : "medium",
+          halfSample: false
         },
-        numOfWorkers: isMobile ? 1 : 2,
+        numOfWorkers: isMobile ? 2 : 2,
         decoder: {
           readers: [
             "ean_reader",
             "ean_8_reader",
             "upc_reader",
             "upc_e_reader",
+            "upc_a_reader",
             "code_128_reader"
           ],
+          multiple: true,
           debug: {
             showCanvas: false,
             showPatches: false,
@@ -495,12 +497,26 @@ Voor vragen: bezoek seniorease.nl
         }
         
         console.log('Quagga gestart, wacht op barcode...');
+        console.log('Scanner instellingen:', {
+          isMobile,
+          area: { top: "20%", right: "12.5%", left: "12.5%", bottom: "20%" },
+          patchSize: isMobile ? "medium" : "medium",
+          workers: isMobile ? 2 : 2
+        });
         Quagga.start();
         
         // Registreer detection handler NA dat Quagga is gestart
         Quagga.onDetected(async (result: any) => {
-          const rawCode = result.codeResult.code;
-          console.log('Barcode detected (raw):', rawCode);
+          const rawCode = result.codeResult?.code;
+          console.log('=== Barcode Detection ===');
+          console.log('Raw result:', result);
+          console.log('Raw code:', rawCode);
+          console.log('Code type:', result.codeResult?.format);
+          
+          if (!rawCode) {
+            console.warn('Geen code gevonden in result');
+            return;
+          }
           
           // Valideer en normaliseer de code
           if (!isValidBarcode(rawCode)) {
@@ -522,8 +538,8 @@ Voor vragen: bezoek seniorease.nl
             clearTimeout(detectionTimeout);
           }
           
-          // Accepteer code na 2 consistente detecties, of na 1 seconde zonder nieuwe detecties
-          if (currentCount >= 2) {
+          // Accepteer code na 1 consistente detectie (verlaagd voor betere mobiele detectie), of na timeout
+          if (currentCount >= 1) {
             // Stop scanner
             Quagga.stop();
             stopScanner();
@@ -1502,7 +1518,7 @@ Voor vragen: bezoek seniorease.nl
                     <div className="absolute inset-0 bg-black bg-opacity-60">
                       {/* Transparant venster in het midden - kleiner op mobiel, perfect gecentreerd */}
                       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 
-                                    w-[75%] max-w-[240px] h-[45%] max-h-[180px]
+                                    w-[75%] max-w-[240px] h-[55%] max-h-[220px]
                                     sm:w-64 sm:h-48
                                     border-4 border-white rounded-lg shadow-2xl">
                         {/* Hoek decoraties */}
