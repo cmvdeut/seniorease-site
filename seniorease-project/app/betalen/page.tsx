@@ -9,14 +9,22 @@ export default function BetalenPage() {
   const [licentieCode, setLicentieCode] = useState('');
   const [betaalStatus, setBetaalStatus] = useState<'pending' | 'paid' | 'error'>('pending');
   const [email, setEmail] = useState('');
+  const [heeftLicentie, setHeeftLicentie] = useState(false);
 
   // Check of er al een licentie is
   useEffect(() => {
     const licentie = localStorage.getItem('seniorease-licentie');
     if (licentie) {
-      router.push('/bibliotheek');
+      try {
+        const licentieData = JSON.parse(licentie);
+        if (licentieData.valid) {
+          setHeeftLicentie(true);
+        }
+      } catch (e) {
+        // Geen licentie
+      }
     }
-  }, [router]);
+  }, []);
 
   // Redirect naar Stripe Payment Link
   function handleBetalen() {
@@ -113,6 +121,24 @@ export default function BetalenPage() {
             </div>
 
             <div className="space-y-6">
+              {/* Melding als er al een licentie is */}
+              {heeftLicentie && (
+                <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6">
+                  <p className="text-senior-base font-bold text-blue-900 mb-2">
+                    ℹ️ U heeft al een licentie
+                  </p>
+                  <p className="text-senior-sm text-blue-800 mb-3">
+                    U kunt deze pagina gebruiken om een licentie te kopen voor een ander apparaat of voor iemand anders.
+                  </p>
+                  <Link
+                    href="/bibliotheek"
+                    className="inline-block text-senior-sm text-blue-700 hover:underline font-bold"
+                  >
+                    → Ga naar Bibliotheek App
+                  </Link>
+                </div>
+              )}
+
               {/* E-mail invoer */}
               <div>
                 <label className="block text-senior-base font-bold text-gray-700 mb-2">
