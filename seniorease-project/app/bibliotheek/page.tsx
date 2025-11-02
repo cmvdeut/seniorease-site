@@ -87,6 +87,57 @@ export default function BibliotheekPage() {
     link.click();
   }
 
+  // Valideer ISBN/EAN code
+  function isValidBarcode(code: string): boolean {
+    if (!code) return false;
+    
+    // Verwijder alle niet-numerieke tekens (behalve X voor ISBN-10)
+    const cleanCode = code.replace(/[^0-9X]/g, '');
+    
+    // ISBN-13: 13 cijfers, begint met 978 of 979
+    if (cleanCode.length === 13) {
+      if (cleanCode.startsWith('978') || cleanCode.startsWith('979')) {
+        return true; // ISBN-13
+      }
+      // EAN-13 voor muziek (13 cijfers, niet 978/979)
+      if (/^\d{13}$/.test(cleanCode)) {
+        return true; // EAN-13
+      }
+    }
+    
+    // ISBN-10: 10 tekens (cijfers of X)
+    if (cleanCode.length === 10 && /^[0-9]{9}[0-9X]$/.test(cleanCode)) {
+      return true; // ISBN-10
+    }
+    
+    // EAN-8: 8 cijfers
+    if (cleanCode.length === 8 && /^\d{8}$/.test(cleanCode)) {
+      return true; // EAN-8
+    }
+    
+    // UPC-A: 12 cijfers
+    if (cleanCode.length === 12 && /^\d{12}$/.test(cleanCode)) {
+      return true; // UPC-A
+    }
+    
+    // UPC-E: 6-8 cijfers
+    if (cleanCode.length >= 6 && cleanCode.length <= 8 && /^\d+$/.test(cleanCode)) {
+      return true; // UPC-E
+    }
+    
+    return false;
+  }
+
+  // Normaliseer barcode (verwijder streepjes/spaties, behoud X voor ISBN-10)
+  function normalizeBarcode(code: string): string {
+    // Voor ISBN-10: behoud X aan het einde
+    if (code.length === 10 && code.toUpperCase().endsWith('X')) {
+      return code.replace(/[^0-9X]/g, '').toUpperCase();
+    }
+    // Voor andere codes: alleen cijfers
+    return code.replace(/[^0-9]/g, '');
+  }
+
   // Start barcode scanner
   function startScanner() {
     if (typeof window === 'undefined' || !(window as any).Quagga) {
@@ -98,6 +149,10 @@ export default function BibliotheekPage() {
     setDetectedBarcode(null);
     setCountdown(0);
     setLoadError(null);
+    
+    // Verzamel meerdere detecties voor betrouwbaarheid
+    let detectionCounts: Map<string, number> = new Map();
+    let detectionTimeout: NodeJS.Timeout | null = null;
     
     // Wacht tot de scanner container in de DOM staat
     setTimeout(() => {
@@ -171,43 +226,106 @@ export default function BibliotheekPage() {
         
         // Registreer detection handler NA dat Quagga is gestart
         Quagga.onDetected(async (result: any) => {
-          const code = result.codeResult.code;
-          console.log('Barcode detected:', code);
+          const rawCode = result.codeResult.code;
+          console.log('Barcode detected (raw):', rawCode);
           
-          // Verifieer dat we een geldige code hebben
-          if (!code || code.length < 5) {
-            console.warn('Ongeldige barcode gedetecteerd:', code);
+          // Valideer en normaliseer de code
+          if (!isValidBarcode(rawCode)) {
+            console.warn('Ongeldige barcode gedetecteerd:', rawCode);
             return;
           }
           
-          // Stop scanner direct
-          Quagga.stop();
-          stopScanner();
+          const normalizedCode = normalizeBarcode(rawCode);
+          console.log('Barcode normalized:', normalizedCode);
           
-          // Toon formulier en vul barcode in
-          setShowAddForm(true);
-          setFormData(prev => ({ ...prev, barcode: code }));
-          setDetectedBarcode(code);
-          setCountdown(4);
-          setLoadError(null);
+          // Tel hoe vaak deze code is gedetecteerd
+          const currentCount = (detectionCounts.get(normalizedCode) || 0) + 1;
+          detectionCounts.set(normalizedCode, currentCount);
           
-          // Start countdown en wacht 4 seconden voordat we gaan zoeken
-          const interval = setInterval(() => {
-            setCountdown((prev) => {
-              if (prev <= 1) {
-                clearInterval(interval);
-                return 0;
+          console.log(`Code "${normalizedCode}" gedetecteerd ${currentCount}x`);
+          
+          // Reset timeout bij elke nieuwe detectie
+          if (detectionTimeout) {
+            clearTimeout(detectionTimeout);
+          }
+          
+          // Accepteer code na 2 consistente detecties, of na 1 seconde zonder nieuwe detecties
+          if (currentCount >= 2) {
+            // Stop scanner
+            Quagga.stop();
+            stopScanner();
+            
+            // Toon formulier en vul barcode in
+            setShowAddForm(true);
+            setFormData(prev => ({ ...prev, barcode: normalizedCode }));
+            setDetectedBarcode(normalizedCode);
+            setCountdown(4);
+            setLoadError(null);
+            
+            // Start countdown en wacht 4 seconden voordat we gaan zoeken
+            const interval = setInterval(() => {
+              setCountdown((prev) => {
+                if (prev <= 1) {
+                  clearInterval(interval);
+                  return 0;
+                }
+                return prev - 1;
+              });
+            }, 1000);
+            
+            // Wacht 4 seconden, dan zoek online
+            setTimeout(async () => {
+              clearInterval(interval);
+              setCountdown(0);
+              await lookupBarcode(normalizedCode);
+            }, 4000);
+          } else {
+            // Wacht op meer detecties of timeout
+            detectionTimeout = setTimeout(() => {
+              // Na 1 seconde zonder nieuwe detecties, accepteer de meest voorkomende code
+              let bestCode = '';
+              let bestCount = 0;
+              detectionCounts.forEach((count, code) => {
+                if (count > bestCount) {
+                  bestCount = count;
+                  bestCode = code;
+                }
+              });
+              
+              if (bestCode && bestCount >= 1) {
+                console.log(`Accepteer code na timeout: ${bestCode} (${bestCount}x)`);
+                
+                // Stop scanner
+                Quagga.stop();
+                stopScanner();
+                
+                // Toon formulier en vul barcode in
+                setShowAddForm(true);
+                setFormData(prev => ({ ...prev, barcode: bestCode }));
+                setDetectedBarcode(bestCode);
+                setCountdown(4);
+                setLoadError(null);
+                
+                // Start countdown en wacht 4 seconden voordat we gaan zoeken
+                const interval = setInterval(() => {
+                  setCountdown((prev) => {
+                    if (prev <= 1) {
+                      clearInterval(interval);
+                      return 0;
+                    }
+                    return prev - 1;
+                  });
+                }, 1000);
+                
+                // Wacht 4 seconden, dan zoek online
+                setTimeout(async () => {
+                  clearInterval(interval);
+                  setCountdown(0);
+                  await lookupBarcode(bestCode);
+                }, 4000);
               }
-              return prev - 1;
-            });
-          }, 1000);
-          
-          // Wacht 4 seconden, dan zoek online
-          setTimeout(async () => {
-            clearInterval(interval);
-            setCountdown(0);
-            await lookupBarcode(code);
-          }, 4000);
+            }, 1000);
+          }
         });
       });
     }, 200); // Iets langer wachten voor DOM ready
@@ -234,18 +352,30 @@ export default function BibliotheekPage() {
     setLoadError(null);
 
     try {
+      // Normaliseer de code eerst
+      const normalizedCode = normalizeBarcode(code);
+      
+      // Valideer nogmaals
+      if (!isValidBarcode(normalizedCode)) {
+        throw new Error('Ongeldige barcode format');
+      }
+      
+      console.log('Zoeken naar barcode:', normalizedCode);
+      
       // Bepaal of het ISBN (boek) of EAN (muziek) is
-      // ISBN-13 begint met 978 of 979, ISBN-10 heeft 10 cijfers
+      // ISBN-13 begint met 978 of 979, ISBN-10 heeft 10 tekens
       // EAN voor muziek is meestal 13 cijfers maar niet 978/979
       
-      const isISBN = code.startsWith('978') || code.startsWith('979') || code.length === 10;
+      const isISBN = normalizedCode.startsWith('978') || 
+                     normalizedCode.startsWith('979') || 
+                     (normalizedCode.length === 10 && /^[0-9]{9}[0-9X]$/.test(normalizedCode));
       
       if (isISBN) {
         // Zoek boek via Open Library API
-        await lookupBook(code);
+        await lookupBook(normalizedCode);
       } else {
         // Zoek muziek via MusicBrainz API
-        await lookupMusic(code);
+        await lookupMusic(normalizedCode);
       }
     } catch (error) {
       console.error('Error looking up barcode:', error);
@@ -257,8 +387,11 @@ export default function BibliotheekPage() {
   // Lookup boek via Open Library API
   async function lookupBook(isbn: string) {
     try {
-      // Normaliseer ISBN (verwijder streepjes)
-      const cleanISBN = isbn.replace(/[-\s]/g, '');
+      // ISBN is al genormaliseerd, maar zorg dat het formaat correct is voor API
+      // Open Library accepteert ISBN-10 en ISBN-13 zonder streepjes
+      const cleanISBN = normalizeBarcode(isbn);
+      
+      console.log('Zoeken naar boek met ISBN:', cleanISBN);
       
       // Probeer Open Library API
       const response = await fetch(`https://openlibrary.org/isbn/${cleanISBN}.json`);
@@ -313,7 +446,9 @@ export default function BibliotheekPage() {
   // Fallback: Google Books API
   async function lookupBookGoogle(isbn: string) {
     try {
-      const cleanISBN = isbn.replace(/[-\s]/g, '');
+      // ISBN is al genormaliseerd
+      const cleanISBN = normalizeBarcode(isbn);
+      console.log('Zoeken naar boek met Google Books API, ISBN:', cleanISBN);
       const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${cleanISBN}`);
       
       if (!response.ok) {
@@ -348,9 +483,13 @@ export default function BibliotheekPage() {
   // Lookup muziek via MusicBrainz API
   async function lookupMusic(ean: string) {
     try {
+      // EAN is al genormaliseerd
+      const cleanEAN = normalizeBarcode(ean);
+      console.log('Zoeken naar muziek met EAN:', cleanEAN);
+      
       // MusicBrainz API vereist een User-Agent header
       const response = await fetch(
-        `https://musicbrainz.org/ws/2/release?query=barcode:${ean}&fmt=json`,
+        `https://musicbrainz.org/ws/2/release?query=barcode:${cleanEAN}&fmt=json`,
         {
           headers: {
             'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
@@ -382,7 +521,7 @@ export default function BibliotheekPage() {
           type: 'music',
           title: release.title || '',
           author: artist,
-          barcode: ean
+          barcode: cleanEAN
         }));
         
         setIsLoadingData(false);
