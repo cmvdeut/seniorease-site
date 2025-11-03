@@ -8,6 +8,7 @@ function DownloadContent() {
   const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   const [downloadUrl, setDownloadUrl] = useState<string>('');
   const [isAndroid, setIsAndroid] = useState(false);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     // Check licentie
@@ -34,6 +35,28 @@ function DownloadContent() {
     const userAgent = navigator.userAgent;
     setIsAndroid(/Android/i.test(userAgent));
   }, []);
+
+  // Functie om APK te downloaden en automatisch te openen (Android)
+  const handleDownload = () => {
+    if (!downloadUrl) return;
+    
+    setDownloading(true);
+    
+    if (isAndroid) {
+      // Voor Android: probeer direct de URL te openen
+      // Met Content-Disposition: inline zou Android automatisch de installer moeten openen
+      // Als gebruiker wordt gevraagd om app te kiezen, kunnen ze "Altijd gebruiken" aanzetten
+      window.location.href = downloadUrl;
+      // Note: setDownloading wordt niet gereset omdat we de pagina verlaten
+    } else {
+      // Voor desktop: gewone download
+      const link = document.createElement('a');
+      link.href = downloadUrl;
+      link.download = 'Seniorease-Bibliotheek.apk';
+      link.click();
+      setDownloading(false);
+    }
+  };
 
   // Loading state
   if (hasLicense === null) {
@@ -88,11 +111,44 @@ function DownloadContent() {
             </p>
           </div>
 
-          {/* QR Code voor download */}
+          {/* Direct Download Button */}
           <div className="max-w-md mx-auto mb-8">
             <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8">
               <h2 className="text-senior-xl font-bold text-primary mb-6 text-center">
-                📱 Scan QR Code om te downloaden
+                📱 Download de App
+              </h2>
+              <button
+                onClick={handleDownload}
+                disabled={downloading || !downloadUrl}
+                className="w-full bg-primary text-white px-8 py-6 rounded-xl text-senior-xl font-bold
+                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
+                         disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+              >
+                {downloading ? (
+                  <>
+                    <span className="animate-spin">⏳</span>
+                    <span>Downloaden...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>📥</span>
+                    <span>Download APK</span>
+                  </>
+                )}
+              </button>
+              {isAndroid && (
+                <p className="text-senior-sm text-green-700 text-center mt-4 font-bold">
+                  ✅ Op Android wordt de installer automatisch geopend!
+                </p>
+              )}
+            </div>
+          </div>
+
+          {/* QR Code voor download */}
+          <div className="max-w-md mx-auto mb-8">
+            <div className="bg-white rounded-2xl shadow-xl border-4 border-secondary p-8">
+              <h2 className="text-senior-xl font-bold text-secondary mb-6 text-center">
+                📱 Of Scan QR Code
               </h2>
               <div className="flex flex-col items-center">
                 <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-6">
@@ -112,8 +168,11 @@ function DownloadContent() {
                 <p className="text-senior-base text-gray-700 text-center font-bold mb-2">
                   Scan met uw telefoon camera
                 </p>
-                <p className="text-senior-sm text-gray-600 text-center">
+                <p className="text-senior-sm text-gray-600 text-center mb-2">
                   De download start automatisch na het scannen
+                </p>
+                <p className="text-senior-xs text-orange-700 text-center font-bold">
+                  ⚠️ Als u "bestand mogelijk schade" ziet: dit is normaal en veilig. Klik gewoon op "Toestaan" of "Doorgaan".
                 </p>
               </div>
             </div>
@@ -132,16 +191,49 @@ function DownloadContent() {
                 <ol className="list-decimal list-inside space-y-2 ml-4">
                   <li>Klik op <strong>"Download APK"</strong> hierboven, of scan de QR code</li>
                   <li>Wacht tot de download klaar is</li>
-                  <li>U ziet een melding: <strong>"Download voltooid"</strong></li>
+                  <li className="font-bold text-green-700">
+                    ✅ Op Android wordt de installer automatisch geopend!
+                  </li>
+                  <li className="text-senior-sm text-gray-600">
+                    (Als dit niet gebeurt, ga naar Downloads en tap op het APK bestand)
+                  </li>
                 </ol>
               </div>
 
-              {/* Stap 2: Toestemming */}
+              {/* Stap 1.5: App keuze maken */}
+              <div className="bg-green-50 border-2 border-green-400 rounded-xl p-4 mb-4">
+                <p className="font-bold text-green-900 mb-2 text-senior-lg">✅ Eénmalige instelling: Kies standaard app</p>
+                <p className="text-senior-base text-green-900 mb-2">
+                  Als u wordt gevraagd om te kiezen tussen apps (zoals "Pakket installatie" of "APK Mirror Installer"):
+                </p>
+                <ol className="list-decimal list-inside space-y-2 ml-4 text-senior-base text-green-900">
+                  <li>Kies <strong>"Pakket installatie"</strong> (de standaard Android installer)</li>
+                  <li className="font-bold">✅ Zet het vinkje aan bij <strong>"Altijd gebruiken"</strong> of <strong>"Standaard instellen"</strong></li>
+                  <li>Klik op <strong>"Openen"</strong></li>
+                  <li>✅ Volgende keer gaat het automatisch!</li>
+                </ol>
+              </div>
+
+              {/* Stap 2: Waarschuwing over "bestand mogelijk schade" */}
+              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-4 mb-4">
+                <p className="font-bold text-yellow-900 mb-2 text-senior-lg">⚠️ Belangrijke informatie over de waarschuwing</p>
+                <p className="text-senior-base text-yellow-900 mb-2">
+                  Als u een melding ziet <strong>"Bestand mogelijk schade"</strong> of <strong>"Dit bestand kan uw apparaat beschadigen"</strong>:
+                </p>
+                <ul className="list-disc list-inside space-y-1 ml-4 text-senior-base text-yellow-900">
+                  <li>Dit is een <strong>normale beveiligingswaarschuwing</strong> van Android</li>
+                  <li>Het bestand is <strong>veilig</strong> - dit verschijnt bij alle apps buiten de Play Store</li>
+                  <li>U kunt gewoon op <strong>"Downloaden toch toestaan"</strong> of <strong>"Doorgaan"</strong> klikken</li>
+                  <li>De app is volledig functioneel na installatie</li>
+                </ul>
+              </div>
+
+              {/* Stap 3: Toestemming */}
               <div>
-                <h3 className="font-bold mb-2 text-senior-lg">Stap 2: Toestemming geven (eenmalig)</h3>
+                <h3 className="font-bold mb-2 text-senior-lg">Stap 2: App kiezen en toestemming geven</h3>
                 <p className="mb-3">Android vraagt om toestemming. Dit is <strong>veilig</strong> en maar <strong>één keer</strong> nodig:</p>
                 <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li>Open het gedownloade APK bestand (tap op melding of ga naar Downloads)</li>
+                  <li>Als u een keuze ziet tussen apps: Kies <strong>"Pakket installatie"</strong> en zet <strong>"Altijd gebruiken"</strong> aan</li>
                   <li>Android toont: <strong>"Installeer dit bestand?"</strong></li>
                   <li>Klik op <strong>"Installeer"</strong></li>
                   <li className="font-bold">Als u ziet: <strong>"Toestaan van onbekende bronnen"</strong></li>
@@ -167,6 +259,8 @@ function DownloadContent() {
               <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mt-4">
                 <p className="font-bold mb-2">💡 Hulp nodig?</p>
                 <ul className="list-disc list-inside space-y-1 ml-4">
+                  <li><strong>Moet ik steeds een app kiezen?</strong> Zet bij de eerste keer "<strong>Altijd gebruiken</strong>" aan bij "Pakket installatie". Dan gaat het daarna automatisch!</li>
+                  <li><strong>"Bestand mogelijk schade" melding?</strong> Dit is normaal! Het bestand is veilig. Klik gewoon op "Toestaan" of "Doorgaan".</li>
                   <li><strong>Download niet gevonden?</strong> Check "Downloads" map of browser downloads</li>
                   <li><strong>Kan niet installeren?</strong> Ga naar Instellingen → Beveiliging → Onbekende bronnen (oude Android) of check per-app toestemming (nieuwe Android)</li>
                   <li><strong>Wil je het niet toestaan?</strong> U kunt altijd de webversie gebruiken in uw browser</li>

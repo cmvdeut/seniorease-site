@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readFile } from 'fs/promises';
+import { readFile, stat } from 'fs/promises';
 import { join } from 'path';
 
 export async function GET(request: NextRequest) {
@@ -11,14 +11,36 @@ export async function GET(request: NextRequest) {
     // Lees APK bestand (als die bestaat)
     const apkPath = join(process.cwd(), 'public', 'Seniorease-Bibliotheek.apk');
     
+    // Check of het een Android apparaat is
+    const userAgent = request.headers.get('user-agent') || '';
+    const isAndroid = /Android/i.test(userAgent);
+    
     try {
       const fileBuffer = await readFile(apkPath);
+      const fileStats = await stat(apkPath);
+      
+      // Voor Android: gebruik inline zodat browser het kan openen
+      // Voor andere: gebruik attachment voor download
+      const contentDisposition = isAndroid
+        ? 'inline; filename="Seniorease-Bibliotheek.apk"'
+        : 'attachment; filename="Seniorease-Bibliotheek.apk"';
+      
+      // Log voor debugging (alleen in development)
+      if (process.env.NODE_ENV === 'development') {
+        console.log(`Serving APK: ${apkPath}`);
+        console.log(`File size: ${fileBuffer.length} bytes`);
+        console.log(`Last modified: ${fileStats.mtime}`);
+      }
       
       return new NextResponse(fileBuffer, {
         headers: {
           'Content-Type': 'application/vnd.android.package-archive',
-          'Content-Disposition': 'attachment; filename="Seniorease-Bibliotheek.apk"',
+          'Content-Disposition': contentDisposition,
           'Content-Length': fileBuffer.length.toString(),
+          'Cache-Control': 'no-cache, no-store, must-revalidate',
+          'Pragma': 'no-cache',
+          'Expires': '0',
+          'X-Content-Type-Options': 'nosniff',
         },
       });
     } catch (fileError) {
