@@ -37,8 +37,15 @@ export default function BetalenPage() {
     sessionStorage.setItem('seniorease-payment-email', email);
     
     // Redirect direct naar Stripe Payment Link (geen loading state nodig)
-    // Test Payment Link (werkt alleen in Test Mode)
-    const stripeUrl = new URL('https://buy.stripe.com/test_cNi3co3yC45O70b4NM6c000');
+    // Gebruik test link in development, live link in production
+    // Test Payment Link: https://buy.stripe.com/test_cNi3co3yC45O70b4NM6c000
+    // Live Payment Link: https://buy.stripe.com/cNi3co3yC45O70b4NM6c000
+    const isDevelopment = window.location.hostname === 'localhost' || window.location.hostname.includes('vercel.app');
+    const paymentLink = isDevelopment 
+      ? 'https://buy.stripe.com/test_cNi3co3yC45O70b4NM6c000' // Test Mode
+      : 'https://buy.stripe.com/cNi3co3yC45O70b4NM6c000'; // Live Mode
+    
+    const stripeUrl = new URL(paymentLink);
     stripeUrl.searchParams.set('client_reference_id', email);
     
     // Redirect direct - geen state update nodig, gebruiker gaat naar Stripe
