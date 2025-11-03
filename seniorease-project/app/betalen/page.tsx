@@ -37,7 +37,8 @@ export default function BetalenPage() {
     sessionStorage.setItem('seniorease-payment-email', email);
     
     // Redirect direct naar Stripe Payment Link (geen loading state nodig)
-    const stripeUrl = new URL('https://buy.stripe.com/cNi3co3yC45O70b4NM6c000');
+    // Test Payment Link (werkt alleen in Test Mode)
+    const stripeUrl = new URL('https://buy.stripe.com/test_cNi3co3yC45O70b4NM6c000');
     stripeUrl.searchParams.set('client_reference_id', email);
     
     // Redirect direct - geen state update nodig, gebruiker gaat naar Stripe
