@@ -8,8 +8,40 @@ function SuccessContent() {
   const searchParams = useSearchParams();
   const [licentieCode, setLicentieCode] = useState<string>('');
   const [email, setEmail] = useState<string>('');
+  const [isAndroid, setIsAndroid] = useState(false);
+  const [autoDownloadStarted, setAutoDownloadStarted] = useState(false);
 
   useEffect(() => {
+    // Skip als download al gestart is
+    if (autoDownloadStarted) return;
+
+    // Functie om automatisch download te starten
+    const startAutoDownload = (android: boolean, hasLicense: boolean) => {
+      if (!hasLicense) return;
+      if (autoDownloadStarted) return; // Al gestart
+      
+      setAutoDownloadStarted(true);
+      const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+      const downloadUrl = `${baseUrl}/api/download-app`;
+
+      if (android) {
+        // Op Android: direct downloaden (opent automatisch installer)
+        setTimeout(() => {
+          window.location.href = downloadUrl;
+        }, 500);
+      } else {
+        // Op andere devices: ga naar download pagina
+        setTimeout(() => {
+          window.location.href = `${baseUrl}/download`;
+        }, 2000);
+      }
+    };
+
+    // Check of Android
+    const userAgent = navigator.userAgent;
+    const android = /Android/i.test(userAgent);
+    setIsAndroid(android);
+
     // Haal email op uit sessionStorage (van voor betaling)
     const paymentEmail = sessionStorage.getItem('seniorease-payment-email');
     if (paymentEmail) {
@@ -24,6 +56,10 @@ function SuccessContent() {
         const licentieData = JSON.parse(licentie);
         if (licentieData.valid) {
           setLicentieCode(licentieData.code || 'Geactiveerd');
+          // Start automatisch download na korte delay
+          setTimeout(() => {
+            startAutoDownload(android, licentieData.valid);
+          }, 500);
           return;
         }
       } catch (e) {
@@ -43,6 +79,13 @@ function SuccessContent() {
 
     localStorage.setItem('seniorease-licentie', JSON.stringify(licentieData));
     setLicentieCode(code);
+    
+    // Start automatisch download na licentie activatie
+    // Delay om zeker te zijn dat licentie opgeslagen is
+    setTimeout(() => {
+      startAutoDownload(android, true);
+    }, 1500);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -56,6 +99,24 @@ function SuccessContent() {
           <p className="text-senior-lg text-gray-700 mb-6">
             Uw licentie is geactiveerd
           </p>
+
+          {/* Automatische download melding */}
+          {autoDownloadStarted && (
+            <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mb-6 animate-pulse">
+              <p className="text-senior-base font-bold text-blue-900 mb-2">
+                📱 Download start automatisch...
+              </p>
+              {isAndroid ? (
+                <p className="text-senior-sm text-blue-800">
+                  Op Android wordt de installer automatisch geopend.
+                </p>
+              ) : (
+                <p className="text-senior-sm text-blue-800">
+                  U wordt doorgestuurd naar de download pagina...
+                </p>
+              )}
+            </div>
+          )}
           
           <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6 mb-6">
             <p className="text-senior-sm text-gray-600 mb-2">Uw licentie code:</p>
@@ -83,20 +144,33 @@ function SuccessContent() {
             )}
             
             <div className="space-y-4">
-              <Link
-                href="/download"
-                className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
-              >
-                📱 Download App (Android)
-              </Link>
-              <Link
-                href="/bibliotheek"
-                className="block bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                         hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl text-center"
-              >
-                → Open Mijn Bibliotheek (Web)
-              </Link>
+              {!autoDownloadStarted && (
+                <>
+                  <Link
+                    href="/download"
+                    className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                             hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
+                  >
+                    📱 Download App (Android)
+                  </Link>
+                  <Link
+                    href="/bibliotheek"
+                    className="block bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                             hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl text-center"
+                  >
+                    → Open Mijn Bibliotheek (Web)
+                  </Link>
+                </>
+              )}
+              {autoDownloadStarted && (
+                <Link
+                  href="/bibliotheek"
+                  className="block bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
+                           hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl text-center"
+                >
+                  → Open Mijn Bibliotheek (Web)
+                </Link>
+              )}
             </div>
             
             {/* Installatie Instructies */}
