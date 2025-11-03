@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -6,14 +6,19 @@ export const metadata: Metadata = {
   description: "Beheer uw boeken en muziek collectie. Scan barcodes of voer handmatig in.",
   keywords: ["senioren", "digitale hulp", "ouderen", "eenvoudig", "toegankelijk", "bibliotheek", "boeken", "muziek"],
   authors: [{ name: "SeniorEase" }],
-  viewport: "width=device-width, initial-scale=1, maximum-scale=5",
   manifest: "/manifest.json",
-  themeColor: "#8B5E3C",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
     title: "SeniorEase Bibliotheek",
   },
+};
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#8B5E3C",
 };
 
 export default function RootLayout({

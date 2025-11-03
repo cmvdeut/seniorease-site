@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 
-export default function ActiveerLicentiePage() {
+function ActiveerLicentieContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [licentieCode, setLicentieCode] = useState(searchParams.get('code') || '');
@@ -122,6 +122,21 @@ export default function ActiveerLicentiePage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ActiveerLicentiePage() {
+  return (
+    <Suspense fallback={
+      <main className="min-h-screen bg-neutral-cream flex items-center justify-center p-6">
+        <div className="text-center">
+          <div className="animate-spin text-6xl mb-4">⏳</div>
+          <p className="text-senior-lg text-gray-700">Laden...</p>
+        </div>
+      </main>
+    }>
+      <ActiveerLicentieContent />
+    </Suspense>
   );
 }
 
