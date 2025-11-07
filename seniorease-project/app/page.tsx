@@ -114,12 +114,37 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Andere activiteiten - Kleiner en secundair */}
+          {/* Tools Sectie */}
           <div className="mb-6">
             <h3 className="text-senior-lg font-bold text-gray-700 mb-4 text-center">
-              Andere activiteiten
+              🛠️ Handige Tools
             </h3>
-            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto">
+            <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+              {/* Rekenmachine */}
+              <Link 
+                href="/rekenmachine" 
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden"
+              >
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      🔢
+                    </div>
+                    <h3 className="text-senior-base font-bold text-gray-800">
+                      Rekenmachine
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                    Grote knoppen en duidelijk display. Eenvoudig rekenen.
+                  </p>
+                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Open</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+
               {/* Grote Klok */}
               <Link 
                 href="/klok" 
