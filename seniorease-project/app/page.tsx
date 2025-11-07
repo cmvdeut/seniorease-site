@@ -114,12 +114,52 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Tools Sectie */}
+          {/* Informatie Sectie */}
           <div className="mb-6">
             <h3 className="text-senior-lg font-bold text-gray-700 mb-4 text-center">
-              🛠️ Handige Tools
+              📖 Informatie & Links
             </h3>
-            <div className="grid md:grid-cols-3 gap-4 max-w-5xl mx-auto">
+            <div className="max-w-2xl mx-auto">
+              <Link 
+                href="/nuttige-links"
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden block"
+              >
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      🔗
+                    </div>
+                    <h3 className="text-senior-base font-bold text-gray-800">
+                      Contact & Activiteiten
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                    Reismaatjes, buddy's en nieuwe contacten vinden. Betrouwbare manieren om uw kennissenkring uit te breiden.
+                  </p>
+                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Bekijk links</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          </div>
+
+          {/* Tools Sectie */}
+          <div className="mb-6">
+            <div className="flex items-center justify-between mb-4">
+              <h3 className="text-senior-lg font-bold text-gray-700">
+                🛠️ Handige Tools
+              </h3>
+              <Link 
+                href="/tools"
+                className="text-senior-base text-primary hover:text-primary-dark font-semibold hover:underline"
+              >
+                Bekijk alle tools →
+              </Link>
+            </div>
+            <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
               {/* Rekenmachine */}
               <Link 
                 href="/rekenmachine" 
@@ -127,18 +167,68 @@ export default function Home() {
                          border-2 border-neutral-stone hover:border-primary overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex flex-col items-center gap-3 mb-3">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
                       🔢
                     </div>
-                    <h3 className="text-senior-base font-bold text-gray-800">
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
                       Rekenmachine
                     </h3>
                   </div>
-                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
                     Grote knoppen en duidelijk display. Eenvoudig rekenen.
                   </p>
-                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Open</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Afvinken maar! */}
+              <Link 
+                href="/afvinken" 
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden"
+              >
+                <div className="p-6">
+                  <div className="flex flex-col items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      ✅
+                    </div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
+                      Afvinken maar!
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
+                    Lijstjes maken en eenvoudig afvinken. Niets vergeten!
+                  </p>
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Open</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+
+              {/* Verjaardagskalender */}
+              <Link 
+                href="/kalender" 
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden"
+              >
+                <div className="p-6">
+                  <div className="flex flex-col items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      📅
+                    </div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
+                      Verjaardags-<br />kalender
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
+                    Verjaardagen bijhouden met filters.
+                  </p>
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
                     <span className="text-senior-xs">Open</span>
                     <span className="text-base">→</span>
                   </div>
@@ -152,18 +242,18 @@ export default function Home() {
                          border-2 border-neutral-stone hover:border-primary overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex flex-col items-center gap-3 mb-3">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
                       🕐
                     </div>
-                    <h3 className="text-senior-base font-bold text-gray-800">
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
                       Grote Klok
                     </h3>
                   </div>
-                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
                     Duidelijke weergave van tijd en datum met extra grote cijfers.
                   </p>
-                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
                     <span className="text-senior-xs">Open</span>
                     <span className="text-base">→</span>
                   </div>
@@ -177,18 +267,18 @@ export default function Home() {
                          border-2 border-neutral-stone hover:border-primary overflow-hidden"
               >
                 <div className="p-6">
-                  <div className="flex items-center gap-3 mb-3">
+                  <div className="flex flex-col items-center gap-3 mb-3">
                     <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
                       🧩
                     </div>
-                    <h3 className="text-senior-base font-bold text-gray-800">
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
                       Dagelijkse Puzzel
                     </h3>
                   </div>
-                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
                     Elke dag een nieuwe puzzel! Sudoku, woordzoeker en meer.
                   </p>
-                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
                     <span className="text-senior-xs">Speel</span>
                     <span className="text-base">→</span>
                   </div>
