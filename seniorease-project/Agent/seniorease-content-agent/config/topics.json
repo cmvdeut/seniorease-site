@@ -1,0 +1,61 @@
+{
+  "themes": [
+    {
+      "category": "smartphone_basics",
+      "topics": [
+        "WhatsApp berichten versturen naar kleinkinderen",
+        "Foto's maken en delen met familie",
+        "Volume aanpassen en alarmgeluiden instellen",
+        "Apps vinden en installeren uit de App Store",
+        "Notificaties beheren en uitzetten"
+      ]
+    },
+    {
+      "category": "tablet_tips",
+      "topics": [
+        "E-books lezen op je tablet",
+        "Videobellen met familie",
+        "Nieuws apps gebruiken",
+        "Weerbericht controleren",
+        "Agenda bijhouden op je tablet"
+      ]
+    },
+    {
+      "category": "internet_safety",
+      "topics": [
+        "Herkennen van phishing e-mails",
+        "Veilig online bankieren",
+        "Sterke wachtwoorden maken en onthouden",
+        "Wat te doen bij verdachte berichten",
+        "Privacy instellingen op Facebook"
+      ]
+    },
+    {
+      "category": "practical_apps",
+      "topics": [
+        "DigiD app gebruiken",
+        "Thuisarts app raadplegen",
+        "ov-chipkaart app gebruiken",
+        "Buienradar voor het weer",
+        "Recept apps voor koken"
+      ]
+    },
+    {
+      "category": "seniorease_features",
+      "topics": [
+        "Boeken scannen met SeniorEase",
+        "CD's toevoegen aan je collectie",
+        "Je bibliotheek doorzoeken",
+        "LP's beheren in de app",
+        "Welke barcode werken met SeniorEase"
+      ]
+    }
+  ],
+  "post_styles": [
+    "tip_van_de_dag",
+    "stap_voor_stap_uitleg",
+    "veelgemaakte_fout",
+    "vraag_en_antwoord",
+    "wist_je_dat"
+  ]
+}

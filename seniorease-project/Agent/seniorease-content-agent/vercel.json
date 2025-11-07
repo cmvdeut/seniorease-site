@@ -1,0 +1,13 @@
+{
+  "crons": [
+    {
+      "path": "/api/schedule-posts",
+      "schedule": "0 10 * * 1,3,5"
+    }
+  ],
+  "env": {
+    "ANTHROPIC_API_KEY": "@anthropic_api_key",
+    "FACEBOOK_PAGE_ACCESS_TOKEN": "@facebook_page_access_token",
+    "FACEBOOK_PAGE_ID": "@facebook_page_id"
+  }
+}
