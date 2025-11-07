@@ -44,9 +44,9 @@ export default function KlokPage() {
               <Image 
                 src="/heart-logo.png" 
                 alt="SeniorEase hartlogo" 
-                width={50} 
-                height={50}
-                className="w-12 h-12"
+                width={100} 
+                height={100}
+                className="w-32 h-32"
               />
               <span className="text-senior-lg font-bold text-primary">SeniorEase</span>
             </div>

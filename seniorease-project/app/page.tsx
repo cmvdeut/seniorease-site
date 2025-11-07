@@ -12,9 +12,9 @@ export default function Home() {
             <Image 
               src="/heart-logo.png" 
               alt="SeniorEase hartlogo" 
-              width={60} 
-              height={60}
-              className="w-16 h-16"
+              width={100} 
+              height={100}
+              className="w-32 h-32"
             />
             <div>
               <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
@@ -42,6 +42,9 @@ export default function Home() {
                     <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
                       Mijn Bibliotheek
                     </h2>
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                      <span className="font-bold">Gratis op de PC</span>
+                    </p>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
                       Beheer uw boeken en muziek collectie. Scan barcodes met uw camera of voer handmatig in.
                     </p>

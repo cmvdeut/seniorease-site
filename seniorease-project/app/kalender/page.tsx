@@ -302,9 +302,9 @@ export default function KalenderPage() {
               <Image 
                 src="/heart-logo.png" 
                 alt="SeniorEase hartlogo" 
-                width={50} 
-                height={50}
-                className="w-12 h-12"
+                width={100} 
+                height={100}
+                className="w-32 h-32"
               />
               <div>
                 <h1 className="text-senior-xl font-bold text-primary">Verjaardagskalender</h1>
