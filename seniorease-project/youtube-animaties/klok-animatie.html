@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grote Klok Animatie - SeniorEase</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #F5EEE6;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: absolute;
+            width: clamp(15px, 1.5vw, 20px);
+            height: clamp(15px, 1.5vw, 20px);
+            border: 2px solid #8B5E3C;
+            border-radius: 50%;
+            background: rgba(139, 94, 60, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease-out;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: #8B5E3C;
+            border-radius: 50%;
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+        }
+
+        /* Header */
+        .header {
+            background: #F5EEE6;
+            border-bottom: 2px solid #E0D5CA;
+            padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 20px);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: clamp(40px, 5vw, 80px);
+            height: clamp(40px, 5vw, 80px);
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.5vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: #666;
+        }
+
+        /* Homepage */
+        .homepage-content {
+            padding: clamp(15px, 2vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 40px);
+            margin-bottom: clamp(15px, 2vw, 30px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .card-text {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            margin-bottom: clamp(15px, 2vw, 30px);
+            line-height: 1.6;
+        }
+
+        .button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(12px, 1.5vw, 20px) clamp(24px, 3vw, 40px);
+            font-size: clamp(18px, 2.2vw, 32px);
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        /* Clock Display */
+        .clock-container {
+            padding: clamp(20px, 3vw, 40px);
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 150px);
+        }
+
+        .time-display {
+            background: white;
+            border: 4px solid rgba(139, 94, 60, 0.2);
+            border-radius: 20px;
+            padding: clamp(40px, 6vw, 80px);
+            margin-bottom: clamp(20px, 3vw, 40px);
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .time {
+            font-size: clamp(80px, 12vw, 180px);
+            font-weight: bold;
+            color: #8B5E3C;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: clamp(15px, 2vw, 25px);
+            font-family: 'Courier New', monospace;
+        }
+
+        .seconds-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: clamp(10px, 1.5vw, 20px);
+        }
+
+        .seconds-line {
+            height: 2px;
+            width: clamp(40px, 6vw, 80px);
+            background: #E0D5CA;
+            border-radius: 2px;
+        }
+
+        .seconds {
+            font-size: clamp(24px, 3vw, 48px);
+            color: #666;
+            font-weight: 500;
+            font-family: 'Courier New', monospace;
+        }
+
+        .date-display {
+            background: white;
+            border: 4px solid rgba(76, 175, 80, 0.2);
+            border-radius: 20px;
+            padding: clamp(30px, 4vw, 60px);
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .day-name {
+            font-size: clamp(28px, 3.5vw, 56px);
+            font-weight: bold;
+            color: #4CAF50;
+            text-align: center;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .date {
+            font-size: clamp(20px, 2.5vw, 40px);
+            color: #666;
+            text-align: center;
+        }
+
+        .tip-box {
+            margin-top: clamp(20px, 3vw, 40px);
+            background: rgba(255, 152, 0, 0.1);
+            border-left: 4px solid #FF9800;
+            border-radius: 10px;
+            padding: clamp(15px, 2vw, 25px);
+            max-width: 600px;
+        }
+
+        .tip-text {
+            font-size: clamp(14px, 1.8vw, 22px);
+            color: #666;
+            text-align: center;
+        }
+
+        /* Success */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(30px, 4vw, 60px) clamp(20px, 3vw, 40px);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: clamp(60px, 8vw, 120px);
+            margin-bottom: clamp(20px, 2.5vw, 40px);
+        }
+
+        .success-text {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 30px);
+        }
+
+        .success-description {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(8px, 0.8vw, 10px) clamp(16px, 1.5vw, 20px);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: #6D4A30;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="startAnimation()">Start</button>
+        <button class="control-btn" onclick="resetAnimation()">Reset</button>
+    </div>
+
+    <!-- Screen 1: Homepage -->
+    <div class="screen active" id="screen1">
+        <div class="header">
+            <div class="logo">🕐</div>
+            <div class="header-text">
+                <h1>SeniorEase</h1>
+                <p>Handige technologie zonder gedoe</p>
+            </div>
+        </div>
+        <div class="homepage-content">
+            <div class="card">
+                <div class="card-title">🕐 Grote Klok</div>
+                <div class="card-text">
+                    Extra grote tijd en datum weergave. Perfect om op afstand te lezen. 
+                    De tijd update automatisch elke seconde.
+                </div>
+                <button class="button" id="klokBtn">→ Open Grote Klok</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Clock Display -->
+    <div class="screen" id="screen2">
+        <div class="header">
+            <div class="logo">🕐</div>
+            <div class="header-text">
+                <h1>Grote Klok</h1>
+                <p>Extra grote tijd en datum - perfect om op afstand te lezen</p>
+            </div>
+        </div>
+        <div class="clock-container">
+            <div class="time-display">
+                <div class="time" id="timeDisplay">14:35</div>
+                <div class="seconds-container">
+                    <div class="seconds-line"></div>
+                    <div class="seconds" id="secondsDisplay">42</div>
+                    <div class="seconds-line"></div>
+                </div>
+            </div>
+
+            <div class="date-display">
+                <div class="day-name" id="dayName">Zaterdag</div>
+                <div class="date" id="dateDisplay">16 maart 2024</div>
+            </div>
+
+            <div class="tip-box">
+                <p class="tip-text">
+                    <strong>💡 Tip:</strong> Druk op F11 voor volledig scherm voor nog betere zichtbaarheid!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Clock with Updating Seconds -->
+    <div class="screen" id="screen3">
+        <div class="header">
+            <div class="logo">🕐</div>
+            <div class="header-text">
+                <h1>Grote Klok</h1>
+                <p>De tijd update automatisch elke seconde</p>
+            </div>
+        </div>
+        <div class="clock-container">
+            <div class="time-display">
+                <div class="time" id="timeDisplay2">14:35</div>
+                <div class="seconds-container">
+                    <div class="seconds-line"></div>
+                    <div class="seconds" id="secondsDisplay2">45</div>
+                    <div class="seconds-line"></div>
+                </div>
+            </div>
+
+            <div class="date-display">
+                <div class="day-name" id="dayName2">Zaterdag</div>
+                <div class="date" id="dateDisplay2">16 maart 2024</div>
+            </div>
+
+            <div class="tip-box">
+                <p class="tip-text">
+                    <strong>💡 Tip:</strong> Druk op F11 voor volledig scherm voor nog betere zichtbaarheid!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Success -->
+    <div class="screen" id="screen4">
+        <div class="success-screen">
+            <div class="success-icon">✅</div>
+            <div class="success-text">Grote Klok Geopend!</div>
+            <div class="success-description">
+                De tijd en datum worden automatisch bijgewerkt elke seconde.<br>
+                Perfect om op afstand te lezen, zelfs vanaf de bank!<br>
+                Druk op F11 voor volledig scherm voor nog betere zichtbaarheid.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let animationRunning = false;
+        const cursor = document.getElementById('cursor');
+        let cursorVisible = false;
+        let secondsInterval = null;
+
+        function showCursor() {
+            cursor.style.display = 'block';
+            cursorVisible = true;
+        }
+
+        function hideCursor() {
+            cursor.style.display = 'none';
+            cursorVisible = false;
+        }
+
+        function moveCursor(x, y, duration = 1000) {
+            return new Promise((resolve) => {
+                if (!cursorVisible) showCursor();
+                cursor.style.transition = `all ${duration}ms ease-out`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                setTimeout(resolve, duration);
+            });
+        }
+
+        function clickCursor() {
+            cursor.classList.add('click');
+            setTimeout(() => {
+                cursor.classList.remove('click');
+            }, 200);
+        }
+
+        function getElementPosition(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return { x: 0, y: 0 };
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        function showScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(`screen${screenNum}`);
+            if (screen) {
+                screen.classList.add('active');
+                currentScreen = screenNum;
+            }
+        }
+
+        function updateSeconds() {
+            const seconds1 = document.getElementById('secondsDisplay');
+            const seconds2 = document.getElementById('secondsDisplay2');
+            let currentSeconds = 42;
+            
+            if (secondsInterval) clearInterval(secondsInterval);
+            
+            secondsInterval = setInterval(() => {
+                currentSeconds = (currentSeconds + 1) % 60;
+                if (seconds1) seconds1.textContent = String(currentSeconds).padStart(2, '0');
+                if (seconds2) seconds2.textContent = String(currentSeconds).padStart(2, '0');
+            }, 1000);
+        }
+
+        async function startAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            hideCursor();
+            showScreen(1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 1: Click on "Open Grote Klok"
+            const btn1Pos = getElementPosition('klokBtn');
+            await moveCursor(btn1Pos.x, btn1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(2);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 2: Show clock, then start updating seconds
+            updateSeconds();
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showScreen(3);
+            await new Promise(resolve => setTimeout(resolve, 3000));
+
+            // Screen 3: Show updating seconds
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showScreen(4);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            if (secondsInterval) clearInterval(secondsInterval);
+            hideCursor();
+            animationRunning = false;
+        }
+
+        function resetAnimation() {
+            animationRunning = false;
+            hideCursor();
+            showScreen(1);
+            if (secondsInterval) {
+                clearInterval(secondsInterval);
+                secondsInterval = null;
+            }
+            // Reset seconds displays
+            const seconds1 = document.getElementById('secondsDisplay');
+            const seconds2 = document.getElementById('secondsDisplay2');
+            if (seconds1) seconds1.textContent = '42';
+            if (seconds2) seconds2.textContent = '45';
+        }
+
+        // Initialize
+        hideCursor();
+    </script>
+</body>
+</html>
+

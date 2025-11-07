@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase - YouTube Animaties Overzicht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            font-size: 48px;
+            color: #8B5E3C;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .animations-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .animation-card {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .animation-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(139, 94, 60, 0.3);
+        }
+
+        .animation-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .animation-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 10px;
+        }
+
+        .animation-description {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        .animation-link {
+            display: inline-block;
+            background: #8B5E3C;
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .animation-link:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        .info-box {
+            background: #E0D5CA;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        .info-box h2 {
+            font-size: 32px;
+            color: #8B5E3C;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            font-size: 20px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .info-box ul {
+            font-size: 20px;
+            line-height: 1.8;
+            margin-left: 30px;
+        }
+
+        .info-box li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎬 SeniorEase YouTube Animaties</h1>
+        <p class="subtitle">Klik op een animatie om te openen</p>
+
+        <div class="animations-grid">
+            <div class="animation-card" onclick="window.open('bibliotheek-animatie.html', '_blank')">
+                <div class="animation-icon">📚</div>
+                <div class="animation-title">Mijn Bibliotheek</div>
+                <div class="animation-description">Boeken & muziek beheren, barcode scannen</div>
+                <a href="bibliotheek-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+
+            <div class="animation-card" onclick="window.open('rekenmachine-animatie.html', '_blank')">
+                <div class="animation-icon">🔢</div>
+                <div class="animation-title">Rekenmachine</div>
+                <div class="animation-description">Grote knoppen en duidelijk display</div>
+                <a href="rekenmachine-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+            <div class="animation-card" onclick="window.open('kalender-animatie.html', '_blank')">
+                <div class="animation-icon">📅</div>
+                <div class="animation-title">Verjaardagskalender</div>
+                <div class="animation-description">Bewaar alle verjaardagen op één plek</div>
+                <a href="kalender-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+
+            <div class="animation-card" onclick="window.open('afvinken-animatie.html', '_blank')">
+                <div class="animation-icon">✅</div>
+                <div class="animation-title">Afvinken maar!</div>
+                <div class="animation-description">Maak checklists met slimme suggesties</div>
+                <a href="afvinken-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+
+            <div class="animation-card" onclick="window.open('klok-animatie.html', '_blank')">
+                <div class="animation-icon">🕐</div>
+                <div class="animation-title">Grote Klok</div>
+                <div class="animation-description">Extra grote tijd en datum weergave</div>
+                <a href="klok-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+
+            <div class="animation-card" onclick="window.open('puzzel-animatie.html', '_blank')">
+                <div class="animation-icon">🧩</div>
+                <div class="animation-title">Dagelijkse Puzzel</div>
+                <div class="animation-description">Elke dag een nieuwe puzzel! Sudoku, woordzoeker en meer</div>
+                <a href="puzzel-animatie.html" target="_blank" class="animation-link">Open Animatie</a>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
+

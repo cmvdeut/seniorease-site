@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dagelijkse Puzzel Animatie - SeniorEase</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #F5EEE6;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: absolute;
+            width: clamp(15px, 1.5vw, 20px);
+            height: clamp(15px, 1.5vw, 20px);
+            border: 2px solid #8B5E3C;
+            border-radius: 50%;
+            background: rgba(139, 94, 60, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease-out;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: #8B5E3C;
+            border-radius: 50%;
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+        }
+
+        /* Header */
+        .header {
+            background: #F5EEE6;
+            border-bottom: 2px solid #E0D5CA;
+            padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 20px);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: clamp(40px, 5vw, 80px);
+            height: clamp(40px, 5vw, 80px);
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.5vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: #666;
+        }
+
+        /* Homepage */
+        .homepage-content {
+            padding: clamp(15px, 2vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 40px);
+            margin-bottom: clamp(15px, 2vw, 30px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .card-text {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            margin-bottom: clamp(15px, 2vw, 30px);
+            line-height: 1.6;
+        }
+
+        .button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(12px, 1.5vw, 20px) clamp(24px, 3vw, 40px);
+            font-size: clamp(18px, 2.2vw, 32px);
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        /* Puzzle App */
+        .puzzle-container {
+            padding: clamp(10px, 1.5vw, 20px);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .puzzle-info {
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(15px, 2vw, 25px);
+            margin-bottom: clamp(15px, 2vw, 25px);
+            text-align: center;
+        }
+
+        .puzzle-title {
+            font-size: clamp(20px, 2.5vw, 32px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(8px, 1vw, 12px);
+        }
+
+        .puzzle-subtitle {
+            font-size: clamp(14px, 1.8vw, 20px);
+            color: #666;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: clamp(10px, 1.5vw, 20px);
+            font-size: clamp(14px, 1.8vw, 20px);
+            color: #666;
+        }
+
+        .sudoku-grid {
+            display: grid;
+            grid-template-columns: repeat(9, 1fr);
+            gap: 0;
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(8px, 1.2vw, 15px);
+            max-width: fit-content;
+            margin: 0 auto clamp(15px, 2vw, 25px);
+        }
+
+        .sudoku-cell {
+            width: clamp(32px, 4vw, 48px);
+            height: clamp(32px, 4vw, 48px);
+            border: 1px solid #999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            transition: all 0.2s;
+        }
+
+        .sudoku-cell:hover {
+            background: #E3F2FD;
+        }
+
+        .sudoku-cell.selected {
+            background: #BBDEFB;
+            border: 2px solid #2196F3;
+        }
+
+        .sudoku-cell.given {
+            color: #333;
+            background: #F5F5F5;
+        }
+
+        .sudoku-cell.empty {
+            color: #8B5E3C;
+        }
+
+        /* Border styling for 3x3 boxes */
+        .sudoku-cell:nth-child(3n) {
+            border-right: 2px solid #333;
+        }
+
+        .sudoku-cell:nth-child(n+19):nth-child(-n+27),
+        .sudoku-cell:nth-child(n+46):nth-child(-n+54) {
+            border-bottom: 2px solid #333;
+        }
+
+        .number-buttons {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: clamp(8px, 1vw, 12px);
+            max-width: 300px;
+            margin: 0 auto clamp(15px, 2vw, 25px);
+        }
+
+        .number-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(10px, 1.2vw, 15px);
+            border-radius: 10px;
+            font-size: clamp(18px, 2.2vw, 28px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .number-btn:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        .number-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: clamp(10px, 1.5vw, 20px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .action-btn {
+            background: #A07654;
+            color: white;
+            border: none;
+            padding: clamp(10px, 1.2vw, 15px) clamp(20px, 2.5vw, 30px);
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .action-btn:hover {
+            background: #8B5E3C;
+        }
+
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .completion-message {
+            background: #E8F5E9;
+            border: 3px solid #4CAF50;
+            border-radius: 15px;
+            padding: clamp(20px, 3vw, 40px);
+            text-align: center;
+            margin-top: clamp(15px, 2vw, 25px);
+        }
+
+        .completion-title {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #2E7D32;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .completion-text {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1B5E20;
+        }
+
+        /* Success */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(30px, 4vw, 60px) clamp(20px, 3vw, 40px);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: clamp(60px, 8vw, 120px);
+            margin-bottom: clamp(20px, 2.5vw, 40px);
+        }
+
+        .success-text {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 30px);
+        }
+
+        .success-description {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(8px, 0.8vw, 10px) clamp(16px, 1.5vw, 20px);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: #6D4A30;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="startAnimation()">Start</button>
+        <button class="control-btn" onclick="resetAnimation()">Reset</button>
+    </div>
+
+    <!-- Screen 1: Homepage -->
+    <div class="screen active" id="screen1">
+        <div class="header">
+            <div class="logo">🧩</div>
+            <div class="header-text">
+                <h1>SeniorEase</h1>
+                <p>Handige technologie zonder gedoe</p>
+            </div>
+        </div>
+        <div class="homepage-content">
+            <div class="card">
+                <div class="card-title">🧩 Dagelijkse Puzzel</div>
+                <div class="card-text">
+                    Elke dag een nieuwe puzzel! De puzzel verandert automatisch (Sudoku, woordzoeker, kruiswoordpuzzel of memory). 
+                    Uw voortgang wordt automatisch opgeslagen, zodat u de volgende dag verder kunt waar u gebleven bent.
+                </div>
+                <button class="button" id="puzzelBtn">→ Open Dagelijkse Puzzel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Sudoku Puzzle -->
+    <div class="screen" id="screen2">
+        <div class="header">
+            <div class="logo">🧩</div>
+            <div class="header-text">
+                <h1>Dagelijkse Puzzel</h1>
+                <p>Vandaag: Sudoku (voorbeeld) - Elke dag een andere puzzel!</p>
+            </div>
+        </div>
+        <div class="puzzle-container">
+            <div style="background: #E3F2FD; border: 2px solid #2196F3; border-radius: 10px; padding: clamp(10px, 1.5vw, 15px); margin-bottom: clamp(15px, 2vw, 25px); text-align: center;">
+                <p style="font-size: clamp(12px, 1.5vw, 18px); color: #1565C0; font-weight: bold; margin: 0;">
+                    💡 Elke dag een andere puzzel, maar het principe blijft hetzelfde: klik op vakjes en vul ze in!
+                </p>
+            </div>
+            <div class="puzzle-info">
+                <div class="puzzle-title">Sudoku (Voorbeeld)</div>
+                <div class="puzzle-subtitle">Klik op een leeg vakje en kies een nummer (1-9)</div>
+                <div class="stats">
+                    <div>Fouten: <strong id="mistakes">0</strong></div>
+                    <div>Hints: <strong id="hints">0</strong></div>
+                </div>
+            </div>
+
+            <div class="sudoku-grid" id="sudokuGrid">
+                <!-- Row 1 -->
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">2</div>
+                
+                <!-- Row 2 -->
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">8</div>
+                
+                <!-- Row 3 -->
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell empty" id="cell1"></div>
+                <div class="sudoku-cell empty" id="cell2"></div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                
+                <!-- Row 4 -->
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell empty" id="cell3"></div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">3</div>
+                
+                <!-- Row 5 -->
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">1</div>
+                
+                <!-- Row 6 -->
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">6</div>
+                
+                <!-- Row 7 -->
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">4</div>
+                
+                <!-- Row 8 -->
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">5</div>
+                
+                <!-- Row 9 -->
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">9</div>
+            </div>
+
+            <div class="number-buttons">
+                <button class="number-btn" id="num1">1</button>
+                <button class="number-btn" id="num2">2</button>
+                <button class="number-btn" id="num3">3</button>
+                <button class="number-btn" id="num4">4</button>
+                <button class="number-btn" id="num5">5</button>
+                <button class="number-btn" id="num6">6</button>
+                <button class="number-btn" id="num7">7</button>
+                <button class="number-btn" id="num8">8</button>
+                <button class="number-btn" id="num9">9</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="hintBtn">💡 Hint gebruiken</button>
+                <button class="action-btn" id="resetBtn">🔄 Nieuwe puzzel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: With Number Filled -->
+    <div class="screen" id="screen3">
+        <div class="header">
+            <div class="logo">🧩</div>
+            <div class="header-text">
+                <h1>Dagelijkse Puzzel</h1>
+                <p>Vandaag: Sudoku - Klik op een leeg vakje en kies een nummer</p>
+            </div>
+        </div>
+        <div class="puzzle-container">
+            <div class="puzzle-info">
+                <div class="puzzle-title">Sudoku</div>
+                <div class="puzzle-subtitle">Vul de lege vakjes in met cijfers 1-9</div>
+                <div class="stats">
+                    <div>Fouten: <strong>0</strong></div>
+                    <div>Hints: <strong>0</strong></div>
+                </div>
+            </div>
+
+            <div class="sudoku-grid">
+                <!-- Same grid but with cell1 filled with 3 -->
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">2</div>
+                
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">8</div>
+                
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell empty" style="color: #8B5E3C;" id="cell1Filled">3</div>
+                <div class="sudoku-cell empty" id="cell2Empty"></div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">7</div>
+                
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell empty" id="cell3Empty"></div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">3</div>
+                
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">1</div>
+                
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">6</div>
+                
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">4</div>
+                
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">9</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">5</div>
+                
+                <div class="sudoku-cell given">3</div>
+                <div class="sudoku-cell given">4</div>
+                <div class="sudoku-cell given">5</div>
+                <div class="sudoku-cell given">2</div>
+                <div class="sudoku-cell given">8</div>
+                <div class="sudoku-cell given">6</div>
+                <div class="sudoku-cell given">1</div>
+                <div class="sudoku-cell given">7</div>
+                <div class="sudoku-cell given">9</div>
+            </div>
+
+            <div class="number-buttons">
+                <button class="number-btn">1</button>
+                <button class="number-btn">2</button>
+                <button class="number-btn">3</button>
+                <button class="number-btn">4</button>
+                <button class="number-btn">5</button>
+                <button class="number-btn">6</button>
+                <button class="number-btn">7</button>
+                <button class="number-btn">8</button>
+                <button class="number-btn">9</button>
+            </div>
+
+            <div class="action-buttons">
+                <button class="action-btn" id="hintBtn2">💡 Hint gebruiken</button>
+                <button class="action-btn">🔄 Nieuwe puzzel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Success -->
+    <div class="screen" id="screen4">
+        <div class="success-screen">
+            <div class="success-icon">🎉</div>
+            <div class="success-text">Puzzel Opgelost!</div>
+            <div class="success-description">
+                <strong>Elke dag een andere puzzel:</strong> De puzzel verandert automatisch tussen Sudoku, Woordzoeker, Kruiswoordpuzzel en Memory.<br>
+                <strong>Hetzelfde principe:</strong> Klik op vakjes, vul ze in, gebruik hints als u hulp nodig heeft.<br>
+                <strong>Automatisch opgeslagen:</strong> Uw voortgang wordt bewaard, zodat u de volgende dag verder kunt waar u gebleven bent!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let animationRunning = false;
+        const cursor = document.getElementById('cursor');
+        let cursorVisible = false;
+
+        function showCursor() {
+            cursor.style.display = 'block';
+            cursorVisible = true;
+        }
+
+        function hideCursor() {
+            cursor.style.display = 'none';
+            cursorVisible = false;
+        }
+
+        function moveCursor(x, y, duration = 1000) {
+            return new Promise((resolve) => {
+                if (!cursorVisible) showCursor();
+                cursor.style.transition = `all ${duration}ms ease-out`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                setTimeout(resolve, duration);
+            });
+        }
+
+        function clickCursor() {
+            cursor.classList.add('click');
+            setTimeout(() => {
+                cursor.classList.remove('click');
+            }, 200);
+        }
+
+        function getElementPosition(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return { x: 0, y: 0 };
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        function showScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(`screen${screenNum}`);
+            if (screen) {
+                screen.classList.add('active');
+                currentScreen = screenNum;
+            }
+        }
+
+        async function startAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            hideCursor();
+            showScreen(1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 1: Click on "Open Dagelijkse Puzzel"
+            const btn1Pos = getElementPosition('puzzelBtn');
+            await moveCursor(btn1Pos.x, btn1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(2);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 2: Click on empty cell
+            const cell1Pos = getElementPosition('cell1');
+            await moveCursor(cell1Pos.x, cell1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Click on number 3
+            const num3Pos = getElementPosition('num3');
+            await moveCursor(num3Pos.x, num3Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(3);
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Screen 3: Show hint button
+            const hintBtnPos = getElementPosition('hintBtn2');
+            await moveCursor(hintBtnPos.x, hintBtnPos.y);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showScreen(4);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            hideCursor();
+            animationRunning = false;
+        }
+
+        function resetAnimation() {
+            animationRunning = false;
+            hideCursor();
+            showScreen(1);
+        }
+
+        // Initialize
+        hideCursor();
+    </script>
+</body>
+</html>
+

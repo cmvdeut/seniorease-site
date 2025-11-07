@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase Facebook Coverfoto - Eenvoudig</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .cover {
+            width: 1640px;
+            height: 859px;
+            background: linear-gradient(135deg, #F5EEE6 0%, #E0D5CA 100%);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 60px;
+            box-sizing: border-box;
+        }
+        
+        .logo {
+            width: 180px;
+            height: 180px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 24px rgba(139, 94, 60, 0.3);
+            border: 6px solid #8B5E3C;
+        }
+        
+        .logo img {
+            width: 130px;
+            height: 130px;
+            object-fit: contain;
+        }
+        
+        .title {
+            font-size: 80px;
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .tagline {
+            font-size: 42px;
+            color: #4A4A4A;
+            margin-bottom: 50px;
+            text-align: center;
+            font-weight: 500;
+        }
+        
+        .website {
+            font-size: 36px;
+            color: #8B5E3C;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+        }
+        
+        /* Instructies overlay (verwijder deze na screenshot) */
+        .instructions {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #8B5E3C;
+            max-width: 400px;
+            font-size: 16px;
+            z-index: 1000;
+        }
+        
+        .instructions h3 {
+            color: #8B5E3C;
+            margin-bottom: 10px;
+            font-size: 20px;
+        }
+        
+        .instructions ol {
+            margin-left: 20px;
+            line-height: 1.8;
+        }
+        
+        .instructions li {
+            margin-bottom: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="cover">
+        <!-- Instructies (verwijder deze div na screenshot) -->
+        <div class="instructions">
+            <h3>📸 Screenshot Instructies:</h3>
+            <ol>
+                <li>Druk op F12 (Developer Tools)</li>
+                <li>Druk op Ctrl+Shift+M (Device Toolbar)</li>
+                <li>Stel in: 1640 x 859 pixels</li>
+                <li>Maak screenshot (Windows: Win+Shift+S)</li>
+                <li>Of gebruik browser extensie</li>
+            </ol>
+            <p style="margin-top: 10px; font-size: 14px; color: #666;">
+                <strong>Tip:</strong> Verwijder deze instructie box voordat je screenshot maakt!
+            </p>
+        </div>
+        
+        <!-- Logo -->
+        <div class="logo">
+            <img src="heart-logo.png" alt="SeniorEase Logo" onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=\'font-size:60px;\'>📚</div>';">
+        </div>
+        
+        <!-- Titel -->
+        <h1 class="title">SeniorEase</h1>
+        
+        <!-- Tagline -->
+        <p class="tagline">Handige technologie zonder gedoe</p>
+        
+        <!-- Website -->
+        <a href="https://seniorease.nl" class="website">seniorease.nl</a>
+    </div>
+</body>
+</html>
+
+

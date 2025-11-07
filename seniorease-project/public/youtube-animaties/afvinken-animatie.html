@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Afvinken maar! Animatie - SeniorEase</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #F5EEE6;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: absolute;
+            width: clamp(15px, 1.5vw, 20px);
+            height: clamp(15px, 1.5vw, 20px);
+            border: 2px solid #8B5E3C;
+            border-radius: 50%;
+            background: rgba(139, 94, 60, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease-out;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: #8B5E3C;
+            border-radius: 50%;
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+        }
+
+        /* Header */
+        .header {
+            background: #F5EEE6;
+            border-bottom: 2px solid #E0D5CA;
+            padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 20px);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: clamp(40px, 5vw, 80px);
+            height: clamp(40px, 5vw, 80px);
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.5vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: #666;
+        }
+
+        /* Homepage */
+        .homepage-content {
+            padding: clamp(15px, 2vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 40px);
+            margin-bottom: clamp(15px, 2vw, 30px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .card-text {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            margin-bottom: clamp(15px, 2vw, 30px);
+            line-height: 1.6;
+        }
+
+        .button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(12px, 1.5vw, 20px) clamp(24px, 3vw, 40px);
+            font-size: clamp(18px, 2.2vw, 32px);
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        /* Checklist App */
+        .app-container {
+            padding: clamp(10px, 1.5vw, 20px);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .new-list-form {
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(15px, 2vw, 25px);
+            margin-bottom: clamp(15px, 2vw, 25px);
+        }
+
+        .form-group {
+            margin-bottom: clamp(10px, 1.5vw, 15px);
+        }
+
+        .form-label {
+            display: block;
+            font-size: clamp(14px, 1.8vw, 20px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(5px, 0.8vw, 8px);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: clamp(10px, 1.2vw, 15px);
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1F1F1F;
+            background: white;
+        }
+
+        .form-button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(10px, 1.2vw, 15px) clamp(20px, 2.5vw, 30px);
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-button:hover {
+            background: #6D4A30;
+        }
+
+        .checklist-container {
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(15px, 2vw, 25px);
+        }
+
+        .checklist-title {
+            font-size: clamp(20px, 2.5vw, 32px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 25px);
+        }
+
+        .add-item-form {
+            display: flex;
+            gap: clamp(8px, 1vw, 12px);
+            margin-bottom: clamp(15px, 2vw, 25px);
+            flex-wrap: wrap;
+        }
+
+        .item-input {
+            flex: 1;
+            min-width: 200px;
+            padding: clamp(10px, 1.2vw, 15px);
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1F1F1F;
+            background: white;
+        }
+
+        .add-button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(10px, 1.2vw, 15px) clamp(20px, 2.5vw, 30px);
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .add-button:hover {
+            background: #6D4A30;
+        }
+
+        .suggestions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: clamp(6px, 0.8vw, 10px);
+            margin-bottom: clamp(15px, 2vw, 25px);
+        }
+
+        .suggestion-btn {
+            background: #E0D5CA;
+            color: #8B5E3C;
+            border: 2px solid #8B5E3C;
+            padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.5vw, 18px);
+            border-radius: 8px;
+            font-size: clamp(12px, 1.5vw, 18px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .suggestion-btn:hover {
+            background: #8B5E3C;
+            color: white;
+        }
+
+        .items-list {
+            list-style: none;
+        }
+
+        .item {
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 15px);
+            padding: clamp(10px, 1.2vw, 15px);
+            margin-bottom: clamp(8px, 1vw, 12px);
+            background: #F5EEE6;
+            border: 2px solid #E0D5CA;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+
+        .item:hover {
+            background: #E8F5E9;
+            border-color: #8B5E3C;
+        }
+
+        .item.checked {
+            opacity: 0.6;
+            text-decoration: line-through;
+        }
+
+        .checkbox {
+            width: clamp(24px, 3vw, 32px);
+            height: clamp(24px, 3vw, 32px);
+            border: 3px solid #8B5E3C;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            background: white;
+        }
+
+        .checkbox.checked {
+            background: #8B5E3C;
+        }
+
+        .checkbox.checked::after {
+            content: '✓';
+            color: white;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+        }
+
+        .item-text {
+            flex: 1;
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1F1F1F;
+        }
+
+        .delete-btn {
+            background: #D32F2F;
+            color: white;
+            border: none;
+            padding: clamp(6px, 0.8vw, 10px) clamp(12px, 1.5vw, 18px);
+            border-radius: 8px;
+            font-size: clamp(12px, 1.5vw, 18px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .delete-btn:hover {
+            background: #B71C1C;
+        }
+
+        /* Success */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(30px, 4vw, 60px) clamp(20px, 3vw, 40px);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: clamp(60px, 8vw, 120px);
+            margin-bottom: clamp(20px, 2.5vw, 40px);
+        }
+
+        .success-text {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 30px);
+        }
+
+        .success-description {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(8px, 0.8vw, 10px) clamp(16px, 1.5vw, 20px);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: #6D4A30;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="startAnimation()">Start</button>
+        <button class="control-btn" onclick="resetAnimation()">Reset</button>
+    </div>
+
+    <!-- Screen 1: Homepage -->
+    <div class="screen active" id="screen1">
+        <div class="header">
+            <div class="logo">✅</div>
+            <div class="header-text">
+                <h1>SeniorEase</h1>
+                <p>Handige technologie zonder gedoe</p>
+            </div>
+        </div>
+        <div class="homepage-content">
+            <div class="card">
+                <div class="card-title">✅ Afvinken maar!</div>
+                <div class="card-text">
+                    Maak checklists voor boodschappen, taken, of wat u maar nodig heeft. 
+                    Met slimme suggesties om u te helpen.
+                </div>
+                <button class="button" id="afvinkenBtn">→ Open Afvinken maar!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: New List Form -->
+    <div class="screen" id="screen2">
+        <div class="header">
+            <div class="logo">✅</div>
+            <div class="header-text">
+                <h1>Afvinken maar!</h1>
+                <p>Maak een nieuwe checklist</p>
+            </div>
+        </div>
+        <div class="app-container">
+            <div class="new-list-form">
+                <div class="form-group">
+                    <label class="form-label" for="listName">Naam van de lijst:</label>
+                    <input type="text" id="listName" class="form-input" placeholder="Bijv. Boodschappen" value="">
+                </div>
+                <button class="form-button" id="createListBtn">Lijst Aanmaken</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Checklist with Items -->
+    <div class="screen" id="screen3">
+        <div class="header">
+            <div class="logo">✅</div>
+            <div class="header-text">
+                <h1>Afvinken maar!</h1>
+                <p>Kies uit suggesties of typ zelf iets in</p>
+            </div>
+        </div>
+        <div class="app-container">
+            <div class="checklist-container">
+                <div class="checklist-title">Boodschappen</div>
+                
+                <div style="margin-bottom: clamp(10px, 1.5vw, 15px); padding: clamp(8px, 1vw, 12px); background: #E8F5E9; border: 2px solid #4CAF50; border-radius: 8px;">
+                    <p style="font-size: clamp(12px, 1.5vw, 18px); color: #2E7D32; font-weight: bold; margin: 0;">
+                        💡 Tip: Klik op een suggestie of typ zelf iets in het veld hieronder
+                    </p>
+                </div>
+                
+                <div class="suggestions">
+                    <button class="suggestion-btn">Melk</button>
+                    <button class="suggestion-btn">Brood</button>
+                    <button class="suggestion-btn">Eieren</button>
+                    <button class="suggestion-btn">Kaas</button>
+                </div>
+
+                <div class="add-item-form">
+                    <input type="text" id="itemInput" class="item-input" placeholder="Of typ hier zelf iets in..." value="">
+                    <button class="add-button" id="addItemBtn">Toevoegen</button>
+                </div>
+
+                <ul class="items-list">
+                    <li class="item" id="item1">
+                        <div class="checkbox" id="checkbox1"></div>
+                        <span class="item-text">Melk</span>
+                    </li>
+                    <li class="item" id="item2">
+                        <div class="checkbox" id="checkbox2"></div>
+                        <span class="item-text">Brood</span>
+                    </li>
+                    <li class="item" id="item3">
+                        <div class="checkbox" id="checkbox3"></div>
+                        <span class="item-text">Eieren</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Checklist with Checked Items -->
+    <div class="screen" id="screen4">
+        <div class="header">
+            <div class="logo">✅</div>
+            <div class="header-text">
+                <h1>Afvinken maar!</h1>
+                <p>Vink items af wanneer u ze heeft gedaan</p>
+            </div>
+        </div>
+        <div class="app-container">
+            <div class="checklist-container">
+                <div class="checklist-title">Boodschappen</div>
+                
+                <div class="add-item-form">
+                    <input type="text" class="item-input" placeholder="Nieuw item toevoegen..." value="">
+                    <button class="add-button">Toevoegen</button>
+                </div>
+
+                <ul class="items-list">
+                    <li class="item checked" id="item1Checked">
+                        <div class="checkbox checked" id="checkbox1Checked"></div>
+                        <span class="item-text">Melk</span>
+                    </li>
+                    <li class="item checked" id="item2Checked">
+                        <div class="checkbox checked" id="checkbox2Checked"></div>
+                        <span class="item-text">Brood</span>
+                    </li>
+                    <li class="item" id="item3Unchecked">
+                        <div class="checkbox" id="checkbox3Unchecked"></div>
+                        <span class="item-text">Eieren</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Success -->
+    <div class="screen" id="screen5">
+        <div class="success-screen">
+            <div class="success-icon">✅</div>
+            <div class="success-text">Checklist Gemaakt!</div>
+            <div class="success-description">
+                U kunt meerdere checklists maken voor verschillende doeleinden.<br>
+                <strong>Kies uit suggesties</strong> door erop te klikken, of <strong>typ zelf iets in</strong> het invoerveld.<br>
+                Vink items af wanneer u ze heeft gedaan!
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let animationRunning = false;
+        const cursor = document.getElementById('cursor');
+        let cursorVisible = false;
+
+        function showCursor() {
+            cursor.style.display = 'block';
+            cursorVisible = true;
+        }
+
+        function hideCursor() {
+            cursor.style.display = 'none';
+            cursorVisible = false;
+        }
+
+        function moveCursor(x, y, duration = 1000) {
+            return new Promise((resolve) => {
+                if (!cursorVisible) showCursor();
+                cursor.style.transition = `all ${duration}ms ease-out`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                setTimeout(resolve, duration);
+            });
+        }
+
+        function clickCursor() {
+            cursor.classList.add('click');
+            setTimeout(() => {
+                cursor.classList.remove('click');
+            }, 200);
+        }
+
+        function getElementPosition(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return { x: 0, y: 0 };
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        function showScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(`screen${screenNum}`);
+            if (screen) {
+                screen.classList.add('active');
+                currentScreen = screenNum;
+            }
+        }
+
+        async function startAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            hideCursor();
+            showScreen(1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 1: Click on "Open Afvinken maar!"
+            const btn1Pos = getElementPosition('afvinkenBtn');
+            await moveCursor(btn1Pos.x, btn1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(2);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 2: Fill in list name
+            const listNamePos = getElementPosition('listName');
+            await moveCursor(listNamePos.x, listNamePos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Type list name
+            const listNameInput = document.getElementById('listName');
+            if (listNameInput) {
+                listNameInput.value = '';
+                const name = 'Boodschappen';
+                for (let i = 0; i < name.length; i++) {
+                    listNameInput.value += name[i];
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                }
+            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Click create button
+            const createBtnPos = getElementPosition('createListBtn');
+            await moveCursor(createBtnPos.x, createBtnPos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(3);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 3: Click on suggestion "Melk" (show that you can click suggestions)
+            const milkBtn = document.querySelector('.suggestion-btn');
+            if (milkBtn) {
+                const milkPos = milkBtn.getBoundingClientRect();
+                await moveCursor(milkPos.left + milkPos.width / 2, milkPos.top + milkPos.height / 2);
+                await new Promise(resolve => setTimeout(resolve, 500));
+                clickCursor();
+                await new Promise(resolve => setTimeout(resolve, 1500));
+            }
+
+            // Now show that you can also type yourself
+            const itemInputPos = getElementPosition('itemInput');
+            await moveCursor(itemInputPos.x, itemInputPos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            const itemInput = document.getElementById('itemInput');
+            if (itemInput) {
+                itemInput.value = '';
+                const item = 'Brood';
+                for (let i = 0; i < item.length; i++) {
+                    itemInput.value += item[i];
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                }
+            }
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Click add button
+            const addBtnPos = getElementPosition('addItemBtn');
+            await moveCursor(addBtnPos.x, addBtnPos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Click on checkboxes to check items
+            const checkbox1Pos = getElementPosition('checkbox1');
+            await moveCursor(checkbox1Pos.x, checkbox1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            const checkbox2Pos = getElementPosition('checkbox2');
+            await moveCursor(checkbox2Pos.x, checkbox2Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            showScreen(4);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 4: Show checked items
+            const checkbox3Pos = getElementPosition('checkbox3Unchecked');
+            await moveCursor(checkbox3Pos.x, checkbox3Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showScreen(5);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            hideCursor();
+            animationRunning = false;
+        }
+
+        function resetAnimation() {
+            animationRunning = false;
+            hideCursor();
+            showScreen(1);
+            const listNameInput = document.getElementById('listName');
+            if (listNameInput) {
+                listNameInput.value = '';
+            }
+            const itemInput = document.getElementById('itemInput');
+            if (itemInput) {
+                itemInput.value = '';
+            }
+        }
+
+        // Initialize
+        hideCursor();
+    </script>
+</body>
+</html>
+

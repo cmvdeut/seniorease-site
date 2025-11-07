@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verjaardagskalender Animatie - SeniorEase</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #F5EEE6;
+            overflow-y: auto;
+        }
+
+        .screen.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: absolute;
+            width: clamp(15px, 1.5vw, 20px);
+            height: clamp(15px, 1.5vw, 20px);
+            border: 2px solid #8B5E3C;
+            border-radius: 50%;
+            background: rgba(139, 94, 60, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease-out;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: #8B5E3C;
+            border-radius: 50%;
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+        }
+
+        /* Header */
+        .header {
+            background: #F5EEE6;
+            border-bottom: 2px solid #E0D5CA;
+            padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 20px);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: clamp(40px, 5vw, 80px);
+            height: clamp(40px, 5vw, 80px);
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.5vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: #666;
+        }
+
+        /* Homepage */
+        .homepage-content {
+            padding: clamp(15px, 2vw, 30px);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 40px);
+            margin-bottom: clamp(15px, 2vw, 30px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .card-title {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(10px, 1.5vw, 20px);
+        }
+
+        .card-text {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            margin-bottom: clamp(15px, 2vw, 30px);
+            line-height: 1.6;
+        }
+
+        .button {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(12px, 1.5vw, 20px) clamp(24px, 3vw, 40px);
+            font-size: clamp(18px, 2.2vw, 32px);
+            font-weight: bold;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .button:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        /* Calendar */
+        .calendar-container {
+            padding: clamp(10px, 1.5vw, 20px);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: clamp(15px, 2vw, 30px);
+            flex-wrap: wrap;
+            gap: clamp(10px, 1.5vw, 20px);
+        }
+
+        .calendar-title {
+            font-size: clamp(20px, 2.5vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: clamp(4px, 0.5vw, 8px);
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(8px, 1.2vw, 15px);
+        }
+
+        .calendar-day-header {
+            text-align: center;
+            font-weight: bold;
+            font-size: clamp(12px, 1.5vw, 18px);
+            color: #8B5E3C;
+            padding: clamp(8px, 1vw, 12px);
+        }
+
+        .calendar-day {
+            aspect-ratio: 1;
+            border: 2px solid #E0D5CA;
+            border-radius: 8px;
+            padding: clamp(4px, 0.8vw, 8px);
+            cursor: pointer;
+            transition: all 0.2s;
+            background: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            font-size: clamp(12px, 1.5vw, 18px);
+            min-height: clamp(40px, 5vw, 70px);
+        }
+
+        .calendar-day:hover {
+            background: #F5EEE6;
+            border-color: #8B5E3C;
+        }
+
+        .calendar-day.today {
+            background: #FFEB3B;
+            border: 3px solid #FFC107;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+            font-weight: bold;
+            color: #D32F2F;
+        }
+
+        .calendar-day.today::before {
+            content: '🎂';
+            font-size: clamp(14px, 1.8vw, 22px);
+            margin-bottom: 2px;
+        }
+
+        .calendar-day.has-birthday {
+            background: #E8F5E9;
+            border-color: #4CAF50;
+        }
+
+        .calendar-day-number {
+            font-weight: bold;
+            margin-bottom: 2px;
+        }
+
+        .calendar-birthday {
+            font-size: clamp(10px, 1.2vw, 14px);
+            color: #4CAF50;
+            font-weight: bold;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            width: 100%;
+        }
+
+        /* Form */
+        .form-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(10px, 2vw, 20px);
+        }
+
+        .form-container {
+            background: white;
+            border: 4px solid #8B5E3C;
+            border-radius: 20px;
+            padding: clamp(20px, 3vw, 40px);
+            max-width: 500px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .form-title {
+            font-size: clamp(20px, 2.5vw, 32px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 25px);
+        }
+
+        .form-group {
+            margin-bottom: clamp(15px, 2vw, 20px);
+        }
+
+        .form-label {
+            display: block;
+            font-size: clamp(14px, 1.8vw, 20px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(5px, 0.8vw, 10px);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: clamp(10px, 1.2vw, 15px);
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1F1F1F;
+            background: white;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: clamp(10px, 1.2vw, 15px);
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            color: #1F1F1F;
+            background: white;
+        }
+
+        .form-buttons {
+            display: flex;
+            gap: clamp(10px, 1.5vw, 20px);
+            margin-top: clamp(20px, 2.5vw, 30px);
+        }
+
+        .form-button {
+            flex: 1;
+            padding: clamp(12px, 1.5vw, 18px);
+            border: none;
+            border-radius: 10px;
+            font-size: clamp(16px, 2vw, 24px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-button.primary {
+            background: #8B5E3C;
+            color: white;
+        }
+
+        .form-button.primary:hover {
+            background: #6D4A30;
+        }
+
+        .form-button.secondary {
+            background: #E0D5CA;
+            color: #8B5E3C;
+        }
+
+        .form-button.secondary:hover {
+            background: #D0C5BA;
+        }
+
+        /* Success */
+        .success-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: clamp(30px, 4vw, 60px) clamp(20px, 3vw, 40px);
+            text-align: center;
+        }
+
+        .success-icon {
+            font-size: clamp(60px, 8vw, 120px);
+            margin-bottom: clamp(20px, 2.5vw, 40px);
+        }
+
+        .success-text {
+            font-size: clamp(24px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: clamp(15px, 2vw, 30px);
+        }
+
+        .success-description {
+            font-size: clamp(16px, 2vw, 24px);
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* View Mode Selector */
+        .view-selector {
+            display: flex;
+            gap: clamp(8px, 1vw, 12px);
+            margin-bottom: clamp(15px, 2vw, 25px);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .view-btn {
+            padding: clamp(8px, 1vw, 12px) clamp(16px, 2vw, 24px);
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            background: white;
+            color: #8B5E3C;
+            font-size: clamp(14px, 1.8vw, 20px);
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .view-btn:hover {
+            background: #F5EEE6;
+        }
+
+        .view-btn.active {
+            background: #8B5E3C;
+            color: white;
+        }
+
+        /* Week View */
+        .week-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: clamp(6px, 0.8vw, 10px);
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(8px, 1.2vw, 15px);
+        }
+
+        .week-day {
+            min-height: clamp(80px, 10vw, 120px);
+            border: 2px solid #E0D5CA;
+            border-radius: 8px;
+            padding: clamp(6px, 0.8vw, 10px);
+            cursor: pointer;
+            transition: all 0.2s;
+            background: #F5EEE6;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .week-day:hover {
+            background: #E8F5E9;
+            border-color: #8B5E3C;
+        }
+
+        .week-day.today {
+            background: #FFEB3B;
+            border: 3px solid #FFC107;
+            box-shadow: 0 0 10px rgba(255, 193, 7, 0.5);
+        }
+
+        .week-day-number {
+            font-weight: bold;
+            font-size: clamp(14px, 1.8vw, 22px);
+            color: #8B5E3C;
+            margin-bottom: clamp(4px, 0.5vw, 6px);
+        }
+
+        .week-day.today .week-day-number {
+            color: #D32F2F;
+        }
+
+        .week-day-name {
+            font-size: clamp(10px, 1.2vw, 14px);
+            color: #666;
+            margin-bottom: clamp(4px, 0.5vw, 6px);
+        }
+
+        .week-birthday {
+            font-size: clamp(10px, 1.2vw, 14px);
+            color: #4CAF50;
+            font-weight: bold;
+            margin-top: auto;
+            padding: clamp(2px, 0.3vw, 4px);
+            background: #E8F5E9;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(8px, 0.8vw, 10px) clamp(16px, 1.5vw, 20px);
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: clamp(12px, 1.2vw, 16px);
+            font-weight: bold;
+        }
+
+        .control-btn:hover {
+            background: #6D4A30;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="startAnimation()">Start</button>
+        <button class="control-btn" onclick="resetAnimation()">Reset</button>
+    </div>
+
+    <!-- Screen 1: Homepage -->
+    <div class="screen active" id="screen1">
+        <div class="header">
+            <div class="logo">📅</div>
+            <div class="header-text">
+                <h1>SeniorEase</h1>
+                <p>Handige technologie zonder gedoe</p>
+            </div>
+        </div>
+        <div class="homepage-content">
+            <div class="card">
+                <div class="card-title">📅 Verjaardagskalender</div>
+                <div class="card-text">
+                    Bewaar alle verjaardagen op één plek. Klik op een datum om een verjaardag toe te voegen.
+                </div>
+                <button class="button" id="kalenderBtn">→ Open Verjaardagskalender</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Calendar (Month View) -->
+    <div class="screen" id="screen2">
+        <div class="header">
+            <div class="logo">📅</div>
+            <div class="header-text">
+                <h1>Verjaardagskalender</h1>
+                <p>Kies een weergave: Week, Maand of Jaar</p>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <div class="view-selector">
+                <button class="view-btn" id="weekBtn">📆 Week</button>
+                <button class="view-btn active" id="maandBtn">📅 Maand</button>
+                <button class="view-btn" id="jaarBtn">🗓️ Jaar</button>
+            </div>
+            <div class="calendar-header">
+                <div class="calendar-title">Maart 2024</div>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-day-header">Ma</div>
+                <div class="calendar-day-header">Di</div>
+                <div class="calendar-day-header">Wo</div>
+                <div class="calendar-day-header">Do</div>
+                <div class="calendar-day-header">Vr</div>
+                <div class="calendar-day-header">Za</div>
+                <div class="calendar-day-header">Zo</div>
+                
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">1</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">2</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">3</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">4</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">5</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">6</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">7</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">8</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">9</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">10</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">11</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">12</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">13</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">14</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">15</div>
+                </div>
+                <div class="calendar-day today" id="todayDay">
+                    <div class="calendar-day-number">16</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">17</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">18</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">19</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">20</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">21</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">22</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">23</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">24</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">25</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">26</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">27</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">28</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">29</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">30</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">31</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Form -->
+    <div class="screen" id="screen3">
+        <div class="header">
+            <div class="logo">📅</div>
+            <div class="header-text">
+                <h1>Verjaardagskalender</h1>
+                <p>Nieuwe verjaardag toevoegen</p>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <div class="form-container" style="position: relative; margin: 0 auto;">
+                <div class="form-title">Nieuwe Verjaardag Toevoegen</div>
+                <form id="birthdayForm">
+                    <div class="form-group">
+                        <label class="form-label" for="name">Naam:</label>
+                        <input type="text" id="name" class="form-input" placeholder="Bijv. Jan Jansen" value="">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="day">Dag:</label>
+                        <select id="day" class="form-select">
+                            <option value="">Selecteer dag</option>
+                            <option value="16" selected>16</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="month">Maand:</label>
+                        <select id="month" class="form-select">
+                            <option value="">Selecteer maand</option>
+                            <option value="3" selected>Maart</option>
+                        </select>
+                    </div>
+                    <div class="form-buttons">
+                        <button type="button" class="form-button secondary" id="cancelBtn">Annuleren</button>
+                        <button type="submit" class="form-button primary" id="saveBtn">Opslaan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 4: Calendar with Birthday (Month View) -->
+    <div class="screen" id="screen4">
+        <div class="header">
+            <div class="logo">📅</div>
+            <div class="header-text">
+                <h1>Verjaardagskalender</h1>
+                <p>Uw verjaardagen worden getoond op de kalender</p>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <div class="view-selector">
+                <button class="view-btn" id="weekBtn2">📆 Week</button>
+                <button class="view-btn active" id="maandBtn2">📅 Maand</button>
+                <button class="view-btn" id="jaarBtn2">🗓️ Jaar</button>
+            </div>
+            <div class="calendar-header">
+                <div class="calendar-title">Maart 2024</div>
+            </div>
+            <div class="calendar-grid">
+                <div class="calendar-day-header">Ma</div>
+                <div class="calendar-day-header">Di</div>
+                <div class="calendar-day-header">Wo</div>
+                <div class="calendar-day-header">Do</div>
+                <div class="calendar-day-header">Vr</div>
+                <div class="calendar-day-header">Za</div>
+                <div class="calendar-day-header">Zo</div>
+                
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day"></div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">1</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">2</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">3</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">4</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">5</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">6</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">7</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">8</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">9</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">10</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">11</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">12</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">13</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">14</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">15</div>
+                </div>
+                <div class="calendar-day today" id="todayDayWithBirthday">
+                    <div class="calendar-day-number">16</div>
+                    <div class="calendar-birthday">Jan Jansen</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">17</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">18</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">19</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">20</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">21</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">22</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">23</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">24</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">25</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">26</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">27</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">28</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">29</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">30</div>
+                </div>
+                <div class="calendar-day">
+                    <div class="calendar-day-number">31</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 5: Week View -->
+    <div class="screen" id="screen5">
+        <div class="header">
+            <div class="logo">📅</div>
+            <div class="header-text">
+                <h1>Verjaardagskalender</h1>
+                <p>Week overzicht - Alle dagen van de week op één scherm</p>
+            </div>
+        </div>
+        <div class="calendar-container">
+            <div class="view-selector">
+                <button class="view-btn active" id="weekBtn3">📆 Week</button>
+                <button class="view-btn" id="maandBtn3">📅 Maand</button>
+                <button class="view-btn" id="jaarBtn3">🗓️ Jaar</button>
+            </div>
+            <div class="calendar-header">
+                <div class="calendar-title">11 - 17 Maart 2024</div>
+            </div>
+            <div class="week-grid">
+                <div class="week-day">
+                    <div class="week-day-name">Maandag</div>
+                    <div class="week-day-number">11</div>
+                </div>
+                <div class="week-day">
+                    <div class="week-day-name">Dinsdag</div>
+                    <div class="week-day-number">12</div>
+                </div>
+                <div class="week-day">
+                    <div class="week-day-name">Woensdag</div>
+                    <div class="week-day-number">13</div>
+                </div>
+                <div class="week-day">
+                    <div class="week-day-name">Donderdag</div>
+                    <div class="week-day-number">14</div>
+                </div>
+                <div class="week-day">
+                    <div class="week-day-name">Vrijdag</div>
+                    <div class="week-day-number">15</div>
+                </div>
+                <div class="week-day today" id="weekTodayDay">
+                    <div class="week-day-name">Zaterdag</div>
+                    <div class="week-day-number">16</div>
+                    <div class="week-birthday">Jan Jansen</div>
+                </div>
+                <div class="week-day">
+                    <div class="week-day-name">Zondag</div>
+                    <div class="week-day-number">17</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 6: Success -->
+    <div class="screen" id="screen6">
+        <div class="success-screen">
+            <div class="success-icon">✅</div>
+            <div class="success-text">Verjaardag Toegevoegd!</div>
+            <div class="success-description">
+                Uw verjaardag is opgeslagen en wordt getoond op de kalender.<br>
+                U kunt kiezen tussen Week, Maand of Jaar weergave.<br>
+                De huidige dag wordt altijd gehighlight met een 🎂 emoji.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentScreen = 1;
+        let animationRunning = false;
+        const cursor = document.getElementById('cursor');
+        let cursorVisible = false;
+
+        function showCursor() {
+            cursor.style.display = 'block';
+            cursorVisible = true;
+        }
+
+        function hideCursor() {
+            cursor.style.display = 'none';
+            cursorVisible = false;
+        }
+
+        function moveCursor(x, y, duration = 1000) {
+            return new Promise((resolve) => {
+                if (!cursorVisible) showCursor();
+                cursor.style.transition = `all ${duration}ms ease-out`;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                setTimeout(resolve, duration);
+            });
+        }
+
+        function clickCursor() {
+            cursor.classList.add('click');
+            setTimeout(() => {
+                cursor.classList.remove('click');
+            }, 200);
+        }
+
+        function getElementPosition(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return { x: 0, y: 0 };
+            const rect = element.getBoundingClientRect();
+            return {
+                x: rect.left + rect.width / 2,
+                y: rect.top + rect.height / 2
+            };
+        }
+
+        function getElementByText(text, parent = document) {
+            const walker = document.createTreeWalker(
+                parent,
+                NodeFilter.SHOW_TEXT,
+                null,
+                false
+            );
+            let node;
+            while (node = walker.nextNode()) {
+                if (node.textContent.trim() === text) {
+                    return node.parentElement;
+                }
+            }
+            return null;
+        }
+
+        function showScreen(screenNum) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(`screen${screenNum}`);
+            if (screen) {
+                screen.classList.add('active');
+                currentScreen = screenNum;
+            }
+        }
+
+        async function startAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            hideCursor();
+            showScreen(1);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 1: Click on "Open Verjaardagskalender"
+            const btn1Pos = getElementPosition('kalenderBtn');
+            await moveCursor(btn1Pos.x, btn1Pos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(2);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 2: Click on today's date (16)
+            const todayPos = getElementPosition('todayDay');
+            await moveCursor(todayPos.x, todayPos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(3);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 3: Fill in form
+            const namePos = getElementPosition('name');
+            await moveCursor(namePos.x, namePos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            
+            // Type name
+            const nameInput = document.getElementById('name');
+            if (nameInput) {
+                nameInput.value = '';
+                const name = 'Jan Jansen';
+                for (let i = 0; i < name.length; i++) {
+                    nameInput.value += name[i];
+                    await new Promise(resolve => setTimeout(resolve, 150));
+                }
+            }
+            await new Promise(resolve => setTimeout(resolve, 500));
+
+            // Click save button
+            const savePos = getElementPosition('saveBtn');
+            await moveCursor(savePos.x, savePos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(4);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 4: Show birthday on calendar (month view)
+            const todayWithBirthdayPos = getElementPosition('todayDayWithBirthday');
+            await moveCursor(todayWithBirthdayPos.x, todayWithBirthdayPos.y);
+            await new Promise(resolve => setTimeout(resolve, 1500));
+
+            // Click on Week button to show week view
+            const weekBtnPos = getElementPosition('weekBtn2');
+            await moveCursor(weekBtnPos.x, weekBtnPos.y);
+            await new Promise(resolve => setTimeout(resolve, 500));
+            clickCursor();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            showScreen(5);
+            await new Promise(resolve => setTimeout(resolve, 1000));
+
+            // Screen 5: Show week view with birthday
+            const weekTodayPos = getElementPosition('weekTodayDay');
+            await moveCursor(weekTodayPos.x, weekTodayPos.y);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            showScreen(6);
+            await new Promise(resolve => setTimeout(resolve, 2000));
+
+            hideCursor();
+            animationRunning = false;
+        }
+
+        function resetAnimation() {
+            animationRunning = false;
+            hideCursor();
+            showScreen(1);
+            const nameInput = document.getElementById('name');
+            if (nameInput) {
+                nameInput.value = '';
+            }
+        }
+
+        // Initialize
+        hideCursor();
+    </script>
+</body>
+</html>
+

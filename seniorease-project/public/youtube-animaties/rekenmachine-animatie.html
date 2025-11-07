@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekenmachine Animatie - SeniorEase</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+            background: #F5EEE6;
+            color: #1F1F1F;
+            overflow: hidden;
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            margin: 0;
+            padding: 0;
+        }
+
+        .screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+            background: #F5EEE6;
+        }
+
+        .screen.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        /* Cursor */
+        .cursor {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 2px solid #8B5E3C;
+            border-radius: 50%;
+            background: rgba(139, 94, 60, 0.3);
+            pointer-events: none;
+            z-index: 1000;
+            transition: transform 0.1s ease-out;
+        }
+
+        .cursor::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 4px;
+            height: 4px;
+            background: #8B5E3C;
+            border-radius: 50%;
+        }
+
+        .cursor.click {
+            transform: scale(0.8);
+        }
+
+        /* Header */
+        .header {
+            background: #F5EEE6;
+            border-bottom: 2px solid #E0D5CA;
+            padding: clamp(10px, 1.2vw, 20px) clamp(15px, 2vw, 30px);
+            display: flex;
+            align-items: center;
+            gap: clamp(10px, 1.2vw, 20px);
+            flex-wrap: wrap;
+            flex-shrink: 0;
+        }
+
+        .logo {
+            width: clamp(40px, 5vw, 80px);
+            height: clamp(40px, 5vw, 80px);
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: clamp(20px, 2.5vw, 40px);
+            flex-shrink: 0;
+        }
+
+        .header-text h1 {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 2px;
+        }
+
+        .header-text p {
+            font-size: clamp(12px, 1.2vw, 18px);
+            color: #666;
+        }
+
+        /* Homepage */
+        .homepage-content {
+            padding: 3vw;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            border: 4px solid #8B5E3C;
+            padding: clamp(20px, 3vw, 40px);
+            margin-bottom: 2vw;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .card-title {
+            font-size: clamp(24px, 2.5vw, 40px);
+            font-weight: bold;
+            color: #8B5E3C;
+            margin-bottom: 1.5vw;
+        }
+
+        .card-text {
+            font-size: clamp(18px, 1.8vw, 28px);
+            color: #333;
+            margin-bottom: 2vw;
+            line-height: 1.6;
+        }
+
+        .button {
+            display: inline-block;
+            background: #8B5E3C;
+            color: white;
+            padding: clamp(12px, 1.5vw, 20px) clamp(24px, 3vw, 40px);
+            border-radius: 15px;
+            font-size: clamp(20px, 2vw, 32px);
+            font-weight: bold;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            white-space: nowrap;
+        }
+
+        .button:hover {
+            background: #6D4A30;
+            transform: scale(1.05);
+        }
+
+        .button.highlight {
+            background: #A07654;
+            box-shadow: 0 0 20px rgba(139, 94, 60, 0.6);
+            animation: pulse 1s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(139, 94, 60, 0.6); }
+            50% { box-shadow: 0 0 30px rgba(139, 94, 60, 0.9); }
+        }
+
+        /* Calculator */
+        .calculator-container {
+            padding: clamp(5px, 1vw, 10px);
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            box-sizing: border-box;
+            overflow-y: auto;
+            max-height: calc(100vh - 120px);
+        }
+
+        .calculator {
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 15px;
+            padding: clamp(6px, 1.2vw, 12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            max-width: 100%;
+            box-sizing: border-box;
+            max-height: calc(100vh - 160px);
+            overflow-y: auto;
+        }
+
+        .display {
+            background: #F5EEE6;
+            border: 3px solid #8B5E3C;
+            border-radius: 12px;
+            padding: clamp(8px, 1.2vw, 15px);
+            margin-bottom: clamp(8px, 1.2vw, 15px);
+            text-align: right;
+            height: clamp(45px, 6vw, 75px);
+            max-height: clamp(45px, 6vw, 75px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .display-text {
+            font-size: clamp(18px, 2.2vw, 36px);
+            font-weight: bold;
+            color: #8B5E3C;
+            font-family: 'Courier New', monospace;
+            word-break: break-all;
+            overflow-wrap: break-word;
+            max-width: 100%;
+            line-height: 1.0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            text-align: right;
+        }
+
+        .buttons-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: clamp(6px, 0.8vw, 12px);
+        }
+
+        .calc-button {
+            background: white;
+            border: 3px solid #8B5E3C;
+            border-radius: 10px;
+            padding: clamp(6px, 1vw, 12px);
+            font-size: clamp(16px, 2vw, 28px);
+            font-weight: bold;
+            color: #8B5E3C;
+            cursor: pointer;
+            transition: all 0.2s;
+            height: clamp(40px, 5.5vw, 65px);
+            max-height: clamp(40px, 5.5vw, 65px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-sizing: border-box;
+        }
+
+        .calc-button:hover {
+            background: #F5EEE6;
+            transform: scale(1.05);
+        }
+
+        .calc-button.highlight {
+            background: #8B5E3C;
+            color: white;
+            box-shadow: 0 0 20px rgba(139, 94, 60, 0.6);
+            animation: pulse 1s infinite;
+        }
+
+        .calc-button.operation {
+            background: #8B5E3C;
+            color: white;
+        }
+
+        .calc-button.operation:hover {
+            background: #6D4A30;
+        }
+
+        .calc-button.clear {
+            background: #A07654;
+            color: white;
+            grid-column: span 2;
+        }
+
+        .calc-button.equals {
+            background: #8B5E3C;
+            color: white;
+            grid-row: span 2;
+        }
+
+        .calc-button.zero {
+            grid-column: span 2;
+        }
+
+        /* Success */
+        .success {
+            text-align: center;
+            padding: clamp(30px, 4vw, 60px) clamp(20px, 3vw, 40px);
+            box-sizing: border-box;
+        }
+
+        .success-icon {
+            font-size: clamp(60px, 8vw, 120px);
+            margin-bottom: 2vw;
+        }
+
+        .success-text {
+            font-size: clamp(28px, 3vw, 48px);
+            font-weight: bold;
+            color: #8B5E3C;
+        }
+
+        /* Controls */
+        .controls {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            z-index: 2000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .control-btn {
+            background: #8B5E3C;
+            color: white;
+            border: none;
+            padding: clamp(8px, 0.8vw, 10px) clamp(16px, 1.5vw, 20px);
+            border-radius: 5px;
+            font-size: clamp(14px, 1.2vw, 18px);
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+
+    <!-- Screen 1: Homepage -->
+    <div class="screen active" id="screen1">
+        <div class="header">
+            <div class="logo">🔢</div>
+            <div class="header-text">
+                <h1>SeniorEase</h1>
+                <p>Handige technologie zonder gedoe</p>
+            </div>
+        </div>
+        <div class="homepage-content">
+            <div class="card">
+                <div class="card-title">🔢 Rekenmachine</div>
+                <div class="card-text">
+                    Grote knoppen en duidelijk display. Eenvoudig rekenen voor iedereen.
+                </div>
+                <button class="button" id="rekenmachineBtn">→ Open Rekenmachine</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 2: Rekenmachine -->
+    <div class="screen" id="screen2">
+        <div class="header">
+            <div class="logo">🔢</div>
+            <div class="header-text">
+                <h1>Rekenmachine</h1>
+                <p>Grote knoppen voor eenvoudig rekenen</p>
+            </div>
+        </div>
+        <div class="calculator-container">
+            <div class="calculator">
+                <div class="display">
+                    <div class="display-text" id="display">0</div>
+                </div>
+                <div class="buttons-grid">
+                    <button class="calc-button clear" id="clearBtn">Wissen</button>
+                    <button class="calc-button operation" id="divideBtn">÷</button>
+                    <button class="calc-button operation" id="multiplyBtn">×</button>
+                    
+                    <button class="calc-button" id="btn7">7</button>
+                    <button class="calc-button" id="btn8">8</button>
+                    <button class="calc-button" id="btn9">9</button>
+                    <button class="calc-button operation" id="subtractBtn">−</button>
+                    
+                    <button class="calc-button" id="btn4">4</button>
+                    <button class="calc-button" id="btn5">5</button>
+                    <button class="calc-button" id="btn6">6</button>
+                    <button class="calc-button operation" id="addBtn">+</button>
+                    
+                    <button class="calc-button" id="btn1">1</button>
+                    <button class="calc-button" id="btn2">2</button>
+                    <button class="calc-button" id="btn3">3</button>
+                    <button class="calc-button equals operation" id="equalsBtn">=</button>
+                    
+                    <button class="calc-button zero" id="btn0">0</button>
+                    <button class="calc-button" id="decimalBtn">.</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Screen 3: Success -->
+    <div class="screen" id="screen3">
+        <div class="success">
+            <div class="success-icon">✅</div>
+            <div class="success-text">Berekening voltooid!</div>
+            <div style="font-size: clamp(20px, 2vw, 32px); color: #666; margin-top: 1.5vw;">
+                De rekenmachine is klaar voor gebruik
+            </div>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <button class="control-btn" onclick="startAnimation()">▶ Start</button>
+        <button class="control-btn" onclick="resetAnimation()">↻ Reset</button>
+    </div>
+
+    <script>
+        let currentStep = 0;
+        let cursor = document.getElementById('cursor');
+        let animationRunning = false;
+        let display = document.getElementById('display');
+
+        // Functie om element positie te krijgen
+        function getElementPosition(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                const rect = element.getBoundingClientRect();
+                return {
+                    x: (rect.left + rect.width / 2) / window.innerWidth * 100,
+                    y: (rect.top + rect.height / 2) / window.innerHeight * 100
+                };
+            }
+            return { x: 50, y: 50 };
+        }
+
+        const steps = [
+            {
+                screen: 'screen1',
+                duration: 2000,
+                cursor: { element: 'rekenmachineBtn' },
+                click: 'rekenmachineBtn',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 2000,
+                cursor: { element: 'btn2' },
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 1500,
+                cursor: { element: 'btn2' },
+                click: 'btn2',
+                updateDisplay: '2',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 1500,
+                cursor: { element: 'btn5' },
+                click: 'btn5',
+                updateDisplay: '25',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 2000,
+                cursor: { element: 'addBtn' },
+                click: 'addBtn',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 1500,
+                cursor: { element: 'btn1' },
+                click: 'btn1',
+                updateDisplay: '1',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 1500,
+                cursor: { element: 'btn7' },
+                click: 'btn7',
+                updateDisplay: '17',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 2000,
+                cursor: { element: 'equalsBtn' },
+                click: 'equalsBtn',
+                updateDisplay: '42',
+                next: 'screen2'
+            },
+            {
+                screen: 'screen2',
+                duration: 2000,
+                cursor: { x: 50, y: 50 },
+                next: 'screen3'
+            },
+            {
+                screen: 'screen3',
+                duration: 3000,
+                cursor: { x: 50, y: 50 },
+                next: null
+            }
+        ];
+
+        function moveCursor(x, y, callback) {
+            let xPos, yPos;
+            if (typeof x === 'object' && x.element) {
+                const pos = getElementPosition(x.element);
+                xPos = pos.x;
+                yPos = pos.y;
+            } else if (x > 1000) {
+                xPos = (x / 1920) * 100;
+                yPos = (y / 1080) * 100;
+            } else {
+                xPos = x;
+                yPos = y;
+            }
+            
+            cursor.style.left = xPos + '%';
+            cursor.style.top = yPos + '%';
+            cursor.style.transition = 'all 1s ease-out';
+            setTimeout(() => {
+                if (callback) callback();
+            }, 1000);
+        }
+
+        function clickElement(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.add('highlight');
+                cursor.classList.add('click');
+                setTimeout(() => {
+                    element.classList.remove('highlight');
+                    cursor.classList.remove('click');
+                }, 300);
+            }
+        }
+
+        function updateDisplay(value) {
+            if (display) {
+                display.textContent = value;
+                display.style.animation = 'none';
+                setTimeout(() => {
+                    display.style.animation = 'pulse 0.3s';
+                }, 10);
+            }
+        }
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.remove('active');
+            });
+            const screen = document.getElementById(screenId);
+            if (screen) {
+                screen.classList.add('active');
+            }
+        }
+
+        function executeStep(stepIndex) {
+            if (stepIndex >= steps.length) {
+                animationRunning = false;
+                return;
+            }
+
+            const step = steps[stepIndex];
+            showScreen(step.screen);
+
+            if (step.cursor) {
+                setTimeout(() => {
+                    let x, y;
+                    if (step.cursor.element) {
+                        const pos = getElementPosition(step.cursor.element);
+                        x = pos.x;
+                        y = pos.y;
+                    } else {
+                        x = step.cursor.x;
+                        y = step.cursor.y;
+                    }
+                    moveCursor(x, y, () => {
+                        if (step.click) {
+                            clickElement(step.click);
+                        }
+                        if (step.updateDisplay) {
+                            updateDisplay(step.updateDisplay);
+                        }
+                    });
+                }, 100);
+            }
+
+            setTimeout(() => {
+                if (step.next) {
+                    executeStep(stepIndex + 1);
+                } else {
+                    animationRunning = false;
+                }
+            }, step.duration);
+        }
+
+        function startAnimation() {
+            if (animationRunning) return;
+            animationRunning = true;
+            currentStep = 0;
+            display.textContent = '0';
+            executeStep(0);
+        }
+
+        function resetAnimation() {
+            animationRunning = false;
+            currentStep = 0;
+            showScreen('screen1');
+            cursor.style.left = '10%';
+            cursor.style.top = '10%';
+            display.textContent = '0';
+        }
+    </script>
+</body>
+</html>
+

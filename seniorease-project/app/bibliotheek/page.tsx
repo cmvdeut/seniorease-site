@@ -1205,7 +1205,7 @@ Voor vragen: bezoek seniorease.nl
               >
                 ← Terug naar home
               </Link>
-              <div className="flex items-center justify-between">
+              <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
                     Mijn Bibliotheek
@@ -1214,6 +1214,15 @@ Voor vragen: bezoek seniorease.nl
                     {items.length} item{items.length !== 1 ? 's' : ''} in collectie
                   </p>
                 </div>
+                <Link
+                  href="/animaties/bibliotheek"
+                  className="bg-accent text-white px-6 py-3 rounded-xl text-senior-base font-bold
+                           hover:bg-accent-dark transition-all shadow-lg hover:shadow-xl
+                           flex items-center gap-2 whitespace-nowrap"
+                >
+                  <span>📹</span>
+                  <span>Bekijk uitleg</span>
+                </Link>
                 {/* Menu Dropdown */}
                 <div className="relative" data-menu="options">
                   <button

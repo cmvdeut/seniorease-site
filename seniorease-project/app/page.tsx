@@ -122,7 +122,7 @@ export default function Home() {
             <h3 className="text-senior-lg font-bold text-gray-700 mb-4 text-center">
               📖 Informatie & Links
             </h3>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-2xl mx-auto space-y-4">
               <Link 
                 href="/nuttige-links"
                 className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
@@ -142,6 +142,30 @@ export default function Home() {
                   </p>
                   <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
                     <span className="text-senior-xs">Bekijk links</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+              
+              <Link 
+                href="/animaties"
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden block"
+              >
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      📹
+                    </div>
+                    <h3 className="text-senior-base font-bold text-gray-800">
+                      Video Tutorials & Animaties
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed">
+                    Interactieve stap-voor-stap uitleg van alle SeniorEase tools. Leer hoe alles werkt!
+                  </p>
+                  <div className="flex items-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Bekijk animaties</span>
                     <span className="text-base">→</span>
                   </div>
                 </div>

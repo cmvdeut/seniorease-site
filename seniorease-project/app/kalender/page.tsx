@@ -290,7 +290,7 @@ export default function KalenderPage() {
       {/* Header */}
       <header className="bg-neutral-cream border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center justify-between flex-wrap gap-4">
             <Link 
               href="/tools"
               className="inline-flex items-center gap-3 text-primary hover:text-primary-dark transition-colors font-semibold"
@@ -310,6 +310,15 @@ export default function KalenderPage() {
                 <h1 className="text-senior-xl font-bold text-primary">Verjaardagskalender</h1>
               </div>
             </div>
+            <Link
+              href="/animaties/kalender"
+              className="bg-accent text-white px-6 py-3 rounded-xl text-senior-base font-bold
+                       hover:bg-accent-dark transition-all shadow-lg hover:shadow-xl
+                       flex items-center gap-2 whitespace-nowrap"
+            >
+              <span>📹</span>
+              <span>Bekijk uitleg</span>
+            </Link>
           </div>
         </div>
       </header>

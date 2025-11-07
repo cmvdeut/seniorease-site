@@ -686,12 +686,23 @@ export default function PuzzelsPage() {
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <Link 
-              href="/"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
-            >
-              ← Terug naar home
-            </Link>
+            <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
+              <Link 
+                href="/"
+                className="inline-flex items-center gap-2 text-primary hover:text-primary-dark text-senior-base"
+              >
+                ← Terug naar home
+              </Link>
+              <Link
+                href="/animaties/puzzel"
+                className="bg-accent text-white px-6 py-3 rounded-xl text-senior-base font-bold
+                         hover:bg-accent-dark transition-all shadow-lg hover:shadow-xl
+                         flex items-center gap-2 whitespace-nowrap"
+              >
+                <span>📹</span>
+                <span>Bekijk uitleg</span>
+              </Link>
+            </div>
             <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
               Dagelijkse Puzzel
             </h1>
