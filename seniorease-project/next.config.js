@@ -5,18 +5,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  // Disable development features in production
   reactStrictMode: true,
-  // Suppress WebSocket errors in production
-  webpack: (config, { dev, isServer }) => {
-    if (!dev && !isServer) {
-      // Remove WebSocket client code in production
-      config.resolve.alias = {
-        ...config.resolve.alias,
-      };
-    }
-    return config;
-  },
+  // Note: WebSocket errors in console are harmless - they're from Next.js dev mode
+  // and don't affect production functionality
 }
 
 module.exports = nextConfig
