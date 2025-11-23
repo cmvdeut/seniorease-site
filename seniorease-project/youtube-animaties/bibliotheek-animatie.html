@@ -485,66 +485,66 @@
         const steps = [
             {
                 screen: 'screen1',
-                duration: 2000,
+                duration: 4000, // Langzamer: was 2000
                 cursor: { element: 'bibliotheekBtn' },
                 click: 'bibliotheekBtn',
                 next: 'screen2'
             },
             {
                 screen: 'screen2',
-                duration: 2000,
+                duration: 4000, // Langzamer: was 2000
                 cursor: { element: 'nieuwBoekBtn' },
                 click: 'nieuwBoekBtn',
                 next: 'screen3'
             },
             {
                 screen: 'screen3',
-                duration: 2000,
+                duration: 3000, // Langzamer: was 2000
                 cursor: { element: 'titelInput' },
                 next: 'screen3'
             },
             {
                 screen: 'screen3',
-                duration: 3000,
+                duration: 5000, // Langzamer: was 3000
                 cursor: { element: 'titelInput' },
                 type: { input: 'titelInput', text: 'Mijn Favoriete Boek' },
                 next: 'screen3'
             },
             {
                 screen: 'screen3',
-                duration: 2000,
+                duration: 4000, // Langzamer: was 2000
                 cursor: { element: 'auteurInput' },
                 type: { input: 'auteurInput', text: 'Voorbeeld Auteur' },
                 next: 'screen3'
             },
             {
                 screen: 'screen3',
-                duration: 2000,
+                duration: 3000, // Langzamer: was 2000
                 cursor: { x: 50, y: 70 },
                 next: 'screen3b'
             },
             {
                 screen: 'screen3b',
-                duration: 3000,
+                duration: 5000, // Langzamer: was 3000
                 cursor: { x: 50, y: 60 },
                 next: 'screen3b'
             },
             {
                 screen: 'screen3b',
-                duration: 2000,
+                duration: 4000, // Langzamer: was 2000
                 cursor: { element: 'scanBtn2' },
                 click: 'scanBtn2',
                 next: 'screen4'
             },
             {
                 screen: 'screen4',
-                duration: 3000,
+                duration: 5000, // Langzamer: was 3000
                 cursor: { x: 50, y: 50 },
                 next: 'screen5'
             },
             {
                 screen: 'screen5',
-                duration: 3000,
+                duration: 5000, // Langzamer: was 3000
                 cursor: { x: 50, y: 50 },
                 next: null
             }
@@ -569,10 +569,10 @@
             
             cursor.style.left = xPos + '%';
             cursor.style.top = yPos + '%';
-            cursor.style.transition = 'all 1s ease-out';
+            cursor.style.transition = 'all 2s ease-out'; // Langzamer: was 1s
             setTimeout(() => {
                 if (callback) callback();
-            }, 1000);
+            }, 2000); // Langzamer: was 1000
         }
 
         function clickElement(id) {
@@ -600,7 +600,7 @@
                         clearInterval(typeInterval);
                         input.classList.remove('typing');
                     }
-                }, 100);
+                }, 150); // Langzamer: was 100ms per karakter
             }
         }
 

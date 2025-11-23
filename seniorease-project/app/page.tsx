@@ -2,19 +2,82 @@ import Link from 'next/link';
 import Image from 'next/image';
 import MobileDownload from './components/MobileDownload';
 
+// YouTube kanaal URL - Pas aan naar jouw kanaal URL
+const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL'; // Of: https://www.youtube.com/channel/YOUR_CHANNEL_ID
+
 export default function Home() {
+  // Structured Data (JSON-LD) voor SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "SeniorEase",
+    "description": "Handige digitale tools speciaal ontworpen voor senioren. Beheer uw boeken en muziek collectie, gebruik rekenmachine, kalender en meer.",
+    "url": "https://seniorease.nl",
+    "applicationCategory": "UtilityApplication",
+    "operatingSystem": "Web, Android, iOS",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "EUR",
+      "description": "Gratis op PC, €2,99 eenmalig voor mobiele app"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "ratingCount": "1"
+    },
+    "featureList": [
+      "Bibliotheek beheer",
+      "Barcode scanner",
+      "Rekenmachine",
+      "Kalender",
+      "Grote klok",
+      "Puzzels",
+      "Grote teksten en knoppen",
+      "Toegankelijk voor senioren"
+    ],
+    "audience": {
+      "@type": "Audience",
+      "audienceType": "Senioren, Ouderen"
+    }
+  };
+
+  const organizationData = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "SeniorEase",
+    "url": "https://seniorease.nl",
+    "logo": "https://seniorease.nl/heart-logo.png",
+    "description": "Handige technologie zonder gedoe voor senioren",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "url": "https://seniorease.nl/contact"
+    }
+  };
+
   return (
     <main className="min-h-screen bg-neutral-cream">
+      {/* Structured Data voor SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
+      />
       {/* Header */}
       <header className="bg-neutral-cream border-b-2 border-neutral-stone py-4">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto flex items-center gap-4">
             <Image 
               src="/heart-logo.png" 
-              alt="SeniorEase hartlogo" 
+              alt="SeniorEase logo - Handige technologie voor senioren" 
               width={100} 
               height={100}
               className="w-32 h-32"
+              priority
             />
             <div>
               <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
@@ -75,7 +138,7 @@ export default function Home() {
                   <div className="text-center p-4 bg-neutral-cream rounded-xl">
                     <div className="text-4xl mb-2">📷</div>
                     <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Barcode Scan</h3>
-                    <p className="text-senior-xs text-gray-600">Scan snel met uw camera</p>
+                    <p className="text-senior-xs text-gray-600">Scan snel met uw camera of vul handmatig in</p>
                   </div>
                 </div>
               </div>
@@ -316,6 +379,43 @@ export default function Home() {
         </div>
       </section>
 
+      {/* YouTube Video's Section */}
+      <section className="bg-gradient-to-br from-primary/10 to-secondary/10 py-8 border-t-2 border-neutral-stone">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 bg-primary/10 rounded-full flex items-center justify-center text-5xl">
+                    📺
+                  </div>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+                    📺 Instructievideo's op YouTube
+                  </h2>
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    Leer stap-voor-stap hoe u alle SeniorEase tools gebruikt. Onze instructievideo's zijn speciaal gemaakt voor senioren: langzaam, duidelijk en met grote tekst.
+                  </p>
+                  <p className="text-senior-sm text-gray-600 mb-4">
+                    <strong>Eerste video's zijn nu beschikbaar!</strong> Abonneer u op ons YouTube kanaal voor nieuwe instructievideo's elke week.
+                  </p>
+                  <a 
+                    href={YOUTUBE_CHANNEL_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
+                             hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    📺 Bekijk op YouTube
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="bg-white py-6 border-t-2 border-neutral-stone">
         <div className="container mx-auto px-6">
@@ -366,7 +466,7 @@ export default function Home() {
       <footer className="bg-gray-800 text-white py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 mb-4">
               <div className="text-center sm:text-left">
                 <h3 className="text-senior-base font-bold mb-2">Privacybeleid</h3>
                 <Link href="/privacy" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
@@ -384,6 +484,20 @@ export default function Home() {
                 <Link href="/contact" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
                   Neem contact op
                 </Link>
+              </div>
+              <div className="text-center sm:text-left">
+                <h3 className="text-senior-base font-bold mb-2">Video's</h3>
+                <a 
+                  href={YOUTUBE_CHANNEL_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2"
+                >
+                  📺 Bekijk op YouTube
+                </a>
+                <p className="text-senior-xs text-gray-400 mt-1">
+                  Instructievideo's beschikbaar
+                </p>
               </div>
             </div>
             <div className="border-t border-gray-700 pt-4 text-center">
