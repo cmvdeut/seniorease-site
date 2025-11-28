@@ -57,6 +57,10 @@ ${data.selected.map(id => `<li>${optionLabels[id] || id}</li>`).join('')}
   }
 
   try {
+    console.log('📧 Versturen email naar:', RECIPIENT_EMAIL);
+    console.log('📧 Van:', FROM_EMAIL);
+    console.log('📧 API Key aanwezig:', apiKey ? 'Ja' : 'Nee');
+    
     const response = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
@@ -71,16 +75,18 @@ ${data.selected.map(id => `<li>${optionLabels[id] || id}</li>`).join('')}
       }),
     });
 
+    const responseData = await response.json();
+    
     if (!response.ok) {
-      const error = await response.text();
-      console.error('Resend API error:', error);
-      return false;
+      console.error('❌ Resend API error:', response.status, responseData);
+      return { success: false, error: responseData };
     }
 
-    return true;
-  } catch (error) {
-    console.error('Error sending email:', error);
-    return false;
+    console.log('✅ Email verstuurd! ID:', responseData.id);
+    return { success: true, emailId: responseData.id };
+  } catch (error: any) {
+    console.error('❌ Error sending email:', error.message || error);
+    return { success: false, error: error.message || 'Unknown error' };
   }
 }
 
@@ -97,17 +103,18 @@ export async function POST(request: NextRequest) {
     console.log('Tijdstip:', timestamp);
 
     // Stuur email notificatie
-    const emailSent = await sendEmailNotification({
+    const emailResult = await sendEmailNotification({
       selected,
       suggestions,
       other,
       timestamp,
     });
 
-    if (emailSent) {
-      console.log('✅ Email notificatie verstuurd');
+    if (emailResult.success) {
+      console.log('✅ Email notificatie verstuurd! ID:', emailResult.emailId);
     } else {
-      console.warn('⚠️ Email notificatie niet verstuurd (check RESEND_API_KEY)');
+      console.error('❌ Email notificatie mislukt:', emailResult.error);
+      // Log maar ga door - poll submission is succesvol
     }
 
     return NextResponse.json(
