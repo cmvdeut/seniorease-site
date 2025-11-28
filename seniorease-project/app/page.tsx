@@ -5,6 +5,9 @@ import MobileDownload from './components/MobileDownload';
 // YouTube kanaal URL - Pas aan naar jouw kanaal URL
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL'; // Of: https://www.youtube.com/channel/YOUR_CHANNEL_ID
 
+// Facebook pagina URL
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/senioreasenl';
+
 export default function Home() {
   // Structured Data (JSON-LD) voor SEO
   const structuredData = {
@@ -416,6 +419,58 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Volg Ons Sectie - Facebook */}
+      <section className="container mx-auto px-6 py-8">
+        <div className="max-w-6xl mx-auto">
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="grid md:grid-cols-2 gap-0">
+              {/* Linker deel - Tekst */}
+              <div className="bg-gradient-to-r from-primary/20 to-primary/10 p-6 md:p-8 flex flex-col items-center md:items-start justify-center">
+                <div className="text-5xl md:text-6xl mb-4">📘</div>
+                <div className="text-center md:text-left">
+                  <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+                    Volg Ons op Facebook
+                  </h2>
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    Blijf op de hoogte van nieuwe features, tips en updates. Deel uw ervaringen en stel vragen!
+                  </p>
+                  <a 
+                    href={FACEBOOK_PAGE_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
+                             hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    📘 Volg op Facebook
+                  </a>
+                </div>
+              </div>
+              
+              {/* Rechter deel - Feature highlights */}
+              <div className="bg-white p-6 md:p-8 flex items-center justify-center">
+                <div className="grid grid-cols-1 gap-3 w-full">
+                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
+                    <div className="text-4xl mb-2">📘</div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Updates</h3>
+                    <p className="text-senior-xs text-gray-600">Nieuwe features en tips</p>
+                  </div>
+                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
+                    <div className="text-4xl mb-2">💬</div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Community</h3>
+                    <p className="text-senior-xs text-gray-600">Deel ervaringen en stel vragen</p>
+                  </div>
+                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
+                    <div className="text-4xl mb-2">🎬</div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Video's</h3>
+                    <p className="text-senior-xs text-gray-600">Nieuwe YouTube video's</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="bg-white py-6 border-t-2 border-neutral-stone">
         <div className="container mx-auto px-6">
@@ -486,7 +541,15 @@ export default function Home() {
                 </Link>
               </div>
               <div className="text-center sm:text-left">
-                <h3 className="text-senior-base font-bold mb-2">Video's</h3>
+                <h3 className="text-senior-base font-bold mb-2">Volg Ons</h3>
+                <a 
+                  href={FACEBOOK_PAGE_URL} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2"
+                >
+                  📘 Volg op Facebook
+                </a>
                 <a 
                   href={YOUTUBE_CHANNEL_URL} 
                   target="_blank" 
@@ -495,9 +558,6 @@ export default function Home() {
                 >
                   📺 Bekijk op YouTube
                 </a>
-                <p className="text-senior-xs text-gray-400 mt-1">
-                  Instructievideo's beschikbaar
-                </p>
               </div>
             </div>
             <div className="border-t border-gray-700 pt-4 text-center">
