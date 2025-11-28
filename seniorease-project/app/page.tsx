@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import MobileDownload from './components/MobileDownload';
+import TopicPoll from './components/TopicPoll';
 
 // YouTube kanaal URL - Pas aan naar jouw kanaal URL
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL'; // Of: https://www.youtube.com/channel/YOUR_CHANNEL_ID
@@ -471,6 +472,13 @@ export default function Home() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Poll Sectie - Onderwerpen */}
+      <section className="container mx-auto px-6 py-8">
+        <div className="max-w-4xl mx-auto">
+          <TopicPoll />
         </div>
       </section>
 
