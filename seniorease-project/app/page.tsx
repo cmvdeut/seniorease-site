@@ -14,15 +14,15 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "SeniorEase",
-    "description": "Handige digitale tools speciaal ontworpen voor senioren. Beheer uw boeken en muziek collectie, gebruik rekenmachine, kalender en meer.",
+    "description": "SeniorEase - Handige technologie zonder gedoe voor senioren. Beheer uw boeken en muziek collectie met barcode scanner. Gratis op PC, €2,99 voor Android app. Grote teksten, duidelijke knoppen, speciaal gemaakt voor senioren.",
     "url": "https://seniorease.nl",
     "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Web, Android, iOS",
+    "operatingSystem": "Web, Android",
     "offers": {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "EUR",
-      "description": "Gratis op PC, €2,99 eenmalig voor mobiele app"
+      "description": "Gratis op PC, €2,99 eenmalig voor Android app"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -160,7 +160,10 @@ export default function Home() {
                       Gebruik op uw telefoon of tablet
                     </h2>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-1">
-                      Installeer de app op uw mobiele apparaat
+                      Installeer de app op uw Android telefoon of tablet
+                    </p>
+                    <p className="text-senior-sm text-orange-700 font-bold mb-2">
+                      ⚠️ Momenteel alleen beschikbaar voor Android
                     </p>
                     <p className="text-senior-sm text-gray-600 mb-4">
                       € 2,99 eenmalig • Geen abonnement
@@ -509,7 +512,7 @@ export default function Home() {
                   Overal te gebruiken
                 </h3>
                 <p className="text-senior-xs text-gray-600 leading-relaxed">
-                  Werkt op computer, tablet en telefoon. Installeer als app!
+                  Werkt op computer en Android telefoon/tablet. Installeer als app!
                 </p>
               </div>
             </div>

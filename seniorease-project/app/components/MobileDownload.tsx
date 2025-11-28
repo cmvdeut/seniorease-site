@@ -45,12 +45,16 @@ export default function MobileDownload() {
             />
           </div>
           <p className="text-senior-sm font-bold text-gray-700 mb-2 text-center">
-            Scan met uw telefoon camera
+            Scan met uw Android telefoon camera
           </p>
+          <div className="bg-orange-50 border-2 border-orange-300 rounded-xl p-3 text-senior-xs text-orange-900 text-center max-w-xs mb-3">
+            <p className="font-bold mb-1">⚠️ Alleen voor Android</p>
+            <p className="text-senior-xs">Momenteel niet beschikbaar voor iPhone/iPad</p>
+          </div>
           <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 text-senior-xs text-blue-900 text-center max-w-xs">
             <p className="font-bold mb-2">📱 Installatie instructies:</p>
             <ol className="list-decimal list-inside space-y-1 text-left ml-2">
-              <li>Scan de QR code met uw telefoon</li>
+              <li>Scan de QR code met uw Android telefoon</li>
               <li>Betaal € 2,99 (eenmalig)</li>
               <li>Download de app via de QR code</li>
               <li>Geef toestemming voor "onbekende bronnen"</li>
