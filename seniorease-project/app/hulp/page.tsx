@@ -79,37 +79,28 @@ export default function HulpPage() {
                 </div>
               </div>
 
-              {/* Volledige App Installatie */}
-              <div className="bg-white rounded-xl p-6 border-2 border-primary">
+              {/* Info over Demo Versie */}
+              <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mt-6">
                 <h3 className="text-senior-lg font-bold text-primary mb-4">
-                  💳 Volledige App Installeren (Betaald - €2,99)
+                  ℹ️ Over de Demo Versie
                 </h3>
                 <div className="text-senior-base text-gray-700 space-y-3">
-                  <p className="font-bold text-primary">Stap 1: Koop een licentie</p>
-                  <ol className="list-decimal list-inside ml-4 space-y-2">
-                    <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
-                    <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
-                    <li>Volg de betaalstappen</li>
-                    <li>Na betaling ontvang je een licentiecode</li>
-                  </ol>
-                  
-                  <p className="font-bold text-primary mt-4">Stap 2: Download de volledige app</p>
-                  <ol className="list-decimal list-inside ml-4 space-y-2">
-                    <li>Ga naar de <Link href="/download" className="text-primary hover:underline">downloadpagina</Link></li>
-                    <li>Voer je licentiecode in</li>
-                    <li>Download de volledige APK (Seniorease-Bibliotheek.apk)</li>
-                  </ol>
-                  
-                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
-                  <ol className="list-decimal list-inside ml-4 space-y-2">
-                    <li>Volg dezelfde stappen als bij de demo app (zie hierboven)</li>
-                    <li>Klik "Openen" → "Toestaan" → "Installeren"</li>
-                    <li>Open de app en geniet van onbeperkt gebruik!</li>
-                  </ol>
-                  
-                  <div className="bg-green-50 border-2 border-green-300 rounded-xl p-4 mt-4">
-                    <p className="text-senior-sm text-green-900">
-                      <span className="font-bold">✅ Voordeel:</span> Volledige versie heeft geen limiet en werkt op alle Android apparaten!
+                  <p>
+                    De demo versie is <strong>volledig gratis</strong> en bevat alle functionaliteit van de app, met een limiet van <strong>10 items</strong>.
+                  </p>
+                  <p>
+                    Met de demo versie kunt u:
+                  </p>
+                  <ul className="list-disc list-inside ml-4 space-y-1">
+                    <li>Boeken toevoegen via barcode scanner</li>
+                    <li>Boeken handmatig toevoegen met zoekfunctie</li>
+                    <li>Backup maken en terugzetten</li>
+                    <li>PDF exporteren en delen via email</li>
+                    <li>Zoeken en filteren in uw bibliotheek</li>
+                  </ul>
+                  <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mt-4">
+                    <p className="text-senior-sm text-yellow-900">
+                      <span className="font-bold">💡 Tip:</span> De demo versie is perfect om de app uit te proberen! Als u meer dan 10 items wilt opslaan, kunt u altijd een backup maken en deze later terugzetten.
                     </p>
                   </div>
                 </div>
@@ -130,7 +121,10 @@ export default function HulpPage() {
                 </h2>
                 <div className="text-senior-base text-gray-700">
                   <p>
-                    De app is <strong>gratis</strong> op desktop/laptop. Voor gebruik op telefoon of tablet kost de app eenmalig <strong>€ 2,99</strong>. Dit is een levenslange licentie, geen abonnement. U ontvangt ook alle toekomstige updates.
+                    Nee! De app is <strong>volledig gratis</strong> op alle apparaten (desktop, laptop, telefoon en tablet). Er zijn geen kosten, geen abonnementen en geen verborgen kosten.
+                  </p>
+                  <p className="mt-3">
+                    De demo versie heeft een limiet van <strong>10 items</strong>, maar alle functionaliteit is beschikbaar. U kunt altijd een backup maken van uw items en deze later terugzetten.
                   </p>
                 </div>
               </div>
@@ -207,8 +201,16 @@ export default function HulpPage() {
                 </h2>
                 <div className="text-senior-base text-gray-700">
                   <p>
-                    De licentie werkt op <strong>één apparaat</strong> (telefoon of tablet). Als u de app op een ander apparaat wilt gebruiken, moet u opnieuw een licentie aanschaffen. Uw bibliotheek data kan u via de backup functie overzetten naar het nieuwe apparaat.
+                    Ja! U kunt de app op zoveel apparaten gebruiken als u wilt. De app is <strong>volledig gratis</strong> en werkt op desktop, laptop, telefoon en tablet.
                   </p>
+                  <p className="mt-3">
+                    Om uw bibliotheek data over te zetten naar een ander apparaat, gebruikt u de backup functie:
+                  </p>
+                  <ol className="list-decimal list-inside ml-4 space-y-1 mt-2">
+                    <li>Maak een backup op uw huidige apparaat</li>
+                    <li>Installeer de app op uw nieuwe apparaat</li>
+                    <li>Zet de backup terug op het nieuwe apparaat</li>
+                  </ol>
                 </div>
               </div>
 
