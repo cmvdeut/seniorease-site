@@ -35,16 +35,18 @@ export default function MobileDownload() {
     }
   }, []);
 
-  // QR code linkt naar bibliotheek app (gratis voor iedereen)
+  // QR code linkt direct naar APK download als licentie actief is, anders naar betalen
   const qrUrl = currentUrl 
-    ? `${currentUrl}/bibliotheek`
+    ? (hasLicense 
+        ? `${currentUrl}/api/download-app` 
+        : `${currentUrl}/betalen`)
     : '';
 
   return (
     <>
       {qrUrl && (
         <div className="flex flex-col items-center">
-          <div className="bg-neutral-cream p-4 rounded-xl shadow-lg border-2 border-primary/20 mb-4">
+          <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-4">
             <QRCodeSVG
               value={qrUrl}
               size={180}
@@ -55,17 +57,15 @@ export default function MobileDownload() {
           <p className="text-senior-sm font-bold text-gray-700 mb-2 text-center">
             Scan met uw telefoon camera
           </p>
-          <div className="bg-neutral-cream border-2 border-primary/20 rounded-xl p-4 text-senior-xs text-gray-700 text-center max-w-xs">
-            <p className="font-bold mb-2">📱 Web App Installeren:</p>
+          <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 text-senior-xs text-blue-900 text-center max-w-xs">
+            <p className="font-bold mb-2">📱 Installatie instructies:</p>
             <ol className="list-decimal list-inside space-y-1 text-left ml-2">
               <li>Scan de QR code met uw telefoon</li>
-              <li>Open de bibliotheek app in uw browser</li>
-              <li>Klik op "Opties" → "Installeer als app"</li>
-              <li>Volg de installatie instructies</li>
+              <li>Betaal € 2,99 (eenmalig)</li>
+              <li>Download de app via de QR code</li>
+              <li>Geef toestemming voor "onbekende bronnen"</li>
+              <li>Installeer de app</li>
             </ol>
-            <p className="text-senior-xs text-gray-600 mt-2">
-              Werkt op Android, iPhone en iPad
-            </p>
           </div>
         </div>
       )}

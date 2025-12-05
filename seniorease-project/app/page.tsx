@@ -20,7 +20,7 @@ export default function Home() {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "EUR",
-      "description": "Volledig gratis op alle apparaten. Web versie werkt op Android, iPhone en iPad. APK download alleen voor Android."
+      "description": "Gratis op PC, €2,99 eenmalig voor mobiele app"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -148,7 +148,7 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Mobiele App Informatie Card - 60-40 interne verdeling */}
+          {/* Betaalde Mobiele Versie Card - 60-40 interne verdeling */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
             <div className="grid md:grid-cols-5 gap-0">
               {/* Linker deel - 60% (3/5) */}
@@ -157,24 +157,21 @@ export default function Home() {
                   <div className="text-5xl md:text-6xl">📱</div>
                   <div className="text-center md:text-left">
                     <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
-                      Gebruik op Mobiel Apparaat
+                      Volledige Versie voor € 2,99
                     </h2>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
-                      <span className="font-bold">Web versie:</span> Werkt op alle apparaten (Android, iPhone, iPad)
-                    </p>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
-                      <span className="font-bold">APK download:</span> Alleen voor Android telefoons en tablets
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-1">
+                      Onbeperkt gebruik • Alle functionaliteit
                     </p>
                     <p className="text-senior-sm text-gray-600 mb-4">
-                      Installeer de web versie als app via je browser. Volledig gratis!
+                      € 2,99 eenmalig • Geen abonnement
                     </p>
-                    <Link
-                      href="/bibliotheek"
+                    <a
+                      href="/betalen"
                       className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
                                hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                     >
-                      📱 Open Bibliotheek App
-                    </Link>
+                      💳 Download mobiele versie
+                    </a>
                   </div>
                 </div>
               </div>
