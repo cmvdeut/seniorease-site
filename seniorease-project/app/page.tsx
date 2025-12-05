@@ -156,10 +156,10 @@ export default function Home() {
                 <div className="flex flex-col items-center md:items-start gap-4">
                   <div className="text-5xl md:text-6xl">📱</div>
                   <div className="text-center md:text-left">
-                    <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+                    <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
                       Volledige Versie voor € 2,99
                     </h2>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-1">
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
                       Onbeperkt gebruik • Alle functionaliteit
                     </p>
                     <p className="text-senior-sm text-gray-600 mb-4">
