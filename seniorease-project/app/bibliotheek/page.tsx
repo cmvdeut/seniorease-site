@@ -720,16 +720,26 @@ Voor vragen: bezoek seniorease.nl
       
       // Test of camera beschikbaar is en permissie gegeven kan worden
       try {
-        const testStream = await navigator.mediaDevices.getUserMedia({
-          video: { facingMode: "environment" }
-        });
+        // Probeer eerst environment (achterkant camera), dan fallback naar user (voorkant)
+        let testStream;
+        try {
+          testStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "environment" }
+          });
+        } catch (envError) {
+          // Fallback naar voorkant camera
+          console.log('Environment camera niet beschikbaar, probeer voorkant camera...');
+          testStream = await navigator.mediaDevices.getUserMedia({
+            video: { facingMode: "user" }
+          });
+        }
         // Stop test stream onmiddellijk
         testStream.getTracks().forEach(track => track.stop());
         setDebugLogs(prev => [...prev, '✓ Camera beschikbaar en toegestaan']);
       } catch (permError: any) {
         const errorMsg = permError.message || 'Camera permissie geweigerd';
         setDebugLogs(prev => [...prev, `❌ Camera fout: ${errorMsg}`]);
-        alert(`Camera permissie nodig: ${errorMsg}. Controleer de instellingen van uw browser.`);
+        alert(`Camera permissie nodig: ${errorMsg}\n\nControleer:\n- Browser permissies voor camera\n- Of de website via HTTPS wordt geladen\n- Of de camera niet door een andere app wordt gebruikt`);
         stopScanner();
         return;
       }
@@ -754,26 +764,30 @@ Voor vragen: bezoek seniorease.nl
         setDebugLogs(prev => [...prev, 'Quagga.init() aangeroepen...']);
         
         // Eenvoudigste configuratie mogelijk voor mobiel compatibiliteit
+        // Probeer eerst environment camera, met fallback
         const initConfig: any = {
           inputStream: {
             type: "LiveStream",
             target: container,
             constraints: {
-              facingMode: "environment"
+              facingMode: "environment",
+              width: { min: 640, ideal: 1280, max: 1920 },
+              height: { min: 480, ideal: 720, max: 1080 }
             }
           },
           locator: {
             patchSize: "medium",
-            halfSample: false
+            halfSample: true // Betere performance
           },
-          numOfWorkers: 0, // Geen workers voor betere compatibiliteit
+          numOfWorkers: 2, // Gebruik workers voor betere performance
           frequency: 10,
           decoder: {
             readers: [
               "ean_reader",
               "ean_8_reader",
               "upc_reader",
-              "upc_e_reader"
+              "upc_e_reader",
+              "code_128_reader"
             ]
           },
           locate: true
@@ -789,7 +803,77 @@ Voor vragen: bezoek seniorease.nl
           console.error('Quagga init error:', err);
           const errorMsg = `Fout: ${err.message || err.toString() || 'Camera niet beschikbaar'}`;
           setDebugLogs(prev => [...prev, `❌ Init fout: ${errorMsg}`]);
-          alert('Camera kon niet worden gestart. Controleer de permissies en zorg dat de camera beschikbaar is.');
+          
+          // Probeer fallback configuratie met voorkant camera
+          if (err.message && err.message.includes('environment')) {
+            console.log('Probeer fallback met voorkant camera...');
+            setDebugLogs(prev => [...prev, '🔄 Probeer voorkant camera...']);
+            
+            const fallbackConfig = {
+              ...initConfig,
+              inputStream: {
+                ...initConfig.inputStream,
+                constraints: {
+                  facingMode: "user",
+                  width: { min: 640, ideal: 1280 },
+                  height: { min: 480, ideal: 720 }
+                }
+              }
+            };
+            
+            Quagga.init(fallbackConfig, function(fallbackErr: any) {
+              if (fallbackErr) {
+                alert(`Camera kon niet worden gestart.\n\nFout: ${fallbackErr.message || 'Onbekend'}\n\nControleer:\n- Browser permissies\n- HTTPS verbinding\n- Camera beschikbaarheid`);
+                stopScanner();
+                return;
+              }
+              
+              // Fallback succesvol
+              try {
+                // Registreer detection handler voor fallback
+                Quagga.offDetected();
+                Quagga.onDetected(async (result: any) => {
+                  const rawCode = result.codeResult?.code;
+                  if (!rawCode || !isValidBarcode(rawCode)) return;
+                  
+                  const normalizedCode = normalizeBarcode(rawCode);
+                  Quagga.stop();
+                  stopScanner();
+                  setShowAddForm(true);
+                  setFormData(prev => ({ ...prev, barcode: normalizedCode }));
+                  setDetectedBarcode(normalizedCode);
+                  setCountdown(4);
+                  
+                  const interval = setInterval(() => {
+                    setCountdown((prev) => {
+                      if (prev <= 1) {
+                        clearInterval(interval);
+                        return 0;
+                      }
+                      return prev - 1;
+                    });
+                  }, 1000);
+                  
+                  setTimeout(async () => {
+                    clearInterval(interval);
+                    setCountdown(0);
+                    await lookupBarcode(normalizedCode);
+                  }, 4000);
+                });
+                
+                Quagga.start();
+                setDebugLogs(prev => [...prev, '✓ Camera gestart (voorkant)', '✓ Wacht op barcode...']);
+              } catch (startError: any) {
+                console.error('Quagga.start() error:', startError);
+                setDebugLogs(prev => [...prev, `❌ Start fout: ${startError.message || 'Onbekend'}`]);
+                alert('Camera kon niet worden gestart. Probeer de pagina te vernieuwen.');
+                stopScanner();
+              }
+            });
+            return;
+          }
+          
+          alert(`Camera kon niet worden gestart.\n\nFout: ${errorMsg}\n\nControleer:\n- Browser permissies\n- HTTPS verbinding\n- Camera beschikbaarheid`);
           stopScanner();
           return;
         }
@@ -818,6 +902,9 @@ Voor vragen: bezoek seniorease.nl
         
         // Registreer detection handler NA dat Quagga is gestart
         setDebugLogs(prev => [...prev, 'Detectie handler geregistreerd']);
+        
+        // Verwijder oude detection handler eerst
+        Quagga.offDetected();
         
         Quagga.onDetected(async (result: any) => {
           const rawCode = result.codeResult?.code;
