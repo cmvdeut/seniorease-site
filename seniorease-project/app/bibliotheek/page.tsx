@@ -1347,15 +1347,6 @@ Voor vragen: bezoek seniorease.nl
                     </p>
                   </div>
                 </div>
-                <Link
-                  href="/betalen"
-                  className="bg-green-600 text-white px-6 py-3 rounded-xl text-senior-base font-bold
-                           hover:bg-green-700 transition-all shadow-lg hover:shadow-xl
-                           flex items-center gap-2 whitespace-nowrap"
-                >
-                  <span>💳</span>
-                  <span>Koop licentie (€2,99)</span>
-                </Link>
               </div>
             </div>
           </div>
@@ -1585,16 +1576,9 @@ Voor vragen: bezoek seniorease.nl
                 <p className="text-senior-base text-red-900 font-bold">
                   🚫 Demo limiet bereikt! Je hebt 10/10 items gebruikt.
                 </p>
-                <p className="text-senior-sm text-red-800 mt-2 mb-3">
+                <p className="text-senior-sm text-red-800 mt-2">
                   Koop de volledige versie om meer items toe te voegen.
                 </p>
-                <Link
-                  href="/betalen"
-                  className="inline-block bg-green-600 text-white px-6 py-3 rounded-xl text-senior-base font-bold
-                           hover:bg-green-700 transition-all shadow-lg"
-                >
-                  💳 Koop licentie (€2,99)
-                </Link>
               </div>
             )}
 
@@ -2067,6 +2051,28 @@ Voor vragen: bezoek seniorease.nl
             </div>
           </div>
         </main>
+
+        {/* Koop Licentie Knop - Onderaan */}
+        {hasLicense === 'demo' && (
+          <div className="bg-white border-t-4 border-primary py-8">
+            <div className="container mx-auto px-6">
+              <div className="max-w-6xl mx-auto text-center">
+                <Link
+                  href="/betalen"
+                  className="inline-block bg-green-600 text-white px-10 py-6 rounded-xl text-senior-xl font-bold
+                           hover:bg-green-700 transition-all shadow-lg hover:shadow-xl
+                           flex items-center justify-center gap-3 mx-auto"
+                >
+                  <span>💳</span>
+                  <span>Koop licentie voor € 2,99</span>
+                </Link>
+                <p className="text-senior-sm text-gray-600 mt-4">
+                  Onbeperkt gebruik • Levenslange licentie • Direct actief
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
