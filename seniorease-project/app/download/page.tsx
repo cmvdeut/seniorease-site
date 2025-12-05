@@ -12,25 +12,39 @@ function DownloadContent() {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    // Check of mobiel (direct checken, niet via state)
-    const userAgent = navigator.userAgent;
-    const isMobileDevice = /iPhone|iPad|iPod|Android/i.test(userAgent) || 
-                          (typeof window !== 'undefined' && window.innerWidth <= 768 && window.innerHeight <= 1024);
+    if (typeof window === 'undefined') return;
     
-    setIsAndroid(/Android/i.test(userAgent));
-    setIsMobile(isMobileDevice);
+    // Check of Android apparaat (voor APK download)
+    const userAgent = navigator.userAgent;
+    const isAndroid = /Android/i.test(userAgent);
+    const isAndroidTablet = isAndroid && /Mobile/i.test(userAgent) === false;
+    const isAndroidPhone = isAndroid && /Mobile/i.test(userAgent);
+    const isAndroidDevice = isAndroidPhone || isAndroidTablet;
+    
+    setIsAndroid(isAndroid);
+    setIsMobile(isAndroidDevice);
     
     // Check licentie
-    const licentie = localStorage.getItem('seniorease-licentie');
+    let licentie = null;
+    try {
+      licentie = localStorage.getItem('seniorease-licentie');
+    } catch (e) {
+      console.error('Error accessing localStorage:', e);
+      setHasLicense('demo');
+      return;
+    }
+    
     if (licentie) {
       try {
         const licentieData = JSON.parse(licentie);
         if (licentieData.valid) {
           setHasLicense(true);
           
-          // Genereer download URL
-          const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-          setDownloadUrl(`${baseUrl}/api/download-app`);
+          // Genereer download URL (alleen voor Android)
+          if (isAndroidDevice) {
+            const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
+            setDownloadUrl(`${baseUrl}/api/download-app`);
+          }
           
           return;
         }
@@ -39,15 +53,8 @@ function DownloadContent() {
       }
     }
     
-    // Geen licentie: demo mode
-    // Op desktop: demo mode voor testen (kan later worden uitgeschakeld)
-    // Op mobiel: altijd demo mode zonder licentie
-    if (isMobileDevice) {
-      setHasLicense('demo');
-    } else {
-      // Desktop: demo mode voor testen (verander naar false om licentie vereist te maken)
-      setHasLicense('demo');
-    }
+    // Geen licentie: demo mode beschikbaar op alle apparaten (met limiet van 10 items)
+    setHasLicense('demo');
   }, []);
 
   // Functie om APK te downloaden en automatisch te openen (Android)
@@ -230,13 +237,6 @@ function DownloadContent() {
                   </div>
                 </div>
                 <div className="mt-6 space-y-3">
-                  <Link
-                    href="/bibliotheek"
-                    className="block w-full bg-yellow-500 text-white px-8 py-4 rounded-xl text-senior-lg font-bold
-                             hover:bg-yellow-600 transition-all shadow-lg hover:shadow-xl text-center"
-                  >
-                    📱 Ga naar Bibliotheek om te Installeren
-                  </Link>
                   <Link
                     href="/betalen"
                     className="block w-full bg-green-600 text-white px-8 py-4 rounded-xl text-senior-lg font-bold
