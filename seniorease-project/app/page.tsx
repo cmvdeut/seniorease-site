@@ -95,6 +95,13 @@ export default function Home() {
       {/* Hero Section - Bibliotheek en Mobiele Download onder elkaar */}
       <section className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto space-y-4">
+          {/* Demo Versie - Alleen QR Code - HELEMAAL BOVENAAN */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="flex items-center justify-center p-6 md:p-8">
+              <DemoDownload />
+            </div>
+          </div>
+
           {/* Bibliotheek Hero Card - 60-40 interne verdeling */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
             <div className="grid md:grid-cols-5 gap-0">
@@ -110,7 +117,7 @@ export default function Home() {
                       <span className="font-bold">Gratis op de PC</span>
                     </p>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                      Beheer uw boeken en muziek collectie. Scan barcodes met uw camera of voer handmatig in.
+                      Beheer uw boeken collectie. Scan barcodes met uw camera of voer handmatig in.
                     </p>
                     <Link 
                       href="/bibliotheek"
@@ -132,51 +139,11 @@ export default function Home() {
                     <p className="text-senior-xs text-gray-600">Bewaar al uw boeken op één plek</p>
                   </div>
                   <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">💿</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Muziek</h3>
-                    <p className="text-senior-xs text-gray-600">Albums en CD's bijhouden</p>
-                  </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
                     <div className="text-4xl mb-2">📷</div>
                     <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Barcode Scan</h3>
                     <p className="text-senior-xs text-gray-600">Scan snel met uw camera of vul handmatig in</p>
                   </div>
                 </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Demo Versie Card - GRATIS - Strategisch geplaatst bovenaan */}
-          <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-2xl shadow-xl border-4 border-yellow-400 overflow-hidden">
-            <div className="grid md:grid-cols-5 gap-0">
-              {/* Linker deel - 60% (3/5) */}
-              <div className="md:col-span-3 bg-gradient-to-br from-yellow-100 to-yellow-50 p-6 md:p-8">
-                <div className="flex flex-col items-center md:items-start gap-4">
-                  <div className="text-5xl md:text-6xl">🎁</div>
-                  <div className="text-center md:text-left">
-                    <h2 className="text-senior-xl md:text-senior-2xl font-bold text-yellow-900 mb-2">
-                      Probeer GRATIS de Demo Versie!
-                    </h2>
-                    <p className="text-senior-base md:text-senior-lg text-yellow-900 leading-relaxed mb-2">
-                      <span className="font-bold">Geen betaling nodig</span> • Maximaal 10 items
-                    </p>
-                    <p className="text-senior-sm text-yellow-800 mb-4">
-                      Scan de QR code of klik op de knop om de demo te installeren
-                    </p>
-                    <Link
-                      href="/bibliotheek"
-                      className="inline-block bg-yellow-500 text-white px-8 py-3 rounded-xl text-senior-lg font-bold
-                               hover:bg-yellow-600 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-                    >
-                      🎁 Download GRATIS Demo
-                    </Link>
-                  </div>
-                </div>
-              </div>
-              
-              {/* Rechter deel - 40% (2/5) - Demo QR Code */}
-              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center justify-center">
-                <DemoDownload />
               </div>
             </div>
           </div>
