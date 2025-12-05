@@ -34,37 +34,94 @@ export default function HulpPage() {
               </p>
             </div>
 
+            {/* App Installatie Sectie */}
+            <div id="app-installatie" className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6 border-4 border-yellow-400 mb-8">
+              <h2 className="text-senior-xl font-bold text-primary mb-4">
+                📱 App Installatie - Uitgebreide Instructies
+              </h2>
+              
+              {/* Demo App Installatie */}
+              <div className="bg-white rounded-xl p-6 mb-6 border-2 border-yellow-300">
+                <h3 className="text-senior-lg font-bold text-primary mb-4">
+                  🎁 Demo App Installeren (Gratis)
+                </h3>
+                <div className="text-senior-base text-gray-700 space-y-3">
+                  <p className="font-bold text-primary">Stap 1: Download de Demo APK</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Ga naar de homepage: <Link href="/" className="text-primary hover:underline">www.seniorease.nl</Link></li>
+                    <li>Scan de QR code met je Android telefoon, OF</li>
+                    <li>Klik op "Direct APK downloaden" onder de QR code</li>
+                    <li>Wacht tot de download klaar is (ongeveer 30 MB)</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 2: Open het gedownloade bestand</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Open je Downloads map of meldingen</li>
+                    <li>Zoek het bestand: <strong>"Seniorease-Bibliotheek-Demo.apk"</strong></li>
+                    <li>Klik op het bestand om te openen</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li><strong>Melding: "Openen met pakket installatie?"</strong> → Klik <strong>"Openen"</strong></li>
+                    <li><strong>Melding: "Installeer apps van onbekende bronnen toestaan?"</strong> → Klik <strong>"Toestaan"</strong></li>
+                    <li>Kies je browser (Chrome, Firefox, etc.) en klik <strong>"Toestaan van deze bron"</strong></li>
+                    <li>Klik op <strong>"Installeren"</strong></li>
+                    <li>Wacht tot installatie klaar is (10-30 seconden)</li>
+                    <li>Klik op <strong>"Openen"</strong> om de app te starten</li>
+                  </ol>
+                  
+                  <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mt-4">
+                    <p className="text-senior-sm text-blue-900">
+                      <span className="font-bold">💡 Tip:</span> Als je dit vaker doet, kun je "Toestaan van deze bron" permanent aanzetten in Instellingen → Apps → Speciale toegang → "Installeer onbekende apps".
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Volledige App Installatie */}
+              <div className="bg-white rounded-xl p-6 border-2 border-primary">
+                <h3 className="text-senior-lg font-bold text-primary mb-4">
+                  💳 Volledige App Installeren (Betaald - €2,99)
+                </h3>
+                <div className="text-senior-base text-gray-700 space-y-3">
+                  <p className="font-bold text-primary">Stap 1: Koop een licentie</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
+                    <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
+                    <li>Volg de betaalstappen</li>
+                    <li>Na betaling ontvang je een licentiecode</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 2: Download de volledige app</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Ga naar de <Link href="/download" className="text-primary hover:underline">downloadpagina</Link></li>
+                    <li>Voer je licentiecode in</li>
+                    <li>Download de volledige APK (Seniorease-Bibliotheek.apk)</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Volg dezelfde stappen als bij de demo app (zie hierboven)</li>
+                    <li>Klik "Openen" → "Toestaan" → "Installeren"</li>
+                    <li>Open de app en geniet van onbeperkt gebruik!</li>
+                  </ol>
+                  
+                  <div className="bg-green-50 border-2 border-green-300 rounded-xl p-4 mt-4">
+                    <p className="text-senior-sm text-green-900">
+                      <span className="font-bold">✅ Voordeel:</span> Volledige versie heeft geen limiet en werkt op alle Android apparaten!
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* FAQ Items */}
             <div className="space-y-6">
               
-              {/* FAQ 1 */}
-              <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
-                <h2 className="text-senior-lg font-bold text-primary mb-3">
-                  📱 Hoe installeer ik de app op mijn telefoon?
-                </h2>
-                <div className="text-senior-base text-gray-700 space-y-2">
-                  <p><strong>Op Android:</strong></p>
-                  <ol className="list-decimal list-inside ml-4 space-y-1">
-                    <li>Open de bibliotheek app in Chrome of Samsung Internet</li>
-                    <li>Zoek rechtsboven naar het menu icoon:
-                      <ul className="list-disc list-inside ml-4 mt-1 space-y-1 text-sm">
-                        <li>Drie puntjes (⋮), drie streepjes (☰), of menu knop</li>
-                        <li>Dit staat meestal rechtsboven naast de adresbalk</li>
-                      </ul>
-                    </li>
-                    <li>Klik op dit menu icoon</li>
-                    <li>Scroll door het menu en zoek "Installeer app" of "Toevoegen aan startscherm"</li>
-                    <li>Klik hierop en bevestig met "Toevoegen"</li>
-                  </ol>
-                  <p className="mt-3"><strong>Op iPhone/iPad:</strong></p>
-                  <ol className="list-decimal list-inside ml-4 space-y-1">
-                    <li>Open de bibliotheek app in Safari</li>
-                    <li>Klik op het deel-icoon (vierkant met pijl) onderaan</li>
-                    <li>Scroll en kies "Voeg toe aan beginscherm"</li>
-                    <li>Klik "Toevoegen"</li>
-                  </ol>
-                </div>
-              </div>
+              {/* FAQ 1 - Verwijderd, nu in app-installatie sectie */}
+              
+              {/* FAQ 2 */}
 
               {/* FAQ 2 */}
               <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
