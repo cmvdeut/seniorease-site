@@ -23,7 +23,6 @@ export default function DemoDownload() {
   // Dit werkt altijd, ook als API route problemen heeft
   const qrCodeValue = demoUrl || 'https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk';
 
-
   return (
     <>
       <div className="flex flex-col items-center">
