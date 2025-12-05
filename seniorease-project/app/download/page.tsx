@@ -39,11 +39,14 @@ function DownloadContent() {
       }
     }
     
-    // Geen licentie: demo mode (voor mobiel)
+    // Geen licentie: demo mode
+    // Op desktop: demo mode voor testen (kan later worden uitgeschakeld)
+    // Op mobiel: altijd demo mode zonder licentie
     if (isMobileDevice) {
       setHasLicense('demo');
     } else {
-      setHasLicense(false);
+      // Desktop: demo mode voor testen (verander naar false om licentie vereist te maken)
+      setHasLicense('demo');
     }
   }, []);
 

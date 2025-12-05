@@ -30,6 +30,9 @@ export default function BibliotheekPage() {
   const [hasLicense, setHasLicense] = useState<boolean | 'demo' | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
+  const [bookSearchResults, setBookSearchResults] = useState<any[]>([]);
+  const [isSearchingBooks, setIsSearchingBooks] = useState(false);
+  const [showSearchResults, setShowSearchResults] = useState(false);
 
   // Check licentie (alleen voor mobiele apparaten)
   useEffect(() => {
@@ -37,13 +40,7 @@ export default function BibliotheekPage() {
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
                      (window.innerWidth <= 768 && window.innerHeight <= 1024);
     
-    if (!isMobile) {
-      // Desktop: altijd toegang
-      setHasLicense(true);
-      return;
-    }
-
-    // Mobiel: check licentie
+    // Check licentie
     const licentie = localStorage.getItem('seniorease-licentie');
     if (licentie) {
       try {
@@ -56,8 +53,16 @@ export default function BibliotheekPage() {
         console.error('Error checking license:', e);
       }
     }
-    // Geen licentie: demo mode (max 10 items)
-    setHasLicense('demo');
+    
+    // Geen licentie: demo mode
+    // Op desktop: demo mode voor testen (kan later worden uitgeschakeld)
+    // Op mobiel: altijd demo mode zonder licentie
+    if (isMobile) {
+      setHasLicense('demo');
+    } else {
+      // Desktop: demo mode voor testen (verwijder deze regel om desktop altijd toegang te geven)
+      setHasLicense('demo');
+    }
   }, []);
 
   // PWA install prompt - toestaan voor licentie EN demo mode
@@ -114,9 +119,21 @@ export default function BibliotheekPage() {
   // Save items to localStorage
   useEffect(() => {
     if (items.length > 0) {
-      localStorage.setItem('seniorease-library', JSON.stringify(items));
+      // In demo mode: beperk tot 10 items bij opslaan (extra beveiliging)
+      const itemsToSave = hasLicense === 'demo' && items.length > 10 
+        ? items.slice(0, 10) 
+        : items;
+      localStorage.setItem('seniorease-library', JSON.stringify(itemsToSave));
+      
+      // Als items zijn beperkt, update state ook
+      if (hasLicense === 'demo' && items.length > 10) {
+        setItems(itemsToSave);
+      }
+    } else {
+      // Verwijder localStorage entry als leeg
+      localStorage.removeItem('seniorease-library');
     }
-  }, [items]);
+  }, [items, hasLicense]);
 
   // Sluit menu bij klikken buiten het menu
   useEffect(() => {
@@ -253,6 +270,36 @@ export default function BibliotheekPage() {
       reader.onload = (event: any) => {
         try {
           const backup = JSON.parse(event.target.result);
+          
+          // Check demo limiet bij import
+          if (hasLicense === 'demo') {
+            const itemsToImport = Array.isArray(backup.items) ? backup.items : [];
+            if (itemsToImport.length > 10) {
+              const confirmed = confirm(
+                `Je probeert ${itemsToImport.length} items te importeren, maar de demo versie heeft een limiet van 10 items.\n\n` +
+                `Alleen de eerste 10 items worden geïmporteerd. Koop de volledige versie voor onbeperkt gebruik.\n\n` +
+                `Doorgaan met import van eerste 10 items?`
+              );
+              if (!confirmed) return;
+              
+              // Beperk tot 10 items
+              backup.items = itemsToImport.slice(0, 10);
+            } else if (items.length + itemsToImport.length > 10) {
+              const availableSlots = 10 - items.length;
+              if (availableSlots <= 0) {
+                alert('Demo limiet bereikt! Je hebt al 10 items. Verwijder eerst items of koop de volledige versie.');
+                return;
+              }
+              const confirmed = confirm(
+                `Je hebt al ${items.length} items. Je kunt nog ${availableSlots} items toevoegen.\n\n` +
+                `Alleen de eerste ${availableSlots} items worden geïmporteerd.\n\n` +
+                `Doorgaan?`
+              );
+              if (!confirmed) return;
+              
+              backup.items = itemsToImport.slice(0, availableSlots);
+            }
+          }
           if (backup.items && Array.isArray(backup.items)) {
             if (confirm(`Weet u zeker dat u de backup van ${new Date(backup.date).toLocaleDateString('nl-NL')} wilt terugzetten? Dit overschrijft alle huidige data.`)) {
               setItems(backup.items);
@@ -912,6 +959,77 @@ Voor vragen: bezoek seniorease.nl
       setLoadError('Kon geen boek vinden. Controleer de ISBN of vul handmatig in.');
       setIsLoadingData(false);
     }
+  }
+
+  // Zoek boeken op basis van titel en/of auteur (Google Books API)
+  async function searchBooksByTitleOrAuthor() {
+    if (!formData.title.trim() && !formData.author.trim()) {
+      setLoadError('Vul minimaal een titel of auteur in om te zoeken.');
+      return;
+    }
+
+    setIsSearchingBooks(true);
+    setLoadError(null);
+    setBookSearchResults([]);
+    setShowSearchResults(true);
+
+    try {
+      // Bouw zoekquery op
+      let query = '';
+      if (formData.title.trim() && formData.author.trim()) {
+        query = `intitle:${encodeURIComponent(formData.title.trim())}+inauthor:${encodeURIComponent(formData.author.trim())}`;
+      } else if (formData.title.trim()) {
+        query = `intitle:${encodeURIComponent(formData.title.trim())}`;
+      } else if (formData.author.trim()) {
+        query = `inauthor:${encodeURIComponent(formData.author.trim())}`;
+      }
+
+      console.log('Zoeken naar boeken met query:', query);
+      const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&langRestrict=nl`);
+
+      if (!response.ok) {
+        throw new Error('Zoeken mislukt');
+      }
+
+      const data = await response.json();
+
+      if (data.items && data.items.length > 0) {
+        const results = data.items.map((item: any) => {
+          const volumeInfo = item.volumeInfo;
+          return {
+            title: volumeInfo.title || 'Onbekend',
+            authors: volumeInfo.authors ? volumeInfo.authors.join(', ') : 'Onbekend',
+            isbn: volumeInfo.industryIdentifiers?.find((id: any) => id.type === 'ISBN_13' || id.type === 'ISBN_10')?.identifier || '',
+            publishedDate: volumeInfo.publishedDate || '',
+            description: volumeInfo.description || '',
+            thumbnail: volumeInfo.imageLinks?.thumbnail || ''
+          };
+        });
+        setBookSearchResults(results);
+      } else {
+        setLoadError('Geen boeken gevonden. Probeer andere zoektermen of vul handmatig in.');
+        setShowSearchResults(false);
+      }
+    } catch (error) {
+      console.error('Error searching books:', error);
+      setLoadError('Zoeken mislukt. Probeer het opnieuw of vul handmatig in.');
+      setShowSearchResults(false);
+    } finally {
+      setIsSearchingBooks(false);
+    }
+  }
+
+  // Selecteer een boek uit de zoekresultaten
+  function selectBookFromSearch(book: any) {
+    setFormData(prev => ({
+      ...prev,
+      type: 'book',
+      title: book.title,
+      author: book.authors,
+      barcode: book.isbn || prev.barcode
+    }));
+    setShowSearchResults(false);
+    setBookSearchResults([]);
   }
 
   // Lookup muziek via MusicBrainz API (hoofd API)
@@ -1600,15 +1718,38 @@ Voor vragen: bezoek seniorease.nl
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
                       Titel: *
                     </label>
-                    <input
-                      type="text"
-                      required
-                      value={formData.title}
-                      onChange={(e) => setFormData({ ...formData, title: e.target.value })}
-                      className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                               focus:border-primary focus:outline-none"
-                      placeholder="Titel van het item"
-                    />
+                    <div className="flex gap-2">
+                      <input
+                        type="text"
+                        required
+                        value={formData.title}
+                        onChange={(e) => {
+                          setFormData({ ...formData, title: e.target.value });
+                          setShowSearchResults(false); // Sluit resultaten bij wijziging
+                        }}
+                        onKeyDown={(e) => {
+                          if (e.key === 'Enter' && formData.type === 'book' && (formData.title.trim() || formData.author.trim())) {
+                            e.preventDefault();
+                            searchBooksByTitleOrAuthor();
+                          }
+                        }}
+                        className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
+                                 focus:border-primary focus:outline-none"
+                        placeholder="Titel van het item"
+                      />
+                      {formData.type === 'book' && (formData.title.trim() || formData.author.trim()) && (
+                        <button
+                          type="button"
+                          onClick={searchBooksByTitleOrAuthor}
+                          disabled={isSearchingBooks}
+                          className="bg-primary text-white px-6 py-3 rounded-lg text-senior-base font-bold
+                                   hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
+                                   disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
+                        >
+                          {isSearchingBooks ? '⏳' : '🔍 Zoek'}
+                        </button>
+                      )}
+                    </div>
                   </div>
 
                   <div>
@@ -1619,12 +1760,76 @@ Voor vragen: bezoek seniorease.nl
                       type="text"
                       required
                       value={formData.author}
-                      onChange={(e) => setFormData({ ...formData, author: e.target.value })}
+                      onChange={(e) => {
+                        setFormData({ ...formData, author: e.target.value });
+                        setShowSearchResults(false); // Sluit resultaten bij wijziging
+                      }}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' && formData.type === 'book' && (formData.title.trim() || formData.author.trim())) {
+                          e.preventDefault();
+                          searchBooksByTitleOrAuthor();
+                        }
+                      }}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
                       placeholder={formData.type === 'book' ? 'Naam van de auteur' : 'Naam van de artiest'}
                     />
                   </div>
+
+                  {/* Zoekresultaten voor boeken */}
+                  {formData.type === 'book' && showSearchResults && bookSearchResults.length > 0 && (
+                    <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mb-4 max-h-96 overflow-y-auto">
+                      <p className="text-senior-base font-bold text-blue-900 mb-3">
+                        📚 {bookSearchResults.length} boek{bookSearchResults.length !== 1 ? 'en' : ''} gevonden:
+                      </p>
+                      <div className="space-y-2">
+                        {bookSearchResults.map((book, index) => (
+                          <button
+                            key={index}
+                            type="button"
+                            onClick={() => selectBookFromSearch(book)}
+                            className="w-full text-left bg-white hover:bg-blue-100 border-2 border-blue-200 rounded-lg p-4 transition-all"
+                          >
+                            <div className="flex gap-3">
+                              {book.thumbnail && (
+                                <img 
+                                  src={book.thumbnail} 
+                                  alt={book.title}
+                                  className="w-16 h-24 object-cover rounded flex-shrink-0"
+                                />
+                              )}
+                              <div className="flex-1">
+                                <p className="text-senior-base font-bold text-gray-900 mb-1">
+                                  {book.title}
+                                </p>
+                                <p className="text-senior-sm text-gray-700 mb-1">
+                                  Door: {book.authors}
+                                </p>
+                                {book.isbn && (
+                                  <p className="text-senior-xs text-gray-500">
+                                    ISBN: {book.isbn}
+                                  </p>
+                                )}
+                              </div>
+                              <div className="flex items-center text-primary text-2xl">
+                                →
+                              </div>
+                            </div>
+                          </button>
+                        ))}
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => {
+                          setShowSearchResults(false);
+                          setBookSearchResults([]);
+                        }}
+                        className="mt-3 text-senior-sm text-blue-700 hover:text-blue-900 underline"
+                      >
+                        Sluit resultaten
+                      </button>
+                    </div>
+                  )}
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
