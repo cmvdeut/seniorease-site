@@ -112,7 +112,7 @@ export default function HulpPage() {
                   💳 Volledige App Installeren (Betaald - €2,99)
                 </h3>
                 <div className="text-senior-base text-gray-700 space-y-3">
-                  <p className="font-bold text-primary">Stap 1: Koop een licentie</p>
+                  <p className="font-bold text-primary">Stap 1: Betaal voor de volledige app</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
                     <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
@@ -165,13 +165,27 @@ export default function HulpPage() {
                 <h2 className="text-senior-lg font-bold text-primary mb-3">
                   💳 Moet ik betalen voor de app?
                 </h2>
-                <div className="text-senior-base text-gray-700">
-                  <p>
-                    Nee! De app is <strong>volledig gratis</strong> op alle apparaten (desktop, laptop, telefoon en tablet). Er zijn geen kosten, geen abonnementen en geen verborgen kosten.
-                  </p>
-                  <p className="mt-3">
-                    De demo versie heeft een limiet van <strong>10 items</strong>, maar alle functionaliteit is beschikbaar. U kunt altijd een backup maken van uw items en deze later terugzetten.
-                  </p>
+                <div className="text-senior-base text-gray-700 space-y-3">
+                  <div className="bg-white rounded-xl p-4 border-2 border-primary/20">
+                    <p className="font-bold text-primary mb-2">🌐 Web App (Gratis):</p>
+                    <p>
+                      De web versie is <strong>volledig gratis</strong> op alle apparaten (desktop, laptop, Android, iPhone en iPad). U kunt de app gebruiken in uw browser of installeren als PWA (Progressive Web App). Geen kosten, geen abonnementen.
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 border-2 border-yellow-300">
+                    <p className="font-bold text-primary mb-2">📱 Demo App (Gratis):</p>
+                    <p>
+                      De demo APK is <strong>volledig gratis</strong> voor Android telefoons en tablets. De demo versie heeft een limiet van <strong>10 items</strong>, maar alle functionaliteit is beschikbaar. Perfect om de app uit te proberen!
+                    </p>
+                  </div>
+                  
+                  <div className="bg-white rounded-xl p-4 border-2 border-green-300">
+                    <p className="font-bold text-primary mb-2">💳 Volledige App (Betaald - €2,99):</p>
+                    <p>
+                      De volledige Android APK kost <strong>€2,99 eenmalig</strong>. Dit geeft u onbeperkt gebruik zonder limiet op het aantal items. Geen abonnement, eenmalige betaling.
+                    </p>
+                  </div>
                 </div>
               </div>
 
