@@ -95,14 +95,7 @@ export default function Home() {
       {/* Hero Section - Bibliotheek en Mobiele Download onder elkaar */}
       <section className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto space-y-4">
-          {/* Demo Versie - Alleen QR Code - HELEMAAL BOVENAAN */}
-          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
-            <div className="flex items-center justify-center p-6 md:p-8">
-              <DemoDownload />
-            </div>
-          </div>
-
-          {/* Bibliotheek Hero Card - 60-40 interne verdeling */}
+          {/* Bibliotheek Hero Card - 60-40 interne verdeling - BOVENAAN */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
             <div className="grid md:grid-cols-5 gap-0">
               {/* Linker deel - 60% (3/5) */}
@@ -145,6 +138,13 @@ export default function Home() {
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+
+          {/* Demo Versie - Compact en netjes uitgelijnd */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="p-4 md:p-6">
+              <DemoDownload />
             </div>
           </div>
 

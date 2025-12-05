@@ -24,58 +24,59 @@ export default function DemoDownload() {
   const qrCodeValue = demoUrl || 'https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk';
 
   return (
-    <div className="flex flex-col items-center w-full max-w-md mx-auto">
-      {/* QR Code */}
-      <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-300 mb-4">
-        {qrCodeValue && (
-          <QRCodeSVG
-            value={qrCodeValue}
-            size={180}
-            level="H"
-            includeMargin={true}
-          />
-        )}
+    <div className="grid md:grid-cols-3 gap-4 items-center">
+      {/* Linker deel - QR Code */}
+      <div className="flex flex-col items-center">
+        <div className="bg-neutral-cream p-3 rounded-xl border-2 border-primary/20 mb-2">
+          {qrCodeValue && (
+            <QRCodeSVG
+              value={qrCodeValue}
+              size={140}
+              level="H"
+              includeMargin={true}
+            />
+          )}
+        </div>
+        <p className="text-senior-xs font-bold text-gray-700 text-center">
+          Scan voor demo
+        </p>
       </div>
       
-      {/* Tekst onder QR Code */}
-      <p className="text-senior-sm font-bold text-gray-700 mb-4 text-center">
-        Scan voor GRATIS demo versie
-      </p>
-      
-      {/* Grote Directe APK Download Knop */}
-      <Link
-        href="/Seniorease-Bibliotheek-Demo.apk"
-        className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-senior-base font-bold
-                 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 mb-4 inline-block w-full text-center"
-        download="Seniorease-Bibliotheek-Demo.apk"
-      >
-        📱 Direct APK downloaden
-      </Link>
+      {/* Midden deel - Download knop en info */}
+      <div className="flex flex-col gap-3">
+        <Link
+          href="/Seniorease-Bibliotheek-Demo.apk"
+          className="bg-primary hover:bg-primary-dark text-white px-6 py-3 rounded-xl text-senior-base font-bold
+                   transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+          download="Seniorease-Bibliotheek-Demo.apk"
+        >
+          📱 Direct APK downloaden
+        </Link>
+        
+        <div className="bg-neutral-cream rounded-xl p-3 text-senior-xs text-gray-700">
+          <p className="font-bold mb-1">🎁 Demo versie:</p>
+          <ul className="list-disc list-inside space-y-0.5 text-left ml-2">
+            <li>Max. 10 items</li>
+            <li>Barcode scanner</li>
+            <li>Gratis te proberen</li>
+          </ul>
+        </div>
+      </div>
 
-      {/* Beknopte Installatie Instructies */}
-      <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mb-3 text-senior-xs text-blue-900 text-center w-full">
-        <p className="font-bold mb-2">📱 Installeren (3 stappen):</p>
+      {/* Rechter deel - Installatie instructies */}
+      <div className="bg-neutral-cream rounded-xl p-3 text-senior-xs text-gray-700">
+        <p className="font-bold mb-2">📱 Installeren:</p>
         <ol className="list-decimal list-inside space-y-1 text-left">
-          <li>Klik "Openen" wanneer gevraagd</li>
-          <li>Klik "Toestaan" voor onbekende bronnen</li>
-          <li>Klik "Installeren" en wacht</li>
+          <li>Klik "Openen"</li>
+          <li>Klik "Toestaan"</li>
+          <li>Klik "Installeren"</li>
         </ol>
         <Link 
           href="/hulp#app-installatie"
           className="text-senior-xs text-primary hover:underline font-bold mt-2 inline-block"
         >
-          → Uitgebreide instructies
+          → Meer info
         </Link>
-      </div>
-
-      {/* Demo versie info */}
-      <div className="bg-gray-50 border-2 border-gray-300 rounded-xl p-3 text-senior-xs text-gray-900 text-center w-full">
-        <p className="font-bold mb-1">🎁 Demo versie:</p>
-        <ul className="list-disc list-inside space-y-0.5 text-left ml-2">
-          <li>Max. 10 items</li>
-          <li>Barcode scanner</li>
-          <li>Gratis te proberen</li>
-        </ul>
       </div>
     </div>
   );
