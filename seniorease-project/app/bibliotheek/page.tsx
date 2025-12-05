@@ -3,7 +3,6 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
-import { jsPDF } from 'jspdf';
 
 interface LibraryItem {
   id: string;
@@ -37,12 +36,23 @@ export default function BibliotheekPage() {
 
   // Check licentie (alleen voor mobiele apparaten)
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     // Check of het een mobiel apparaat is
     const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
                      (window.innerWidth <= 768 && window.innerHeight <= 1024);
     
     // Check licentie
-    const licentie = localStorage.getItem('seniorease-licentie');
+    let licentie = null;
+    try {
+      licentie = localStorage.getItem('seniorease-licentie');
+    } catch (e) {
+      // localStorage kan niet beschikbaar zijn
+      console.error('Error accessing localStorage:', e);
+      setHasLicense(isMobile ? 'demo' : false);
+      return;
+    }
+    
     if (licentie) {
       try {
         const licentieData = JSON.parse(licentie);
@@ -99,40 +109,52 @@ export default function BibliotheekPage() {
 
   // Load items from localStorage
   useEffect(() => {
-    if (hasLicense === null) return;
+    if (hasLicense === null || typeof window === 'undefined') return;
     
-    const saved = localStorage.getItem('seniorease-library');
-    if (saved) {
-      try {
-        const loadedItems = JSON.parse(saved);
-        // In demo mode: beperk tot 10 items
-        if (hasLicense === 'demo' && loadedItems.length > 10) {
-          setItems(loadedItems.slice(0, 10));
-        } else {
-          setItems(loadedItems);
+    try {
+      const saved = localStorage.getItem('seniorease-library');
+      if (saved) {
+        try {
+          const loadedItems = JSON.parse(saved);
+          // In demo mode: beperk tot 10 items
+          if (hasLicense === 'demo' && loadedItems.length > 10) {
+            setItems(loadedItems.slice(0, 10));
+          } else {
+            setItems(loadedItems);
+          }
+        } catch (e) {
+          console.error('Error loading library:', e);
         }
-      } catch (e) {
-        console.error('Error loading library:', e);
       }
+    } catch (e) {
+      // localStorage kan niet beschikbaar zijn (bijv. in private mode)
+      console.error('Error accessing localStorage:', e);
     }
   }, [hasLicense]);
 
   // Save items to localStorage
   useEffect(() => {
-    if (items.length > 0) {
-      // In demo mode: beperk tot 10 items bij opslaan (extra beveiliging)
-      const itemsToSave = hasLicense === 'demo' && items.length > 10 
-        ? items.slice(0, 10) 
-        : items;
-      localStorage.setItem('seniorease-library', JSON.stringify(itemsToSave));
-      
-      // Als items zijn beperkt, update state ook
-      if (hasLicense === 'demo' && items.length > 10) {
-        setItems(itemsToSave);
+    if (typeof window === 'undefined') return;
+    
+    try {
+      if (items.length > 0) {
+        // In demo mode: beperk tot 10 items bij opslaan (extra beveiliging)
+        const itemsToSave = hasLicense === 'demo' && items.length > 10 
+          ? items.slice(0, 10) 
+          : items;
+        localStorage.setItem('seniorease-library', JSON.stringify(itemsToSave));
+        
+        // Als items zijn beperkt, update state ook
+        if (hasLicense === 'demo' && items.length > 10) {
+          setItems(itemsToSave);
+        }
+      } else {
+        // Verwijder localStorage entry als leeg
+        localStorage.removeItem('seniorease-library');
       }
-    } else {
-      // Verwijder localStorage entry als leeg
-      localStorage.removeItem('seniorease-library');
+    } catch (e) {
+      // localStorage kan niet beschikbaar zijn (bijv. in private mode)
+      console.error('Error saving to localStorage:', e);
     }
   }, [items, hasLicense]);
 
@@ -203,8 +225,10 @@ export default function BibliotheekPage() {
   }
 
   // Export to PDF
-  function exportToPDF() {
+  async function exportToPDF() {
     try {
+      // Dynamisch importeren van jsPDF om SSR problemen te voorkomen
+      const { jsPDF } = await import('jspdf');
       const doc = new jsPDF();
       const pageWidth = doc.internal.pageSize.getWidth();
       const margin = 20;
