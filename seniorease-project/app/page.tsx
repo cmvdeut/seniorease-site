@@ -160,6 +160,12 @@ export default function Home() {
                       Volledige Versie voor € 2,99
                     </h2>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                      <span className="font-bold">Web versie:</span> Werkt op alle apparaten (Android, iPhone, iPad)
+                    </p>
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                      <span className="font-bold">APK download:</span> Alleen voor Android telefoons en tablets
+                    </p>
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
                       Onbeperkt gebruik • Alle functionaliteit
                     </p>
                     <p className="text-senior-sm text-gray-600 mb-4">
