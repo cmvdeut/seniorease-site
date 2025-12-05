@@ -80,7 +80,7 @@ export default function HulpPage() {
               </div>
 
               {/* Info over Demo Versie */}
-              <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mt-6">
+              <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mb-6">
                 <h3 className="text-senior-lg font-bold text-primary mb-4">
                   ℹ️ Over de Demo Versie
                 </h3>
@@ -102,6 +102,52 @@ export default function HulpPage() {
                     <p className="text-senior-sm text-yellow-900">
                       <span className="font-bold">💡 Tip:</span> De demo versie is perfect om de app uit te proberen! Als u meer dan 10 items wilt opslaan, kunt u altijd een backup maken en deze later terugzetten.
                     </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Volledige App Installatie */}
+              <div className="bg-white rounded-xl p-6 border-2 border-primary">
+                <h3 className="text-senior-lg font-bold text-primary mb-4">
+                  💳 Volledige App Installeren (Betaald - €2,99)
+                </h3>
+                <div className="text-senior-base text-gray-700 space-y-3">
+                  <p className="font-bold text-primary">Stap 1: Koop een licentie</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
+                    <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
+                    <li>Volg de betaalstappen</li>
+                    <li>Na betaling ontvang je een licentiecode</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 2: Download de volledige app</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Ga naar de <Link href="/download" className="text-primary hover:underline">downloadpagina</Link></li>
+                    <li>Voer je licentiecode in</li>
+                    <li>Download de volledige APK (Seniorease-Bibliotheek.apk)</li>
+                  </ol>
+                  
+                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
+                  <ol className="list-decimal list-inside ml-4 space-y-2">
+                    <li>Volg dezelfde stappen als bij de demo app (zie hierboven)</li>
+                    <li>Klik "Openen" → "Toestaan" → "Installeren"</li>
+                    <li>Open de app en geniet van onbeperkt gebruik!</li>
+                  </ol>
+                  
+                  <div className="bg-green-50 border-2 border-green-300 rounded-xl p-4 mt-4">
+                    <p className="text-senior-sm text-green-900">
+                      <span className="font-bold">✅ Voordeel:</span> Volledige versie heeft geen limiet en werkt op alle Android apparaten!
+                    </p>
+                  </div>
+
+                  <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mt-4">
+                    <p className="text-senior-sm text-blue-900">
+                      <span className="font-bold">📱 Platform informatie:</span>
+                    </p>
+                    <ul className="list-disc list-inside ml-4 space-y-1 mt-2 text-senior-sm">
+                      <li><strong>Web versie:</strong> Werkt op alle apparaten (Android, iPhone, iPad) - gratis</li>
+                      <li><strong>APK download:</strong> Alleen voor Android telefoons en tablets - €2,99</li>
+                    </ul>
                   </div>
                 </div>
               </div>
