@@ -51,6 +51,10 @@ export default function DemoDownload() {
           <li>Barcode scanner</li>
           <li>Gratis te proberen</li>
         </ul>
+        <div className="mt-2 pt-2 border-t border-yellow-400">
+          <p className="font-bold text-senior-xs mb-1">📱 Installeren:</p>
+          <p className="text-senior-xs text-left">1. Klik "Openen" → 2. Klik "Toestaan" → 3. Klik "Installeren"</p>
+        </div>
       </div>
     </div>
   );
