@@ -8,19 +8,29 @@ export default function MobileDownload() {
   const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   
   useEffect(() => {
+    // Check of we in browser zijn
+    if (typeof window === 'undefined') {
+      return;
+    }
+    
     // Gebruik de huidige URL voor de QR code
     setCurrentUrl(window.location.origin);
     
     // Check licentie
-    const licentie = localStorage.getItem('seniorease-licentie');
-    if (licentie) {
-      try {
-        const licentieData = JSON.parse(licentie);
-        setHasLicense(licentieData.valid === true);
-      } catch (e) {
+    try {
+      const licentie = localStorage.getItem('seniorease-licentie');
+      if (licentie) {
+        try {
+          const licentieData = JSON.parse(licentie);
+          setHasLicense(licentieData.valid === true);
+        } catch (e) {
+          setHasLicense(false);
+        }
+      } else {
         setHasLicense(false);
       }
-    } else {
+    } catch (e) {
+      // localStorage kan niet beschikbaar zijn (bijv. in private mode)
       setHasLicense(false);
     }
   }, []);
