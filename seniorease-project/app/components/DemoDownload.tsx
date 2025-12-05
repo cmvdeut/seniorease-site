@@ -12,16 +12,16 @@ export default function DemoDownload() {
     if (typeof window !== 'undefined') {
       const origin = window.location.origin;
       setCurrentUrl(origin);
-      // Gebruik altijd de volledige URL voor QR code
-      const fullUrl = `${origin}/api/download-demo-app`;
+      // Gebruik directe public folder link (werkt altijd, ook als API route faalt)
+      const fullUrl = `${origin}/Seniorease-Bibliotheek-Demo.apk`;
       setDemoUrl(fullUrl);
       console.log('QR Code URL:', fullUrl); // Debug log
     }
   }, []);
 
-  // Demo download link - direct naar demo APK download
-  // Fallback naar productie URL als currentUrl nog niet geladen is
-  const qrCodeValue = demoUrl || 'https://seniorease.nl/api/download-demo-app';
+  // Demo download link - direct naar demo APK in public folder
+  // Dit werkt altijd, ook als API route problemen heeft
+  const qrCodeValue = demoUrl || 'https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk';
 
   return (
     <div className="flex flex-col items-center">
@@ -39,7 +39,7 @@ export default function DemoDownload() {
         Scan voor GRATIS demo versie
       </p>
       <Link
-        href="/api/download-demo-app"
+        href="/Seniorease-Bibliotheek-Demo.apk"
         className="text-senior-xs text-primary hover:underline font-bold text-center"
       >
         Of klik hier om demo APK te downloaden →
