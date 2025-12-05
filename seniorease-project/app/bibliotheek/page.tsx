@@ -78,17 +78,17 @@ export default function BibliotheekPage() {
 
   // PWA install prompt - toestaan voor licentie EN demo mode
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+    
     const handleBeforeInstallPrompt = (e: Event) => {
-      // ALTIJD voorkomen dat de browser prompt automatisch toont
-      e.preventDefault();
-      
-      // Prompt opslaan als er een licentie is OF demo mode
+      // Alleen blokkeren als we de prompt ook kunnen tonen (heeft licentie of demo)
+      // Dit voorkomt de browser warning "preventDefault() called but prompt() not called"
       if (hasLicense === true || hasLicense === 'demo') {
+        // Blokkeer automatische prompt en bewaar voor later gebruik via onze knop
+        e.preventDefault();
         setDeferredPrompt(e);
-      } else {
-        // Zonder licentie en niet demo: prompt weggooien
-        setDeferredPrompt(null);
       }
+      // Als geen licentie/demo: laat browser zijn eigen prompt tonen (geen preventDefault)
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -817,7 +817,19 @@ Voor vragen: bezoek seniorease.nl
           locate: true
         };
         
-        setDebugLogs(prev => [...prev, `Config: ${JSON.stringify(initConfig).substring(0, 100)}...`]);
+        // Log config zonder DOM elementen (om circular reference te voorkomen)
+        const configForLog = {
+          inputStream: {
+            type: initConfig.inputStream.type,
+            constraints: initConfig.inputStream.constraints
+          },
+          locator: initConfig.locator,
+          numOfWorkers: initConfig.numOfWorkers,
+          frequency: initConfig.frequency,
+          decoder: initConfig.decoder,
+          locate: initConfig.locate
+        };
+        setDebugLogs(prev => [...prev, `Config: ${JSON.stringify(configForLog).substring(0, 100)}...`]);
         
         Quagga.init(initConfig, function(err: any) {
         // Clear timeout omdat callback is aangeroepen
