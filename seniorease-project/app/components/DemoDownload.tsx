@@ -41,10 +41,11 @@ export default function DemoDownload() {
           Scan voor GRATIS demo versie
         </p>
         
-        {/* Directe APK Link */}
+        {/* Grote Directe APK Download Knop */}
         <Link
           href="/Seniorease-Bibliotheek-Demo.apk"
-          className="text-senior-xs text-primary hover:underline font-bold text-center mb-4"
+          className="bg-primary hover:bg-primary-dark text-white px-8 py-4 rounded-xl text-senior-base font-bold
+                   transition-all shadow-lg hover:shadow-xl transform hover:scale-105 mb-4 inline-block"
           download="Seniorease-Bibliotheek-Demo.apk"
         >
           📱 Direct APK downloaden
