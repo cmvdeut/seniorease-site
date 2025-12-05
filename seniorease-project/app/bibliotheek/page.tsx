@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
+import { jsPDF } from 'jspdf';
 
 interface LibraryItem {
   id: string;
@@ -199,6 +200,193 @@ export default function BibliotheekPage() {
     link.download = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.csv`;
     link.click();
     setShowMenu(false);
+  }
+
+  // Export to PDF
+  function exportToPDF() {
+    try {
+      const doc = new jsPDF();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const margin = 20;
+      let yPos = margin;
+      const lineHeight = 8;
+      const maxY = doc.internal.pageSize.getHeight() - margin;
+
+      // Titel
+      doc.setFontSize(18);
+      doc.setTextColor(0, 100, 200);
+      doc.text('Mijn Bibliotheek - SeniorEase', margin, yPos);
+      yPos += lineHeight * 2;
+
+      // Datum
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Gegenereerd op: ${new Date().toLocaleDateString('nl-NL')}`, margin, yPos);
+      yPos += lineHeight * 2;
+
+      // Statistieken
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Totaal items: ${items.length}`, margin, yPos);
+      yPos += lineHeight;
+      const booksCount = items.filter(item => item.type === 'book').length;
+      const musicCount = items.filter(item => item.type === 'music').length;
+      doc.text(`Boeken: ${booksCount} | Muziek: ${musicCount}`, margin, yPos);
+      yPos += lineHeight * 2;
+
+      // Items
+      doc.setFontSize(14);
+      doc.setTextColor(0, 100, 200);
+      doc.text('Items:', margin, yPos);
+      yPos += lineHeight * 1.5;
+
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+
+      filteredItems.forEach((item, index) => {
+        // Check of we een nieuwe pagina nodig hebben
+        if (yPos > maxY - (lineHeight * 5)) {
+          doc.addPage();
+          yPos = margin;
+        }
+
+        // Type en nummer
+        doc.setFont('helvetica', 'bold');
+        doc.text(`${index + 1}. ${typeIcons[item.type]} ${typeNames[item.type]}`, margin, yPos);
+        yPos += lineHeight;
+
+        // Titel
+        doc.setFont('helvetica', 'normal');
+        const titleLines = doc.splitTextToSize(`   Titel: ${item.title}`, pageWidth - (margin * 2));
+        doc.text(titleLines, margin + 5, yPos);
+        yPos += lineHeight * titleLines.length;
+
+        // Auteur
+        const authorLabel = item.type === 'book' ? 'Auteur' : 'Artiest';
+        doc.text(`   ${authorLabel}: ${item.author}`, margin + 5, yPos);
+        yPos += lineHeight;
+
+        // Barcode (als aanwezig)
+        if (item.barcode) {
+          doc.text(`   Barcode: ${item.barcode}`, margin + 5, yPos);
+          yPos += lineHeight;
+        }
+
+        // Notities (als aanwezig)
+        if (item.notes) {
+          const notesLines = doc.splitTextToSize(`   Notities: ${item.notes}`, pageWidth - (margin * 2));
+          doc.text(notesLines, margin + 5, yPos);
+          yPos += lineHeight * notesLines.length;
+        }
+
+        // Datum toegevoegd
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(8);
+        doc.text(`   Toegevoegd: ${new Date(item.dateAdded).toLocaleDateString('nl-NL')}`, margin + 5, yPos);
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(10);
+        yPos += lineHeight * 1.5;
+
+        // Lijn tussen items
+        if (index < filteredItems.length - 1) {
+          doc.setDrawColor(200, 200, 200);
+          doc.line(margin, yPos, pageWidth - margin, yPos);
+          yPos += lineHeight;
+        }
+      });
+
+      // Footer op elke pagina
+      const totalPages = doc.internal.pages.length - 1;
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text(
+          `Pagina ${i} van ${totalPages} - SeniorEase Bibliotheek`,
+          pageWidth / 2,
+          doc.internal.pageSize.getHeight() - 10,
+          { align: 'center' }
+        );
+      }
+
+      // Download PDF
+      const fileName = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.pdf`;
+      doc.save(fileName);
+      setShowMenu(false);
+      alert('PDF succesvol gedownload!');
+    } catch (error: any) {
+      console.error('Error generating PDF:', error);
+      alert('Er is een fout opgetreden bij het genereren van de PDF. Probeer het opnieuw.');
+    }
+  }
+
+  // Delen via email
+  function delenViaEmail() {
+    try {
+      // Maak een tekstversie van de bibliotheek
+      let emailBody = 'Mijn Bibliotheek - SeniorEase\n\n';
+      emailBody += `Gegenereerd op: ${new Date().toLocaleDateString('nl-NL')}\n\n`;
+      emailBody += `Totaal items: ${items.length}\n`;
+      emailBody += `Boeken: ${items.filter(item => item.type === 'book').length}\n`;
+      emailBody += `Muziek: ${items.filter(item => item.type === 'music').length}\n\n`;
+      emailBody += '---\n\n';
+
+      filteredItems.forEach((item, index) => {
+        emailBody += `${index + 1}. ${typeIcons[item.type]} ${typeNames[item.type]}\n`;
+        emailBody += `   Titel: ${item.title}\n`;
+        const authorLabel = item.type === 'book' ? 'Auteur' : 'Artiest';
+        emailBody += `   ${authorLabel}: ${item.author}\n`;
+        if (item.barcode) {
+          emailBody += `   Barcode: ${item.barcode}\n`;
+        }
+        if (item.notes) {
+          emailBody += `   Notities: ${item.notes}\n`;
+        }
+        emailBody += `   Toegevoegd: ${new Date(item.dateAdded).toLocaleDateString('nl-NL')}\n`;
+        emailBody += '\n';
+      });
+
+      emailBody += '\n---\n';
+      emailBody += 'Gegenereerd met SeniorEase Bibliotheek App\n';
+      emailBody += 'https://seniorease.nl';
+
+      // Maak ook een CSV attachment ready
+      const headers = ['Type', 'Titel', 'Auteur/Artiest', 'Barcode', 'Datum toegevoegd', 'Notities'];
+      const rows = filteredItems.map(item => [
+        typeNames[item.type],
+        item.title,
+        item.author,
+        item.barcode,
+        new Date(item.dateAdded).toLocaleDateString('nl-NL'),
+        item.notes || ''
+      ]);
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+
+      // Encode voor mailto
+      const subject = encodeURIComponent('Mijn Bibliotheek - SeniorEase');
+      const body = encodeURIComponent(emailBody);
+      
+      // Maak mailto link
+      const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
+      
+      // Open email client
+      window.location.href = mailtoLink;
+      
+      // Toon instructie voor CSV attachment
+      setTimeout(() => {
+        if (confirm('Email client geopend!\n\nTip: Als u de bibliotheek als bijlage wilt toevoegen:\n1. Download eerst de CSV via "Exporteer CSV"\n2. Voeg het bestand toe aan uw email\n\nWilt u nu de CSV downloaden?')) {
+          exportToCSV();
+        }
+      }, 500);
+      
+      setShowMenu(false);
+    } catch (error: any) {
+      console.error('Error sharing via email:', error);
+      alert('Er is een fout opgetreden bij het openen van de email client. Probeer het opnieuw.');
+    }
   }
 
   // Backup maken - met keuze van opslaglocatie
@@ -1427,6 +1615,14 @@ Voor vragen: bezoek seniorease.nl
                           <span>Exporteer CSV</span>
                         </button>
                         
+                        <button
+                          onClick={exportToPDF}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📑</span>
+                          <span>Exporteer PDF</span>
+                        </button>
+                        
                         <div className="border-t border-gray-200 my-1"></div>
                         
                         <button
@@ -1470,6 +1666,14 @@ Voor vragen: bezoek seniorease.nl
                         >
                           <span className="text-2xl">📱</span>
                           <span>Delen (WhatsApp)</span>
+                        </button>
+                        
+                        <button
+                          onClick={delenViaEmail}
+                          className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
+                        >
+                          <span className="text-2xl">📧</span>
+                          <span>Delen via Email</span>
                         </button>
                         
                         <button
