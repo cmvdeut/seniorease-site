@@ -6,9 +6,9 @@ import Script from 'next/script';
 
 interface LibraryItem {
   id: string;
-  type: 'book' | 'music'; // Alleen boeken en muziek
+  type: 'book'; // Alleen boeken
   title: string;
-  author: string; // Auteur voor boeken, artiest voor muziek
+  author: string; // Auteur
   barcode: string;
   dateAdded: string;
   notes?: string;
@@ -19,7 +19,7 @@ export default function BibliotheekPage() {
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
   const [showScanner, setShowScanner] = useState(false);
-  const [filterType, setFilterType] = useState<string>('all');
+  // Filter verwijderd - alleen boeken beschikbaar
   const [quaggaLoaded, setQuaggaLoaded] = useState(false);
   const [isLoadingData, setIsLoadingData] = useState(false);
   const [loadError, setLoadError] = useState<string | null>(null);
@@ -34,22 +34,18 @@ export default function BibliotheekPage() {
   const [isSearchingBooks, setIsSearchingBooks] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
 
-  // Check licentie (alleen voor mobiele apparaten)
+  // Check licentie - demo mode beschikbaar op alle apparaten
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
-    // Check of het een mobiel apparaat is
-    const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent) || 
-                     (window.innerWidth <= 768 && window.innerHeight <= 1024);
     
     // Check licentie
     let licentie = null;
     try {
       licentie = localStorage.getItem('seniorease-licentie');
     } catch (e) {
-      // localStorage kan niet beschikbaar zijn
+      // localStorage kan niet beschikbaar zijn - gebruik demo mode
       console.error('Error accessing localStorage:', e);
-      setHasLicense(isMobile ? 'demo' : false);
+      setHasLicense('demo');
       return;
     }
     
@@ -65,15 +61,8 @@ export default function BibliotheekPage() {
       }
     }
     
-    // Geen licentie: demo mode
-    // Op desktop: demo mode voor testen (kan later worden uitgeschakeld)
-    // Op mobiel: altijd demo mode zonder licentie
-    if (isMobile) {
-      setHasLicense('demo');
-    } else {
-      // Desktop: demo mode voor testen (verwijder deze regel om desktop altijd toegang te geven)
-      setHasLicense('demo');
-    }
+    // Geen licentie: demo mode beschikbaar op alle apparaten (met limiet van 10 items)
+    setHasLicense('demo');
   }, []);
 
   // PWA install prompt - toestaan voor licentie EN demo mode
@@ -201,9 +190,9 @@ export default function BibliotheekPage() {
 
   // Export to CSV
   function exportToCSV() {
-    const headers = ['Type', 'Titel', 'Auteur/Artiest', 'Barcode', 'Datum toegevoegd', 'Notities'];
+    const headers = ['Type', 'Titel', 'Auteur', 'Barcode', 'Datum toegevoegd', 'Notities'];
     const rows = filteredItems.map(item => [
-      typeNames[item.type], // Gebruik leesbare naam (Boek of Album/CD)
+      typeNames[item.type], // Gebruik leesbare naam (Boek)
       item.title,
       item.author,
       item.barcode,
@@ -253,9 +242,8 @@ export default function BibliotheekPage() {
       doc.setTextColor(0, 0, 0);
       doc.text(`Totaal items: ${items.length}`, margin, yPos);
       yPos += lineHeight;
-      const booksCount = items.filter(item => item.type === 'book').length;
-      const musicCount = items.filter(item => item.type === 'music').length;
-      doc.text(`Boeken: ${booksCount} | Muziek: ${musicCount}`, margin, yPos);
+      const booksCount = items.length;
+      doc.text(`Totaal boeken: ${booksCount}`, margin, yPos);
       yPos += lineHeight * 2;
 
       // Items
@@ -286,7 +274,7 @@ export default function BibliotheekPage() {
         yPos += lineHeight * titleLines.length;
 
         // Auteur
-        const authorLabel = item.type === 'book' ? 'Auteur' : 'Artiest';
+        const authorLabel = 'Auteur';
         doc.text(`   ${authorLabel}: ${item.author}`, margin + 5, yPos);
         yPos += lineHeight;
 
@@ -350,15 +338,13 @@ export default function BibliotheekPage() {
       // Maak een tekstversie van de bibliotheek
       let emailBody = 'Mijn Bibliotheek - SeniorEase\n\n';
       emailBody += `Gegenereerd op: ${new Date().toLocaleDateString('nl-NL')}\n\n`;
-      emailBody += `Totaal items: ${items.length}\n`;
-      emailBody += `Boeken: ${items.filter(item => item.type === 'book').length}\n`;
-      emailBody += `Muziek: ${items.filter(item => item.type === 'music').length}\n\n`;
+      emailBody += `Totaal boeken: ${items.length}\n\n`;
       emailBody += '---\n\n';
 
       filteredItems.forEach((item, index) => {
         emailBody += `${index + 1}. ${typeIcons[item.type]} ${typeNames[item.type]}\n`;
         emailBody += `   Titel: ${item.title}\n`;
-        const authorLabel = item.type === 'book' ? 'Auteur' : 'Artiest';
+        const authorLabel = 'Auteur';
         emailBody += `   ${authorLabel}: ${item.author}\n`;
         if (item.barcode) {
           emailBody += `   Barcode: ${item.barcode}\n`;
@@ -375,7 +361,7 @@ export default function BibliotheekPage() {
       emailBody += 'https://seniorease.nl';
 
       // Maak ook een CSV attachment ready
-      const headers = ['Type', 'Titel', 'Auteur/Artiest', 'Barcode', 'Datum toegevoegd', 'Notities'];
+      const headers = ['Type', 'Titel', 'Auteur', 'Barcode', 'Datum toegevoegd', 'Notities'];
       const rows = filteredItems.map(item => [
         typeNames[item.type],
         item.title,
@@ -533,10 +519,9 @@ export default function BibliotheekPage() {
   // Delen via WhatsApp
   function delenWhatsApp() {
     const total = items.length;
-    const boeken = items.filter(i => i.type === 'book').length;
-    const muziek = items.filter(i => i.type === 'music').length;
+    const boeken = items.length;
     
-    const tekst = `Mijn SeniorEase Bibliotheek\n\n📚 Totaal: ${total} items\n📖 Boeken: ${boeken}\n💿 Albums/CD's: ${muziek}\n\nBekijk mijn collectie op seniorease.nl`;
+    const tekst = `Mijn SeniorEase Bibliotheek\n\n📚 Totaal: ${total} boeken\n\nBekijk mijn collectie op seniorease.nl`;
     const url = `https://wa.me/?text=${encodeURIComponent(tekst)}`;
     window.open(url, '_blank');
     setShowMenu(false);
@@ -545,15 +530,12 @@ export default function BibliotheekPage() {
   // Toon statistieken
   function toonStatistieken() {
     const total = items.length;
-    const boeken = items.filter(i => i.type === 'book').length;
-    const muziek = items.filter(i => i.type === 'music').length;
+    const boeken = items.length;
     
     const statistieken = `
 📊 Mijn Bibliotheek Statistieken
 
-📚 Totaal aantal items: ${total}
-📖 Boeken: ${boeken}
-💿 Albums/CD's: ${muziek}
+📚 Totaal aantal boeken: ${total}
 
 ${total > 0 ? `\nLaatste toevoeging: ${new Date(Math.max(...items.map(i => new Date(i.dateAdded).getTime()))).toLocaleDateString('nl-NL')}` : ''}
     `.trim();
@@ -627,7 +609,6 @@ Voor vragen: bezoek seniorease.nl
         setItems([]);
         localStorage.removeItem('seniorease-library');
         setSearchQuery('');
-        setFilterType('all');
         alert('Alle data is gewist.');
         setShowMenu(false);
       }
@@ -741,6 +722,32 @@ Voor vragen: bezoek seniorease.nl
       const isMobile = window.innerWidth <= 768 || window.innerHeight <= 1024;
       
       setDebugLogs(prev => [...prev, 'Test camera beschikbaarheid...']);
+      
+      // Check of mediaDevices beschikbaar is (vereist HTTPS of localhost)
+      if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+        const isLocalhost = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+        const isHTTPS = window.location.protocol === 'https:';
+        const isHTTP = window.location.protocol === 'http:';
+        
+        let errorMsg = 'Camera API niet beschikbaar.\n\n';
+        
+        if (isHTTP && !isLocalhost) {
+          errorMsg += '⚠️ BELANGRIJK: Camera vereist HTTPS verbinding!\n\n';
+          errorMsg += 'Oplossingen:\n';
+          errorMsg += '1. Gebruik HTTPS (https://...) in plaats van HTTP\n';
+          errorMsg += '2. Of test op localhost: http://localhost:3001\n';
+          errorMsg += '3. Of gebruik echte telefoon met HTTPS website\n\n';
+          errorMsg += 'Huidige URL: ' + window.location.href;
+        } else {
+          errorMsg += 'Camera API wordt niet ondersteund door deze browser.\n';
+          errorMsg += 'Probeer een andere browser (Chrome, Firefox, Edge).';
+        }
+        
+        setDebugLogs(prev => [...prev, `❌ Camera API niet beschikbaar`]);
+        alert(errorMsg);
+        stopScanner();
+        return;
+      }
       
       // Test of camera beschikbaar is en permissie gegeven kan worden
       try {
@@ -1125,7 +1132,7 @@ Voor vragen: bezoek seniorease.nl
     // Update formData type voordat we zoeken
     setFormData(prev => ({
       ...prev,
-      type: isISBN ? 'book' : 'music',
+      type: 'book',
       barcode: normalizedCode
     }));
     
@@ -1165,9 +1172,9 @@ Voor vragen: bezoek seniorease.nl
         // Zoek boek via Open Library API
         await lookupBook(normalizedCode);
       } else {
-        console.log('Gedetecteerd als EAN (muziek), zoeken...');
-        // Zoek muziek via MusicBrainz API (met Discogs fallback)
-        await lookupMusic(normalizedCode);
+        console.log('EAN gedetecteerd, probeer als boek te zoeken...');
+        // Probeer als boek te zoeken (sommige EAN codes zijn ook boeken)
+        await lookupBook(normalizedCode);
       }
     } catch (error) {
       console.error('Error looking up barcode:', error);
@@ -1343,166 +1350,22 @@ Voor vragen: bezoek seniorease.nl
     setBookSearchResults([]);
   }
 
-  // Lookup muziek via MusicBrainz API (hoofd API)
-  async function lookupMusic(ean: string) {
-    try {
-      // EAN is al genormaliseerd
-      const cleanEAN = normalizeBarcode(ean);
-      console.log('Zoeken naar muziek met EAN:', cleanEAN);
-      
-      // Valideer EAN lengte voor muziek (meestal 13 cijfers, soms 8)
-      if (cleanEAN.length !== 13 && cleanEAN.length !== 8 && cleanEAN.length !== 12) {
-        console.warn('Ongeldige EAN lengte voor muziek:', cleanEAN.length);
-        // Toch proberen, sommige codes kunnen afwijken
-      }
-      
-      // MusicBrainz API vereist een User-Agent header
-      // Gebruik includes om meer data te krijgen (artists, labels)
-      const response = await fetch(
-        `https://musicbrainz.org/ws/2/release?query=barcode:${cleanEAN}&fmt=json&limit=5`,
-        {
-          headers: {
-            'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
-            'Accept': 'application/json'
-          }
-        }
-      );
-      
-      if (!response.ok) {
-        console.warn('MusicBrainz API error:', response.status, response.statusText);
-        throw new Error('MusicBrainz API error');
-      }
-
-      const data = await response.json();
-      console.log('MusicBrainz response:', data);
-      
-      if (data.releases && data.releases.length > 0) {
-        // Zoek de beste match (exacte barcode match heeft voorkeur)
-        let release = data.releases.find((r: any) => 
-          r.barcode === cleanEAN || r.barcode === ean
-        ) || data.releases[0];
-        
-        console.log('Gevonden release:', release.title, 'door', release['artist-credit']);
-        
-        // Haal artiesten op (verbeterde extractie)
-        let artist = 'Onbekend';
-        if (release['artist-credit'] && release['artist-credit'].length > 0) {
-          artist = release['artist-credit']
-            .map((credit: any) => {
-              // Probeer verschillende manieren om de naam te krijgen
-              if (credit.name) return credit.name;
-              if (credit.artist && credit.artist.name) return credit.artist.name;
-              if (typeof credit === 'string') return credit;
-              return '';
-            })
-            .filter((name: string) => name && name.trim())
-            .join(', ');
-        }
-        
-        // Haal label op (optioneel, voor notities)
-        let label = '';
-        if (release['label-info'] && release['label-info'].length > 0) {
-          const labels = release['label-info']
-            .map((li: any) => li.label?.name || '')
-            .filter((name: string) => name);
-          if (labels.length > 0) {
-            label = labels[0];
-          }
-        }
-        
-        // Vul formulier in
-        setFormData(prev => ({
-          ...prev,
-          type: 'music',
-          title: release.title || '',
-          author: artist || 'Onbekend',
-          barcode: cleanEAN,
-          notes: label ? `Label: ${label}` : '' // Voeg label toe aan notities indien beschikbaar
-        }));
-        
-        setIsLoadingData(false);
-        return; // Succes!
-      } else {
-        console.log('Geen releases gevonden in MusicBrainz, probeer fallback...');
-        throw new Error('Geen releases gevonden');
-      }
-    } catch (error) {
-      console.error('Error looking up music in MusicBrainz:', error);
-      // Probeer fallback naar Discogs
-      await lookupMusicDiscogs(ean);
-    }
-  }
-
-  // Fallback: Discogs API voor muziek
-  async function lookupMusicDiscogs(ean: string) {
-    try {
-      const cleanEAN = normalizeBarcode(ean);
-      console.log('Zoeken naar muziek met Discogs API, EAN:', cleanEAN);
-      
-      // Discogs API (gratis, geen API key nodig voor basis queries)
-      // Gebruik de database search endpoint
-      const response = await fetch(
-        `https://api.discogs.com/database/search?barcode=${cleanEAN}&type=release&per_page=5`,
-        {
-          headers: {
-            'User-Agent': 'SeniorEase/1.0 (https://seniorease.nl)',
-            'Accept': 'application/json'
-          }
-        }
-      );
-      
-      if (!response.ok) {
-        console.warn('Discogs API error:', response.status);
-        throw new Error('Discogs API error');
-      }
-
-      const data = await response.json();
-      console.log('Discogs response:', data);
-      
-      if (data.results && data.results.length > 0) {
-        const release = data.results[0];
-        
-        // Discogs geeft title en artist direct
-        const title = release.title || '';
-        const artist = release.artist || 'Onbekend';
-        
-        console.log('Gevonden via Discogs:', title, 'door', artist);
-        
-        setFormData(prev => ({
-          ...prev,
-          type: 'music',
-          title: title,
-          author: artist,
-          barcode: cleanEAN
-        }));
-        
-        setIsLoadingData(false);
-        return; // Succes!
-      } else {
-        throw new Error('Geen resultaten gevonden');
-      }
-    } catch (error) {
-      console.error('Error looking up music in Discogs:', error);
-      // Als beide APIs falen, toon foutmelding
-      setLoadError('Kon geen album vinden voor deze EAN code. U kunt handmatig invullen.');
-      setIsLoadingData(false);
-    }
-  }
+  // Music lookup functies verwijderd - alleen boeken worden ondersteund
 
   // Filter items
   const filteredItems = items.filter(item => {
     const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          item.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
                          item.barcode.includes(searchQuery);
-    const matchesFilter = filterType === 'all' || item.type === filterType;
-    return matchesSearch && matchesFilter;
+    // Geen filter meer nodig - alleen boeken
+    return matchesSearch;
   });
 
   // Form state
   const [formData, setFormData] = useState({
     type: 'book' as LibraryItem['type'],
     title: '',
-    author: '', // Auteur (boeken) of artiest (muziek)
+    author: '', // Auteur
     barcode: '',
     notes: ''
   });
@@ -1510,7 +1373,7 @@ Voor vragen: bezoek seniorease.nl
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!formData.title || !formData.author) {
-      alert('Vul minimaal een titel en auteur/artiest in');
+      alert('Vul minimaal een titel en auteur in');
       return;
     }
     
@@ -1553,73 +1416,20 @@ Voor vragen: bezoek seniorease.nl
 
   // Zoek item op Google
   function zoekOpGoogle(item: LibraryItem) {
-    let query = '';
-    if (item.type === 'book') {
-      query = `${item.title} ${item.author}`;
-    } else {
-      query = `${item.title} ${item.author} album`;
-    }
+    const query = `${item.title} ${item.author}`;
     const googleUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     window.open(googleUrl, '_blank');
   }
 
   const typeIcons: Record<LibraryItem['type'], string> = {
-    book: '📚',
-    music: '💿'
+    book: '📚'
   };
 
   const typeNames: Record<LibraryItem['type'], string> = {
-    book: 'Boek',
-    music: 'Album/CD'
+    book: 'Boek'
   };
 
-  // Licentie check overlay - alleen als hasLicense === false (niet demo mode)
-  if (hasLicense === false) {
-    return (
-      <div className="min-h-screen bg-neutral-cream flex items-center justify-center p-6">
-        <div className="max-w-2xl w-full bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-          <div className="text-center">
-            <div className="text-6xl mb-6">🔒</div>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-4">
-              Mobiele versie vereist
-            </h1>
-            <p className="text-senior-lg text-gray-700 mb-6">
-              Om de bibliotheek app te gebruiken op uw telefoon of tablet, heeft u een licentie nodig.
-            </p>
-            
-            <div className="bg-neutral-cream rounded-xl p-6 mb-6 border-2 border-gray-200">
-              <p className="text-senior-base font-bold text-gray-800 mb-2">
-                Wat krijgt u?
-              </p>
-              <ul className="text-left text-senior-sm text-gray-700 space-y-2">
-                <li>✓ Volledige bibliotheek app</li>
-                <li>✓ Barcode scanner</li>
-                <li>✓ Offline werken</li>
-                <li>✓ Levenslange licentie</li>
-              </ul>
-            </div>
-
-            <div className="space-y-4">
-              <Link
-                href="/betalen"
-                className="block bg-primary text-white px-10 py-6 rounded-xl text-senior-xl font-bold
-                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl text-center"
-              >
-                💳 Koop licentie voor € 2,99
-              </Link>
-              
-              <Link
-                href="/"
-                className="block text-senior-base text-primary hover:underline"
-              >
-                ← Terug naar home
-              </Link>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  // Licentie check overlay verwijderd - demo mode is nu altijd beschikbaar op alle apparaten
 
   // Loading state
   if (hasLicense === null) {
@@ -1869,19 +1679,7 @@ Voor vragen: bezoek seniorease.nl
                   </div>
                 </div>
                 <div>
-                  <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                    Filter:
-                  </label>
-                  <select
-                    value={filterType}
-                    onChange={(e) => setFilterType(e.target.value)}
-                    className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
-                             focus:border-primary focus:outline-none"
-                  >
-                    <option value="all">Alle items</option>
-                    <option value="book">📚 Boeken</option>
-                    <option value="music">💿 Albums/CD's</option>
-                  </select>
+                  {/* Filter verwijderd - alleen boeken beschikbaar */}
                 </div>
               </div>
             </div>
@@ -2003,27 +1801,7 @@ Voor vragen: bezoek seniorease.nl
                 )}
                 
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
-                    <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Type:
-                    </label>
-                    <div className="grid grid-cols-2 gap-4">
-                      {(['book', 'music'] as const).map(type => (
-                        <button
-                          key={type}
-                          type="button"
-                          onClick={() => setFormData({ ...formData, type })}
-                          className={`p-6 rounded-lg border-2 text-senior-lg font-bold transition-colors
-                            ${formData.type === type 
-                              ? 'border-primary bg-primary text-white' 
-                              : 'border-gray-300 hover:border-primary bg-white'}`}
-                        >
-                          <span className="text-4xl block mb-2">{typeIcons[type]}</span>
-                          {typeNames[type]}
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                  {/* Type selectie verwijderd - alleen boeken beschikbaar */}
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
@@ -2039,7 +1817,7 @@ Voor vragen: bezoek seniorease.nl
                           setShowSearchResults(false); // Sluit resultaten bij wijziging
                         }}
                         onKeyDown={(e) => {
-                          if (e.key === 'Enter' && formData.type === 'book' && (formData.title.trim() || formData.author.trim())) {
+                          if (e.key === 'Enter' && formData?.type === 'book' && (formData.title.trim() || formData.author.trim())) {
                             e.preventDefault();
                             searchBooksByTitleOrAuthor();
                           }
@@ -2048,7 +1826,7 @@ Voor vragen: bezoek seniorease.nl
                                  focus:border-primary focus:outline-none"
                         placeholder="Titel van het item"
                       />
-                      {formData.type === 'book' && (formData.title.trim() || formData.author.trim()) && (
+                      {formData?.type === 'book' && (formData.title.trim() || formData.author.trim()) && (
                         <button
                           type="button"
                           onClick={searchBooksByTitleOrAuthor}
@@ -2065,7 +1843,7 @@ Voor vragen: bezoek seniorease.nl
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      {formData.type === 'book' ? 'Auteur:' : 'Artiest:'} *
+                      Auteur: *
                     </label>
                     <input
                       type="text"
@@ -2076,19 +1854,19 @@ Voor vragen: bezoek seniorease.nl
                         setShowSearchResults(false); // Sluit resultaten bij wijziging
                       }}
                       onKeyDown={(e) => {
-                        if (e.key === 'Enter' && formData.type === 'book' && (formData.title.trim() || formData.author.trim())) {
+                        if (e.key === 'Enter' && formData?.type === 'book' && (formData.title.trim() || formData.author.trim())) {
                           e.preventDefault();
                           searchBooksByTitleOrAuthor();
                         }
                       }}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
-                      placeholder={formData.type === 'book' ? 'Naam van de auteur' : 'Naam van de artiest'}
+                      placeholder="Naam van de auteur"
                     />
                   </div>
 
                   {/* Zoekresultaten voor boeken */}
-                  {formData.type === 'book' && showSearchResults && bookSearchResults.length > 0 && (
+                  {formData?.type === 'book' && showSearchResults && bookSearchResults.length > 0 && (
                     <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mb-4 max-h-96 overflow-y-auto">
                       <p className="text-senior-base font-bold text-blue-900 mb-3">
                         📚 {bookSearchResults.length} boek{bookSearchResults.length !== 1 ? 'en' : ''} gevonden:
@@ -2331,7 +2109,7 @@ Voor vragen: bezoek seniorease.nl
                             </span>
                           </div>
                           <p className="text-senior-base text-gray-600 mb-2">
-                            <strong>{item.type === 'book' ? 'Auteur:' : 'Artiest:'}</strong> {item.author}
+                            <strong>Auteur:</strong> {item.author}
                           </p>
                           {item.barcode && (
                             <p className="text-senior-sm text-gray-500 mb-2">

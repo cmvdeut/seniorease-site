@@ -1,0 +1,84 @@
+TikTok video (30-45s, vertical 9:16, 1080x1920px) for SeniorEase book library app - BookTok tutorial style: "Hoe ik mijn bibliotheek organiseer in 3 stappen"
+
+📸 SCREENSHOTS TO UPLOAD (from seniorease.nl):
+1. Homepage screenshot (logo/homepage)
+2. Barcode scanner screenshot (scanner interface or adding book)
+3. Library overview screenshot (multiple books organized)
+4. Search function screenshot (search bar with results)
+5. Final library overview screenshot (complete organized library)
+
+SCENES (match screenshots to scenes):
+1. [0-4s] SCREENSHOT 1 (Homepage) - Hook with trendy transition, text overlay: "Hoe ik mijn bibliotheek organiseer in 3 stappen 📚"
+   - Zoom in on logo
+   - Smooth fade-in effect
+   - Large, trendy font for text overlay
+   - Add "Tutorial" or "How-to" style indicator
+
+2. [4-12s] SCREENSHOT 2 (Barcode Scanner) - STAP 1: "Stap 1: Scan je boeken ✨"
+   - Show scanner interface or book being added
+   - Add scanning animation effect
+   - Highlight "Nieuw Item Toevoegen" or scanner button
+   - Text overlay: "STAP 1: Scan je boeken ✨"
+   - Show book details auto-filling (if possible)
+   - Quick zoom on scanner/book form
+
+3. [12-20s] SCREENSHOT 3 (Library Overview) - STAP 2: "Stap 2: Bekijk je collectie 📖"
+   - Show library with multiple books organized
+   - Add smooth scroll effect through library
+   - Highlight book covers and organization
+   - Text overlay: "STAP 2: Bekijk je collectie 📖"
+   - Show books neatly organized
+   - Pan across library to show multiple books
+
+4. [20-28s] SCREENSHOT 4 (Search Function) - STAP 3: "Stap 3: Zoek en vind 🔍"
+   - Show search bar with typing animation
+   - Show search results appearing
+   - Highlight search functionality
+   - Text overlay: "STAP 3: Zoek en vind 🔍"
+   - Animate typing in search bar
+   - Show results appearing with bounce effect
+
+5. [28-35s] SCREENSHOT 5 (Final Library Overview) - Result: "Klaar! Georganiseerde bibliotheek ✨"
+   - Show complete organized library
+   - Smooth scroll through final result
+   - Highlight organization and completeness
+   - Text overlay: "Klaar! Georganiseerde bibliotheek ✨"
+   - Show multiple books, well-organized
+   - Final zoom out effect
+
+6. [35-40s] SCREENSHOT 1 (Homepage) - Call to Action: "Download SeniorEase nu! 👆"
+   - Show homepage or download section
+   - Highlight download button
+   - Text overlay: "Download SeniorEase nu! 👆 Link in bio"
+   - Add arrow pointing to download
+   - Final call-to-action
+
+VOICE-OVER (Dutch, female, helpful, clear, tutorial-style):
+"Hoe ik mijn bibliotheek organiseer in 3 stappen. Stap 1: Scan je boeken met de barcode scanner en alles wordt automatisch ingevuld. Stap 2: Bekijk je collectie in een mooi overzicht. Stap 3: Zoek en vind je boeken in seconden. Klaar! Georganiseerde bibliotheek. Download SeniorEase nu! Link in bio."
+
+STYLE:
+- Tutorial/How-to TikTok style (clear, educational, trendy)
+- BookTok aesthetic: warm browns, creams, soft pastels
+- Large, readable text overlays with step numbers (STAP 1, STAP 2, STAP 3)
+- Smooth transitions between steps (fade, slide)
+- Add subtle animations to screenshots (zoom, pan, highlight)
+- Upbeat background music (low volume, voice-over prominent)
+- Modern, helpful tone (not focused on seniors)
+
+ANIMATION EFFECTS TO ADD:
+- Number indicators for each step (1, 2, 3)
+- Zoom in/out on important elements
+- Smooth pan across screenshots
+- Fade transitions between steps
+- Highlight important buttons/features
+- Progress indicator (optional: show step 1/3, 2/3, 3/3)
+
+TARGET: BookTok community, young book lovers (18-35), people who want to organize their library
+
+HASHTAGS SUGGESTIONS:
+#BookTok #Bibliotheek #BoekenOrganiseren #BookOrganization #BookTokNederland #Boeken #Reading #BookLover #BookCollection #BookTokTips #HowTo #Tutorial #BookHack #SeniorEase
+
+
+
+
+

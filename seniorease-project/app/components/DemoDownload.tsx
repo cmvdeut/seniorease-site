@@ -15,7 +15,6 @@ export default function DemoDownload() {
       // Gebruik directe public folder link (werkt altijd, ook als API route faalt)
       const fullUrl = `${origin}/Seniorease-Bibliotheek-Demo.apk`;
       setDemoUrl(fullUrl);
-      console.log('QR Code URL:', fullUrl); // Debug log
     }
   }, []);
 
@@ -24,7 +23,7 @@ export default function DemoDownload() {
   const qrCodeValue = demoUrl || 'https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk';
 
   return (
-    <div className="grid md:grid-cols-3 gap-4 items-center">
+    <div className="grid md:grid-cols-3 gap-4 items-start md:items-center">
       {/* Linker deel - QR Code */}
       <div className="flex flex-col items-center">
         <div className="bg-neutral-cream p-3 rounded-xl border-2 border-primary/20 mb-2">

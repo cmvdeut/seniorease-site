@@ -92,3 +92,6 @@ De WebSocket en 404 errors zijn **development artifacts** die geen invloed hebbe
 
 Als dat allemaal werkt → **Je bent klaar!** 🎉
 
+
+
+

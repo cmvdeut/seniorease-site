@@ -1,0 +1,35 @@
+# Vercel Ignore File
+# ====================
+# 
+# Files die NIET ge-upload moeten worden naar Vercel
+
+# Environment files (worden via Vercel UI ingesteld)
+.env
+.env.local
+.env.*.local
+
+# Node modules
+node_modules/
+
+# Local development
+.vercel/
+
+# Tests
+test-*.js
+
+# Documentation (niet nodig in production)
+*.md
+!README.md
+
+# Temp files
+*.log
+*.tmp
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# BELANGRIJK: Screenshots NIET ignoren, die moeten mee!
+# !../../screenshots/
+
+

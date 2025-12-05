@@ -5,12 +5,24 @@
   "type": "module",
   "scripts": {
     "dev": "vercel dev",
-    "test-generate": "node test-generate.js"
+    "test-generate": "node test-generate.js",
+    "test-facebook": "node test-facebook.js",
+    "find-page-id": "node find-page-id.js",
+    "check-token": "node check-token.js",
+    "get-page-token": "node get-page-token.js",
+    "post": "node post-screenshots.js",
+    "post-qr-demo": "node post-qr-demo.js",
+    "reminder": "node reminder.js",
+    "setup": "node setup-and-post.js",
+    "prepare-deploy": "node prepare-deployment.js",
+    "deploy": "npm run prepare-deploy && vercel --prod"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.30.0",
+    "dotenv": "^16.4.5",
+    "form-data": "^4.0.5",
     "node-fetch": "^3.3.2",
-    "dotenv": "^16.4.5"
+    "qrcode": "^1.5.4"
   },
   "engines": {
     "node": ">=18.0.0"

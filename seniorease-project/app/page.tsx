@@ -12,7 +12,7 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "SeniorEase",
-    "description": "Handige digitale tools speciaal ontworpen voor senioren. Beheer uw boeken en muziek collectie, gebruik rekenmachine, kalender en meer.",
+    "description": "Handige digitale tools speciaal ontworpen voor senioren. Beheer uw boeken collectie, gebruik rekenmachine, kalender en meer.",
     "url": "https://seniorease.nl",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "Web, Android, iOS",
@@ -20,7 +20,7 @@ export default function Home() {
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "EUR",
-      "description": "Gratis op PC, €2,99 eenmalig voor mobiele app"
+      "description": "Web versie: gratis op alle apparaten. APK download: €2,99 eenmalig voor Android"
     },
     "aggregateRating": {
       "@type": "AggregateRating",
@@ -106,7 +106,7 @@ export default function Home() {
                     <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
                       Mijn Bibliotheek
                     </h2>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3">
                       <span className="font-bold">Gratis op de PC</span>
                     </p>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
@@ -143,7 +143,7 @@ export default function Home() {
 
           {/* Demo Versie - Compact en netjes uitgelijnd */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
-            <div className="p-4 md:p-6">
+            <div className="p-5 md:p-6">
               <DemoDownload />
             </div>
           </div>
@@ -407,7 +407,7 @@ export default function Home() {
                     Leer stap-voor-stap hoe u alle SeniorEase tools gebruikt. Onze instructievideo's zijn speciaal gemaakt voor senioren: langzaam, duidelijk en met grote tekst.
                   </p>
                   <p className="text-senior-sm text-gray-600 mb-4">
-                    <strong>Eerste video's zijn nu beschikbaar!</strong> Abonneer u op ons YouTube kanaal voor nieuwe instructievideo's elke week.
+                    <strong>Eerste video's zijn nu beschikbaar!</strong> Abonneer u op ons YouTube kanaal voor nieuwe instructievideo's.
                   </p>
                   <a 
                     href={YOUTUBE_CHANNEL_URL} 

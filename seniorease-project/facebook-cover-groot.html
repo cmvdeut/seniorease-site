@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SeniorEase Facebook Cover Foto</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .cover {
+            width: 820px;
+            height: 312px;
+            background: linear-gradient(135deg, #F5EEE6 0%, #E0D5CA 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        /* Decoratieve elementen */
+        .cover::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 94, 60, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .cover::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(139, 94, 60, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+        
+        .content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+        }
+        
+        /* Hart logo */
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            background: #8B5E3C;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 12px rgba(139, 94, 60, 0.3);
+        }
+        
+        .heart {
+            font-size: 45px;
+            color: #F5EEE6;
+            line-height: 1;
+        }
+        
+        /* Grote tekst */
+        .tagline {
+            font-size: 56px;
+            font-weight: 700;
+            color: #8B5E3C;
+            margin: 0 0 15px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+            letter-spacing: -1px;
+        }
+        
+        /* Website */
+        .website {
+            font-size: 42px;
+            font-weight: 600;
+            color: #6D4A30;
+            margin: 0;
+            letter-spacing: 0px;
+        }
+        
+        .buttons {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        .download-btn {
+            background: #8B5E3C;
+            color: white;
+        }
+        
+        .download-btn:hover {
+            background: #6D4A30;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(139, 94, 60, 0.4);
+        }
+        
+        .preview-btn {
+            background: white;
+            color: #8B5E3C;
+            border: 2px solid #8B5E3C;
+        }
+        
+        .preview-btn:hover {
+            background: #F5EEE6;
+        }
+        
+        .instructions {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 820px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        
+        .instructions h2 {
+            color: #8B5E3C;
+            margin-top: 0;
+        }
+        
+        .instructions ol {
+            text-align: left;
+            line-height: 1.8;
+        }
+        
+        .success {
+            color: #2d7d2d;
+            font-weight: 600;
+            margin-top: 10px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="color: #8B5E3C;">SeniorEase Facebook Cover Foto</h1>
+    
+    <div class="cover" id="cover">
+        <div class="content">
+            <h1 class="tagline">Handige technologie<br>zonder gedoe</h1>
+            <p class="website">SeniorEase.nl</p>
+        </div>
+    </div>
+    
+    <div class="buttons">
+        <button class="download-btn" onclick="downloadImage()">
+            📥 Download Cover Foto
+        </button>
+        <button class="preview-btn" onclick="window.location.reload()">
+            🔄 Ververs Preview
+        </button>
+    </div>
+    
+    <p class="success" id="success">✅ Cover foto gedownload! Upload naar Facebook.</p>
+    
+    <div class="instructions">
+        <h2>📋 Instructies:</h2>
+        <ol>
+            <li><strong>Klik op "Download Cover Foto"</strong> - De afbeelding wordt opgeslagen als PNG</li>
+            <li><strong>Ga naar je Facebook pagina</strong></li>
+            <li><strong>Klik op "Add Cover Photo"</strong> of bewerk de huidige cover</li>
+            <li><strong>Upload de gedownloade "seniorease-cover.png"</strong></li>
+            <li><strong>Pas positie aan</strong> (als nodig)</li>
+            <li><strong>Klik "Save"</strong></li>
+        </ol>
+        
+        <p><strong>💡 Tip:</strong> De tekst is nu groot en goed leesbaar op alle devices!</p>
+        
+        <p><strong>✨ Dimensies:</strong> 820x312 pixels (perfecte Facebook cover formaat)</p>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script>
+        async function downloadImage() {
+            const cover = document.getElementById('cover');
+            const success = document.getElementById('success');
+            
+            try {
+                // Gebruik html2canvas om de div naar een afbeelding te converteren
+                const canvas = await html2canvas(cover, {
+                    backgroundColor: null,
+                    scale: 2, // Hogere resolutie
+                    logging: false
+                });
+                
+                // Converteer naar blob en download
+                canvas.toBlob(function(blob) {
+                    const url = URL.createObjectURL(blob);
+                    const link = document.createElement('a');
+                    link.download = 'seniorease-cover.png';
+                    link.href = url;
+                    link.click();
+                    
+                    // Toon success bericht
+                    success.style.display = 'block';
+                    setTimeout(() => {
+                        success.style.display = 'none';
+                    }, 3000);
+                });
+            } catch (error) {
+                alert('Er ging iets mis. Probeer opnieuw of maak een screenshot (Windows + Shift + S)');
+                console.error(error);
+            }
+        }
+    </script>
+</body>
+</html>
+

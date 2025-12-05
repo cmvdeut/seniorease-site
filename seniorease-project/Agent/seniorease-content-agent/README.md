@@ -85,6 +85,23 @@ FACEBOOK_PAGE_ID=123456789
 
 ### 4. Vercel Deployment
 
+**Optie A: Gebruik het deployment script (aanbevolen)**
+
+**Windows (PowerShell):**
+```powershell
+cd seniorease-content-agent
+.\deploy-vercel.ps1
+```
+
+**Linux/Mac (Bash):**
+```bash
+cd seniorease-content-agent
+chmod +x deploy-vercel.sh
+./deploy-vercel.sh
+```
+
+**Optie B: Handmatig**
+
 ```bash
 # Login bij Vercel (first time)
 npx vercel login

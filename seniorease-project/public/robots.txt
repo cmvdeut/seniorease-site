@@ -1,0 +1,25 @@
+# robots.txt voor SeniorEase.nl
+# https://seniorease.nl/robots.txt
+
+User-agent: *
+Allow: /
+
+# Sitemap locatie
+Sitemap: https://seniorease.nl/sitemap.xml
+
+# Blokkeer admin/test pagina's (als die er zijn)
+Disallow: /api/
+Disallow: /test-licentie
+Disallow: /test-stripe
+
+# Toegestaan voor alle zoekmachines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+# Crawl-delay (optioneel, niet nodig voor kleine sites)
+# Crawl-delay: 1
+
+

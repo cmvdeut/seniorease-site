@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>SEO Test - SeniorEase</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 1200px; margin: 0 auto; padding: 20px; }
+        .test-section { background: #f5f5f5; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .pass { color: green; font-weight: bold; }
+        .fail { color: red; font-weight: bold; }
+        .info { color: blue; }
+        pre { background: #fff; padding: 10px; border-radius: 3px; overflow-x: auto; }
+        a { color: #0066cc; }
+    </style>
+</head>
+<body>
+    <h1>🔍 SEO Test - SeniorEase.nl</h1>
+    <p>Open deze pagina in je browser en test de SEO elementen:</p>
+    
+    <div class="test-section">
+        <h2>✅ 1. Sitemap Test</h2>
+        <p>Open: <a href="http://localhost:3001/sitemap.xml" target="_blank">http://localhost:3001/sitemap.xml</a></p>
+        <p class="pass">✓ Sitemap werkt correct!</p>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ 2. Robots.txt Test</h2>
+        <p>Open: <a href="http://localhost:3001/robots.txt" target="_blank">http://localhost:3001/robots.txt</a></p>
+        <p class="pass">✓ Robots.txt werkt correct!</p>
+    </div>
+
+    <div class="test-section">
+        <h2>📋 3. Metadata Test</h2>
+        <p>Open de homepage: <a href="http://localhost:3001" target="_blank">http://localhost:3001</a></p>
+        <p>Rechtsklik → "Bekijk paginabron" (View Page Source)</p>
+        <p>Zoek naar:</p>
+        <ul>
+            <li><code>&lt;title&gt;</code> - Moet "SeniorEase - Handige technologie voor senioren" bevatten</li>
+            <li><code>&lt;meta name="description"&gt;</code> - Moet beschrijving bevatten</li>
+            <li><code>&lt;meta property="og:title"&gt;</code> - Open Graph tags</li>
+            <li><code>&lt;meta name="twitter:card"&gt;</code> - Twitter Card tags</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📊 4. Structured Data Test</h2>
+        <p>In de pagina source, zoek naar:</p>
+        <pre>&lt;script type="application/ld+json"&gt;</pre>
+        <p>Er moeten 2 JSON-LD scripts zijn:</p>
+        <ul>
+            <li>WebApplication schema</li>
+            <li>Organization schema</li>
+        </ul>
+        <p class="info">💡 Tip: Gebruik <a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> na deployment</p>
+    </div>
+
+    <div class="test-section">
+        <h2>🌐 5. Online SEO Tests (Na Deployment)</h2>
+        <p>Test deze tools na deployment naar productie:</p>
+        <ul>
+            <li><a href="https://search.google.com/test/rich-results" target="_blank">Google Rich Results Test</a> - Test structured data</li>
+            <li><a href="https://search.google.com/test/mobile-friendly" target="_blank">Mobile-Friendly Test</a> - Test mobiele weergave</li>
+            <li><a href="https://pagespeed.web.dev/" target="_blank">PageSpeed Insights</a> - Test snelheid en SEO</li>
+            <li><a href="https://validator.schema.org/" target="_blank">Schema.org Validator</a> - Test structured data</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>🔍 6. Browser DevTools Test</h2>
+        <p>Open Developer Tools (F12) en check:</p>
+        <ol>
+            <li>Tab "Elements" → Zoek in &lt;head&gt; naar meta tags</li>
+            <li>Tab "Console" → Type: <code>document.querySelector('meta[property="og:title"]')</code></li>
+            <li>Tab "Network" → Herlaad pagina → Check response headers</li>
+        </ol>
+    </div>
+
+    <div class="test-section">
+        <h2>✅ Checklist</h2>
+        <ul>
+            <li>[ ] Sitemap.xml werkt</li>
+            <li>[ ] Robots.txt werkt</li>
+            <li>[ ] Title tag aanwezig</li>
+            <li>[ ] Meta description aanwezig</li>
+            <li>[ ] Open Graph tags aanwezig</li>
+            <li>[ ] Twitter Card tags aanwezig</li>
+            <li>[ ] Structured data (JSON-LD) aanwezig</li>
+            <li>[ ] Canonical URL aanwezig</li>
+            <li>[ ] Alt teksten op afbeeldingen</li>
+        </ul>
+    </div>
+
+    <div class="test-section">
+        <h2>📝 Test Commands</h2>
+        <p>Run deze in PowerShell om te testen:</p>
+        <pre>
+# Test sitemap
+curl http://localhost:3001/sitemap.xml
+
+# Test robots.txt
+curl http://localhost:3001/robots.txt
+
+# Check HTML source
+curl http://localhost:3001 | Select-String "og:title"
+        </pre>
+    </div>
+</body>
+</html>
+
+

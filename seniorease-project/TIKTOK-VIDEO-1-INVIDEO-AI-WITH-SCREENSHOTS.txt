@@ -1,0 +1,60 @@
+TikTok video (30-45s, vertical 9:16, 1080x1920px) for SeniorEase book library app - BookTok style targeting young book lovers.
+
+📸 SCREENSHOTS TO UPLOAD (from seniorease.nl):
+1. Homepage screenshot (logo/homepage)
+2. Barcode scanner screenshot (scanner interface)
+3. Search function screenshot (search bar with results)
+4. Library overview screenshot (multiple books visible)
+5. Download button screenshot (homepage download section)
+
+SCENES (match screenshots to scenes):
+1. [0-3s] SCREENSHOT 1 (Homepage) - Add trendy transition effect, text overlay: "POV: Je hebt eindelijk een app gevonden die je boekcollectie organiseert 📚"
+   - Zoom in on logo
+   - Smooth fade-in effect
+   - Large, trendy font for text overlay
+
+2. [3-8s] SCREENSHOT 2 (Barcode Scanner) - Show scanner interface, add scanning animation, text: "Gewoon de barcode scannen... ✨"
+   - Add camera viewfinder effect
+   - Highlight scanner interface
+   - Quick zoom on scanner area
+
+3. [8-15s] SCREENSHOT 3 (Search Function) - Show search with results, add typing animation, text: "Zoek op titel of auteur... 🔍"
+   - Animate typing in search bar
+   - Show results appearing
+   - Highlight search results
+
+4. [15-22s] SCREENSHOT 4 (Library Overview) - Show library with books, add smooth scroll, text: "Nooit meer vergeten... Perfect voor BookTok! 📖"
+   - Smooth scroll through library
+   - Highlight book covers
+   - Show "Gelezen" and "In bezit" labels if visible
+
+5. [22-30s] SCREENSHOT 5 (Download Button) - Show download section, highlight button, text: "Download SeniorEase nu! 👆 Link in bio"
+   - Zoom in on download button
+   - Add arrow pointing to button
+   - Final zoom out effect
+
+VOICE-OVER (Dutch, female, enthusiastic, fast-paced):
+"POV: Je hebt eindelijk een app gevonden die je boekcollectie organiseert. Gewoon de barcode scannen en alles wordt automatisch ingevuld! Zoek op titel of auteur en vind je boek in seconden! Nooit meer vergeten welke boeken je al hebt - perfect voor BookTok! Download SeniorEase nu! Link in bio."
+
+STYLE:
+- Fast TikTok pace (quick cuts, 0.5-1s per scene)
+- BookTok aesthetic: warm browns, creams, soft pastels
+- Large, trendy text overlays with emojis
+- Smooth transitions between screenshots (zoom, fade, slide)
+- Add subtle animations to screenshots (zoom, pan, highlight)
+- Upbeat background music (low volume, voice-over prominent)
+- Modern, relatable for book lovers (not focused on seniors)
+
+ANIMATION EFFECTS TO ADD:
+- Zoom in/out on important elements
+- Smooth pan across screenshots
+- Fade transitions between scenes
+- Highlight important buttons/features
+- Subtle bounce effects on text overlays
+
+TARGET: BookTok community, young book lovers (18-35), people who collect books
+
+
+
+
+

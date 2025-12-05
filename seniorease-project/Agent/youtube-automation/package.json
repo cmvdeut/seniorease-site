@@ -1,0 +1,29 @@
+{
+  "name": "seniorease-youtube-automation",
+  "version": "1.0.0",
+  "description": "YouTube automation scripts voor SeniorEase kanaal",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "setup-playlists": "node scripts/setup-playlists.js",
+    "update-video": "node scripts/update-video-metadata.js",
+    "create-playlist": "node scripts/create-playlist.js",
+    "get-analytics": "node scripts/get-analytics.js",
+    "add-audio": "node scripts/add-audio-to-video.js"
+  },
+  "keywords": [
+    "youtube",
+    "automation",
+    "seniorease"
+  ],
+  "author": "SeniorEase",
+  "license": "MIT",
+  "dependencies": {
+    "googleapis": "^128.0.0",
+    "dotenv": "^16.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0"
+  }
+}
+

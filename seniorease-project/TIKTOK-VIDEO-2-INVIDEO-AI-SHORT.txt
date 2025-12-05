@@ -1,0 +1,31 @@
+TikTok video (30-45s, vertical 9:16, 1080x1920px) - Tutorial: "Hoe ik mijn bibliotheek organiseer in 3 stappen"
+
+📸 SCREENSHOTS (5 needed):
+1. Homepage (logo)
+2. Barcode scanner (adding book)
+3. Library overview (organized books)
+4. Search function (with results)
+5. Final library overview (complete)
+
+SCENES:
+1. [0-4s] SCREENSHOT 1 - Hook: "Hoe ik mijn bibliotheek organiseer in 3 stappen 📚"
+2. [4-12s] SCREENSHOT 2 - STAP 1: "Stap 1: Scan je boeken ✨" (scanner/book form)
+3. [12-20s] SCREENSHOT 3 - STAP 2: "Stap 2: Bekijk je collectie 📖" (library overview)
+4. [20-28s] SCREENSHOT 4 - STAP 3: "Stap 3: Zoek en vind 🔍" (search function)
+5. [28-35s] SCREENSHOT 5 - Result: "Klaar! Georganiseerde bibliotheek ✨" (final overview)
+6. [35-40s] SCREENSHOT 1 - CTA: "Download SeniorEase nu! 👆 Link in bio"
+
+VOICE-OVER (Dutch, helpful, tutorial-style):
+"Hoe ik mijn bibliotheek organiseer in 3 stappen. Stap 1: Scan je boeken met de barcode scanner en alles wordt automatisch ingevuld. Stap 2: Bekijk je collectie in een mooi overzicht. Stap 3: Zoek en vind je boeken in seconden. Klaar! Georganiseerde bibliotheek. Download SeniorEase nu! Link in bio."
+
+STYLE:
+- Tutorial/How-to style (clear, educational)
+- Step numbers visible (STAP 1, STAP 2, STAP 3)
+- BookTok aesthetic (warm colors)
+- Smooth transitions between steps
+- Upbeat music (low volume)
+
+
+
+
+

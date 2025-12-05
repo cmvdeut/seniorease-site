@@ -1,0 +1,60 @@
+# ============================================================
+# FACEBOOK CREDENTIALS - .env Template
+# ============================================================
+# 
+# Maak een nieuw .env bestand en kopieer deze inhoud erin:
+#
+# ============================================================
+
+FACEBOOK_PAGE_ACCESS_TOKEN=EAAb0NgbtBVsBQB7QtPpwKZAPr1cLnhiZB1AtqCZAF1YZA6d20AV0JuY4v67EHkiBQ0hCZCjokMBQAUNf08vSCc8WqbZC9mSwggFA2M7eT4UfrK4Nx04daBW3bfjqTYsA18t0xyozDQaZBZCvh7Q8E6yWswrTZA9ZBTYP5SvFDH84iTOzwZBNjUhNjYpWheT01BxZBHDenaSaqoGfnfjOK1ht2YXewv1Nmy3qoLkL9AQZCQNnO
+FACEBOOK_PAGE_ID=898268823367107
+ANTHROPIC_API_KEY=sk-ant-xxxxx-jouw-claude-key-hier
+ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/xxxxx/xxxxx/
+
+# ============================================================
+# INSTRUCTIES:
+# ============================================================
+#
+# 1. Maak een nieuw bestand genaamd .env in deze folder
+#
+# 2. Kopieer bovenstaande variabelen naar .env
+#
+# 3. Vervang de waarden:
+#
+#    FACEBOOK_PAGE_ACCESS_TOKEN:
+#    - Ga naar: https://developers.facebook.com/tools/explorer/
+#    - Klik "Generate Access Token" → "Get Page Access Token"
+#    - Selecteer senioreasenl pagina
+#    - Permissions: pages_manage_posts, pages_read_engagement
+#    - Copy de token (begint met EAAG...)
+#
+#    FACEBOOK_PAGE_ID:
+#    - Dit is al correct: 117953082079657
+#    - Of vind via: npm run find-page-id
+#
+#    ANTHROPIC_API_KEY:
+#    - Ga naar: https://console.anthropic.com/
+#    - Create API key
+#    - Copy de key (begint met sk-ant-)
+#
+#    ZAPIER_WEBHOOK_URL (optioneel):
+#    - Alleen nodig voor hybrid setup
+#    - Maak webhook in Zapier
+#
+# 4. Test je configuratie:
+#    npm run test-facebook
+#
+# 5. Als test succesvol is:
+#    - Je kunt lokaal posten met node test-facebook.js
+#    - Of deploy naar Vercel voor automatisch posten
+#
+# ============================================================
+# HULP:
+# ============================================================
+#
+# Token problemen? → ../FACEBOOK-PAGE-TOKEN-FIX.md
+# Complete setup? → ../FACEBOOK-POSTING-COMPLETE-GUIDE.md
+# Zapier issues? → ../ZAPIER-FACEBOOK-CONFIGURATIE-FIX.md
+#
+# ============================================================
+

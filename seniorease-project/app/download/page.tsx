@@ -140,7 +140,7 @@ function DownloadContent() {
                       Demo versie bevat:
                     </p>
                     <ul className="text-senior-sm text-gray-700 space-y-1 list-disc list-inside">
-                      <li>Maximaal 10 items (boeken of muziek)</li>
+                      <li>Maximaal 10 items (boeken)</li>
                       <li>Barcode scanner</li>
                       <li>Zoekfunctie</li>
                       <li>Alle basis functionaliteit</li>

@@ -7,16 +7,13 @@ export const metadata: Metadata = {
     default: "SeniorEase - Handige technologie voor senioren",
     template: "%s | SeniorEase"
   },
-  description: "SeniorEase - Handige technologie zonder gedoe voor senioren. Beheer uw boeken en muziek collectie met barcode scanner. Gratis op PC, €2,99 voor Android app. Grote teksten, duidelijke knoppen, speciaal gemaakt voor senioren in Nederland.",
+  description: "SeniorEase biedt eenvoudige digitale tools speciaal voor senioren. Beheer uw boeken collectie, gebruik handige rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen - technologie zonder gedoe.",
   keywords: [
     "senioren", "ouderen", "digitale hulp", "technologie voor senioren",
-    "bibliotheek app", "boeken beheren", "muziek collectie", "barcode scanner",
+    "bibliotheek app", "boeken beheren", "barcode scanner",
     "eenvoudig", "toegankelijk", "grote teksten", "senior-friendly",
     "rekenmachine", "kalender", "puzzels", "grote klok",
-    "Nederland", "Nederlandse app", "gratis app", "Android app",
-    "Android telefoon", "Android tablet", "senioren app Nederland",
-    "digitale bibliotheek", "boeken app", "muziek app", "barcode app",
-    "handige app voor senioren", "eenvoudige app", "grote knoppen app"
+    "Nederland", "Nederlandse app", "gratis app", "mobiele app"
   ],
   authors: [{ name: "SeniorEase", url: "https://seniorease.nl" }],
   creator: "SeniorEase",
@@ -28,7 +25,7 @@ export const metadata: Metadata = {
     url: "https://seniorease.nl",
     siteName: "SeniorEase",
     title: "SeniorEase - Handige technologie voor senioren",
-    description: "SeniorEase - Handige technologie zonder gedoe voor senioren. Beheer boeken en muziek met barcode scanner. Gratis op PC, Android app beschikbaar. Grote teksten, duidelijke knoppen.",
+    description: "Eenvoudige digitale tools speciaal voor senioren. Bibliotheek, rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen.",
     images: [
       {
         url: "/heart-logo.png",
@@ -41,7 +38,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "SeniorEase - Handige technologie voor senioren",
-    description: "SeniorEase - Handige technologie zonder gedoe voor senioren. Bibliotheek app, rekenmachine, kalender. Gratis op PC, Android app beschikbaar.",
+    description: "Eenvoudige digitale tools speciaal voor senioren. Grote teksten, duidelijke knoppen - technologie zonder gedoe.",
     images: ["/heart-logo.png"],
   },
   robots: {

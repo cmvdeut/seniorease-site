@@ -49,14 +49,14 @@ export default function HulpPage() {
                   <p className="font-bold text-primary">Stap 1: Download de Demo APK</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de homepage: <Link href="/" className="text-primary hover:underline">www.seniorease.nl</Link></li>
-                    <li>Scan de QR code met je Android telefoon, OF</li>
+                    <li>Scan de QR code met uw Android telefoon, of</li>
                     <li>Klik op "Direct APK downloaden" onder de QR code</li>
                     <li>Wacht tot de download klaar is (ongeveer 30 MB)</li>
                   </ol>
                   
                   <p className="font-bold text-primary mt-4">Stap 2: Open het gedownloade bestand</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
-                    <li>Open je Downloads map of meldingen</li>
+                    <li>Open uw Downloads map of meldingen</li>
                     <li>Zoek het bestand: <strong>"Seniorease-Bibliotheek-Demo.apk"</strong></li>
                     <li>Klik op het bestand om te openen</li>
                   </ol>
@@ -65,7 +65,7 @@ export default function HulpPage() {
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li><strong>Melding: "Openen met pakket installatie?"</strong> → Klik <strong>"Openen"</strong></li>
                     <li><strong>Melding: "Installeer apps van onbekende bronnen toestaan?"</strong> → Klik <strong>"Toestaan"</strong></li>
-                    <li>Kies je browser (Chrome, Firefox, etc.) en klik <strong>"Toestaan van deze bron"</strong></li>
+                    <li>Kies uw browser (Chrome, Firefox, etc.) en klik <strong>"Toestaan van deze bron"</strong></li>
                     <li>Klik op <strong>"Installeren"</strong></li>
                     <li>Wacht tot installatie klaar is (10-30 seconden)</li>
                     <li>Klik op <strong>"Openen"</strong> om de app te starten</li>
@@ -73,7 +73,7 @@ export default function HulpPage() {
                   
                   <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mt-4">
                     <p className="text-senior-sm text-blue-900">
-                      <span className="font-bold">💡 Tip:</span> Als je dit vaker doet, kun je "Toestaan van deze bron" permanent aanzetten in Instellingen → Apps → Speciale toegang → "Installeer onbekende apps".
+                      <span className="font-bold">💡 Tip:</span> Als u dit vaker doet, kunt u "Toestaan van deze bron" permanent aanzetten in Instellingen → Apps → Speciale toegang → "Installeer onbekende apps".
                     </p>
                   </div>
                 </div>
@@ -117,13 +117,13 @@ export default function HulpPage() {
                     <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
                     <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
                     <li>Volg de betaalstappen</li>
-                    <li>Na betaling ontvang je een licentiecode</li>
+                    <li>Na betaling ontvangt u een licentiecode</li>
                   </ol>
                   
                   <p className="font-bold text-primary mt-4">Stap 2: Download de volledige app</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de <Link href="/download" className="text-primary hover:underline">downloadpagina</Link></li>
-                    <li>Voer je licentiecode in</li>
+                    <li>Voer uw licentiecode in</li>
                     <li>Download de volledige APK (Seniorease-Bibliotheek.apk)</li>
                   </ol>
                   

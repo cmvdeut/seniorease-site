@@ -1,0 +1,24 @@
+TikTok video (30-45s, vertical 9:16, 1080x1920px) for SeniorEase book library app - BookTok style targeting young book lovers.
+
+IMPORTANT: Use the uploaded screenshots from seniorease.nl for each scene. Screenshots show the actual app interface.
+
+SCENES (use uploaded screenshots):
+1. [0-3s] Use SCREENSHOT 1 (homepage/logo) - App logo with trendy transition, text overlay: "POV: Je hebt eindelijk een app gevonden die je boekcollectie organiseert 📚"
+2. [3-8s] Use SCREENSHOT 2 (barcode scanner) - Barcode scanner interface, add scanning animation effect, text: "Gewoon de barcode scannen... ✨"
+3. [8-15s] Use SCREENSHOT 3 (search function) - Search bar with results, add typing animation, text: "Zoek op titel of auteur... 🔍"
+4. [15-22s] Use SCREENSHOT 4 (library overview) - Library showing multiple books, add smooth scroll effect, text: "Nooit meer vergeten... Perfect voor BookTok! 📖"
+5. [22-30s] Use SCREENSHOT 5 (download button) - Homepage download section, highlight download button, text: "Download SeniorEase nu! 👆 Link in bio"
+
+VOICE-OVER (Dutch, female, enthusiastic, fast-paced):
+"POV: Je hebt eindelijk een app gevonden die je boekcollectie organiseert. Gewoon de barcode scannen en alles wordt automatisch ingevuld! Zoek op titel of auteur en vind je boek in seconden! Nooit meer vergeten welke boeken je al hebt - perfect voor BookTok! Download SeniorEase nu! Link in bio."
+
+STYLE:
+- Fast TikTok pace (quick cuts, 0.5-1s per scene)
+- BookTok aesthetic: warm browns, creams, soft pastels
+- Large, trendy text overlays with emojis
+- Smooth transitions (zoom, fade, slide)
+- Upbeat background music (low volume, voice-over prominent)
+- Modern, relatable for book lovers (not focused on seniors)
+
+TARGET: BookTok community, young book lovers (18-35), people who collect books
+

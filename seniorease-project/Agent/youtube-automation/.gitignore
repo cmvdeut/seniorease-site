@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables
+.env
+
+# Credentials & Tokens
+credentials.json
+tokens.json
+
+# Logs
+*.log
+
+# OS
+.DS_Store
+Thumbs.db
+
+

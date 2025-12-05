@@ -1,5 +1,5 @@
 import { ClaudeContentGenerator } from '../lib/claude.js';
-import { FacebookPoster } from '../lib/facebook.js';
+import fetch from 'node-fetch';
 
 export default async function handler(req, res) {
   // Verifieer dat dit een cron job is
@@ -10,7 +10,7 @@ export default async function handler(req, res) {
   }
 
   try {
-    console.log('Starting scheduled content generation and posting...');
+    console.log('Starting scheduled content generation and posting via Zapier...');
 
     // 1. Genereer content
     const generator = new ClaudeContentGenerator();
@@ -19,25 +19,52 @@ export default async function handler(req, res) {
 
     console.log('Content generated:', post.title);
 
-    // 2. Post naar Facebook
-    const facebook = new FacebookPoster();
-    const result = await facebook.postText(
-      `${post.title}\n\n${post.text}`,
-      post.hashtags
-    );
+    // 2. Format content voor Facebook
+    const facebookMessage = `${post.title}\n\n${post.text}\n\n${post.hashtags.join(' ')}`;
 
-    // 3. Log resultaat
+    // 3. Stuur naar Zapier Webhook
+    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL || 'https://hooks.zapier.com/hooks/catch/25462834/uzfjd74/';
+    
+    if (!zapierWebhookUrl) {
+      console.error('ZAPIER_WEBHOOK_URL is niet ingesteld');
+      return res.status(500).json({
+        success: false,
+        error: 'Zapier webhook URL niet geconfigureerd',
+        post: post // Return de post zodat je hem handmatig kunt posten
+      });
+    }
+
+    console.log('Sending to Zapier webhook...');
+    const zapierResponse = await fetch(zapierWebhookUrl, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        message: facebookMessage,
+        title: post.title,
+        text: post.text,
+        hashtags: post.hashtags,
+        category: post.category,
+        generated_at: post.generatedAt
+      })
+    });
+
+    const zapierResult = await zapierResponse.json();
+    console.log('Zapier response:', zapierResult);
+
+    // 4. Log resultaat
     await logPost({
       ...post,
-      facebookResult: result,
+      zapierResult: zapierResult,
       postedAt: new Date().toISOString()
     });
 
     return res.status(200).json({
       success: true,
-      message: 'Content gegenereerd en gepost',
+      message: 'Content gegenereerd en naar Zapier gestuurd',
       post: post,
-      facebook: result
+      zapier: zapierResult
     });
 
   } catch (error) {

@@ -2,8 +2,14 @@ import Anthropic from '@anthropic-ai/sdk';
 
 export class ClaudeContentGenerator {
   constructor(apiKey) {
+    const key = (apiKey || process.env.ANTHROPIC_API_KEY)?.trim();
+    
+    if (!key) {
+      throw new Error('ANTHROPIC_API_KEY is niet ingesteld. Controleer je environment variables.');
+    }
+    
     this.client = new Anthropic({
-      apiKey: apiKey || process.env.ANTHROPIC_API_KEY
+      apiKey: key
     });
   }
 
@@ -12,7 +18,7 @@ export class ClaudeContentGenerator {
     
     try {
       const message = await this.client.messages.create({
-        model: 'claude-sonnet-4-20250514',
+        model: 'claude-3-haiku-20240307',
         max_tokens: 1024,
         messages: [{
           role: 'user',
@@ -25,7 +31,21 @@ export class ClaudeContentGenerator {
       
     } catch (error) {
       console.error('Claude API Error:', error);
-      throw error;
+      console.error('Error details:', {
+        message: error.message,
+        status: error.status,
+        statusCode: error.statusCode,
+        type: error.type
+      });
+      
+      // Verbeterde error message
+      if (error.status === 401 || error.statusCode === 401) {
+        throw new Error('Invalid API key. Controleer je ANTHROPIC_API_KEY.');
+      } else if (error.status === 429 || error.statusCode === 429) {
+        throw new Error('Rate limit exceeded. Probeer later opnieuw.');
+      } else {
+        throw new Error(`Claude API error: ${error.message || 'Connection error'}`);
+      }
     }
   }
 
@@ -123,7 +143,7 @@ ${platform === 'youtube' ? 'VIDEO_IDEE: [kort video concept]' : ''}`;
   async getRandomTopics(count) {
     // Import topics from config
     const { default: config } = await import('../config/topics.json', {
-      assert: { type: 'json' }
+      with: { type: 'json' }
     });
 
     const allTopics = [];

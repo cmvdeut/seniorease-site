@@ -38,11 +38,22 @@ export default async function handler(req, res) {
 
   } catch (error) {
     console.error('Content Generation Error:', error);
+    console.error('Error details:', {
+      message: error.message,
+      status: error.status,
+      statusText: error.statusText,
+      hasApiKey: !!process.env.ANTHROPIC_API_KEY,
+      apiKeyPrefix: process.env.ANTHROPIC_API_KEY?.substring(0, 10) || 'NOT_SET'
+    });
     
     return res.status(500).json({
       success: false,
-      error: error.message,
-      details: 'Controleer of ANTHROPIC_API_KEY correct is ingesteld'
+      error: error.message || 'Connection error.',
+      details: 'Controleer of ANTHROPIC_API_KEY correct is ingesteld',
+      debug: process.env.NODE_ENV === 'development' ? {
+        hasApiKey: !!process.env.ANTHROPIC_API_KEY,
+        apiKeyPrefix: process.env.ANTHROPIC_API_KEY?.substring(0, 10) || 'NOT_SET'
+      } : undefined
     });
   }
 }
