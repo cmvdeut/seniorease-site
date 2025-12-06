@@ -35,91 +35,25 @@ export default function BibliotheekPage() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [formData, setFormData] = useState({ type: 'book' as const, title: '', author: '', barcode: '', notes: '' });
 
-  // Check licentie - demo mode beschikbaar op alle apparaten
+  // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
+  // Alleen mobiele APK heeft licentie nodig
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
-    // Check licentie
-    let licentie = null;
-    try {
-      licentie = localStorage.getItem('seniorease-licentie');
-    } catch (e) {
-      // localStorage kan niet beschikbaar zijn - gebruik demo mode
-      console.error('Error accessing localStorage:', e);
-      setHasLicense('demo');
-      return;
-    }
-    
-    if (licentie) {
-      try {
-        // Probeer JSON te parsen
-        const licentieData = JSON.parse(licentie);
-        
-        // Check verschillende licentie formaten
-        // Nieuw formaat: { valid: true, code: "...", ... }
-        if (licentieData.valid === true) {
-          console.log('✅ Licentie gevonden (nieuw formaat):', licentieData.code);
-          setHasLicense(true);
-          return;
-        }
-        
-        // Oud formaat: string "actief"
-        if (licentie === 'actief' || licentieData === 'actief') {
-          console.log('✅ Licentie gevonden (oud formaat: "actief")');
-          // Upgrade naar nieuw formaat
-          const upgradedLicentie = {
-            code: 'LEGACY',
-            email: 'Onbekend',
-            date: new Date().toISOString(),
-            valid: true,
-            source: 'legacy'
-          };
-          localStorage.setItem('seniorease-licentie', JSON.stringify(upgradedLicentie));
-          setHasLicense(true);
-          return;
-        }
-        
-        // Als licentieData bestaat maar valid is false/undefined
-        console.warn('⚠️ Licentie gevonden maar niet geldig:', licentieData);
-      } catch (e) {
-        // Als licentie geen JSON is, check of het "actief" string is
-        if (licentie === 'actief') {
-          console.log('✅ Licentie gevonden (string formaat: "actief")');
-          // Upgrade naar nieuw formaat
-          const upgradedLicentie = {
-            code: 'LEGACY',
-            email: 'Onbekend',
-            date: new Date().toISOString(),
-            valid: true,
-            source: 'legacy'
-          };
-          localStorage.setItem('seniorease-licentie', JSON.stringify(upgradedLicentie));
-          setHasLicense(true);
-          return;
-        }
-        console.error('Error checking license:', e, 'Raw value:', licentie);
-      }
-    }
-    
-    // Geen licentie: demo mode beschikbaar op alle apparaten (met limiet van 10 items)
-    console.log('ℹ️ Geen licentie gevonden - demo mode actief');
-    setHasLicense('demo');
+    console.log('✅ Web versie - volledig gratis, geen licentie nodig');
+    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
   }, []);
 
-  // PWA install prompt - toestaan voor licentie EN demo mode
+  // PWA install prompt
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Alleen blokkeren als we de prompt ook kunnen tonen (heeft licentie of demo)
-      // Dit voorkomt de browser warning "preventDefault() called but prompt() not called"
-      if (hasLicense === true || hasLicense === 'demo') {
-        // Blokkeer automatische prompt en bewaar voor later gebruik via onze knop
+      if (hasLicense === true) {
         e.preventDefault();
         setDeferredPrompt(e);
       }
-      // Als geen licentie/demo: laat browser zijn eigen prompt tonen (geen preventDefault)
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -129,119 +63,335 @@ export default function BibliotheekPage() {
     };
   }, [hasLicense]);
 
-  // Wanneer licentie wordt toegevoegd, check of er al een prompt was
-  useEffect(() => {
-    if (hasLicense === true && typeof window !== 'undefined') {
-      // Als er al een prompt was geweest maar we die hadden geblokkeerd,
-      // kan de gebruiker nu handmatig installeren via browser menu
-      // We kunnen ook een eigen install button toevoegen als we de prompt hebben
-    }
-  }, [hasLicense]);
-
-  // Laad items uit localStorage wanneer component mount
+  // Load items from localStorage
   useEffect(() => {
     if (hasLicense === null || typeof window === 'undefined') return;
     
-    setIsLoadingData(true);
     try {
-      const savedItems = localStorage.getItem('seniorease-bibliotheek');
-      if (savedItems) {
-        const loadedItems = JSON.parse(savedItems);
-        // In demo mode: beperk tot 10 items
-        if (hasLicense === 'demo' && loadedItems.length > 10) {
-          const limitedItems = loadedItems.slice(0, 10);
-          setItems(limitedItems);
-          // Sla beperkte versie op
-          localStorage.setItem('seniorease-bibliotheek', JSON.stringify(limitedItems));
-        } else {
+      const saved = localStorage.getItem('seniorease-library');
+      if (saved) {
+        try {
+          const loadedItems = JSON.parse(saved);
           setItems(loadedItems);
+        } catch (e) {
+          console.error('Error loading library:', e);
         }
       }
-    } catch (error) {
-      console.error('Error loading library data:', error);
-      setLoadError('Fout bij laden van bibliotheek data');
-    } finally {
-      setIsLoadingData(false);
+    } catch (e) {
+      console.error('Error accessing localStorage:', e);
     }
   }, [hasLicense]);
 
-  // Sla items op in localStorage wanneer items veranderen
+  // Save items to localStorage
   useEffect(() => {
-    if (typeof window === 'undefined' || hasLicense === null) return;
+    if (typeof window === 'undefined') return;
     
     try {
-      // In demo mode: beperk tot 10 items bij opslaan (extra beveiliging)
-      const itemsToSave = hasLicense === 'demo' && items.length > 10 
-        ? items.slice(0, 10)
-        : items;
-      
-      if (hasLicense === 'demo' && items.length > 10) {
-        setItems(itemsToSave);
+      if (items.length > 0) {
+        localStorage.setItem('seniorease-library', JSON.stringify(items));
+      } else {
+        localStorage.removeItem('seniorease-library');
       }
-      
-      localStorage.setItem('seniorease-bibliotheek', JSON.stringify(itemsToSave));
-    } catch (error) {
-      console.error('Error saving library data:', error);
+    } catch (e) {
+      console.error('Error saving to localStorage:', e);
     }
-  }, [items, hasLicense]);
+  }, [items]);
 
-  const addItem = (newItem: Omit<LibraryItem, 'id' | 'dateAdded'>) => {
-    // Check demo mode limiet
-    if (hasLicense === 'demo' && items.length >= 10) {
-      setErrorMessage('Demo limiet bereikt! Je hebt al 10 items toegevoegd. Koop de volledige versie voor onbeperkt gebruik.');
+  // Sluit menu bij klikken buiten het menu
+  useEffect(() => {
+    if (!showMenu) return;
+    
+    function handleClickOutside(event: MouseEvent) {
+      const target = event.target as HTMLElement;
+      const menu = document.querySelector('[data-menu="options"]');
+      if (menu && !menu.contains(target)) {
+        setShowMenu(false);
+      }
+    }
+    
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [showMenu]);
+
+  // Add new item
+  function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
+    // Web versie is altijd volledig gratis - geen limieten
+    const newItem: LibraryItem = {
+      ...item,
+      id: Date.now().toString(),
+      dateAdded: new Date().toISOString()
+    };
+    setItems([newItem, ...items]);
+    setShowAddForm(false);
+  }
+
+  // Delete item
+  function deleteItem(id: string) {
+    if (confirm('Weet u zeker dat u dit item wilt verwijderen?')) {
+      setItems(items.filter(item => item.id !== id));
+    }
+  }
+
+  // Update item
+  function updateItem(id: string, updates: Partial<LibraryItem>) {
+    setItems(items.map(item => item.id === id ? { ...item, ...updates } : item));
+  }
+
+  // Export to CSV
+  function exportToCSV() {
+    const headers = ['Type', 'Titel', 'Auteur', 'Barcode', 'Datum toegevoegd', 'Notities'];
+    const rows = items.map(item => [
+      'Boek',
+      item.title,
+      item.author,
+      item.barcode,
+      new Date(item.dateAdded).toLocaleDateString('nl-NL'),
+      item.notes || ''
+    ]);
+
+    const csvContent = [
+      headers.join(','),
+      ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+    ].join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+    setShowMenu(false);
+  }
+
+  // Export to PDF
+  async function exportToPDF() {
+    try {
+      const { jsPDF } = await import('jspdf');
+      const doc = new jsPDF();
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const margin = 20;
+      let yPos = margin;
+      const lineHeight = 8;
+      const maxY = doc.internal.pageSize.getHeight() - margin;
+
+      doc.setFontSize(18);
+      doc.setTextColor(0, 100, 200);
+      doc.text('Mijn Bibliotheek - SeniorEase', margin, yPos);
+      yPos += lineHeight * 2;
+
+      doc.setFontSize(10);
+      doc.setTextColor(100, 100, 100);
+      doc.text(`Gegenereerd op: ${new Date().toLocaleDateString('nl-NL')}`, margin, yPos);
+      yPos += lineHeight * 2;
+
+      doc.setFontSize(12);
+      doc.setTextColor(0, 0, 0);
+      doc.text(`Totaal items: ${items.length}`, margin, yPos);
+      yPos += lineHeight;
+      doc.text(`Totaal boeken: ${items.length}`, margin, yPos);
+      yPos += lineHeight * 2;
+
+      doc.setFontSize(14);
+      doc.setTextColor(0, 100, 200);
+      doc.text('Items:', margin, yPos);
+      yPos += lineHeight * 1.5;
+
+      doc.setFontSize(10);
+      doc.setTextColor(0, 0, 0);
+
+      items.forEach((item, index) => {
+        if (yPos > maxY - (lineHeight * 5)) {
+          doc.addPage();
+          yPos = margin;
+        }
+
+        doc.setFont('helvetica', 'bold');
+        doc.text(`${index + 1}. 📚 Boek`, margin, yPos);
+        yPos += lineHeight;
+
+        doc.setFont('helvetica', 'normal');
+        const titleLines = doc.splitTextToSize(`   Titel: ${item.title}`, pageWidth - (margin * 2));
+        doc.text(titleLines, margin + 5, yPos);
+        yPos += lineHeight * titleLines.length;
+
+        doc.text(`   Auteur: ${item.author}`, margin + 5, yPos);
+        yPos += lineHeight;
+
+        if (item.barcode) {
+          doc.text(`   Barcode: ${item.barcode}`, margin + 5, yPos);
+          yPos += lineHeight;
+        }
+
+        if (item.notes) {
+          const notesLines = doc.splitTextToSize(`   Notities: ${item.notes}`, pageWidth - (margin * 2));
+          doc.text(notesLines, margin + 5, yPos);
+          yPos += lineHeight * notesLines.length;
+        }
+
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(8);
+        doc.text(`   Toegevoegd: ${new Date(item.dateAdded).toLocaleDateString('nl-NL')}`, margin + 5, yPos);
+        doc.setTextColor(0, 0, 0);
+        doc.setFontSize(10);
+        yPos += lineHeight * 1.5;
+
+        if (index < items.length - 1) {
+          doc.setDrawColor(200, 200, 200);
+          doc.line(margin, yPos, pageWidth - margin, yPos);
+          yPos += lineHeight;
+        }
+      });
+
+      const totalPages = doc.internal.pages.length - 1;
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(150, 150, 150);
+        doc.text(
+          `Pagina ${i} van ${totalPages} - SeniorEase Bibliotheek`,
+          pageWidth / 2,
+          doc.internal.pageSize.getHeight() - 10,
+          { align: 'center' }
+        );
+      }
+
+      doc.save(`seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.pdf`);
+      setShowMenu(false);
+      setSuccessMessage('PDF geëxporteerd!');
+      setTimeout(() => setSuccessMessage(null), 3000);
+    } catch (error) {
+      console.error('Error exporting to PDF:', error);
+      setErrorMessage('Fout bij exporteren naar PDF. Zorg dat u een moderne browser gebruikt.');
+    }
+  }
+
+  // Import from JSON
+  function importFromJSON(event: React.ChangeEvent<HTMLInputElement>) {
+    const file = event.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = (event: any) => {
+      try {
+        const backup = JSON.parse(event.target.result);
+        const itemsToImport = Array.isArray(backup.items) ? backup.items : Array.isArray(backup) ? backup : [];
+        
+        if (itemsToImport.length > 0) {
+          setItems([...items, ...itemsToImport]);
+          setSuccessMessage(`${itemsToImport.length} items geïmporteerd!`);
+          setTimeout(() => setSuccessMessage(null), 3000);
+        } else {
+          setErrorMessage('Geen items gevonden in bestand');
+        }
+      } catch (error) {
+        console.error('Error importing library:', error);
+        setErrorMessage('Fout bij importeren van bibliotheek. Controleer het bestandsformaat.');
+      }
+    };
+    reader.readAsText(file);
+    event.target.value = '';
+  }
+
+  // Install app
+  async function installeerApp() {
+    if (!deferredPrompt) {
+      alert('Om de app te installeren:\n\n' +
+        'Chrome/Edge: Menu (⋮) → "App installeren" of "Toevoegen aan startscherm"\n' +
+        'Safari: Deel-icoon (□↑) → "Voeg toe aan beginscherm"\n' +
+        'Firefox: Menu (☰) → "Installeer"');
       return;
     }
 
-    const item: LibraryItem = {
-      ...newItem,
-      id: Date.now().toString(),
-      dateAdded: new Date().toISOString(),
-    };
+    deferredPrompt.prompt();
+    const { outcome } = await deferredPrompt.userChoice;
 
-    setItems([...items, item]);
-    setSuccessMessage('Item toegevoegd!');
-    setTimeout(() => setSuccessMessage(null), 3000);
-  };
-
-  const removeItem = (id: string) => {
-    setItems(items.filter(item => item.id !== id));
-    setSuccessMessage('Item verwijderd!');
-    setTimeout(() => setSuccessMessage(null), 3000);
-  };
-
-  const updateItem = (id: string, updates: Partial<LibraryItem>) => {
-    setItems(items.map(item => item.id === id ? { ...item, ...updates } : item));
-    setSuccessMessage('Item bijgewerkt!');
-    setTimeout(() => setSuccessMessage(null), 3000);
-  };
-
-  const handleBarcodeDetected = (code: string) => {
-    setDetectedBarcode(code);
-    setCountdown(3);
+    if (outcome === 'accepted') {
+      setSuccessMessage('De app wordt geïnstalleerd. Bedankt!');
+    } else {
+      setErrorMessage('Installatie geannuleerd');
+    }
     
-    const interval = setInterval(() => {
-      setCountdown(prev => {
-        if (prev <= 1) {
-          clearInterval(interval);
-          return 0;
-        }
-        return prev - 1;
-      });
-    }, 1000);
+    setDeferredPrompt(null);
+  }
 
-    // Zoek boek via Google Books API
-    searchBookByBarcode(code);
-  };
+  // Start scanner
+  function startScanner() {
+    setShowScanner(true);
+    setShowAddForm(false);
+    
+    if (!quaggaLoaded) {
+      setErrorMessage('Scanner nog niet geladen. Wacht even...');
+      return;
+    }
 
-  const searchBookByBarcode = async (isbn: string) => {
+    setTimeout(() => {
+      if (typeof window !== 'undefined' && (window as any).Quagga) {
+        (window as any).Quagga.init({
+          inputStream: {
+            name: "Live",
+            type: "LiveStream",
+            target: document.querySelector('#scanner-viewport'),
+            constraints: {
+              width: 640,
+              height: 480,
+              facingMode: "environment"
+            }
+          },
+          locator: {
+            patchSize: "medium",
+            halfSample: true
+          },
+          numOfWorkers: 2,
+          decoder: {
+            readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader", "upc_reader"]
+          },
+          locate: true
+        }, (err: any) => {
+          if (err) {
+            console.error('Quagga init error:', err);
+            setErrorMessage('Fout bij starten van scanner. Controleer camera toestemming.');
+            return;
+          }
+          (window as any).Quagga.start();
+        });
+
+        (window as any).Quagga.onDetected((result: any) => {
+          const code = result.codeResult.code;
+          setDetectedBarcode(code);
+          setCountdown(3);
+          
+          const interval = setInterval(() => {
+            setCountdown(prev => {
+              if (prev <= 1) {
+                clearInterval(interval);
+                return 0;
+              }
+              return prev - 1;
+            });
+          }, 1000);
+
+          searchBookByBarcode(code);
+        });
+      }
+    }, 100);
+  }
+
+  // Stop scanner
+  function stopScanner() {
+    if (typeof window !== 'undefined' && (window as any).Quagga) {
+      (window as any).Quagga.stop();
+    }
+    setShowScanner(false);
+    setDetectedBarcode(null);
+    setCountdown(0);
+  }
+
+  // Search book by barcode
+  async function searchBookByBarcode(isbn: string) {
     setIsSearchingBooks(true);
     setShowSearchResults(false);
     
     try {
-      // Clean ISBN (verwijder streepjes en spaties)
       const cleanIsbn = isbn.replace(/[-\s]/g, '');
-      
-      // Probeer eerst met ISBN-13, dan ISBN-10
       const urls = [
         `https://www.googleapis.com/books/v1/volumes?q=isbn:${cleanIsbn}`,
         `https://www.googleapis.com/books/v1/volumes?q=isbn:${cleanIsbn.substring(0, 10)}`
@@ -265,7 +415,6 @@ export default function BibliotheekPage() {
         }
       }
       
-      // Geen resultaat gevonden
       setBookSearchResults([]);
       setShowSearchResults(true);
     } catch (error) {
@@ -274,9 +423,10 @@ export default function BibliotheekPage() {
     } finally {
       setIsSearchingBooks(false);
     }
-  };
+  }
 
-  const searchBookByTitle = async (query: string) => {
+  // Search book by title
+  async function searchBookByTitle(query: string) {
     if (!query.trim()) {
       setBookSearchResults([]);
       setShowSearchResults(false);
@@ -309,9 +459,10 @@ export default function BibliotheekPage() {
     } finally {
       setIsSearchingBooks(false);
     }
-  };
+  }
 
-  const handleBookSelected = (book: any) => {
+  // Handle book selection
+  function handleBookSelected(book: any) {
     addItem({
       type: 'book',
       title: book.title,
@@ -323,96 +474,12 @@ export default function BibliotheekPage() {
     setSearchQuery('');
     setDetectedBarcode(null);
     setShowScanner(false);
-  };
-
-  const exportLibrary = () => {
-    const dataStr = JSON.stringify(items, null, 2);
-    const dataBlob = new Blob([dataStr], { type: 'application/json' });
-    const url = URL.createObjectURL(dataBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.download = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.json`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
-    setSuccessMessage('Bibliotheek geëxporteerd!');
-    setTimeout(() => setSuccessMessage(null), 3000);
-  };
-
-  const importLibrary = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) return;
-
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      try {
-        const importedItems = JSON.parse(e.target?.result as string);
-        if (!Array.isArray(importedItems)) {
-          setErrorMessage('Ongeldig bestandsformaat');
-          return;
-        }
-
-        // Check demo limiet bij import
-        if (hasLicense === 'demo') {
-          const currentCount = items.length;
-          const itemsToImport = importedItems.slice(0, Math.max(0, 10 - currentCount));
-          
-          if (importedItems.length > itemsToImport.length) {
-            const message = 
-              `Je probeert ${importedItems.length} items te importeren, maar de demo versie heeft een limiet van 10 items.\n\n` +
-              `Je hebt al ${currentCount} items. Alleen de eerste ${itemsToImport.length} items worden geïmporteerd.\n\n` +
-              `Koop de volledige versie voor onbeperkt gebruik.`;
-            alert(message);
-          }
-          
-          if (itemsToImport.length === 0) {
-            setErrorMessage('Demo limiet bereikt! Je hebt al 10 items. Verwijder eerst items of koop de volledige versie.');
-            return;
-          }
-          
-          setItems([...items, ...itemsToImport]);
-        } else {
-          setItems([...items, ...importedItems]);
-        }
-        
-        setSuccessMessage('Bibliotheek geïmporteerd!');
-        setTimeout(() => setSuccessMessage(null), 3000);
-      } catch (error) {
-        console.error('Error importing library:', error);
-        setErrorMessage('Fout bij importeren van bibliotheek');
-      }
-    };
-    reader.readAsText(file);
-    
-    // Reset file input
-    event.target.value = '';
-  };
-
-  const installApp = async () => {
-    if (!deferredPrompt) {
-      // Geen prompt beschikbaar - toon instructies
-      alert('Om de app te installeren:\n\n' +
-        'Chrome/Edge: Menu (⋮) → "App installeren" of "Toevoegen aan startscherm"\n' +
-        'Safari: Deel-icoon (□↑) → "Voeg toe aan beginscherm"\n' +
-        'Firefox: Menu (☰) → "Installeer"');
-      return;
+    if (typeof window !== 'undefined' && (window as any).Quagga) {
+      (window as any).Quagga.stop();
     }
+  }
 
-    // Toon install prompt
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-    
-    if (outcome === 'accepted') {
-      setSuccessMessage('App wordt geïnstalleerd...');
-    } else {
-      setErrorMessage('Installatie geannuleerd');
-    }
-    
-    setDeferredPrompt(null);
-  };
-
-  // Filter items op basis van zoekquery
+  // Filter items
   const filteredItems = items.filter(item => {
     if (!searchQuery.trim()) return true;
     const query = searchQuery.toLowerCase();
@@ -445,75 +512,41 @@ export default function BibliotheekPage() {
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
-            <div className="flex items-center gap-4">
-              <Link 
-                href="/"
-                className="text-4xl hover:scale-110 transition-transform"
-                title="Terug naar home"
-              >
-                🏠
-              </Link>
+          <div className="max-w-6xl mx-auto">
+            <Link 
+              href="/"
+              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
+            >
+              ← Terug naar home
+            </Link>
+            <div className="flex items-center justify-between flex-wrap gap-4">
               <div>
-                <h1 className="text-senior-xl md:text-senior-2xl font-bold text-primary">
+                <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
                   Mijn Bibliotheek
                 </h1>
-                <p className="text-senior-sm text-gray-600">
-                  Beheer uw boeken collectie
+                <p className="text-senior-base text-gray-600 mt-2">
+                  {items.length} item{items.length !== 1 ? 's' : ''} in collectie
                 </p>
               </div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              {/* Demo Banner */}
-              {hasLicense === 'demo' && (
-                <div className="bg-yellow-100 border-2 border-yellow-400 rounded-xl px-4 py-2">
-                  <p className="text-senior-xs font-bold text-yellow-900">
-                    Demo Versie - {items.length}/10 items gebruikt
-                  </p>
-                </div>
-              )}
-
-              {/* Licentie Status */}
-              {hasLicense === true && (
-                <div className="bg-green-100 border-2 border-green-400 rounded-xl px-4 py-2">
-                  <p className="text-senior-xs font-bold text-green-900">
-                    ✅ Volledige Versie
-                  </p>
-                </div>
-              )}
-
-              {/* Upgrade Knop (alleen in demo mode) */}
-              {hasLicense === 'demo' && (
-                <Link
-                  href="/betalen"
-                  className="bg-primary text-white px-4 py-2 rounded-xl text-senior-sm font-bold
-                           hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
-                >
-                  Koop licentie (€2,99)
-                </Link>
-              )}
-
-              {/* Install App Knop */}
-              {deferredPrompt && (
+              <div className="flex items-center gap-3">
+                {deferredPrompt && (
+                  <button
+                    onClick={installeerApp}
+                    className="bg-secondary text-white px-4 py-2 rounded-xl text-senior-sm font-bold
+                             hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl"
+                  >
+                    📱 Installeer App
+                  </button>
+                )}
                 <button
-                  onClick={installApp}
-                  className="bg-secondary text-white px-4 py-2 rounded-xl text-senior-sm font-bold
-                           hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl"
+                  onClick={() => setShowMenu(!showMenu)}
+                  className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-xl text-senior-base font-bold
+                           transition-all"
+                  aria-label="Menu"
                 >
-                  📱 Installeer App
+                  {showMenu ? '✕' : '☰'}
                 </button>
-              )}
-
-              {/* Menu Knop */}
-              <button
-                onClick={() => setShowMenu(!showMenu)}
-                className="bg-gray-200 hover:bg-gray-300 text-gray-800 px-4 py-2 rounded-xl text-senior-base font-bold
-                         transition-all"
-                aria-label="Menu"
-              >
-                {showMenu ? '✕' : '☰'}
-              </button>
+              </div>
             </div>
           </div>
         </div>
@@ -521,35 +554,33 @@ export default function BibliotheekPage() {
 
       {/* Menu Dropdown */}
       {showMenu && (
-        <div className="bg-white border-b-2 border-neutral-stone py-4">
+        <div className="bg-white border-b-2 border-neutral-stone py-4" data-menu="options">
           <div className="container mx-auto px-6">
-            <div className="flex flex-wrap gap-3">
+            <div className="max-w-6xl mx-auto flex flex-wrap gap-3">
               <button
-                onClick={exportLibrary}
+                onClick={exportToCSV}
                 className="bg-blue-500 text-white px-4 py-2 rounded-xl text-senior-sm font-bold
                          hover:bg-blue-600 transition-all"
               >
-                📥 Exporteer Bibliotheek
+                📥 Exporteer CSV
+              </button>
+              <button
+                onClick={exportToPDF}
+                className="bg-red-500 text-white px-4 py-2 rounded-xl text-senior-sm font-bold
+                         hover:bg-red-600 transition-all"
+              >
+                📄 Exporteer PDF
               </button>
               <label className="bg-green-500 text-white px-4 py-2 rounded-xl text-senior-sm font-bold
                               hover:bg-green-600 transition-all cursor-pointer">
-                📤 Importeer Bibliotheek
+                📤 Importeer JSON
                 <input
                   type="file"
                   accept=".json"
-                  onChange={importLibrary}
+                  onChange={importFromJSON}
                   className="hidden"
                 />
               </label>
-              {hasLicense === 'demo' && (
-                <Link
-                  href="/betalen"
-                  className="bg-primary text-white px-4 py-2 rounded-xl text-senior-sm font-bold
-                           hover:bg-primary-dark transition-all inline-block"
-                >
-                  💳 Upgrade naar Volledige Versie
-                </Link>
-              )}
             </div>
           </div>
         </div>
@@ -600,7 +631,13 @@ export default function BibliotheekPage() {
                          focus:border-primary focus:outline-none"
               />
               <button
-                onClick={() => setShowScanner(!showScanner)}
+                onClick={() => {
+                  if (showScanner) {
+                    stopScanner();
+                  } else {
+                    startScanner();
+                  }
+                }}
                 className="bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold
                          hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
               >
@@ -668,7 +705,7 @@ export default function BibliotheekPage() {
                 <p className="text-senior-sm text-gray-600">Scanner laden...</p>
               </div>
             ) : (
-              <div id="scanner-container" className="relative">
+              <div id="scanner-viewport" className="relative">
                 <div id="interactive" className="w-full" style={{ minHeight: '300px' }}></div>
                 {detectedBarcode && (
                   <div className="mt-4 bg-green-50 border-2 border-green-300 rounded-xl p-4">
@@ -694,15 +731,14 @@ export default function BibliotheekPage() {
             <form
               onSubmit={(e) => {
                 e.preventDefault();
-                const formData = new FormData(e.target as HTMLFormElement);
                 addItem({
                   type: 'book',
-                  title: formData.get('title') as string,
-                  author: formData.get('author') as string,
-                  barcode: formData.get('barcode') as string,
-                  notes: formData.get('notes') as string || '',
+                  title: formData.title,
+                  author: formData.author,
+                  barcode: formData.barcode,
+                  notes: formData.notes,
                 });
-                (e.target as HTMLFormElement).reset();
+                setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
                 setShowAddForm(false);
               }}
               className="space-y-4"
@@ -713,7 +749,8 @@ export default function BibliotheekPage() {
                 </label>
                 <input
                   type="text"
-                  name="title"
+                  value={formData.title}
+                  onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   required
                   className="w-full px-4 py-3 rounded-xl border-4 border-neutral-stone text-senior-base
                            focus:border-primary focus:outline-none"
@@ -725,7 +762,8 @@ export default function BibliotheekPage() {
                 </label>
                 <input
                   type="text"
-                  name="author"
+                  value={formData.author}
+                  onChange={(e) => setFormData({ ...formData, author: e.target.value })}
                   required
                   className="w-full px-4 py-3 rounded-xl border-4 border-neutral-stone text-senior-base
                            focus:border-primary focus:outline-none"
@@ -737,7 +775,8 @@ export default function BibliotheekPage() {
                 </label>
                 <input
                   type="text"
-                  name="barcode"
+                  value={formData.barcode}
+                  onChange={(e) => setFormData({ ...formData, barcode: e.target.value })}
                   className="w-full px-4 py-3 rounded-xl border-4 border-neutral-stone text-senior-base
                            focus:border-primary focus:outline-none"
                 />
@@ -747,7 +786,8 @@ export default function BibliotheekPage() {
                   Notities
                 </label>
                 <textarea
-                  name="notes"
+                  value={formData.notes}
+                  onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
                   rows={3}
                   className="w-full px-4 py-3 rounded-xl border-4 border-neutral-stone text-senior-base
                            focus:border-primary focus:outline-none resize-y"
@@ -781,7 +821,11 @@ export default function BibliotheekPage() {
               Mijn Boeken ({filteredItems.length})
             </h2>
             <button
-              onClick={() => setShowAddForm(!showAddForm)}
+              onClick={() => {
+                setEditingItem(null);
+                setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
+                setShowAddForm(!showAddForm);
+              }}
               className="bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold
                        hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
             >
@@ -925,7 +969,7 @@ export default function BibliotheekPage() {
                           <button
                             onClick={() => {
                               if (confirm('Weet u zeker dat u dit boek wilt verwijderen?')) {
-                                removeItem(item.id);
+                                deleteItem(item.id);
                               }
                             }}
                             className="bg-red-500 text-white px-2 py-1 rounded text-senior-xs font-bold
@@ -947,72 +991,6 @@ export default function BibliotheekPage() {
           )}
         </div>
       </section>
-
-      {/* Quagga Scanner Script */}
-      {showScanner && quaggaLoaded && (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              Quagga.init({
-                inputStream: {
-                  name: "Live",
-                  type: "LiveStream",
-                  target: document.querySelector('#interactive'),
-                  constraints: {
-                    width: 640,
-                    height: 480,
-                    facingMode: "environment"
-                  }
-                },
-                locator: {
-                  patchSize: "medium",
-                  halfSample: true
-                },
-                numOfWorkers: 2,
-                decoder: {
-                  readers: ["ean_reader", "ean_8_reader", "code_128_reader", "code_39_reader", "upc_reader"]
-                },
-                locate: true
-              }, function(err) {
-                if (err) {
-                  console.error('Quagga init error:', err);
-                  return;
-                }
-                Quagga.start();
-              });
-
-              Quagga.onDetected(function(result) {
-                const code = result.codeResult.code;
-                window.dispatchEvent(new CustomEvent('barcodeDetected', { detail: code }));
-                Quagga.stop();
-              });
-
-              window.addEventListener('barcodeDetected', function(e) {
-                const code = e.detail;
-                if (typeof handleBarcodeDetected === 'function') {
-                  handleBarcodeDetected(code);
-                }
-              });
-            `,
-          }}
-        />
-      )}
-
-      {/* Quagga Event Handler */}
-      {showScanner && quaggaLoaded && (
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              (function() {
-                const originalHandleBarcodeDetected = ${handleBarcodeDetected.toString()};
-                window.handleBarcodeDetected = function(code) {
-                  originalHandleBarcodeDetected(code);
-                };
-              })();
-            `,
-          }}
-        />
-      )}
     </main>
   );
 }
