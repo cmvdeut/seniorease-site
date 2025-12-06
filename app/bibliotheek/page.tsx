@@ -39,11 +39,11 @@ export default function BibliotheekPage() {
 
   // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
   // Alleen mobiele APK heeft licentie nodig
-  // Demo mode is volledig verwijderd voor web versie
+  // Demo mode is volledig verwijderd voor web versie - FIX 2025-12-06
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    console.log('✅ Web versie - volledig gratis, geen licentie nodig, geen demo mode');
-    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
+    console.log('✅ Web versie - volledig gratis, geen licentie nodig - FIX 2025-12-06');
+    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis) - NO DEMO MODE
   }, []);
 
   // PWA install prompt
