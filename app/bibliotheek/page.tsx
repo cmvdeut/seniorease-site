@@ -27,7 +27,7 @@ export default function BibliotheekPage() {
   const [countdown, setCountdown] = useState<number>(0);
   const [showMenu, setShowMenu] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [hasLicense, setHasLicense] = useState<boolean | 'demo' | null>(null);
+  const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
   const [bookSearchResults, setBookSearchResults] = useState<any[]>([]);
@@ -39,9 +39,10 @@ export default function BibliotheekPage() {
 
   // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
   // Alleen mobiele APK heeft licentie nodig
+  // Demo mode is volledig verwijderd voor web versie
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    console.log('✅ Web versie - volledig gratis, geen licentie nodig');
+    console.log('✅ Web versie - volledig gratis, geen licentie nodig, geen demo mode');
     setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
   }, []);
 
@@ -275,6 +276,7 @@ export default function BibliotheekPage() {
         const backup = JSON.parse(event.target.result);
         const itemsToImport = Array.isArray(backup.items) ? backup.items : Array.isArray(backup) ? backup : [];
         
+        // Web versie: geen limieten bij import
         if (itemsToImport.length > 0) {
           setItems([...items, ...itemsToImport]);
           setSuccessMessage(`${itemsToImport.length} items geïmporteerd!`);
