@@ -23,7 +23,7 @@ export default async function handler(req, res) {
     const facebookMessage = `${post.title}\n\n${post.text}\n\n${post.hashtags.join(' ')}`;
 
     // 3. Stuur naar Zapier Webhook
-    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL || 'https://hooks.zapier.com/hooks/catch/25462834/uzfjd74/';
+    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL || 
     
     if (!zapierWebhookUrl) {
       console.error('ZAPIER_WEBHOOK_URL is niet ingesteld');

@@ -1,7 +1,7 @@
 // Quick test of Vercel API
 const fetch = require('node-fetch');
 
-const VERCEL_TOKEN = process.env.VERCEL_TOKEN || 'tvugyhAcGEjY1y8badtOv03K';
+const VERCEL_TOKEN = process.env.VERCEL_TOKEN || ;
 
 async function test() {
   try {

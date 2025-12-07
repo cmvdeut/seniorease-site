@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const NEW_TOKEN = 'EAAb0NgbtBVsBQAj7oPtd02sTDg2UvZAHq8fH6XRPkOVT85MNOHT24zT51LnBwVbFviZCZAYAP9OpEcm9CYTfaZCCyW1BxsjvWxHJOGKVUfD0MZAY3R8VKqNF9NZA4vGMiHATcItkDDAuubd2y6kmBJSzFxmHBpRN0IuSmCbylIfZB0he2UODfGf0cyjTgZDZD';
+const NEW_TOKEN = 
 
 async function installToken() {
   console.log('🔑 Long-Lived Facebook Token Installeren...\n');
