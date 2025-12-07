@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import fetch from 'node-fetch';
 
-const TOKEN = 'EAAb0NgbtBVsBQD7SeUCncO889xf1KgZBxsXZAQhvMDZBuoh2xrxvEb874GCd0z3VtQ4za9pNj4gT9zD3KZCZCC7xdU2hon3vh6ZBdW9x5BAeij9dWkZBdJSjbev5F9cBlQptZAwC1WP8g0RZABOTyUWfFZCBH0gnMst5d1qXIhI7TqcxZCZAyAPRIVhrCpZAcv894Cith4RHMnTAvyLYUcDq2ZA21Tm0LrZBYvlWFH7ZCZCjg';
+const TOKEN = 
 
 async function checkToken() {
   console.log('🔍 Token Type Controleren...\n');
