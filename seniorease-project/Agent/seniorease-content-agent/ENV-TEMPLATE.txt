@@ -6,8 +6,8 @@
 #
 # ============================================================
 
-FACEBOOK_PAGE_ACCESS_TOKEN=EAAb0NgbtBVsBQB7QtPpwKZAPr1cLnhiZB1AtqCZAF1YZA6d20AV0JuY4v67EHkiBQ0hCZCjokMBQAUNf08vSCc8WqbZC9mSwggFA2M7eT4UfrK4Nx04daBW3bfjqTYsA18t0xyozDQaZBZCvh7Q8E6yWswrTZA9ZBTYP5SvFDH84iTOzwZBNjUhNjYpWheT01BxZBHDenaSaqoGfnfjOK1ht2YXewv1Nmy3qoLkL9AQZCQNnO
-FACEBOOK_PAGE_ID=898268823367107
+FACEBOOK_PAGE_ACCESS_TOKEN=
+FACEBOOK_PAGE_ID=
 ANTHROPIC_API_KEY=sk-ant-xxxxx-jouw-claude-key-hier
 ZAPIER_WEBHOOK_URL=https://hooks.zapier.com/hooks/catch/xxxxx/xxxxx/
 
