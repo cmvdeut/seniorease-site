@@ -3,8 +3,9 @@ import Image from 'next/image';
 import MobileDownload from './components/MobileDownload';
 import DemoDownload from './components/DemoDownload';
 
-// YouTube kanaal URL - Pas aan naar jouw kanaal URL
-const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL'; // Of: https://www.youtube.com/channel/YOUR_CHANNEL_ID
+// Social Media URLs
+const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL'; // Pas aan naar jouw Facebook pagina URL
 
 export default function Home() {
   // Structured Data (JSON-LD) voor SEO
@@ -71,22 +72,50 @@ export default function Home() {
       {/* Header */}
       <header className="bg-neutral-cream border-b-2 border-neutral-stone py-4">
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto flex items-center gap-4">
-            <Image 
-              src="/heart-logo.png" 
-              alt="SeniorEase logo - Handige technologie voor senioren" 
-              width={100} 
-              height={100}
-              className="w-32 h-32"
-              priority
-            />
-            <div>
-              <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
-                SeniorEase
-              </h1>
-              <p className="text-senior-sm text-gray-600">
-                Handige technologie zonder gedoe
-              </p>
+          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 flex-wrap">
+            <div className="flex items-center gap-4">
+              <Image 
+                src="/heart-logo.png" 
+                alt="SeniorEase logo - Handige technologie voor senioren" 
+                width={100} 
+                height={100}
+                className="w-32 h-32"
+                priority
+              />
+              <div>
+                <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
+                  SeniorEase
+                </h1>
+                <p className="text-senior-sm text-gray-600">
+                  Handige technologie zonder gedoe • Test update 2025-01-27
+                </p>
+              </div>
+            </div>
+            
+            {/* Social Media Links */}
+            <div className="flex items-center gap-3">
+              <a
+                href={FACEBOOK_PAGE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                aria-label="Volg ons op Facebook"
+              >
+                <span className="text-xl">📘</span>
+                <span className="hidden sm:inline">Volg ons op Facebook</span>
+                <span className="sm:hidden">Facebook</span>
+              </a>
+              <a
+                href={YOUTUBE_CHANNEL_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-red-700 transition-colors shadow-md hover:shadow-lg"
+                aria-label="Abonneer op ons YouTube kanaal"
+              >
+                <span className="text-xl">📺</span>
+                <span className="hidden sm:inline">Abonneer op YouTube</span>
+                <span className="sm:hidden">YouTube</span>
+              </a>
             </div>
           </div>
         </div>
@@ -156,7 +185,7 @@ export default function Home() {
                 <div className="flex flex-col items-center md:items-start gap-4">
                   <div className="text-5xl md:text-6xl">📱</div>
                   <div className="text-center md:text-left">
-                    <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+                    <h2 className="text-senior-lg md:text-senior-xl font-bold text-primary mb-3">
                       Volledige Versie voor € 2,99
                     </h2>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">

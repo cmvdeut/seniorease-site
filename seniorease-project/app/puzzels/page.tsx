@@ -19,42 +19,47 @@ function Sudoku() {
   const [mistakes, setMistakes] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
 
   // Genereer een simpele senior-friendly Sudoku
   useEffect(() => {
-    const newPuzzle = generateSudoku();
+    const newPuzzle = generateSudoku(difficulty);
     setBoard(newPuzzle.puzzle);
     setSolution(newPuzzle.solution);
     
     // Laad voortgang uit localStorage
-    const saved = localStorage.getItem(`sudoku-${getTodayKey()}`);
+    const saved = localStorage.getItem(`sudoku-${getTodayKey()}-${difficulty}`);
     if (saved) {
       const data = JSON.parse(saved);
       setBoard(data.board);
       setMistakes(data.mistakes || 0);
       setHintsUsed(data.hintsUsed || 0);
       setCompleted(data.completed || false);
+    } else {
+      setMistakes(0);
+      setHintsUsed(0);
+      setCompleted(false);
     }
-  }, []);
+  }, [difficulty]);
 
   // Save voortgang
   useEffect(() => {
     if (board.length > 0) {
-      localStorage.setItem(`sudoku-${getTodayKey()}`, JSON.stringify({
+      localStorage.setItem(`sudoku-${getTodayKey()}-${difficulty}`, JSON.stringify({
         board,
         mistakes,
         hintsUsed,
         completed
       }));
     }
-  }, [board, mistakes, hintsUsed, completed]);
+  }, [board, mistakes, hintsUsed, completed, difficulty]);
 
   function getTodayKey() {
     return new Date().toISOString().split('T')[0];
   }
 
-  function generateSudoku() {
-    // Simpele vooraf gemaakte Sudoku voor senioren (makkelijk niveau)
+  function generateSudoku(level: 'easy' | 'medium' | 'hard' = 'easy') {
+    // Simpele vooraf gemaakte Sudoku voor senioren
     const solution = [
       [5, 3, 4, 6, 7, 8, 9, 1, 2],
       [6, 7, 2, 1, 9, 5, 3, 4, 8],
@@ -67,11 +72,19 @@ function Sudoku() {
       [3, 4, 5, 2, 8, 6, 1, 7, 9]
     ];
 
-    // Verwijder ~40 nummers voor makkelijke moeilijkheidsgraad
     const puzzle: (number | null)[][] = solution.map(row => [...row]);
-    const cellsToRemove = 40;
-    let removed = 0;
     
+    // Aantal cellen verwijderen op basis van moeilijkheidsgraad
+    let cellsToRemove: number;
+    if (level === 'easy') {
+      cellsToRemove = 35; // Makkelijk: veel nummers blijven staan
+    } else if (level === 'medium') {
+      cellsToRemove = 45; // Gemiddeld
+    } else {
+      cellsToRemove = 55; // Moeilijk: weinig nummers blijven staan
+    }
+    
+    let removed = 0;
     while (removed < cellsToRemove) {
       const row = Math.floor(Math.random() * 9);
       const col = Math.floor(Math.random() * 9);
@@ -133,14 +146,14 @@ function Sudoku() {
   }
 
   function resetPuzzle() {
-    const newPuzzle = generateSudoku();
+    const newPuzzle = generateSudoku(difficulty);
     setBoard(newPuzzle.puzzle);
     setSolution(newPuzzle.solution);
     setMistakes(0);
     setHintsUsed(0);
     setCompleted(false);
     setSelectedCell(null);
-    localStorage.removeItem(`sudoku-${getTodayKey()}`);
+    localStorage.removeItem(`sudoku-${getTodayKey()}-${difficulty}`);
   }
 
   if (board.length === 0) {
@@ -239,65 +252,187 @@ function Sudoku() {
   );
 }
 
-// Woordzoeker Component
+  // Woordzoeker Component
 function Woordzoeker() {
   const [grid, setGrid] = useState<string[][]>([]);
   const [words, setWords] = useState<string[]>([]);
   const [foundWords, setFoundWords] = useState<string[]>([]);
+  const [foundWordCells, setFoundWordCells] = useState<Set<string>>(new Set());
   const [selectedCells, setSelectedCells] = useState<[number, number][]>([]);
+  const [isDragging, setIsDragging] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
 
   useEffect(() => {
-    const puzzle = generateWoordzoekerPuzzle();
+    const puzzle = generateWoordzoekerPuzzle(difficulty);
     setGrid(puzzle.grid);
     setWords(puzzle.words);
     
     // Laad voortgang
-    const saved = localStorage.getItem(`woordzoeker-${getTodayKey()}`);
+    const saved = localStorage.getItem(`woordzoeker-${getTodayKey()}-${difficulty}`);
     if (saved) {
       const data = JSON.parse(saved);
       setFoundWords(data.foundWords || []);
       setHintsUsed(data.hintsUsed || 0);
+      if (data.foundWordCells) {
+        setFoundWordCells(new Set(data.foundWordCells));
+      }
+    } else {
+      // Reset als moeilijkheidsgraad verandert
+      setFoundWords([]);
+      setFoundWordCells(new Set());
+      setHintsUsed(0);
     }
-  }, []);
+  }, [difficulty]);
 
   useEffect(() => {
     if (grid.length > 0) {
-      localStorage.setItem(`woordzoeker-${getTodayKey()}`, JSON.stringify({
+      localStorage.setItem(`woordzoeker-${getTodayKey()}-${difficulty}`, JSON.stringify({
         foundWords,
-        hintsUsed
+        hintsUsed,
+        foundWordCells: Array.from(foundWordCells)
       }));
     }
-  }, [foundWords, hintsUsed, grid.length]);
+  }, [foundWords, hintsUsed, foundWordCells, grid.length, difficulty]);
+
+  // Globale mouse up handler voor als muis buiten grid gaat
+  useEffect(() => {
+    const handleGlobalMouseUp = () => {
+      document.body.style.userSelect = ''; // Herstel text selectie
+      if (isDragging) {
+        setIsDragging(false);
+        // Check of laatste selectie een woord is
+        if (selectedCells.length >= 3) {
+          // Check woord in beide richtingen
+          const wordForward = selectedCells.map(([r, c]) => grid[r]?.[c] || '').join('');
+          const wordBackward = [...selectedCells].reverse().map(([r, c]) => grid[r]?.[c] || '').join('');
+          const foundWord = words.find(w => w === wordForward || w === wordBackward);
+          
+          if (foundWord && !foundWords.includes(foundWord)) {
+            setFoundWords(prev => [...prev, foundWord]);
+            const newFoundCells = new Set(foundWordCells);
+            selectedCells.forEach(([r, c]) => {
+              newFoundCells.add(`${r}-${c}`);
+            });
+            setFoundWordCells(newFoundCells);
+            setSelectedCells([]);
+          } else {
+            // Als te kort of geen woord, wis selectie na korte delay
+            setTimeout(() => {
+              setSelectedCells([]);
+            }, 300);
+          }
+        } else {
+          // Als te kort, wis selectie na korte delay
+          setTimeout(() => {
+            setSelectedCells([]);
+          }, 300);
+        }
+      }
+    };
+
+    window.addEventListener('mouseup', handleGlobalMouseUp);
+    return () => {
+      window.removeEventListener('mouseup', handleGlobalMouseUp);
+    };
+  }, [isDragging, selectedCells, grid, words, foundWords, foundWordCells]);
 
   function getTodayKey() {
     return new Date().toISOString().split('T')[0];
   }
 
-  function generateWoordzoekerPuzzle() {
-    // Senior-vriendelijke woorden (niet te lang, bekend)
-    const wordList = ['KAT', 'HOND', 'BOOM', 'ROOS', 'TAFEL', 'STOEL', 'BOEK', 'LAMP'];
-    const size = 10;
+  function generateWoordzoekerPuzzle(level: 'easy' | 'medium' | 'hard' = 'easy') {
+    // Senior-vriendelijke woorden
+    const easyWords = ['KAT', 'HOND', 'BOOM', 'ROOS', 'TAFEL', 'STOEL', 'BOEK', 'LAMP', 
+                       'HUIS', 'TUIN', 'FIETS', 'AUTO', 'BLOEM', 'ZON', 'MAAN', 'STER'];
+    const mediumWords = ['TUINBANK', 'BIBLIOTHEEK', 'TELEFOON', 'COMPUTER', 'KEUKEN', 
+                         'SLAAPKAMER', 'BADKAMER', 'WONING', 'BUREAU', 'KRANT'];
+    const hardWords = ['VERJAARDAG', 'VERJAARDAGSCAKE', 'VERJAARDAGSPARTIJ', 'VERJAARDAGSKADO',
+                        'VERJAARDAGSWENS', 'VERJAARDAGSBRIEF', 'VERJAARDAGSTAFEL', 'VERJAARDAGSTOEL'];
+    
+    let allWords: string[];
+    let size: number;
+    let numWords: number;
+    
+    if (level === 'easy') {
+      allWords = easyWords;
+      size = 10;
+      numWords = 4 + Math.floor(Math.random() * 2); // 4-5 woorden
+    } else if (level === 'medium') {
+      allWords = [...easyWords, ...mediumWords];
+      size = 12;
+      numWords = 5 + Math.floor(Math.random() * 2); // 5-6 woorden
+    } else { // hard
+      allWords = [...easyWords, ...mediumWords, ...hardWords];
+      size = 15;
+      numWords = 6 + Math.floor(Math.random() * 3); // 6-8 woorden
+    }
+    
     const grid: string[][] = Array(size).fill(null).map(() => Array(size).fill(''));
     
-    // Plaats woorden horizontaal en verticaal
+    // Kies willekeurig woorden
+    const shuffledWords = [...allWords].sort(() => Math.random() - 0.5);
+    const wordsToPlace = shuffledWords.slice(0, numWords);
+    
     const placedWords: string[] = [];
+    const directions = [
+      { dr: 0, dc: 1 },   // horizontaal →
+      { dr: 1, dc: 0 },   // verticaal ↓
+      { dr: 1, dc: 1 },   // diagonaal ↘
+      { dr: 1, dc: -1 }   // diagonaal ↙
+    ];
     
-    // Plaats KAT horizontaal
-    grid[0][0] = 'K'; grid[0][1] = 'A'; grid[0][2] = 'T';
-    placedWords.push('KAT');
-    
-    // Plaats HOND verticaal
-    grid[1][3] = 'H'; grid[2][3] = 'O'; grid[3][3] = 'N'; grid[4][3] = 'D';
-    placedWords.push('HOND');
-    
-    // Plaats BOOM horizontaal
-    grid[2][5] = 'B'; grid[2][6] = 'O'; grid[2][7] = 'O'; grid[2][8] = 'M';
-    placedWords.push('BOOM');
-    
-    // Plaats ROOS verticaal
-    grid[4][1] = 'R'; grid[5][1] = 'O'; grid[6][1] = 'O'; grid[7][1] = 'S';
-    placedWords.push('ROOS');
+    // Probeer elk woord te plaatsen
+    for (const word of wordsToPlace) {
+      let placed = false;
+      let attempts = 0;
+      const maxAttempts = 100;
+      
+      while (!placed && attempts < maxAttempts) {
+        attempts++;
+        
+        // Kies willekeurige richting
+        const direction = directions[Math.floor(Math.random() * directions.length)];
+        const { dr, dc } = direction;
+        
+        // Kies willekeurige startpositie
+        const startRow = Math.floor(Math.random() * size);
+        const startCol = Math.floor(Math.random() * size);
+        
+        // Bereken eindpositie
+        const endRow = startRow + (word.length - 1) * dr;
+        const endCol = startCol + (word.length - 1) * dc;
+        
+        // Check of binnen grid
+        if (endRow < 0 || endRow >= size || endCol < 0 || endCol >= size) {
+          continue;
+        }
+        
+        // Check of positie vrij is of letters matchen
+        let canPlace = true;
+        for (let i = 0; i < word.length; i++) {
+          const row = startRow + i * dr;
+          const col = startCol + i * dc;
+          const existingLetter = grid[row][col];
+          
+          if (existingLetter !== '' && existingLetter !== word[i]) {
+            canPlace = false;
+            break;
+          }
+        }
+        
+        if (canPlace) {
+          // Plaats woord
+          for (let i = 0; i < word.length; i++) {
+            const row = startRow + i * dr;
+            const col = startCol + i * dc;
+            grid[row][col] = word[i];
+          }
+          placedWords.push(word);
+          placed = true;
+        }
+      }
+    }
     
     // Vul de rest met random letters
     const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -312,24 +447,110 @@ function Woordzoeker() {
     return { grid, words: placedWords };
   }
 
-  function handleCellClick(row: number, col: number) {
+  // Start drag selectie
+  function handleMouseDown(row: number, col: number) {
+    setIsDragging(true);
+    setSelectedCells([[row, col]]);
+    // Voorkom text selectie tijdens slepen
+    document.body.style.userSelect = 'none';
+  }
+
+  // Voeg cel toe tijdens slepen
+  function handleMouseEnter(row: number, col: number) {
+    if (!isDragging || selectedCells.length === 0) return;
+    
+    const firstCell = selectedCells[0];
+    const [firstRow, firstCol] = firstCell;
+    
+    // Bepaal richting vanaf eerste cel
+    const rowDiff = row - firstRow;
+    const colDiff = col - firstCol;
+    
+    // Check of we in een rechte lijn zijn vanaf de eerste cel
+    const isHorizontal = rowDiff === 0 && colDiff !== 0;
+    const isVertical = colDiff === 0 && rowDiff !== 0;
+    const isDiagonal = Math.abs(rowDiff) === Math.abs(colDiff) && rowDiff !== 0;
+    
+    if (!isHorizontal && !isVertical && !isDiagonal) {
+      return; // Niet in een rechte lijn
+    }
+    
+    // Bepaal alle cellen in deze lijn vanaf eerste cel tot huidige cel
+    const directionRow = rowDiff === 0 ? 0 : (rowDiff > 0 ? 1 : -1);
+    const directionCol = colDiff === 0 ? 0 : (colDiff > 0 ? 1 : -1);
+    
+    const newSelection: [number, number][] = [];
+    let currentRow = firstRow;
+    let currentCol = firstCol;
+    const maxSteps = Math.max(Math.abs(rowDiff), Math.abs(colDiff));
+    
+    for (let i = 0; i <= maxSteps; i++) {
+      newSelection.push([currentRow, currentCol]);
+      currentRow += directionRow;
+      currentCol += directionCol;
+    }
+    
+    setSelectedCells(newSelection);
+    checkForWord(newSelection);
+  }
+
+  // Stop drag selectie
+  function handleMouseUp() {
+    document.body.style.userSelect = ''; // Herstel text selectie
+    if (isDragging) {
+      setIsDragging(false);
+      // Check of laatste selectie een woord is
+      if (selectedCells.length >= 3) {
+        checkForWord(selectedCells);
+      } else {
+        // Als te kort, wis selectie na korte delay
+        setTimeout(() => {
+          setSelectedCells([]);
+        }, 300);
+      }
+    }
+  }
+
+  // Click handler voor mobiel (tap) - alleen als niet aan het slepen
+  function handleCellClick(row: number, col: number, e: React.MouseEvent) {
+    // Als we net hebben gesleept, negeer click
+    if (isDragging) {
+      e.preventDefault();
+      return;
+    }
+    
     const cellIndex = selectedCells.findIndex(([r, c]) => r === row && c === col);
     if (cellIndex >= 0) {
       setSelectedCells(selectedCells.filter((_, i) => i !== cellIndex));
     } else {
-      setSelectedCells([...selectedCells, [row, col]]);
-      checkForWord([...selectedCells, [row, col]]);
+      const newSelection = [...selectedCells, [row, col]];
+      setSelectedCells(newSelection);
+      checkForWord(newSelection);
     }
   }
 
   function checkForWord(cells: [number, number][]) {
     if (cells.length < 3) return;
     
-    const word = cells.map(([r, c]) => grid[r][c]).join('');
+    // Check woord in beide richtingen
+    const wordForward = cells.map(([r, c]) => grid[r][c]).join('');
+    const wordBackward = [...cells].reverse().map(([r, c]) => grid[r][c]).join('');
     
-    if (words.includes(word) && !foundWords.includes(word)) {
-      setFoundWords([...foundWords, word]);
+    // Check of woord gevonden is (in beide richtingen)
+    const foundWord = words.find(w => w === wordForward || w === wordBackward);
+    
+    if (foundWord && !foundWords.includes(foundWord)) {
+      setFoundWords([...foundWords, foundWord]);
+      
+      // Markeer alle cellen van gevonden woord
+      const newFoundCells = new Set(foundWordCells);
+      cells.forEach(([r, c]) => {
+        newFoundCells.add(`${r}-${c}`);
+      });
+      setFoundWordCells(newFoundCells);
+      
       setSelectedCells([]);
+      setIsDragging(false);
     }
   }
 
@@ -342,19 +563,82 @@ function Woordzoeker() {
   }
 
   function resetPuzzle() {
-    const puzzle = generateWoordzoekerPuzzle();
+    const puzzle = generateWoordzoekerPuzzle(difficulty);
     setGrid(puzzle.grid);
     setWords(puzzle.words);
     setFoundWords([]);
+    setFoundWordCells(new Set());
     setSelectedCells([]);
     setHintsUsed(0);
-    localStorage.removeItem(`woordzoeker-${getTodayKey()}`);
+    setIsDragging(false);
+    localStorage.removeItem(`woordzoeker-${getTodayKey()}-${difficulty}`);
   }
 
   const isComplete = foundWords.length === words.length;
 
   return (
     <div className="space-y-6">
+      {/* Moeilijkheidsgraad selector */}
+      <div className="bg-white p-4 rounded-lg border-2 border-gray-200">
+        <h3 className="text-senior-base font-bold text-primary mb-3">Moeilijkheidsgraad:</h3>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => {
+              setDifficulty('easy');
+              const puzzle = generateWoordzoekerPuzzle('easy');
+              setGrid(puzzle.grid);
+              setWords(puzzle.words);
+              setFoundWords([]);
+              setFoundWordCells(new Set());
+              setSelectedCells([]);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'easy'
+                ? 'bg-green-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🟢 Makkelijk
+          </button>
+          <button
+            onClick={() => {
+              setDifficulty('medium');
+              const puzzle = generateWoordzoekerPuzzle('medium');
+              setGrid(puzzle.grid);
+              setWords(puzzle.words);
+              setFoundWords([]);
+              setFoundWordCells(new Set());
+              setSelectedCells([]);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'medium'
+                ? 'bg-yellow-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🟡 Gemiddeld
+          </button>
+          <button
+            onClick={() => {
+              setDifficulty('hard');
+              const puzzle = generateWoordzoekerPuzzle('hard');
+              setGrid(puzzle.grid);
+              setWords(puzzle.words);
+              setFoundWords([]);
+              setFoundWordCells(new Set());
+              setSelectedCells([]);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'hard'
+                ? 'bg-red-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🔴 Moeilijk
+          </button>
+        </div>
+      </div>
+
       {/* Woorden lijst */}
       <div className="bg-neutral-cream p-4 rounded-lg">
         <h3 className="text-senior-lg font-bold text-primary mb-3">Zoek deze woorden:</h3>
@@ -378,24 +662,38 @@ function Woordzoeker() {
       </div>
 
       {/* Grid */}
-      <div className="grid gap-1 mx-auto" style={{ 
-        gridTemplateColumns: `repeat(${grid[0]?.length || 10}, minmax(0, 1fr))`,
-        maxWidth: '500px'
-      }}>
+      <div 
+        className="grid gap-1 mx-auto select-none" 
+        style={{ 
+          gridTemplateColumns: `repeat(${grid[0]?.length || 10}, minmax(0, 1fr))`,
+          maxWidth: '500px'
+        }}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseUp}
+      >
         {grid.map((row, rowIdx) => (
           row.map((cell, colIdx) => {
             const isSelected = selectedCells.some(([r, c]) => r === rowIdx && c === colIdx);
+            const isFound = foundWordCells.has(`${rowIdx}-${colIdx}`);
             
             return (
               <div
                 key={`${rowIdx}-${colIdx}`}
-                onClick={() => handleCellClick(rowIdx, colIdx)}
+                onClick={(e) => handleCellClick(rowIdx, colIdx, e)}
+                onMouseDown={(e) => {
+                  e.preventDefault();
+                  handleMouseDown(rowIdx, colIdx);
+                }}
+                onMouseEnter={() => handleMouseEnter(rowIdx, colIdx)}
+                onMouseUp={handleMouseUp}
                 className={`
                   aspect-square flex items-center justify-center 
                   border-2 text-senior-base font-bold cursor-pointer rounded
-                  ${isSelected ? 'bg-blue-300 border-blue-500' : 'bg-white border-gray-300'}
+                  ${isFound ? 'bg-green-200 border-green-500' : isSelected ? 'bg-blue-300 border-blue-500' : 'bg-white border-gray-300'}
                   hover:bg-blue-100 transition-colors
+                  select-none
                 `}
+                style={{ userSelect: 'none', WebkitUserSelect: 'none' }}
               >
                 {cell}
               </div>
@@ -467,39 +765,52 @@ function Memory() {
   const [moves, setMoves] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [gameWon, setGameWon] = useState(false);
+  const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
 
   useEffect(() => {
     initializeGame();
     
     // Laad voortgang
-    const saved = localStorage.getItem(`memory-${getTodayKey()}`);
+    const saved = localStorage.getItem(`memory-${getTodayKey()}-${difficulty}`);
     if (saved) {
       const data = JSON.parse(saved);
       setCards(data.cards || []);
       setMoves(data.moves || 0);
       setHintsUsed(data.hintsUsed || 0);
       setGameWon(data.gameWon || false);
+    } else {
+      setMoves(0);
+      setHintsUsed(0);
+      setGameWon(false);
     }
-  }, []);
+  }, [difficulty]);
 
   useEffect(() => {
     if (cards.length > 0) {
-      localStorage.setItem(`memory-${getTodayKey()}`, JSON.stringify({
+      localStorage.setItem(`memory-${getTodayKey()}-${difficulty}`, JSON.stringify({
         cards,
         moves,
         hintsUsed,
         gameWon
       }));
     }
-  }, [cards, moves, hintsUsed, gameWon]);
+  }, [cards, moves, hintsUsed, gameWon, difficulty]);
 
   function getTodayKey() {
     return new Date().toISOString().split('T')[0];
   }
 
   function initializeGame() {
-    // Senior-vriendelijke emojis (8 paren = 16 kaarten)
-    const emojis = ['🌸', '🌻', '🌹', '🌷', '🌺', '🌼', '🍀', '🌿'];
+    // Senior-vriendelijke emojis - aantal paren op basis van moeilijkheidsgraad
+    let emojis: string[];
+    if (difficulty === 'easy') {
+      emojis = ['🌸', '🌻', '🌹', '🌷', '🌺', '🌼']; // 6 paren = 12 kaarten
+    } else if (difficulty === 'medium') {
+      emojis = ['🌸', '🌻', '🌹', '🌷', '🌺', '🌼', '🍀', '🌿']; // 8 paren = 16 kaarten
+    } else {
+      emojis = ['🌸', '🌻', '🌹', '🌷', '🌺', '🌼', '🍀', '🌿', '🌵', '🌴', '🌳', '🌲']; // 12 paren = 24 kaarten
+    }
+    
     const gameCards = [...emojis, ...emojis].map((emoji, index) => ({
       id: index,
       emoji,
@@ -597,6 +908,55 @@ function Memory() {
 
   return (
     <div className="space-y-6">
+      {/* Moeilijkheidsgraad selector */}
+      <div className="bg-white p-4 rounded-lg border-2 border-gray-200">
+        <h3 className="text-senior-base font-bold text-primary mb-3">Moeilijkheidsgraad:</h3>
+        <div className="flex flex-wrap gap-3">
+          <button
+            onClick={() => {
+              setDifficulty('easy');
+              initializeGame();
+              localStorage.removeItem(`memory-${getTodayKey()}-easy`);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'easy'
+                ? 'bg-green-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🟢 Makkelijk (12 kaarten)
+          </button>
+          <button
+            onClick={() => {
+              setDifficulty('medium');
+              initializeGame();
+              localStorage.removeItem(`memory-${getTodayKey()}-medium`);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'medium'
+                ? 'bg-yellow-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🟡 Gemiddeld (16 kaarten)
+          </button>
+          <button
+            onClick={() => {
+              setDifficulty('hard');
+              initializeGame();
+              localStorage.removeItem(`memory-${getTodayKey()}-hard`);
+            }}
+            className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
+              difficulty === 'hard'
+                ? 'bg-red-500 text-white'
+                : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+            }`}
+          >
+            🔴 Moeilijk (24 kaarten)
+          </button>
+        </div>
+      </div>
+
       {/* Score */}
       <div className="flex justify-between items-center text-senior-base">
         <div className="text-gray-700">
@@ -608,7 +968,11 @@ function Memory() {
       </div>
 
       {/* Memory Grid */}
-      <div className="grid grid-cols-4 gap-3 max-w-lg mx-auto">
+      <div className={`grid gap-3 mx-auto ${
+        difficulty === 'easy' ? 'grid-cols-3 max-w-md' : 
+        difficulty === 'medium' ? 'grid-cols-4 max-w-lg' : 
+        'grid-cols-6 max-w-2xl'
+      }`}>
         {cards.map((card, index) => (
           <div
             key={card.id}
@@ -641,7 +1005,7 @@ function Memory() {
         <button
           onClick={() => {
             initializeGame();
-            localStorage.removeItem(`memory-${getTodayKey()}`);
+            localStorage.removeItem(`memory-${getTodayKey()}-${difficulty}`);
           }}
           className="py-3 px-8 bg-gray-600 text-white rounded-lg text-senior-base font-bold
                    hover:bg-gray-700"
