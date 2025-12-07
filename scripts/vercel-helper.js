@@ -7,8 +7,10 @@
 // Use node-fetch for Node.js compatibility
 const fetch = require('node-fetch');
 
-const VERCEL_TOKEN = process.env.VERCEL_TOKEN || 'tvugyhAcGEjY1y8badtOv03K';
-const VERCEL_API = 'https://api.vercel.com';
+const VERCEL_TOKEN = process.env.VERCEL_TOKEN;
+if (!VERCEL_TOKEN) {
+  throw new Error('VERCEL_TOKEN environment variable is required');
+
 
 async function vercelAPI(endpoint, options = {}) {
   const url = `${VERCEL_API}${endpoint}`;
