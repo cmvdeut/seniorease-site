@@ -156,3 +156,5 @@ useEffect(() => {
 
 **Status:** ✅ Functionaliteit is grotendeels correct, enkele verbeteringen aanbevolen
 
+
+

@@ -151,3 +151,5 @@ Ik heb net een nieuwe commit gemaakt om Vercel te forceren opnieuw te builden:
 
 **Wacht 1-3 minuten en probeer dan opnieuw met hard refresh!**
 
+
+

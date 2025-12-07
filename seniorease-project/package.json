@@ -6,21 +6,27 @@
     "dev": "next dev -H 0.0.0.0 -p 3001",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "vercel:status": "node scripts/check-vercel-status.js",
+    "vercel:projects": "node scripts/vercel-helper.js projects",
+    "vercel:deployments": "node scripts/vercel-helper.js deployments",
+    "vercel:domains": "node scripts/vercel-helper.js domains"
   },
   "dependencies": {
     "jspdf": "^3.0.4",
     "next": "^16.0.7",
+    "node-fetch": "^2.7.0",
     "qrcode.react": "^4.2.0",
-    "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react": "19.2.1",
+    "react-dom": "19.2.1"
   },
   "devDependencies": {
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "autoprefixer": "^10.4.20",
-    "eslint": "^9.39.0",
+    "eslint": "^9.0.0",
+    "@eslint/eslintrc": "^3.1.0",
     "eslint-config-next": "^16.0.7",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.1",

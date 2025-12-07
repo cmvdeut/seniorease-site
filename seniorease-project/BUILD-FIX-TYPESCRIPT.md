@@ -83,3 +83,5 @@ Na deployment:
 **Status:** ✅ TypeScript error opgelost - Build werkt nu correct!
 
 
+
+

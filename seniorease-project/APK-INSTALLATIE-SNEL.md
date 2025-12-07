@@ -28,3 +28,5 @@ App staat nu op je telefoon. Zoek: **"Biblitoheek"**
 - Zet je browser aan → "Toestaan van deze bron"
 - Dan hoef je Stap 2 niet meer te doen!
 
+
+

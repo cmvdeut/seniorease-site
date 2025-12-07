@@ -80,3 +80,5 @@ Na deployment (1-2 minuten):
 
 **Belangrijk:** De security update is nu live. Je site is beschermd tegen CVE-2025-66478.
 
+
+

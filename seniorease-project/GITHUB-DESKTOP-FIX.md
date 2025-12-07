@@ -155,3 +155,5 @@ git push origin main
 - Gebruik Command Line (werkt altijd!)
 - Of check of bestand misschien al gecommit is (check git log)
 
+
+

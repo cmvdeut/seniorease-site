@@ -450,7 +450,7 @@ function Woordzoeker() {
   // Start drag selectie
   function handleMouseDown(row: number, col: number) {
     setIsDragging(true);
-    setSelectedCells([[row, col]]);
+    setSelectedCells([[row, col] as [number, number]]);
     // Voorkom text selectie tijdens slepen
     document.body.style.userSelect = 'none';
   }
@@ -485,7 +485,7 @@ function Woordzoeker() {
     const maxSteps = Math.max(Math.abs(rowDiff), Math.abs(colDiff));
     
     for (let i = 0; i <= maxSteps; i++) {
-      newSelection.push([currentRow, currentCol]);
+      newSelection.push([currentRow, currentCol] as [number, number]);
       currentRow += directionRow;
       currentCol += directionCol;
     }
@@ -523,7 +523,7 @@ function Woordzoeker() {
     if (cellIndex >= 0) {
       setSelectedCells(selectedCells.filter((_, i) => i !== cellIndex));
     } else {
-      const newSelection = [...selectedCells, [row, col]];
+      const newSelection: [number, number][] = [...selectedCells, [row, col] as [number, number]];
       setSelectedCells(newSelection);
       checkForWord(newSelection);
     }

@@ -27,57 +27,35 @@ export default function BibliotheekPage() {
   const [countdown, setCountdown] = useState<number>(0);
   const [showMenu, setShowMenu] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [hasLicense, setHasLicense] = useState<boolean | 'demo' | null>(null);
+  const [hasLicense, setHasLicense] = useState<boolean | null>(null);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
   const [bookSearchResults, setBookSearchResults] = useState<any[]>([]);
   const [isSearchingBooks, setIsSearchingBooks] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
-  // Check licentie - demo mode beschikbaar op alle apparaten
+  // Check licentie - WEB VERSIE IS ALTIJD GRATIS, alleen mobiele APK heeft licentie nodig
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
-    // Check licentie
-    let licentie = null;
-    try {
-      licentie = localStorage.getItem('seniorease-licentie');
-    } catch (e) {
-      // localStorage kan niet beschikbaar zijn - gebruik demo mode
-      console.error('Error accessing localStorage:', e);
-      setHasLicense('demo');
-      return;
-    }
-    
-    if (licentie) {
-      try {
-        const licentieData = JSON.parse(licentie);
-        if (licentieData.valid) {
-          setHasLicense(true);
-          return;
-        }
-      } catch (e) {
-        console.error('Error checking license:', e);
-      }
-    }
-    
-    // Geen licentie: demo mode beschikbaar op alle apparaten (met limiet van 10 items)
-    setHasLicense('demo');
+    // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
+    // Alleen mobiele APK heeft licentie nodig
+    // Op de website is alles altijd beschikbaar zonder limieten
+    console.log('✅ Web versie - volledig gratis, geen licentie nodig - FIX 2025-12-06');
+    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis) - NO DEMO MODE
   }, []);
 
-  // PWA install prompt - toestaan voor licentie EN demo mode
+  // PWA install prompt
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
     const handleBeforeInstallPrompt = (e: Event) => {
-      // Alleen blokkeren als we de prompt ook kunnen tonen (heeft licentie of demo)
-      // Dit voorkomt de browser warning "preventDefault() called but prompt() not called"
-      if (hasLicense === true || hasLicense === 'demo') {
-        // Blokkeer automatische prompt en bewaar voor later gebruik via onze knop
+      if (hasLicense === true) {
         e.preventDefault();
         setDeferredPrompt(e);
       }
-      // Als geen licentie/demo: laat browser zijn eigen prompt tonen (geen preventDefault)
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -105,12 +83,7 @@ export default function BibliotheekPage() {
       if (saved) {
         try {
           const loadedItems = JSON.parse(saved);
-          // In demo mode: beperk tot 10 items
-          if (hasLicense === 'demo' && loadedItems.length > 10) {
-            setItems(loadedItems.slice(0, 10));
-          } else {
-            setItems(loadedItems);
-          }
+          setItems(loadedItems);
         } catch (e) {
           console.error('Error loading library:', e);
         }
@@ -127,16 +100,7 @@ export default function BibliotheekPage() {
     
     try {
       if (items.length > 0) {
-        // In demo mode: beperk tot 10 items bij opslaan (extra beveiliging)
-        const itemsToSave = hasLicense === 'demo' && items.length > 10 
-          ? items.slice(0, 10) 
-          : items;
-        localStorage.setItem('seniorease-library', JSON.stringify(itemsToSave));
-        
-        // Als items zijn beperkt, update state ook
-        if (hasLicense === 'demo' && items.length > 10) {
-          setItems(itemsToSave);
-        }
+        localStorage.setItem('seniorease-library', JSON.stringify(items));
       } else {
         // Verwijder localStorage entry als leeg
         localStorage.removeItem('seniorease-library');
@@ -145,7 +109,7 @@ export default function BibliotheekPage() {
       // localStorage kan niet beschikbaar zijn (bijv. in private mode)
       console.error('Error saving to localStorage:', e);
     }
-  }, [items, hasLicense]);
+  }, [items]);
 
   // Sluit menu bij klikken buiten het menu
   useEffect(() => {
@@ -165,13 +129,7 @@ export default function BibliotheekPage() {
 
   // Add new item
   function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
-    // Check demo mode limiet
-    if (hasLicense === 'demo' && items.length >= 10) {
-      alert('Demo limiet bereikt!\n\nJe hebt al 10 items toegevoegd. Koop de volledige versie voor onbeperkt gebruik.\n\nKlik op "Koop licentie" om door te gaan.');
-      setShowAddForm(false);
-      return;
-    }
-    
+    // Web versie is altijd volledig gratis - geen limieten
     const newItem: LibraryItem = {
       ...item,
       id: Date.now().toString(),
@@ -325,10 +283,10 @@ export default function BibliotheekPage() {
       const fileName = `seniorease-bibliotheek-${new Date().toISOString().split('T')[0]}.pdf`;
       doc.save(fileName);
       setShowMenu(false);
-      alert('PDF succesvol gedownload!');
+      setSuccessMessage('PDF succesvol gedownload!');
     } catch (error: any) {
       console.error('Error generating PDF:', error);
-      alert('Er is een fout opgetreden bij het genereren van de PDF. Probeer het opnieuw.');
+      setErrorMessage('Er is een fout opgetreden bij het genereren van de PDF. Probeer het opnieuw.');
     }
   }
 
@@ -395,7 +353,7 @@ export default function BibliotheekPage() {
       setShowMenu(false);
     } catch (error: any) {
       console.error('Error sharing via email:', error);
-      alert('Er is een fout opgetreden bij het openen van de email client. Probeer het opnieuw.');
+      setErrorMessage('Er is een fout opgetreden bij het openen van de email client. Probeer het opnieuw.');
     }
   }
 
@@ -425,7 +383,7 @@ export default function BibliotheekPage() {
         await writable.close();
         
         setShowMenu(false);
-        alert('Backup succesvol opgeslagen!');
+        setSuccessMessage('Backup succesvol opgeslagen!');
       } else {
         // Fallback voor browsers zonder File System Access API
         // Gebruik standaard download (browser vraagt meestal wel om locatie)
@@ -435,7 +393,7 @@ export default function BibliotheekPage() {
         link.click();
         URL.revokeObjectURL(link.href);
         setShowMenu(false);
-        alert('Backup wordt gedownload. U kunt in uw browser kiezen waar u deze wilt opslaan.');
+        setSuccessMessage('Backup wordt gedownload. U kunt in uw browser kiezen waar u deze wilt opslaan.');
       }
     } catch (error: any) {
       // Gebruiker heeft de dialoog geannuleerd
@@ -469,45 +427,17 @@ export default function BibliotheekPage() {
         try {
           const backup = JSON.parse(event.target.result);
           
-          // Check demo limiet bij import
-          if (hasLicense === 'demo') {
-            const itemsToImport = Array.isArray(backup.items) ? backup.items : [];
-            if (itemsToImport.length > 10) {
-              const confirmed = confirm(
-                `Je probeert ${itemsToImport.length} items te importeren, maar de demo versie heeft een limiet van 10 items.\n\n` +
-                `Alleen de eerste 10 items worden geïmporteerd. Koop de volledige versie voor onbeperkt gebruik.\n\n` +
-                `Doorgaan met import van eerste 10 items?`
-              );
-              if (!confirmed) return;
-              
-              // Beperk tot 10 items
-              backup.items = itemsToImport.slice(0, 10);
-            } else if (items.length + itemsToImport.length > 10) {
-              const availableSlots = 10 - items.length;
-              if (availableSlots <= 0) {
-                alert('Demo limiet bereikt! Je hebt al 10 items. Verwijder eerst items of koop de volledige versie.');
-                return;
-              }
-              const confirmed = confirm(
-                `Je hebt al ${items.length} items. Je kunt nog ${availableSlots} items toevoegen.\n\n` +
-                `Alleen de eerste ${availableSlots} items worden geïmporteerd.\n\n` +
-                `Doorgaan?`
-              );
-              if (!confirmed) return;
-              
-              backup.items = itemsToImport.slice(0, availableSlots);
-            }
-          }
+          // Web versie: geen limieten bij import
           if (backup.items && Array.isArray(backup.items)) {
             if (confirm(`Weet u zeker dat u de backup van ${new Date(backup.date).toLocaleDateString('nl-NL')} wilt terugzetten? Dit overschrijft alle huidige data.`)) {
               setItems(backup.items);
-              alert('Backup succesvol teruggezet!');
+              setSuccessMessage('Backup succesvol teruggezet!');
             }
           } else {
-            alert('Ongeldig backup bestand.');
+            setErrorMessage('Ongeldig backup bestand.');
           }
         } catch (error) {
-          alert('Fout bij het lezen van het backup bestand.');
+          setErrorMessage('Fout bij het lezen van het backup bestand.');
         }
       };
       reader.readAsText(file);
@@ -540,7 +470,7 @@ export default function BibliotheekPage() {
 ${total > 0 ? `\nLaatste toevoeging: ${new Date(Math.max(...items.map(i => new Date(i.dateAdded).getTime()))).toLocaleDateString('nl-NL')}` : ''}
     `.trim();
     
-    alert(statistieken);
+    setSuccessMessage(statistieken.replace(/\n/g, ' '));
     setShowMenu(false);
   }
 
@@ -563,14 +493,14 @@ Backup & Veiligheid:
 Voor vragen: bezoek seniorease.nl
     `.trim();
     
-    alert(privacyTekst);
+    setSuccessMessage(privacyTekst.replace(/\n/g, ' '));
     setShowMenu(false);
   }
 
-  // Installeer app (met licentie of demo)
+  // Installeer app
   async function installeerApp() {
     if (!deferredPrompt) {
-      alert('De installatie optie is niet beschikbaar. U kunt de app installeren via het menu van uw browser (meestal drie puntjes of hamburger menu).');
+      setErrorMessage('De installatie optie is niet beschikbaar. U kunt de app installeren via het menu van uw browser (meestal drie puntjes of hamburger menu).');
       setShowMenu(false);
       return;
     }
@@ -583,11 +513,7 @@ Voor vragen: bezoek seniorease.nl
       const { outcome } = await deferredPrompt.userChoice;
 
       if (outcome === 'accepted') {
-        if (hasLicense === 'demo') {
-          alert('Demo app wordt geïnstalleerd! 🎁\n\nJe kunt nu de demo versie gebruiken met maximaal 10 items. Upgrade naar de volledige versie voor onbeperkt gebruik.');
-        } else {
-          alert('De app wordt geïnstalleerd. Bedankt!');
-        }
+        setSuccessMessage('De app wordt geïnstalleerd. Bedankt!');
         setDeferredPrompt(null);
       } else {
         // Gebruiker heeft geannuleerd
@@ -597,7 +523,7 @@ Voor vragen: bezoek seniorease.nl
       setShowMenu(false);
     } catch (error) {
       console.error('Error installing app:', error);
-      alert('Er ging iets mis bij de installatie. Probeer het opnieuw of installeer via het browser menu.');
+      setErrorMessage('Er ging iets mis bij de installatie. Probeer het opnieuw of installeer via het browser menu.');
       setShowMenu(false);
     }
   }
@@ -609,7 +535,7 @@ Voor vragen: bezoek seniorease.nl
         setItems([]);
         localStorage.removeItem('seniorease-library');
         setSearchQuery('');
-        alert('Alle data is gewist.');
+        setSuccessMessage('Alle data is gewist.');
         setShowMenu(false);
       }
     }
@@ -669,7 +595,7 @@ Voor vragen: bezoek seniorease.nl
   // Start barcode scanner
   function startScanner() {
     if (typeof window === 'undefined' || !(window as any).Quagga) {
-      alert('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
+      setErrorMessage('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
       return;
     }
 
@@ -691,7 +617,7 @@ Voor vragen: bezoek seniorease.nl
       if (!Quagga) {
         const errorMsg = 'Quagga bibliotheek niet geladen';
         setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
-        alert('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
+        setErrorMessage('Scanner bibliotheek wordt nog geladen. Wacht even en probeer het opnieuw.');
         stopScanner();
         return;
       }
@@ -703,7 +629,7 @@ Voor vragen: bezoek seniorease.nl
       if (!container) {
         const errorMsg = 'Scanner container niet gevonden';
         setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
-        alert('Scanner container niet gevonden. Probeer de pagina te vernieuwen.');
+        setErrorMessage('Scanner container niet gevonden. Probeer de pagina te vernieuwen.');
         stopScanner();
         return;
       }
@@ -744,7 +670,7 @@ Voor vragen: bezoek seniorease.nl
         }
         
         setDebugLogs(prev => [...prev, `❌ Camera API niet beschikbaar`]);
-        alert(errorMsg);
+        setErrorMessage(errorMsg.replace(/\n/g, ' '));
         stopScanner();
         return;
       }
@@ -770,7 +696,7 @@ Voor vragen: bezoek seniorease.nl
       } catch (permError: any) {
         const errorMsg = permError.message || 'Camera permissie geweigerd';
         setDebugLogs(prev => [...prev, `❌ Camera fout: ${errorMsg}`]);
-        alert(`Camera permissie nodig: ${errorMsg}\n\nControleer:\n- Browser permissies voor camera\n- Of de website via HTTPS wordt geladen\n- Of de camera niet door een andere app wordt gebruikt`);
+        setErrorMessage(`Camera permissie nodig: ${errorMsg}. Controleer browser permissies, HTTPS verbinding, of of de camera niet door een andere app wordt gebruikt.`);
         stopScanner();
         return;
       }
@@ -866,7 +792,7 @@ Voor vragen: bezoek seniorease.nl
             
             Quagga.init(fallbackConfig, function(fallbackErr: any) {
               if (fallbackErr) {
-                alert(`Camera kon niet worden gestart.\n\nFout: ${fallbackErr.message || 'Onbekend'}\n\nControleer:\n- Browser permissies\n- HTTPS verbinding\n- Camera beschikbaarheid`);
+                setErrorMessage(`Camera kon niet worden gestart. Fout: ${fallbackErr.message || 'Onbekend'}. Controleer browser permissies, HTTPS verbinding en camera beschikbaarheid.`);
                 stopScanner();
                 return;
               }
@@ -909,14 +835,14 @@ Voor vragen: bezoek seniorease.nl
               } catch (startError: any) {
                 console.error('Quagga.start() error:', startError);
                 setDebugLogs(prev => [...prev, `❌ Start fout: ${startError.message || 'Onbekend'}`]);
-                alert('Camera kon niet worden gestart. Probeer de pagina te vernieuwen.');
+                setErrorMessage('Camera kon niet worden gestart. Probeer de pagina te vernieuwen.');
                 stopScanner();
               }
             });
             return;
           }
           
-          alert(`Camera kon niet worden gestart.\n\nFout: ${errorMsg}\n\nControleer:\n- Browser permissies\n- HTTPS verbinding\n- Camera beschikbaarheid`);
+          setErrorMessage(`Camera kon niet worden gestart. Fout: ${errorMsg}. Controleer browser permissies, HTTPS verbinding en camera beschikbaarheid.`);
           stopScanner();
           return;
         }
@@ -1078,7 +1004,7 @@ Voor vragen: bezoek seniorease.nl
         console.error('Quagga.init() exception:', initError);
         const errorMsg = `Init exception: ${initError.message || initError.toString()}`;
         setDebugLogs(prev => [...prev, `❌ ${errorMsg}`]);
-        alert('Scanner kon niet worden geïnitialiseerd. Probeer de pagina te vernieuwen.');
+        setErrorMessage('Scanner kon niet worden geïnitialiseerd. Probeer de pagina te vernieuwen.');
         stopScanner();
       }
       }, 300); // Iets langer wachten voor DOM ready
@@ -1373,7 +1299,7 @@ Voor vragen: bezoek seniorease.nl
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!formData.title || !formData.author) {
-      alert('Vul minimaal een titel en auteur in');
+      setErrorMessage('Vul minimaal een titel en auteur in');
       return;
     }
     
@@ -1429,7 +1355,7 @@ Voor vragen: bezoek seniorease.nl
     book: 'Boek'
   };
 
-  // Licentie check overlay verwijderd - demo mode is nu altijd beschikbaar op alle apparaten
+  // Licentie check overlay verwijderd - web versie is altijd volledig gratis
 
   // Loading state
   if (hasLicense === null) {
@@ -1452,22 +1378,52 @@ Voor vragen: bezoek seniorease.nl
       />
 
       <div className="min-h-screen bg-neutral-cream">
-        {/* Demo Banner */}
-        {hasLicense === 'demo' && (
-          <div className="bg-yellow-100 border-b-2 border-yellow-400 py-4">
-            <div className="container mx-auto px-6">
-              <div className="max-w-6xl mx-auto flex items-center justify-between flex-wrap gap-4">
-                <div className="flex items-center gap-3">
-                  <span className="text-2xl">🎁</span>
-                  <div>
-                    <p className="text-senior-base font-bold text-yellow-900">
-                      Demo Versie - {items.length}/10 items gebruikt
-                    </p>
-                    <p className="text-senior-sm text-yellow-800">
-                      Koop de volledige versie voor onbeperkt gebruik
-                    </p>
-                  </div>
-                </div>
+        {/* Error message banner */}
+        {(errorMessage || loadError) && (
+          <div className="bg-red-50 border-4 border-red-300 rounded-xl p-4 mx-6 mt-6 mb-4">
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">⚠️</div>
+              <div className="flex-1">
+                <p className="text-senior-base font-bold text-red-800 mb-1">
+                  Foutmelding
+                </p>
+                <p className="text-senior-sm text-red-700">
+                  {errorMessage || loadError}
+                </p>
+                <button
+                  onClick={() => {
+                    setErrorMessage(null);
+                    setLoadError(null);
+                  }}
+                  className="mt-2 text-senior-xs text-red-600 hover:text-red-800 underline"
+                  aria-label="Sluit foutmelding"
+                >
+                  Sluiten
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {/* Success message banner */}
+        {successMessage && (
+          <div className="bg-green-50 border-4 border-green-300 rounded-xl p-4 mx-6 mt-6 mb-4">
+            <div className="flex items-start gap-3">
+              <div className="text-2xl">✅</div>
+              <div className="flex-1">
+                <p className="text-senior-base font-bold text-green-800 mb-1">
+                  Succesvol
+                </p>
+                <p className="text-senior-sm text-green-700">
+                  {successMessage}
+                </p>
+                <button
+                  onClick={() => setSuccessMessage(null)}
+                  className="mt-2 text-senior-xs text-green-600 hover:text-green-800 underline"
+                  aria-label="Sluit succesmelding"
+                >
+                  Sluiten
+                </button>
               </div>
             </div>
           </div>
@@ -1487,32 +1443,11 @@ Voor vragen: bezoek seniorease.nl
                 <div>
                   <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
                     Mijn Bibliotheek
-                    {hasLicense === 'demo' && (
-                      <span className="ml-3 text-senior-base bg-yellow-100 text-yellow-800 px-3 py-1 rounded-full">
-                        🎁 Demo (max 10 items)
-                      </span>
-                    )}
                   </h1>
                   <p className="text-senior-base text-gray-600 mt-2">
-                    {items.length} item{items.length !== 1 ? 's' : ''} in collectie
-                    {hasLicense === 'demo' && (
-                      <span className="ml-2 text-senior-sm">
-                        ({items.length}/10 gebruikt)
-                      </span>
-                    )}
+                    {items.length} item{items.length !== 1 ? 's' : ''} in collectie • Volledig gratis • Update 2025-12-06 21:15
                   </p>
                 </div>
-                {hasLicense === 'demo' && (
-                  <Link
-                    href="/betalen"
-                    className="bg-green-600 text-white px-6 py-3 rounded-xl text-senior-base font-bold
-                             hover:bg-green-700 transition-all shadow-lg hover:shadow-xl
-                             flex items-center gap-2 whitespace-nowrap"
-                  >
-                    <span>💳</span>
-                    <span>Koop licentie</span>
-                  </Link>
-                )}
                 <Link
                   href="/animaties/bibliotheek"
                   className="bg-accent text-white px-6 py-3 rounded-xl text-senior-base font-bold
@@ -1576,8 +1511,8 @@ Voor vragen: bezoek seniorease.nl
                         
                         <div className="border-t border-gray-200 my-1"></div>
                         
-                        {/* Install app button - met licentie of demo */}
-                        {(hasLicense === true || hasLicense === 'demo') && deferredPrompt && (
+                        {/* Install app button */}
+                        {hasLicense === true && deferredPrompt && (
                           <>
                             <button
                               onClick={installeerApp}
@@ -1586,7 +1521,7 @@ Voor vragen: bezoek seniorease.nl
                             >
                               <span className="text-2xl">📲</span>
                               <span>
-                                {hasLicense === 'demo' ? 'Installeer demo als app' : 'Installeer als app'}
+                                Installeer als app
                               </span>
                             </button>
                             <div className="border-t border-gray-200 my-1"></div>
@@ -1684,37 +1619,11 @@ Voor vragen: bezoek seniorease.nl
               </div>
             </div>
 
-            {/* Demo Waarschuwing */}
-            {hasLicense === 'demo' && items.length >= 8 && items.length < 10 && (
-              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-4 mb-4">
-                <p className="text-senior-base text-yellow-900 font-bold">
-                  ⚠️ Bijna bij de limiet! Je hebt {items.length}/10 items gebruikt.
-                </p>
-                <p className="text-senior-sm text-yellow-800 mt-2">
-                  Koop de volledige versie voor onbeperkt gebruik.
-                </p>
-              </div>
-            )}
-            
-            {hasLicense === 'demo' && items.length >= 10 && (
-              <div className="bg-red-50 border-2 border-red-400 rounded-xl p-4 mb-4">
-                <p className="text-senior-base text-red-900 font-bold">
-                  🚫 Demo limiet bereikt! Je hebt 10/10 items gebruikt.
-                </p>
-                <p className="text-senior-sm text-red-800 mt-2">
-                  Koop de volledige versie om meer items toe te voegen.
-                </p>
-              </div>
-            )}
 
             {/* Action Buttons - EXTRA GROOT VOOR SENIOREN */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
                 onClick={() => {
-                  if (hasLicense === 'demo' && items.length >= 10) {
-                    alert('Demo limiet bereikt!\n\nJe hebt al 10 items toegevoegd. Koop de volledige versie voor onbeperkt gebruik.');
-                    return;
-                  }
                   setEditingItem(null);
                   setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
                   setShowAddForm(!showAddForm);
@@ -1728,13 +1637,9 @@ Voor vragen: bezoek seniorease.nl
               </button>
               <button
                 onClick={() => {
-                  if (hasLicense === 'demo' && items.length >= 10) {
-                    alert('Demo limiet bereikt!\n\nJe hebt al 10 items toegevoegd. Koop de volledige versie voor onbeperkt gebruik.');
-                    return;
-                  }
                   startScanner();
                 }}
-                disabled={!quaggaLoaded || (hasLicense === 'demo' && items.length >= 10)}
+                disabled={!quaggaLoaded}
                 className="bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
                          hover:bg-secondary-dark disabled:opacity-50 disabled:cursor-not-allowed
                          transition-all shadow-lg hover:shadow-xl
@@ -2157,27 +2062,6 @@ Voor vragen: bezoek seniorease.nl
           </div>
         </main>
 
-        {/* Koop Licentie Knop - Onderaan */}
-        {hasLicense === 'demo' && (
-          <div className="bg-white border-t-4 border-primary py-8">
-            <div className="container mx-auto px-6">
-              <div className="max-w-6xl mx-auto text-center">
-                <Link
-                  href="/betalen"
-                  className="inline-block bg-green-600 text-white px-10 py-6 rounded-xl text-senior-xl font-bold
-                           hover:bg-green-700 transition-all shadow-lg hover:shadow-xl
-                           flex items-center justify-center gap-3 mx-auto"
-                >
-                  <span>💳</span>
-                  <span>Koop licentie voor € 2,99</span>
-                </Link>
-                <p className="text-senior-sm text-gray-600 mt-4">
-                  Onbeperkt gebruik • Levenslange licentie • Direct actief
-                </p>
-              </div>
-            </div>
-          </div>
-        )}
       </div>
     </>
   );

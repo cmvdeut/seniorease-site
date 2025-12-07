@@ -7,9 +7,11 @@
   "scripts": {
     "setup-playlists": "node scripts/setup-playlists.js",
     "update-video": "node scripts/update-video-metadata.js",
-    "create-playlist": "node scripts/create-playlist.js",
+    "upload-video": "node scripts/upload-video.js",
+    "add-to-playlist": "node scripts/add-to-playlist.js",
     "get-analytics": "node scripts/get-analytics.js",
-    "add-audio": "node scripts/add-audio-to-video.js"
+    "add-audio": "node scripts/add-audio-to-video.js",
+    "complete-workflow": "node scripts/complete-workflow.js"
   },
   "keywords": [
     "youtube",
