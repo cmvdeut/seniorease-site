@@ -18,8 +18,8 @@ console.log('\n🔧 SeniorEase Facebook Setup\n');
 console.log('============================\n');
 
 // De credentials
-const FACEBOOK_PAGE_ACCESS_TOKEN = 'EAAb0NgbtBVsBQCBniBZAs2HLtPFS57ZCvIZAZAeWdZAelEL4hN4zqnrAleeJh4Ak1PGDVPzQSKOCGtjNzzYhVTOmFO9QCpqgAst8ElvTIjNagktZClZBoN3CzCCRqZAWu8XBn5ZC9k3ZCK5ekeJWIVB4zyuORfzlBaquUCuSXvM5zENClQ3aHciQrflpKzp57I4LKbhh9mMLSq95RyXFYNbFx4X2uQkIpgfV9nXoyJ5cbt';
-const FACEBOOK_PAGE_ID = '898268823367107';
+const FACEBOOK_PAGE_ACCESS_TOKEN = 
+const FACEBOOK_PAGE_ID = 
 
 // Create .env file
 const envContent = `# Facebook Credentials - Auto-generated
