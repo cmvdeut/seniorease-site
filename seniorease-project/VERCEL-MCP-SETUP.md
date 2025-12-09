@@ -103,3 +103,4 @@ vercel --version
 
 **Kort antwoord: Nee, Vercel MCP is niet beschikbaar, maar de huidige aanpak werkt prima!** ✅
 
+

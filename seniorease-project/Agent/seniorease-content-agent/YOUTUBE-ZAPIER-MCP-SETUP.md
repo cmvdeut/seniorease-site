@@ -225,3 +225,4 @@ Na setup krijg je automatisch op **Ma/Wo/Vr om 10:00**:
 
 **Maandag om 10:00 gaat alles automatisch!** 🚀
 
+

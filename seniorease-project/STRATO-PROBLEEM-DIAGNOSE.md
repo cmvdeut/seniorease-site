@@ -157,3 +157,4 @@ Resolve-DnsName www.seniorease.nl -Type A
 
 **Laat weten wat je ziet bij de DNS check!** 🔍
 
+

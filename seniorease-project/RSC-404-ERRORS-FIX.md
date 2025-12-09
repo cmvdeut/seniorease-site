@@ -138,3 +138,4 @@ npm install next@latest
 
 **Start met Stap 2 (clean redeploy) - dit lost meestal het probleem op!** 🔧
 
+

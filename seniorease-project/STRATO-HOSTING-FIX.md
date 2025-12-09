@@ -156,3 +156,4 @@
 2. Werkt Vercel URL? (seniorease-site-xxxxx.vercel.app)
 3. Wat zie je in browser console? (F12)
 
+

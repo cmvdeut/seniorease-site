@@ -70,3 +70,4 @@ vercel --prod --force
 - Check of er service workers actief zijn
 - Probeer andere browser/device
 
+

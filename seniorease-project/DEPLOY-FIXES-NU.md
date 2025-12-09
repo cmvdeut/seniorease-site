@@ -155,3 +155,4 @@ Als er problemen zijn:
 - Als je `seniorease.nl` al gekoppeld hebt, werkt het automatisch
 - Als niet: Zie `VERCEL-DOMEIN-STAP-VOOR-STAP.md` voor setup
 
+

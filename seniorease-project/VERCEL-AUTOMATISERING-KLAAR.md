@@ -148,3 +148,4 @@ npm run vercel:status
 
 **Ik kan nu veel Vercel taken overnemen!** 🚀
 
+

@@ -112,3 +112,4 @@ Je bestaande kanaal is perfect! De automatisering werkt gewoon met je huidige se
 
 **Geen extra configuratie nodig voor het kanaal zelf!** 🚀
 
+

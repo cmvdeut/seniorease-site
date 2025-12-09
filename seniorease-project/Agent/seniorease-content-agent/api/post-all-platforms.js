@@ -335,3 +335,4 @@ export const config = {
   maxDuration: 300 // 5 minuten voor video uploads
 };
 
+
