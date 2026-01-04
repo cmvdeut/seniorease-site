@@ -2,6 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import MobileDownload from './components/MobileDownload';
 import DemoDownload from './components/DemoDownload';
+import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 
 // Social Media URLs
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
@@ -179,13 +180,7 @@ export default function Home() {
                   
                   {/* Actie knoppen */}
                   <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                    <Link 
-                      href="/bibliotheek"
-                      className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
-                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
-                    >
-                      👉 Gebruik Mijn Bibliotheek
-                    </Link>
+                    <GebruikMijnBibliotheekButton />
                     <a 
                       href={YOUTUBE_CHANNEL_URL}
                       target="_blank"
@@ -298,13 +293,7 @@ export default function Home() {
                     <li>• pas daarna eventueel aanschaffen</li>
                   </ul>
                 </div>
-                <Link 
-                  href="/bibliotheek"
-                  className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
-                           hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
-                >
-                  👉 Gebruik Mijn Bibliotheek
-                </Link>
+                <GebruikMijnBibliotheekButton />
               </div>
             </div>
           </div>

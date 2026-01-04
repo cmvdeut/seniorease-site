@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import GebruikMijnBibliotheekButton from '../components/GebruikMijnBibliotheekButton';
 
 export default function ZoWerktHetPage() {
   return (
@@ -91,13 +92,7 @@ export default function ZoWerktHetPage() {
 
             {/* Call to action */}
             <div className="text-center pt-4">
-              <Link 
-                href="/bibliotheek"
-                className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
-                         hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
-              >
-                👉 Gebruik Mijn Bibliotheek
-              </Link>
+              <GebruikMijnBibliotheekButton />
             </div>
           </div>
         </div>

@@ -38,16 +38,29 @@ export default function BibliotheekPage() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
+  const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
 
-  // Check licentie - WEB VERSIE IS ALTIJD GRATIS, alleen mobiele APK heeft licentie nodig
+  // Check demo mode en licentie
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
+    // Check URL parameter voor demo mode
+    const urlParams = new URLSearchParams(window.location.search);
+    const demoParam = urlParams.get('demo');
+    
+    // Check localStorage voor demo mode
+    const demoMode = localStorage.getItem('seniorease-demo-mode') === 'true' || demoParam === 'true';
+    setIsDemoMode(demoMode);
+    
     // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
     // Alleen mobiele APK heeft licentie nodig
-    // Op de website is alles altijd beschikbaar zonder limieten
-    console.log('✅ Web versie - volledig gratis, geen licentie nodig - FIX 2025-12-06');
-    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis) - NO DEMO MODE
+    // Op de website is alles altijd beschikbaar zonder limieten (behalve in demo mode)
+    if (demoMode) {
+      console.log('✅ Demo mode actief - max 10 boeken');
+    } else {
+      console.log('✅ Web versie - volledig gratis, geen licentie nodig - FIX 2025-12-06');
+    }
+    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
   }, []);
 
   // PWA install prompt
@@ -132,7 +145,13 @@ export default function BibliotheekPage() {
 
   // Add new item
   function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
-    // Web versie is altijd volledig gratis - geen limieten
+    // Check demo mode limiet (max 10 boeken)
+    if (isDemoMode && items.length >= 10) {
+      setErrorMessage('Demo limiet bereikt: u kunt maximaal 10 boeken toevoegen. Wilt u meer boeken? Schaf dan de volledige versie eenmalig aan.');
+      setShowAddForm(false);
+      return;
+    }
+    
     const newItem: LibraryItem = {
       ...item,
       id: Date.now().toString(),
@@ -140,6 +159,10 @@ export default function BibliotheekPage() {
     };
     setItems([newItem, ...items]);
     setShowAddForm(false);
+    
+    if (isDemoMode && items.length + 1 === 10) {
+      setSuccessMessage('U heeft nu 10 boeken toegevoegd. Dit is de limiet voor het proberen. Wilt u meer? Schaf dan de volledige versie eenmalig aan.');
+    }
   }
 
   // Delete item
@@ -1381,8 +1404,24 @@ Voor vragen: bezoek seniorease.nl
       />
 
       <div className="min-h-screen bg-neutral-cream">
-        {/* Demo banner expliciet verwijderd - web versie is altijd volledig gratis - NO DEMO MODE */}
-        {/* Alle demo banners zijn verwijderd - geen conditional rendering meer */}
+        {/* Demo mode banner */}
+        {isDemoMode && (
+          <div className="bg-yellow-50 border-b-2 border-yellow-400 py-4">
+            <div className="container mx-auto px-6">
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <p className="text-senior-base font-bold text-yellow-900">
+                  Demo versie - {items.length}/10 boeken gebruikt
+                </p>
+                <Link 
+                  href="/betalen"
+                  className="text-senior-sm text-primary hover:text-primary-dark font-bold underline"
+                >
+                  Volledige versie eenmalig aanschaffen →
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
         
         {/* Error message banner */}
         {(errorMessage || loadError) && (
@@ -1462,9 +1501,13 @@ Voor vragen: bezoek seniorease.nl
                     <div className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center">
                       👉 Gebruik Mijn Bibliotheek
                     </div>
-                    <div className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center">
+                    <Link 
+                      href="/probeer-mijn-bibliotheek"
+                      className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
+                               hover:bg-primary/10 transition-all"
+                    >
                       👉 Probeer op telefoon of tablet
-                    </div>
+                    </Link>
                   </div>
                 </div>
                 <Link
