@@ -39,6 +39,21 @@ export default function BibliotheekPage() {
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
+  const [feedbackGiven, setFeedbackGiven] = useState<boolean>(false);
+  const [feedbackValue, setFeedbackValue] = useState<string>('');
+
+  // Check of feedback al is gegeven
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    try {
+      const feedbackSent = localStorage.getItem('seniorease-first-book-feedback');
+      if (feedbackSent === 'true') {
+        setFeedbackGiven(true);
+      }
+    } catch (e) {
+      // Ignore
+    }
+  }, []);
 
   // Check demo mode en licentie
   useEffect(() => {
@@ -1487,20 +1502,34 @@ Voor vragen: bezoek seniorease.nl
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-3">
-                    Mijn Bibliotheek
+                    Welkom bij Mijn Bibliotheek
                   </h1>
                   <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
                     Hier houdt u eenvoudig bij welke boeken u heeft.
                   </p>
                   <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                    Op de pc gebruikt u Mijn Bibliotheek gratis.<br />
-                    Op telefoon of tablet kunt u het rustig uitproberen.
+                    Gebruikt u deze pagina op de pc?<br />
+                    Dan is Mijn Bibliotheek gratis te gebruiken.
                   </p>
+                  <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 mb-4">
+                    <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold text-center">
+                      U kunt niets kapot maken.<br />
+                      U mag alles rustig proberen.
+                    </p>
+                  </div>
                   {/* Actie knoppen */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                    <div className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center">
+                    <a
+                      href="/bibliotheek"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                      }}
+                      className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center
+                               hover:bg-primary-dark transition-all cursor-pointer"
+                    >
                       👉 Gebruik Mijn Bibliotheek
-                    </div>
+                    </a>
                     <Link 
                       href="/probeer-mijn-bibliotheek"
                       className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
@@ -1711,6 +1740,12 @@ Voor vragen: bezoek seniorease.nl
                 <span>Barcode scannen met camera</span>
               </button>
             </div>
+            
+            {/* Kleine tekst onder de knoppen */}
+            <p className="text-senior-sm text-gray-600 text-center mt-3">
+              Begin bijvoorbeeld met een boek<br />
+              dat u nu bij de hand heeft.
+            </p>
 
             {/* Add Form */}
             {showAddForm && (
@@ -1967,6 +2002,14 @@ Voor vragen: bezoek seniorease.nl
                     </button>
                   </div>
                 </form>
+                
+                {/* Tip onder het formulier */}
+                <div className="mt-6 bg-neutral-cream border-2 border-primary/30 rounded-xl p-4">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed text-center">
+                    <span className="font-bold">Tip:</span> U hoeft niet alles tegelijk toe te voegen.<br />
+                    Eén boek is genoeg om te beginnen.
+                  </p>
+                </div>
               </div>
             )}
 
@@ -2048,6 +2091,138 @@ Voor vragen: bezoek seniorease.nl
 
             {/* Items List */}
             <div className="space-y-4">
+              {/* Geruststellende tekst wanneer er nog geen boeken zijn */}
+              {items.length === 0 && !showAddForm && (
+                <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mb-4">
+                  <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed text-center">
+                    <span className="font-bold">Nog geen boeken toegevoegd?</span><br />
+                    Dat is normaal.<br />
+                    U kunt beginnen met één boek,<br />
+                    of eerst even rondkijken.
+                  </p>
+                </div>
+              )}
+              
+              {/* Succesmelding na het eerste boek */}
+              {items.length === 1 && !showAddForm && (
+                <>
+                  <div className="bg-green-50 border-4 border-green-400 rounded-xl p-6 mb-4">
+                    <div className="text-center">
+                      <div className="text-5xl mb-3">😊</div>
+                      <h3 className="text-senior-xl md:text-senior-2xl font-bold text-green-800 mb-3">
+                        Goed bezig 🙂
+                      </h3>
+                      <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mb-2">
+                        U heeft uw eerste boek toegevoegd.
+                      </p>
+                      <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+                        Veel mensen beginnen met één boek.<br />
+                        U kunt later altijd verdergaan,<br />
+                        wanneer het u uitkomt.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Zachte volgende stap (optioneel) */}
+                  <div className="bg-white border-2 border-gray-200 rounded-xl p-6 mb-4">
+                    <div className="text-center">
+                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3">
+                        Wilt u verder?
+                      </p>
+                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                        U kunt bijvoorbeeld:
+                      </p>
+                      <ul className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3 space-y-1">
+                        <li>• nog een boek toevoegen</li>
+                        <li>• of dit later doen</li>
+                      </ul>
+                      <p className="text-senior-base md:text-senior-lg text-gray-600 leading-relaxed">
+                        Er is geen haast.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  {/* Feedback formulier */}
+                  {!feedbackGiven && (
+                    <div className="bg-white border-2 border-primary/30 rounded-xl p-6 mb-4">
+                      <div className="text-center space-y-4">
+                        <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold">
+                          Mag ik u iets vragen?
+                        </p>
+                        <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                          Wat vond u van het toevoegen van uw eerste boek?
+                        </p>
+                        <p className="text-senior-sm md:text-senior-base text-gray-600 leading-relaxed">
+                          U hoeft niets uit te leggen.<br />
+                          Een paar woorden is genoeg.
+                        </p>
+                        <p className="text-senior-xs md:text-senior-sm text-gray-500 leading-relaxed">
+                          drie woorden (nog veiliger)
+                        </p>
+                        
+                        {/* Radio buttons */}
+                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4">
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="feedback"
+                              value="duidelijk"
+                              checked={feedbackValue === 'duidelijk'}
+                              onChange={(e) => setFeedbackValue(e.target.value)}
+                              className="w-5 h-5 text-primary focus:ring-primary"
+                            />
+                            <span className="text-senior-base text-gray-700">Duidelijk</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="feedback"
+                              value="rustig"
+                              checked={feedbackValue === 'rustig'}
+                              onChange={(e) => setFeedbackValue(e.target.value)}
+                              className="w-5 h-5 text-primary focus:ring-primary"
+                            />
+                            <span className="text-senior-base text-gray-700">Rustig</span>
+                          </label>
+                          <label className="flex items-center gap-2 cursor-pointer">
+                            <input
+                              type="radio"
+                              name="feedback"
+                              value="even-wennen"
+                              checked={feedbackValue === 'even-wennen'}
+                              onChange={(e) => setFeedbackValue(e.target.value)}
+                              className="w-5 h-5 text-primary focus:ring-primary"
+                            />
+                            <span className="text-senior-base text-gray-700">Even wennen</span>
+                          </label>
+                        </div>
+                        
+                        {/* Optionele verzend knop (alleen wanneer een keuze is gemaakt) */}
+                        {feedbackValue && (
+                          <button
+                            onClick={async () => {
+                              // Stuur feedback (optioneel - kan later naar API)
+                              console.log('Feedback:', feedbackValue);
+                              // Markeer als gegeven
+                              setFeedbackGiven(true);
+                              // Optioneel: sla op in localStorage om niet opnieuw te tonen
+                              try {
+                                localStorage.setItem('seniorease-first-book-feedback', 'true');
+                              } catch (e) {
+                                // Ignore
+                              }
+                            }}
+                            className="mt-4 text-senior-sm text-primary hover:text-primary-dark underline"
+                          >
+                            Verzenden (optioneel)
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </>
+              )}
+              
               {filteredItems.length === 0 ? (
                 <div className="bg-white rounded-xl shadow-lg p-12 text-center">
                   <div className="text-6xl mb-4">📚</div>
@@ -2119,6 +2294,16 @@ Voor vragen: bezoek seniorease.nl
                     </div>
                   </div>
                 ))
+              )}
+              
+              {/* Extra geruststelling onderaan (alleen wanneer er items zijn) */}
+              {items.length > 0 && !showAddForm && (
+                <div className="mt-6 pt-4 border-t border-gray-200">
+                  <p className="text-senior-xs md:text-senior-sm text-gray-500 text-center leading-relaxed">
+                    <span className="font-bold">Tip:</span> U hoeft uw hele boekenkast<br />
+                    niet in één keer toe te voegen.
+                  </p>
+                </div>
               )}
             </div>
           </div>

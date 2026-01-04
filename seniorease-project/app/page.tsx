@@ -155,6 +155,12 @@ export default function Home() {
                 >
                   Contact
                 </Link>
+                <Link 
+                  href="/extras"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Handige extra's
+                </Link>
               </div>
             </nav>
           </div>
