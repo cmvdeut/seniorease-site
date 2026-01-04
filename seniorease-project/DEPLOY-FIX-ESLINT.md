@@ -92,3 +92,7 @@ Als Vercel gekoppeld is aan GitHub:
 **Nu zou deployment moeten werken!** 🚀
 
 
+
+
+
+

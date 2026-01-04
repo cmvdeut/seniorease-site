@@ -27,26 +27,64 @@ export default function HulpPage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
             
-            {/* Inleiding */}
-            <div className="mb-8">
-              <p className="text-senior-base text-gray-700 mb-4">
-                Heeft u vragen over de SeniorEase Bibliotheek App? Hier vindt u antwoorden op de meest gestelde vragen.
+            {/* Geruststellende intro */}
+            <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mb-8">
+              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mb-3">
+                Komt u ergens niet uit?<br />
+                <span className="font-bold">Dat is heel normaal.</span>
+              </p>
+              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+                Hier vindt u antwoorden<br />
+                op de meest gestelde vragen.
               </p>
             </div>
 
-            {/* App Installatie Sectie */}
+            {/* E-mailcontact - duidelijk zichtbaar */}
+            <div className="bg-primary/10 border-4 border-primary rounded-xl p-6 mb-8 text-center">
+              <h2 className="text-senior-xl font-bold text-primary mb-4">
+                📧 Heeft u een vraag?
+              </h2>
+              <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                Neem gerust contact met ons op via e-mail:
+              </p>
+              <div className="space-y-3">
+                <div>
+                  <p className="text-senior-base font-bold text-gray-800 mb-2">Algemene vragen:</p>
+                  <a 
+                    href="mailto:info@seniorease.nl" 
+                    className="text-senior-lg md:text-senior-xl font-bold text-primary hover:text-primary-dark underline"
+                  >
+                    info@seniorease.nl
+                  </a>
+                </div>
+                <div>
+                  <p className="text-senior-base font-bold text-gray-800 mb-2">Technische support:</p>
+                  <a 
+                    href="mailto:support@seniorease.nl" 
+                    className="text-senior-lg md:text-senior-xl font-bold text-primary hover:text-primary-dark underline"
+                  >
+                    support@seniorease.nl
+                  </a>
+                </div>
+              </div>
+              <p className="text-senior-sm text-gray-600 mt-4">
+                Geen formulieren verplicht • Stuur gewoon een e-mail
+              </p>
+            </div>
+
+            {/* Mijn Bibliotheek Installatie Sectie */}
             <div id="app-installatie" className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6 border-4 border-yellow-400 mb-8">
               <h2 className="text-senior-xl font-bold text-primary mb-4">
-                📱 App Installatie - Uitgebreide Instructies
+                📱 Mijn Bibliotheek Installeren - Uitgebreide Instructies
               </h2>
               
-              {/* Demo App Installatie */}
+              {/* Proberen op Telefoon of Tablet */}
               <div className="bg-white rounded-xl p-6 mb-6 border-2 border-yellow-300">
                 <h3 className="text-senior-lg font-bold text-primary mb-4">
-                  🎁 Demo App Installeren (Gratis)
+                  🎁 Mijn Bibliotheek Proberen op Telefoon of Tablet (Gratis)
                 </h3>
                 <div className="text-senior-base text-gray-700 space-y-3">
-                  <p className="font-bold text-primary">Stap 1: Download de Demo APK</p>
+                  <p className="font-bold text-primary">Stap 1: Download Mijn Bibliotheek om te proberen</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de homepage: <Link href="/" className="text-primary hover:underline">www.seniorease.nl</Link></li>
                     <li>Scan de QR code met uw Android telefoon, of</li>
@@ -61,14 +99,14 @@ export default function HulpPage() {
                     <li>Klik op het bestand om te openen</li>
                   </ol>
                   
-                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
+                  <p className="font-bold text-primary mt-4">Stap 3: Installeer Mijn Bibliotheek</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li><strong>Melding: "Openen met pakket installatie?"</strong> → Klik <strong>"Openen"</strong></li>
                     <li><strong>Melding: "Installeer apps van onbekende bronnen toestaan?"</strong> → Klik <strong>"Toestaan"</strong></li>
                     <li>Kies uw browser (Chrome, Firefox, etc.) en klik <strong>"Toestaan van deze bron"</strong></li>
                     <li>Klik op <strong>"Installeren"</strong></li>
                     <li>Wacht tot installatie klaar is (10-30 seconden)</li>
-                    <li>Klik op <strong>"Openen"</strong> om de app te starten</li>
+                    <li>Klik op <strong>"Openen"</strong> om Mijn Bibliotheek te starten</li>
                   </ol>
                   
                   <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-4 mt-4">
@@ -79,17 +117,17 @@ export default function HulpPage() {
                 </div>
               </div>
 
-              {/* Info over Demo Versie */}
+              {/* Info over Proberen */}
               <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-6 mb-6">
                 <h3 className="text-senior-lg font-bold text-primary mb-4">
-                  ℹ️ Over de Demo Versie
+                  ℹ️ Over het Proberen
                 </h3>
                 <div className="text-senior-base text-gray-700 space-y-3">
                   <p>
-                    De demo versie is <strong>volledig gratis</strong> en bevat alle functionaliteit van de app, met een limiet van <strong>10 items</strong>.
+                    Het proberen is <strong>volledig gratis</strong> en bevat alle functionaliteit van Mijn Bibliotheek, met een limiet van <strong>10 boeken</strong>.
                   </p>
                   <p>
-                    Met de demo versie kunt u:
+                    Tijdens het proberen kunt u:
                   </p>
                   <ul className="list-disc list-inside ml-4 space-y-1">
                     <li>Boeken toevoegen via barcode scanner</li>
@@ -100,38 +138,38 @@ export default function HulpPage() {
                   </ul>
                   <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mt-4">
                     <p className="text-senior-sm text-yellow-900">
-                      <span className="font-bold">💡 Tip:</span> De demo versie is perfect om de app uit te proberen! Als u meer dan 10 items wilt opslaan, kunt u altijd een backup maken en deze later terugzetten.
+                      <span className="font-bold">💡 Tip:</span> Perfect om Mijn Bibliotheek te proberen! Als u meer dan 10 boeken wilt opslaan, kunt u altijd een backup maken en deze later terugzetten.
                     </p>
                   </div>
                 </div>
               </div>
 
-              {/* Volledige App Installatie */}
+              {/* Volledige Versie Aanschaffen */}
               <div className="bg-white rounded-xl p-6 border-2 border-primary">
                 <h3 className="text-senior-lg font-bold text-primary mb-4">
-                  💳 Volledige App Installeren (Betaald - €2,99)
+                  💳 Volledige Versie Eenmalig Aanschaffen (€2,99)
                 </h3>
                 <div className="text-senior-base text-gray-700 space-y-3">
-                  <p className="font-bold text-primary">Stap 1: Betaal voor de volledige app</p>
+                  <p className="font-bold text-primary">Stap 1: Schaf de volledige versie eenmalig aan</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de <Link href="/betalen" className="text-primary hover:underline">betaalpagina</Link></li>
-                    <li>Klik op "Koop licentie" (€2,99 eenmalig)</li>
+                    <li>Klik op "Eenmalig aanschaffen" (€2,99)</li>
                     <li>Volg de betaalstappen</li>
                     <li>Na betaling ontvangt u een licentiecode</li>
                   </ol>
                   
-                  <p className="font-bold text-primary mt-4">Stap 2: Download de volledige app</p>
+                  <p className="font-bold text-primary mt-4">Stap 2: Download de volledige versie</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
                     <li>Ga naar de <Link href="/download" className="text-primary hover:underline">downloadpagina</Link></li>
                     <li>Voer uw licentiecode in</li>
-                    <li>Download de volledige APK (Seniorease-Bibliotheek.apk)</li>
+                    <li>Download de volledige versie (Seniorease-Bibliotheek.apk)</li>
                   </ol>
                   
-                  <p className="font-bold text-primary mt-4">Stap 3: Installeer de app</p>
+                  <p className="font-bold text-primary mt-4">Stap 3: Installeer Mijn Bibliotheek</p>
                   <ol className="list-decimal list-inside ml-4 space-y-2">
-                    <li>Volg dezelfde stappen als bij de demo app (zie hierboven)</li>
+                    <li>Volg dezelfde stappen als bij het proberen (zie hierboven)</li>
                     <li>Klik "Openen" → "Toestaan" → "Installeren"</li>
-                    <li>Open de app en geniet van onbeperkt gebruik!</li>
+                    <li>Open Mijn Bibliotheek en geniet van onbeperkt gebruik!</li>
                   </ol>
                   
                   <div className="bg-green-50 border-2 border-green-300 rounded-xl p-4 mt-4">
@@ -163,27 +201,27 @@ export default function HulpPage() {
               {/* FAQ 2 */}
               <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
                 <h2 className="text-senior-lg font-bold text-primary mb-3">
-                  💳 Moet ik betalen voor de app?
+                  💳 Moet ik betalen voor Mijn Bibliotheek?
                 </h2>
                 <div className="text-senior-base text-gray-700 space-y-3">
                   <div className="bg-white rounded-xl p-4 border-2 border-primary/20">
-                    <p className="font-bold text-primary mb-2">🌐 Web App (Gratis):</p>
+                    <p className="font-bold text-primary mb-2">🌐 Gratis op de pc:</p>
                     <p>
-                      De web versie is <strong>volledig gratis</strong> op alle apparaten (desktop, laptop, Android, iPhone en iPad). U kunt de app gebruiken in uw browser of installeren als PWA (Progressive Web App). Geen kosten, geen abonnementen.
+                      Mijn Bibliotheek is <strong>volledig gratis</strong> op alle apparaten (desktop, laptop, Android, iPhone en iPad). U kunt Mijn Bibliotheek gebruiken in uw browser of installeren als PWA (Progressive Web App). Geen kosten, geen abonnementen.
                     </p>
                   </div>
                   
                   <div className="bg-white rounded-xl p-4 border-2 border-yellow-300">
-                    <p className="font-bold text-primary mb-2">📱 Demo App (Gratis):</p>
+                    <p className="font-bold text-primary mb-2">📱 Proberen op telefoon of tablet (Gratis):</p>
                     <p>
-                      De demo APK is <strong>volledig gratis</strong> voor Android telefoons en tablets. De demo versie heeft een limiet van <strong>10 items</strong>, maar alle functionaliteit is beschikbaar. Perfect om de app uit te proberen!
+                      Het proberen is <strong>volledig gratis</strong> voor Android telefoons en tablets. Tijdens het proberen heeft u een limiet van <strong>10 boeken</strong>, maar alle functionaliteit is beschikbaar. Perfect om Mijn Bibliotheek te proberen!
                     </p>
                   </div>
                   
                   <div className="bg-white rounded-xl p-4 border-2 border-green-300">
-                    <p className="font-bold text-primary mb-2">💳 Volledige App (Betaald - €2,99):</p>
+                    <p className="font-bold text-primary mb-2">💳 Volledige versie (Eenmalig aanschaffen - €2,99):</p>
                     <p>
-                      De volledige Android APK kost <strong>€2,99 eenmalig</strong>. Dit geeft u onbeperkt gebruik zonder limiet op het aantal items. Geen abonnement, eenmalige betaling.
+                      De volledige versie voor Android kost <strong>€2,99 eenmalig aanschaffen</strong>. Dit geeft u onbeperkt gebruik zonder limiet op het aantal boeken. Geen abonnement, eenmalige aanschaf.
                     </p>
                   </div>
                 </div>
@@ -222,7 +260,7 @@ export default function HulpPage() {
                 <div className="text-senior-base text-gray-700 space-y-2">
                   <p>De barcode scanner werkt het beste op telefoon of tablet met achter camera:</p>
                   <ul className="list-disc list-inside ml-4 space-y-1">
-                    <li>Open de scanner in de bibliotheek app</li>
+                    <li>Open de scanner in Mijn Bibliotheek</li>
                     <li>Houd de barcode (ISBN/EAN) in het kader</li>
                     <li>Wacht 4 seconden terwijl de camera scherpstelt</li>
                     <li>De informatie wordt automatisch opgehaald uit online databases</li>
@@ -239,7 +277,7 @@ export default function HulpPage() {
                 </h2>
                 <div className="text-senior-base text-gray-700 space-y-2">
                   <ol className="list-decimal list-inside ml-4 space-y-1">
-                    <li>Open de bibliotheek app</li>
+                    <li>Open Mijn Bibliotheek</li>
                     <li>Klik op het Opties menu (⚙️) rechtsboven</li>
                     <li>Kies "Backup maken"</li>
                     <li>Kies waar u de backup wilt opslaan (bijv. Bureaublad of Documenten)</li>
@@ -257,18 +295,18 @@ export default function HulpPage() {
               {/* FAQ 6 */}
               <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
                 <h2 className="text-senior-lg font-bold text-primary mb-3">
-                  🔄 Kan ik de app gebruiken op meerdere apparaten?
+                  🔄 Kan ik Mijn Bibliotheek gebruiken op meerdere apparaten?
                 </h2>
                 <div className="text-senior-base text-gray-700">
                   <p>
-                    Ja! U kunt de app op zoveel apparaten gebruiken als u wilt. De app is <strong>volledig gratis</strong> en werkt op desktop, laptop, telefoon en tablet.
+                    Ja! U kunt Mijn Bibliotheek op zoveel apparaten gebruiken als u wilt. Mijn Bibliotheek is <strong>gratis op de pc</strong> en werkt op desktop, laptop, telefoon en tablet.
                   </p>
                   <p className="mt-3">
                     Om uw bibliotheek data over te zetten naar een ander apparaat, gebruikt u de backup functie:
                   </p>
                   <ol className="list-decimal list-inside ml-4 space-y-1 mt-2">
                     <li>Maak een backup op uw huidige apparaat</li>
-                    <li>Installeer de app op uw nieuwe apparaat</li>
+                    <li>Open Mijn Bibliotheek op uw nieuwe apparaat</li>
                     <li>Zet de backup terug op het nieuwe apparaat</li>
                   </ol>
                 </div>
@@ -291,27 +329,6 @@ export default function HulpPage() {
                 </div>
               </div>
 
-              {/* FAQ 8 */}
-              <div className="bg-neutral-cream rounded-xl p-6 border-2 border-gray-200">
-                <h2 className="text-senior-lg font-bold text-primary mb-3">
-                  📧 Ik heb een andere vraag
-                </h2>
-                <div className="text-senior-base text-gray-700">
-                  <p>
-                    Heeft u een vraag die hier niet bij staat? Neem gerust contact met ons op:
-                  </p>
-                  <ul className="list-none ml-4 space-y-2 mt-3">
-                    <li className="flex items-center gap-2">
-                      <span className="font-bold">Algemene vragen:</span>
-                      <a href="mailto:info@seniorease.nl" className="text-primary hover:underline">info@seniorease.nl</a>
-                    </li>
-                    <li className="flex items-center gap-2">
-                      <span className="font-bold">Technische support:</span>
-                      <a href="mailto:support@seniorease.nl" className="text-primary hover:underline">support@seniorease.nl</a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
 
             </div>
 

@@ -4,6 +4,9 @@
  * Automatiseert Vercel taken met API token
  */
 
+// Load .env.local automatically
+require('dotenv').config({ path: '.env.local' });
+
 // Use node-fetch for Node.js compatibility
 const fetch = require('node-fetch');
 

@@ -37,7 +37,7 @@ export default function DemoDownload() {
           )}
         </div>
         <p className="text-senior-xs font-bold text-gray-700 text-center">
-          Scan voor demo
+          Scan om te proberen
         </p>
       </div>
       
@@ -49,13 +49,13 @@ export default function DemoDownload() {
                    transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
           download="Seniorease-Bibliotheek-Demo.apk"
         >
-          📱 Direct APK downloaden
+          📱 Download om te proberen
         </Link>
         
         <div className="bg-neutral-cream rounded-xl p-3 text-senior-xs text-gray-700">
-          <p className="font-bold mb-1">🎁 Demo versie:</p>
+          <p className="font-bold mb-1">🎁 Proberen:</p>
           <ul className="list-disc list-inside space-y-0.5 text-left ml-2">
-            <li>Max. 10 items</li>
+            <li>Max. 10 boeken</li>
             <li>Barcode scanner</li>
             <li>Gratis te proberen</li>
           </ul>

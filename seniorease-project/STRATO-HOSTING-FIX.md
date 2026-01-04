@@ -157,3 +157,7 @@
 3. Wat zie je in browser console? (F12)
 
 
+
+
+
+

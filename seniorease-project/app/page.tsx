@@ -70,114 +70,246 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
       {/* Header */}
-      <header className="bg-neutral-cream border-b-2 border-neutral-stone py-4">
+      <header className="bg-neutral-cream border-b-2 border-neutral-stone">
         <div className="container mx-auto px-6">
-          <div className="max-w-6xl mx-auto flex items-center justify-between gap-4 flex-wrap">
-            <div className="flex items-center gap-4">
-              <Image 
-                src="/heart-logo.png" 
-                alt="SeniorEase logo - Handige technologie voor senioren" 
-                width={100} 
-                height={100}
-                className="w-32 h-32"
-                priority
-              />
-              <div>
-                <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
-                  SeniorEase
-                </h1>
-                <p className="text-senior-sm text-gray-600">
-                  Handige technologie zonder gedoe • Test update 2025-01-27
-                </p>
+          <div className="max-w-6xl mx-auto">
+            {/* Top row: Logo en Social Media */}
+            <div className="flex items-center justify-between gap-4 flex-wrap py-4">
+              <div className="flex items-center gap-4">
+                <Image 
+                  src="/heart-logo.png" 
+                  alt="SeniorEase logo - Handige technologie voor senioren" 
+                  width={100} 
+                  height={100}
+                  className="w-32 h-32"
+                  priority
+                />
+                <div>
+                  <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
+                    SeniorEase
+                  </h1>
+                  <p className="text-senior-sm text-gray-600">
+                    Handige technologie zonder gedoe • Test update 2025-01-27
+                  </p>
+                </div>
+              </div>
+              
+              {/* Social Media Links */}
+              <div className="flex items-center gap-3">
+                <a
+                  href={FACEBOOK_PAGE_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
+                  aria-label="Volg ons op Facebook"
+                >
+                  <span className="text-xl">📘</span>
+                  <span className="hidden sm:inline">Volg ons op Facebook</span>
+                  <span className="sm:hidden">Facebook</span>
+                </a>
+                <a
+                  href={YOUTUBE_CHANNEL_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-red-700 transition-colors shadow-md hover:shadow-lg"
+                  aria-label="Abonneer op ons YouTube kanaal"
+                >
+                  <span className="text-xl">📺</span>
+                  <span className="hidden sm:inline">Abonneer op YouTube</span>
+                  <span className="sm:hidden">YouTube</span>
+                </a>
               </div>
             </div>
             
-            {/* Social Media Links */}
-            <div className="flex items-center gap-3">
-              <a
-                href={FACEBOOK_PAGE_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-blue-700 transition-colors shadow-md hover:shadow-lg"
-                aria-label="Volg ons op Facebook"
-              >
-                <span className="text-xl">📘</span>
-                <span className="hidden sm:inline">Volg ons op Facebook</span>
-                <span className="sm:hidden">Facebook</span>
-              </a>
-              <a
-                href={YOUTUBE_CHANNEL_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 bg-red-600 text-white px-4 py-2 rounded-lg text-senior-base font-bold hover:bg-red-700 transition-colors shadow-md hover:shadow-lg"
-                aria-label="Abonneer op ons YouTube kanaal"
-              >
-                <span className="text-xl">📺</span>
-                <span className="hidden sm:inline">Abonneer op YouTube</span>
-                <span className="sm:hidden">YouTube</span>
-              </a>
-            </div>
+            {/* Navigation Menu */}
+            <nav className="border-t-2 border-neutral-stone py-3">
+              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
+                <Link 
+                  href="/bibliotheek"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Mijn Bibliotheek
+                </Link>
+                <Link 
+                  href="/zo-werkt-het"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Zo werkt het
+                </Link>
+                <Link 
+                  href="/uitlegvideo"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Uitlegvideo's
+                </Link>
+                <Link 
+                  href="/hulp"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Hulp
+                </Link>
+                <Link 
+                  href="/contact"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Contact
+                </Link>
+              </div>
+            </nav>
           </div>
         </div>
       </header>
 
-      {/* Hero Section - Bibliotheek en Mobiele Download onder elkaar */}
+      {/* Hero Section - Bibliotheek */}
       <section className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto space-y-4">
-          {/* Bibliotheek Hero Card - 60-40 interne verdeling - BOVENAAN */}
+          {/* Bibliotheek Hero Card - BOVENAAN */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
-            <div className="grid md:grid-cols-5 gap-0">
-              {/* Linker deel - 60% (3/5) */}
-              <div className="md:col-span-3 bg-gradient-to-r from-primary/20 to-primary/10 p-6 md:p-8">
-                <div className="flex flex-col items-center md:items-start gap-4">
-                  <div className="text-5xl md:text-6xl">📚</div>
-                  <div className="text-center md:text-left">
-                    <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
-                      Mijn Bibliotheek
-                    </h2>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3">
-                      <span className="font-bold">Gratis op de PC</span>
-                    </p>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                      Beheer uw boeken collectie. Scan barcodes met uw camera of voer handmatig in.
-                    </p>
+            <div className="p-6 md:p-8">
+              <div className="flex flex-col items-center md:items-start gap-6">
+                <div className="text-5xl md:text-6xl">📚</div>
+                <div className="text-center md:text-left w-full">
+                  <h1 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+                    Weet altijd welke boeken u al heeft
+                  </h1>
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+                    Bewaar uw boeken eenvoudig op één plek.<br />
+                    Gratis op de pc. Rustig uit te proberen op telefoon of tablet.
+                  </p>
+                  
+                  {/* Actie knoppen */}
+                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
                     <Link 
                       href="/bibliotheek"
-                      className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
-                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                      className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
+                               hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
                     >
-                      → Open Mijn Bibliotheek
+                      👉 Gebruik Mijn Bibliotheek
                     </Link>
+                    <a 
+                      href={YOUTUBE_CHANNEL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-white text-primary border-2 border-primary px-8 py-4 rounded-xl text-senior-lg font-bold
+                               hover:bg-primary/10 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+                    >
+                      ▶️ Bekijk de uitlegvideo
+                    </a>
                   </div>
-                </div>
-              </div>
-              
-              {/* Rechter deel - 40% (2/5) - Feature highlights verticaal uitgelijnd */}
-              <div className="md:col-span-2 bg-white p-6 md:p-8 flex items-center justify-center">
-                <div className="grid grid-cols-1 gap-3 w-full">
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📚</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Boeken</h3>
-                    <p className="text-senior-xs text-gray-600">Bewaar al uw boeken op één plek</p>
-                  </div>
-                  <div className="text-center p-4 bg-neutral-cream rounded-xl">
-                    <div className="text-4xl mb-2">📷</div>
-                    <h3 className="text-senior-sm font-bold text-gray-800 mb-1">Barcode Scan</h3>
-                    <p className="text-senior-xs text-gray-600">Scan snel met uw camera of vul handmatig in</p>
+                  
+                  {/* Vertrouwensregel */}
+                  <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                    <p className="text-senior-base font-bold text-gray-800">
+                      Gratis op de pc • Telefoon/tablet: gratis proberen (10 boeken) • Geen abonnement
+                    </p>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Demo Versie - Compact en netjes uitgelijnd */}
+          {/* Herkenning Sectie */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
-            <div className="p-5 md:p-6">
-              <DemoDownload />
+            <div className="p-6 md:p-8">
+              <div className="text-center md:text-left">
+                <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+                  Herkent u dit?
+                </h2>
+                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                  U staat in de boekhandel en twijfelt:<br />
+                  <span className="font-bold">"Heb ik dit boek al, of niet?"</span>
+                </p>
+                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                  Met Mijn Bibliotheek ziet u het meteen.<br />
+                  Thuis op de pc, of onderweg op uw telefoon.
+                </p>
+              </div>
             </div>
           </div>
 
-          {/* Betaalde Mobiele Versie Card - 60-40 interne verdeling */}
+          {/* Wat is Mijn Bibliotheek Sectie */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="p-6 md:p-8">
+              <div className="text-center md:text-left">
+                <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+                  Wat is Mijn Bibliotheek?
+                </h2>
+                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                  Mijn Bibliotheek is een eenvoudige manier<br />
+                  om bij te houden welke boeken u heeft.
+                </p>
+                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                  Op de pc gebruikt u het volledig gratis.<br />
+                  Op telefoon of tablet kunt u het eerst<br />
+                  rustig proberen.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Hoe werkt het op verschillende apparaten Sectie */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="p-6 md:p-8">
+              <div className="text-center md:text-left">
+                <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+                  Hoe werkt het op pc, telefoon en tablet?
+                </h2>
+                <div className="space-y-4 text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                  <div>
+                    <p className="font-bold mb-2">• Op de pc</p>
+                    <p className="ml-4">
+                      U gebruikt Mijn Bibliotheek gratis,<br />
+                      zonder beperking.
+                    </p>
+                  </div>
+                  <div>
+                    <p className="font-bold mb-2">• Op telefoon of tablet</p>
+                    <p className="ml-4">
+                      U kunt het eerst proberen tot 10 boeken.<br />
+                      Zo kunt u kijken of het prettig werkt.
+                    </p>
+                  </div>
+                  <p className="mt-4">
+                    Wilt u daarna verder?<br />
+                    Dan kunt u zelf kiezen voor de volledige versie eenmalig aan te schaffen.<br />
+                    Geen abonnement.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Proberen & Volledige Versie Sectie */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
+            <div className="p-6 md:p-8">
+              <div className="text-center md:text-left">
+                <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+                  Eerst proberen, daarna pas beslissen
+                </h2>
+                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                  Wij vinden het belangrijk dat u eerst<br />
+                  rustig kunt kijken of dit bij u past.
+                </p>
+                <div className="space-y-3 text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+                  <p>Daarom:</p>
+                  <ul className="list-none space-y-2 ml-4">
+                    <li>• pc: gratis</li>
+                    <li>• telefoon/tablet: gratis proberen</li>
+                    <li>• pas daarna eventueel aanschaffen</li>
+                  </ul>
+                </div>
+                <Link 
+                  href="/bibliotheek"
+                  className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
+                           hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
+                >
+                  👉 Gebruik Mijn Bibliotheek
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          {/* Volledige Versie voor Telefoon of Tablet Card - 60-40 interne verdeling */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
             <div className="grid md:grid-cols-5 gap-0">
               {/* Linker deel - 60% (3/5) */}
@@ -189,10 +321,16 @@ export default function Home() {
                       Volledige Versie voor € 2,99
                     </h2>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
-                      <span className="font-bold">Web versie:</span> Werkt op alle apparaten (Android, iPhone, iPad)
+                      <span className="font-bold">Voor telefoon of tablet:</span> Na het gratis proberen (10 boeken) kunt u de volledige versie eenmalig aanschaffen
+                    </p>
+                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                      <span className="font-bold">Web versie:</span> Werkt op alle apparaten (Android telefoons & tablets, iPhone, iPad en alle andere tablets)
                     </p>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
                       <span className="font-bold">APK download:</span> Alleen voor Android telefoons en tablets
+                    </p>
+                    <p className="text-senior-sm text-primary font-bold mb-2">
+                      ⚠️ Let op: Op de pc is Mijn Bibliotheek volledig gratis!
                     </p>
                     <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
                       Onbeperkt gebruik • Alle functionaliteit
@@ -429,23 +567,60 @@ export default function Home() {
                   </div>
                 </div>
                 <div className="flex-1 text-center md:text-left">
-                  <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
-                    📺 Instructievideo's op YouTube
+                  <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+                    Liever eerst zien hoe het werkt?
                   </h2>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                    Leer stap-voor-stap hoe u alle SeniorEase tools gebruikt. Onze instructievideo's zijn speciaal gemaakt voor senioren: langzaam, duidelijk en met grote tekst.
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+                    In onze uitlegvideo's laten we stap voor stap zien<br />
+                    hoe Mijn Bibliotheek werkt.
                   </p>
-                  <p className="text-senior-sm text-gray-600 mb-4">
-                    <strong>Eerste video's zijn nu beschikbaar!</strong> Abonneer u op ons YouTube kanaal voor nieuwe instructievideo's.
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+                    Langzaam, duidelijk en met grote letters.
                   </p>
                   <a 
                     href={YOUTUBE_CHANNEL_URL} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="inline-block bg-primary text-white px-8 py-3 rounded-xl text-senior-lg font-bold
+                    className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
                              hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
                   >
-                    📺 Bekijk op YouTube
+                    ▶️ Bekijk de uitlegvideo
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Facebook Section */}
+      <section className="bg-gradient-to-br from-blue-50 to-blue-100 py-8 border-t-2 border-neutral-stone">
+        <div className="container mx-auto px-6">
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6 md:p-8">
+              <div className="flex flex-col md:flex-row items-center gap-6">
+                <div className="flex-shrink-0">
+                  <div className="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center text-5xl">
+                    📘
+                  </div>
+                </div>
+                <div className="flex-1 text-center md:text-left">
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    Op onze Facebookpagina delen we tips,<br />
+                    uitleg en antwoorden op vragen.
+                  </p>
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+                    Veel mensen vinden het prettig<br />
+                    om daar eerst mee te lezen.
+                  </p>
+                  <a 
+                    href={FACEBOOK_PAGE_URL} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="inline-block bg-blue-600 text-white px-8 py-4 rounded-xl text-senior-lg font-bold
+                             hover:bg-blue-700 transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
+                  >
+                    👉 Volg SeniorEase op Facebook
                   </a>
                 </div>
               </div>
@@ -492,7 +667,7 @@ export default function Home() {
                   Overal te gebruiken
                 </h3>
                 <p className="text-senior-xs text-gray-600 leading-relaxed">
-                  Werkt op computer, tablet en telefoon. Installeer als app!
+                  Werkt op computer, tablet en telefoon. Installeer Mijn Bibliotheek!
                 </p>
               </div>
             </div>

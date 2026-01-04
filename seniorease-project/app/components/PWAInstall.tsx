@@ -60,7 +60,7 @@ export default function PWAInstall() {
                  border-4 border-white"
       >
         <span className="text-2xl">📱</span>
-        <span>Installeer als app</span>
+        <span>Installeer Mijn Bibliotheek</span>
       </button>
     </div>
   );

@@ -1,6 +1,9 @@
 // Quick test of Vercel API
 const fetch = require('node-fetch');
 
+// Load .env.local automatically
+require('dotenv').config({ path: '.env.local' });
+
 // VERCEL_TOKEN moet via environment variable worden ingesteld
 // NOOIT hardcoden in de code!
 const VERCEL_TOKEN = process.env.VERCEL_TOKEN;

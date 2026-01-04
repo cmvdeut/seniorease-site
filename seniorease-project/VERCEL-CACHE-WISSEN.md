@@ -71,3 +71,7 @@ vercel --prod --force
 - Probeer andere browser/device
 
 
+
+
+
+

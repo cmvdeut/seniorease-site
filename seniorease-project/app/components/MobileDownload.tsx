@@ -61,10 +61,10 @@ export default function MobileDownload() {
             <p className="font-bold mb-2">📱 Installatie instructies:</p>
             <ol className="list-decimal list-inside space-y-1 text-left ml-2">
               <li>Scan de QR code met uw telefoon</li>
-              <li>Betaal € 2,99 (eenmalig)</li>
-              <li>Download de app via de QR code</li>
+              <li>Schaf eenmalig aan: € 2,99</li>
+              <li>Download Mijn Bibliotheek via de QR code</li>
               <li>Geef toestemming voor "onbekende bronnen"</li>
-              <li>Installeer de app</li>
+              <li>Installeer Mijn Bibliotheek</li>
             </ol>
           </div>
         </div>

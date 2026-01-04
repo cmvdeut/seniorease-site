@@ -50,3 +50,15 @@ body {
     @apply text-senior-base leading-relaxed;
   }
 }
+
+/* Verberg demo banner expliciet - web versie is altijd volledig gratis */
+/* Deze CSS verbergt de demo banner die mogelijk nog in cache staat */
+div.bg-yellow-100.border-b-2.border-yellow-400.py-4 {
+  display: none !important;
+  visibility: hidden !important;
+  height: 0 !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  overflow: hidden !important;
+  opacity: 0 !important;
+}

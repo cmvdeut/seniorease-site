@@ -256,3 +256,7 @@ if (isDemo && libraryItems.length >= DEMO_LIMIT) {
 **Samenvatting:** Dit is een Next.js project, dus alle "HTML/CSS/JS" zit in React componenten (`.tsx`) en wordt gecompileerd tijdens build. Geen traditionele HTML/CSS/JS bestanden! 🚀
 
 
+
+
+
+

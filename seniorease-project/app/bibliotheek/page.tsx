@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
 
+// Social Media URLs
+const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
+
 interface LibraryItem {
   id: string;
   type: 'book'; // Alleen boeken
@@ -315,7 +318,7 @@ export default function BibliotheekPage() {
       });
 
       emailBody += '\n---\n';
-      emailBody += 'Gegenereerd met SeniorEase Bibliotheek App\n';
+      emailBody += 'Gegenereerd met Mijn Bibliotheek\n';
       emailBody += 'https://seniorease.nl';
 
       // Maak ook een CSV attachment ready
@@ -488,7 +491,7 @@ Uw gegevens blijven privé:
 Backup & Veiligheid:
 • Maak regelmatig een backup van uw collectie
 • Deel backups alleen met mensen die u vertrouwt
-• Wis uw data wanneer u de app niet meer gebruikt
+• Wis uw data wanneer u Mijn Bibliotheek niet meer gebruikt
 
 Voor vragen: bezoek seniorease.nl
     `.trim();
@@ -497,10 +500,10 @@ Voor vragen: bezoek seniorease.nl
     setShowMenu(false);
   }
 
-  // Installeer app
+  // Installeer Mijn Bibliotheek
   async function installeerApp() {
     if (!deferredPrompt) {
-      setErrorMessage('De installatie optie is niet beschikbaar. U kunt de app installeren via het menu van uw browser (meestal drie puntjes of hamburger menu).');
+      setErrorMessage('De installatie optie is niet beschikbaar. U kunt Mijn Bibliotheek installeren via het menu van uw browser (meestal drie puntjes of hamburger menu).');
       setShowMenu(false);
       return;
     }
@@ -513,7 +516,7 @@ Voor vragen: bezoek seniorease.nl
       const { outcome } = await deferredPrompt.userChoice;
 
       if (outcome === 'accepted') {
-        setSuccessMessage('De app wordt geïnstalleerd. Bedankt!');
+        setSuccessMessage('Mijn Bibliotheek wordt geïnstalleerd. Bedankt!');
         setDeferredPrompt(null);
       } else {
         // Gebruiker heeft geannuleerd
@@ -1378,6 +1381,9 @@ Voor vragen: bezoek seniorease.nl
       />
 
       <div className="min-h-screen bg-neutral-cream">
+        {/* Demo banner expliciet verwijderd - web versie is altijd volledig gratis - NO DEMO MODE */}
+        {/* Alle demo banners zijn verwijderd - geen conditional rendering meer */}
+        
         {/* Error message banner */}
         {(errorMessage || loadError) && (
           <div className="bg-red-50 border-4 border-red-300 rounded-xl p-4 mx-6 mt-6 mb-4">
@@ -1441,12 +1447,25 @@ Voor vragen: bezoek seniorease.nl
               </Link>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
-                  <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+                  <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-3">
                     Mijn Bibliotheek
                   </h1>
-                  <p className="text-senior-base text-gray-600 mt-2">
-                    {items.length} item{items.length !== 1 ? 's' : ''} in collectie • Volledig gratis • Update 2025-12-06 21:15
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    Hier houdt u eenvoudig bij welke boeken u heeft.
                   </p>
+                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                    Op de pc gebruikt u Mijn Bibliotheek gratis.<br />
+                    Op telefoon of tablet kunt u het rustig uitproberen.
+                  </p>
+                  {/* Actie knoppen */}
+                  <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                    <div className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center">
+                      👉 Gebruik Mijn Bibliotheek
+                    </div>
+                    <div className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center">
+                      👉 Probeer op telefoon of tablet
+                    </div>
+                  </div>
                 </div>
                 <Link
                   href="/animaties/bibliotheek"
@@ -1521,7 +1540,7 @@ Voor vragen: bezoek seniorease.nl
                             >
                               <span className="text-2xl">📲</span>
                               <span>
-                                Installeer als app
+                                Installeer Mijn Bibliotheek
                               </span>
                             </button>
                             <div className="border-t border-gray-200 my-1"></div>

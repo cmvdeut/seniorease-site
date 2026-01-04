@@ -273,7 +273,7 @@ export default function ContactPage() {
                   Algemene Vragen
                 </h2>
                 <p className="text-senior-base text-gray-700 mb-4">
-                  Voor vragen over de app, licenties, of algemene informatie:
+                  Voor vragen over Mijn Bibliotheek, licenties, of algemene informatie:
                 </p>
                 <a
                   href="mailto:info@seniorease.nl"
