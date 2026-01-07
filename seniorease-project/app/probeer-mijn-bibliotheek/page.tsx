@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
+import DemoDownload from '../components/DemoDownload';
 
 export default function ProbeerMijnBibliotheekPage() {
   const [isMobile, setIsMobile] = useState<boolean | null>(null);
@@ -95,14 +96,19 @@ export default function ProbeerMijnBibliotheekPage() {
               </div>
             </div>
 
-            {/* Start demo knop */}
+            {/* QR Code en Download */}
+            <div className="mt-6">
+              <DemoDownload />
+            </div>
+            
+            {/* Start demo knop (voor web versie) */}
             <div className="text-center pt-4">
               <button
                 onClick={handleStartDemo}
                 className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
                          hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                👉 Start met proberen
+                👉 Start met proberen (web versie)
               </button>
             </div>
 
@@ -112,3 +118,4 @@ export default function ProbeerMijnBibliotheekPage() {
     </main>
   );
 }
+
