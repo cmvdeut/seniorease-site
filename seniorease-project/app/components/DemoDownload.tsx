@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function DemoDownload() {
   const [currentUrl, setCurrentUrl] = useState('');
-  const [demoUrl, setDemoUrl] = useState('');
+  const [demoUrl, setDemoUrl] = useState<string>('https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk');
   
   useEffect(() => {
     if (typeof window !== 'undefined') {
@@ -20,21 +20,19 @@ export default function DemoDownload() {
 
   // Demo download link - direct naar demo APK in public folder
   // Dit werkt altijd, ook als API route problemen heeft
-  const qrCodeValue = demoUrl || 'https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk';
+  const qrCodeValue = demoUrl;
 
   return (
     <div className="grid md:grid-cols-3 gap-4 items-start md:items-center">
       {/* Linker deel - QR Code */}
       <div className="flex flex-col items-center">
         <div className="bg-neutral-cream p-3 rounded-xl border-2 border-primary/20 mb-2">
-          {qrCodeValue && (
-            <QRCodeSVG
-              value={qrCodeValue}
-              size={140}
-              level="H"
-              includeMargin={true}
-            />
-          )}
+          <QRCodeSVG
+            value={qrCodeValue}
+            size={140}
+            level="H"
+            includeMargin={true}
+          />
         </div>
         <p className="text-senior-xs font-bold text-gray-700 text-center">
           Scan om te proberen
