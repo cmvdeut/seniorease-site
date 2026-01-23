@@ -3,6 +3,7 @@ import Image from 'next/image';
 import MobileDownload from './components/MobileDownload';
 import DemoDownload from './components/DemoDownload';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
+import LanguageSwitcher from './components/LanguageSwitcher';
 
 // Social Media URLs
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
@@ -95,8 +96,9 @@ export default function Home() {
                 </div>
               </div>
               
-              {/* Social Media Links */}
+              {/* Social Media Links & Language Switcher */}
               <div className="flex items-center gap-3">
+                <LanguageSwitcher />
                 <a
                   href={FACEBOOK_PAGE_URL}
                   target="_blank"
@@ -421,6 +423,31 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid md:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
+              {/* Foto Archief */}
+              <Link 
+                href="/foto-archief" 
+                className="group bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 
+                         border-2 border-neutral-stone hover:border-primary overflow-hidden"
+              >
+                <div className="p-6">
+                  <div className="flex flex-col items-center gap-3 mb-3">
+                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center text-2xl">
+                      📷
+                    </div>
+                    <h3 className="text-senior-sm font-bold text-gray-800 text-center leading-tight">
+                      Foto Archief
+                    </h3>
+                  </div>
+                  <p className="text-senior-xs text-gray-600 leading-relaxed text-center">
+                    Identificeer personen op oude familiefoto's. Handig voor stamboom makers.
+                  </p>
+                  <div className="flex items-center justify-center text-primary font-semibold group-hover:gap-2 gap-1 transition-all mt-3">
+                    <span className="text-senior-xs">Open</span>
+                    <span className="text-base">→</span>
+                  </div>
+                </div>
+              </Link>
+
               {/* Rekenmachine */}
               <Link 
                 href="/rekenmachine" 

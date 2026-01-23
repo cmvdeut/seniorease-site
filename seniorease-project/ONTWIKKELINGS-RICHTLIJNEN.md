@@ -40,3 +40,5 @@
 **Eerst vertrouwen opbouwen, dan pas vragen stellen.**
 
 Gebruikers moeten eerst kunnen proberen, gebruiken en vertrouwen opbouwen voordat er iets gevraagd wordt (zoals registratie of aankoop).
+
+

@@ -3,6 +3,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
+import { useLanguage } from '../../lib/useLanguage';
+import { getStorageKey } from '../../lib/translations';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 // Social Media URLs
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
@@ -18,6 +21,7 @@ interface LibraryItem {
 }
 
 export default function BibliotheekPage() {
+  const { language, translations } = useLanguage();
   const [items, setItems] = useState<LibraryItem[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [showAddForm, setShowAddForm] = useState(false);
@@ -41,19 +45,22 @@ export default function BibliotheekPage() {
   const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
   const [feedbackGiven, setFeedbackGiven] = useState<boolean>(false);
   const [feedbackValue, setFeedbackValue] = useState<string>('');
+  
+  const t = translations;
 
   // Check of feedback al is gegeven
   useEffect(() => {
     if (typeof window === 'undefined') return;
     try {
-      const feedbackSent = localStorage.getItem('seniorease-first-book-feedback');
+      const feedbackKey = getStorageKey('seniorease-first-book-feedback', language);
+      const feedbackSent = localStorage.getItem(feedbackKey);
       if (feedbackSent === 'true') {
         setFeedbackGiven(true);
       }
     } catch (e) {
       // Ignore
     }
-  }, []);
+  }, [language]);
 
   // Check demo mode en licentie
   useEffect(() => {
@@ -63,8 +70,9 @@ export default function BibliotheekPage() {
     const urlParams = new URLSearchParams(window.location.search);
     const demoParam = urlParams.get('demo');
     
-    // Check localStorage voor demo mode
-    const demoMode = localStorage.getItem('seniorease-demo-mode') === 'true' || demoParam === 'true';
+    // Check localStorage voor demo mode (taal-specifiek)
+    const demoKey = getStorageKey('seniorease-demo-mode', language);
+    const demoMode = localStorage.getItem(demoKey) === 'true' || demoParam === 'true';
     setIsDemoMode(demoMode);
     
     // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
@@ -110,7 +118,8 @@ export default function BibliotheekPage() {
     if (hasLicense === null || typeof window === 'undefined') return;
     
     try {
-      const saved = localStorage.getItem('seniorease-library');
+      const libraryKey = getStorageKey('seniorease-library', language);
+      const saved = localStorage.getItem(libraryKey);
       if (saved) {
         try {
           const loadedItems = JSON.parse(saved);
@@ -123,24 +132,25 @@ export default function BibliotheekPage() {
       // localStorage kan niet beschikbaar zijn (bijv. in private mode)
       console.error('Error accessing localStorage:', e);
     }
-  }, [hasLicense]);
+  }, [hasLicense, language]);
 
   // Save items to localStorage
   useEffect(() => {
     if (typeof window === 'undefined') return;
     
     try {
+      const libraryKey = getStorageKey('seniorease-library', language);
       if (items.length > 0) {
-        localStorage.setItem('seniorease-library', JSON.stringify(items));
+        localStorage.setItem(libraryKey, JSON.stringify(items));
       } else {
         // Verwijder localStorage entry als leeg
-        localStorage.removeItem('seniorease-library');
+        localStorage.removeItem(libraryKey);
       }
     } catch (e) {
       // localStorage kan niet beschikbaar zijn (bijv. in private mode)
       console.error('Error saving to localStorage:', e);
     }
-  }, [items]);
+  }, [items, language]);
 
   // Sluit menu bij klikken buiten het menu
   useEffect(() => {
@@ -162,7 +172,7 @@ export default function BibliotheekPage() {
   function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
     // Check demo mode limiet (max 10 boeken)
     if (isDemoMode && items.length >= 10) {
-      setErrorMessage('Demo limiet bereikt: u kunt maximaal 10 boeken toevoegen. Wilt u meer boeken? Schaf dan de volledige versie eenmalig aan.');
+      setErrorMessage(t.errors.demoLimitReached);
       setShowAddForm(false);
       return;
     }
@@ -176,13 +186,18 @@ export default function BibliotheekPage() {
     setShowAddForm(false);
     
     if (isDemoMode && items.length + 1 === 10) {
-      setSuccessMessage('U heeft nu 10 boeken toegevoegd. Dit is de limiet voor het proberen. Wilt u meer? Schaf dan de volledige versie eenmalig aan.');
+      setSuccessMessage(language === 'nl' 
+        ? 'U heeft nu 10 boeken toegevoegd. Dit is de limiet voor het proberen. Wilt u meer? Schaf dan de volledige versie eenmalig aan.'
+        : 'You have now added 10 books. This is the limit for trying. Want more? Then purchase the full version one-time.');
     }
   }
 
   // Delete item
   function deleteItem(id: string) {
-    if (confirm('Weet u zeker dat u dit item wilt verwijderen?')) {
+    const confirmMsg = language === 'nl' 
+      ? 'Weet u zeker dat u dit item wilt verwijderen?'
+      : 'Are you sure you want to delete this item?';
+    if (confirm(confirmMsg)) {
       setItems(items.filter(item => item.id !== id));
     }
   }
@@ -571,12 +586,21 @@ Voor vragen: bezoek seniorease.nl
 
   // Alle data wissen
   function wisAlleData() {
-    if (confirm('WAARSCHUWING: Weet u zeker dat u alle data wilt wissen? Dit kan niet ongedaan worden gemaakt!\n\nGebruik eerst "Backup maken" om uw data te bewaren.')) {
-      if (confirm('Laatste bevestiging: alle data wordt nu permanent verwijderd.')) {
+    const confirmMsg1 = language === 'nl' 
+      ? 'WAARSCHUWING: Weet u zeker dat u alle data wilt wissen? Dit kan niet ongedaan worden gemaakt!\n\nGebruik eerst "Backup maken" om uw data te bewaren.'
+      : 'WARNING: Are you sure you want to delete all data? This cannot be undone!\n\nFirst use "Create backup" to save your data.';
+    const confirmMsg2 = language === 'nl'
+      ? 'Laatste bevestiging: alle data wordt nu permanent verwijderd.'
+      : 'Final confirmation: all data will now be permanently deleted.';
+    const successMsg = language === 'nl' ? 'Alle data is gewist.' : 'All data has been deleted.';
+    
+    if (confirm(confirmMsg1)) {
+      if (confirm(confirmMsg2)) {
         setItems([]);
-        localStorage.removeItem('seniorease-library');
+        const libraryKey = getStorageKey('seniorease-library', language);
+        localStorage.removeItem(libraryKey);
         setSearchQuery('');
-        setSuccessMessage('Alle data is gewist.');
+        setSuccessMessage(successMsg);
         setShowMenu(false);
       }
     }
@@ -1087,7 +1111,7 @@ Voor vragen: bezoek seniorease.nl
     const normalizedCode = normalizeBarcode(formData.barcode);
     
     if (!isValidBarcode(normalizedCode)) {
-      setLoadError('Ongeldige barcode format. Voer een geldige ISBN of EAN code in.');
+      setLoadError(t.errors.invalidBarcode);
       return;
     }
     
@@ -1145,7 +1169,7 @@ Voor vragen: bezoek seniorease.nl
       }
     } catch (error) {
       console.error('Error looking up barcode:', error);
-      setLoadError('Kon geen gegevens vinden voor deze barcode. U kunt handmatig invullen.');
+      setLoadError(t.errors.bookNotFound);
       setIsLoadingData(false);
     }
   }
@@ -1297,7 +1321,7 @@ Voor vragen: bezoek seniorease.nl
       }
     } catch (error) {
       console.error('Error searching books:', error);
-      setLoadError('Zoeken mislukt. Probeer het opnieuw of vul handmatig in.');
+      setLoadError(t.errors.searchFailed);
       setShowSearchResults(false);
     } finally {
       setIsSearchingBooks(false);
@@ -1340,7 +1364,7 @@ Voor vragen: bezoek seniorease.nl
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!formData.title || !formData.author) {
-      setErrorMessage('Vul minimaal een titel en auteur in');
+      setErrorMessage(t.errors.fillRequired);
       return;
     }
     
@@ -1425,13 +1449,13 @@ Voor vragen: bezoek seniorease.nl
             <div className="container mx-auto px-6">
               <div className="flex items-center justify-between flex-wrap gap-2">
                 <p className="text-senior-base font-bold text-yellow-900">
-                  Demo versie - {items.length}/10 boeken gebruikt
+                  {language === 'nl' ? 'Demo versie' : 'Demo version'} - {items.length}/10 {language === 'nl' ? 'boeken gebruikt' : 'books used'}
                 </p>
                 <Link 
                   href="/betalen"
                   className="text-senior-sm text-primary hover:text-primary-dark font-bold underline"
                 >
-                  Volledige versie eenmalig aanschaffen →
+                  {language === 'nl' ? 'Volledige versie eenmalig aanschaffen' : 'Purchase full version one-time'} →
                 </Link>
               </div>
             </div>
@@ -1445,7 +1469,7 @@ Voor vragen: bezoek seniorease.nl
               <div className="text-2xl">⚠️</div>
               <div className="flex-1">
                 <p className="text-senior-base font-bold text-red-800 mb-1">
-                  Foutmelding
+                  {language === 'nl' ? 'Foutmelding' : 'Error'}
                 </p>
                 <p className="text-senior-sm text-red-700">
                   {errorMessage || loadError}
@@ -1456,9 +1480,9 @@ Voor vragen: bezoek seniorease.nl
                     setLoadError(null);
                   }}
                   className="mt-2 text-senior-xs text-red-600 hover:text-red-800 underline"
-                  aria-label="Sluit foutmelding"
+                  aria-label={language === 'nl' ? 'Sluit foutmelding' : 'Close error'}
                 >
-                  Sluiten
+                  {t.common.close}
                 </button>
               </div>
             </div>
@@ -1472,7 +1496,7 @@ Voor vragen: bezoek seniorease.nl
               <div className="text-2xl">✅</div>
               <div className="flex-1">
                 <p className="text-senior-base font-bold text-green-800 mb-1">
-                  Succesvol
+                  {language === 'nl' ? 'Succesvol' : 'Success'}
                 </p>
                 <p className="text-senior-sm text-green-700">
                   {successMessage}
@@ -1480,9 +1504,9 @@ Voor vragen: bezoek seniorease.nl
                 <button
                   onClick={() => setSuccessMessage(null)}
                   className="mt-2 text-senior-xs text-green-600 hover:text-green-800 underline"
-                  aria-label="Sluit succesmelding"
+                  aria-label={language === 'nl' ? 'Sluit succesmelding' : 'Close success message'}
                 >
-                  Sluiten
+                  {t.common.close}
                 </button>
               </div>
             </div>
@@ -1493,34 +1517,45 @@ Voor vragen: bezoek seniorease.nl
         <header className="bg-white border-b-2 border-neutral-stone py-6">
           <div className="container mx-auto px-6">
             <div className="max-w-6xl mx-auto">
-              <Link 
-                href="/"
-                className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
-              >
-                ← Terug naar home
-              </Link>
+              <div className="flex items-center justify-between mb-4">
+                <Link 
+                  href={language === 'en' ? '/en' : '/'}
+                  className="inline-flex items-center gap-2 text-primary hover:text-primary-dark text-senior-base"
+                >
+                  ← {t.common.backToHome}
+                </Link>
+                <LanguageSwitcher />
+              </div>
               <div className="flex items-center justify-between flex-wrap gap-4">
                 <div>
                   <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-3">
-                    Welkom bij Mijn Bibliotheek
+                    {t.library.welcomeTitle}
                   </h1>
                   <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                    Hier houdt u eenvoudig bij welke boeken u heeft.
+                    {t.library.welcomeSubtitle}
                   </p>
                   <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-                    Gebruikt u deze pagina op de pc?<br />
-                    Dan is Mijn Bibliotheek gratis te gebruiken.
+                    {t.library.pcFreeText.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < t.library.pcFreeText.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                   <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 mb-4">
                     <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold text-center">
-                      U kunt niets kapot maken.<br />
-                      U mag alles rustig proberen.
+                      {t.library.reassuranceText.split('\n').map((line, i) => (
+                        <span key={i}>
+                          {line}
+                          {i < t.library.reassuranceText.split('\n').length - 1 && <br />}
+                        </span>
+                      ))}
                     </p>
                   </div>
                   {/* Actie knoppen */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
                     <a
-                      href="/bibliotheek"
+                      href={language === 'en' ? '/en/bibliotheek' : '/bibliotheek'}
                       onClick={(e) => {
                         e.preventDefault();
                         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1528,14 +1563,14 @@ Voor vragen: bezoek seniorease.nl
                       className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center
                                hover:bg-primary-dark transition-all cursor-pointer"
                     >
-                      👉 Gebruik Mijn Bibliotheek
+                      {t.library.useLibraryButton}
                     </a>
                     <Link 
-                      href="/probeer-mijn-bibliotheek"
+                      href={language === 'en' ? '/en/probeer-mijn-bibliotheek' : '/probeer-mijn-bibliotheek'}
                       className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
                                hover:bg-primary/10 transition-all"
                     >
-                      👉 Probeer op telefoon of tablet
+                      {t.library.tryMobileButton}
                     </Link>
                   </div>
                 </div>
@@ -1546,7 +1581,7 @@ Voor vragen: bezoek seniorease.nl
                            flex items-center gap-2 whitespace-nowrap"
                 >
                   <span>📹</span>
-                  <span>Bekijk uitleg</span>
+                  <span>{language === 'nl' ? 'Bekijk uitleg' : 'Watch tutorial'}</span>
                 </Link>
                 {/* Menu Dropdown */}
                 <div className="relative" data-menu="options">
@@ -1558,7 +1593,7 @@ Voor vragen: bezoek seniorease.nl
                              transition-all shadow-lg hover:shadow-xl flex items-center gap-2"
                   >
                     <span className="text-2xl">⚙️</span>
-                    <span>Opties</span>
+                    <span>{language === 'nl' ? 'Opties' : 'Options'}</span>
                     <span className="text-xl">{showMenu ? '▲' : '▼'}</span>
                   </button>
                   
@@ -1571,7 +1606,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📄</span>
-                          <span>Exporteer CSV</span>
+                          <span>{t.options.exportCSV}</span>
                         </button>
                         
                         <button
@@ -1579,7 +1614,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📑</span>
-                          <span>Exporteer PDF</span>
+                          <span>{t.options.exportPDF}</span>
                         </button>
                         
                         <div className="border-t border-gray-200 my-1"></div>
@@ -1589,7 +1624,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">💾</span>
-                          <span>Backup maken</span>
+                          <span>{t.options.backup}</span>
                         </button>
                         
                         <button
@@ -1597,7 +1632,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📥</span>
-                          <span>Backup terugzetten</span>
+                          <span>{t.options.restore}</span>
                         </button>
                         
                         <div className="border-t border-gray-200 my-1"></div>
@@ -1612,7 +1647,7 @@ Voor vragen: bezoek seniorease.nl
                             >
                               <span className="text-2xl">📲</span>
                               <span>
-                                Installeer Mijn Bibliotheek
+                                {t.options.install}
                               </span>
                             </button>
                             <div className="border-t border-gray-200 my-1"></div>
@@ -1624,7 +1659,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📱</span>
-                          <span>Delen (WhatsApp)</span>
+                          <span>{t.options.shareWhatsApp}</span>
                         </button>
                         
                         <button
@@ -1632,7 +1667,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📧</span>
-                          <span>Delen via Email</span>
+                          <span>{t.options.shareEmail}</span>
                         </button>
                         
                         <button
@@ -1640,7 +1675,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">📊</span>
-                          <span>Statistieken</span>
+                          <span>{t.options.statistics}</span>
                         </button>
                         
                         <div className="border-t border-gray-200 my-1"></div>
@@ -1650,7 +1685,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-gray-100 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">🔒</span>
-                          <span>Privacybeleid</span>
+                          <span>{t.options.privacy}</span>
                         </button>
                         
                         <div className="border-t border-gray-200 my-1"></div>
@@ -1660,7 +1695,7 @@ Voor vragen: bezoek seniorease.nl
                           className="w-full text-left px-6 py-4 text-senior-base hover:bg-red-50 text-red-600 flex items-center gap-3 transition-colors"
                         >
                           <span className="text-2xl">🗑️</span>
-                          <span>Alle data wissen</span>
+                          <span>{t.options.deleteAll}</span>
                         </button>
                       </div>
                     </div>
@@ -1678,15 +1713,15 @@ Voor vragen: bezoek seniorease.nl
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                    Zoeken:
-                  </label>
+                    <label className="block text-senior-base font-bold text-gray-700 mb-2">
+                      {t.common.search}:
+                    </label>
                   <div className="relative">
                     <input
                       type="text"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
-                      placeholder="Zoek op titel, auteur of barcode..."
+                      placeholder={language === 'nl' ? 'Zoek op titel, auteur of barcode...' : 'Search by title, author or barcode...'}
                       className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
                     />
@@ -1697,7 +1732,7 @@ Voor vragen: bezoek seniorease.nl
                                  text-gray-500 hover:text-gray-700 text-2xl font-bold
                                  w-8 h-8 flex items-center justify-center rounded-full
                                  hover:bg-gray-100 transition-colors"
-                        aria-label="Wis zoekopdracht"
+                        aria-label={language === 'nl' ? 'Wis zoekopdracht' : 'Clear search'}
                       >
                         ✗
                       </button>
@@ -1724,7 +1759,7 @@ Voor vragen: bezoek seniorease.nl
                          flex items-center justify-center gap-3 min-h-[70px]"
               >
                 <span className="text-3xl">➕</span>
-                <span>Item handmatig toevoegen</span>
+                <span>{t.library.addItemButton}</span>
               </button>
               <button
                 onClick={() => {
@@ -1737,21 +1772,25 @@ Voor vragen: bezoek seniorease.nl
                          flex items-center justify-center gap-3 min-h-[70px]"
               >
                 <span className="text-3xl">📷</span>
-                <span>Barcode scannen met camera</span>
+                <span>{t.library.scanBarcodeButton}</span>
               </button>
             </div>
             
             {/* Kleine tekst onder de knoppen */}
             <p className="text-senior-sm text-gray-600 text-center mt-3">
-              Begin bijvoorbeeld met een boek<br />
-              dat u nu bij de hand heeft.
+              {t.library.startWithBook.split('\n').map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < t.library.startWithBook.split('\n').length - 1 && <br />}
+                </span>
+              ))}
             </p>
 
             {/* Add Form */}
             {showAddForm && (
               <div className="bg-white rounded-xl shadow-lg p-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-6">
-                  {editingItem ? 'Item bewerken' : 'Nieuw item toevoegen'}
+                  {editingItem ? t.common.edit + ' ' + (language === 'nl' ? 'item' : 'item') : (language === 'nl' ? 'Nieuw item toevoegen' : 'Add new item')}
                 </h2>
                 
                 {/* Countdown timer - toont 4 seconden aftelling */}
@@ -1761,7 +1800,9 @@ Voor vragen: bezoek seniorease.nl
                       <div className="text-4xl animate-pulse">⏱️</div>
                       <div>
                         <p className="text-senior-base font-bold text-blue-900">
-                          Barcode gedetecteerd! Zoeken start over {countdown} seconde{countdown !== 1 ? 'n' : ''}...
+                          {language === 'nl' 
+                            ? `Barcode gedetecteerd! Zoeken start over ${countdown} seconde${countdown !== 1 ? 'n' : ''}...`
+                            : `Barcode detected! Search starts in ${countdown} second${countdown !== 1 ? 's' : ''}...`}
                         </p>
                         <p className="text-senior-sm text-blue-700 mt-1">
                           U kunt nu de camera goed richten. De informatie wordt automatisch opgehaald.
@@ -1778,10 +1819,10 @@ Voor vragen: bezoek seniorease.nl
                       <div className="animate-spin text-4xl">⏳</div>
                       <div>
                         <p className="text-senior-base font-bold text-primary">
-                          Gegevens ophalen...
+                          {language === 'nl' ? 'Gegevens ophalen...' : 'Fetching data...'}
                         </p>
                         <p className="text-senior-sm text-gray-600 mt-1">
-                          Zoeken in online database...
+                          {language === 'nl' ? 'Zoeken in online database...' : 'Searching online database...'}
                         </p>
                       </div>
                     </div>
@@ -1807,7 +1848,7 @@ Voor vragen: bezoek seniorease.nl
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Titel: *
+                      {language === 'nl' ? 'Titel' : 'Title'}: *
                     </label>
                     <div className="flex gap-2">
                       <input
@@ -1826,7 +1867,7 @@ Voor vragen: bezoek seniorease.nl
                         }}
                         className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                  focus:border-primary focus:outline-none"
-                        placeholder="Titel van het item"
+                        placeholder={language === 'nl' ? 'Titel van het item' : 'Title of the item'}
                       />
                       {formData?.type === 'book' && (formData.title.trim() || formData.author.trim()) && (
                         <button
@@ -1837,7 +1878,7 @@ Voor vragen: bezoek seniorease.nl
                                    hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
                                    disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
                         >
-                          {isSearchingBooks ? '⏳' : '🔍 Zoek'}
+                          {isSearchingBooks ? '⏳' : `🔍 ${t.common.search}`}
                         </button>
                       )}
                     </div>
@@ -1845,7 +1886,7 @@ Voor vragen: bezoek seniorease.nl
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Auteur: *
+                      {language === 'nl' ? 'Auteur' : 'Author'}: *
                     </label>
                     <input
                       type="text"
@@ -1863,7 +1904,7 @@ Voor vragen: bezoek seniorease.nl
                       }}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
-                      placeholder="Naam van de auteur"
+                      placeholder={language === 'nl' ? 'Naam van de auteur' : 'Name of the author'}
                     />
                   </div>
 
@@ -1924,7 +1965,7 @@ Voor vragen: bezoek seniorease.nl
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Barcode:
+                      {language === 'nl' ? 'Barcode' : 'Barcode'}:
                     </label>
                     <div className="flex gap-2">
                       <input
@@ -1939,7 +1980,7 @@ Voor vragen: bezoek seniorease.nl
                         }}
                         className="flex-1 px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                  focus:border-primary focus:outline-none"
-                        placeholder="ISBN of EAN code"
+                        placeholder={language === 'nl' ? 'ISBN of EAN code' : 'ISBN or EAN code'}
                       />
                       <button
                         type="button"
@@ -1949,7 +1990,7 @@ Voor vragen: bezoek seniorease.nl
                                  hover:bg-secondary-dark disabled:opacity-50 disabled:cursor-not-allowed
                                  transition-all shadow-lg hover:shadow-xl whitespace-nowrap
                                  flex items-center justify-center gap-2"
-                        title="Zoek informatie online op"
+                        title={language === 'nl' ? 'Zoek informatie online op' : 'Search information online'}
                       >
                         <span className="text-xl">🔍</span>
                         <span className="hidden sm:inline">Zoeken</span>
@@ -1964,7 +2005,7 @@ Voor vragen: bezoek seniorease.nl
 
                   <div>
                     <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      Notities:
+                      {language === 'nl' ? 'Notities' : 'Notes'}:
                     </label>
                     <textarea
                       value={formData.notes}
@@ -1972,7 +2013,7 @@ Voor vragen: bezoek seniorease.nl
                       rows={3}
                       className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
-                      placeholder="Optionele notities..."
+                      placeholder={language === 'nl' ? 'Optionele notities...' : 'Optional notes...'}
                     />
                   </div>
 
@@ -1984,7 +2025,7 @@ Voor vragen: bezoek seniorease.nl
                                flex items-center justify-center gap-3 min-h-[70px]"
                     >
                       <span className="text-2xl">✓</span>
-                      <span>{editingItem ? 'Bijwerken' : 'Opslaan'}</span>
+                      <span>{editingItem ? (language === 'nl' ? 'Bijwerken' : 'Update') : t.common.save}</span>
                     </button>
                     <button
                       type="button"
@@ -1998,7 +2039,7 @@ Voor vragen: bezoek seniorease.nl
                                flex items-center justify-center gap-3 min-h-[70px]"
                     >
                       <span className="text-2xl">✗</span>
-                      <span>Annuleren</span>
+                      <span>{t.common.cancel}</span>
                     </button>
                   </div>
                 </form>
@@ -2006,8 +2047,12 @@ Voor vragen: bezoek seniorease.nl
                 {/* Tip onder het formulier */}
                 <div className="mt-6 bg-neutral-cream border-2 border-primary/30 rounded-xl p-4">
                   <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed text-center">
-                    <span className="font-bold">Tip:</span> U hoeft niet alles tegelijk toe te voegen.<br />
-                    Eén boek is genoeg om te beginnen.
+                    {t.library.formTip.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < t.library.formTip.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               </div>
@@ -2082,7 +2127,7 @@ Voor vragen: bezoek seniorease.nl
                   className="absolute top-4 sm:top-8 right-4 sm:right-8 bg-white border-4 border-red-600 rounded-full
                            w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center hover:bg-red-50 
                            transition-all shadow-xl hover:shadow-2xl z-10"
-                  aria-label="Sluiten"
+                  aria-label={t.common.close}
                 >
                   <span className="text-2xl sm:text-3xl text-red-600 font-bold">✗</span>
                 </button>
@@ -2095,10 +2140,13 @@ Voor vragen: bezoek seniorease.nl
               {items.length === 0 && !showAddForm && (
                 <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mb-4">
                   <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed text-center">
-                    <span className="font-bold">Nog geen boeken toegevoegd?</span><br />
-                    Dat is normaal.<br />
-                    U kunt beginnen met één boek,<br />
-                    of eerst even rondkijken.
+                    <span className="font-bold">{t.library.noBooksYet}</span><br />
+                    {t.library.noBooksText.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < t.library.noBooksText.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               )}
@@ -2110,15 +2158,15 @@ Voor vragen: bezoek seniorease.nl
                     <div className="text-center">
                       <div className="text-5xl mb-3">😊</div>
                       <h3 className="text-senior-xl md:text-senior-2xl font-bold text-green-800 mb-3">
-                        Goed bezig 🙂
+                        {t.library.firstBookSuccess}
                       </h3>
-                      <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mb-2">
-                        U heeft uw eerste boek toegevoegd.
-                      </p>
                       <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
-                        Veel mensen beginnen met één boek.<br />
-                        U kunt later altijd verdergaan,<br />
-                        wanneer het u uitkomt.
+                        {t.library.firstBookMessage.split('\n').map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i < t.library.firstBookMessage.split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
                       </p>
                     </div>
                   </div>
@@ -2126,18 +2174,24 @@ Voor vragen: bezoek seniorease.nl
                   {/* Zachte volgende stap (optioneel) */}
                   <div className="bg-white border-2 border-gray-200 rounded-xl p-6 mb-4">
                     <div className="text-center">
-                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3">
-                        Wilt u verder?
+                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                        {t.library.firstBookNext.split('\n').map((line, i) => (
+                          <span key={i}>
+                            {line}
+                            {i < t.library.firstBookNext.split('\n').length - 1 && <br />}
+                          </span>
+                        ))}
                       </p>
                       <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
-                        U kunt bijvoorbeeld:
+                        {t.library.firstBookOptions.split('\n').slice(0, 1).join('')}
                       </p>
                       <ul className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3 space-y-1">
-                        <li>• nog een boek toevoegen</li>
-                        <li>• of dit later doen</li>
+                        {t.library.firstBookOptions.split('\n').slice(1, 3).map((line, i) => (
+                          <li key={i}>{line}</li>
+                        ))}
                       </ul>
                       <p className="text-senior-base md:text-senior-lg text-gray-600 leading-relaxed">
-                        Er is geen haast.
+                        {t.library.firstBookOptions.split('\n').slice(3).join(' ')}
                       </p>
                     </div>
                   </div>
@@ -2147,17 +2201,21 @@ Voor vragen: bezoek seniorease.nl
                     <div className="bg-white border-2 border-primary/30 rounded-xl p-6 mb-4">
                       <div className="text-center space-y-4">
                         <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold">
-                          Mag ik u iets vragen?
+                          {t.feedback.question}
                         </p>
                         <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
-                          Wat vond u van het toevoegen van uw eerste boek?
+                          {t.feedback.questionText}
                         </p>
                         <p className="text-senior-sm md:text-senior-base text-gray-600 leading-relaxed">
-                          U hoeft niets uit te leggen.<br />
-                          Een paar woorden is genoeg.
+                          {t.feedback.explanation.split('\n').map((line, i) => (
+                            <span key={i}>
+                              {line}
+                              {i < t.feedback.explanation.split('\n').length - 1 && <br />}
+                            </span>
+                          ))}
                         </p>
                         <p className="text-senior-xs md:text-senior-sm text-gray-500 leading-relaxed">
-                          drie woorden (nog veiliger)
+                          {t.feedback.threeWords}
                         </p>
                         
                         {/* Radio buttons */}
@@ -2166,34 +2224,34 @@ Voor vragen: bezoek seniorease.nl
                             <input
                               type="radio"
                               name="feedback"
-                              value="duidelijk"
-                              checked={feedbackValue === 'duidelijk'}
+                              value="clear"
+                              checked={feedbackValue === 'clear'}
                               onChange={(e) => setFeedbackValue(e.target.value)}
                               className="w-5 h-5 text-primary focus:ring-primary"
                             />
-                            <span className="text-senior-base text-gray-700">Duidelijk</span>
+                            <span className="text-senior-base text-gray-700">{t.feedback.clear}</span>
                           </label>
                           <label className="flex items-center gap-2 cursor-pointer">
                             <input
                               type="radio"
                               name="feedback"
-                              value="rustig"
-                              checked={feedbackValue === 'rustig'}
+                              value="calm"
+                              checked={feedbackValue === 'calm'}
                               onChange={(e) => setFeedbackValue(e.target.value)}
                               className="w-5 h-5 text-primary focus:ring-primary"
                             />
-                            <span className="text-senior-base text-gray-700">Rustig</span>
+                            <span className="text-senior-base text-gray-700">{t.feedback.calm}</span>
                           </label>
                           <label className="flex items-center gap-2 cursor-pointer">
                             <input
                               type="radio"
                               name="feedback"
-                              value="even-wennen"
-                              checked={feedbackValue === 'even-wennen'}
+                              value="getting-used-to"
+                              checked={feedbackValue === 'getting-used-to'}
                               onChange={(e) => setFeedbackValue(e.target.value)}
                               className="w-5 h-5 text-primary focus:ring-primary"
                             />
-                            <span className="text-senior-base text-gray-700">Even wennen</span>
+                            <span className="text-senior-base text-gray-700">{t.feedback.gettingUsedTo}</span>
                           </label>
                         </div>
                         
@@ -2207,14 +2265,15 @@ Voor vragen: bezoek seniorease.nl
                               setFeedbackGiven(true);
                               // Optioneel: sla op in localStorage om niet opnieuw te tonen
                               try {
-                                localStorage.setItem('seniorease-first-book-feedback', 'true');
+                                const feedbackKey = getStorageKey('seniorease-first-book-feedback', language);
+                                localStorage.setItem(feedbackKey, 'true');
                               } catch (e) {
                                 // Ignore
                               }
                             }}
                             className="mt-4 text-senior-sm text-primary hover:text-primary-dark underline"
                           >
-                            Verzenden (optioneel)
+                            {t.feedback.sendOptional}
                           </button>
                         )}
                       </div>
@@ -2227,12 +2286,12 @@ Voor vragen: bezoek seniorease.nl
                 <div className="bg-white rounded-xl shadow-lg p-12 text-center">
                   <div className="text-6xl mb-4">📚</div>
                   <h3 className="text-senior-xl font-bold text-gray-700 mb-2">
-                    {items.length === 0 ? 'Geen items' : 'Geen resultaten'}
+                    {items.length === 0 ? (language === 'nl' ? 'Geen items' : 'No items') : (language === 'nl' ? 'Geen resultaten' : 'No results')}
                   </h3>
                   <p className="text-senior-base text-gray-600">
                     {items.length === 0 
-                      ? 'Voeg uw eerste item toe om te beginnen!'
-                      : 'Probeer een andere zoekterm of filter.'}
+                      ? (language === 'nl' ? 'Voeg uw eerste item toe om te beginnen!' : 'Add your first item to get started!')
+                      : (language === 'nl' ? 'Probeer een andere zoekterm of filter.' : 'Try a different search term or filter.')}
                   </p>
                 </div>
               ) : (
@@ -2300,8 +2359,12 @@ Voor vragen: bezoek seniorease.nl
               {items.length > 0 && !showAddForm && (
                 <div className="mt-6 pt-4 border-t border-gray-200">
                   <p className="text-senior-xs md:text-senior-sm text-gray-500 text-center leading-relaxed">
-                    <span className="font-bold">Tip:</span> U hoeft uw hele boekenkast<br />
-                    niet in één keer toe te voegen.
+                    <span className="font-bold">{language === 'nl' ? 'Tip:' : 'Tip:'}</span> {t.library.tipBottom.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        {i < t.library.tipBottom.split('\n').length - 1 && <br />}
+                      </span>
+                    ))}
                   </p>
                 </div>
               )}

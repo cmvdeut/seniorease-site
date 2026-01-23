@@ -5,6 +5,11 @@ import Link from 'next/link';
 export default function ExtrasPage() {
   const extras = [
     {
+      title: 'Foto Archief',
+      description: 'Identificeer personen op oude familiefoto\'s. Plaats nummers en voeg namen toe. Handig voor stamboom makers.',
+      href: '/foto-archief'
+    },
+    {
       title: 'Grote klok',
       description: 'Duidelijke weergave van tijd en datum met extra grote cijfers.',
       href: '/klok'
@@ -99,4 +104,5 @@ export default function ExtrasPage() {
     </main>
   );
 }
+
 

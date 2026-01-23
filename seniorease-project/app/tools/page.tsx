@@ -7,6 +7,13 @@ import Image from 'next/image';
 export default function ToolsPage() {
   const tools = [
     {
+      title: 'Foto Archief',
+      description: 'Identificeer personen op oude familiefoto\'s. Plaats nummers en voeg namen toe. Handig voor stamboom makers.',
+      icon: '📷',
+      href: '/foto-archief',
+      category: 'Tools'
+    },
+    {
       title: 'Rekenmachine',
       description: 'Grote knoppen en duidelijk display. Eenvoudig rekenen.',
       icon: '🔢',

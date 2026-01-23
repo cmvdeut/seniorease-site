@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://seniorease.nl'),
@@ -88,7 +89,9 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SeniorEase Bibliotheek" />
       </head>
       <body className="antialiased">
-        {children}
+        <LanguageProviderWrapper>
+          {children}
+        </LanguageProviderWrapper>
       </body>
     </html>
   );
