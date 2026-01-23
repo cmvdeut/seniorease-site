@@ -163,6 +163,20 @@ export default function Home() {
                 >
                   Handige extra's
                 </Link>
+                <Link 
+                  href="/foto-archief"
+                  className="relative group"
+                  title="Foto Archief - Identificeer personen op oude familiefoto's"
+                >
+                  <span className="inline-flex items-center justify-center px-2.5 py-1 text-xs font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-sm animate-pulse hover:animate-none hover:from-green-600 hover:to-emerald-700 transition-all">
+                    Nieuw
+                  </span>
+                  {/* Tooltip */}
+                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50">
+                    Foto Archief - Identificeer personen op oude familiefoto's
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
+                  </div>
+                </Link>
               </div>
             </nav>
           </div>

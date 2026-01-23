@@ -88,7 +88,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SeniorEase Bibliotheek" />
       </head>
-      <body className="antialiased">
+      <body className="antialiased" style={{ margin: 0 }}>
         <LanguageProviderWrapper>
           {children}
         </LanguageProviderWrapper>
