@@ -6,8 +6,9 @@
 import { FacebookPoster } from './lib/facebook.js';
 import dotenv from 'dotenv';
 
-// Load environment variables
+// Load environment variables (probeer eerst .env.local, dan .env)
 dotenv.config({ path: '.env.local' });
+dotenv.config({ path: '.env' });
 
 const FACEBOOK_MESSAGE = `📷 NIEUW: Foto Archief Tool!
 
