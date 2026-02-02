@@ -9,7 +9,7 @@ export default function FotoArchief() {
   const [markers, setMarkers] = useState([]);
   const [selectedMarker, setSelectedMarker] = useState(null);
   const [edgeStrength, setEdgeStrength] = useState(30);
-  const [showOriginal, setShowOriginal] = useState(false);
+  const [showOriginal, setShowOriginal] = useState(true);
   const [showExportModal, setShowExportModal] = useState(false);
   const [exportFilename, setExportFilename] = useState('foto-met-nummers');
   const [draggedMarker, setDraggedMarker] = useState(null);
@@ -306,6 +306,64 @@ export default function FotoArchief() {
         </Link>
       </div>
 
+      {/* Controls: alleen boven de titel, niet nog eens bij de afbeelding */}
+      {outlineImage && (
+        <div style={{
+          maxWidth: '1200px',
+          margin: '0 auto 16px auto',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          flexWrap: 'wrap',
+          gap: '12px'
+        }}>
+          <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <label style={{
+              background: 'rgba(232, 213, 183, 0.1)',
+              padding: '8px 16px',
+              borderRadius: '4px',
+              cursor: 'pointer',
+              fontSize: '0.9rem',
+              border: '1px solid rgba(232, 213, 183, 0.3)',
+              transition: 'all 0.2s'
+            }}>
+              <input
+                type="file"
+                accept="image/*"
+                onChange={handleImageUpload}
+                style={{ display: 'none' }}
+              />
+              Nieuwe foto
+            </label>
+            <button
+              onClick={() => setShowOriginal(!showOriginal)}
+              style={{
+                background: showOriginal ? 'rgba(232, 213, 183, 0.2)' : 'transparent',
+                color: '#e8d5b7',
+                padding: '8px 16px',
+                borderRadius: '4px',
+                cursor: 'pointer',
+                fontSize: '0.9rem',
+                border: '1px solid rgba(232, 213, 183, 0.3)'
+              }}
+            >
+              {showOriginal ? 'Toon outlines' : 'Toon origineel'}
+            </button>
+          </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+            <label style={{ fontSize: '0.85rem', opacity: 0.8 }}>Lijnsterkte:</label>
+            <input
+              type="range"
+              min="10"
+              max="80"
+              value={edgeStrength}
+              onChange={(e) => setEdgeStrength(Number(e.target.value))}
+              style={{ width: '100px', accentColor: '#e8d5b7' }}
+            />
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <header style={{
         textAlign: 'center',
@@ -372,62 +430,6 @@ export default function FotoArchief() {
             </label>
           ) : (
             <>
-              <div style={{
-                display: 'flex',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-                marginBottom: '16px',
-                flexWrap: 'wrap',
-                gap: '12px'
-              }}>
-                <div style={{ display: 'flex', gap: '12px', alignItems: 'center' }}>
-                  <label style={{
-                    background: 'rgba(232, 213, 183, 0.1)',
-                    padding: '8px 16px',
-                    borderRadius: '4px',
-                    cursor: 'pointer',
-                    fontSize: '0.9rem',
-                    border: '1px solid rgba(232, 213, 183, 0.3)',
-                    transition: 'all 0.2s'
-                  }}>
-                    <input
-                      type="file"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      style={{ display: 'none' }}
-                    />
-                    Nieuwe foto
-                  </label>
-
-                  <button
-                    onClick={() => setShowOriginal(!showOriginal)}
-                    style={{
-                      background: showOriginal ? 'rgba(232, 213, 183, 0.2)' : 'transparent',
-                      color: '#e8d5b7',
-                      padding: '8px 16px',
-                      borderRadius: '4px',
-                      cursor: 'pointer',
-                      fontSize: '0.9rem',
-                      border: '1px solid rgba(232, 213, 183, 0.3)'
-                    }}
-                  >
-                    {showOriginal ? 'Toon outlines' : 'Toon origineel'}
-                  </button>
-                </div>
-
-                <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                  <label style={{ fontSize: '0.85rem', opacity: 0.8 }}>Lijnsterkte:</label>
-                  <input
-                    type="range"
-                    min="10"
-                    max="80"
-                    value={edgeStrength}
-                    onChange={(e) => setEdgeStrength(Number(e.target.value))}
-                    style={{ width: '100px', accentColor: '#e8d5b7' }}
-                  />
-                </div>
-              </div>
-
               <div
                 ref={imageContainerRef}
                 onClick={handleCanvasClick}
