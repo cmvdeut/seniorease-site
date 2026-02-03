@@ -62,6 +62,43 @@ export default function ZoZietHetEruitPage() {
 
       <section className="container mx-auto px-6 py-10">
         <div className="max-w-4xl mx-auto space-y-10">
+
+          {/* Video: Bekijk het in actie */}
+          <section className="my-8">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary text-center mb-4">
+              Bekijk het in actie
+            </h2>
+            <p className="text-center text-gray-600 mb-6 text-senior-base">
+              In deze video vraag ik ChatGPT om een recept te bedenken. Zo ziet u precies hoe het werkt!
+            </p>
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src="https://www.youtube.com/embed/g_XX1jY6VkI"
+                title="ChatGPT gebruiken: zo vraag je om een recept"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-center text-gray-500 mt-4 text-senior-sm">
+              💡 Tip: Zet de video op volledig scherm voor de beste weergave
+            </p>
+            <div className="text-center mt-8 p-6 bg-primary/10 rounded-xl border-2 border-primary/30">
+              <p className="text-senior-lg font-bold text-primary mb-4">Zelf proberen?</p>
+              <a
+                href="https://chat.openai.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-primary text-white px-6 py-4 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors"
+              >
+                Ga naar ChatGPT →
+              </a>
+            </div>
+          </section>
+
           {placeholderSteps.map((step) => (
             <div
               key={step.num}

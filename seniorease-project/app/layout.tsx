@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   creator: "SeniorEase",
   publisher: "SeniorEase",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/heart-logo.png",
+  },
   openGraph: {
     type: "website",
     locale: "nl_NL",

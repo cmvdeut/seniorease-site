@@ -25,3 +25,9 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# Tijdelijke / lokale mappen (Weet je nog verwijderd; overige opruiming)
+tutorial-maker.zip
+seniorease-project/tutorial-maker/
+seniorease-project/tutorial-maker-app/
+seniorease-project/tutorial-maker.zip
