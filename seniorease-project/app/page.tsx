@@ -91,7 +91,7 @@ export default function Home() {
                     SeniorEase
                   </h1>
                   <p className="text-senior-sm text-gray-600">
-                    Handige technologie zonder gedoe • Test update 2025-01-27
+                    Handige technologie zonder gedoe
                   </p>
                 </div>
               </div>
@@ -150,6 +150,12 @@ export default function Home() {
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
                   Hulp
+                </Link>
+                <Link 
+                  href="/wat-is-ai"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  AI Ontdekken
                 </Link>
                 <Link 
                   href="/contact"
