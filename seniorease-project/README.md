@@ -50,6 +50,8 @@ seniorease/
 └── next.config.js      # Next.js configuratie
 ```
 
+**Video's:** Uitlegvideo's worden op de site getoond via links naar YouTube; bezoekers kijken rechtstreeks op YouTube. Grote lokale .mp4-bestanden staan daarom niet in de repo (zie ook `.gitignore`).
+
 ## 🎨 Design Principes
 
 - **Groot & Duidelijk**: Minimale font-size is 24px (1.5rem)

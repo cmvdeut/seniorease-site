@@ -73,7 +73,8 @@ export default function WhatsAppDeel2Page() {
               Hieronder vindt u uitleg in de volgorde 1 tot 5. Neem gerust uw tijd – u hoeft niet alles in één keer te doen.
             </p>
             <p className="mt-4 text-senior-base text-gray-600">
-              Heeft u de basis nog niet gedaan? Start met <Link href="/uitleg/whatsapp-basis" className="text-primary font-bold underline hover:no-underline">WhatsApp – Eerste stappen</Link>. Wilt u meer? Ga door naar <Link href="/uitleg/whatsapp-deel3" className="text-primary font-bold underline hover:no-underline">Deel 3 (Geavanceerd)</Link>.
+              Heeft u de basis nog niet gedaan? Start met <Link href="/uitleg/whatsapp-basis" className="text-primary font-bold underline hover:no-underline">WhatsApp – Eerste stappen</Link>. Wilt u meer? Ga door naar <Link href="/uitleg/whatsapp-deel3" className="text-primary font-bold underline hover:no-underline">Deel 3 (Geavanceerd)</Link>.{' '}
+              <a href="/handleiding-whatsapp.html" target="_blank" rel="noopener noreferrer" className="text-primary font-bold underline hover:no-underline">Printbare handleiding</a> (alle delen).
             </p>
           </div>
 

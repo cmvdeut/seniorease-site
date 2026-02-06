@@ -77,6 +77,13 @@ export default function WhatsAppBasisPage() {
               Met WhatsApp kunt u gratis berichten en foto&apos;s sturen naar familie en vrienden.
               Hieronder vindt u de basis in korte stappen. Neem gerust uw tijd en oefen op uw eigen tempo.
             </p>
+            <p className="mt-4 text-senior-base text-gray-700">
+              <strong>Printbare handleiding:</strong>{' '}
+              <a href="/handleiding-whatsapp.html" target="_blank" rel="noopener noreferrer" className="text-primary font-bold underline hover:no-underline">
+                Open de handleiding
+              </a>
+              {' '}(alle delen in één document). U kunt die pagina printen of als PDF opslaan (Afdrukken → Opslaan als PDF).
+            </p>
             <div className="mt-6 p-4 rounded-xl bg-amber-50 border-2 border-amber-200">
               <p className="text-senior-base font-bold text-gray-800">Veiligheid in het kort</p>
               <p className="text-senior-base text-gray-700 mt-1">Stuur nooit wachtwoorden of bankgegevens via WhatsApp. Klik niet op vreemde links. Als iemand om geld vraagt, bel die persoon eerst even op een nummer dat u kent om te controleren of het echt is. Meer over veiligheid staat in <strong>Deel 3</strong>.</p>
@@ -240,6 +247,14 @@ export default function WhatsAppBasisPage() {
 
           {/* Navigatie */}
           <div className="flex flex-wrap gap-4 justify-center pt-4">
+            <a
+              href="/handleiding-whatsapp.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block px-8 py-4 bg-white text-primary font-bold text-senior-base rounded-xl border-4 border-primary hover:bg-neutral-cream min-h-[56px] flex items-center justify-center"
+            >
+              Handleiding downloaden / printen
+            </a>
             <Link
               href="/uitleg/whatsapp-deel2"
               className="inline-block px-8 py-4 bg-primary text-white font-bold text-senior-base rounded-xl hover:bg-primary-dark border-4 border-primary min-h-[56px] flex items-center justify-center"

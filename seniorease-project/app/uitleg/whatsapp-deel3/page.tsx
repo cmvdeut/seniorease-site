@@ -73,7 +73,8 @@ export default function WhatsAppDeel3Page() {
               groepsinstellingen, privacy en back-up. Voor als u WhatsApp al een tijdje gebruikt. Neem gerust uw tijd – deze functies zijn optioneel.
             </p>
             <p className="mt-4 text-senior-base text-gray-600">
-              Nog niet zover? Start met <Link href="/uitleg/whatsapp-basis" className="text-primary font-bold underline hover:no-underline">Eerste stappen</Link> of <Link href="/uitleg/whatsapp-deel2" className="text-primary font-bold underline hover:no-underline">Deel 2</Link>.
+              Nog niet zover? Start met <Link href="/uitleg/whatsapp-basis" className="text-primary font-bold underline hover:no-underline">Eerste stappen</Link> of <Link href="/uitleg/whatsapp-deel2" className="text-primary font-bold underline hover:no-underline">Deel 2</Link>.{' '}
+              <a href="/handleiding-whatsapp.html" target="_blank" rel="noopener noreferrer" className="text-primary font-bold underline hover:no-underline">Printbare handleiding</a> (alle delen in één document).
             </p>
           </div>
 

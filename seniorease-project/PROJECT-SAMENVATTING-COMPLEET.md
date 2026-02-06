@@ -243,6 +243,9 @@ seniorease-project/
 - Navigatie menu
 - Taalwisselaar in header
 
+#### Video's (YouTube)
+De uitlegvideo's worden op de website getoond via **links naar YouTube**. Bezoekers klikken op de site en openen de video's rechtstreeks op YouTube. De grote .mp4-bestanden (bijv. in `youtube-animaties/`, `Faecebook/`, `public/youtube-animaties/`) staan daarom **niet** in de Git-repository: ze zijn lokaal beschikbaar als bronbestanden, maar worden niet naar GitHub geüpload (o.a. vanwege de 100 MB limiet). De website heeft alleen de YouTube-links nodig.
+
 #### `middleware.ts`
 **Next.js middleware:**
 - Laat `/en` routes door
