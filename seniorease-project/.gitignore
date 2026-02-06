@@ -33,6 +33,11 @@ mcp-config.json
 # vercel
 .vercel
 
+# Grote video's (GitHub limiet 100 MB)
+youtube-animaties/*.mp4
+Faecebook/*.mp4
+public/youtube-animaties/*.mp4
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

@@ -125,14 +125,34 @@ export default function Home() {
             </div>
             
             {/* Navigation Menu */}
-            <nav className="border-t-2 border-neutral-stone py-3">
+            <nav className="border-t-2 border-neutral-stone py-3" aria-label="Hoofdmenu">
+              {/* Eerste groep: Apps & uitleg – duidelijk voor senioren */}
+              <div className="mb-2">
+                <span className="text-senior-sm font-semibold text-gray-500 block mb-1">Apps & uitleg</span>
+                <div className="flex flex-wrap items-center gap-3">
+                  <Link 
+                    href="/bibliotheek"
+                    className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                  >
+                    Mijn Bibliotheek
+                  </Link>
+                  <Link 
+                    href="/wat-is-ai"
+                    className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                  >
+                    AI ontdekken
+                  </Link>
+                  <Link 
+                    href="/uitleg/whatsapp-basis"
+                    className="inline-flex items-center gap-2 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                  >
+                    WhatsApp ontdekken
+                    <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
+                  </Link>
+                </div>
+              </div>
+              {/* Rest van het menu */}
               <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
-                <Link 
-                  href="/bibliotheek"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                >
-                  Mijn Bibliotheek
-                </Link>
                 <Link 
                   href="/zo-werkt-het"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
@@ -143,19 +163,13 @@ export default function Home() {
                   href="/uitlegvideo"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
-                  Uitlegvideo's
+                  Uitlegvideo&apos;s
                 </Link>
                 <Link 
                   href="/hulp"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
                   Hulp
-                </Link>
-                <Link 
-                  href="/wat-is-ai"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                >
-                  AI Ontdekken
                 </Link>
                 <Link 
                   href="/contact"
@@ -167,21 +181,15 @@ export default function Home() {
                   href="/extras"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
-                  Handige extra's
+                  Handige extra&apos;s
                 </Link>
                 <Link 
                   href="/foto-archief"
-                  className="relative group"
+                  className="relative group inline-flex items-center gap-2 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                   title="Foto Archief - Identificeer personen op oude familiefoto's"
                 >
-                  <span className="inline-flex items-center justify-center px-2.5 py-1 text-xs font-bold text-white bg-gradient-to-r from-green-500 to-emerald-600 rounded-full shadow-sm animate-pulse hover:animate-none hover:from-green-600 hover:to-emerald-700 transition-all">
-                    Nieuw
-                  </span>
-                  {/* Tooltip */}
-                  <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-2 px-3 py-2 bg-gray-900 text-white text-xs rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 whitespace-nowrap z-50">
-                    Foto Archief - Identificeer personen op oude familiefoto's
-                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 -mt-1 border-4 border-transparent border-t-gray-900"></div>
-                  </div>
+                  Foto Archief
+                  <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
                 </Link>
               </div>
             </nav>
