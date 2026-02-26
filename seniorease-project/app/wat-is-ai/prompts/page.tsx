@@ -112,6 +112,7 @@ export default function PromptsPage() {
               <Link href="/wat-is-ai/uitproberen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Uitproberen (Demo)</Link>
               <span className="text-senior-sm font-bold text-primary underline">Voorbeeldvragen</span>
               <Link href="/wat-is-ai/zo-ziet-het-eruit" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Zo ziet het eruit</Link>
+              <Link href="/wat-is-ai/chatgpt" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">ChatGPT stap voor stap</Link>
             </nav>
           </div>
         </div>

@@ -55,6 +55,7 @@ export default function ZoZietHetEruitPage() {
               <Link href="/wat-is-ai/uitproberen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Uitproberen (Demo)</Link>
               <Link href="/wat-is-ai/prompts" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Voorbeeldvragen</Link>
               <span className="text-senior-sm font-bold text-primary underline">Zo ziet het eruit</span>
+              <Link href="/wat-is-ai/chatgpt" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">ChatGPT stap voor stap</Link>
             </nav>
           </div>
         </div>

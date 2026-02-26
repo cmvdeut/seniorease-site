@@ -125,73 +125,150 @@ export default function Home() {
             </div>
             
             {/* Navigation Menu */}
-            <nav className="border-t-2 border-neutral-stone py-3" aria-label="Hoofdmenu">
-              {/* Eerste groep: Apps & uitleg – duidelijk voor senioren */}
-              <div className="mb-2">
-                <span className="text-senior-sm font-semibold text-gray-500 block mb-1">Apps & uitleg</span>
-                <div className="flex flex-wrap items-center gap-3">
-                  <Link 
-                    href="/bibliotheek"
-                    className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                  >
-                    Mijn Bibliotheek
-                  </Link>
-                  <Link 
-                    href="/wat-is-ai"
-                    className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                  >
-                    AI ontdekken
-                  </Link>
-                  <Link 
-                    href="/uitleg/whatsapp-basis"
-                    className="inline-flex items-center gap-2 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                  >
-                    WhatsApp ontdekken
-                    <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
-                  </Link>
-                </div>
-              </div>
-              {/* Rest van het menu */}
-              <div className="flex flex-wrap items-center gap-4 justify-center md:justify-start">
-                <Link 
+            <nav className="border-t-2 border-neutral-stone pt-3 pb-1 space-y-3" aria-label="Hoofdmenu">
+
+              {/* Mijn Bibliotheek – hoofdproduct */}
+              <div className="flex flex-wrap items-center gap-x-1 gap-y-1">
+                <Link
+                  href="/bibliotheek"
+                  className="inline-flex items-center gap-2 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  📚 Mijn Bibliotheek
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
                   href="/zo-werkt-het"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
                   Zo werkt het
                 </Link>
-                <Link 
+                <span className="text-gray-300 select-none">|</span>
+                <Link
                   href="/uitlegvideo"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
                   Uitlegvideo&apos;s
                 </Link>
-                <Link 
-                  href="/hulp"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+              </div>
+
+              {/* Groep: Smartphone */}
+              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
+                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
+                  📱 Smartphone:
+                </span>
+                <Link
+                  href="/uitleg/whatsapp-basis"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Hulp
+                  WhatsApp
                 </Link>
-                <Link 
-                  href="/contact"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/videobellen"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Contact
+                  Videobellen
                 </Link>
-                <Link 
-                  href="/extras"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/fotos-maken"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Handige extra&apos;s
+                  Foto&apos;s maken
                 </Link>
-                <Link 
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/fotos-ordenen"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Foto&apos;s ordenen
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/qr-code"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  QR-code scannen
+                </Link>
+              </div>
+
+              {/* Groep: Veiligheid */}
+              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
+                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
+                  🔒 Veiligheid:
+                </span>
+                <Link
+                  href="/uitleg/veiligheid"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Oplichting herkennen
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/wachtwoorden"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Wachtwoorden
+                </Link>
+              </div>
+
+              {/* Groep: Hobby's */}
+              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
+                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
+                  🎨 Hobby&apos;s:
+                </span>
+                <Link
                   href="/foto-archief"
-                  className="relative group inline-flex items-center gap-2 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
-                  title="Foto Archief - Identificeer personen op oude familiefoto's"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
                   Foto Archief
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/ebooks"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  E-books lezen
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/muziek-radio"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Spotify en DAB
+                </Link>
+              </div>
+
+              {/* Groep: AI & ChatGPT */}
+              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
+                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
+                  🤖 AI &amp; ChatGPT:
+                </span>
+                <Link
+                  href="/wat-is-ai"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Wat is AI?
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/wat-is-ai/chatgpt"
+                  className="inline-flex items-center gap-1.5 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  ChatGPT uitleg
                   <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
                 </Link>
               </div>
+
+              {/* Overig */}
+              <div className="flex flex-wrap items-center gap-x-1 gap-y-1 pt-1 border-t border-neutral-stone/60">
+                <Link href="/extras" className="text-senior-sm font-semibold text-gray-600 hover:text-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10">Handige extra&apos;s</Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link href="/hulp" className="text-senior-sm font-semibold text-gray-600 hover:text-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10">Hulp</Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link href="/contact" className="text-senior-sm font-semibold text-gray-600 hover:text-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10">Contact</Link>
+              </div>
+
             </nav>
           </div>
         </div>

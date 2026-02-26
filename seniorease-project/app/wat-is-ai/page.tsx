@@ -35,6 +35,9 @@ export default function WatIsAIPage() {
               <Link href="/wat-is-ai/zo-ziet-het-eruit" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">
                 Zo ziet het eruit
               </Link>
+              <Link href="/wat-is-ai/chatgpt" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">
+                ChatGPT stap voor stap
+              </Link>
             </nav>
           </div>
         </div>
