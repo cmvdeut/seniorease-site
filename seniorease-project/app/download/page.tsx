@@ -132,7 +132,7 @@ function DownloadContent() {
                     Probeer eerst de Demo Versie Gratis!
                   </h2>
                   <p className="text-senior-base text-yellow-800 mb-4">
-                    Installeer de demo versie als app en probeer het uit met maximaal 10 items. 
+                    Met de demo kunt u eerst testen of de app op uw telefoon werkt. Installeer de demo versie als app en probeer het uit met maximaal 10 items.
                     Koop daarna de volledige versie voor onbeperkt gebruik.
                   </p>
                   <div className="bg-white rounded-xl p-4 mb-4">

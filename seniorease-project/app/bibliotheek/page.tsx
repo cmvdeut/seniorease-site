@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
+import { QRCodeSVG } from 'qrcode.react';
 import { useLanguage } from '../../lib/useLanguage';
 import { getStorageKey } from '../../lib/translations';
 import LanguageSwitcher from '../components/LanguageSwitcher';
@@ -45,8 +46,16 @@ export default function BibliotheekPage() {
   const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
   const [feedbackGiven, setFeedbackGiven] = useState<boolean>(false);
   const [feedbackValue, setFeedbackValue] = useState<string>('');
-  
+  const [downloadPageUrl, setDownloadPageUrl] = useState<string>('');
+
   const t = translations;
+
+  // Absolute URL voor QR-code (app downloadpagina) – alleen op client
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      setDownloadPageUrl(`${window.location.origin}/download`);
+    }
+  }, []);
 
   // Check of feedback al is gegeven
   useEffect(() => {
@@ -1566,13 +1575,33 @@ Voor vragen: bezoek seniorease.nl
                       {t.library.useLibraryButton}
                     </a>
                     <Link 
-                      href={language === 'en' ? '/en/probeer-mijn-bibliotheek' : '/probeer-mijn-bibliotheek'}
+                      href="/download"
                       className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
                                hover:bg-primary/10 transition-all"
                     >
                       {t.library.tryMobileButton}
                     </Link>
                   </div>
+                  {/* QR-code: app downloaden op Android */}
+                  {downloadPageUrl && (
+                    <div className="mt-4 p-4 bg-white border-2 border-primary rounded-xl inline-block">
+                      <p className="text-senior-sm font-bold text-gray-800 mb-2">
+                        {language === 'nl' ? '📱 App op Android-telefoon' : '📱 App on Android phone'}
+                      </p>
+                      <p className="text-senior-xs text-gray-600 mb-3 max-w-[200px]">
+                        {language === 'nl' ? 'Scan met uw Android-telefoon om de app te downloaden:' : 'Scan with your Android phone to download the app:'}
+                      </p>
+                      <div className="bg-white p-2 rounded-lg border border-gray-200 inline-block">
+                        <QRCodeSVG value={downloadPageUrl} size={140} level="H" includeMargin />
+                      </div>
+                      <p className="text-senior-xs text-gray-500 mt-2">
+                        {language === 'nl' ? 'Of ga naar' : 'Or go to'}{' '}
+                        <Link href="/download" className="text-primary font-bold underline">
+                          {language === 'nl' ? 'downloadpagina' : 'download page'}
+                        </Link>
+                      </p>
+                    </div>
+                  )}
                 </div>
                 <Link
                   href="/animaties/bibliotheek"
