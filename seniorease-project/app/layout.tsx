@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://seniorease.nl'),
@@ -95,6 +96,7 @@ export default function RootLayout({
         <LanguageProviderWrapper>
           {children}
         </LanguageProviderWrapper>
+        <Analytics />
       </body>
     </html>
   );
