@@ -236,8 +236,7 @@ export default function EbooksPage() {
                   icon: "📗",
                   naam: "Kobo Clara (aanbevolen)",
                   beschrijving: "De populairste e-reader voor Nederlandstalige boeken. Werkt direct samen met de bibliotheek-app Libby. Lettergrootte naar wens.",
-                  // Vervang de href hieronder door uw Bol.com affiliate-link
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=kobo+clara",
+                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fkobo-clara-bw-e-reader-6-inch-16gb-luisterboeken-zwart%2F9300000173830676%2F&name=Kobo%20Clara%20BW%20-%20E-reader%206%20inch%20-%2016GB%20-%20Luisterboeken%20-%20Zwart&subid=kobo%20clara",
                   badge: "Beste keuze voor NL",
                   badgekleur: "bg-green-600",
                 },

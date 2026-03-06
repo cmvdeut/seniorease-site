@@ -296,14 +296,13 @@ export default function EBikePage() {
                   icon: "📱",
                   naam: "Telefoonhouder voor op het stuur",
                   beschrijving: "Houd uw telefoon in het zicht. Past op alle stuurdiameters en is bestand tegen regen.",
-                  // Vervang de href hieronder door uw Bol.com affiliate-link
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=telefoonhouder+fiets+stuur",
+                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Ftelefoonhouder-fiets-gsm-houder-fiets-telefoonhouder-fiets-waterdicht-360-rotatie-zwart%2F9300000120328379%2F&name=Telefoonhouder%20Fiets%20-%20GSM%20Houder%20Fiets%20-%20Telefoonhouder%20Fiets%20Waterdicht%20-%20360%C2%B0...&subid=Telefoonhouder%20fiets",
                 },
                 {
                   icon: "🔋",
                   naam: "Powerbank voor lange tochten",
                   beschrijving: "Laad uw telefoon op onderweg. Kies een model van 10.000 mAh of meer voor een volle dag fietsen.",
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=powerbank+10000mah",
+                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fmojogear-mini-go-powerbank-10-000-mah-met-ingebouwde-kabels-4-apparaten-tegelijk-opladen-led-display-voor-batterijstatus-zwart%2F9300000257617192%2F&name=MOJOGEAR%20MINI%20GO%20Powerbank%20-%2010.000%20mAh%20-%20Met%20Ingebouwde%20Kabels%20(USB-C%20%26%20Lightning)%20-...&subid=Powerbank",
                 },
                 {
                   icon: "🎧",
