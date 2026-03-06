@@ -322,7 +322,7 @@ export default function EBikePage() {
                 {
                   img: "/images/products/botgeleiding.jpg",
                   alt: "Botgeleiding hoofdtelefoon voor fietsers",
-                  naam: "Botgeleidingshoofdtelefoon",
+                  naam: "Botgeleiding hoofdtelefoon",
                   beschrijving: "Hoor de routeaanwijzingen én het verkeer tegelijk. Veiliger dan gewone oordopjes.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DBotgeleidingshoofdtelefoon&name=Bol&subid=hoofdtelefoon",
                 },
@@ -339,7 +339,7 @@ export default function EBikePage() {
                     />
                   </div>
                   <div className="flex flex-col flex-1 p-5">
-                    <p className="text-senior-base font-bold text-gray-800 mb-2">{product.naam}</p>
+                    <p className="text-senior-base font-bold text-gray-800 mb-2 break-words">{product.naam}</p>
                     <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
                     <a
                       href={product.href}
