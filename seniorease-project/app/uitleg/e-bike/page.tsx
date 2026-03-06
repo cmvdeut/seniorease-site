@@ -115,13 +115,26 @@ export default function EBikePage() {
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { icon: "🗺️", label: "Routes uitstippelen" },
-                { icon: "🔵", label: "Knooppunten volgen" },
-                { icon: "📊", label: "Rit bijhouden" },
+                {
+                  icon: "🗺️",
+                  label: "Routes uitstippelen",
+                  uitleg: "Kies van tevoren waar u naartoe fietst. De app toont de route op de kaart en zegt wanneer u moet afslaan.",
+                },
+                {
+                  icon: "🔵",
+                  label: "Knooppunten volgen",
+                  uitleg: "Typ de nummers van de knooppuntpaaltjes in (bijv. 12 → 34 → 56) en de app tekent de route voor u uit.",
+                },
+                {
+                  icon: "📊",
+                  label: "Rit bijhouden",
+                  uitleg: "De app houdt bij hoeveel kilometer u heeft gereden, hoe lang u onderweg was en hoeveel accu u heeft verbruikt.",
+                },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
-                  <div className="text-3xl mb-2">{item.icon}</div>
+                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-5 flex flex-col items-center text-center gap-2">
+                  <div className="text-4xl">{item.icon}</div>
                   <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm text-gray-600 leading-relaxed">{item.uitleg}</p>
                 </div>
               ))}
             </div>
