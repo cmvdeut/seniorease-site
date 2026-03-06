@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Oplichting herkennen – bescherm uzelf online",
-  description: "Leer phishing en oplichting herkennen. De 5 alarmsignalen, herkenbare voorbeelden en wat u moet doen. Voor senioren.",
+  title: "Oplichting herkennen via telefoon en internet – uitleg voor senioren",
+  description: "Hoe herkent u nep-SMS, WhatsApp-fraude en phishing? 5 duidelijke alarmsignalen en wat u moet doen. Gratis uitleg voor senioren.",
 };
 
 const alarmsignalen = [

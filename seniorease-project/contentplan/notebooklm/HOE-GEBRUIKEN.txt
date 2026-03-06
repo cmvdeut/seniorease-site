@@ -1,0 +1,58 @@
+HOE GEBRUIK IK DEZE BESTANDEN IN NOTEBOOKLM?
+SeniorEase — Handleiding NotebookLM Audio Overviews
+
+---
+
+STAP VOOR STAP
+
+Stap 1: Ga naar NotebookLM
+Ga naar: notebooklm.google.com
+Log in met uw Google-account (gratis te gebruiken).
+
+Stap 2: Maak een nieuw notebook per onderwerp
+Klik op "+ Nieuw notebook"
+Geef het een naam, bijv. "SeniorEase – WhatsApp uitleg"
+
+Stap 3: Upload het tekstbestand
+Klik op "Bron toevoegen"
+Kies "Bestand uploaden"
+Upload één van de tekstbestanden uit deze map, bijv. "1-whatsapp-basis.txt"
+
+Stap 4: Genereer een Audio Overview
+Rechts ziet u het paneel "Notebook Guide"
+Klik op "Audio Overview genereren"
+NotebookLM maakt automatisch een gesprek van 5-10 minuten over de inhoud
+
+Stap 5: Beluister en download
+Beluister de Audio Overview via de ingebouwde speler
+Klik op het download-icoontje om de MP3 op te slaan
+
+Stap 6: Gebruik de audio als voiceover in Canva
+Open Canva en maak een presentatie (16:9 YouTube-formaat)
+Maak per stap één dia met grote tekst en eventueel een screenshot
+Upload de MP3 als achtergrondgeluid
+Exporteer als MP4-video
+Upload naar YouTube
+
+---
+
+BESCHIKBARE BESTANDEN (één per onderwerp, één per notebook)
+
+1-whatsapp-basis.txt       → Video 1: WhatsApp uitleg
+2-veiligheid-oplichting.txt → Video 2: Oplichting herkennen
+3-fotos-maken.txt          → Video 3: Foto's maken + selfies
+4-ebooks-bibliotheek.txt   → Video 4: E-books via Libby
+5-videobellen.txt          → Video 5: Videobellen via WhatsApp
+
+---
+
+TIPS
+
+- Maak per onderwerp een apart notebook — zo blijft alles overzichtelijk.
+- U kunt de Audio Overview beluisteren om te checken of de inhoud klopt.
+- Bevalt de Audio Overview niet? Klik op "Opnieuw genereren" voor een nieuwe versie.
+- U kunt ook zelf vragen stellen aan NotebookLM over de inhoud.
+
+---
+
+Succes! Vragen? Kijk op seniorease.nl

@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "ChatGPT stap voor stap – voor beginners",
-  description: "Leer ChatGPT gebruiken in eenvoudige stappen. Account aanmaken, eerste vraag stellen, doorvragen en 10 handige voorbeelden voor senioren.",
+  title: "ChatGPT uitleg voor beginners – stap voor stap voor senioren",
+  description: "Hoe gebruikt u ChatGPT? Account aanmaken, eerste vraag stellen en 10 handige voorbeelden. Uitleg voor senioren en beginners.",
 };
 
 const voorbeeldvragen = [

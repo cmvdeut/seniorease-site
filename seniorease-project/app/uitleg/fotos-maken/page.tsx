@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Betere foto's maken met uw smartphone",
-  description: "5 eenvoudige tips voor mooiere foto's met uw telefoon. Voor senioren: licht, stabiliteit, scherpstellen en meer.",
+  title: "Betere foto's maken met uw telefoon – 5 tips voor senioren",
+  description: "Mooiere foto's maken met uw smartphone? Met 5 eenvoudige tips lukt het meteen. Ook: selfies maken. Uitleg speciaal voor senioren.",
 };
 
 const tips = [

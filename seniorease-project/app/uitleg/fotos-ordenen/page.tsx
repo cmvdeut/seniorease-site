@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Digitale foto's ordenen op uw telefoon",
-  description: "Hoe maakt u albums, zet u favorieten apart en deelt u foto's met familie? Stap-voor-stap uitleg voor senioren.",
+  title: "Foto's ordenen op uw telefoon – albums maken voor senioren",
+  description: "Hoe maakt u albums en vindt u uw foto's terug? Favorieten apart zetten en delen met familie. Uitleg voor Android én iPhone.",
 };
 
 export default function FotosOrdenenPage() {

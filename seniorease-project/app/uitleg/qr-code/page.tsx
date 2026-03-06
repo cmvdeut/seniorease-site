@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "QR-code scannen met uw smartphone",
-  description: "Wat is een QR-code en hoe scant u hem? Stap voor stap uitleg voor senioren — voor Android én iPhone.",
+  title: "QR-code scannen met uw telefoon – uitleg voor senioren",
+  description: "Wat is een QR-code en hoe scant u hem met uw telefoon? Werkt op Android én iPhone. Eenvoudige uitleg speciaal voor senioren.",
 };
 
 const voorbeelden = [

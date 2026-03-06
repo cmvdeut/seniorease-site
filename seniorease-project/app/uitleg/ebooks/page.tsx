@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "E-books lezen op uw telefoon of tablet",
-  description: "Gratis digitale boeken lenen via de bibliotheek-app of kopen via Kobo en Kindle. Stap-voor-stap uitleg voor senioren.",
+  title: "E-books lezen voor senioren – gratis lenen via de bibliotheek",
+  description: "Gratis digitale boeken lenen met uw bibliotheekpas via de Libby-app. Letters zo groot als u wilt. Stap-voor-stap uitleg.",
 };
 
 export default function EbooksPage() {

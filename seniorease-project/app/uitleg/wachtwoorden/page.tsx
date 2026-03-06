@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Wachtwoorden — veilig en makkelijk te onthouden",
-  description: "Hoe maakt u een sterk wachtwoord en hoe bewaart u het veilig? Praktische uitleg voor senioren zonder ingewikkelde termen.",
+  title: "Veilig wachtwoord maken en onthouden – uitleg voor senioren",
+  description: "Hoe maakt u een sterk wachtwoord en bewaart u het veilig? Praktische tips zonder ingewikkelde termen, speciaal voor senioren.",
 };
 
 const swakkeVoorbeelden = [

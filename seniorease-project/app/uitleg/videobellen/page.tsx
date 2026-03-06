@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Videobellen met familie — stap voor stap",
-  description: "Hoe belt u met beeld via WhatsApp, FaceTime of Zoom? Duidelijke uitleg voor senioren zonder technische kennis.",
+  title: "Videobellen via WhatsApp – stap voor stap uitleg voor senioren",
+  description: "Uw kleinkind zien terwijl u belt! Gratis videobellen via WhatsApp. Stap-voor-stap uitleg voor senioren, ook voor beginners.",
 };
 
 export default function VideoBellenPage() {

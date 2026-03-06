@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Wat is AI?",
-  description: "Uitleg over kunstmatige intelligentie in begrijpelijke taal. Wat is AI, waar gebruikt u het al, en hoe kunt u het zelf proberen? Voor senioren.",
+  title: "Wat is AI? Uitleg in gewone taal voor senioren",
+  description: "Wat is kunstmatige intelligentie en gebruikt u het al zonder het te weten? Begrijpelijke uitleg over AI en ChatGPT, speciaal voor senioren.",
 };
 
 export default function WatIsAIPage() {

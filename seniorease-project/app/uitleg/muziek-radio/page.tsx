@@ -1,8 +1,8 @@
 import Link from 'next/link';
 
 export const metadata = {
-  title: "Muziek en radio luisteren op uw telefoon — Spotify en DAB+",
-  description: "Hoe luistert u naar muziek via Spotify of naar de radio via DAB+? Stap-voor-stap uitleg voor senioren.",
+  title: "Spotify uitleg voor senioren – muziek en radio op uw telefoon",
+  description: "Hoe luistert u naar muziek via Spotify of DAB+ radio? Wat betekent streamen? Duidelijke uitleg stap voor stap, speciaal voor senioren.",
 };
 
 export default function MuziekRadioPage() {
