@@ -233,7 +233,8 @@ export default function EbooksPage() {
             <div className="grid sm:grid-cols-2 gap-5">
               {[
                 {
-                  icon: "📗",
+                  img: "/images/products/kobo-clara.jpg",
+                  alt: "Kobo Clara BW e-reader 6 inch zwart",
                   naam: "Kobo Clara (aanbevolen)",
                   beschrijving: "De populairste e-reader voor Nederlandstalige boeken. Werkt direct samen met de bibliotheek-app Libby. Lettergrootte naar wens.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fkobo-clara-bw-e-reader-6-inch-16gb-luisterboeken-zwart%2F9300000173830676%2F&name=Kobo%20Clara%20BW%20-%20E-reader%206%20inch%20-%2016GB%20-%20Luisterboeken%20-%20Zwart&subid=kobo%20clara",
@@ -241,7 +242,8 @@ export default function EbooksPage() {
                   badgekleur: "bg-green-600",
                 },
                 {
-                  icon: "📘",
+                  img: "/images/products/kobo-libra.jpg",
+                  alt: "Kobo Libra e-reader groter scherm",
                   naam: "Kobo Libra (groter scherm)",
                   beschrijving: "Iets groter dan de Clara, met handige knoppen aan de zijkant. Fijn als u liever niet op het scherm tikt.",
                   href: "https://www.bol.com/nl/nl/s/?searchtext=kobo+libra",
@@ -249,21 +251,31 @@ export default function EbooksPage() {
                   badgekleur: "bg-blue-600",
                 },
               ].map((product, i) => (
-                <a
+                <div
                   key={i}
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl p-5 hover:border-primary hover:shadow-md transition-all group"
+                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl overflow-hidden hover:border-primary hover:shadow-md transition-all"
                 >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-3xl">{product.icon}</span>
-                    <span className={`text-xs font-bold text-white ${product.badgekleur} px-2 py-0.5 rounded-full`}>{product.badge}</span>
+                  <div className="bg-white h-56 flex items-center justify-center p-4">
+                    <img
+                      src={product.img}
+                      alt={product.alt}
+                      className="max-h-full max-w-full object-contain"
+                    />
                   </div>
-                  <p className="text-senior-base font-bold text-gray-800 mb-2 group-hover:text-primary">{product.naam}</p>
-                  <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
-                  <p className="text-senior-sm text-primary font-bold mt-3">Bekijk op Bol.com →</p>
-                </a>
+                  <div className="flex flex-col flex-1 p-5">
+                    <span className={`text-xs font-bold text-white ${product.badgekleur} px-2 py-0.5 rounded-full self-start mb-3`}>{product.badge}</span>
+                    <p className="text-senior-base font-bold text-gray-800 mb-2">{product.naam}</p>
+                    <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
+                    <a
+                      href={product.href}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-3 rounded-xl text-senior-sm font-bold hover:bg-primary-dark transition-colors"
+                    >
+                      Bekijk op Bol.com →
+                    </a>
+                  </div>
+                </div>
               ))}
             </div>
           </section>
