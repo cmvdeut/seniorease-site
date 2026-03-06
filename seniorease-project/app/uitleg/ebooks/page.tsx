@@ -230,25 +230,16 @@ export default function EbooksPage() {
             <p className="text-senior-sm text-gray-500 mb-6">
               Onderstaande producten zijn te bestellen via Bol.com. Als u via deze links koopt, ontvangen wij een kleine vergoeding — voor u kost het niets extra.
             </p>
-            <div className="grid sm:grid-cols-2 gap-5">
+            <div className="grid sm:grid-cols-1 max-w-sm gap-5">
               {[
                 {
-                  img: "/images/products/kobo-clara.jpg",
+                  img: "/images/products/kobo.jpg",
                   alt: "Kobo Clara BW e-reader 6 inch zwart",
                   naam: "Kobo Clara (aanbevolen)",
                   beschrijving: "De populairste e-reader voor Nederlandstalige boeken. Werkt direct samen met de bibliotheek-app Libby. Lettergrootte naar wens.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fkobo-clara-bw-e-reader-6-inch-16gb-luisterboeken-zwart%2F9300000173830676%2F&name=Kobo%20Clara%20BW%20-%20E-reader%206%20inch%20-%2016GB%20-%20Luisterboeken%20-%20Zwart&subid=kobo%20clara",
                   badge: "Beste keuze voor NL",
                   badgekleur: "bg-green-600",
-                },
-                {
-                  img: "/images/products/kobo-libra.jpg",
-                  alt: "Kobo Libra e-reader groter scherm",
-                  naam: "Kobo Libra (groter scherm)",
-                  beschrijving: "Iets groter dan de Clara, met handige knoppen aan de zijkant. Fijn als u liever niet op het scherm tikt.",
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=kobo+libra",
-                  badge: "Groter scherm",
-                  badgekleur: "bg-blue-600",
                 },
               ].map((product, i) => (
                 <div
