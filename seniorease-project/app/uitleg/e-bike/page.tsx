@@ -308,7 +308,7 @@ export default function EBikePage() {
                   icon: "🎧",
                   naam: "Botgeleidingshoofdtelefoon",
                   beschrijving: "Hoor de routeaanwijzingen én het verkeer tegelijk. Veiliger dan gewone oordopjes.",
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=botgeleiding+hoofdtelefoon+fiets",
+                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DBotgeleidingshoofdtelefoon&name=Bol&subid=hoofdtelefoon",
                 },
               ].map((product, i) => (
                 <a

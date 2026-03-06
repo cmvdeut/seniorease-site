@@ -230,7 +230,7 @@ export default function HoofdtelefoonPage() {
                   beschrijving: "Geen oordopjes — rust op de jukbeenderen. U hoort uw omgeving én de muziek. Ideaal tijdens het wandelen of fietsen, ook met gehoorapparaat.",
                   icon: "🦴",
                   kleur: "border-amber-300 bg-amber-50",
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=botgeleiding+hoofdtelefoon",
+                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DBotgeleidingshoofdtelefoon&name=Bol&subid=hoofdtelefoon",
                   badge: "Met gehoorapparaat",
                   badgekleur: "bg-amber-600",
                 },
