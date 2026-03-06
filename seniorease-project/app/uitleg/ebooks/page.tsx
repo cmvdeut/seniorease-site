@@ -219,6 +219,56 @@ export default function EbooksPage() {
             </div>
           </section>
 
+          {/* Aanbevolen producten */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+              📖 Wilt u een echte e-reader?
+            </h2>
+            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+              U kunt e-books lezen op uw gewone telefoon, maar een e-reader is nóg prettiger: mat scherm, geen oogvermoeidheid, en u kunt het zelfs in de zon gebruiken.
+            </p>
+            <p className="text-senior-sm text-gray-500 mb-6">
+              Onderstaande producten zijn te bestellen via Bol.com. Als u via deze links koopt, ontvangen wij een kleine vergoeding — voor u kost het niets extra.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              {[
+                {
+                  icon: "📗",
+                  naam: "Kobo Clara (aanbevolen)",
+                  beschrijving: "De populairste e-reader voor Nederlandstalige boeken. Werkt direct samen met de bibliotheek-app Libby. Lettergrootte naar wens.",
+                  // Vervang de href hieronder door uw Bol.com affiliate-link
+                  href: "https://www.bol.com/nl/nl/s/?searchtext=kobo+clara",
+                  badge: "Beste keuze voor NL",
+                  badgekleur: "bg-green-600",
+                },
+                {
+                  icon: "📘",
+                  naam: "Kobo Libra (groter scherm)",
+                  beschrijving: "Iets groter dan de Clara, met handige knoppen aan de zijkant. Fijn als u liever niet op het scherm tikt.",
+                  href: "https://www.bol.com/nl/nl/s/?searchtext=kobo+libra",
+                  badge: "Groter scherm",
+                  badgekleur: "bg-blue-600",
+                },
+              ].map((product, i) => (
+                <a
+                  key={i}
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl p-5 hover:border-primary hover:shadow-md transition-all group"
+                >
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl">{product.icon}</span>
+                    <span className={`text-xs font-bold text-white ${product.badgekleur} px-2 py-0.5 rounded-full`}>{product.badge}</span>
+                  </div>
+                  <p className="text-senior-base font-bold text-gray-800 mb-2 group-hover:text-primary">{product.naam}</p>
+                  <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
+                  <p className="text-senior-sm text-primary font-bold mt-3">Bekijk op Bol.com →</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
         </div>
       </div>
     </main>

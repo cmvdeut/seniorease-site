@@ -282,6 +282,52 @@ export default function EBikePage() {
             </div>
           </section>
 
+          {/* Aanbevolen producten */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+              🛒 Handig voor onderweg
+            </h2>
+            <p className="text-senior-sm text-gray-500 mb-6">
+              Onderstaande producten zijn te bestellen via Bol.com. Als u via deze links koopt, ontvangen wij een kleine vergoeding — voor u kost het niets extra.
+            </p>
+            <div className="grid sm:grid-cols-3 gap-5">
+              {[
+                {
+                  icon: "📱",
+                  naam: "Telefoonhouder voor op het stuur",
+                  beschrijving: "Houd uw telefoon in het zicht. Past op alle stuurdiameters en is bestand tegen regen.",
+                  // Vervang de href hieronder door uw Bol.com affiliate-link
+                  href: "https://www.bol.com/nl/nl/s/?searchtext=telefoonhouder+fiets+stuur",
+                },
+                {
+                  icon: "🔋",
+                  naam: "Powerbank voor lange tochten",
+                  beschrijving: "Laad uw telefoon op onderweg. Kies een model van 10.000 mAh of meer voor een volle dag fietsen.",
+                  href: "https://www.bol.com/nl/nl/s/?searchtext=powerbank+10000mah",
+                },
+                {
+                  icon: "🎧",
+                  naam: "Botgeleidingshoofdtelefoon",
+                  beschrijving: "Hoor de routeaanwijzingen én het verkeer tegelijk. Veiliger dan gewone oordopjes.",
+                  href: "https://www.bol.com/nl/nl/s/?searchtext=botgeleiding+hoofdtelefoon+fiets",
+                },
+              ].map((product, i) => (
+                <a
+                  key={i}
+                  href={product.href}
+                  target="_blank"
+                  rel="noopener noreferrer sponsored"
+                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl p-5 hover:border-primary hover:shadow-md transition-all group"
+                >
+                  <div className="text-3xl mb-3">{product.icon}</div>
+                  <p className="text-senior-base font-bold text-gray-800 mb-2 group-hover:text-primary">{product.naam}</p>
+                  <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
+                  <p className="text-senior-sm text-primary font-bold mt-3">Bekijk op Bol.com →</p>
+                </a>
+              ))}
+            </div>
+          </section>
+
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
