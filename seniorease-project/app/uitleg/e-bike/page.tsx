@@ -306,36 +306,51 @@ export default function EBikePage() {
             <div className="grid sm:grid-cols-3 gap-5">
               {[
                 {
-                  icon: "📱",
+                  img: "/images/products/telefoonhouder.jpg",
+                  alt: "Telefoonhouder fiets stuur waterdicht",
                   naam: "Telefoonhouder voor op het stuur",
                   beschrijving: "Houd uw telefoon in het zicht. Past op alle stuurdiameters en is bestand tegen regen.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Ftelefoonhouder-fiets-gsm-houder-fiets-telefoonhouder-fiets-waterdicht-360-rotatie-zwart%2F9300000120328379%2F&name=Telefoonhouder%20Fiets%20-%20GSM%20Houder%20Fiets%20-%20Telefoonhouder%20Fiets%20Waterdicht%20-%20360%C2%B0...&subid=Telefoonhouder%20fiets",
                 },
                 {
-                  icon: "🔋",
+                  img: "/images/products/powerbank.jpg",
+                  alt: "MOJOGEAR MINI GO Powerbank 10.000 mAh",
                   naam: "Powerbank voor lange tochten",
                   beschrijving: "Laad uw telefoon op onderweg. Kies een model van 10.000 mAh of meer voor een volle dag fietsen.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fmojogear-mini-go-powerbank-10-000-mah-met-ingebouwde-kabels-4-apparaten-tegelijk-opladen-led-display-voor-batterijstatus-zwart%2F9300000257617192%2F&name=MOJOGEAR%20MINI%20GO%20Powerbank%20-%2010.000%20mAh%20-%20Met%20Ingebouwde%20Kabels%20(USB-C%20%26%20Lightning)%20-...&subid=Powerbank",
                 },
                 {
-                  icon: "🎧",
+                  img: "/images/products/botgeleiding.jpg",
+                  alt: "Botgeleiding hoofdtelefoon voor fietsers",
                   naam: "Botgeleidingshoofdtelefoon",
                   beschrijving: "Hoor de routeaanwijzingen én het verkeer tegelijk. Veiliger dan gewone oordopjes.",
                   href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DBotgeleidingshoofdtelefoon&name=Bol&subid=hoofdtelefoon",
                 },
               ].map((product, i) => (
-                <a
+                <div
                   key={i}
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl p-5 hover:border-primary hover:shadow-md transition-all group"
+                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl overflow-hidden hover:border-primary hover:shadow-md transition-all"
                 >
-                  <div className="text-3xl mb-3">{product.icon}</div>
-                  <p className="text-senior-base font-bold text-gray-800 mb-2 group-hover:text-primary">{product.naam}</p>
-                  <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
-                  <p className="text-senior-sm text-primary font-bold mt-3">Bekijk op Bol.com →</p>
-                </a>
+                  <div className="bg-white h-48 flex items-center justify-center p-3">
+                    <img
+                      src={product.img}
+                      alt={product.alt}
+                      className="max-h-full max-w-full object-contain"
+                    />
+                  </div>
+                  <div className="flex flex-col flex-1 p-5">
+                    <p className="text-senior-base font-bold text-gray-800 mb-2">{product.naam}</p>
+                    <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
+                    <a
+                      href={product.href}
+                      target="_blank"
+                      rel="noopener noreferrer sponsored"
+                      className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-3 rounded-xl text-senior-sm font-bold hover:bg-primary-dark transition-colors"
+                    >
+                      Bekijk op Bol.com →
+                    </a>
+                  </div>
+                </div>
               ))}
             </div>
           </section>
