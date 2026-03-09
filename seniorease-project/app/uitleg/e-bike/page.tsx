@@ -295,6 +295,26 @@ export default function EBikePage() {
             </div>
           </section>
 
+          {/* Zoektip */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+              🔍 Een product opzoeken?
+            </h2>
+            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+              Wilt u een telefoonhouder, powerbank of hoofdtelefoon kopen? Zoek dan zelf even op via Google of ChatGPT — dan vindt u actuele prijzen en beoordelingen.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-blue-800 mb-2">🌐 Via Google</p>
+                <p className="text-senior-base text-gray-700">Typ in Google bijvoorbeeld: <strong>telefoonhouder fiets waterdicht</strong> — dan ziet u meteen webshops met prijzen.</p>
+              </div>
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-green-800 mb-2">🤖 Via ChatGPT</p>
+                <p className="text-senior-base text-gray-700">Vraag aan ChatGPT: <strong>&ldquo;Welke powerbank is goed voor op de fiets?&rdquo;</strong> — dan krijgt u uitleg én aanbevelingen.</p>
+              </div>
+            </div>
+          </section>
+
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">

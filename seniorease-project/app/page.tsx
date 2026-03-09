@@ -197,6 +197,13 @@ export default function Home() {
                 >
                   Google Maps
                 </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/uitleg/wifi"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  WiFi instellen
+                </Link>
               </div>
 
               {/* Groep: Veiligheid */}

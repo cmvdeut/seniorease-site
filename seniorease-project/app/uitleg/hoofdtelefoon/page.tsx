@@ -68,7 +68,7 @@ export default function HoofdtelefoonPage() {
               {[
                 {
                   icon: "🎧",
-                  naam: "Over-ear hoofdtelefoon (op de oren)",
+                  naam: "Over-ear hoofdtelefoon (over de oorschelp)",
                   beschrijving: "Grote oorkussens die om uw oren gaan. Comfortabel voor lang gebruik, goed geluid en prettig als u gehoorapparaten draagt.",
                   kleur: "bg-blue-50 border-blue-300",
                   badge: "Meest comfortabel",
@@ -172,8 +172,8 @@ export default function HoofdtelefoonPage() {
               {[
                 {
                   icon: "🔋",
-                  titel: "Opladen via USB",
-                  uitleg: "Vrijwel alle draadloze hoofdtelefoons worden opgeladen via een USB-kabeltje (zoals uw telefoon). Een volle accu gaat 20 tot 30 uur mee.",
+                  titel: "Opladen en accuduur",
+                  uitleg: "Hoe lang de accu meegaat verschilt per model. Raadpleeg de handleiding van uw hoofdtelefoon voor de juiste informatie.",
                 },
                 {
                   icon: "🔊",
@@ -204,6 +204,26 @@ export default function HoofdtelefoonPage() {
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* Zoektip */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+              🔍 Een hoofdtelefoon kopen?
+            </h2>
+            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+              Wilt u een draadloze hoofdtelefoon of botgeleiding kopen? Zoek dan zelf even op via Google of ChatGPT — dan vindt u actuele prijzen en beoordelingen.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-blue-800 mb-2">🌐 Via Google</p>
+                <p className="text-senior-base text-gray-700">Typ in Google bijvoorbeeld: <strong>draadloze hoofdtelefoon senioren</strong> — dan ziet u meteen webshops met prijzen.</p>
+              </div>
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-green-800 mb-2">🤖 Via ChatGPT</p>
+                <p className="text-senior-base text-gray-700">Vraag aan ChatGPT: <strong>&ldquo;Welke draadloze hoofdtelefoon is geschikt voor senioren?&rdquo;</strong> — dan krijgt u uitleg én aanbevelingen.</p>
+              </div>
             </div>
           </section>
 
@@ -254,7 +274,7 @@ export default function HoofdtelefoonPage() {
                 "Eenmalig verbinden via Instellingen → Bluetooth → naam kiezen",
                 "Daarna verbindt het elke keer vanzelf",
                 "Draagt u een gehoorapparaat? Kies een botgeleidingshoofdtelefoon",
-                "Opladen via USB — accu gaat 20-30 uur mee",
+                "Accuduur verschilt per model — raadpleeg de handleiding",
               ].map((punt, i) => (
                 <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
@@ -264,7 +284,7 @@ export default function HoofdtelefoonPage() {
             </div>
             <div className="flex flex-wrap gap-4">
               <Link href="/uitleg/muziek-radio" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
-                ← Muziek &amp; radio
+                ← Spotify &amp; DAB
               </Link>
               <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
                 ← Terug naar home

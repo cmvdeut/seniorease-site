@@ -129,7 +129,7 @@ export default function EbooksPage() {
               <div className="bg-orange-50 border-2 border-orange-200 rounded-xl p-6">
                 <h3 className="text-senior-lg font-bold text-orange-800 mb-3">📕 Kobo (aanbevolen voor Nederland)</h3>
                 <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-                  Kobo is de populairste e-bookwinkel in Nederland, ook via bol.com. Boeken in het Nederlands zijn goed vertegenwoordigd.
+                  Kobo is de populairste e-bookwinkel in Nederland. Boeken in het Nederlands zijn goed vertegenwoordigd.
                 </p>
                 <ul className="space-y-2 text-senior-base text-gray-700">
                   <li className="flex gap-2"><span className="text-green-600">✓</span> Grote keuze Nederlandstalige boeken</li>
@@ -216,6 +216,26 @@ export default function EbooksPage() {
               <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
                 ← Terug naar home
               </Link>
+            </div>
+          </section>
+
+          {/* Zoektip */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+              🔍 Een e-reader kopen?
+            </h2>
+            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+              Wilt u een Kobo of andere e-reader kopen? Zoek dan zelf even op via Google of ChatGPT — dan vindt u actuele prijzen en beoordelingen.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-blue-800 mb-2">🌐 Via Google</p>
+                <p className="text-senior-base text-gray-700">Typ in Google bijvoorbeeld: <strong>Kobo Clara kopen</strong> — dan ziet u meteen webshops met prijzen.</p>
+              </div>
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-green-800 mb-2">🤖 Via ChatGPT</p>
+                <p className="text-senior-base text-gray-700">Vraag aan ChatGPT: <strong>&ldquo;Welke e-reader is geschikt voor een beginnende gebruiker?&rdquo;</strong> — dan krijgt u uitleg én aanbevelingen.</p>
+              </div>
             </div>
           </section>
 
