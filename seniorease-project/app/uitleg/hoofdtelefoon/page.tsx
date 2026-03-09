@@ -207,58 +207,6 @@ export default function HoofdtelefoonPage() {
             </div>
           </section>
 
-          {/* Producttips via bol.com */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
-              🎧 Welke hoofdtelefoon past bij u?
-            </h2>
-            <p className="text-senior-base text-gray-500 mb-8">Handige opties via bol.com</p>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {[
-                {
-                  naam: "Draadloze over-ear hoofdtelefoon",
-                  beschrijving: "Grote zachte oorkussens, lang accuduur, prettig voor thuisgebruik. Makkelijk te bedienen met grote knoppen.",
-                  icon: "🎧",
-                  kleur: "border-blue-300 bg-blue-50",
-                  href: "https://www.bol.com/nl/nl/s/?searchtext=draadloze+hoofdtelefoon+senioren",
-                  badge: "Comfortabel thuis",
-                  badgekleur: "bg-blue-600",
-                },
-                {
-                  naam: "Botgeleiding hoofdtelefoon",
-                  beschrijving: "Geen oordopjes — rust op de jukbeenderen. U hoort uw omgeving én de muziek. Ideaal tijdens het wandelen of fietsen, ook met gehoorapparaat.",
-                  icon: "🦴",
-                  kleur: "border-amber-300 bg-amber-50",
-                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fs%2F%3Fsearchtext%3DBotgeleidingshoofdtelefoon&name=Bol&subid=hoofdtelefoon",
-                  badge: "Met gehoorapparaat",
-                  badgekleur: "bg-amber-600",
-                },
-              ].map((product, i) => (
-                <a
-                  key={i}
-                  href={product.href}
-                  target="_blank"
-                  rel="noopener noreferrer sponsored"
-                  className={`block rounded-xl border-2 ${product.kleur} p-6 hover:shadow-md transition-shadow`}
-                >
-                  <div className="flex items-center gap-3 mb-3">
-                    <span className="text-4xl">{product.icon}</span>
-                    <div>
-                      <span className={`text-xs font-bold text-white ${product.badgekleur} px-2 py-0.5 rounded-full`}>{product.badge}</span>
-                    </div>
-                  </div>
-                  <h3 className="text-senior-base font-bold text-gray-800 mb-2">{product.naam}</h3>
-                  <p className="text-senior-sm text-gray-600 leading-relaxed mb-4">{product.beschrijving}</p>
-                  <span className="inline-flex items-center gap-2 bg-primary text-white px-4 py-2 rounded-lg text-senior-sm font-bold">
-                    Bekijk op bol.com →
-                  </span>
-                </a>
-              ))}
-            </div>
-            <p className="text-xs text-gray-400 mt-4">* Dit zijn affiliate-links. Als u via deze link koopt, ontvangen wij een kleine vergoeding — zonder extra kosten voor u.</p>
-          </section>
-
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">

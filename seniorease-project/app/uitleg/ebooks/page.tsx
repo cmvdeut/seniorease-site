@@ -219,58 +219,6 @@ export default function EbooksPage() {
             </div>
           </section>
 
-          {/* Aanbevolen producten */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
-              📖 Wilt u een echte e-reader?
-            </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-              U kunt e-books lezen op uw gewone telefoon, maar een e-reader is nóg prettiger: mat scherm, geen oogvermoeidheid, en u kunt het zelfs in de zon gebruiken.
-            </p>
-            <p className="text-senior-sm text-gray-500 mb-6">
-              Onderstaande producten zijn te bestellen via Bol.com. Als u via deze links koopt, ontvangen wij een kleine vergoeding — voor u kost het niets extra.
-            </p>
-            <div className="grid sm:grid-cols-1 max-w-sm gap-5">
-              {[
-                {
-                  img: "/images/products/kobo.jpg",
-                  alt: "Kobo Clara BW e-reader 6 inch zwart",
-                  naam: "Kobo Clara (aanbevolen)",
-                  beschrijving: "De populairste e-reader voor Nederlandstalige boeken. Werkt direct samen met de bibliotheek-app Libby. Lettergrootte naar wens.",
-                  href: "https://partner.bol.com/click/click?p=2&t=url&s=1508536&f=TXL&url=https%3A%2F%2Fwww.bol.com%2Fnl%2Fnl%2Fp%2Fkobo-clara-bw-e-reader-6-inch-16gb-luisterboeken-zwart%2F9300000173830676%2F&name=Kobo%20Clara%20BW%20-%20E-reader%206%20inch%20-%2016GB%20-%20Luisterboeken%20-%20Zwart&subid=kobo%20clara",
-                  badge: "Beste keuze voor NL",
-                  badgekleur: "bg-green-600",
-                },
-              ].map((product, i) => (
-                <div
-                  key={i}
-                  className="flex flex-col bg-neutral-cream border-2 border-primary/30 rounded-xl overflow-hidden hover:border-primary hover:shadow-md transition-all"
-                >
-                  <div className="bg-white h-56 flex items-center justify-center p-4">
-                    <img
-                      src={product.img}
-                      alt={product.alt}
-                      className="max-h-full max-w-full object-contain"
-                    />
-                  </div>
-                  <div className="flex flex-col flex-1 p-5">
-                    <span className={`text-xs font-bold text-white ${product.badgekleur} px-2 py-0.5 rounded-full self-start mb-3`}>{product.badge}</span>
-                    <p className="text-senior-base font-bold text-gray-800 mb-2">{product.naam}</p>
-                    <p className="text-senior-sm text-gray-600 leading-relaxed flex-1">{product.beschrijving}</p>
-                    <a
-                      href={product.href}
-                      target="_blank"
-                      rel="noopener noreferrer sponsored"
-                      className="mt-4 inline-flex items-center justify-center gap-2 bg-primary text-white px-4 py-3 rounded-xl text-senior-sm font-bold hover:bg-primary-dark transition-colors"
-                    >
-                      Bekijk op Bol.com →
-                    </a>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
         </div>
       </div>
     </main>
