@@ -623,6 +623,33 @@ function ArtikelContent({ slug }: { slug: string }) {
           </ul>
         </>
       );
+    case 'e-bike-fietsapps':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Wilt u routes plannen, uw rit bijhouden of handige fiets- of e-bike apps gebruiken? Er zijn apps om te navigeren, afstanden te meten of uw e-bike te koppelen. Hier vindt u een overzicht en link naar de uitgebreide uitleg.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">E-bike en fietsapps</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Met een fiets- of e-bike app kunt u bijvoorbeeld een route uitstippelen, zien hoe ver u heeft gefietst of instellingen van uw e-bike bekijken. Veel apps werken op uw telefoon; u plaatst die in een houder op het stuur of luistert naar gesproken aanwijzingen.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Uitgebreide uitleg</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Voor stap-voor-stap uitleg over e-bike apps, routes plannen en handige tips vindt u hier ons volledige artikel:
+          </p>
+          <p className="mb-6">
+            <Link href="/uitleg/e-bike" className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors">
+              E-bike en fietsapps – volledige uitleg
+            </Link>
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/e-bike" className="font-semibold text-primary hover:underline">E-bike en fietsapps (uitgebreid)</Link></li>
+            <li><Link href="/hobbys" className="font-semibold text-primary hover:underline">Hobby&apos;s overzicht</Link></li>
+            <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
+          </ul>
+        </>
+      );
     default:
       return (
         <p className="text-senior-base text-gray-700 leading-relaxed">

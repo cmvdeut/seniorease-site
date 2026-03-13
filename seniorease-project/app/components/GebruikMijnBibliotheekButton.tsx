@@ -25,8 +25,8 @@ export default function GebruikMijnBibliotheekButton({
     
     setIsMobile(isMobileDevice);
     
-    // Op mobiel: ga naar uitlegpagina, op desktop: direct naar bibliotheek
-    setHref(isMobileDevice ? '/gebruik-mijn-bibliotheek' : '/bibliotheek');
+    // Op mobiel: ga naar uitlegpagina, op desktop: direct naar bibliotheek + scroll naar handmatig toevoegen
+    setHref(isMobileDevice ? '/gebruik-mijn-bibliotheek' : '/bibliotheek#handmatig-toevoegen');
   }, []);
 
   // Base classes

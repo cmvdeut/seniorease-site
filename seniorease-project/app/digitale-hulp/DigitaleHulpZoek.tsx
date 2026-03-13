@@ -18,7 +18,10 @@ function matches(artikel: Artikel, query: string): boolean {
   const q = normalize(query);
   const title = normalize(artikel.title);
   const desc = normalize(artikel.description);
-  return title.includes(q) || desc.includes(q);
+  const inTitleOrDesc = title.includes(q) || desc.includes(q);
+  if (inTitleOrDesc) return true;
+  const keywords = artikel.keywords ?? [];
+  return keywords.some((kw) => normalize(kw).includes(q) || q.includes(normalize(kw)));
 }
 
 interface DigitaleHulpZoekProps {
@@ -48,7 +51,7 @@ export function DigitaleHulpZoek({ artikelen, initialQuery = '' }: DigitaleHulpZ
         aria-describedby="zoek-hint"
       />
       <p id="zoek-hint" className="text-senior-sm text-gray-600 -mt-6 mb-6">
-        Typ bijvoorbeeld: WhatsApp, videobellen, foto&apos;s, wifi, e-mail, wachtwoord, Bluetooth, cloud, screenshot
+        Zoek op trefwoorden, bijvoorbeeld: cloud, wifi, fiets, WhatsApp, e-mail, wachtwoord, screenshot
       </p>
 
       <h2 className="text-senior-xl font-bold text-primary mb-6">
@@ -61,7 +64,7 @@ export function DigitaleHulpZoek({ artikelen, initialQuery = '' }: DigitaleHulpZ
             Geen artikelen gevonden voor &quot;{zoek}&quot;.
           </p>
           <p className="text-senior-sm text-gray-600">
-            Probeer een ander woord, bijvoorbeeld: WhatsApp, foto&apos;s, wifi of wachtwoord.
+            Probeer een trefwoord zoals: cloud, wifi, fiets, WhatsApp, e-mail of wachtwoord.
           </p>
         </div>
       ) : (

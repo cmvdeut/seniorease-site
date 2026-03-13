@@ -2,6 +2,8 @@ export interface Artikel {
   slug: string;
   title: string;
   description: string;
+  /** Optionele zoektrefwoorden (bijv. cloud, wifi, fiets) voor betere vindbaarheid */
+  keywords?: string[];
 }
 
 export const artikelen: Artikel[] = [
@@ -49,6 +51,7 @@ export const artikelen: Artikel[] = [
     slug: "wifi-werkt-niet-oplossen",
     title: "Wifi werkt niet – oplossen",
     description: "Internet werkt niet of wifi valt uit? Stap voor stap wat u kunt controleren en oplossen.",
+    keywords: ["wifi", "internet", "netwerk", "verbinding"],
   },
   {
     slug: "apps-installeren",
@@ -84,11 +87,19 @@ export const artikelen: Artikel[] = [
     slug: "wat-is-de-cloud",
     title: "Wat is de cloud?",
     description: "Wat betekent 'in de cloud' en waarom hoor u het over foto's en bestanden? Eenvoudige uitleg voor senioren.",
+    keywords: ["cloud", "opslag", "back-up", "online opslaan"],
   },
   {
     slug: "screenshot-en-schermopname-telefoon",
     title: "Screenshot en schermopname maken op telefoon",
     description: "Hoe maakt u een foto van uw scherm (screenshot) of een filmpje (schermopname)? Stap voor stap voor Android en iPhone.",
+    keywords: ["screenshot", "schermopname", "schermfoto"],
+  },
+  {
+    slug: "e-bike-fietsapps",
+    title: "E-bike en fietsapps",
+    description: "Hoe gebruikt u apps voor uw e-bike of fiets? Routes plannen en handige fietsapps. Stap voor stap.",
+    keywords: ["fiets", "e-bike", "fietsen", "route", "fietsapp"],
   },
 ];
 

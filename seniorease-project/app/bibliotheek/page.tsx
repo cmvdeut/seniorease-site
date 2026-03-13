@@ -95,6 +95,26 @@ export default function BibliotheekPage() {
     setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
   }, []);
 
+  // Bij openen met #handmatig-toevoegen: form openen (bijv. na klik "Gebruik Mijn Bibliotheek")
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    if (window.location.hash !== '#handmatig-toevoegen') return;
+    setShowAddForm(true);
+    setEditingItem(null);
+    setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
+  }, []);
+
+  // Scroll naar "Item handmatig toevoegen" zodra het formulier open is (na navigatie met hash)
+  useEffect(() => {
+    if (typeof window === 'undefined' || window.location.hash !== '#handmatig-toevoegen') return;
+    if (!showAddForm) return;
+    const scrollTarget = document.getElementById('handmatig-toevoegen');
+    if (scrollTarget) {
+      const t = setTimeout(() => scrollTarget.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
+      return () => clearTimeout(t);
+    }
+  }, [showAddForm]);
+
   // PWA install prompt
   useEffect(() => {
     if (typeof window === 'undefined') return;
@@ -1292,24 +1312,32 @@ Voor vragen: bezoek seniorease.nl
     setShowSearchResults(true);
 
     try {
-      // Bouw zoekquery op
+      // Bouw zoekquery op – auteur: voornaam en/of achternaam (Google Books zoekt op volledige string)
+      const titlePart = formData.title.trim();
+      const authorPart = formData.author.trim();
       let query = '';
-      if (formData.title.trim() && formData.author.trim()) {
-        query = `intitle:${encodeURIComponent(formData.title.trim())}+inauthor:${encodeURIComponent(formData.author.trim())}`;
-      } else if (formData.title.trim()) {
-        query = `intitle:${encodeURIComponent(formData.title.trim())}`;
-      } else if (formData.author.trim()) {
-        query = `inauthor:${encodeURIComponent(formData.author.trim())}`;
+      if (titlePart && authorPart) {
+        query = `intitle:${encodeURIComponent(titlePart)}+inauthor:${encodeURIComponent(authorPart)}`;
+      } else if (titlePart) {
+        query = `intitle:${encodeURIComponent(titlePart)}`;
+      } else if (authorPart) {
+        query = `inauthor:${encodeURIComponent(authorPart)}`;
       }
 
-      console.log('Zoeken naar boeken met query:', query);
       const response = await fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}&maxResults=10&langRestrict=nl`);
+      const data = await response.json().catch(() => ({}));
 
       if (!response.ok) {
-        throw new Error('Zoeken mislukt');
+        setLoadError(t.errors?.searchFailed ?? 'Zoeken mislukt. Probeer het later opnieuw of vul handmatig in.');
+        setShowSearchResults(false);
+        return;
       }
 
-      const data = await response.json();
+      if (data.error) {
+        setLoadError(t.errors?.searchFailed ?? 'Zoeken mislukt. Probeer andere zoektermen of vul handmatig in.');
+        setShowSearchResults(false);
+        return;
+      }
 
       if (data.items && data.items.length > 0) {
         const results = data.items.map((item: any) => {
@@ -1352,13 +1380,17 @@ Voor vragen: bezoek seniorease.nl
 
   // Music lookup functies verwijderd - alleen boeken worden ondersteund
 
-  // Filter items
+  // Filter items – zoeken op titel, auteur (voornaam en/of achternaam) of barcode
   const filteredItems = items.filter(item => {
-    const matchesSearch = item.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         item.author.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         item.barcode.includes(searchQuery);
-    // Geen filter meer nodig - alleen boeken
-    return matchesSearch;
+    if (!searchQuery.trim()) return true;
+    const q = searchQuery.toLowerCase().trim();
+    const titleAuthorBarcode = `${item.title} ${item.author} ${item.barcode}`.toLowerCase();
+    // Hele zoekterm in één veld
+    if (item.title.toLowerCase().includes(q) || item.author.toLowerCase().includes(q) || item.barcode.includes(searchQuery)) return true;
+    // Elk woord apart (voornaam + achternaam): alle woorden moeten ergens in titel/auteur/barcode voorkomen
+    const words = q.split(/\s+/).filter(Boolean);
+    if (words.length > 1 && words.every(word => titleAuthorBarcode.includes(word))) return true;
+    return false;
   });
 
   // Form state
@@ -1563,17 +1595,22 @@ Voor vragen: bezoek seniorease.nl
                   </div>
                   {/* Actie knoppen */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
-                    <a
-                      href={language === 'en' ? '/en/bibliotheek' : '/bibliotheek'}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        window.scrollTo({ top: 0, behavior: 'smooth' });
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setShowAddForm(true);
+                        setEditingItem(null);
+                        setFormData({ type: 'book', title: '', author: '', barcode: '', notes: '' });
+                        const el = document.getElementById('handmatig-toevoegen');
+                        if (el) {
+                          requestAnimationFrame(() => el.scrollIntoView({ behavior: 'smooth', block: 'start' }));
+                        }
                       }}
                       className="inline-block bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold text-center
                                hover:bg-primary-dark transition-all cursor-pointer"
                     >
                       {t.library.useLibraryButton}
-                    </a>
+                    </button>
                     <Link 
                       href="/download"
                       className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
@@ -1738,21 +1775,23 @@ Voor vragen: bezoek seniorease.nl
         {/* Main Content */}
         <main className="container mx-auto px-6 py-12">
           <div className="max-w-6xl mx-auto space-y-8">
-            {/* Search and Filter */}
+            {/* Zoeken in bestaande boekelijst */}
             <div className="bg-white rounded-xl shadow-lg p-6">
               <div className="grid md:grid-cols-2 gap-4">
                 <div>
-                    <label className="block text-senior-base font-bold text-gray-700 mb-2">
-                      {t.common.search}:
-                    </label>
+                  <label htmlFor="bibliotheek-zoek-lijst" className="block text-senior-base font-bold text-gray-700 mb-2">
+                    {t.common.search}:
+                  </label>
                   <div className="relative">
                     <input
-                      type="text"
+                      id="bibliotheek-zoek-lijst"
+                      type="search"
                       value={searchQuery}
                       onChange={(e) => setSearchQuery(e.target.value)}
                       placeholder={language === 'nl' ? 'Zoek op titel, auteur of barcode...' : 'Search by title, author or barcode...'}
                       className="w-full px-4 py-3 pr-12 border-2 border-gray-300 rounded-lg text-senior-base
                                focus:border-primary focus:outline-none"
+                      aria-describedby="zoek-lijst-hint"
                     />
                     {searchQuery && (
                       <button
@@ -1767,6 +1806,11 @@ Voor vragen: bezoek seniorease.nl
                       </button>
                     )}
                   </div>
+                  <p id="zoek-lijst-hint" className="text-senior-sm text-gray-600 mt-2">
+                    {language === 'nl'
+                      ? 'Doorzoek uw bestaande boekelijst. Typ (een deel van) titel, auteur of barcode.'
+                      : 'Search your existing book list by title, author or barcode.'}
+                  </p>
                 </div>
                 <div>
                   {/* Filter verwijderd - alleen boeken beschikbaar */}
@@ -1774,7 +1818,8 @@ Voor vragen: bezoek seniorease.nl
               </div>
             </div>
 
-
+            {/* Item handmatig toevoegen – scroll-doel voor #handmatig-toevoegen */}
+            <section id="handmatig-toevoegen" className="scroll-mt-4">
             {/* Action Buttons - EXTRA GROOT VOOR SENIOREN */}
             <div className="flex flex-col sm:flex-row gap-4">
               <button
@@ -2086,6 +2131,8 @@ Voor vragen: bezoek seniorease.nl
                 </div>
               </div>
             )}
+
+            </section>
 
             {/* Scanner Overlay */}
             {showScanner && (

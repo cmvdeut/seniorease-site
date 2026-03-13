@@ -84,10 +84,10 @@ export default function Home() {
             {/* Hero: duidelijke hoofdboodschap */}
             <div className="flex items-center justify-between gap-6 flex-wrap py-6">
               <div className="flex items-center gap-4">
-                <Image 
-                  src="/heart-logo.png" 
-                  alt="SeniorEase logo - Digitale hulp voor senioren" 
-                  width={100} 
+                <Image
+                  src="/heart-logo.png"
+                  alt="SeniorEase logo - Digitale hulp voor senioren"
+                  width={100}
                   height={100}
                   className="w-32 h-32"
                   priority
@@ -155,11 +155,11 @@ export default function Home() {
                 aria-describedby="home-zoek-hint"
               />
               <p id="home-zoek-hint" className="text-senior-sm text-gray-600 mt-2">
-                Bijv. WhatsApp, foto&apos;s, wifi, e-mail, Bluetooth
+                Zoek op trefwoorden, bijv. cloud, wifi, fiets, WhatsApp, e-mail, wachtwoord
               </p>
             </form>
 
-            {/* Duidelijke categorieblokken – vijf klikbare kaarten */}
+            {/* Categorieën digitale hulp – vijf keuzes */}
             <div className="py-6 border-t-2 border-neutral-stone">
               <h2 className="text-senior-base font-bold text-gray-700 mb-4 sr-only">
                 Kies een onderwerp
@@ -202,6 +202,48 @@ export default function Home() {
               </Link>
             </div>
             </div>
+
+            {/* Ontdek SeniorEase – wat kan ik op de site doen (digitale hulp staat hierboven al in de 5 categorieknoppen) */}
+            <section className="py-8 border-t-2 border-neutral-stone" aria-labelledby="ontdek-seniorease-titel">
+              <h2 id="ontdek-seniorease-titel" className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+                Ontdek SeniorEase
+              </h2>
+              <p className="text-senior-base text-gray-700 mb-6">
+                Praktische hulp, inspiratie en handige tools voor senioren.
+              </p>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <Link
+                  href="/hobbys"
+                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
+                >
+                  <span className="text-3xl mb-3" aria-hidden>🎨</span>
+                  <h3 className="text-senior-lg font-bold text-primary mb-2">Hobby&apos;s</h3>
+                  <p className="text-senior-sm text-gray-700 leading-relaxed">
+                    Ontdek apps en tips voor muziek, foto&apos;s, e-books en fietsen.
+                  </p>
+                </Link>
+                <Link
+                  href="/extras"
+                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
+                >
+                  <span className="text-3xl mb-3" aria-hidden>🛠️</span>
+                  <h3 className="text-senior-lg font-bold text-primary mb-2">Handige tools</h3>
+                  <p className="text-senior-sm text-gray-700 leading-relaxed">
+                    Gebruik handige hulpmiddelen zoals checklists en hulpmiddelen.
+                  </p>
+                </Link>
+                <Link
+                  href="/bibliotheek"
+                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
+                >
+                  <span className="text-3xl mb-3" aria-hidden>📚</span>
+                  <h3 className="text-senior-lg font-bold text-primary mb-2">Mijn Bibliotheek</h3>
+                  <p className="text-senior-sm text-gray-700 leading-relaxed">
+                    Bewaar uw favoriete boeken en ontdek nieuwe leestips.
+                  </p>
+                </Link>
+              </div>
+            </section>
 
             {/* Populaire onderwerpen – waar anderen naar zoeken */}
             <div className="py-6 border-t-2 border-neutral-stone">
@@ -325,15 +367,15 @@ export default function Home() {
               <ul className="space-y-3" aria-label="Voorbeelden van vragen in de Facebook groep">
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Hoe bewaar ik foto&apos;s die ik via WhatsApp krijg?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Jan, 2 dagen geleden</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Gerrit, 2 dagen geleden</p>
                 </li>
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Mijn wifi werkt niet meer. Waar moet ik kijken?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Maria, 1 week geleden</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Elena, 1 week geleden</p>
                 </li>
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Hoe maak ik de letters op mijn telefoon groter?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Piet, 1 week geleden</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Ria, 1 week geleden</p>
                 </li>
               </ul>
             </div>
@@ -413,11 +455,18 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Hobby&apos;s – blijft apart voor wie hier direct naartoe wil */}
+              {/* Hobby&apos;s – overzicht + losse items */}
               <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
                 <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
                   🎨 Hobby&apos;s:
                 </span>
+                <Link
+                  href="/hobbys"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
+                >
+                  Overzicht
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
                 <Link
                   href="/foto-archief"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
