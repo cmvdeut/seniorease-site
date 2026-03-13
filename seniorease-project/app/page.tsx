@@ -211,37 +211,45 @@ export default function Home() {
               <p className="text-senior-base text-gray-700 mb-6">
                 Praktische hulp, inspiratie en handige tools voor senioren.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                 <Link
                   href="/hobbys"
-                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
+                  className="flex flex-col rounded-xl border-2 border-primary/50 bg-white p-4 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md"
                 >
-                  <span className="text-3xl mb-3" aria-hidden>🎨</span>
-                  <h3 className="text-senior-lg font-bold text-primary mb-2">Hobby&apos;s</h3>
+                  <span className="text-2xl mb-2" aria-hidden>🎨</span>
+                  <h3 className="text-senior-base font-bold text-primary mb-1">Hobby&apos;s</h3>
                   <p className="text-senior-sm text-gray-700 leading-relaxed">
-                    Ontdek apps en tips voor muziek, foto&apos;s, e-books en fietsen.
+                    Tips voor muziek luisteren, foto&apos;s ordenen, e-books lezen en apps voor uw e-bike.
                   </p>
                 </Link>
                 <Link
                   href="/extras"
-                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
+                  className="flex flex-col rounded-xl border-2 border-primary/50 bg-white p-4 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md"
                 >
-                  <span className="text-3xl mb-3" aria-hidden>🛠️</span>
-                  <h3 className="text-senior-lg font-bold text-primary mb-2">Handige tools</h3>
+                  <span className="text-2xl mb-2" aria-hidden>🛠️</span>
+                  <h3 className="text-senior-base font-bold text-primary mb-1">Handige tools</h3>
                   <p className="text-senior-sm text-gray-700 leading-relaxed">
-                    Gebruik handige hulpmiddelen zoals checklists en hulpmiddelen.
+                    Kalender, rekenmachine, afvinklijst en andere hulpmiddelen — altijd bij de hand.
                   </p>
                 </Link>
-                <Link
-                  href="/bibliotheek"
-                  className="flex flex-col rounded-2xl border-2 border-primary/50 bg-white p-6 text-left hover:border-primary hover:bg-primary/5 transition-all shadow-sm hover:shadow-md min-h-[140px]"
-                >
-                  <span className="text-3xl mb-3" aria-hidden>📚</span>
-                  <h3 className="text-senior-lg font-bold text-primary mb-2">Mijn Bibliotheek</h3>
-                  <p className="text-senior-sm text-gray-700 leading-relaxed">
-                    Bewaar uw favoriete boeken en ontdek nieuwe leestips.
+                <div className="flex flex-col rounded-xl border-4 border-primary bg-white p-4 shadow-md">
+                  <span className="text-2xl mb-2" aria-hidden>📚</span>
+                  <h3 className="text-senior-base font-bold text-primary mb-1">Mijn Bibliotheek</h3>
+                  <p className="text-senior-sm text-gray-700 leading-relaxed mb-3">
+                    Weet altijd welke boeken u al heeft. Gratis op de pc, uitproberen op telefoon of tablet.
                   </p>
-                </Link>
+                  <div className="flex flex-col gap-2 mt-auto">
+                    <GebruikMijnBibliotheekButton variant="small" />
+                    <a
+                      href={YOUTUBE_CHANNEL_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-white text-primary border-2 border-primary px-3 py-1.5 rounded-lg text-senior-sm font-bold hover:bg-primary/10 transition-all text-center"
+                    >
+                      ▶️ Uitlegvideo
+                    </a>
+                  </div>
+                </div>
               </div>
             </section>
 
@@ -414,95 +422,6 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Digitale hulp – categorieën (sluit aan bij de knoppen hierboven) */}
-              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
-                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
-                  Digitale hulp:
-                </span>
-                <Link
-                  href="/digitale-hulp/smartphone"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Smartphone
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/digitale-hulp/computer"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Computer
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/digitale-hulp/internet-email"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Internet &amp; e-mail
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/digitale-hulp/veilig-internet"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Veilig internet
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/digitale-hulp/ai"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  AI uitleg
-                </Link>
-              </div>
-
-              {/* Hobby&apos;s – overzicht + losse items */}
-              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
-                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
-                  🎨 Hobby&apos;s:
-                </span>
-                <Link
-                  href="/hobbys"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Overzicht
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/foto-archief"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Foto Archief
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/ebooks"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  E-books lezen
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/muziek-radio"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Spotify en DAB
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/e-bike"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  E-bike apps
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/hoofdtelefoon"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Hoofdtelefoon
-                </Link>
-              </div>
-
               {/* Overig */}
               <div className="flex flex-wrap items-center gap-x-1 gap-y-1 pt-1 border-t border-neutral-stone/60">
                 <Link href="/extras" className="text-senior-sm font-semibold text-gray-600 hover:text-primary transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10">Handige extra&apos;s</Link>
@@ -520,45 +439,6 @@ export default function Home() {
       {/* Hero Section - Bibliotheek */}
       <section className="container mx-auto px-6 py-8">
         <div className="max-w-6xl mx-auto space-y-4">
-          {/* Bibliotheek Hero Card - BOVENAAN */}
-          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
-            <div className="p-6 md:p-8">
-              <div className="flex flex-col items-center md:items-start gap-6">
-                <div className="text-5xl md:text-6xl">📚</div>
-                <div className="text-center md:text-left w-full">
-                  <h1 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
-                    Weet altijd welke boeken u al heeft
-                  </h1>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
-                    Bewaar uw boeken eenvoudig op één plek.<br />
-                    Gratis op de pc. Rustig uit te proberen op telefoon of tablet.
-                  </p>
-                  
-                  {/* Actie knoppen */}
-                  <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                    <GebruikMijnBibliotheekButton />
-                    <a 
-                      href={YOUTUBE_CHANNEL_URL}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-block bg-white text-primary border-2 border-primary px-8 py-4 rounded-xl text-senior-lg font-bold
-                               hover:bg-primary/10 transition-all shadow-lg hover:shadow-xl transform hover:scale-105 text-center"
-                    >
-                      ▶️ Bekijk de uitlegvideo
-                    </a>
-                  </div>
-                  
-                  {/* Vertrouwensregel */}
-                  <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
-                    <p className="text-senior-base font-bold text-gray-800">
-                      Gratis op de pc • Telefoon/tablet: gratis proberen (10 boeken) • Geen abonnement
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
           {/* Herkenning Sectie */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden">
             <div className="p-6 md:p-8">
