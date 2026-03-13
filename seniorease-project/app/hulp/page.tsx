@@ -72,6 +72,18 @@ export default function HulpPage() {
               </p>
             </div>
 
+            <div className="mb-8">
+              <p className="text-senior-base text-gray-700 mb-2">
+                Meer uitleg over telefoon, computer en internet:
+              </p>
+              <Link
+                href="/digitale-hulp"
+                className="text-senior-base font-bold text-primary hover:text-primary-dark underline"
+              >
+                Digitale hulp voor senioren →
+              </Link>
+            </div>
+
             {/* Mijn Bibliotheek Installatie Sectie */}
             <div id="app-installatie" className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6 border-4 border-yellow-400 mb-8">
               <h2 className="text-senior-xl font-bold text-primary mb-4">

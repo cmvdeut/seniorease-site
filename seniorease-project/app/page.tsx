@@ -4,12 +4,18 @@ import MobileDownload from './components/MobileDownload';
 import DemoDownload from './components/DemoDownload';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import { artikelen } from './digitale-hulp/artikelen';
 
 // Social Media URLs
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
-const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL'; // Pas aan naar jouw Facebook pagina URL
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL';
+const FACEBOOK_GROEP_URL = 'https://www.facebook.com/SeniorEaseNL'; // Gebruik FACEBOOK_PAGE_URL; vervang door groep-URL zodra u een Facebook-groep heeft
+
+const NIEUWSTE_TIPS_AANTAL = 4;
 
 export default function Home() {
+  const nieuwsteTips = artikelen.slice(-NIEUWSTE_TIPS_AANTAL);
+
   // Structured Data (JSON-LD) voor SEO
   const structuredData = {
     "@context": "https://schema.org",
@@ -75,8 +81,8 @@ export default function Home() {
       <header className="bg-neutral-cream border-b-2 border-neutral-stone">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            {/* Top row: Logo en Social Media */}
-            <div className="flex items-center justify-between gap-4 flex-wrap py-4">
+            {/* Top row: Logo en Social Media – ruime witruimte */}
+            <div className="flex items-center justify-between gap-6 flex-wrap py-6">
               <div className="flex items-center gap-4">
                 <Image 
                   src="/heart-logo.png" 
@@ -87,11 +93,14 @@ export default function Home() {
                   priority
                 />
                 <div>
-                  <h1 className="text-senior-2xl font-bold text-primary mb-0.5">
-                    SeniorEase
+                  <h1 className="text-senior-2xl font-bold text-primary mb-1">
+                    Digitale hulp voor senioren
                   </h1>
+                  <p className="text-senior-base font-semibold text-gray-800 mb-0.5">
+                    Technologie simpel uitgelegd – stap voor stap.
+                  </p>
                   <p className="text-senior-sm text-gray-600">
-                    Handige technologie zonder gedoe
+                    Leer omgaan met smartphone, computer, internet en AI zonder stress.
                   </p>
                 </div>
               </div>
@@ -123,9 +132,198 @@ export default function Home() {
                 </a>
               </div>
             </div>
+
+            {/* Grote zoekbalk – direct zoeken naar hulp */}
+            <form action="/digitale-hulp" method="get" className="w-full py-6 border-t-2 border-neutral-stone">
+              <label htmlFor="home-zoek" className="sr-only">
+                Waarmee kunnen we u helpen? Zoek naar een onderwerp
+              </label>
+              <input
+                id="home-zoek"
+                type="search"
+                name="q"
+                placeholder="Waarmee kunnen we u helpen?"
+                className="w-full text-senior-base md:text-senior-lg px-5 py-4 rounded-xl border-2 border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white text-gray-800 placeholder-gray-500"
+                aria-describedby="home-zoek-hint"
+              />
+              <p id="home-zoek-hint" className="text-senior-sm text-gray-600 mt-2">
+                Bijv. WhatsApp, foto&apos;s, wifi, e-mail, Bluetooth
+              </p>
+            </form>
+
+            {/* Grote categorie knoppen. Bestaande items (hieronder) kunnen later onder deze categorieën worden ondergebracht – zie contentplan. */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 py-6 border-t-2 border-neutral-stone" aria-label="Categorieën digitale hulp">
+              <Link
+                href="/digitale-hulp?q=telefoon"
+                className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
+              >
+                <span className="text-2xl" aria-hidden>📱</span>
+                Smartphone hulp
+              </Link>
+              <Link
+                href="/digitale-hulp?q=computer"
+                className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
+              >
+                <span className="text-2xl" aria-hidden>💻</span>
+                Computer hulp
+              </Link>
+              <Link
+                href="/digitale-hulp?q=internet"
+                className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
+              >
+                <span className="text-2xl" aria-hidden>🌐</span>
+                Internet &amp; e-mail
+              </Link>
+              <Link
+                href="/digitale-hulp?q=veilig"
+                className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
+              >
+                <span className="text-2xl" aria-hidden>🔐</span>
+                Veilig internet
+              </Link>
+              <Link
+                href="/wat-is-ai"
+                className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
+              >
+                <span className="text-2xl" aria-hidden>🤖</span>
+                AI uitleg
+              </Link>
+            </div>
+
+            {/* Populaire onderwerpen – waar anderen naar zoeken */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <h2 className="text-senior-lg font-bold text-primary mb-4">
+                Populaire uitleg
+              </h2>
+              <p className="text-senior-sm text-gray-600 mb-4">
+                Waar anderen vaak naar zoeken:
+              </p>
+              <ul className="space-y-2" aria-label="Populaire uitleg onderwerpen">
+                <li>
+                  <Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    WhatsApp uitleg voor beginners
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/digitale-hulp/telefoon-sneller-maken" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    Telefoon sneller maken
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/digitale-hulp/phishing-herkennen" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    Phishing herkennen
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/uitleg/wifi" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    Wifi instellen
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    Foto&apos;s opslaan van WhatsApp
+                  </Link>
+                </li>
+              </ul>
+            </div>
+
+            {/* Nieuwste tips – laatste 4 artikelen, goed voor SEO en terugkerende bezoekers */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <h2 className="text-senior-lg font-bold text-primary mb-4">
+                Nieuwste tips
+              </h2>
+              <p className="text-senior-sm text-gray-600 mb-4">
+                Recent toegevoegde uitleg:
+              </p>
+              <ul className="space-y-3" aria-label="Nieuwste artikelen">
+                {nieuwsteTips.map((artikel) => (
+                      <li key={artikel.slug}>
+                        <Link
+                          href={`/digitale-hulp/${artikel.slug}`}
+                          className="block bg-white border-2 border-primary/30 hover:border-primary hover:bg-primary/5 rounded-xl p-4 transition-colors"
+                        >
+                          <span className="text-senior-base font-bold text-primary block mb-1">
+                            {artikel.title}
+                          </span>
+                          <span className="text-senior-sm text-gray-700">
+                            {artikel.description}
+                          </span>
+                        </Link>
+                      </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Hoe onze stap-voor-stap uitleg werkt – vertrouwen */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <h2 className="text-senior-lg font-bold text-primary mb-4">
+                Alle uitleg op SeniorEase werkt zo:
+              </h2>
+              <ol className="space-y-3 list-none pl-0" aria-label="Hoe onze uitleg werkt">
+                <li className="flex items-start gap-3">
+                  <span className="text-senior-xl flex-shrink-0" aria-hidden>1️⃣</span>
+                  <span className="text-senior-base text-gray-800"><strong className="text-primary">Probleem uitleg</strong> – we leggen eerst uit wat er aan de hand is.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-senior-xl flex-shrink-0" aria-hidden>2️⃣</span>
+                  <span className="text-senior-base text-gray-800"><strong className="text-primary">Duidelijke stappen</strong> – daarna volgt u stap voor stap wat u moet doen.</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-senior-xl flex-shrink-0" aria-hidden>3️⃣</span>
+                  <span className="text-senior-base text-gray-800"><strong className="text-primary">Screenshots</strong> – waar mogelijk laten we het zien met plaatjes.</span>
+                </li>
+              </ol>
+              <p className="text-senior-base text-gray-700 mt-4 font-semibold">
+                Dat geeft vertrouwen.
+              </p>
+            </div>
+
+            {/* Vertrouwen – betrouwbaarheid voor senioren */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+                <strong className="text-primary">SeniorEase</strong> helpt senioren om technologie makkelijker te gebruiken. Duidelijke uitleg, stap voor stap, in uw eigen tempo.
+              </p>
+            </div>
+
+            {/* Facebook community – stel uw vraag */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <h2 className="text-senior-lg font-bold text-primary mb-3">
+                Vragen? Stel ze in onze community
+              </h2>
+              <p className="text-senior-sm text-gray-700 mb-4">
+                Veel mensen stellen hier hun vraag. U krijgt tips van ons en van andere senioren.
+              </p>
+              <a
+                href={FACEBOOK_GROEP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 text-senior-base font-bold text-white bg-[#1877F2] hover:bg-[#166FE5] border-2 border-[#1877F2] rounded-xl px-6 py-4 transition-colors min-h-[56px] mb-6"
+                aria-label="Ga naar onze Facebook-pagina om uw vraag te stellen"
+              >
+                <span aria-hidden>📘</span>
+                Stel uw vraag op onze Facebook-pagina
+              </a>
+              <p className="text-senior-sm font-semibold text-gray-600 mb-3">
+                Recente vragen in de groep:
+              </p>
+              <ul className="space-y-3" aria-label="Voorbeelden van vragen in de Facebook groep">
+                <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
+                  <p className="text-senior-base text-gray-800">&quot;Hoe bewaar ik foto&apos;s die ik via WhatsApp krijg?&quot;</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Jan, 2 dagen geleden</p>
+                </li>
+                <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
+                  <p className="text-senior-base text-gray-800">&quot;Mijn wifi werkt niet meer. Waar moet ik kijken?&quot;</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Maria, 1 week geleden</p>
+                </li>
+                <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
+                  <p className="text-senior-base text-gray-800">&quot;Hoe maak ik de letters op mijn telefoon groter?&quot;</p>
+                  <p className="text-senior-sm text-gray-500 mt-1">— Piet, 1 week geleden</p>
+                </li>
+              </ul>
+            </div>
             
             {/* Navigation Menu */}
-            <nav className="border-t-2 border-neutral-stone pt-3 pb-1 space-y-3" aria-label="Hoofdmenu">
+            <nav className="border-t-2 border-neutral-stone pt-6 pb-4 space-y-4" aria-label="Hoofdmenu">
 
               {/* Mijn Bibliotheek – hoofdproduct */}
               <div className="flex flex-wrap items-center gap-x-1 gap-y-1">
@@ -148,6 +346,13 @@ export default function Home() {
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
                 >
                   Uitlegvideo&apos;s
+                </Link>
+                <span className="text-gray-300 select-none">|</span>
+                <Link
+                  href="/digitale-hulp"
+                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-2 rounded-lg hover:bg-primary/10"
+                >
+                  Digitale hulp voor senioren
                 </Link>
               </div>
 
@@ -284,7 +489,7 @@ export default function Home() {
                   className="inline-flex items-center gap-1.5 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
                   ChatGPT uitleg
-                  <span className="inline-flex items-center justify-center px-2 py-0.5 text-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
+                  <span className="inline-flex items-center justify-center px-2 py-1 text-senior-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
                 </Link>
               </div>
 
@@ -845,6 +1050,9 @@ export default function Home() {
                 <h3 className="text-senior-base font-bold mb-2">Hulp</h3>
                 <Link href="/hulp" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
                   Veelgestelde vragen
+                </Link>
+                <Link href="/digitale-hulp" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
+                  Digitale hulp voor senioren
                 </Link>
               </div>
               <div className="text-center sm:text-left">

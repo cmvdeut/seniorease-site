@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * SeniorEase – leesbaarheid en rust
+ * ✔ Minimaal 18px tekst (senior-xs = 18px)
+ * ✔ Veel witruimte (ruime padding/marges)
+ * ✔ Duidelijke knoppen (min 48px, contrast)
+ * ✔ Rustige kleuren (primary bruin, neutral cream)
+ */
+
 :root {
   --background: #F5EEE6;
   --foreground: #1F1F1F;
@@ -14,10 +22,16 @@
   }
 }
 
+html {
+  font-size: 18px; /* Minimaal 18px overal */
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-size: 1rem; /* 18px via html */
+  line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -26,26 +40,26 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-  
+
   /* Senior-friendly defaults */
   button, a {
     @apply text-senior-base;
-    min-height: 48px; /* Minimale klikbare area voor senioren */
+    min-height: 48px; /* Duidelijke knoppen – minimale klikbare area */
     min-width: 48px;
   }
-  
+
   h1 {
     @apply text-senior-3xl font-bold;
   }
-  
+
   h2 {
     @apply text-senior-2xl font-bold;
   }
-  
+
   h3 {
     @apply text-senior-xl font-bold;
   }
-  
+
   p {
     @apply text-senior-base leading-relaxed;
   }
