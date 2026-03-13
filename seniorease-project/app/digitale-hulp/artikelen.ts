@@ -16,14 +16,29 @@ export const artikelen: Artikel[] = [
     description: "Hoe bewaart u foto's die u via WhatsApp krijgt op uw telefoon? Stap voor stap uitgelegd voor senioren.",
   },
   {
+    slug: "whatsapp-videobellen-uitleg",
+    title: "WhatsApp videobellen uitleg",
+    description: "Hoe videobelt u via WhatsApp? Stap voor stap: gesprek openen, videoknop tikken, bellen. Eenvoudige uitleg voor senioren.",
+  },
+  {
     slug: "telefoon-sneller-maken",
     title: "Telefoon sneller maken",
     description: "Uw telefoon wordt traag? Eenvoudige tips om uw telefoon weer sneller te maken.",
   },
   {
+    slug: "telefoon-langzaam-oplossen",
+    title: "Telefoon langzaam oplossen",
+    description: "Uw telefoon is traag of reageert niet goed? Opslag vol, apps sluiten en opnieuw starten – stap voor stap.",
+  },
+  {
     slug: "phishing-herkennen",
     title: "Phishing herkennen",
     description: "Wat is phishing en hoe herkent u valse e-mails en berichten? Bescherm uzelf tegen oplichting.",
+  },
+  {
+    slug: "phishing-mail-herkennen",
+    title: "Phishing mail herkennen",
+    description: "Hoe herkent u een nep e-mail? Wat is phishing en wat moet u doen? Eenvoudige uitleg voor senioren.",
   },
   {
     slug: "letters-groter-maken-telefoon",
@@ -64,6 +79,16 @@ export const artikelen: Artikel[] = [
     slug: "bluetooth-verbinden",
     title: "Bluetooth verbinden",
     description: "Wat is Bluetooth en hoe verbindt u een hoofdtelefoon, speaker of ander apparaat met uw telefoon? Stap voor stap uitgelegd.",
+  },
+  {
+    slug: "wat-is-de-cloud",
+    title: "Wat is de cloud?",
+    description: "Wat betekent 'in de cloud' en waarom hoor u het over foto's en bestanden? Eenvoudige uitleg voor senioren.",
+  },
+  {
+    slug: "screenshot-en-schermopname-telefoon",
+    title: "Screenshot en schermopname maken op telefoon",
+    description: "Hoe maakt u een foto van uw scherm (screenshot) of een filmpje (schermopname)? Stap voor stap voor Android en iPhone.",
   },
 ];
 

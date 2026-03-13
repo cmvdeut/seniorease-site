@@ -73,6 +73,9 @@ export default function QRCodePage() {
             <p className="text-senior-base text-gray-600 mt-2">
               Die vierkante blokjespuzzel uitgelegd — en in 4 stappen gescand.
             </p>
+            <p className="text-senior-sm text-gray-700 mt-3 max-w-2xl">
+              Hier leest u wat een QR-code is, waar u ze tegenkomt en hoe u ze veilig scant met uw telefoon.
+            </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone uitleg navigatie">
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
               <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp</Link>
@@ -238,7 +241,8 @@ export default function QRCodePage() {
               Is het veilig?
             </h2>
             <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
-              Meestal wel — maar net als bij e-mail geldt: let even op voor u klikt.
+              Meestal wel — maar net als bij e-mail geldt: let even op voor u klikt. Meer over veilig omgaan met links en oplichting leest u in onze{' '}
+              <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">uitleg over oplichting herkennen</Link>.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
               <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
@@ -254,7 +258,7 @@ export default function QRCodePage() {
                 <p className="text-senior-base font-bold text-red-800 mb-3">⚠️ Voorzichtig mee zijn:</p>
                 <ul className="text-senior-base text-gray-700 space-y-2">
                   <li>• QR-codes geplakt over een ander stickertje</li>
-                  <li>• Codes ontvangen via WhatsApp van onbekenden</li>
+                  <li>• Codes ontvangen via WhatsApp van onbekenden — zie onze <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">uitleg over WhatsApp-oplichting</Link></li>
                   <li>• Als de link erachter er vreemd uitziet</li>
                 </ul>
               </div>
@@ -292,14 +296,39 @@ export default function QRCodePage() {
             <p className="text-senior-lg font-bold text-primary mb-6">
               Probeer het eens — u doet het binnen 10 seconden! 📷
             </p>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/uitleg/whatsapp-basis" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-6 py-3 rounded-xl text-senior-base font-bold hover:bg-primary/10 transition-colors">
-                ← WhatsApp uitleg
-              </Link>
-              <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors shadow-lg">
-                ← Terug naar home
-              </Link>
-            </div>
+
+            {/* Gerelateerde uitleg – interne links voor SEO en navigatie */}
+            <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+            <ul className="space-y-2 mb-6">
+              <li>
+                <Link href="/digitale-hulp/smartphone" className="text-senior-base font-semibold text-primary hover:underline">
+                  Smartphone hulp (alle artikelen)
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="text-senior-base font-semibold text-primary hover:underline">
+                  WhatsApp uitleg voor beginners
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/whatsapp-basis" className="text-senior-base font-semibold text-primary hover:underline">
+                  WhatsApp basis (uitgebreide uitleg)
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/wifi" className="text-senior-base font-semibold text-primary hover:underline">
+                  WiFi instellen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-primary hover:underline">
+                  Oplichting herkennen
+                </Link>
+              </li>
+            </ul>
+            <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-6 py-3 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors shadow-lg">
+              ← Terug naar home
+            </Link>
           </section>
 
         </div>

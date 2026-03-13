@@ -204,6 +204,38 @@ export default function WhatsAppBasisPage() {
             </ul>
           </div>
 
+          {/* Gerelateerde uitleg */}
+          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">Gerelateerde uitleg</h2>
+            <ul className="space-y-2 mb-6">
+              <li>
+                <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-primary hover:underline">
+                  WhatsApp foto&apos;s opslaan
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-primary hover:underline">
+                  QR-code scannen
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/smartphone" className="text-senior-base font-semibold text-primary hover:underline">
+                  Smartphone hulp (alle artikelen)
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-primary hover:underline">
+                  Oplichting herkennen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/wifi" className="text-senior-base font-semibold text-primary hover:underline">
+                  WiFi instellen
+                </Link>
+              </li>
+            </ul>
+          </div>
+
           {/* Navigatie */}
           <div className="flex flex-wrap gap-4 justify-center pt-4">
             <a

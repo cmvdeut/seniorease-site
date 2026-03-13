@@ -77,16 +77,16 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationData) }}
       />
-      {/* Header */}
+      {/* Header – hulpcentrum-uitstraling */}
       <header className="bg-neutral-cream border-b-2 border-neutral-stone">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
-            {/* Top row: Logo en Social Media – ruime witruimte */}
+            {/* Hero: duidelijke hoofdboodschap */}
             <div className="flex items-center justify-between gap-6 flex-wrap py-6">
               <div className="flex items-center gap-4">
                 <Image 
                   src="/heart-logo.png" 
-                  alt="SeniorEase logo - Handige technologie voor senioren" 
+                  alt="SeniorEase logo - Digitale hulp voor senioren" 
                   width={100} 
                   height={100}
                   className="w-32 h-32"
@@ -133,10 +133,18 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Grote zoekbalk – direct zoeken naar hulp */}
-            <form action="/digitale-hulp" method="get" className="w-full py-6 border-t-2 border-neutral-stone">
+            {/* Zoekgerichte introductie – visueel opvallend */}
+            <div className="w-full py-6 border-t-2 border-neutral-stone">
+              <p className="text-senior-lg font-bold text-primary mb-3" id="waarmee-helpen">
+                Waarmee kunnen we u helpen?
+              </p>
+              <p className="text-senior-sm text-gray-700 mb-4">
+                Typ hieronder uw onderwerp. U komt dan bij uitleg die bij u past.
+              </p>
+            </div>
+            <form action="/digitale-hulp" method="get" className="w-full pb-6 border-b-2 border-neutral-stone" aria-labelledby="waarmee-helpen">
               <label htmlFor="home-zoek" className="sr-only">
-                Waarmee kunnen we u helpen? Zoek naar een onderwerp
+                Zoek naar een onderwerp (bijv. WhatsApp, wifi, foto&apos;s)
               </label>
               <input
                 id="home-zoek"
@@ -151,43 +159,48 @@ export default function Home() {
               </p>
             </form>
 
-            {/* Grote categorie knoppen. Bestaande items (hieronder) kunnen later onder deze categorieën worden ondergebracht – zie contentplan. */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 py-6 border-t-2 border-neutral-stone" aria-label="Categorieën digitale hulp">
+            {/* Duidelijke categorieblokken – vijf klikbare kaarten */}
+            <div className="py-6 border-t-2 border-neutral-stone">
+              <h2 className="text-senior-base font-bold text-gray-700 mb-4 sr-only">
+                Kies een onderwerp
+              </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4" aria-label="Categorieën digitale hulp">
               <Link
-                href="/digitale-hulp?q=telefoon"
+                href="/digitale-hulp/smartphone"
                 className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
               >
                 <span className="text-2xl" aria-hidden>📱</span>
                 Smartphone hulp
               </Link>
               <Link
-                href="/digitale-hulp?q=computer"
+                href="/digitale-hulp/computer"
                 className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
               >
                 <span className="text-2xl" aria-hidden>💻</span>
                 Computer hulp
               </Link>
               <Link
-                href="/digitale-hulp?q=internet"
+                href="/digitale-hulp/internet-email"
                 className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
               >
                 <span className="text-2xl" aria-hidden>🌐</span>
                 Internet &amp; e-mail
               </Link>
               <Link
-                href="/digitale-hulp?q=veilig"
+                href="/digitale-hulp/veilig-internet"
                 className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
               >
                 <span className="text-2xl" aria-hidden>🔐</span>
                 Veilig internet
               </Link>
               <Link
-                href="/wat-is-ai"
+                href="/digitale-hulp/ai"
                 className="flex items-center justify-center gap-2 text-senior-base font-bold text-primary bg-white border-2 border-primary/50 hover:border-primary hover:bg-primary/10 rounded-xl px-4 py-4 transition-colors min-h-[56px]"
               >
                 <span className="text-2xl" aria-hidden>🤖</span>
                 AI uitleg
               </Link>
+            </div>
             </div>
 
             {/* Populaire onderwerpen – waar anderen naar zoeken */}
@@ -201,36 +214,36 @@ export default function Home() {
               <ul className="space-y-2" aria-label="Populaire uitleg onderwerpen">
                 <li>
                   <Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
-                    WhatsApp uitleg voor beginners
+                    WhatsApp uitleg
                   </Link>
                 </li>
                 <li>
-                  <Link href="/digitale-hulp/telefoon-sneller-maken" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
-                    Telefoon sneller maken
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/digitale-hulp/phishing-herkennen" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
-                    Phishing herkennen
+                  <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    QR-code scannen
                   </Link>
                 </li>
                 <li>
                   <Link href="/uitleg/wifi" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
-                    Wifi instellen
+                    WiFi instellen
+                  </Link>
+                </li>
+                <li>
+                  <Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
+                    Oplichting herkennen
                   </Link>
                 </li>
                 <li>
                   <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline block py-1.5">
-                    Foto&apos;s opslaan van WhatsApp
+                    Foto&apos;s opslaan
                   </Link>
                 </li>
               </ul>
             </div>
 
-            {/* Nieuwste tips – laatste 4 artikelen, goed voor SEO en terugkerende bezoekers */}
+            {/* Nieuwste artikelen – dynamisch uit artikelen; later eventueel uit CMS */}
             <div className="py-6 border-t-2 border-neutral-stone">
               <h2 className="text-senior-lg font-bold text-primary mb-4">
-                Nieuwste tips
+                Nieuwste uitleg
               </h2>
               <p className="text-senior-sm text-gray-600 mb-4">
                 Recent toegevoegde uitleg:
@@ -285,11 +298,14 @@ export default function Home() {
               </p>
             </div>
 
-            {/* Facebook community – stel uw vraag */}
+            {/* Community-verwijzing – Facebook voor tips en hulp */}
             <div className="py-6 border-t-2 border-neutral-stone">
               <h2 className="text-senior-lg font-bold text-primary mb-3">
                 Vragen? Stel ze in onze community
               </h2>
+              <p className="text-senior-base text-gray-800 mb-3">
+                Heeft u een digitale vraag? Volg SeniorEase op Facebook voor tips en hulp.
+              </p>
               <p className="text-senior-sm text-gray-700 mb-4">
                 Veel mensen stellen hier hun vraag. U krijgt tips van ons en van andere senioren.
               </p>
@@ -356,82 +372,48 @@ export default function Home() {
                 </Link>
               </div>
 
-              {/* Groep: Smartphone */}
+              {/* Digitale hulp – categorieën (sluit aan bij de knoppen hierboven) */}
               <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
                 <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
-                  📱 Smartphone:
+                  Digitale hulp:
                 </span>
                 <Link
-                  href="/uitleg/whatsapp-basis"
+                  href="/digitale-hulp/smartphone"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  WhatsApp
+                  Smartphone
                 </Link>
                 <span className="text-gray-300 select-none">|</span>
                 <Link
-                  href="/uitleg/videobellen"
+                  href="/digitale-hulp/computer"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Videobellen
+                  Computer
                 </Link>
                 <span className="text-gray-300 select-none">|</span>
                 <Link
-                  href="/uitleg/fotos-maken"
+                  href="/digitale-hulp/internet-email"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Foto&apos;s maken
+                  Internet &amp; e-mail
                 </Link>
                 <span className="text-gray-300 select-none">|</span>
                 <Link
-                  href="/uitleg/fotos-ordenen"
+                  href="/digitale-hulp/veilig-internet"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  Foto&apos;s ordenen
+                  Veilig internet
                 </Link>
                 <span className="text-gray-300 select-none">|</span>
                 <Link
-                  href="/uitleg/qr-code"
+                  href="/digitale-hulp/ai"
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
-                  QR-code scannen
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/google-maps"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Google Maps
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/wifi"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  WiFi instellen
+                  AI uitleg
                 </Link>
               </div>
 
-              {/* Groep: Veiligheid */}
-              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
-                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
-                  🔒 Veiligheid:
-                </span>
-                <Link
-                  href="/uitleg/veiligheid"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Oplichting herkennen
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/uitleg/wachtwoorden"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Wachtwoorden
-                </Link>
-              </div>
-
-              {/* Groep: Hobby's */}
+              {/* Hobby&apos;s – blijft apart voor wie hier direct naartoe wil */}
               <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
                 <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
                   🎨 Hobby&apos;s:
@@ -469,27 +451,6 @@ export default function Home() {
                   className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
                 >
                   Hoofdtelefoon
-                </Link>
-              </div>
-
-              {/* Groep: AI & ChatGPT */}
-              <div className="flex flex-wrap items-baseline gap-x-1 gap-y-1">
-                <span className="text-senior-sm font-semibold text-gray-500 mr-2 whitespace-nowrap">
-                  🤖 AI &amp; ChatGPT:
-                </span>
-                <Link
-                  href="/wat-is-ai"
-                  className="text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  Wat is AI?
-                </Link>
-                <span className="text-gray-300 select-none">|</span>
-                <Link
-                  href="/wat-is-ai/chatgpt"
-                  className="inline-flex items-center gap-1.5 text-senior-base font-bold text-primary hover:text-primary-dark transition-colors px-3 py-1.5 rounded-lg hover:bg-primary/10"
-                >
-                  ChatGPT uitleg
-                  <span className="inline-flex items-center justify-center px-2 py-1 text-senior-xs font-bold text-white bg-green-600 rounded-full shrink-0">Nieuw</span>
                 </Link>
               </div>
 

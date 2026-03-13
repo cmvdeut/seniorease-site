@@ -28,36 +28,121 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'whatsapp-uitleg-beginners':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            WhatsApp is een gratis app om berichten te sturen en foto&apos;s te delen met familie en vrienden. U heeft alleen internet nodig, geen sms-kosten. Veel mensen gebruiken het om snel even te appen of een foto te sturen.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Veel mensen willen met familie en vrienden berichten sturen of bellen zonder sms-kosten. WhatsApp is daar een van de meest gebruikte apps voor. Hier leest u wat het is en hoe u begint.
           </p>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Om te beginnen heeft u WhatsApp op uw telefoon nodig en het telefoonnummer van de persoon met wie u wilt chatten. Daarna opent u een chat en typt u een bericht of stuurt u een foto.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is WhatsApp?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            WhatsApp is een gratis app om berichten, foto&apos;s en spraakberichten te sturen. U heeft alleen internet nodig (wifi of mobiele data). Geen sms-kosten. Veel mensen gebruiken het om te appen of te bellen.
           </p>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Wij leggen het stap voor stap uit: hoe u WhatsApp opent, een bericht stuurt en een foto verstuurt. Ga naar onze{' '}
-            <Link href="/uitleg/whatsapp-basis" className="font-bold text-primary hover:underline">WhatsApp basis-uitleg</Link> voor de volledige handleiding.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap: bericht sturen</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open de WhatsApp-app op uw telefoon.</li>
+            <li>Tik onderaan op het groene icoontje om een nieuw gesprek te starten.</li>
+            <li>Zoek de persoon op (naam of nummer) of typ het telefoonnummer.</li>
+            <li>Tik op het tekstveld onderaan, typ uw bericht en tik op de blauwe pijl om te versturen.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Foto sturen</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2">In hetzelfde gesprek:</p>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Tik naast het tekstveld op het paperclip-icoontje of het camera-icoontje.</li>
+            <li>Kies &quot;Foto&quot; of &quot;Camera&quot; om een foto te maken of te kiezen.</li>
+            <li>Tik op &quot;Versturen&quot; of de pijl. De foto staat dan in het gesprek.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Bellen via WhatsApp</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Open een gesprek met de persoon. Bovenin het scherm ziet u een telefoon-icoon (bellen) of een videocamera-icoon (videobellen). Tik erop om te bellen. De ander moet ook WhatsApp hebben en internet aanstaan.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Zorg dat u verbonden bent met wifi of dat mobiele data aanstaat. Anders worden berichten niet verstuurd. Let op oplichting via WhatsApp: stuur nooit geld of gegevens naar onbekenden. Meer hierover: <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            WhatsApp = gratis berichten en bellen via internet. Open de app, kies een contact, typ of stuur een foto. Bellen kan via het telefoon-icoon in het gesprek.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="font-semibold text-primary hover:underline">WhatsApp foto&apos;s opslaan</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+            <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp (alle artikelen)</Link></li>
+            <li><Link href="/uitleg/whatsapp-basis" className="font-semibold text-primary hover:underline">WhatsApp basis (uitgebreide uitleg)</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+          </ul>
         </>
       );
     case 'whatsapp-fotos-opslaan':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Foto&apos;s die u via WhatsApp krijgt, staan eerst alleen in de app. Om ze te bewaren op uw telefoon, moet u ze opslaan. Dat kan per foto of voor meerdere tegelijk.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Foto&apos;s die u via WhatsApp krijgt, staan eerst alleen in het gesprek. Om ze op uw telefoon te bewaren, moet u ze opslaan. Hier leest u hoe dat gaat en waar ze terechtkomen.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap 1: Foto openen</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom zoeken mensen dit?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Tik op de foto in het chatbericht zodat hij groot op het scherm staat.
+            Veel mensen willen foto&apos;s van familie of vrienden bewaren in hun galerij, zodat ze ze later terug kunnen kijken of delen. In WhatsApp verdwijnen ze niet zomaar, maar om ze echt op uw telefoon te hebben, moet u ze een keer opslaan.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap 2: Opslaan</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap: foto opslaan</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li><strong>Foto openen:</strong> Tik op de foto in het chatbericht. De foto opent groot op het scherm.</li>
+            <li><strong>Opslaan:</strong> Zoek het icoontje voor download of opslaan (vaak een pijl naar beneden of een schijf). Tik erop.</li>
+            <li><strong>Klaar:</strong> De foto wordt opgeslagen op uw telefoon. U krijgt soms een melding &quot;Opgeslagen&quot;.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waar komt de foto terecht?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Zoek het icoontje voor download of opslaan (vaak een pijl naar beneden of een schijf). Tik erop. De foto wordt dan opgeslagen in uw telefoon, bijvoorbeeld in de map &quot;WhatsApp Images&quot; of &quot;Download&quot;.
+            Meestal in een map zoals &quot;WhatsApp Images&quot; of &quot;Download&quot;. U vindt de foto&apos;s daarna in uw Foto&apos;s-app of Galerij, tussen uw andere foto&apos;s.
           </p>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            U vindt de opgeslagen foto&apos;s daarna in uw Foto&apos;s-app of Galerij. Meer uitgebreide uitleg over WhatsApp vindt u bij onze{' '}
-            <Link href="/uitleg/whatsapp-basis" className="font-bold text-primary hover:underline">WhatsApp basis-uitleg</Link>.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            U kunt meerdere foto&apos;s tegelijk opslaan: houd een foto even ingedrukt, tik op andere foto&apos;s om ze te selecteren en kies dan &quot;Opslaan&quot; of het download-icoon. Let op: open alleen foto&apos;s van mensen die u kent, om veilig te blijven.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Tik op de foto in WhatsApp → zoek het download-/opslaan-icoon → tik erop. De foto staat daarna in uw Foto&apos;s-app of Galerij.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/whatsapp-basis" className="font-semibold text-primary hover:underline">WhatsApp basis</Link></li>
+            <li><Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="font-semibold text-primary hover:underline">WhatsApp uitleg voor beginners</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+          </ul>
+        </>
+      );
+    case 'whatsapp-videobellen-uitleg':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Wilt u elkaar zien tijdens het bellen? Met WhatsApp kunt u gratis videobellen. U heeft alleen internet nodig. Hier leest u hoe het werkt.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is videobellen via WhatsApp?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Bij videobellen ziet u de ander op uw scherm. En de ander ziet u. Handig om kleinkinderen te zien of even te kletsen met familie ver weg. Beide hebben WhatsApp en internet nodig.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open WhatsApp op uw telefoon.</li>
+            <li>Tik op het gesprek met de persoon die u wilt bellen.</li>
+            <li>Bovenin het scherm ziet u een camera-icoon of videocamera-icoon. Tik daarop.</li>
+            <li>De ander krijgt een melding. Als hij of zij opneemt, ziet u elkaar.</li>
+            <li>Om te stoppen: tik op de rode telefoonknop onderaan.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Zorg dat u verbonden bent met wifi of dat mobiele data aanstaat. Anders valt het gesprek weg. U kunt tijdens het bellen ook wisselen naar alleen geluid: tik op het telefoon-icoon. Meer over gewoon bellen en berichten: <Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="font-bold text-primary hover:underline">WhatsApp uitleg voor beginners</Link>. Voor uitgebreide uitleg: <Link href="/uitleg/videobellen" className="font-bold text-primary hover:underline">Videobellen</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            WhatsApp openen → gesprek kiezen → op het videocamera-icoon tikken → de ander neemt op → u ziet elkaar. Rode knop om te stoppen.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="font-semibold text-primary hover:underline">WhatsApp uitleg voor beginners</Link></li>
+            <li><Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="font-semibold text-primary hover:underline">WhatsApp foto&apos;s opslaan</Link></li>
+            <li><Link href="/uitleg/videobellen" className="font-semibold text-primary hover:underline">Videobellen (uitgebreide uitleg)</Link></li>
+            <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+          </ul>
         </>
       );
     case 'telefoon-sneller-maken':
@@ -80,6 +165,46 @@ function ArtikelContent({ slug }: { slug: string }) {
           </p>
         </>
       );
+    case 'telefoon-langzaam-oplossen':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Uw telefoon reageert traag, loopt vast of heeft weinig ruimte over? Dat komt vaak door volle opslag, te veel openstaande apps of een telefoon die even opnieuw moet opstarten. Hier leest u wat u kunt doen.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom wordt mijn telefoon langzaam?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Veel mensen merken dat hun telefoon na een tijd trager wordt. Vaak is de opslag bijna vol (foto&apos;s, filmpjes, apps) of staan er veel apps op de achtergrond open. Een eenvoudige herstart kan al helpen.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">1. Opslag vol? Ruimte vrijmaken</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Ga naar <strong>Instellingen</strong> (tandwiel) → <strong>Opslag</strong> of <strong>Opslagruimte</strong>. U ziet wat veel ruimte gebruikt. Verwijder oude foto&apos;s of filmpjes die u niet meer nodig heeft, of apps die u niet gebruikt. U kunt ook een back-up maken en daarna bestanden van de telefoon halen.
+          </p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">2. Apps sluiten</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Open het overzicht van recente apps (vaak een vierkantje of streepje onderaan of aan de zijkant). Veeg elke app naar boven of naar de zijkant om ze te sluiten. Zo draaien ze niet meer op de achtergrond en verbruiken ze geen geheugen.
+          </p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">3. Telefoon opnieuw starten</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Zet uw telefoon uit (aan/uit-knop vasthouden en &quot;Uitzetten&quot; kiezen). Wacht een paar seconden en zet hem weer aan. Vaak voelt de telefoon daarna weer sneller aan.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Update uw telefoon regelmatig (Instellingen → Software-update). Oude apps die u niet meer gebruikt kunt u verwijderen. Als het probleem blijft, kan het helpen om even te controleren of u goed verbonden bent met wifi; soms lijkt de telefoon traag terwijl het internet gewoon langzaam is.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Ruimte vrijmaken in Opslag, apps sluiten in het recente-apps-overzicht en de telefoon een keer uitzetten en weer aanzetten. Dat lost veel traagheid op.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/telefoon-sneller-maken" className="font-semibold text-primary hover:underline">Telefoon sneller maken</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
+        </>
+      );
     case 'phishing-herkennen':
       return (
         <>
@@ -98,75 +223,224 @@ function ArtikelContent({ slug }: { slug: string }) {
             Klik nooit op links in verdachte e-mails of berichten. Ga zelf naar de website van uw bank of de overheid door het adres in te typen of via uw bladwijzers. Meer over veiligheid en oplichting vindt u bij onze{' '}
             <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">uitleg over veiligheid</Link>.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/veilig-internet" className="font-semibold text-primary hover:underline">Veilig internet (alle artikelen)</Link></li>
+            <li><Link href="/digitale-hulp/phishing-mail-herkennen" className="font-semibold text-primary hover:underline">Phishing mail herkennen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+          </ul>
+        </>
+      );
+    case 'phishing-mail-herkennen':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Soms krijgt u een e-mail die lijkt van uw bank, de overheid of een bekend bedrijf, maar die eigenlijk van oplichters is. Die proberen uw wachtwoord of gegevens te stelen. Hier leest u wat phishing is en hoe u een nep mail herkent.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is phishing?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Phishing (spreek uit: &quot;fishing&quot;) is een vorm van oplichting. Iemand stuurt een e-mail of bericht dat er officieel uitziet, met een link of verzoek om in te loggen. Als u daarop klikt of uw gegevens invult, komen die bij de oplichters terecht. Het doel is vaak uw wachtwoord, pincode of bankgegevens.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Kenmerken van een nep mail</h2>
+          <ul className="list-disc list-inside text-senior-base text-gray-700 space-y-2 mb-6">
+            <li><strong>Dringende taal:</strong> &quot;Uw account wordt geblokkeerd&quot;, &quot;Reageer binnen 24 uur&quot;, &quot;Er is iets mis&quot; – om u haast te laten maken.</li>
+            <li><strong>Link om in te loggen:</strong> U wordt gevraagd op een link te klikken en uw gegevens in te vullen. Echte banken en overheid doen dat bijna nooit zo per e-mail.</li>
+            <li><strong>Vreemde afzender:</strong> Het e-mailadres lijkt op het echte adres maar is net anders (bijv. info@seniorease-nl.com in plaats van info@seniorease.nl).</li>
+            <li><strong>Taalfouten of rare zinnen:</strong> Officiële mails zijn meestal netjes geschreven.</li>
+          </ul>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat moet u doen?</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li><strong>Niet op links klikken</strong> in een mail die u niet vertrouwt.</li>
+            <li><strong>Niet inloggen</strong> via een link uit de e-mail. Ga zelf naar de website van uw bank of de overheid (typ het adres in of gebruik uw bladwijzer).</li>
+            <li>Twijfelt u? <strong>Neem contact op</strong> met de organisatie via het telefoonnummer op hun echte website, niet via de mail.</li>
+            <li>Heeft u per ongeluk gegevens ingevuld? <strong>Wijzig direct uw wachtwoord</strong> en neem contact op met uw bank als het om bankzaken gaat.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Banken en de Belastingdienst vragen bijna nooit per e-mail om uw inloggegevens of pincode. Wees extra voorzichtig bij mails met bijlagen van onbekende afzenders. Meer over veiligheid: onze <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">uitleg over veiligheid en oplichting</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Phishing = nep mails om uw gegevens te stelen. Let op: dringende taal, vreemde links, afzender die net anders is. Klik niet op de link; ga zelf naar de echte website. Bij twijfel: bel het bedrijf of de overheid.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/veilig-internet" className="font-semibold text-primary hover:underline">Veilig internet (alle artikelen)</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen (veiligheid)</Link></li>
+            <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
         </>
       );
     case 'e-mail-openen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            E-mail openen kan op uw telefoon, tablet of computer. U heeft een e-mailaccount nodig (bijvoorbeeld van Gmail, Outlook of uw provider) en een app of website om uw postvak te openen.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            E-mail is post via internet. U ontvangt berichten van familie, de overheid of winkels. Hier leest u hoe u e-mail opent op uw telefoon of computer. Stap voor stap voor beginners.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Op de telefoon</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat heeft u nodig?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Open de app &quot;Gmail&quot;, &quot;Outlook&quot; of &quot;E-mail&quot; (naam verschilt per telefoon). Log in met uw e-mailadres en wachtwoord als dat wordt gevraagd. U ziet een lijst met ontvangen berichten; tik op een bericht om het te openen.
+            Een e-mailaccount (bijvoorbeeld Gmail of Outlook). En een app op uw telefoon of een website op uw computer. Heeft u nog geen account? Maak er een aan op gmail.com of outlook.com – dat is gratis.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Op de computer</h2>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Ga in uw browser naar de website van uw e-mailprovider (bijv. gmail.com of outlook.com). Log in. U ziet uw inbox; klik op een e-mail om hem te lezen.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap – op de telefoon</h2>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open de app <strong>Gmail</strong>, <strong>Outlook</strong> of <strong>E-mail</strong> (naam kan per telefoon verschillen).</li>
+            <li>Log in met uw e-mailadres en wachtwoord als dat wordt gevraagd.</li>
+            <li>U ziet een lijst met ontvangen berichten. De nieuwste staan vaak bovenaan.</li>
+            <li>Tik op een bericht om het te openen en te lezen.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap – op de computer</h2>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open uw internetprogramma (Chrome, Edge of een andere browser).</li>
+            <li>Typ in de balk bovenaan het adres: gmail.com of outlook.com.</li>
+            <li>Log in met uw e-mailadres en wachtwoord.</li>
+            <li>U ziet uw postvak (inbox). Klik op een e-mail om hem te lezen.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Klik nooit op links in vreemde e-mails die om uw wachtwoord vragen. Dat is vaak oplichting. Meer: <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link> en <Link href="/digitale-hulp/phishing-mail-herkennen" className="font-bold text-primary hover:underline">Phishing mail herkennen</Link>. Gebruik een sterk wachtwoord: <Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-bold text-primary hover:underline">Veilig wachtwoord maken</Link>.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Telefoon: open de e-mailapp → log in → tik op een bericht. Computer: ga naar gmail.com of outlook.com → log in → klik op een e-mail.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/internet-email" className="font-semibold text-primary hover:underline">Internet &amp; e-mail (alle artikelen)</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="font-semibold text-primary hover:underline">Wifi werkt niet – oplossen</Link></li>
+          </ul>
         </>
       );
     case 'apps-installeren':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Apps zijn programma&apos;s op uw telefoon of tablet. U installeert ze via een winkel: op Android heet die &quot;Google Play&quot;, op de iPhone &quot;App Store&quot;. Alleen via deze winkels installeren is het veiligst.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Apps zijn programma&apos;s op uw telefoon. WhatsApp, de bank, een game: u haalt ze uit een winkel op uw telefoon. Op Android heet die winkel &quot;Play Store&quot;, op de iPhone &quot;App Store&quot;. Alleen via deze winkels installeren is veilig.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stappen (Android)</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom via de winkel?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Open de app &quot;Play Store&quot;. Zoek bovenaan in het zoekveld de naam van de app. Tik op de juiste app in de zoekresultaten. Tik op &quot;Installeren&quot; (of &quot;Open&quot; als u hem al eens had). Wacht tot de installatie klaar is; daarna verschijnt het icoon op uw startscherm.
+            De Play Store en App Store controleren apps. Zo loopt u minder risico op virussen of oplichting. Installeer geen apps via vreemde links in e-mails of berichten. Meer over veiligheid: <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link>.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stappen (iPhone/iPad)</h2>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Open de app &quot;App Store&quot;. Tik op het zoek-icoon en typ de naam van de app. Tik op &quot;Haal op&quot; of &quot;Open&quot;. Voer eventueel uw wachtwoord of Face ID in. De app wordt geïnstalleerd en is daarna te vinden op het startscherm.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap – Android</h2>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open de app <strong>Play Store</strong> (winkel-icoon).</li>
+            <li>Tik bovenaan in het zoekveld. Typ de naam van de app.</li>
+            <li>Tik op de juiste app in de lijst.</li>
+            <li>Tik op <strong>Installeren</strong>. Wacht tot het klaar is.</li>
+            <li>Het icoon staat nu op uw startscherm. Tik erop om de app te openen.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap – iPhone of iPad</h2>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open de app <strong>App Store</strong> (blauw icoon).</li>
+            <li>Tik onderaan op het zoek-icoon. Typ de naam van de app.</li>
+            <li>Tik op de juiste app. Tik op <strong>Haal op</strong> of <strong>Open</strong>.</li>
+            <li>Voer eventueel uw wachtwoord of Face ID in.</li>
+            <li>De app wordt geïnstalleerd. U vindt het icoon op het startscherm.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            U heeft een Google- of Apple-account nodig. Die heeft u vaak al. Geen internet? Dan kunt u niet installeren. Kijk bij <Link href="/uitleg/wifi" className="font-bold text-primary hover:underline">WiFi instellen</Link> of <Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="font-bold text-primary hover:underline">Wifi werkt niet – oplossen</Link>.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Play Store (Android) of App Store (iPhone) openen → zoeken op naam → Installeren of Haal op tikken → klaar. Alleen via deze winkels installeren.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="font-semibold text-primary hover:underline">WhatsApp uitleg voor beginners</Link></li>
+            <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
         </>
       );
     case 'letters-groter-maken-telefoon':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Als de letters op uw telefoon te klein zijn, kunt u ze groter maken via de instellingen. Dat maakt teksten in apps en op websites beter leesbaar.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            De letters op uw telefoon zijn te klein om comfortabel te lezen? U kunt de lettergrootte groter zetten in de instellingen. Hier leest u hoe dat gaat op Android en iPhone.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Android</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom zoeken mensen dit?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Ga naar <strong>Instellingen</strong> (tandwiel). Zoek <strong>Weergave</strong> of <strong>Toegankelijkheid</strong>. Tik op <strong>Lettergrootte</strong> of <strong>Tekengrootte</strong> en schuif de balk naar rechts voor grotere letters. De wijziging geldt direct voor veel apps.
+            Veel mensen vinden de standaard letters op hun telefoon te klein. Door de lettergrootte te vergroten wordt lezen in apps, berichten en op websites een stuk makkelijker.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">iPhone / iPad</h2>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Ga naar <strong>Instellingen</strong> → <strong>Weergave en helderheid</strong> (of <strong>Toegankelijkheid</strong>). Tik op <strong>Tekengrootte</strong> en sleep de schuif naar rechts. U kunt ook <strong>Vetgedrukte tekst</strong> aanzetten voor extra leesbaarheid.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Android</p>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-4">
+            <li>Open <strong>Instellingen</strong> (tandwiel-icoon).</li>
+            <li>Zoek <strong>Weergave</strong> of <strong>Toegankelijkheid</strong>.</li>
+            <li>Tik op <strong>Lettergrootte</strong> of <strong>Tekengrootte</strong>.</li>
+            <li>Schuif de balk naar rechts voor grotere letters. De wijziging geldt direct in veel apps.</li>
+          </ol>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">iPhone / iPad</p>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open <strong>Instellingen</strong>.</li>
+            <li>Ga naar <strong>Weergave en helderheid</strong> of <strong>Toegankelijkheid</strong>.</li>
+            <li>Tik op <strong>Tekengrootte</strong> en sleep de schuif naar rechts.</li>
+            <li>Optioneel: zet <strong>Vetgedrukte tekst</strong> aan voor nog betere leesbaarheid.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Niet alle apps volgen de instelling meteen; sommige apps hebben een eigen lettergrootte. Op veel telefoons kunt u ook met twee vingers op het scherm &quot;knijpen&quot; om in te zoomen op een webpagina.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Instellingen → Weergave/Toegankelijkheid → Lettergrootte of Tekengrootte. Schuif naar rechts voor grotere letters. Werkt op zowel Android als iPhone.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
         </>
       );
     case 'wifi-werkt-niet-oplossen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Als uw wifi niet werkt of uw telefoon of computer geen internet heeft, controleer dan het volgende. Vaak lost een van deze stappen het probleem op.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Geen internet op uw telefoon of computer? Of de wifi valt steeds weg? Meestal lost een van deze stappen het op. Simpel en stap voor stap.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">1. WiFi aan op uw apparaat</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom werkt mijn wifi niet?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Ga naar Instellingen → Netwerk of WiFi. Zorg dat WiFi aanstaat en dat u verbonden bent met het juiste netwerk (uw eigen thuisnetwerk).
+            Soms staat wifi uit op uw apparaat. Of de router (het kastje thuis) moet even opnieuw opstarten. Soms helpt het om opnieuw in te loggen op het netwerk.
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">2. Router herstarten</h2>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Stap 1: WiFi aan op uw apparaat</p>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
-            Zet de stekker van uw modem of router een paar seconden uit het stopcontact en doe hem weer aan. Wacht een minuut tot het kastje opnieuw is opgestart en probeer opnieuw te verbinden.
+            Ga naar <strong>Instellingen</strong> → <strong>Netwerk</strong> of <strong>WiFi</strong>. Zet WiFi <strong>aan</strong>. Controleer of u verbonden bent met uw eigen netwerk (de naam staat vaak op de router).
           </p>
-          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">3. Verbinding vergeten en opnieuw</h2>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Als het nog steeds niet lukt: in de WiFi-instellingen kunt u het netwerk &quot;vergeten&quot; en daarna opnieuw verbinden met het wachtwoord van uw router. Stap-voor-stap uitleg voor het verbinden vindt u bij onze{' '}
-            <Link href="/uitleg/wifi" className="font-bold text-primary hover:underline">WiFi instellen uitleg</Link>.
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Stap 2: Router herstarten</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Trek de stekker van uw modem of router uit het stopcontact. Wacht 10 seconden. Doe de stekker er weer in. Wacht een minuut. Probeer daarna opnieuw te verbinden.
           </p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Stap 3: Netwerk vergeten en opnieuw</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            In de WiFi-instellingen kunt u het netwerk &quot;vergeten&quot;. Daarna kiest u het netwerk opnieuw en voert u het wachtwoord in. Heeft u nog geen wifi thuis? Zie <Link href="/uitleg/wifi" className="font-bold text-primary hover:underline">WiFi instellen</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Het wachtwoord van uw wifi staat vaak op een sticker op de router. Werkt het na deze stappen nog niet? Bel uw internetprovider. Zij kunnen controleren of er storing is.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Eerst: WiFi aan op uw telefoon of computer. Dan: router stekker eruit, even wachten, weer aan. Lukt het niet? Netwerk vergeten en opnieuw verbinden met wachtwoord.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/digitale-hulp/internet-email" className="font-semibold text-primary hover:underline">Internet &amp; e-mail (alle artikelen)</Link></li>
+            <li><Link href="/digitale-hulp/e-mail-openen" className="font-semibold text-primary hover:underline">E-mail openen</Link></li>
+            <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
         </>
       );
     case 'fotos-kwijt-telefoon':
@@ -208,16 +482,37 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'veilig-wachtwoord-maken':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Een veilig wachtwoord is lang genoeg, bevat letters, cijfers en een teken (bijv. ! of @) en gebruikt geen voor de hand liggende gegevens zoals uw naam of geboortedatum. Het is het veiligst om voor elk account een ander wachtwoord te gebruiken.
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Een sterk wachtwoord beschermt uw e-mail, bank en andere accounts. Hier leest u in eenvoudige taal hoe u een veilig wachtwoord maakt dat u toch kunt onthouden.
           </p>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
-            Een handige methode is de wachtzin: een korte zin die u makkelijk onthoudt, in één woord geschreven, met een cijfer en een leesteken. Bijvoorbeeld: MijnTuinIsMooi2024!
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is een veilig wachtwoord?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Lang genoeg. Met letters, cijfers en een teken (zoals ! of @). Geen naam of geboortedatum. Het beste: voor elk account een ander wachtwoord. Dan kan iemand die één wachtwoord kent niet overal bij.
           </p>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
-            Meer tips, voorbeelden en hoe u wachtwoorden veilig bewaart (notitieboekje of wachtwoordmanager) vindt u in onze uitgebreide{' '}
-            <Link href="/uitleg/wachtwoorden" className="font-bold text-primary hover:underline">uitleg over wachtwoorden</Link>.
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap voor stap: de wachtzin</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2">Een handige methode is de wachtzin:</p>
+          <ol className="space-y-2 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Kies een korte zin die u makkelijk onthoudt. Bijvoorbeeld: &quot;Mijn tuin is mooi.&quot;</li>
+            <li>Schrijf die zin als één woord: MijnTuinIsMooi.</li>
+            <li>Voeg een cijfer toe, bijvoorbeeld het jaar: MijnTuinIsMooi2024.</li>
+            <li>Voeg een leesteken toe aan het eind: MijnTuinIsMooi2024!</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Deel uw wachtwoord nooit per e-mail of WhatsApp. Klik niet op links in mails die vragen om &quot;uw wachtwoord te bevestigen&quot; – dat is vaak oplichting. Meer: <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link> en <Link href="/digitale-hulp/phishing-mail-herkennen" className="font-bold text-primary hover:underline">Phishing mail herkennen</Link>. U kunt wachtwoorden in een notitieboekje thuis bewaren, of een wachtwoordmanager gebruiken. Uitgebreide uitleg: <Link href="/uitleg/wachtwoorden" className="font-bold text-primary hover:underline">Wachtwoorden</Link>.
           </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Veilig wachtwoord = lang, letters + cijfers + teken, geen persoonlijke gegevens. Wachtzin: zin als één woord + cijfer + ! of @. Voor elk account een ander wachtwoord.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/wachtwoorden" className="font-semibold text-primary hover:underline">Wachtwoorden (uitgebreide uitleg)</Link></li>
+            <li><Link href="/digitale-hulp/veilig-internet" className="font-semibold text-primary hover:underline">Veilig internet (alle artikelen)</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/digitale-hulp/phishing-mail-herkennen" className="font-semibold text-primary hover:underline">Phishing mail herkennen</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+          </ul>
         </>
       );
     case 'bluetooth-verbinden':
@@ -242,6 +537,90 @@ function ArtikelContent({ slug }: { slug: string }) {
             Meer over het koppelen van een draadloze hoofdtelefoon, inclusief handige tips, vindt u in onze{' '}
             <Link href="/uitleg/hoofdtelefoon" className="font-bold text-primary hover:underline">uitleg over hoofdtelefoon</Link>.
           </p>
+        </>
+      );
+    case 'wat-is-de-cloud':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            U hoort vaak &quot;in de cloud&quot; of &quot;opslaan in de cloud&quot;. Wat betekent dat eigenlijk? En is het veilig? Hier leest u het in eenvoudige taal.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is de cloud?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            De cloud is geen echte wolk. Het is een ander woord voor <strong>opslag op internet</strong>. Uw foto&apos;s, bestanden of back-ups staan dan niet alleen op uw telefoon of computer, maar ook op de servers van een bedrijf (zoals Google, Apple of Microsoft). U kunt ze daar ophalen als u inlogt met uw account – bijvoorbeeld op een andere telefoon of na het kopen van een nieuw apparaat.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waar komt u de cloud tegen?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Veel diensten die u misschien al gebruikt, werken met de cloud: <strong>Google Foto&apos;s</strong> of <strong>iCloud</strong> (Apple) voor foto&apos;s, <strong>OneDrive</strong> of <strong>Dropbox</strong> voor bestanden, en de back-up van uw telefoon. Als u &quot;back-up naar de cloud&quot; aanzet, worden uw gegevens veilig op internet bewaard.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Voordelen in het kort</h2>
+          <ul className="list-disc list-inside text-senior-base text-gray-700 space-y-2 mb-6">
+            <li>Uw foto&apos;s en bestanden blijven bewaard als uw telefoon kapot gaat of kwijt is.</li>
+            <li>U kunt ze op meerdere apparaten bekijken (telefoon, tablet, computer) als u bent ingelogd.</li>
+            <li>U hoeft niet alles op uw telefoon te bewaren; dat scheelt ruimte.</li>
+          </ul>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips en veiligheid</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Gebruik een <strong>sterk wachtwoord</strong> voor uw cloud-account en zet waar mogelijk <strong>tweestapsverificatie</strong> aan. Dan kunnen anderen niet zomaar bij uw gegevens. Klik nooit op vreemde links in e-mails die zeggen dat u &quot;uw cloud-account moet bevestigen&quot; – dat is vaak oplichting. Meer hierover: <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link> en <Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-bold text-primary hover:underline">Veilig wachtwoord maken</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            De cloud = opslag op internet. Uw bestanden en foto&apos;s staan dan ook bij een dienst (zoals Google of Apple), zodat u ze niet kwijt raakt en ze op meerdere apparaten kunt gebruiken. Zorg voor een goed wachtwoord en wees voorzichtig met nepberichten over uw account.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
+            <li><Link href="/digitale-hulp/fotos-kwijt-telefoon" className="font-semibold text-primary hover:underline">Foto&apos;s kwijt op telefoon</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
+        </>
+      );
+    case 'screenshot-en-schermopname-telefoon':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Wilt u een plaatje van wat er op uw scherm staat bewaren? Of een kort filmpje van wat u op het scherm doet? Dat kan: met een <strong>screenshot</strong> (een foto van het scherm) of een <strong>schermopname</strong> (een filmpje). Hier leest u hoe het werkt op Android en iPhone.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is het verschil?</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Een <strong>screenshot</strong> is één stilstaande foto van uw scherm. Handig om iets te bewaren of door te sturen: een bericht, een recept, een foutmelding. Een <strong>schermopname</strong> is een filmpje van wat er op uw scherm gebeurt – bijvoorbeeld om aan iemand te laten zien hoe u iets doet.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Screenshot maken – stap voor stap</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Android</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Houd tegelijk de <strong>aan/uit-knop</strong> en de <strong>volume-omlaag-knop</strong> ongeveer een seconde ingedrukt. Het scherm knippert even; de screenshot is gemaakt. U vindt hem in uw Foto&apos;s-app of Galerij, vaak in een map &quot;Screenshots&quot; of &quot;Schermopnamen&quot;. Op sommige Android-telefoons kunt u ook met uw hand langs het scherm vegen om een screenshot te maken (als dat is ingeschakeld in Instellingen).
+          </p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">iPhone / iPad</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            Houd tegelijk de <strong>zijknop</strong> (aan/uit) en de <strong>home-knop</strong> kort ingedrukt; het scherm flitst en de foto staat in uw Foto&apos;s. Heeft uw iPhone geen home-knop? Dan: <strong>zijknop</strong> + <strong>volume omhoog</strong> tegelijk kort indrukken. De screenshot verschijnt linksonder in beeld; u kunt erop tikken om te bewerken of weggooien, of hem laten staan – hij wordt automatisch opgeslagen in Foto&apos;s.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Schermopname maken – stap voor stap</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">Android</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Veel Android-telefoons hebben een schermopname-knop in het <strong>snelmenu</strong>: veeg met één vinger van boven naar beneden over het scherm (of van beneden naar boven, afhankelijk van uw telefoon). In het menu dat verschijnt zoekt u het icoontje <strong>Schermopname</strong> of een cirkel in een vierkant. Tik erop om te starten; tik nog eens om te stoppen. Het filmpje wordt opgeslagen in Foto&apos;s of Galerij. Staat het icoon er niet? Ga dan naar Instellingen en zoek op &quot;schermopname&quot; of &quot;screen record&quot; om het toe te voegen aan het menu.
+          </p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-2 font-semibold">iPhone / iPad</p>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            Ga naar <strong>Instellingen</strong> → <strong>Beheer van het beeldscherm</strong> (of <strong>Bedieningsbalk</strong>) → <strong>Bedieningsbalk aanpassen</strong>. Voeg het icoon <strong>Schermopname</strong> (rondje in een cirkel) toe. Daarna: open de Bedieningsbalk (veeg naar beneden vanaf de rechterbovenhoek op iPhone zonder home-knop, of vanaf de onderkant). Tik op het schermopname-icoon; na 3 tellen begint de opname. Om te stoppen: tik op de rode balk bovenaan of open de Bedieningsbalk weer en tik op het icoon. Het filmpje staat in uw Foto&apos;s-app.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Tips</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            Screenshots en schermopnamen nemen veel ruimte in. Verwijder ze regelmatig als u ze niet meer nodig heeft, of zet ze over naar de computer. Bij een schermopname: zorg dat u geen wachtwoorden of gevoelige gegevens in beeld laat als u het filmpje deelt. Meer over foto&apos;s bewaren en ordenen: <Link href="/uitleg/fotos-ordenen" className="font-bold text-primary hover:underline">Foto&apos;s ordenen</Link> en <Link href="/digitale-hulp/fotos-kwijt-telefoon" className="font-bold text-primary hover:underline">Foto&apos;s kwijt op telefoon</Link>.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Samenvatting</h2>
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            <strong>Screenshot:</strong> Android = aan/uit + volume omlaag. iPhone = zijknop + home, of zijknop + volume omhoog. <strong>Schermopname:</strong> Android = snelmenu (veeg van boven) → Schermopname. iPhone = eerst icoon toevoegen in Instellingen → Bedieningsbalk, daarna via Bedieningsbalk opnemen en stoppen.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/fotos-ordenen" className="font-semibold text-primary hover:underline">Foto&apos;s ordenen</Link></li>
+            <li><Link href="/digitale-hulp/fotos-kwijt-telefoon" className="font-semibold text-primary hover:underline">Foto&apos;s kwijt op telefoon</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
+          </ul>
         </>
       );
     default:

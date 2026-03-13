@@ -64,6 +64,9 @@ export default function VeiligheidPage() {
             <p className="text-senior-base text-gray-600 mt-2">
               1 op de 5 senioren krijgt ermee te maken. Maar wie de signalen kent, trapt er niet in.
             </p>
+            <p className="text-senior-sm text-gray-700 mt-3 max-w-2xl">
+              Hier leest u wat phishing en oplichting zijn, hoe u nepberichten herkent en wat u moet doen als u twijfelt.
+            </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Veiligheid navigatie">
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">🔒 Veiligheid:</span>
               <span className="text-senior-sm font-bold text-primary underline">Oplichting herkennen</span>
@@ -85,7 +88,7 @@ export default function VeiligheidPage() {
               Phishing (spreek uit: &quot;fishing&quot;) is een poging om u te misleiden. Criminelen doen alsof ze uw bank, de overheid of een bekende zijn — om uw gegevens of geld te stelen.
             </p>
             <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
-              Ze worden steeds beter in nabootsen. Berichten zien er soms precies uit als echt. Maar er zijn altijd signalen die u kunt leren herkennen.
+              Ze worden steeds beter in nabootsen. Berichten zien er soms precies uit als echt. Maar er zijn altijd signalen die u kunt leren herkennen. Een korte samenvatting vindt u ook in <Link href="/digitale-hulp/phishing-herkennen" className="font-bold text-primary hover:underline">Phishing herkennen</Link>.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
@@ -175,7 +178,7 @@ export default function VeiligheidPage() {
             <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
               <p className="text-senior-base font-bold text-green-800 mb-2">✅ Wat u moet doen:</p>
               <p className="text-senior-base text-gray-700 leading-relaxed">
-                Niet reageren, niet betalen. Bel uw kind of kleinkind op het <strong>oude, bekende nummer</strong> om te controleren of het echt van hen is.
+                Niet reageren, niet betalen. Bel uw kind of kleinkind op het <strong>oude, bekende nummer</strong> om te controleren of het echt van hen is. Meer over veilig WhatsApp gebruiken: <Link href="/uitleg/whatsapp-basis" className="font-bold text-primary hover:underline">WhatsApp uitleg</Link>.
               </p>
             </div>
           </section>
@@ -275,6 +278,35 @@ export default function VeiligheidPage() {
                 </div>
               ))}
             </div>
+            {/* Gerelateerde uitleg */}
+            <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+            <ul className="space-y-2 mb-6">
+              <li>
+                <Link href="/digitale-hulp/veilig-internet" className="text-senior-base font-semibold text-primary hover:underline">
+                  Veilig internet (alle artikelen)
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/phishing-mail-herkennen" className="text-senior-base font-semibold text-primary hover:underline">
+                  Phishing mail herkennen
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/veilig-wachtwoord-maken" className="text-senior-base font-semibold text-primary hover:underline">
+                  Veilig wachtwoord maken
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/whatsapp-basis" className="text-senior-base font-semibold text-primary hover:underline">
+                  WhatsApp uitleg
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-primary hover:underline">
+                  QR-code scannen (veilig scannen)
+                </Link>
+              </li>
+            </ul>
             <div className="flex flex-wrap gap-4">
               <Link href="/uitleg/wachtwoorden" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
                 Volgende: Wachtwoorden →

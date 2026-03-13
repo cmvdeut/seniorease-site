@@ -48,7 +48,7 @@ export function DigitaleHulpZoek({ artikelen, initialQuery = '' }: DigitaleHulpZ
         aria-describedby="zoek-hint"
       />
       <p id="zoek-hint" className="text-senior-sm text-gray-600 -mt-6 mb-6">
-        Typ bijvoorbeeld: WhatsApp, foto&apos;s, wifi, e-mail, wachtwoord, Bluetooth
+        Typ bijvoorbeeld: WhatsApp, videobellen, foto&apos;s, wifi, e-mail, wachtwoord, Bluetooth, cloud, screenshot
       </p>
 
       <h2 className="text-senior-xl font-bold text-primary mb-6">

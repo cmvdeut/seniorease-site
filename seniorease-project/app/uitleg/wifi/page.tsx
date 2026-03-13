@@ -21,6 +21,9 @@ export default function WifiPage() {
             <p className="text-senior-base text-gray-600 mt-2">
               Verbinding maken met internet thuis — stap voor stap uitgelegd.
             </p>
+            <p className="text-senior-sm text-gray-700 mt-3 max-w-2xl">
+              Geen internet op uw telefoon of tablet? Hier leest u hoe u verbinding maakt met uw wifi thuis en wat u kunt doen als het niet lukt.
+            </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
               <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp</Link>
@@ -95,6 +98,9 @@ export default function WifiPage() {
               <p className="text-senior-base font-bold text-amber-800 mb-1">💡 Wachtwoord kwijt?</p>
               <p className="text-senior-base text-gray-700">Kijk op de sticker op uw router. Staat het er niet op? Bel uw internetprovider — zij kunnen het wachtwoord opnieuw instellen.</p>
             </div>
+            <p className="text-senior-sm text-gray-600 mt-4">
+              Werkt uw wifi niet of valt de verbinding steeds uit? Bekijk onze <Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="font-bold text-primary hover:underline">tips om wifi-problemen op te lossen</Link>.
+            </p>
           </section>
 
           {/* Stap voor stap Android */}
@@ -199,11 +205,14 @@ export default function WifiPage() {
             </ol>
           </section>
 
-          {/* Problemen oplossen */}
+          {/* Problemen oplossen – korte alinea’s voor scanbaarheid */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
               Werkt het niet? Dit kunt u proberen
             </h2>
+            <p className="text-senior-base text-gray-700 mb-6">
+              Onderstaande oplossingen helpen bij de meeste problemen. Meer stappen? Zie <Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="font-bold text-primary hover:underline">Wifi werkt niet – oplossen</Link>.
+            </p>
             <div className="space-y-4">
               {[
                 {
@@ -295,6 +304,36 @@ export default function WifiPage() {
                 </div>
               ))}
             </div>
+
+            {/* Gerelateerde uitleg */}
+            <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+            <ul className="space-y-2 mb-6">
+              <li>
+                <Link href="/digitale-hulp/internet-email" className="text-senior-base font-semibold text-primary hover:underline">
+                  Internet &amp; e-mail (alle artikelen)
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="text-senior-base font-semibold text-primary hover:underline">
+                  Wifi werkt niet – oplossen
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/e-mail-openen" className="text-senior-base font-semibold text-primary hover:underline">
+                  E-mail openen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-primary hover:underline">
+                  Oplichting herkennen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-primary hover:underline">
+                  QR-code scannen
+                </Link>
+              </li>
+            </ul>
             <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
               ← Terug naar home
             </Link>
