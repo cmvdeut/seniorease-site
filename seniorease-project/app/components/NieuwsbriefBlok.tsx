@@ -1,0 +1,15 @@
+'use client';
+
+export default function NieuwsbriefBlok() {
+  return (
+    <section className="bg-amber-50 border border-amber-200 rounded-2xl p-8 my-8 mx-auto max-w-2xl text-center">
+      <h2 className="text-2xl font-bold text-gray-800 mb-2">
+        📬 Ontvang elke week een digitale tip
+      </h2>
+      <p className="text-gray-600 mb-6">
+        Gratis. Geen spam. Altijd opzegbaar.
+      </p>
+      <div className="ml-embedded" data-form="2LZinn" suppressHydrationWarning></div>
+    </section>
+  );
+}

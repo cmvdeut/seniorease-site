@@ -4,6 +4,7 @@ import MobileDownload from './components/MobileDownload';
 import DemoDownload from './components/DemoDownload';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import LanguageSwitcher from './components/LanguageSwitcher';
+import NieuwsbriefBlok from './components/NieuwsbriefBlok';
 import { artikelen } from './digitale-hulp/artikelen';
 
 // Social Media URLs
@@ -592,6 +593,10 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
+      <div className="container mx-auto px-6">
+        <NieuwsbriefBlok />
+      </div>
+
       <section className="bg-white py-6 border-t-2 border-neutral-stone">
         <div className="container mx-auto px-6">
           <div className="max-w-6xl mx-auto">
