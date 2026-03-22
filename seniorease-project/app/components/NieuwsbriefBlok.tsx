@@ -4,13 +4,10 @@ import { useEffect } from 'react';
 
 export default function NieuwsbriefBlok() {
   useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://assets.mailerlite.com/js/universal.js';
-    script.async = true;
-    script.onload = () => {
-      (window as any).ml('account', '2211176');
-    };
-    document.head.appendChild(script);
+    const ml = (window as any).ml;
+    if (typeof ml === 'function') {
+      ml('account', '2211176');
+    }
   }, []);
 
   return (
