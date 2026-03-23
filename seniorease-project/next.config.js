@@ -2,7 +2,7 @@
 const nextConfig = {
   poweredByHeader: false,
   images: {
-    unoptimized: true,
+    formats: ['image/webp'],
   },
   reactStrictMode: true,
   async rewrites() {

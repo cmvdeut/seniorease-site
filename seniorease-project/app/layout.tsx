@@ -5,7 +5,7 @@ import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 export const metadata: Metadata = {
   metadataBase: new URL('https://seniorease.nl'),
   title: {
-    default: "SeniorEase - Handige technologie voor senioren",
+    default: "SeniorEase – Digitale hulp voor senioren",
     template: "%s | SeniorEase"
   },
   description: "SeniorEase biedt eenvoudige digitale tools speciaal voor senioren. Beheer uw boeken collectie, gebruik handige rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen - technologie zonder gedoe.",

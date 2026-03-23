@@ -1,9 +1,18 @@
 import { MetadataRoute } from 'next'
+import { artikelen } from './digitale-hulp/artikelen'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://seniorease.nl'
+
+  const artikelUrls: MetadataRoute.Sitemap = artikelen.map((artikel) => ({
+    url: `${baseUrl}/digitale-hulp/${artikel.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly',
+    priority: 0.8,
+  }))
   
   return [
+    ...artikelUrls,
     {
       url: baseUrl,
       lastModified: new Date(),
@@ -69,6 +78,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.6,
+    },
+    {
+      url: `${baseUrl}/over-ons`,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 0.5,
     },
     {
       url: `${baseUrl}/hulp`,

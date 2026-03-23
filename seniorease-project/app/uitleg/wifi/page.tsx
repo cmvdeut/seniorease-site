@@ -5,9 +5,52 @@ export const metadata = {
   description: "Hoe verbindt u uw smartphone of tablet met het wifi-netwerk thuis? Stap-voor-stap uitleg voor senioren, inclusief wachtwoord invullen en problemen oplossen.",
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Moet ik elke keer opnieuw het wachtwoord invoeren?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Nee. Zodra u eenmaal verbonden bent, onthoudt uw telefoon het netwerk. Thuis verbindt het automatisch zodra u binnen bereik bent."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Kan ik WiFi gebruiken bij iemand anders thuis?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Vraag de naam van het netwerk en het wachtwoord. Ga naar Instellingen → WiFi en volg dezelfde stappen als thuis."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Wat is het verschil tussen WiFi en mobiele data?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WiFi gebruikt het signaal van uw router thuis. Mobiele data gebruikt het netwerk van uw telefoonprovider (4G/5G). WiFi is gratis zolang u een internetabonnement heeft; mobiele data wordt van uw databundel afgetrokken."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe weet ik of ik verbonden ben met WiFi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Kijk naar de bovenkant van uw scherm. Als u het WiFi-icoontje ziet (een soort waaier van streepjes), bent u verbonden."
+      }
+    }
+  ]
+};
+
 export default function WifiPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

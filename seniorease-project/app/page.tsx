@@ -85,14 +85,16 @@ export default function Home() {
             {/* Hero: duidelijke hoofdboodschap */}
             <div className="flex items-center justify-between gap-6 flex-wrap py-6">
               <div className="flex items-center gap-4">
-                <Image
-                  src="/heart-logo.png"
-                  alt="SeniorEase logo - Digitale hulp voor senioren"
-                  width={100}
-                  height={100}
-                  className="w-32 h-32"
-                  priority
-                />
+                <Link href="/over-ons" title="Wie zijn wij?">
+                  <Image
+                    src="/heart-logo.png"
+                    alt="SeniorEase logo - Digitale hulp voor senioren"
+                    width={100}
+                    height={100}
+                    className="w-32 h-32 hover:opacity-80 transition-opacity"
+                    priority
+                  />
+                </Link>
                 <div>
                   <h1 className="text-senior-2xl font-bold text-primary mb-1">
                     Digitale hulp voor senioren
@@ -666,6 +668,9 @@ export default function Home() {
                 <h3 className="text-senior-base font-bold mb-2">Contact</h3>
                 <Link href="/contact" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
                   Neem contact op
+                </Link>
+                <Link href="/over-ons" className="text-senior-xs text-gray-300 hover:text-white transition-colors block py-2">
+                  Over ons
                 </Link>
               </div>
               <div className="text-center sm:text-left">
