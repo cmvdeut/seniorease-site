@@ -66,8 +66,7 @@ export const metadata: Metadata = {
     title: "SeniorEase",
   },
   verification: {
-    // Voeg hier later Google Search Console verification code toe
-    // google: "your-verification-code",
+    google: "CnJwgFy2XRApB0H55JzcQynioGjLaHHJ-lJc1_z1vaU",
   },
 };
 

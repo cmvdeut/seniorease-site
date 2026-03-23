@@ -50,7 +50,7 @@ export default function ToolsPage() {
     },
     {
       title: 'Mijn Bibliotheek',
-      description: 'Beheer uw boeken en muziek collectie. Scan barcodes met uw camera.',
+      description: 'Beheer uw boeken en muziek collectie. Scan barcodes met uw camera. Gratis op pc • €2,99 eenmalig op Android',
       icon: '📚',
       href: '/bibliotheek',
       category: 'Apps'

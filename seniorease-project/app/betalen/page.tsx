@@ -195,6 +195,13 @@ export default function BetalenPage() {
                 </ul>
               </div>
 
+              {/* Garantie */}
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4 text-center">
+                <p className="text-senior-sm text-green-800 font-bold">
+                  🛡️ Niet tevreden? Geld terug binnen 14 dagen. Geen vragen.
+                </p>
+              </div>
+
               {/* Betaal knop */}
               <button
                 onClick={handleBetalen}
