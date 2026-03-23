@@ -98,10 +98,22 @@ export default function BoodschappenBestellenPage() {
               Handig als u moeilijk kunt lopen, geen auto heeft, of gewoon niet de drukte van de supermarkt
               wilt. U betaalt een kleine bezorgtoeslag, maar spaart tijd en energie.
             </p>
-            <div className="grid sm:grid-cols-2 gap-4">
+
+            <div className="bg-green-50 border-2 border-green-300 rounded-xl p-5 mb-6">
+              <p className="text-senior-base font-bold text-green-900 mb-1">🚲 Tip: Picnic — altijd gratis bezorgd</p>
+              <p className="text-senior-base text-green-800 leading-relaxed">
+                Picnic is een online supermarkt die <strong>altijd gratis bezorgt</strong> — ook kleine boodschappen.
+                Er is geen minimaal bestelbedrag en geen bezorgkosten. U kiest een tijdslot en de bezorger
+                komt met een elektrisch bakfietsje aan de deur. Handig voor wie niet veel tegelijk nodig heeft.
+                Kijk op <strong>picnic.app</strong> of download de Picnic-app.
+              </p>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4">
               {[
                 { icon: "🛒", naam: "Albert Heijn", site: "ah.nl", kleur: "bg-blue-50 border-blue-200" },
                 { icon: "🟡", naam: "Jumbo", site: "jumbo.com", kleur: "bg-yellow-50 border-yellow-200" },
+                { icon: "🚲", naam: "Picnic", site: "picnic.app — gratis bezorgd", kleur: "bg-green-50 border-green-200" },
               ].map((item, i) => (
                 <div key={i} className={`${item.kleur} border-2 rounded-xl p-4 text-center`}>
                   <div className="text-4xl mb-2">{item.icon}</div>
