@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
+
+const GA_ID = "G-N1TDJB81RW";
 import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 
 export const metadata: Metadata = {
@@ -95,6 +97,14 @@ export default function RootLayout({
         <LanguageProviderWrapper>
           {children}
         </LanguageProviderWrapper>
+        {/* Google Analytics */}
+        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${GA_ID}');
+        `}} />
         {/* MailerLite Universal */}
         <Script
           id="mailerlite-universal"
