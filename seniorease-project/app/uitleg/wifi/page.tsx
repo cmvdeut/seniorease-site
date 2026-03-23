@@ -5,6 +5,31 @@ export const metadata = {
   description: "Hoe verbindt u uw smartphone of tablet met het wifi-netwerk thuis? Stap-voor-stap uitleg voor senioren, inclusief wachtwoord invullen en problemen oplossen.",
 };
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/wifi" },
+    { "@type": "ListItem", "position": 3, "name": "WiFi instellen", "item": "https://seniorease.nl/uitleg/wifi" },
+  ],
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "WiFi instellen op Android",
+  "description": "Stap voor stap verbinding maken met het wifi-netwerk thuis op uw Android-telefoon.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "Open Instellingen", "text": "Tik op het tandwiel-icoontje op uw telefoon. Dat is de Instellingen-app." },
+    { "@type": "HowToStep", "position": 2, "name": "Tik op 'Verbindingen' of 'Netwerk en internet'", "text": "De exacte naam verschilt per telefoon, maar zoek naar iets met 'verbinding' of 'netwerk'." },
+    { "@type": "HowToStep", "position": 3, "name": "Tik op 'WiFi'", "text": "Zorg dat WiFi aanstaat. U ziet nu een lijst van beschikbare netwerken." },
+    { "@type": "HowToStep", "position": 4, "name": "Tik op de naam van uw thuisnetwerk", "text": "De netwerknaam staat ook op de sticker van uw router." },
+    { "@type": "HowToStep", "position": 5, "name": "Typ het wachtwoord in", "text": "Voer het WiFi-wachtwoord in. Let op: dit is hoofdlettergevoelig." },
+    { "@type": "HowToStep", "position": 6, "name": "Tik op 'Verbinden'", "text": "Als het wachtwoord klopt, verschijnt er 'Verbonden' onder de netwerknaam." },
+  ],
+};
+
 const faqSchema = {
   "@context": "https://schema.org",
   "@type": "FAQPage",
@@ -47,10 +72,9 @@ const faqSchema = {
 export default function WifiPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

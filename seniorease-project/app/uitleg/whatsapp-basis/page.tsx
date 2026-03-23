@@ -1,6 +1,29 @@
 import Link from 'next/link';
 import { StepIllustration } from './StepIllustration';
 
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/whatsapp-basis" },
+    { "@type": "ListItem", "position": 3, "name": "WhatsApp – Eerste stappen", "item": "https://seniorease.nl/uitleg/whatsapp-basis" },
+  ],
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "WhatsApp gebruiken – eerste stappen",
+  "description": "Leer WhatsApp openen, berichten sturen en foto's versturen in 4 eenvoudige stappen.",
+  "step": [
+    { "@type": "HowToStep", "position": 1, "name": "WhatsApp openen", "text": "Tik op het groene icoon met het telefoontje op uw telefoonscherm." },
+    { "@type": "HowToStep", "position": 2, "name": "Een gesprek kiezen", "text": "Tik op een naam in de lijst. Voor een nieuw gesprek: tik op het groene icoon rechtsonder." },
+    { "@type": "HowToStep", "position": 3, "name": "Een bericht sturen", "text": "Tik in het witte vak onderaan, typ uw bericht en tik op het blauwe verzend-icoon." },
+    { "@type": "HowToStep", "position": 4, "name": "Foto's versturen", "text": "Tik op het paperclip-icoon of het camera-icoon naast het typveld, kies een foto en tik op versturen." },
+  ],
+};
+
 export const metadata = {
   title: "WhatsApp uitleg voor senioren – eerste stappen stap voor stap",
   description: "Leer WhatsApp gebruiken: berichten sturen, foto's versturen en ontvangen. Duidelijke uitleg speciaal voor senioren, ook voor beginners.",
@@ -9,6 +32,8 @@ export const metadata = {
 export default function WhatsAppBasisPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

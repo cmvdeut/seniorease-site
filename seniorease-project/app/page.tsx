@@ -100,7 +100,7 @@ export default function Home() {
                     Digitale hulp voor senioren
                   </h1>
                   <p className="text-senior-base font-semibold text-gray-800 mb-0.5">
-                    Technologie simpel uitgelegd – stap voor stap.
+                    Gratis uitleg en tools — geen abonnement, geen lidmaatschap.
                   </p>
                   <p className="text-senior-sm text-gray-600">
                     Leer omgaan met smartphone, computer, internet en AI zonder stress.

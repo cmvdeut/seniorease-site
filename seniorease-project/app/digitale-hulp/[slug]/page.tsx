@@ -668,8 +668,19 @@ export default async function DigitaleHulpArtikelPage({
   const artikel = getArtikelBySlug(slug);
   if (!artikel) notFound();
 
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
+      { "@type": "ListItem", "position": 2, "name": "Digitale hulp", "item": "https://seniorease.nl/digitale-hulp" },
+      { "@type": "ListItem", "position": 3, "name": artikel.title, "item": `https://seniorease.nl/digitale-hulp/${artikel.slug}` },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
