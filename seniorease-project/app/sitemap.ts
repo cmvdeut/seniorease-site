@@ -183,12 +183,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${baseUrl}/uitleg/inspreken`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/uitleg`,
       lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.9,
     },
     // Reizen cluster
+    {
+      url: `${baseUrl}/uitleg/betalen-ov`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     {
       url: `${baseUrl}/uitleg/google-translate`,
       lastModified: new Date(),

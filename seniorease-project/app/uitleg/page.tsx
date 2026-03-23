@@ -41,6 +41,7 @@ const clusters = [
       { href: '/uitleg/google-maps', label: 'Google Maps gebruiken' },
       { href: '/uitleg/google-translate', label: 'Google Translate – vertalen op reis' },
       { href: '/uitleg/9292', label: '9292 OV-app – trein en bus plannen' },
+      { href: '/uitleg/betalen-ov', label: 'Betalen in het OV met pinpas of OV-chipkaart' },
     ],
   },
   {
@@ -52,6 +53,7 @@ const clusters = [
       { href: '/uitleg/qr-code', label: 'QR-code scannen' },
       { href: '/uitleg/veiligheid', label: 'Oplichting herkennen' },
       { href: '/uitleg/wachtwoorden', label: 'Wachtwoorden beheren' },
+      { href: '/uitleg/inspreken', label: 'Iets inspreken op uw telefoon' },
     ],
   },
   {

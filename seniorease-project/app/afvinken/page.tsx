@@ -550,6 +550,36 @@ export default function AfvinkenPage() {
             </ul>
           </div>
 
+          {/* Op telefoon zetten */}
+          <div className="mt-4 bg-green-50 border-2 border-green-300 rounded-xl p-6">
+            <h3 className="text-senior-base font-bold text-green-900 mb-3 text-center">
+              📱 Altijd bij de hand op uw telefoon
+            </h3>
+            <p className="text-senior-sm text-green-800 mb-4 text-center">
+              U kunt Afvinken maar! als app op uw telefoon zetten — gratis, zonder installeren.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-4">
+              <div className="bg-white border border-green-200 rounded-lg p-4">
+                <p className="text-senior-sm font-bold text-gray-800 mb-2">🍎 iPhone / iPad</p>
+                <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
+                  <li>Open Safari en ga naar seniorease.nl/afvinken</li>
+                  <li>Tik op het deelknopje onderaan (vierkantje met pijltje omhoog)</li>
+                  <li>Tik op &quot;Zet op beginscherm&quot;</li>
+                  <li>Tik op &quot;Voeg toe&quot;</li>
+                </ol>
+              </div>
+              <div className="bg-white border border-green-200 rounded-lg p-4">
+                <p className="text-senior-sm font-bold text-gray-800 mb-2">📱 Android</p>
+                <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
+                  <li>Open Chrome en ga naar seniorease.nl/afvinken</li>
+                  <li>Tik op de drie puntjes rechtsboven</li>
+                  <li>Tik op &quot;Toevoegen aan beginscherm&quot;</li>
+                  <li>Tik op &quot;Toevoegen&quot;</li>
+                </ol>
+              </div>
+            </div>
+          </div>
+
         </div>
       </main>
     </div>
