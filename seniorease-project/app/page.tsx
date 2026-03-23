@@ -365,20 +365,17 @@ export default function Home() {
                 Stel uw vraag op onze Facebook-pagina
               </a>
               <p className="text-senior-sm font-semibold text-gray-600 mb-3">
-                Recente vragen in de groep:
+                Voorbeelden van vragen die senioren stellen:
               </p>
-              <ul className="space-y-3" aria-label="Voorbeelden van vragen in de Facebook groep">
+              <ul className="space-y-3" aria-label="Voorbeelden van vragen die senioren stellen">
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Hoe bewaar ik foto&apos;s die ik via WhatsApp krijg?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Gerrit, 2 dagen geleden</p>
                 </li>
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Mijn wifi werkt niet meer. Waar moet ik kijken?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Elena, 1 week geleden</p>
                 </li>
                 <li className="bg-white border-2 border-neutral-stone rounded-xl p-4">
                   <p className="text-senior-base text-gray-800">&quot;Hoe maak ik de letters op mijn telefoon groter?&quot;</p>
-                  <p className="text-senior-sm text-gray-500 mt-1">— Ria, 1 week geleden</p>
                 </li>
               </ul>
             </div>
