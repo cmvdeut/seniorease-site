@@ -274,9 +274,14 @@ export default function Home() {
 
             {/* Populaire onderwerpen – waar anderen naar zoeken */}
             <div className="py-6 border-t-2 border-neutral-stone">
-              <h2 className="text-senior-lg font-bold text-primary mb-4">
-                Populaire uitleg
-              </h2>
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-senior-lg font-bold text-primary">
+                  Populaire uitleg
+                </h2>
+                <Link href="/uitleg" className="text-senior-sm font-bold text-primary hover:underline">
+                  Alle uitleg →
+                </Link>
+              </div>
               <p className="text-senior-sm text-gray-600 mb-4">
                 Waar anderen vaak naar zoeken:
               </p>
