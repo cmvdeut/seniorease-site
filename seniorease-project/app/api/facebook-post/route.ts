@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-const ZAPIER_WEBHOOK = "https://hooks.zapier.com/hooks/catch/26812858/up7s2bi/";
+const ZAPIER_WEBHOOK = process.env.ZAPIER_WEBHOOK_URL ?? "";
 
 const posts: Record<string, string> = {
   "2026-03-26":
