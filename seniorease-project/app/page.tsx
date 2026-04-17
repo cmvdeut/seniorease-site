@@ -7,7 +7,6 @@ import {
 } from 'lucide-react';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import NieuwsbriefBlok from './components/NieuwsbriefBlok';
-import { artikelen } from './digitale-hulp/artikelen';
 
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL';
 
