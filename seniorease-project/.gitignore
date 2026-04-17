@@ -37,6 +37,14 @@ mcp-config.json
 youtube-animaties/*.mp4
 Faecebook/*.mp4
 public/youtube-animaties/*.mp4
+video-generator/out/*.mp4
+
+# Generated assets (Remotion)
+video-generator/build/
+video-generator/out/
+
+# Cursor local settings
+.cursor/
 
 # typescript
 *.tsbuildinfo
