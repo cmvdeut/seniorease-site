@@ -43,10 +43,6 @@ export default function DownloadPage() {
               width={200}
               height={60}
               className="mx-auto"
-              onError={(e) => {
-                // Fallback als de badge afbeelding ontbreekt
-                (e.target as HTMLImageElement).style.display = 'none';
-              }}
             />
           </a>
           <div className="mt-4">

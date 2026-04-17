@@ -2,7 +2,33 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+
+const iconProps = {
+  width: 24,
+  height: 24,
+  viewBox: '0 0 24 24',
+  fill: 'none',
+  stroke: 'currentColor',
+  strokeWidth: 2,
+  strokeLinecap: 'round' as const,
+  strokeLinejoin: 'round' as const,
+  'aria-hidden': true,
+};
+
+const MenuIcon = () => (
+  <svg {...iconProps}>
+    <line x1="4" y1="6" x2="20" y2="6" />
+    <line x1="4" y1="12" x2="20" y2="12" />
+    <line x1="4" y1="18" x2="20" y2="18" />
+  </svg>
+);
+
+const CloseIcon = () => (
+  <svg {...iconProps}>
+    <line x1="6" y1="6" x2="18" y2="18" />
+    <line x1="6" y1="18" x2="18" y2="6" />
+  </svg>
+);
 
 export default function StickyNav() {
   const [open, setOpen] = useState(false);
@@ -67,7 +93,7 @@ export default function StickyNav() {
           aria-label={open ? 'Menu sluiten' : 'Menu openen'}
           aria-expanded={open}
         >
-          {open ? <X size={24} strokeWidth={2} /> : <Menu size={24} strokeWidth={2} />}
+          {open ? <CloseIcon /> : <MenuIcon />}
         </button>
       </div>
 
