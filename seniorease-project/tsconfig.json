@@ -39,6 +39,7 @@
     "node_modules",
     "tutorial-maker",
     "Original",
-    "mnt"
+    "mnt",
+    "../video-generator"
   ]
 }
