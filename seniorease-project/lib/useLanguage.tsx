@@ -19,8 +19,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>('nl');
 
   useEffect(() => {
-    // Determine language from URL or localStorage
-    const lang = pathname.startsWith('/en') ? 'en' : getCurrentLanguage();
+    // URL is leading: /en = English, anything else = Dutch
+    const lang = pathname.startsWith('/en') ? 'en' : 'nl';
     setLanguageState(lang);
   }, [pathname]);
 

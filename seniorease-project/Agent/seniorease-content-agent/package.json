@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vercel dev",
     "test-generate": "node test-generate.js",
+    "generate-article": "node generate-article.js",
     "test-facebook": "node test-facebook.js",
     "find-page-id": "node find-page-id.js",
     "check-token": "node check-token.js",

@@ -1,412 +1,118 @@
-'use client';
-
-import { useState, useEffect, Suspense } from 'react';
 import Link from 'next/link';
-import { QRCodeSVG } from 'qrcode.react';
+import Image from 'next/image';
+import type { Metadata } from 'next';
+import MobileDownload from '../components/MobileDownload';
 
-function DownloadContent() {
-  const [hasLicense, setHasLicense] = useState<boolean | 'demo' | null>(null);
-  const [downloadUrl, setDownloadUrl] = useState<string>('');
-  const [isAndroid, setIsAndroid] = useState(false);
-  const [downloading, setDownloading] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+export const metadata: Metadata = {
+  title: 'Download Mijn Bibliotheek | SeniorEase',
+  description: 'Download de Mijn Bibliotheek app via Google Play Store voor Android.',
+};
 
-  useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    // Check of Android apparaat (voor APK download)
-    const userAgent = navigator.userAgent;
-    const isAndroid = /Android/i.test(userAgent);
-    const isAndroidTablet = isAndroid && /Mobile/i.test(userAgent) === false;
-    const isAndroidPhone = isAndroid && /Mobile/i.test(userAgent);
-    const isAndroidDevice = isAndroidPhone || isAndroidTablet;
-    
-    setIsAndroid(isAndroid);
-    setIsMobile(isAndroidDevice);
-    
-    // Check licentie
-    let licentie = null;
-    try {
-      licentie = localStorage.getItem('seniorease-licentie');
-    } catch (e) {
-      console.error('Error accessing localStorage:', e);
-      setHasLicense('demo');
-      return;
-    }
-    
-    if (licentie) {
-      try {
-        const licentieData = JSON.parse(licentie);
-        if (licentieData.valid) {
-          setHasLicense(true);
-          
-          // Genereer download URL (alleen voor Android)
-          if (isAndroidDevice) {
-            const baseUrl = typeof window !== 'undefined' ? window.location.origin : '';
-            setDownloadUrl(`${baseUrl}/api/download-app`);
-          }
-          
-          return;
-        }
-      } catch (e) {
-        console.error('Error checking license:', e);
-      }
-    }
-    
-    // Geen licentie: demo mode beschikbaar op alle apparaten (met limiet van 10 items)
-    setHasLicense('demo');
-  }, []);
-
-  // Functie om APK te downloaden en automatisch te openen (Android)
-  const handleDownload = () => {
-    if (!downloadUrl) return;
-    
-    setDownloading(true);
-    
-    if (isAndroid) {
-      // Voor Android: probeer direct de URL te openen
-      // Met Content-Disposition: inline zou Android automatisch de installer moeten openen
-      // Als gebruiker wordt gevraagd om app te kiezen, kunnen ze "Altijd gebruiken" aanzetten
-      window.location.href = downloadUrl;
-      // Note: setDownloading wordt niet gereset omdat we de pagina verlaten
-    } else {
-      // Voor desktop: gewone download
-      const link = document.createElement('a');
-      link.href = downloadUrl;
-      link.download = 'Seniorease-Bibliotheek.apk';
-      link.click();
-      setDownloading(false);
-    }
-  };
-
-  // Loading state
-  if (hasLicense === null) {
-    return (
-      <div className="min-h-screen bg-neutral-cream flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin text-6xl mb-4">⏳</div>
-          <p className="text-senior-lg text-gray-700">Controleren licentie...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Geen licentie (alleen desktop)
-  if (hasLicense === false) {
-    return (
-      <div className="min-h-screen bg-neutral-cream">
-        <div className="container mx-auto px-6 py-12">
-          <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-xl border-4 border-primary p-8 text-center">
-            <div className="text-6xl mb-6">🔒</div>
-            <h1 className="text-senior-2xl font-bold text-primary mb-4">
-              Licentie vereist
-            </h1>
-            <p className="text-senior-base text-gray-700 mb-6">
-              Om de app te downloaden heeft u een licentie nodig.
-            </p>
-            <Link
-              href="/betalen"
-              className="inline-block bg-primary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                       hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl"
-            >
-              💳 Koop licentie voor € 2,99
-            </Link>
-          </div>
-        </div>
-      </div>
-    );
-  }
-
-  // Met licentie of demo - toon download
-  return (
-    <div className="min-h-screen bg-neutral-cream">
-      <div className="container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Demo Banner */}
-          {hasLicense === 'demo' && (
-            <div className="bg-yellow-100 border-4 border-yellow-400 rounded-2xl p-6 mb-8">
-              <div className="flex items-start gap-4">
-                <span className="text-4xl">🎁</span>
-                <div className="flex-1">
-                  <h2 className="text-senior-xl font-bold text-yellow-900 mb-2">
-                    Probeer eerst de Demo Versie Gratis!
-                  </h2>
-                  <p className="text-senior-base text-yellow-800 mb-4">
-                    Met de demo kunt u eerst testen of de app op uw telefoon werkt. Installeer de demo versie als app en probeer het uit met maximaal 10 items.
-                    Koop daarna de volledige versie voor onbeperkt gebruik.
-                  </p>
-                  <div className="bg-white rounded-xl p-4 mb-4">
-                    <p className="text-senior-base font-bold text-gray-800 mb-2">
-                      Demo versie bevat:
-                    </p>
-                    <ul className="text-senior-sm text-gray-700 space-y-1 list-disc list-inside">
-                      <li>Maximaal 10 items (boeken)</li>
-                      <li>Barcode scanner</li>
-                      <li>Zoekfunctie</li>
-                      <li>Alle basis functionaliteit</li>
-                    </ul>
-                  </div>
-                  <Link
-                    href="/bibliotheek"
-                    className="inline-block bg-green-600 text-white px-6 py-3 rounded-xl text-senior-base font-bold
-                             hover:bg-green-700 transition-all shadow-lg hover:shadow-xl"
-                  >
-                    📱 Installeer Demo als App
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* Header */}
-          <div className="text-center mb-8">
-            <h1 className="text-senior-3xl font-bold text-primary mb-4">
-              📱 Download de App
-            </h1>
-            {hasLicense === true ? (
-              <p className="text-senior-lg text-gray-700">
-                Uw licentie is actief. Download hier de bibliotheek app voor Android.
-              </p>
-            ) : (
-              <p className="text-senior-lg text-gray-700">
-                Download de volledige versie van de bibliotheek app voor Android.
-              </p>
-            )}
-          </div>
-
-          {/* Direct Download Button - Alleen voor licentie */}
-          {hasLicense === true && (
-            <div className="max-w-md mx-auto mb-8">
-              <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8">
-                <h2 className="text-senior-xl font-bold text-primary mb-6 text-center">
-                  📱 Download de Volledige App
-                </h2>
-                <button
-                  onClick={handleDownload}
-                  disabled={downloading || !downloadUrl}
-                  className="w-full bg-primary text-white px-8 py-6 rounded-xl text-senior-xl font-bold
-                           hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl
-                           disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
-                >
-                  {downloading ? (
-                    <>
-                      <span className="animate-spin">⏳</span>
-                      <span>Downloaden...</span>
-                    </>
-                  ) : (
-                    <>
-                      <span>📥</span>
-                      <span>Download APK</span>
-                    </>
-                  )}
-                </button>
-                {isAndroid && (
-                  <p className="text-senior-sm text-green-700 text-center mt-4 font-bold">
-                    ✅ Op Android wordt de installer automatisch geopend!
-                  </p>
-                )}
-              </div>
-            </div>
-          )}
-
-          {/* Demo Install Instructies */}
-          {hasLicense === 'demo' && (
-            <div className="max-w-md mx-auto mb-8">
-              <div className="bg-white rounded-2xl shadow-xl border-4 border-yellow-400 p-8">
-                <h2 className="text-senior-xl font-bold text-yellow-900 mb-6 text-center">
-                  🎁 Installeer Demo als App
-                </h2>
-                <div className="space-y-4 text-senior-base text-gray-700">
-                  <p className="font-bold">
-                    Installeer de demo versie direct vanuit je browser:
-                  </p>
-                  <ol className="list-decimal list-inside space-y-2 ml-2">
-                    <li>Ga naar de <Link href="/bibliotheek" className="text-primary hover:underline font-bold">Bibliotheek pagina</Link></li>
-                    <li>Klik op <strong>"⚙️ Opties"</strong> (rechtsboven)</li>
-                    <li>Klik op <strong>"📲 Installeer als app"</strong></li>
-                    <li>Volg de installatie instructies van je browser</li>
-                  </ol>
-                  <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mt-4">
-                    <p className="text-senior-sm text-yellow-900 font-bold mb-2">
-                      💡 Tip:
-                    </p>
-                    <p className="text-senior-sm text-yellow-900">
-                      Na installatie kun je de demo app gebruiken met maximaal 10 items. 
-                      Upgrade naar de volledige versie voor onbeperkt gebruik!
-                    </p>
-                  </div>
-                </div>
-                <div className="mt-6 space-y-3">
-                  <Link
-                    href="/betalen"
-                    className="block w-full bg-green-600 text-white px-8 py-4 rounded-xl text-senior-lg font-bold
-                             hover:bg-green-700 transition-all shadow-lg hover:shadow-xl text-center"
-                  >
-                    💳 Koop Volledige Versie (€2,99)
-                  </Link>
-                </div>
-              </div>
-            </div>
-          )}
-
-          {/* QR Code voor download */}
-          <div className="max-w-md mx-auto mb-8">
-            <div className="bg-white rounded-2xl shadow-xl border-4 border-secondary p-8">
-              <h2 className="text-senior-xl font-bold text-secondary mb-6 text-center">
-                📱 Of Scan QR Code
-              </h2>
-              <div className="flex flex-col items-center">
-                <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-6">
-                  {downloadUrl ? (
-                    <QRCodeSVG
-                      value={downloadUrl}
-                      size={250}
-                      level="H"
-                      includeMargin={true}
-                    />
-                  ) : (
-                    <div className="w-[250px] h-[250px] flex items-center justify-center bg-gray-100 rounded">
-                      <p className="text-senior-sm text-gray-500">QR code wordt geladen...</p>
-                    </div>
-                  )}
-                </div>
-                <p className="text-senior-base text-gray-700 text-center font-bold mb-2">
-                  Scan met uw telefoon camera
-                </p>
-                <p className="text-senior-sm text-gray-600 text-center mb-2">
-                  De download start automatisch na het scannen
-                </p>
-                <p className="text-senior-xs text-orange-700 text-center font-bold">
-                  ⚠️ Als u "bestand mogelijk schade" ziet: dit is normaal en veilig. Klik gewoon op "Toestaan" of "Doorgaan".
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Installatie instructies */}
-          <div className="bg-blue-50 border-4 border-blue-300 rounded-2xl p-8 mb-6">
-            <h2 className="text-senior-xl font-bold text-blue-900 mb-4 text-center">
-              📲 App installeren op Android
-            </h2>
-            
-            <div className="space-y-6 text-senior-base text-blue-900">
-              {/* Stap 1: Downloaden */}
-              <div>
-                <h3 className="font-bold mb-2 text-senior-lg">Stap 1: Download de APK</h3>
-                <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li>Klik op <strong>"Download APK"</strong> hierboven, of scan de QR code</li>
-                  <li>Wacht tot de download klaar is</li>
-                  <li className="font-bold text-green-700">
-                    ✅ Op Android wordt de installer automatisch geopend!
-                  </li>
-                  <li className="text-senior-sm text-gray-600">
-                    (Als dit niet gebeurt, ga naar Downloads en tap op het APK bestand)
-                  </li>
-                </ol>
-              </div>
-
-              {/* Info: Waarschuwing over "bestand mogelijk schade" */}
-              <div className="bg-yellow-50 border-2 border-yellow-400 rounded-xl p-4 mb-4">
-                <p className="font-bold text-yellow-900 mb-2 text-senior-lg">⚠️ Belangrijke informatie over de waarschuwing</p>
-                <p className="text-senior-base text-yellow-900 mb-2">
-                  Als u een melding ziet <strong>"Bestand mogelijk schade"</strong> of <strong>"Dit bestand kan uw apparaat beschadigen"</strong>:
-                </p>
-                <ul className="list-disc list-inside space-y-1 ml-4 text-senior-base text-yellow-900">
-                  <li>Dit is een <strong>normale beveiligingswaarschuwing</strong> van Android</li>
-                  <li>Het bestand is <strong>veilig</strong> - dit verschijnt bij alle apps buiten de Play Store</li>
-                  <li>U kunt gewoon op <strong>"Downloaden toch toestaan"</strong> of <strong>"Doorgaan"</strong> klikken</li>
-                  <li>De app is volledig functioneel na installatie</li>
-                </ul>
-              </div>
-
-              {/* Stap 2: App kiezen */}
-              <div>
-                <h3 className="font-bold mb-2 text-senior-lg">Stap 2: Kies "Pakket installatie"</h3>
-                <p className="mb-3">Android vraagt welke app u wilt gebruiken om te installeren:</p>
-                <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li>Als u een keuze ziet tussen apps (zoals "Pakket installatie" of "APK Mirror Installer"):</li>
-                  <li className="ml-6">→ Kies <strong>"Pakket installatie"</strong> (de standaard Android installer)</li>
-                  <li className="ml-6">→ ✅ Zet het vinkje aan bij <strong>"Altijd gebruiken"</strong> of <strong>"Standaard instellen"</strong></li>
-                  <li className="ml-6">→ Klik op <strong>"Openen"</strong> of <strong>"Gebruiken"</strong></li>
-                  <li className="text-green-700 font-semibold">✅ Volgende keer gaat dit automatisch!</li>
-                </ol>
-              </div>
-
-              {/* Stap 3: Toestemming geven */}
-              <div>
-                <h3 className="font-bold mb-2 text-senior-lg">Stap 3: Toestemming geven</h3>
-                <p className="mb-3">Android vraagt om toestemming om te installeren. Dit is <strong>veilig</strong> en maar <strong>één keer</strong> nodig:</p>
-                <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li>Android toont: <strong>"Installeer dit bestand?"</strong></li>
-                  <li>Klik op <strong>"Installeer"</strong></li>
-                  <li className="font-bold">Als u ziet: <strong>"Toestaan van onbekende bronnen"</strong> of <strong>"Installeer apps van deze bron"</strong>:</li>
-                  <li className="ml-6">→ Klik op <strong>"Instellingen"</strong> of <strong>"Toestaan"</strong></li>
-                  <li className="ml-6">→ Zet het schakelaartje <strong>AAN</strong> (bijv. "Deze bron toestaan" of "Toestaan van deze bron")</li>
-                  <li className="ml-6">→ Klik <strong>"Terug"</strong> (of druk op de terug-knop) en probeer opnieuw</li>
-                </ol>
-              </div>
-
-              {/* Stap 4: Installeren */}
-              <div>
-                <h3 className="font-bold mb-2 text-senior-lg">Stap 4: App installeren</h3>
-                <ol className="list-decimal list-inside space-y-2 ml-4">
-                  <li>Na toestemming ziet u: <strong>"App installeren"</strong> of <strong>"Installeren"</strong></li>
-                  <li>Klik op <strong>"Installeer"</strong></li>
-                  <li>Wacht even tot installatie klaar is (dit duurt meestal 10-30 seconden)</li>
-                  <li>Klik op <strong>"Openen"</strong> om de app direct te starten, of</li>
-                  <li>Klik op <strong>"Gereed"</strong> - de app verschijnt nu op uw startscherm! 🎉</li>
-                </ol>
-              </div>
-
-              {/* Help sectie */}
-              <div className="bg-yellow-50 border-2 border-yellow-300 rounded-xl p-4 mt-4">
-                <p className="font-bold mb-2">💡 Hulp nodig?</p>
-                <ul className="list-disc list-inside space-y-1 ml-4">
-                  <li><strong>Moet ik steeds een app kiezen?</strong> Zet bij de eerste keer "<strong>Altijd gebruiken</strong>" aan bij "Pakket installatie". Dan gaat het daarna automatisch!</li>
-                  <li><strong>"Bestand mogelijk schade" melding?</strong> Dit is normaal! Het bestand is veilig. Klik gewoon op "Toestaan" of "Doorgaan".</li>
-                  <li><strong>Download niet gevonden?</strong> Check "Downloads" map of browser downloads</li>
-                  <li><strong>Kan niet installeren?</strong> Ga naar Instellingen → Beveiliging → Onbekende bronnen (oude Android) of check per-app toestemming (nieuwe Android)</li>
-                  <li><strong>Wil je het niet toestaan?</strong> U kunt altijd de webversie gebruiken in uw browser</li>
-                </ul>
-              </div>
-            </div>
-          </div>
-
-          {/* Terug knoppen */}
-          <div className="text-center space-y-4">
-            <Link
-              href="/bibliotheek"
-              className="inline-block bg-secondary text-white px-10 py-6 rounded-xl text-senior-lg font-bold
-                       hover:bg-secondary-dark transition-all shadow-lg hover:shadow-xl mr-4"
-            >
-              → Ga naar Bibliotheek
-            </Link>
-            <Link
-              href="/"
-              className="inline-block bg-gray-300 text-gray-800 px-10 py-6 rounded-xl text-senior-lg font-bold
-                       hover:bg-gray-400 transition-all shadow-lg"
-            >
-              ← Terug naar Home
-            </Link>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.maureen.biblitoheek';
 
 export default function DownloadPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen bg-neutral-cream flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin text-6xl mb-4">⏳</div>
-          <p className="text-senior-lg text-gray-700">Laden...</p>
+    <main className="min-h-screen bg-neutral-cream">
+      <div className="max-w-2xl mx-auto px-6 py-10">
+
+        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
+          ← Terug naar home
+        </Link>
+
+        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
+          Download Mijn Bibliotheek
+        </h1>
+        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+          Beschikbaar in de Google Play Store voor Android.
+        </p>
+
+        {/* Play Store knop */}
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6 text-center">
+          <p className="text-gray-700 mb-6" style={{ fontSize: '1.15rem' }}>
+            Klik op de knop hieronder om de app te openen in de Google Play Store:
+          </p>
+          <a
+            href={PLAY_STORE_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block"
+          >
+            <Image
+              src="/images/google-play-badge-nl.png"
+              alt="Beschikbaar in Google Play"
+              width={200}
+              height={60}
+              className="mx-auto"
+              onError={(e) => {
+                // Fallback als de badge afbeelding ontbreekt
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          </a>
+          <div className="mt-4">
+            <a
+              href={PLAY_STORE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block font-bold text-white py-4 px-8 rounded-xl hover:opacity-90 transition-opacity shadow-sm"
+              style={{ background: '#8B5E3C', fontSize: '1.15rem' }}
+            >
+              Naar Google Play Store →
+            </a>
+          </div>
         </div>
+
+        {/* QR code */}
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6">
+          <h2 className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.5rem' }}>
+            Of scan de QR-code
+          </h2>
+          <p className="text-gray-500 mb-6" style={{ fontSize: '1.1rem' }}>
+            Open de camera-app op uw telefoon en richt op de code.
+          </p>
+          <MobileDownload />
+        </div>
+
+        {/* Stappenplan */}
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6">
+          <h2 className="font-bold text-gray-900 mb-4" style={{ fontSize: '1.5rem' }}>
+            Hoe installeert u de app?
+          </h2>
+          <ol className="space-y-3">
+            {[
+              'Open de Google Play Store op uw Android telefoon of tablet.',
+              'Zoek op "Mijn Bibliotheek SeniorEase" of gebruik de knop of QR-code hierboven.',
+              'Tik op "Installeren" en wacht tot de download klaar is.',
+              'Open de app en begin met het bijhouden van uw boeken.',
+            ].map((stap, i) => (
+              <li key={i} className="flex items-start gap-3 text-gray-700" style={{ fontSize: '1.15rem' }}>
+                <span
+                  className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-white font-bold text-sm mt-0.5"
+                  style={{ background: '#8B5E3C' }}
+                >
+                  {i + 1}
+                </span>
+                <span>{stap}</span>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        {/* iPhone/iPad info */}
+        <div className="rounded-xl p-6 border border-amber-200" style={{ background: '#FFFBF0' }}>
+          <h3 className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.2rem' }}>
+            iPhone of iPad?
+          </h3>
+          <p className="text-gray-700" style={{ fontSize: '1.1rem' }}>
+            De app is momenteel alleen beschikbaar voor Android. Op iPhone en iPad kunt u{' '}
+            <Link href="/bibliotheek" className="text-primary hover:underline font-medium">
+              Mijn Bibliotheek gratis gebruiken via de browser
+            </Link>
+            .
+          </p>
+        </div>
+
       </div>
-    }>
-      <DownloadContent />
-    </Suspense>
+    </main>
   );
 }
-

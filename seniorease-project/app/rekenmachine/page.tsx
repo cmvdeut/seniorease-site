@@ -99,12 +99,12 @@ export default function RekenmachinePage() {
       <header className="bg-neutral-cream border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="flex items-center justify-between flex-wrap gap-4">
-            <Link 
-              href="/"
+            <Link
+              href="/tools"
               className="inline-flex items-center gap-3 text-primary hover:text-primary-dark transition-colors font-semibold"
             >
               <span className="text-3xl">←</span>
-              <span className="text-senior-base">Terug naar home</span>
+              <span className="text-senior-base">Terug naar tools</span>
             </Link>
             <div className="flex items-center gap-3">
               <Image 

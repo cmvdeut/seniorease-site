@@ -1,6 +1,8 @@
 # SeniorEase Content Agent 🤖
 
-Geautomatiseerde content generator voor SeniorEase social media kanalen.
+Geautomatiseerde content generator voor SeniorEase: **social media** én **website-artikelen** (AI contentmachine).
+
+Zie **[AI-CONTENTMACHINE.md](./AI-CONTENTMACHINE.md)** voor het volledige overzicht (social + artikelen).
 
 ## Wat doet het?
 
@@ -8,6 +10,7 @@ Geautomatiseerde content generator voor SeniorEase social media kanalen.
 - ✅ Post naar Facebook (straks ook YouTube)
 - ✅ Nederlandse tech tips voor senioren
 - ✅ Draait op Vercel met cron jobs (maandag, woensdag, vrijdag om 10:00)
+- ✅ **Website-artikelen:** `npm run generate-article -- "Onderwerp"` → AI schrijft een uitlegartikel voor Digitale hulp (output in `output/`)
 
 ---
 

@@ -1051,11 +1051,11 @@ export default function PuzzelsPage() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-center justify-between flex-wrap gap-4 mb-4">
-              <Link 
-                href="/"
+              <Link
+                href="/tools"
                 className="inline-flex items-center gap-2 text-primary hover:text-primary-dark text-senior-base"
               >
-                ← Terug naar home
+                ← Terug naar tools
               </Link>
               <Link
                 href="/animaties/puzzel"

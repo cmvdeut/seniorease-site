@@ -1,9 +1,18 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { Nunito } from "next/font/google";
+
+const nunito = Nunito({
+  subsets: ["latin"],
+  weight: ["400", "600", "700", "800"],
+  display: "swap",
+});
 
 const GA_ID = "G-N1TDJB81RW";
+import Link from "next/link";
 import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
+import StickyNav from "./components/StickyNav";
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://seniorease.nl'),
@@ -85,7 +94,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl">
+    <html lang="nl" className={nunito.className}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#8B5E3C" />
@@ -95,7 +104,22 @@ export default function RootLayout({
       </head>
       <body className="antialiased" style={{ margin: 0 }}>
         <LanguageProviderWrapper>
+          <StickyNav />
           {children}
+          <footer className="bg-white border-t border-neutral-stone/40 py-6">
+            <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-400" style={{ fontSize: '0.95rem' }}>
+              <p>© 2026 SeniorEase</p>
+              <div className="flex gap-5">
+                <Link href="/over-ons" className="hover:text-primary transition-colors">Over ons</Link>
+                <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
+                <Link href="/voorwaarden" className="hover:text-primary transition-colors">Voorwaarden</Link>
+              </div>
+              <div className="flex gap-4">
+                <a href="https://www.facebook.com/seniorease.nl" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
+                <a href="https://www.youtube.com/@SeniorEaseNL" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
+              </div>
+            </div>
+          </footer>
         </LanguageProviderWrapper>
         {/* Google Analytics */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />

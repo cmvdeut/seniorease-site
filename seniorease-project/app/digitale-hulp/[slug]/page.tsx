@@ -61,6 +61,23 @@ function ArtikelContent({ slug }: { slug: string }) {
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
             WhatsApp = gratis berichten en bellen via internet. Open de app, kies een contact, typ of stuur een foto. Bellen kan via het telefoon-icoon in het gesprek.
           </p>
+          <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <div className="text-5xl">▶️</div>
+            <div>
+              <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
+              <p className="text-senior-base text-gray-600 mb-3">
+                We hebben 5 korte animatievideo&apos;s gemaakt — van installeren tot veilig gebruik. Stap voor stap, rustig tempo.
+              </p>
+              <a
+                href="https://www.youtube.com/playlist?list=PLw97JnScZym9aYtdatiYx5LfwgflCd7b4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-senior-base px-6 py-3 rounded-xl transition-colors"
+              >
+                Bekijk de WhatsApp video&apos;s op YouTube →
+              </a>
+            </div>
+          </div>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
             <li><Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="font-semibold text-primary hover:underline">WhatsApp foto&apos;s opslaan</Link></li>
@@ -681,33 +698,35 @@ export default async function DigitaleHulpArtikelPage({
   return (
     <main className="min-h-screen bg-neutral-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
+      <header className="bg-white border-b border-neutral-stone/40 py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <Link
               href="/digitale-hulp"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
+              className="inline-flex items-center gap-1.5 text-primary hover:text-primary-dark mb-4 text-senior-base font-medium"
+              style={{ minHeight: 'auto' }}
             >
-              ← Terug naar Digitale hulp
+              ← Digitale hulp
             </Link>
             <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
               {artikel.title}
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-gray-500 mt-2">
               {artikel.description}
             </p>
           </div>
         </div>
       </header>
 
-      <section className="container mx-auto px-6 py-12">
+      <section className="container mx-auto px-6 py-10">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
+          <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 md:p-12">
             <ArtikelContent slug={artikel.slug} />
-            <p className="mt-10 pt-6 border-t border-neutral-stone">
+            <p className="mt-10 pt-6 border-t border-neutral-stone/40">
               <Link
                 href="/digitale-hulp"
-                className="text-senior-base font-bold text-primary hover:text-primary-dark underline"
+                className="text-senior-base font-semibold text-primary hover:underline"
+                style={{ minHeight: 'auto' }}
               >
                 ← Alle artikelen Digitale hulp
               </Link>

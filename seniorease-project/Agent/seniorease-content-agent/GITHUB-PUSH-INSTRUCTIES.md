@@ -1,3 +1,44 @@
+API key Claude
+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
+
+TEST KEY:
+curl https://api.anthropic.com/v1/messages \
+        --header "x-api-key: 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" \
+        --header "anthropic-version: 2023-06-01" \
+        --header "content-type: application/json" \
+        --data \
+    '{
+        "model": "claude-sonnet-4-20250514",
+        "max_tokens": 1024,
+        "messages": [
+            {"role": "user", "content": "Hello, world"}
+        ]
+    }'
+--------------------------------------------------------------------------
+
+   "id": "10238480083518377",
+   "name": "Maureen van Deutekom"
+
+
+Facebook token:
+ID https://www.facebook.com/people/SeniorEase/61583148466074/
+
+-------------------------------
+SeniorEase ( https://facebook.com/61583148466074)
+ID : 852901977906758
+
+
+
+SeniorEase Agent
+User Token	
+EAAatNZAjWjasBP216g8WNBN72fDGCJuwy4XPZB5K1qjktAnBROiYeux5jD9p9ZBO74pjSZCSdX4SKhTXvMkyhoEcKvNeSLZCAH4moeJcwYCSYTWy3iVF3mzezw5BAjZA6dRQZAICEjISBuxrTqEAyD7CTh3v67N2T0xZBXi5O3OEomi7WhfpePQmPOrxFckZD
+--------------------------------------
+App Token	
+1879295569333675|NhSDB849XkJXr85qTRw2_cNmtzg
+-----------------------------------------------------------------------------------
+
+
+
 # 🚀 SeniorEase Content Agent - GitHub Push Instructies
 
 ## ✅ JE HEBT 2 OPTIES:

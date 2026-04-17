@@ -1,0 +1,15 @@
+{
+  "description": "Onderwerpen voor nieuwe SeniorEase uitlegartikelen (digitale-hulp). Vul aan en run: npm run generate-article -- \"onderwerp\"",
+  "topics": [
+    "WhatsApp groep aanmaken",
+    "WhatsApp bericht verwijderen voor iedereen",
+    "Bluetooth aanzetten op telefoon",
+    "Wachtwoord vergeten oplossen",
+    "Foto's back-up maken naar computer",
+    "Tablet instellen voor beginners",
+    "Google Maps gebruiken op telefoon",
+    "Nep e-mail herkennen",
+    "App verwijderen van telefoon",
+    "Internet thuis instellen"
+  ]
+}

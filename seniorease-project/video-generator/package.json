@@ -1,0 +1,26 @@
+{
+  "name": "seniorease-video-generator",
+  "version": "1.0.0",
+  "description": "Automatische video generator voor SeniorEase YouTube",
+  "scripts": {
+    "studio": "remotion studio src/index.ts",
+    "render:intro":      "remotion render src/index.ts WhatsApp-Intro      out/whatsapp-intro.mp4      --crf=12",
+    "render:berichten":  "remotion render src/index.ts WhatsApp-Berichten  out/whatsapp-berichten.mp4  --crf=12",
+    "render:fotos":      "remotion render src/index.ts WhatsApp-Fotos      out/whatsapp-fotos.mp4      --crf=12",
+    "render:bellen":     "remotion render src/index.ts WhatsApp-Bellen     out/whatsapp-bellen.mp4     --crf=12",
+    "render:veiligheid": "remotion render src/index.ts WhatsApp-Veiligheid out/whatsapp-veiligheid.mp4 --crf=12",
+    "render:all": "npm run render:intro && npm run render:berichten && npm run render:fotos && npm run render:bellen && npm run render:veiligheid",
+    "install-chromium": "npx remotion browser ensure"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "remotion": "^4.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "typescript": "^5.0.0"
+  }
+}

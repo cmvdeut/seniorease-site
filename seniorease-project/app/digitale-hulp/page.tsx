@@ -21,41 +21,33 @@ export default async function DigitaleHulpPage({
 
   return (
     <main className="min-h-screen bg-neutral-cream">
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
-            >
-              ← Terug naar home
-            </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
-              Digitale hulp voor senioren
-            </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
-              Duidelijke uitleg en tips voor telefoon, computer en internet. Stap voor stap, zonder ingewikkelde termen.
+      <div className="max-w-4xl mx-auto px-6 py-10">
+
+        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
+          ← Terug naar home
+        </Link>
+
+        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
+          Digitale hulp voor senioren
+        </h1>
+        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+          Duidelijke uitleg en tips voor telefoon, computer en internet. Stap voor stap, zonder ingewikkelde termen.
+        </p>
+
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8">
+          <div className="bg-neutral-cream rounded-xl p-5 mb-8 border border-neutral-stone/40">
+            <p className="text-gray-800 leading-relaxed mb-2" style={{ fontSize: '1.1rem' }}>
+              Komt u ergens niet uit met uw telefoon of computer?
+            </p>
+            <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.05rem' }}>
+              Hier vindt u artikelen over veelvoorkomende vragen: foto&apos;s bewaren, uw apparaat sneller maken, veilig e-mailen en oplichting herkennen.
             </p>
           </div>
-        </div>
-      </header>
 
-      <section className="container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mb-8">
-              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mb-3">
-                Komt u ergens niet uit met uw telefoon of computer?
-              </p>
-              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
-                Hier vindt u artikelen over veelvoorkomende vragen: foto&apos;s bewaren, uw apparaat sneller maken, veilig e-mailen en oplichting herkennen.
-              </p>
-            </div>
-
-            <DigitaleHulpZoek artikelen={artikelen} initialQuery={initialQuery} />
-          </div>
+          <DigitaleHulpZoek artikelen={artikelen} initialQuery={initialQuery} />
         </div>
-      </section>
+
+      </div>
     </main>
   );
 }

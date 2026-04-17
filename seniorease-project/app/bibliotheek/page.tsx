@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Script from 'next/script';
+import Image from 'next/image';
 import { QRCodeSVG } from 'qrcode.react';
 import { useLanguage } from '../../lib/useLanguage';
 import { getStorageKey } from '../../lib/translations';
@@ -10,6 +11,7 @@ import LanguageSwitcher from '../components/LanguageSwitcher';
 
 // Social Media URLs
 const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
+const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.maureen.biblitoheek';
 
 interface LibraryItem {
   id: string;
@@ -35,7 +37,7 @@ export default function BibliotheekPage() {
   const [countdown, setCountdown] = useState<number>(0);
   const [showMenu, setShowMenu] = useState(false);
   const [editingItem, setEditingItem] = useState<string | null>(null);
-  const [hasLicense, setHasLicense] = useState<boolean | null>(null);
+  const [isMounted, setIsMounted] = useState<boolean>(false);
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [debugLogs, setDebugLogs] = useState<string[]>([]);
   const [bookSearchResults, setBookSearchResults] = useState<any[]>([]);
@@ -43,56 +45,16 @@ export default function BibliotheekPage() {
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
-  const [isDemoMode, setIsDemoMode] = useState<boolean>(false);
-  const [feedbackGiven, setFeedbackGiven] = useState<boolean>(false);
-  const [feedbackValue, setFeedbackValue] = useState<string>('');
-  const [downloadPageUrl, setDownloadPageUrl] = useState<string>('');
-
   const t = translations;
-
-  // Absolute URL voor QR-code (app downloadpagina) – alleen op client
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      setDownloadPageUrl(`${window.location.origin}/download`);
-    }
-  }, []);
 
   // Check of feedback al is gegeven
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    try {
-      const feedbackKey = getStorageKey('seniorease-first-book-feedback', language);
-      const feedbackSent = localStorage.getItem(feedbackKey);
-      if (feedbackSent === 'true') {
-        setFeedbackGiven(true);
-      }
-    } catch (e) {
-      // Ignore
-    }
   }, [language]);
 
-  // Check demo mode en licentie
+  // Mount check
   useEffect(() => {
-    if (typeof window === 'undefined') return;
-    
-    // Check URL parameter voor demo mode
-    const urlParams = new URLSearchParams(window.location.search);
-    const demoParam = urlParams.get('demo');
-    
-    // Check localStorage voor demo mode (taal-specifiek)
-    const demoKey = getStorageKey('seniorease-demo-mode', language);
-    const demoMode = localStorage.getItem(demoKey) === 'true' || demoParam === 'true';
-    setIsDemoMode(demoMode);
-    
-    // WEB VERSIE: Altijd volledig gratis, geen licentie nodig
-    // Alleen mobiele APK heeft licentie nodig
-    // Op de website is alles altijd beschikbaar zonder limieten (behalve in demo mode)
-    if (demoMode) {
-      console.log('✅ Demo mode actief - max 10 boeken');
-    } else {
-      console.log('✅ Web versie - volledig gratis, geen licentie nodig - FIX 2025-12-06');
-    }
-    setHasLicense(true); // Web versie heeft altijd "licentie" (gratis)
+    setIsMounted(true);
   }, []);
 
   // Bij openen met #handmatig-toevoegen: form openen (bijv. na klik "Gebruik Mijn Bibliotheek")
@@ -118,12 +80,10 @@ export default function BibliotheekPage() {
   // PWA install prompt
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    
+
     const handleBeforeInstallPrompt = (e: Event) => {
-      if (hasLicense === true) {
-        e.preventDefault();
-        setDeferredPrompt(e);
-      }
+      e.preventDefault();
+      setDeferredPrompt(e);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -131,20 +91,11 @@ export default function BibliotheekPage() {
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     };
-  }, [hasLicense]);
-
-  // Wanneer licentie wordt toegevoegd, check of er al een prompt was
-  useEffect(() => {
-    if (hasLicense === true && typeof window !== 'undefined') {
-      // Als er al een prompt was geweest maar we die hadden geblokkeerd,
-      // kan de gebruiker nu handmatig installeren via browser menu
-      // We kunnen ook een eigen install button toevoegen als we de prompt hebben
-    }
-  }, [hasLicense]);
+  }, []);
 
   // Load items from localStorage
   useEffect(() => {
-    if (hasLicense === null || typeof window === 'undefined') return;
+    if (typeof window === 'undefined') return;
     
     try {
       const libraryKey = getStorageKey('seniorease-library', language);
@@ -161,7 +112,7 @@ export default function BibliotheekPage() {
       // localStorage kan niet beschikbaar zijn (bijv. in private mode)
       console.error('Error accessing localStorage:', e);
     }
-  }, [hasLicense, language]);
+  }, [language]);
 
   // Save items to localStorage
   useEffect(() => {
@@ -199,13 +150,6 @@ export default function BibliotheekPage() {
 
   // Add new item
   function addItem(item: Omit<LibraryItem, 'id' | 'dateAdded'>) {
-    // Check demo mode limiet (max 10 boeken)
-    if (isDemoMode && items.length >= 10) {
-      setErrorMessage(t.errors.demoLimitReached);
-      setShowAddForm(false);
-      return;
-    }
-    
     const newItem: LibraryItem = {
       ...item,
       id: Date.now().toString(),
@@ -213,12 +157,6 @@ export default function BibliotheekPage() {
     };
     setItems([newItem, ...items]);
     setShowAddForm(false);
-    
-    if (isDemoMode && items.length + 1 === 10) {
-      setSuccessMessage(language === 'nl' 
-        ? 'U heeft nu 10 boeken toegevoegd. Dit is de limiet voor het proberen. Wilt u meer? Schaf dan de volledige versie eenmalig aan.'
-        : 'You have now added 10 books. This is the limit for trying. Want more? Then purchase the full version one-time.');
-    }
   }
 
   // Delete item
@@ -1461,47 +1399,15 @@ Voor vragen: bezoek seniorease.nl
     book: 'Boek'
   };
 
-  // Licentie check overlay verwijderd - web versie is altijd volledig gratis
-
-  // Loading state
-  if (hasLicense === null) {
-    return (
-      <div className="min-h-screen bg-neutral-cream flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin text-6xl mb-4">⏳</div>
-          <p className="text-senior-lg text-gray-700">Laden...</p>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       {/* Load QuaggaJS for barcode scanning */}
-      <Script 
+      <Script
         src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"
         onLoad={() => setQuaggaLoaded(true)}
       />
 
       <div className="min-h-screen bg-neutral-cream">
-        {/* Demo mode banner */}
-        {isDemoMode && (
-          <div className="bg-yellow-50 border-b-2 border-yellow-400 py-4">
-            <div className="container mx-auto px-6">
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <p className="text-senior-base font-bold text-yellow-900">
-                  {language === 'nl' ? 'Demo versie' : 'Demo version'} - {items.length}/10 {language === 'nl' ? 'boeken gebruikt' : 'books used'}
-                </p>
-                <Link 
-                  href="/betalen"
-                  className="text-senior-sm text-primary hover:text-primary-dark font-bold underline"
-                >
-                  {language === 'nl' ? 'Volledige versie eenmalig aanschaffen' : 'Purchase full version one-time'} →
-                </Link>
-              </div>
-            </div>
-          </div>
-        )}
         
         {/* Error message banner */}
         {(errorMessage || loadError) && (
@@ -1595,6 +1501,15 @@ Voor vragen: bezoek seniorease.nl
                   </div>
                   {/* Actie knoppen */}
                   <div className="flex flex-col sm:flex-row gap-3 mb-4">
+                    <a
+                      href={PLAY_STORE_URL}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
+                               hover:bg-primary/10 transition-all"
+                    >
+                      {t.library.tryMobileButton}
+                    </a>
                     <button
                       type="button"
                       onClick={() => {
@@ -1611,34 +1526,28 @@ Voor vragen: bezoek seniorease.nl
                     >
                       {t.library.useLibraryButton}
                     </button>
-                    <Link 
-                      href="/download"
-                      className="inline-block bg-white text-primary border-2 border-primary px-6 py-3 rounded-xl text-senior-base font-bold text-center
-                               hover:bg-primary/10 transition-all"
-                    >
-                      {t.library.tryMobileButton}
-                    </Link>
                   </div>
-                  {/* QR-code: app downloaden op Android */}
-                  {downloadPageUrl && (
-                    <div className="mt-4 p-4 bg-white border-2 border-primary rounded-xl inline-block">
-                      <p className="text-senior-sm font-bold text-gray-800 mb-2">
-                        {language === 'nl' ? '📱 App op Android-telefoon' : '📱 App on Android phone'}
-                      </p>
-                      <p className="text-senior-xs text-gray-600 mb-3 max-w-[200px]">
-                        {language === 'nl' ? 'Scan met uw Android-telefoon om de app te downloaden:' : 'Scan with your Android phone to download the app:'}
-                      </p>
-                      <div className="bg-white p-2 rounded-lg border border-gray-200 inline-block">
-                        <QRCodeSVG value={downloadPageUrl} size={140} level="H" includeMargin />
-                      </div>
-                      <p className="text-senior-xs text-gray-500 mt-2">
-                        {language === 'nl' ? 'Of ga naar' : 'Or go to'}{' '}
-                        <Link href="/download" className="text-primary font-bold underline">
-                          {language === 'nl' ? 'downloadpagina' : 'download page'}
-                        </Link>
-                      </p>
+                  {/* QR-code: app downloaden via Play Store */}
+                  <div className="mt-4 p-4 bg-white border-2 border-primary rounded-xl inline-block">
+                    <p className="text-senior-sm font-bold text-gray-800 mb-2">
+                      {language === 'nl' ? '📱 App op Android-telefoon' : '📱 App on Android phone'}
+                    </p>
+                    <p className="text-senior-xs text-gray-600 mb-3 max-w-[200px]">
+                      {language === 'nl' ? 'Scan met uw Android-telefoon:' : 'Scan with your Android phone:'}
+                    </p>
+                    <div className="bg-white p-2 rounded-lg border border-gray-200 inline-block mb-3">
+                      <QRCodeSVG value={PLAY_STORE_URL} size={140} level="H" />
                     </div>
-                  )}
+                    <a href={PLAY_STORE_URL} target="_blank" rel="noopener noreferrer" className="block">
+                      <Image
+                        src="/images/google-play-badge-nl.png"
+                        alt="Beschikbaar in Google Play"
+                        width={160}
+                        height={48}
+                        className="mx-auto"
+                      />
+                    </a>
+                  </div>
                 </div>
                 <Link
                   href="/animaties/bibliotheek"
@@ -1704,7 +1613,7 @@ Voor vragen: bezoek seniorease.nl
                         <div className="border-t border-gray-200 my-1"></div>
                         
                         {/* Install app button */}
-                        {hasLicense === true && deferredPrompt && (
+                        {deferredPrompt && (
                           <>
                             <button
                               onClick={installeerApp}
@@ -2272,89 +2181,6 @@ Voor vragen: bezoek seniorease.nl
                     </div>
                   </div>
                   
-                  {/* Feedback formulier */}
-                  {!feedbackGiven && (
-                    <div className="bg-white border-2 border-primary/30 rounded-xl p-6 mb-4">
-                      <div className="text-center space-y-4">
-                        <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold">
-                          {t.feedback.question}
-                        </p>
-                        <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
-                          {t.feedback.questionText}
-                        </p>
-                        <p className="text-senior-sm md:text-senior-base text-gray-600 leading-relaxed">
-                          {t.feedback.explanation.split('\n').map((line, i) => (
-                            <span key={i}>
-                              {line}
-                              {i < t.feedback.explanation.split('\n').length - 1 && <br />}
-                            </span>
-                          ))}
-                        </p>
-                        <p className="text-senior-xs md:text-senior-sm text-gray-500 leading-relaxed">
-                          {t.feedback.threeWords}
-                        </p>
-                        
-                        {/* Radio buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mt-4">
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="feedback"
-                              value="clear"
-                              checked={feedbackValue === 'clear'}
-                              onChange={(e) => setFeedbackValue(e.target.value)}
-                              className="w-5 h-5 text-primary focus:ring-primary"
-                            />
-                            <span className="text-senior-base text-gray-700">{t.feedback.clear}</span>
-                          </label>
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="feedback"
-                              value="calm"
-                              checked={feedbackValue === 'calm'}
-                              onChange={(e) => setFeedbackValue(e.target.value)}
-                              className="w-5 h-5 text-primary focus:ring-primary"
-                            />
-                            <span className="text-senior-base text-gray-700">{t.feedback.calm}</span>
-                          </label>
-                          <label className="flex items-center gap-2 cursor-pointer">
-                            <input
-                              type="radio"
-                              name="feedback"
-                              value="getting-used-to"
-                              checked={feedbackValue === 'getting-used-to'}
-                              onChange={(e) => setFeedbackValue(e.target.value)}
-                              className="w-5 h-5 text-primary focus:ring-primary"
-                            />
-                            <span className="text-senior-base text-gray-700">{t.feedback.gettingUsedTo}</span>
-                          </label>
-                        </div>
-                        
-                        {/* Optionele verzend knop (alleen wanneer een keuze is gemaakt) */}
-                        {feedbackValue && (
-                          <button
-                            onClick={async () => {
-                              // Stuur feedback (optioneel - kan later naar API)
-                              console.log('Feedback:', feedbackValue);
-                              // Markeer als gegeven
-                              setFeedbackGiven(true);
-                              // Optioneel: sla op in localStorage om niet opnieuw te tonen
-                              try {
-                                const feedbackKey = getStorageKey('seniorease-first-book-feedback', language);
-                                localStorage.setItem(feedbackKey, 'true');
-                              } catch (e) {
-                                // Ignore
-                              }
-                            }}
-                            className="mt-4 text-senior-sm text-primary hover:text-primary-dark underline"
-                          >
-                            {t.feedback.sendOptional}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  )}
                 </>
               )}
               

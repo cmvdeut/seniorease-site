@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 const clusters = [
   {
-    titel: '📺 Streaming & TV',
+    titel: 'Streaming & TV',
     omschrijving: 'Films, series en programma\'s kijken op uw tablet of tv.',
     paginas: [
       { href: '/uitleg/netflix', label: 'Netflix gebruiken' },
@@ -17,7 +17,7 @@ const clusters = [
     ],
   },
   {
-    titel: '📞 Videobellen',
+    titel: 'Videobellen',
     omschrijving: 'Familie en vrienden zien terwijl u belt.',
     paginas: [
       { href: '/uitleg/videobellen', label: 'Videobellen via WhatsApp' },
@@ -26,7 +26,7 @@ const clusters = [
     ],
   },
   {
-    titel: '🛒 Online winkelen',
+    titel: 'Online winkelen',
     omschrijving: 'Veilig bestellen en thuis laten bezorgen.',
     paginas: [
       { href: '/uitleg/bol-com', label: 'Bestellen bij Bol.com' },
@@ -35,7 +35,7 @@ const clusters = [
     ],
   },
   {
-    titel: '✈️ Reizen',
+    titel: 'Reizen',
     omschrijving: 'Handige apps voor onderweg en op vakantie.',
     paginas: [
       { href: '/uitleg/google-maps', label: 'Google Maps gebruiken' },
@@ -45,7 +45,7 @@ const clusters = [
     ],
   },
   {
-    titel: '📱 Smartphone basics',
+    titel: 'Smartphone basics',
     omschrijving: 'De basis van uw smartphone of tablet.',
     paginas: [
       { href: '/uitleg/whatsapp-basis', label: 'WhatsApp – eerste stappen' },
@@ -57,15 +57,15 @@ const clusters = [
     ],
   },
   {
-    titel: '📷 Foto\'s',
-    omschrijving: 'Foto\'s maken, bewaren en ordenen.',
+    titel: "Foto's",
+    omschrijving: "Foto's maken, bewaren en ordenen.",
     paginas: [
-      { href: '/uitleg/fotos-maken', label: 'Foto\'s maken met uw telefoon' },
-      { href: '/uitleg/fotos-ordenen', label: 'Foto\'s ordenen en bewaren' },
+      { href: '/uitleg/fotos-maken', label: "Foto's maken met uw telefoon" },
+      { href: '/uitleg/fotos-ordenen', label: "Foto's ordenen en bewaren" },
     ],
   },
   {
-    titel: '🎵 Muziek & e-books',
+    titel: 'Muziek & e-books',
     omschrijving: 'Muziek luisteren en e-boeken lezen.',
     paginas: [
       { href: '/uitleg/muziek-radio', label: 'Muziek en radio op uw telefoon' },
@@ -73,8 +73,8 @@ const clusters = [
     ],
   },
   {
-    titel: '🚲 Hobby & vrije tijd',
-    omschrijving: 'Handige uitleg voor uw hobby\'s.',
+    titel: 'Hobby & vrije tijd',
+    omschrijving: "Handige uitleg voor uw hobby's.",
     paginas: [
       { href: '/uitleg/e-bike', label: 'E-bike app gebruiken' },
       { href: '/uitleg/hoofdtelefoon', label: 'Hoofdtelefoon instellen' },
@@ -85,37 +85,34 @@ const clusters = [
 export default function UitlegOverzichtPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
-              ← Terug naar home
-            </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
-              Alle uitleg
-            </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
-              Stap-voor-stap uitleg over technologie — rustig, duidelijk, zonder gedoe.
-            </p>
-          </div>
-        </div>
-      </header>
+      <div className="max-w-4xl mx-auto px-6 py-10">
 
-      <div className="container mx-auto px-6 py-12">
-        <div className="max-w-4xl mx-auto space-y-10">
+        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
+          ← Terug naar home
+        </Link>
+
+        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
+          Alle uitleg
+        </h1>
+        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+          Stap-voor-stap uitleg over technologie — rustig, duidelijk, zonder gedoe.
+        </p>
+
+        <div className="space-y-4">
           {clusters.map((cluster, i) => (
-            <section key={i} className="bg-white rounded-2xl shadow-sm border-2 border-neutral-stone p-8">
-              <h2 className="text-senior-xl font-bold text-primary mb-1">{cluster.titel}</h2>
-              <p className="text-senior-sm text-gray-500 mb-5">{cluster.omschrijving}</p>
-              <ul className="space-y-2">
+            <section key={i} className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-6 md:p-8">
+              <h2 className="text-senior-lg font-bold text-gray-900 mb-1">{cluster.titel}</h2>
+              <p className="text-senior-sm text-gray-500 mb-4">{cluster.omschrijving}</p>
+              <ul className="divide-y divide-neutral-stone/30">
                 {cluster.paginas.map((p, j) => (
                   <li key={j}>
                     <Link
                       href={p.href}
-                      className="flex items-center gap-3 text-senior-base font-semibold text-primary hover:text-primary-dark hover:underline py-1.5"
+                      className="flex items-center justify-between text-senior-base font-semibold text-gray-800 hover:text-primary transition-colors py-3 group"
+                      style={{ minHeight: 'auto' }}
                     >
-                      <span className="text-primary">→</span>
                       {p.label}
+                      <span className="text-gray-300 group-hover:text-primary transition-colors text-senior-base">›</span>
                     </Link>
                   </li>
                 ))}

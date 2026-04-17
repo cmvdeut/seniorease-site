@@ -28,6 +28,11 @@ const PLAYLISTS = [
     title: '🆕 Nieuwe Features & Updates',
     description: 'Laatste updates en nieuwe tools op SeniorEase. Blijf op de hoogte van alle nieuwe features!',
     privacyStatus: 'public'
+  },
+  {
+    title: '📱 WhatsApp Uitleg voor Beginners',
+    description: 'Leer WhatsApp stap voor stap met animaties! Van installeren tot berichten sturen, bellen en veilig gebruik — speciaal voor senioren, in begrijpelijke taal. Meer hulp op seniorease.nl',
+    privacyStatus: 'public'
   }
 ];
 
