@@ -1,6 +1,6 @@
 {
-  "installCommand": "npm install --legacy-peer-deps --no-audit --no-fund",
-  "buildCommand": "npm run build",
+  "installCommand": "cd seniorease-project && npm install --legacy-peer-deps --no-audit --no-fund",
+  "buildCommand": "cd seniorease-project && npm run build",
   "framework": "nextjs",
   "crons": [
     {
