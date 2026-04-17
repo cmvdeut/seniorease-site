@@ -9,8 +9,7 @@ import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekBut
 import NieuwsbriefBlok from './components/NieuwsbriefBlok';
 import { artikelen } from './digitale-hulp/artikelen';
 
-const YOUTUBE_CHANNEL_URL = 'https://www.youtube.com/@SeniorEaseNL';
-const FACEBOOK_PAGE_URL  = 'https://www.facebook.com/SeniorEaseNL';
+const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL';
 
 export default function Home() {
   const structuredData = {
@@ -270,45 +269,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ════════════════════════════════════════
-          FOOTER
-      ════════════════════════════════════════ */}
-      <footer className="bg-gray-900 text-white py-10">
-        <div className="max-w-5xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
-            <div>
-              <p className="font-bold mb-3" style={{ fontSize: '1.05rem' }}>Privacybeleid</p>
-              <Link href="/privacy" className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>
-                Lees ons privacybeleid
-              </Link>
-            </div>
-            <div>
-              <p className="font-bold mb-3" style={{ fontSize: '1.05rem' }}>Hulp</p>
-              <Link href="/hulp" className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>Veelgestelde vragen</Link>
-              <Link href="/digitale-hulp" className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>Digitale hulp</Link>
-            </div>
-            <div>
-              <p className="font-bold mb-3" style={{ fontSize: '1.05rem' }}>Contact</p>
-              <Link href="/contact" className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>Neem contact op</Link>
-              <Link href="/over-ons" className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>Over ons</Link>
-            </div>
-            <div>
-              <p className="font-bold mb-3" style={{ fontSize: '1.05rem' }}>Video&apos;s</p>
-              <a href={YOUTUBE_CHANNEL_URL} target="_blank" rel="noopener noreferrer"
-                className="text-gray-400 hover:text-white transition-colors block py-1" style={{ fontSize: '0.95rem' }}>
-                Bekijk op YouTube
-              </a>
-            </div>
-          </div>
-          <div className="border-t border-gray-800 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <Image src="/heart-logo.png" alt="SeniorEase" width={28} height={28} className="opacity-60" />
-              <span className="text-gray-500" style={{ fontSize: '0.9rem' }}>SeniorEase.nl</span>
-            </div>
-            <p className="text-gray-600" style={{ fontSize: '0.9rem' }}>© 2025 · Handige technologie zonder gedoe</p>
-          </div>
-        </div>
-      </footer>
     </main>
   );
 }
