@@ -35,6 +35,7 @@
     "node_modules",
     "seniorease-project/tutorial-maker",
     "seniorease-project/Original",
-    "seniorease-project/mnt"
+    "seniorease-project/mnt",
+    "seniorease-project/video-generator"
   ]
 }
