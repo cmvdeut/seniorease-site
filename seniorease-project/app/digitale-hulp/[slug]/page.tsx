@@ -61,20 +61,23 @@ function ArtikelContent({ slug }: { slug: string }) {
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
             WhatsApp = gratis berichten en bellen via internet. Open de app, kies een contact, typ of stuur een foto. Bellen kan via het telefoon-icoon in het gesprek.
           </p>
-          <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4">
-            <div className="text-5xl">▶️</div>
+          <div className="rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40"
+               style={{ background: '#FFFBF0' }}>
+            <div className="text-4xl" aria-hidden="true">▶️</div>
             <div>
               <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
-              <p className="text-senior-base text-gray-600 mb-3">
+              <p className="text-senior-base text-gray-600 mb-4">
                 We hebben 5 korte animatievideo&apos;s gemaakt — van installeren tot veilig gebruik. Stap voor stap, rustig tempo.
               </p>
               <a
-                href="https://www.youtube.com/playlist?list=PLw97JnScZym9aYtdatiYx5LfwgflCd7b4"
+                href="https://www.youtube.com/playlist?list=PLw97JnScZym_83xf1Ypz_npeXj308wRN6"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block bg-red-600 hover:bg-red-700 text-white font-bold text-senior-base px-6 py-3 rounded-xl transition-colors"
+                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm"
+                style={{ color: '#8B5E3C', borderColor: '#8B5E3C', background: '#FFFFFF', fontSize: '1.1rem' }}
               >
-                Bekijk de WhatsApp video&apos;s op YouTube →
+                Bekijk onze WhatsApp-video&apos;s op YouTube
+                <span aria-hidden="true">→</span>
               </a>
             </div>
           </div>

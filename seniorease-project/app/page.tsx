@@ -56,8 +56,14 @@ export default function Home() {
                 Stap voor stap uitleg over smartphone, computer en internet — in uw eigen tempo.
               </p>
 
-              {/* 3 CTA-knoppen */}
+              {/* CTA-knoppen */}
               <div className="flex flex-wrap gap-3 mb-6">
+                <Link href="/digitale-hulp/ai"
+                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
+                  <Bot size={21} strokeWidth={1.75} />
+                  AI uitleg
+                </Link>
                 <Link href="/digitale-hulp/smartphone"
                   className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
                   style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
@@ -76,21 +82,11 @@ export default function Home() {
                   <Globe size={21} strokeWidth={1.75} />
                   Internet &amp; e-mail
                 </Link>
-              </div>
-
-              {/* Secundaire links */}
-              <div className="flex flex-wrap gap-6">
                 <Link href="/digitale-hulp/veilig-internet"
-                  className="flex items-center gap-1.5 font-medium hover:underline"
-                  style={{ color: '#8B5E3C', fontSize: '1.05rem', minHeight: 'auto' }}>
-                  <ShieldCheck size={16} strokeWidth={2} />
+                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
+                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
+                  <ShieldCheck size={21} strokeWidth={1.75} />
                   Veilig internet
-                </Link>
-                <Link href="/digitale-hulp/ai"
-                  className="flex items-center gap-1.5 font-medium hover:underline"
-                  style={{ color: '#8B5E3C', fontSize: '1.05rem', minHeight: 'auto' }}>
-                  <Bot size={16} strokeWidth={2} />
-                  AI uitleg
                 </Link>
               </div>
             </div>

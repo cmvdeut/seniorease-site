@@ -3,6 +3,36 @@
 
 ---
 
+## Status (bijgewerkt 18 juni 2026)
+
+**YouTube via Blotato:** 6 video's geüpload. 1 live, 5 ingepland (zie kalender hieronder).
+
+### Klaar lokaal (`video-generator/out/`) — uploaden naar YouTube
+
+| Bestand | Status | Datum |
+|---------|--------|-------|
+| `WhatsApp-Intro.mp4` | ✅ **Live** | 18 jun 2026 |
+| `WhatsApp-Berichten.mp4` | 📅 Ingepland | 19 jun 10:00 |
+| `whatsapp-fotos.mp4` | 📅 Ingepland | 21 jun 10:00 |
+| `whatsapp-bellen.mp4` | 📅 Ingepland | 23 jun 10:00 |
+| `whatsapp-veiligheid.mp4` | 📅 Ingepland | 25 jun 10:00 |
+| `Bibliotheek-PC.mp4` | 📅 Ingepland | 27 jun 10:00 |
+
+**Eerste video:** https://www.youtube.com/watch?v=DZBGAk_mlwE  
+**Playlist WhatsApp:** [📱 WhatsApp Uitleg voor Beginners](https://www.youtube.com/playlist?list=PLw97JnScZym_83xf1Ypz_npeXj308wRN6)  
+**Playlist Bibliotheek:** 📚 Instructievideo's - SeniorEase
+
+### Nog te maken (staat in dit plan, geen MP4 in `out/`)
+
+- Video 2 — Oplichting herkennen
+- Video 3 — Foto's maken / selfies
+- Video 4 — E-books / bibliotheek (extra)
+- Video 5 — (zie onderstaande concepten)
+
+**Tip:** Facebook-video's kunnen hergebruikt worden op YouTube (andere titel/beschrijving). Upload kan via Blotato of handmatig in YouTube Studio.
+
+---
+
 ## 🎬 Aanbevolen formaat: Canva-slideshow video
 
 ### Waarom dit formaat perfect werkt voor senioren
