@@ -643,6 +643,60 @@ function ArtikelContent({ slug }: { slug: string }) {
           </ul>
         </>
       );
+    case 'googelen-google-zoeken':
+      return (
+        <>
+          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            Wilt u iets opzoeken op internet? Dan gebruikt u bijna altijd <strong>Google</strong>. Dat heet ook wel <strong>googelen</strong>: u typt een vraag, en Google toont websites met antwoorden. Hier leest u hoe het werkt — rustig en stap voor stap.
+          </p>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Google openen</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Open <strong>Chrome</strong> of <strong>Safari</strong> op uw telefoon of computer.</li>
+            <li>Typ in de adresbalk bovenaan: <strong>google.nl</strong></li>
+            <li>Druk op Enter. U ziet nu de Google-startpagina met een groot zoekvak.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Zoeken — zo werkt het</h2>
+          <ol className="space-y-3 list-decimal list-inside text-senior-base text-gray-700 mb-6">
+            <li>Tik of klik in het <strong>zoekvak</strong> in het midden van het scherm.</li>
+            <li>Typ wat u wilt weten, bijvoorbeeld: &quot;weer morgen&quot; of &quot;openingstijden bibliotheek&quot;.</li>
+            <li>Tik op het <strong>vergrootglas</strong> of druk op <strong>Enter</strong>.</li>
+            <li>Google toont een lijst met websites. Tik op een regel om die pagina te openen.</li>
+          </ol>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">4 tips voor betere resultaten</h2>
+          <ul className="space-y-3 text-senior-base text-gray-700 mb-6 list-disc list-inside">
+            <li><strong>Gebruik meerdere woorden</strong> — &quot;buslijn Enschede&quot; is preciezer dan alleen &quot;bus&quot;.</li>
+            <li><strong>Let op advertenties</strong> — bovenaan staan soms regels met het label &quot;Advertentie&quot;.</li>
+            <li><strong>Check het adres</strong> — betrouwbare sites eindigen vaak op .nl of .gov.</li>
+            <li><strong>Inspreken kan ook</strong> — ziet u een microfoon-knop? Dan kunt u uw vraag hardop stellen.</li>
+          </ul>
+          <div className="rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-neutral-cream">
+            <div className="text-4xl" aria-hidden="true">▶️</div>
+            <div>
+              <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
+              <p className="text-senior-base text-gray-600 mb-4">
+                Bekijk onze uitlegvideo over googelen op YouTube — rustig tempo, grote letters.
+              </p>
+              <a
+                href="https://www.youtube.com/playlist?list=PLw97JnScZym8Ae4tlW7j38EfvMKMRIBem"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-white"
+              >
+                Bekijk tips-video&apos;s op YouTube
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+          <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
+          <ul className="space-y-2">
+            <li><Link href="/uitleg/inspreken" className="font-semibold text-primary hover:underline">Inspreken op uw telefoon (ook in Google)</Link></li>
+            <li><Link href="/uitleg/google-maps" className="font-semibold text-primary hover:underline">Google Maps gebruiken</Link></li>
+            <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
+            <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
+            <li><Link href="/wat-is-ai/chatgpt" className="font-semibold text-primary hover:underline">Wat is ChatGPT? (en het verschil met Google)</Link></li>
+          </ul>
+        </>
+      );
     case 'e-bike-fietsapps':
       return (
         <>

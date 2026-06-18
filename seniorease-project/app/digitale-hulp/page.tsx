@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { artikelen } from './artikelen';
 import { DigitaleHulpZoek } from './DigitaleHulpZoek';
 
 export const metadata = {
@@ -44,7 +43,7 @@ export default async function DigitaleHulpPage({
             </p>
           </div>
 
-          <DigitaleHulpZoek artikelen={artikelen} initialQuery={initialQuery} />
+          <DigitaleHulpZoek initialQuery={initialQuery} />
         </div>
 
       </div>

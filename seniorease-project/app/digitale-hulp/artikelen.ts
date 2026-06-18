@@ -8,6 +8,12 @@ export interface Artikel {
 
 export const artikelen: Artikel[] = [
   {
+    slug: "googelen-google-zoeken",
+    title: "Googelen voor beginners — zo zoekt u op Google",
+    description: "Hoe zoekt u iets op via Google? Stap voor stap: google.nl openen, zoeken en betrouwbare resultaten vinden.",
+    keywords: ["google", "googelen", "zoeken", "zoekmachine", "google.nl", "internet", "opzoeken", "browser"],
+  },
+  {
     slug: "whatsapp-uitleg-beginners",
     title: "WhatsApp uitleg voor beginners",
     description: "Wat is WhatsApp en hoe gebruikt u het? Stap voor stap uitleg voor wie net begint met berichten en foto's sturen.",

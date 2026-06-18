@@ -123,7 +123,7 @@ export default function Home() {
                 id="home-zoek"
                 type="search"
                 name="q"
-                placeholder="bijv. WhatsApp, wifi, wachtwoord…"
+                placeholder="bijv. Google, WhatsApp, wifi, ChatGPT…"
                 className="flex-1 rounded-xl border border-neutral-stone focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 bg-white text-gray-800 placeholder-gray-400 transition-colors shadow-sm"
                 style={{ fontSize: '1.2rem', padding: '0.9rem 1.25rem' }}
               />
@@ -155,6 +155,7 @@ export default function Home() {
 
           <ul className="divide-y divide-neutral-stone/40">
             {[
+              { href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen — zo zoekt u op Google' },
               { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp uitleg voor beginners' },
               { href: '/uitleg/qr-code',                          label: 'QR-code scannen' },
               { href: '/uitleg/wifi',                             label: 'WiFi instellen' },
