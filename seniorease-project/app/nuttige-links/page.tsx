@@ -95,7 +95,7 @@ export default function NuttigeLinksPage() {
             'Veel verenigingen hebben seniorenafdelingen.'
           ],
           links: [
-            { name: 'KBO-PCOB - Activiteiten', url: 'https://www.kbo-pcob.nl' },
+            { name: 'ANBO-PCOB - Activiteiten', url: 'https://anbo-pcob.nl' },
             { name: 'SeniorWeb - Activiteiten', url: 'https://www.seniorweb.nl' }
           ]
         },
@@ -144,12 +144,12 @@ export default function NuttigeLinksPage() {
         {
           subtitle: 'Belangenverenigingen',
           text: [
-            'KBO-PCOB is de grootste belangenvereniging voor senioren.',
+            'ANBO-PCOB is een grote belangenvereniging voor senioren (voortgekomen uit ANBO en PCOB).',
             'Ze organiseren activiteiten en bijeenkomsten.',
             'Lid worden kan nieuwe contacten opleveren.'
           ],
           links: [
-            { name: 'KBO-PCOB', url: 'https://www.kbo-pcob.nl' }
+            { name: 'ANBO-PCOB', url: 'https://anbo-pcob.nl' }
           ]
         }
       ]
