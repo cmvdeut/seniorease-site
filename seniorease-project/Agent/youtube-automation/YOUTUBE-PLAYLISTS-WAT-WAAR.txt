@@ -1,0 +1,50 @@
+================================================================================
+YOUTUBE-PLAYLISTS SENIOREASE — wat hoort waar? (handmatig in Studio)
+Exacte titels zoals op je kanaal / in setup-playlists.js
+================================================================================
+
+1) Eerst kijken
+   - Bedoeling: kennismaking — wat is SeniorEase / Mijn Bibliotheek, rustig tempo.
+   - Voorbeelden: “Welkom”, rondleiding startpagina, waarom dit handig is voor senioren.
+   - Niet voor: diepe uitleg per knop (dat is Instructievideo's).
+
+2) 📚 Instructievideo's - SeniorEase
+   - Bedoeling: stap-voor-stap per tool op seniorease.nl (Bibliotheek, Kalender, Rekenmachine, …).
+   - Voorbeelden: “Zo voeg je een boek toe”, “Zo gebruik je de kalender”.
+   - Niet voor: algemene telefoontips zonder link met de site (→ Tips & Tricks).
+   - Remotion: `video-generator` → `npm run render:bibliotheek-pc` → `out/bibliotheek-pc-mijn-bibliotheek.mp4`
+     (tekst “Mijn Bibliotheek op de computer”). Studio-tekst: `BIBLIOTHEEK-PC-YOUTUBE-STUDIO.txt`.
+
+3) 💡 Tips & Tricks voor Senioren
+   - Bedoeling: korte, brede digitale tips (smartphone, veiligheid, apps) — niet per se één SeniorEase-scherm.
+   - Voorbeelden: inspreken in plaats van typen, scherm groter maken, phishing herkennen.
+   - Niet voor: lange feature-uitleg van één tool (→ Instructievideo's).
+
+4) 🆕 Nieuwe Features & Updates
+   - Bedoeling: “Er is iets nieuws” — release-achtige video’s over updates en nieuwe tools.
+   - Voorbeelden: “Nieuw: Foto Archief”, “Update bibliotheek-app”.
+   - Niet voor: oude basishandleidingen (→ Instructievideo's of Eerst kijken).
+
+5) ❓ Veelgestelde Vragen (FAQ)
+   - Bedoeling: één duidelijke vraag → helder antwoord in één video.
+   - Voorbeelden: “Is SeniorEase gratis?”, “Werkt het op mijn telefoon?”.
+   - Niet voor: volledige cursus over één functie (→ Instructievideo's).
+
+6) 📱 WhatsApp Uitleg voor Beginners
+   - Alleen de WhatsApp-animatieserie (heb je nu opnieuw ingevuld).
+
+7) 🤖 AI & ChatGPT voor Senioren
+   - Playlist-ID: PLw97JnScZym-GYObZWKuAbfzRe_Mx2Jej
+   - Bedoeling: alle AI- en ChatGPT-uitleg op één plek.
+   - Voorbeelden: "Wat is AI?", "Zo ziet ChatGPT eruit", "Wat is ChatGPT? Uitleg voor senioren".
+   - Niet voor: algemene smartphone-tips zonder AI (→ Tips & Tricks) of tool-uitleg (→ Instructievideo's).
+   - Website: /wat-is-ai en /wat-is-ai/chatgpt linken naar deze playlist.
+
+================================================================================
+Werkvolgorde in Studio (per nieuwe video)
+================================================================================
+Upload → titel/beschrijving → onder "Playlist" de juiste playlist aanvinken
+(meerdere playlists mogelijk als een video in twee categorieën past; meestal
+één primaire playlist is genoeg).
+
+================================================================================

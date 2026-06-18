@@ -11,7 +11,8 @@
     "vercel:projects": "node scripts/vercel-helper.js projects",
     "vercel:deployments": "node scripts/vercel-helper.js deployments",
     "vercel:domains": "node scripts/vercel-helper.js domains",
-    "tiktok:screenshots": "node scripts/make-tiktok-screenshots.js"
+    "tiktok:screenshots": "node scripts/make-tiktok-screenshots.js",
+    "sync:chatgpt-youtube": "node scripts/sync-chatgpt-youtube-id.js"
   },
   "dependencies": {
     "jspdf": "^3.0.4",

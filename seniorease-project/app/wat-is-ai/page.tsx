@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
 export const metadata = {
   title: "Wat is AI? Uitleg in gewone taal voor senioren",
@@ -64,6 +65,24 @@ export default function WatIsAIPage() {
             <p className="text-center text-gray-600 mt-4 text-senior-base">
               🎬 Bekijk de video (1 minuut) of lees verder voor meer uitleg
             </p>
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+              <div className="text-4xl" aria-hidden="true">▶️</div>
+              <div>
+                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Alle AI-video&apos;s op YouTube</h3>
+                <p className="text-senior-base text-gray-600 mb-4">
+                  Rustige uitleg over AI en ChatGPT — stap voor stap, speciaal voor senioren.
+                </p>
+                <a
+                  href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.ai)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-neutral-cream"
+                >
+                  Bekijk de AI-playlist op YouTube
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
           </section>
 
           {/* Intro */}

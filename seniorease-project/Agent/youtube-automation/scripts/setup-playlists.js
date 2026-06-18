@@ -10,6 +10,12 @@ import { getYouTubeClient } from './auth-helper.js';
 // Playlists die aangemaakt moeten worden
 const PLAYLISTS = [
   {
+    title: 'Eerst kijken',
+    description:
+      "Video's om rustig te zien wat Mijn Bibliotheek is en hoe het werkt.",
+    privacyStatus: 'public',
+  },
+  {
     title: '📚 Instructievideo\'s - SeniorEase',
     description: 'Stap-voor-stap uitleg van alle SeniorEase tools. Leer hoe je de Bibliotheek, Kalender, Rekenmachine en meer gebruikt.',
     privacyStatus: 'public'
@@ -33,6 +39,12 @@ const PLAYLISTS = [
     title: '📱 WhatsApp Uitleg voor Beginners',
     description: 'Leer WhatsApp stap voor stap met animaties! Van installeren tot berichten sturen, bellen en veilig gebruik — speciaal voor senioren, in begrijpelijke taal. Meer hulp op seniorease.nl',
     privacyStatus: 'public'
+  },
+  {
+    title: '🤖 AI & ChatGPT voor Senioren',
+    description: 'Rustige uitleg over AI en ChatGPT — speciaal voor senioren. Geen moeilijke woorden, wel praktische voorbeelden. Meer op seniorease.nl/wat-is-ai',
+    privacyStatus: 'public',
+    id: 'PLw97JnScZym-GYObZWKuAbfzRe_Mx2Jej',
   }
 ];
 
