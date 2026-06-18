@@ -1,5 +1,9 @@
 /** @type {import('next').NextConfig} */
+const path = require('path');
+
 const nextConfig = {
+  // Voorkom dat Next de parent-monorepo als workspace-root kiest (Vercel seniorease-project vs seniorease-site).
+  outputFileTracingRoot: path.join(__dirname),
   poweredByHeader: false,
   images: {
     formats: ['image/webp'],
