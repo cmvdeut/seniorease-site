@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3001",
-    "build": "next build",
+    "build": "npm run build --prefix seniorease-project",
     "start": "next start",
     "lint": "next lint",
     "vercel:status": "node scripts/check-vercel-status.js",
