@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
 import { Nunito } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 
 const nunito = Nunito({
   subsets: ["latin"],
@@ -141,6 +142,7 @@ export default function RootLayout({
             ml('account', '2211176');
           `}}
         />
+        <Analytics />
       </body>
     </html>
   );
