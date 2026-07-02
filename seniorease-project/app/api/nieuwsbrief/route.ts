@@ -1,5 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
+function getBrevoApiKey(): string | undefined {
+  const candidates = [
+    process.env.BREVO_API_KEY,
+    process.env.BREVO_KEY,
+    process.env.SENDINBLUE_API_KEY,
+  ];
+
+  for (const value of candidates) {
+    const trimmed = value?.trim();
+    if (trimmed) return trimmed;
+  }
+
+  return undefined;
+}
+
+function getBrevoListId(): number | undefined {
+  const raw = process.env.BREVO_LIST_ID?.trim();
+  if (!raw) return undefined;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isNaN(parsed) ? undefined : parsed;
+}
+
+export async function GET() {
+  const apiKey = getBrevoApiKey();
+  const listId = getBrevoListId();
+
+  return NextResponse.json({
+    ok: Boolean(apiKey),
+    brevoApiKey: apiKey ? 'configured' : 'missing',
+    brevoListId: listId ? 'configured' : 'missing',
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
@@ -27,9 +64,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = process.env.BREVO_API_KEY;
+    const apiKey = getBrevoApiKey();
     if (!apiKey) {
-      console.error('BREVO_API_KEY ontbreekt in omgevingsvariabelen');
+      console.error('Brevo API key ontbreekt. Gecontroleerde variabelen: BREVO_API_KEY, BREVO_KEY, SENDINBLUE_API_KEY');
       return NextResponse.json(
         { success: false, error: 'Nieuwsbrief is tijdelijk niet beschikbaar. Probeer het later opnieuw.' },
         { status: 503 }
@@ -45,12 +82,9 @@ export async function POST(request: NextRequest) {
       updateEnabled: true,
     };
 
-    const listId = process.env.BREVO_LIST_ID;
+    const listId = getBrevoListId();
     if (listId) {
-      const parsedListId = Number.parseInt(listId, 10);
-      if (!Number.isNaN(parsedListId)) {
-        payload.listIds = [parsedListId];
-      }
+      payload.listIds = [listId];
     }
 
     const response = await fetch('https://api.brevo.com/v3/contacts', {
