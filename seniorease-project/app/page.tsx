@@ -34,12 +34,12 @@ export default function Home() {
         {/* Foto rechts als zachte achtergrond, vloeiend overlopend in de crème kleur */}
         <div aria-hidden className="absolute top-0 right-0 hidden lg:block" style={{ width: '58%', height: '85%', opacity: 0.85 }}>
           <Image
-            src="/images/senior female.png"
+            src="/images/senior-vrouw-laptop.png"
             alt=""
             fill
             className="object-cover"
             style={{
-              objectPosition: '70% 30%',
+              objectPosition: '65% 25%',
               maskImage: 'linear-gradient(90deg, transparent 0%, black 55%), linear-gradient(0deg, transparent 0%, black 20%, black 85%, transparent 100%)',
               maskComposite: 'intersect',
               WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 55%), linear-gradient(0deg, transparent 0%, black 20%, black 85%, transparent 100%)',
@@ -102,8 +102,8 @@ export default function Home() {
           {/* Mobiel: foto onder de tekst, zachte ronde vorm */}
           <div className="mt-12 lg:hidden">
             <Image
-              src="/images/senior female.png"
-              alt="Senior vrouw gebruikt tablet thuis"
+              src="/images/senior-vrouw-laptop.png"
+              alt="Senior vrouw gebruikt laptop thuis"
               width={640}
               height={360}
               className="w-full object-cover rounded-3xl"
