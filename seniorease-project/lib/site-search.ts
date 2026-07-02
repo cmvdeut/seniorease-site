@@ -90,7 +90,7 @@ export const SITE_SEARCH_INDEX: SiteSearchItem[] = [
   { href: '/uitleg/facetime', title: 'FaceTime (iPhone/iPad)', description: 'Videobellen met Apple FaceTime.', category: 'Uitleg', keywords: ['facetime', 'iphone', 'ipad', 'apple', 'videobellen'] },
   { href: '/uitleg/netflix', title: 'Netflix gebruiken', description: 'Films en series kijken via Netflix.', category: 'Uitleg', keywords: ['netflix', 'film', 'serie', 'streamen', 'tv'] },
   { href: '/uitleg/npo-start', title: 'NPO Start – gratis tv terugkijken', description: 'Nederlandse programma\'s terugkijken via NPO.', category: 'Uitleg', keywords: ['npo', 'tv', 'uitzending gemist', 'omroep'] },
-  { href: '/uitleg/youtube-tv', title: 'YouTube kijken', description: 'Video\'s zoeken en kijken op YouTube.', category: 'Uitleg', keywords: ['youtube', 'video', 'kijken', 'streamen'] },
+  { href: '/uitleg/youtube-tv', title: 'YouTube kijken', description: 'Video\'s zoeken en kijken op telefoon, tablet, computer of tv.', category: 'Uitleg', keywords: ['youtube', 'video', 'kijken', 'streamen', 'computer', 'pc'] },
 
   // AI-pagina's
   { href: '/wat-is-ai', title: 'Wat is AI?', description: 'Kunstmatige intelligentie in gewone taal uitgelegd.', category: 'AI & ChatGPT', keywords: ['ai', 'kunstmatige intelligentie', 'robot', 'computer'] },

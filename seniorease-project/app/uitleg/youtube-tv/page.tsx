@@ -13,13 +13,14 @@ const breadcrumbSchema = {
 const howToSchema = {
   "@context": "https://schema.org",
   "@type": "HowTo",
-  "name": "YouTube kijken op tablet, smartphone of televisie",
+  "name": "YouTube kijken op tablet, smartphone, computer of televisie",
   "description": "Stap voor stap YouTube openen en video's kijken op uw apparaat.",
   "step": [
-    { "@type": "HowToStep", "position": 1, "name": "YouTube openen", "text": "Tik op het rode YouTube-icoontje op uw telefoon of tablet. Of ga naar youtube.com op uw computer." },
+    { "@type": "HowToStep", "position": 1, "name": "YouTube openen", "text": "Tik op het rode YouTube-icoontje op uw telefoon of tablet. Of ga naar youtube.com in uw internetbrowser op de computer." },
     { "@type": "HowToStep", "position": 2, "name": "Zoeken naar een video", "text": "Tik op het vergrootglas bovenaan en typ wat u wilt zien, bijvoorbeeld 'tuinieren tips' of 'klassieke muziek'." },
     { "@type": "HowToStep", "position": 3, "name": "Video starten", "text": "Tik op een video in de lijst. De video begint vanzelf te spelen." },
-    { "@type": "HowToStep", "position": 4, "name": "Op televisie kijken", "text": "Kijk of uw televisie een Smart TV is. Zoek via de app-winkel van uw tv naar YouTube en installeer de app." },
+    { "@type": "HowToStep", "position": 4, "name": "YouTube op de computer", "text": "Open Chrome, Edge of Firefox. Typ youtube.com in de adresbalk. Klik bovenaan in de zoekbalk, typ uw zoekterm en druk op Enter. Klik op een video om te starten." },
+    { "@type": "HowToStep", "position": 5, "name": "Op televisie kijken", "text": "Kijk of uw televisie een Smart TV is. Zoek via de app-winkel van uw tv naar YouTube en installeer de app." },
   ],
 };
 
@@ -55,8 +56,8 @@ const faqSchema = {
 };
 
 export const metadata = {
-  title: "YouTube kijken op tablet, telefoon of televisie – uitleg voor senioren",
-  description: "Hoe gebruikt u YouTube? Stap-voor-stap uitleg voor senioren. Video's zoeken, kijken op tv en handige tips voor meer plezier op YouTube.",
+  title: "YouTube kijken op tablet, telefoon, computer of televisie – uitleg voor senioren",
+  description: "Hoe gebruikt u YouTube? Stap-voor-stap uitleg voor senioren. Video's zoeken op telefoon, tablet, computer of tv — met handige tips.",
 };
 
 export default function YoutubeTvPage() {
@@ -76,7 +77,7 @@ export default function YoutubeTvPage() {
               YouTube kijken
             </h1>
             <p className="text-senior-base text-gray-600 mt-2">
-              Gratis video&apos;s kijken op uw tablet, smartphone of televisie — stap voor stap uitgelegd.
+              Gratis video&apos;s kijken op uw tablet, smartphone, computer of televisie — stap voor stap uitgelegd.
             </p>
           </div>
         </div>
@@ -97,10 +98,11 @@ export default function YoutubeTvPage() {
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
               Alles is gratis te bekijken. Er worden soms korte reclames getoond — die kunt u na een paar seconden overslaan.
             </p>
-            <div className="grid sm:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {[
                 { icon: "🎥", label: "Miljoenen gratis video's" },
                 { icon: "🔍", label: "Zoek alles wat u wilt" },
+                { icon: "💻", label: "Ook op de computer" },
                 { icon: "📺", label: "Ook op televisie" },
               ].map((item, i) => (
                 <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
@@ -138,6 +140,56 @@ export default function YoutubeTvPage() {
                 {
                   stap: "Pauzeren of stoppen",
                   uitleg: "Tik eenmaal op het scherm. Tik op ❚❚ om te pauzeren. Tik op de pijl linksboven om terug te gaan naar de zoekresultaten.",
+                },
+              ].map((item, i) => (
+                <li key={i} className="flex gap-5 items-start list-none">
+                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                    {i + 1}
+                  </div>
+                  <div className="pt-1 flex-1">
+                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    {item.tip && (
+                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
+                        💡 {item.tip}
+                      </p>
+                    )}
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </section>
+
+          {/* YouTube op computer */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+              YouTube op uw computer
+            </h2>
+            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+              Heeft u een laptop of desktop? Dan kunt u YouTube ook gewoon in uw internetbrowser bekijken — geen app installeren nodig.
+            </p>
+            <ol className="space-y-6">
+              {[
+                {
+                  stap: "YouTube openen in uw browser",
+                  uitleg: "Open uw internetbrowser — dat is het programma waarmee u websites bezoekt, bijvoorbeeld Chrome, Edge of Firefox. Typ bovenaan in de adresbalk: youtube.com en druk op Enter.",
+                },
+                {
+                  stap: "Een video zoeken",
+                  uitleg: "Klik bovenaan in de zoekbalk. Typ wat u wilt zien — bijvoorbeeld 'breien voor beginners' of 'André Rieu concert'. Druk op Enter op uw toetsenbord.",
+                },
+                {
+                  stap: "Een video starten",
+                  uitleg: "Klik op een video in de lijst. De video begint vanzelf te spelen. Klik op het scherm of op ❚❚ om te pauzeren.",
+                },
+                {
+                  stap: "Groter kijken",
+                  uitleg: "Klik rechtsonder op het vierkante icoon (volledig scherm). Uw video vult dan het hele scherm. Druk op Escape op uw toetsenbord — of klik opnieuw op het icoon — om terug te gaan.",
+                },
+                {
+                  stap: "Geluid harder of zachter",
+                  uitleg: "Onder de video ziet u een luidspreker-icoontje. Klik daarop en sleep de balk naar links (zachter) of rechts (harder).",
+                  tip: "Werkt het geluid niet? Controleer of het volume van uw computer aan staat — vaak zit er een knopje op uw toetsenbord of aan de zijkant van uw laptop.",
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
@@ -234,7 +286,7 @@ export default function YoutubeTvPage() {
               </div>
               <div>
                 <p className="text-senior-base font-bold text-gray-800 mb-1">Hoe sla ik een video op voor later?</p>
-                <p className="text-senior-base text-gray-700">Tik onder de video op &quot;Opslaan&quot; (of het bladwijzer-icoontje). De video wordt opgeslagen in uw &quot;Bekijk later&quot;-lijst. Hiervoor heeft u wel een gratis Google-account nodig.</p>
+                <p className="text-senior-base text-gray-700">Klik of tik onder de video op &quot;Opslaan&quot; (of het bladwijzer-icoontje). De video wordt opgeslagen in uw &quot;Bekijk later&quot;-lijst. Hiervoor heeft u wel een gratis Google-account nodig.</p>
               </div>
             </div>
           </section>
