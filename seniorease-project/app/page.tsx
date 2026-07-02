@@ -3,7 +3,7 @@ import Image from 'next/image';
 import {
   Smartphone, Monitor, Globe, ShieldCheck, Bot,
   Calculator, CheckSquare, CalendarDays, PuzzleIcon,
-  BookOpen, ChevronRight, ArrowRight,
+  BookOpen, ChevronRight, ArrowRight, Heart, RotateCcw, Clock3,
 } from 'lucide-react';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import NieuwsbriefBlok from './components/NieuwsbriefBlok';
@@ -30,80 +30,108 @@ export default function Home() {
       {/* ════════════════════════════════════════
           HERO
       ════════════════════════════════════════ */}
-      <section className="bg-white">
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+      <section className="relative overflow-hidden" style={{ background: '#F5EEE6' }}>
+        {/* Foto rechts als zachte achtergrond, vloeiend overlopend in de crème kleur */}
+        <div aria-hidden className="absolute top-0 right-0 hidden lg:block" style={{ width: '58%', height: '85%', opacity: 0.85 }}>
+          <Image
+            src="/images/senior female.png"
+            alt=""
+            fill
+            className="object-cover"
+            style={{
+              objectPosition: '70% 30%',
+              maskImage: 'linear-gradient(90deg, transparent 0%, black 55%), linear-gradient(0deg, transparent 0%, black 20%, black 85%, transparent 100%)',
+              maskComposite: 'intersect',
+              WebkitMaskImage: 'linear-gradient(90deg, transparent 0%, black 55%), linear-gradient(0deg, transparent 0%, black 20%, black 85%, transparent 100%)',
+              WebkitMaskComposite: 'source-in',
+            }}
+            priority
+          />
+        </div>
 
-            {/* Tekst — links */}
-            <div className="flex-1 min-w-0">
-              <Link href="/over-ons" style={{ minHeight: 'auto' }} className="inline-block mb-6">
-                <Image
-                  src="/heart-logo.png"
-                  alt="SeniorEase"
-                  width={56}
-                  height={56}
-                  className="opacity-90"
-                  priority
-                />
-              </Link>
-
-              <h1 className="font-bold text-gray-900 mb-4 leading-tight"
-                  style={{ fontSize: '2.6rem', letterSpacing: '-0.02em' }}>
-                Digitale hulp voor senioren
-              </h1>
-              <p className="text-gray-500 mb-10"
-                 style={{ fontSize: '1.3rem', lineHeight: 1.65, maxWidth: '480px' }}>
-                Stap voor stap uitleg over smartphone, computer en internet — in uw eigen tempo.
-              </p>
-
-              {/* CTA-knoppen */}
-              <div className="flex flex-wrap gap-3 mb-6">
-                <Link href="/digitale-hulp/ai"
-                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
-                  <Bot size={21} strokeWidth={1.75} />
-                  AI uitleg
-                </Link>
-                <Link href="/digitale-hulp/smartphone"
-                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
-                  <Smartphone size={21} strokeWidth={1.75} />
-                  Smartphone
-                </Link>
-                <Link href="/digitale-hulp/computer"
-                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
-                  <Monitor size={21} strokeWidth={1.75} />
-                  Computer
-                </Link>
-                <Link href="/digitale-hulp/internet-email"
-                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
-                  <Globe size={21} strokeWidth={1.75} />
-                  Internet &amp; e-mail
-                </Link>
-                <Link href="/digitale-hulp/veilig-internet"
-                  className="flex items-center gap-2.5 font-semibold text-white rounded-xl px-6 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5"
-                  style={{ background: '#8B5E3C', fontSize: '1.2rem' }}>
-                  <ShieldCheck size={21} strokeWidth={1.75} />
-                  Veilig internet
-                </Link>
-              </div>
-            </div>
-
-            {/* Foto — rechts */}
-            <div className="flex-shrink-0 w-full lg:w-[420px]">
+        <div className="relative max-w-6xl mx-auto px-6 py-16 lg:py-20">
+          <div className="max-w-xl">
+            <Link href="/over-ons" style={{ minHeight: 'auto' }} className="inline-block mb-6">
               <Image
-                src="/images/senior female.png"
-                alt="Senior vrouw gebruikt tablet thuis"
-                width={420}
-                height={480}
-                className="rounded-2xl shadow-lg object-cover w-full"
-                style={{ maxHeight: '480px' }}
+                src="/heart-logo.png"
+                alt="SeniorEase"
+                width={56}
+                height={56}
+                className="opacity-90"
                 priority
               />
-            </div>
+            </Link>
 
+            <h1 className="mb-5 leading-tight" style={{ fontSize: '3rem' }}>
+              Digitale hulp voor senioren
+            </h1>
+            <p className="text-gray-700 mb-10"
+               style={{ fontSize: '1.3rem', lineHeight: 1.65, maxWidth: '480px' }}>
+              Stap voor stap uitleg over smartphone, computer en internet — in uw eigen tempo.
+            </p>
+
+              {/* Eén duidelijke hoofdknop */}
+              <div className="mb-8">
+                <Link href="/uitleg"
+                  className="inline-flex items-center gap-2.5 font-semibold text-white rounded-xl px-8 py-4 transition-all shadow-md hover:shadow-lg hover:-translate-y-0.5 bg-primary"
+                  style={{ fontSize: '1.25rem' }}>
+                  Bekijk alle uitleg
+                  <ArrowRight size={22} strokeWidth={2} />
+                </Link>
+              </div>
+
+              {/* Categorieën als rustige chips */}
+              <div className="flex flex-wrap gap-3">
+                {[
+                  { href: '/digitale-hulp/ai',              Icon: Bot,         label: 'AI uitleg' },
+                  { href: '/digitale-hulp/smartphone',      Icon: Smartphone,  label: 'Smartphone' },
+                  { href: '/digitale-hulp/computer',        Icon: Monitor,     label: 'Computer' },
+                  { href: '/digitale-hulp/internet-email',  Icon: Globe,       label: 'Internet & e-mail' },
+                  { href: '/digitale-hulp/veilig-internet', Icon: ShieldCheck, label: 'Veilig internet' },
+                ].map(({ href, Icon, label }) => (
+                  <Link key={href} href={href}
+                    className="flex items-center gap-2 font-semibold rounded-xl px-4 py-2.5 bg-white border border-neutral-stone text-gray-700 hover:border-primary hover:text-primary transition-colors"
+                    style={{ fontSize: '1.1rem' }}>
+                    <Icon size={19} strokeWidth={1.75} className="text-primary" />
+                    {label}
+                  </Link>
+                ))}
+              </div>
+          </div>
+
+          {/* Mobiel: foto onder de tekst, zachte ronde vorm */}
+          <div className="mt-12 lg:hidden">
+            <Image
+              src="/images/senior female.png"
+              alt="Senior vrouw gebruikt tablet thuis"
+              width={640}
+              height={360}
+              className="w-full object-cover rounded-3xl"
+              priority
+            />
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
+          GERUSTSTELLING
+      ════════════════════════════════════════ */}
+      <section className="bg-white py-14 border-t border-neutral-stone/40">
+        <div className="max-w-5xl mx-auto px-6">
+          <div className="grid sm:grid-cols-3 gap-8">
+            {[
+              { Icon: Heart,      title: 'U kunt niets kapotmaken', desc: 'Echt niet. Uitproberen kan altijd veilig.' },
+              { Icon: RotateCcw,  title: 'Fouten maken mag',        desc: 'Zo leert iedereen — ook wij deden dat.' },
+              { Icon: Clock3,     title: 'In uw eigen tempo',       desc: 'Geen haast. Stap voor stap, zo vaak als u wilt.' },
+            ].map(({ Icon, title, desc }) => (
+              <div key={title} className="flex flex-col items-center text-center gap-3">
+                <div className="rounded-full p-3.5 bg-primary-soft">
+                  <Icon size={26} strokeWidth={1.75} className="text-primary" />
+                </div>
+                <p className="font-semibold text-gray-900" style={{ fontSize: '1.2rem' }}>{title}</p>
+                <p className="text-gray-500" style={{ fontSize: '1.05rem' }}>{desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -128,8 +156,8 @@ export default function Home() {
                 style={{ fontSize: '1.2rem', padding: '0.9rem 1.25rem' }}
               />
               <button type="submit"
-                className="font-bold text-white rounded-xl shadow-sm hover:opacity-90 transition-opacity px-6"
-                style={{ background: '#8B5E3C', fontSize: '1.2rem', minHeight: 'auto' }}>
+                className="font-bold text-white rounded-xl shadow-sm hover:opacity-90 transition-opacity px-6 bg-primary"
+                style={{ fontSize: '1.2rem', minHeight: 'auto' }}>
                 Zoeken
               </button>
             </div>
@@ -140,11 +168,11 @@ export default function Home() {
       {/* ════════════════════════════════════════
           POPULAIRE ONDERWERPEN
       ════════════════════════════════════════ */}
-      <section className="bg-white py-16">
+      <section className="bg-white py-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-end justify-between mb-8">
-            <h2 className="font-bold text-gray-900" style={{ fontSize: '1.75rem' }}>
-              Waar anderen naar zoeken
+            <h2 style={{ fontSize: '1.9rem' }}>
+              Meest bekeken uitleg
             </h2>
             <Link href="/uitleg"
               className="flex items-center gap-1 font-semibold hover:underline"
@@ -179,10 +207,10 @@ export default function Home() {
       {/* ════════════════════════════════════════
           HANDIGE TOOLS
       ════════════════════════════════════════ */}
-      <section style={{ background: '#F5EEE6' }} className="py-16">
+      <section style={{ background: '#F5EEE6' }} className="py-20">
         <div className="max-w-5xl mx-auto px-6">
           <div className="flex items-end justify-between mb-8">
-            <h2 className="font-bold text-gray-900" style={{ fontSize: '1.75rem' }}>
+            <h2 style={{ fontSize: '1.9rem' }}>
               Handige tools
             </h2>
             <Link href="/tools"
@@ -200,8 +228,8 @@ export default function Home() {
               { href: '/puzzels',      Icon: PuzzleIcon,    title: 'Dagelijkse puzzel',   desc: 'Elke dag een nieuwe uitdaging' },
             ].map(({ href, Icon, title, desc }) => (
               <Link key={href} href={href}
-                className="group bg-white rounded-2xl p-6 flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all border border-transparent hover:border-primary/20">
-                <div className="rounded-xl p-2.5" style={{ background: 'rgba(139,94,60,0.08)' }}>
+                className="group bg-white rounded-2xl p-7 flex flex-col items-start gap-3 shadow-sm hover:shadow-md transition-all">
+                <div className="rounded-xl p-2.5 bg-primary-soft">
                   <Icon size={24} strokeWidth={1.75} style={{ color: '#8B5E3C' }} />
                 </div>
                 <div>
@@ -218,14 +246,50 @@ export default function Home() {
       </section>
 
       {/* ════════════════════════════════════════
+          MOGELIJKE VRAGEN
+      ════════════════════════════════════════ */}
+      <section style={{ background: '#F5EEE6' }} className="py-20">
+        <div className="max-w-3xl mx-auto px-6">
+          <h2 className="text-center mb-10" style={{ fontSize: '1.9rem' }}>
+            Mogelijke vragen
+          </h2>
+          <div className="space-y-4">
+            {[
+              {
+                q: 'Ik ben niet zo handig met een computer, kan ik dit wel?',
+                a: 'Ja. Alle uitleg is geschreven voor mensen die nog nooit met een onderwerp hebben gewerkt. Stap voor stap, zonder moeilijke woorden.',
+              },
+              {
+                q: 'Kan ik iets fout doen?',
+                a: 'Nee, u kunt niets kapotmaken door te klikken of te proberen. Twijfelt u toch? Sluit de app of pagina gewoon en begin opnieuw.',
+              },
+              {
+                q: 'Moet ik alles in één keer snappen?',
+                a: 'Nee. U kunt een uitleg zo vaak lezen als u wilt, en op elk moment stoppen en later verdergaan.',
+              },
+              {
+                q: 'Kost het gebruik van SeniorEase geld?',
+                a: 'De uitleg en de meeste tools zijn gratis. Bij een enkele tool staat duidelijk vermeld als er kosten aan verbonden zijn.',
+              },
+            ].map(({ q, a }) => (
+              <div key={q} className="bg-white rounded-2xl p-6 shadow-sm">
+                <p className="font-semibold text-gray-900 mb-2" style={{ fontSize: '1.15rem' }}>{q}</p>
+                <p className="text-gray-600 leading-relaxed" style={{ fontSize: '1.05rem' }}>{a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ════════════════════════════════════════
           BIBLIOTHEEK + NIEUWSBRIEF + FACEBOOK
       ════════════════════════════════════════ */}
-      <section className="bg-white py-16 border-t border-neutral-stone/40">
+      <section className="bg-white py-20 border-t border-neutral-stone/40">
         <div className="max-w-5xl mx-auto px-6 space-y-8">
 
           {/* Bibliotheek */}
           <div className="flex flex-col sm:flex-row sm:items-center gap-5 rounded-2xl p-6 border border-neutral-stone/60 bg-neutral-50">
-            <div className="rounded-xl p-3 flex-shrink-0" style={{ background: 'rgba(139,94,60,0.08)' }}>
+            <div className="rounded-xl p-3 flex-shrink-0 bg-primary-soft">
               <BookOpen size={26} strokeWidth={1.75} style={{ color: '#8B5E3C' }} />
             </div>
             <div className="flex-1 min-w-0">
@@ -243,7 +307,7 @@ export default function Home() {
           <NieuwsbriefBlok />
 
           {/* Facebook */}
-          <div className="flex flex-col sm:flex-row sm:items-center gap-5 rounded-2xl p-6 bg-blue-50 border border-blue-100">
+          <div className="flex flex-col sm:flex-row sm:items-center gap-5 rounded-2xl p-6 bg-neutral-50 border border-neutral-stone/60">
             <div className="flex-1 min-w-0">
               <p className="font-bold text-gray-900 mb-1" style={{ fontSize: '1.2rem' }}>
                 Volg ons op Facebook

@@ -241,7 +241,7 @@ function Sudoku() {
       {completed && (
         <div className="bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center">
           <div className="text-senior-xl font-bold text-green-800 mb-2">
-            🎉 Gefeliciteerd!
+            Gefeliciteerd!
           </div>
           <div className="text-senior-base text-green-700">
             Je hebt de Sudoku opgelost met {mistakes} fouten en {hintsUsed} hints!
@@ -732,7 +732,7 @@ function Woordzoeker() {
       {isComplete && (
         <div className="bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center">
           <div className="text-senior-xl font-bold text-green-800 mb-2">
-            🎉 Geweldig gedaan!
+            Geweldig gedaan!
           </div>
           <div className="text-senior-base text-green-700">
             Je hebt alle {words.length} woorden gevonden met {hintsUsed} hints!
@@ -1018,7 +1018,7 @@ function Memory() {
       {gameWon && (
         <div className="bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center">
           <div className="text-senior-xl font-bold text-green-800 mb-2">
-            🎉 Gefeliciteerd!
+            Gefeliciteerd!
           </div>
           <div className="text-senior-base text-green-700">
             Je hebt het spel voltooid in {moves} zetten met {hintsUsed} hints!

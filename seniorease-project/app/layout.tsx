@@ -1,12 +1,20 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
-import { Nunito } from "next/font/google";
+import { Lora, Source_Sans_3 } from "next/font/google";
 
-const nunito = Nunito({
+const lora = Lora({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["500", "600", "700"],
   display: "swap",
+  variable: "--font-heading",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  weight: ["400", "600", "700"],
+  display: "swap",
+  variable: "--font-body",
 });
 
 const GA_ID = "G-N1TDJB81RW";
@@ -94,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={nunito.className}>
+    <html lang="nl" className={`${lora.variable} ${sourceSans.variable} ${sourceSans.className}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#8B5E3C" />

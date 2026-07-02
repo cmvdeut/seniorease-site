@@ -11,10 +11,11 @@ export const metadata = {
 
 // Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie.
 const artikelen = [
+  { title: "Phishing herkennen", href: "/digitale-hulp/phishing-herkennen" },
   { title: "Phishing mail herkennen", href: "/digitale-hulp/phishing-mail-herkennen" },
   { title: "Oplichting herkennen", href: "/uitleg/veiligheid" },
   { title: "Veilig wachtwoord maken", href: "/digitale-hulp/veilig-wachtwoord-maken" },
-  { title: "Online fraude voorkomen", href: "/uitleg/veiligheid" },
+  { title: "Wachtwoorden beheren", href: "/uitleg/wachtwoorden" },
 ];
 
 export default function VeiligInternetCategoriePage() {

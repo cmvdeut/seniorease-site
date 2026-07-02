@@ -39,7 +39,7 @@ export default function GebruikMijnBibliotheekButton({
       href={href}
       className={`${baseClasses} ${className}`}
     >
-      👉 Gebruik Mijn Bibliotheek
+      Gebruik Mijn Bibliotheek
     </Link>
   );
 }

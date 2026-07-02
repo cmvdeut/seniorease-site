@@ -108,7 +108,7 @@ export default function ProbeerMijnBibliotheekPage() {
                 className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
                          hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                👉 Start met proberen (web versie)
+                Start met proberen (web versie)
               </button>
             </div>
 

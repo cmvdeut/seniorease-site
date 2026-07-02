@@ -331,7 +331,7 @@ export default function KalenderPage() {
           {upcomingBirthdays.length > 0 && (
             <div className="mb-6 bg-yellow-50 border-4 border-yellow-400 rounded-xl p-6">
               <h2 className="text-senior-lg font-bold text-yellow-900 mb-3 flex items-center gap-2">
-                🎉 Aankomende Verjaardagen (binnen 30 dagen)
+                Aankomende verjaardagen (binnen 30 dagen)
               </h2>
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
                 {upcomingBirthdays.map(birthday => {

@@ -48,16 +48,17 @@ body {
     min-width: 48px;
   }
 
+  /* Serif-koppen (Lora) in diep warm bruin — rustig en volwassen */
   h1 {
-    @apply text-senior-3xl font-bold;
+    @apply text-senior-3xl font-heading font-semibold text-secondary;
   }
 
   h2 {
-    @apply text-senior-2xl font-bold;
+    @apply text-senior-2xl font-heading font-semibold text-secondary;
   }
 
   h3 {
-    @apply text-senior-xl font-bold;
+    @apply text-senior-xl font-heading font-semibold text-secondary;
   }
 
   p {

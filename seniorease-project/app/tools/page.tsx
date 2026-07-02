@@ -135,10 +135,13 @@ export default function ToolsPage() {
 
         {/* Info box */}
         <div className="rounded-xl p-6 border border-amber-200" style={{ background: '#FFFBF0' }}>
-          <p className="font-bold text-gray-900 mb-1" style={{ fontSize: '1.1rem' }}>Meer tools komen eraan</p>
-          <p className="text-gray-600" style={{ fontSize: '1rem' }}>
-            We werken continu aan nieuwe handige tools. Kom regelmatig terug om te zien wat er nieuw is.
+          <p className="font-bold text-gray-900 mb-1" style={{ fontSize: '1.1rem' }}>Er komen steeds nieuwe tools bij</p>
+          <p className="text-gray-600 mb-4" style={{ fontSize: '1rem' }}>
+            Wilt u als eerste weten wanneer er een nieuwe tool is? Meld u aan voor de gratis nieuwsbrief.
           </p>
+          <Link href="/#nieuwsbrief" className="inline-block font-bold text-white py-2.5 px-5 rounded-xl hover:opacity-90 transition-opacity bg-primary" style={{ fontSize: '1rem', minHeight: 'auto' }}>
+            Meld u aan →
+          </Link>
         </div>
 
       </div>

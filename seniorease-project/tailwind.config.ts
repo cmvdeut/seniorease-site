@@ -16,11 +16,12 @@ const config: Config = {
           DEFAULT: '#8B5E3C',  // Bruin (exact van seniorease.nl)
           light: '#A07654',
           dark: '#6D4A30',
+          soft: 'rgba(139,94,60,0.08)', // zachte accenttint voor icoon-achtergronden
         },
         secondary: {
-          DEFAULT: '#8B5E3C',  // Zelfde bruin
-          light: '#A07654',
-          dark: '#6D4A30',
+          DEFAULT: '#2E241C',  // Diep warm bruin — koppen en nadruk
+          light: '#4A3A2C',
+          dark: '#1F1811',
         },
         accent: {
           DEFAULT: '#8B5E3C',  // Zelfde bruin
@@ -32,6 +33,10 @@ const config: Config = {
           stone: '#E0D5CA',
           warm: '#D4CEC3',
         },
+      },
+      fontFamily: {
+        heading: ['var(--font-heading)', 'Georgia', 'serif'],
+        body: ['var(--font-body)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
         // Extra grote fonts voor senioren

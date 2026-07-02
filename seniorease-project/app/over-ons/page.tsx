@@ -16,21 +16,24 @@ export default function OverOnsPage() {
           ← Terug naar home
         </Link>
 
-        <h1 className="font-bold text-gray-900 mb-8 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
+        <h1 className="mb-8 leading-tight" style={{ fontSize: '2.4rem' }}>
           Over SeniorEase
         </h1>
 
         {/* Intro met foto */}
         <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6">
           <div className="flex flex-col sm:flex-row gap-8 items-start mb-6">
-            <div className="flex-shrink-0 w-full sm:w-48">
+            <div className="flex-shrink-0 w-full sm:w-56 relative">
+              <div aria-hidden
+                className="absolute -bottom-3 -right-3 w-full h-full bg-neutral-stone"
+                style={{ borderRadius: '58% 42% 55% 45% / 48% 55% 45% 52%' }} />
               <Image
                 src="/images/senior male.jpg"
                 alt="Senior met smartphone"
-                width={192}
-                height={220}
-                className="rounded-xl object-cover w-full shadow-sm"
-                style={{ maxHeight: '220px' }}
+                width={224}
+                height={260}
+                className="relative object-cover w-full shadow-md"
+                style={{ borderRadius: '58% 42% 55% 45% / 48% 55% 45% 52%', height: '260px', objectPosition: '50% 25%' }}
               />
             </div>
             <div className="flex-1">
@@ -41,19 +44,19 @@ export default function OverOnsPage() {
                 </p>
               </div>
               <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.15rem' }}>
-                Als senior kun je soms best treurig worden van alle nieuwe technologie. Vroeger was het
+                Als senior kan ik best treurig worden van alle nieuwe technologie. Vroeger was het
                 overzichtelijk — een televisie, een telefoon aan de muur, een radio. Nu is er een smartphone,
                 een tablet, een cloud, een app voor alles, en elke week iets nieuws.
               </p>
             </div>
           </div>
           <p className="text-gray-700 leading-relaxed mb-4" style={{ fontSize: '1.15rem' }}>
-            Dat gevoel van "het gaat me allemaal te snel" — dat kennen wij maar al te goed.
-            Het droevige gezichtje in ons logo staat voor precies dat gevoel. Want we begrijpen het.
+            Dat gevoel van "het gaat me allemaal te snel" — dat ken ik maar al te goed.
+            Het droevige gezichtje in ons logo staat voor precies dat gevoel. Want ik begrijp het.
             Technologie hoort niet overweldigend te zijn.
           </p>
           <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.15rem' }}>
-            Achter SeniorEase zit een gewone senior — iemand die nieuwsgierig is naar nieuwe technieken
+            Ik ben gewoon een senior — iemand die nieuwsgierig is naar nieuwe technieken
             en er alles aan doet om bij te blijven, maar ook weet hoe lastig dat soms is.
             Precies daarom is SeniorEase er: zodat u niet alleen staat.
           </p>

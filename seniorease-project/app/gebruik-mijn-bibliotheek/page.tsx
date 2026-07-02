@@ -77,7 +77,7 @@ export default function GebruikMijnBibliotheekPage() {
                 className="inline-block bg-primary text-white px-8 py-4 rounded-xl text-senior-lg font-bold
                          hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl transform hover:scale-105"
               >
-                👉 Probeer op telefoon of tablet
+                Probeer op telefoon of tablet
               </Link>
             </div>
 

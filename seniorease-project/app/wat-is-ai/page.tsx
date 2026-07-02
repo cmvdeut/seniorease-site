@@ -135,7 +135,7 @@ export default function WatIsAIPage() {
               ))}
             </ul>
             <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mt-6 font-semibold">
-              U bent dus al een ervaren AI-gebruiker. Gefeliciteerd! 🎉
+              U bent dus al een ervaren AI-gebruiker. Gefeliciteerd!
             </p>
           </section>
 

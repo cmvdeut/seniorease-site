@@ -2141,7 +2141,6 @@ Voor vragen: bezoek seniorease.nl
                 <>
                   <div className="bg-green-50 border-4 border-green-400 rounded-xl p-6 mb-4">
                     <div className="text-center">
-                      <div className="text-5xl mb-3">😊</div>
                       <h3 className="text-senior-xl md:text-senior-2xl font-bold text-green-800 mb-3">
                         {t.library.firstBookSuccess}
                       </h3>

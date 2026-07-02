@@ -62,7 +62,7 @@ export default function TikTokDownloadPage() {
             >
               <div className="bg-primary hover:bg-primary-dark text-white rounded-2xl p-5 shadow-xl transform transition-all hover:scale-105 active:scale-95">
                 <div className="text-senior-base font-bold mb-2">
-                  👉 Download de demo nu
+                  Download de demo nu
                 </div>
                 <div className="text-senior-sm font-bold opacity-95">
                   via de link in bio!
