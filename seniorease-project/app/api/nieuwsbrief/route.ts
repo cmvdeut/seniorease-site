@@ -32,6 +32,37 @@ function normalizeBrevoApiKey(raw: string): string {
   return key;
 }
 
+function detectKeyFormat(raw: string | undefined, normalized: string): string {
+  const value = raw?.trim() ?? '';
+  if (!value) return 'empty';
+  if (value.toLowerCase().startsWith('bearer ')) return 'bearer_prefix';
+  if (value.startsWith('eyJ') && normalized.startsWith('xkeysib-')) return 'base64_wrapper_fixed';
+  if (value.startsWith('eyJ')) return 'base64_invalid';
+  if (normalized.startsWith('xkeysib-')) return 'brevo_xkeysib';
+  if (normalized.startsWith('re_')) return 'resend_key';
+  if (normalized.startsWith('xsmtpsib-')) return 'brevo_smtp_key';
+  return 'unknown';
+}
+
+function getBrevoEnvDiagnostics() {
+  const vars = [
+    { name: 'BREVO_API_KEY', raw: process.env.BREVO_API_KEY },
+    { name: 'BREVO_KEY', raw: process.env.BREVO_KEY },
+    { name: 'SENDINBLUE_API_KEY', raw: process.env.SENDINBLUE_API_KEY },
+  ];
+
+  return vars.map(({ name, raw }) => {
+    const trimmed = raw?.trim();
+    const normalized = trimmed ? normalizeBrevoApiKey(trimmed) : '';
+    return {
+      name,
+      set: Boolean(trimmed),
+      format: detectKeyFormat(trimmed, normalized),
+      length: normalized.length || undefined,
+    };
+  });
+}
+
 function getBrevoApiKeyCandidates(): string[] {
   const seen = new Set<string>();
   const candidates: string[] = [];
@@ -150,6 +181,7 @@ export async function GET() {
     brevoApiKey: apiKeys.length > 0 ? 'configured' : 'missing',
     brevoListId: listId ? 'configured' : 'missing',
     brevoConnection,
+    envDiagnostics: getBrevoEnvDiagnostics(),
   });
 }
 
