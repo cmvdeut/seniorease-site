@@ -290,6 +290,16 @@ export default function VeiligheidPage() {
             <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
             <ul className="space-y-2 mb-6">
               <li>
+                <Link href="/uitleg/digid" className="text-senior-base font-semibold text-primary hover:underline">
+                  DigiD veilig gebruiken
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/online-bankieren" className="text-senior-base font-semibold text-primary hover:underline">
+                  Veilig online bankieren
+                </Link>
+              </li>
+              <li>
                 <Link href="/digitale-hulp/veilig-internet" className="text-senior-base font-semibold text-primary hover:underline">
                   Veilig internet (alle artikelen)
                 </Link>

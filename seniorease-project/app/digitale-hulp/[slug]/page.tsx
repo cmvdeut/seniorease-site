@@ -343,7 +343,8 @@ function ArtikelContent({ slug }: { slug: string }) {
       return (
         <>
           <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
-            Apps zijn programma&apos;s op uw telefoon. WhatsApp, de bank, een game: u haalt ze uit een winkel op uw telefoon. Op Android heet die winkel &quot;Play Store&quot;, op de iPhone &quot;App Store&quot;. Alleen via deze winkels installeren is veilig.
+            Apps zijn programma&apos;s op uw telefoon. WhatsApp, de bank, een game: u haalt ze uit een winkel op uw telefoon. Op Android heet die winkel &quot;Play Store&quot;, op de iPhone &quot;App Store&quot;. Alleen via deze winkels installeren is veilig. Programma&apos;s op uw <strong>computer</strong>? Zie{' '}
+            <Link href="/uitleg/programma-installeren" className="font-bold text-primary hover:underline">Programma installeren op computer</Link>.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom via de winkel?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
@@ -375,6 +376,7 @@ function ArtikelContent({ slug }: { slug: string }) {
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
+            <li><Link href="/uitleg/programma-installeren" className="font-semibold text-primary hover:underline">Programma installeren op computer</Link></li>
             <li><Link href="/digitale-hulp/whatsapp-uitleg-beginners" className="font-semibold text-primary hover:underline">WhatsApp uitleg voor beginners</Link></li>
             <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
@@ -387,7 +389,8 @@ function ArtikelContent({ slug }: { slug: string }) {
       return (
         <>
           <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
-            De letters op uw telefoon zijn te klein om comfortabel te lezen? U kunt de lettergrootte groter zetten in de instellingen. Hier leest u hoe dat gaat op Android en iPhone.
+            De letters op uw telefoon zijn te klein om comfortabel te lezen? U kunt de lettergrootte groter zetten in de instellingen. Hier leest u hoe dat gaat op Android en iPhone. Op een computer? Zie{' '}
+            <Link href="/uitleg/letters-groter-pc" className="font-bold text-primary hover:underline">Letters groter op computer</Link>.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom zoeken mensen dit?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
@@ -418,6 +421,7 @@ function ArtikelContent({ slug }: { slug: string }) {
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
+            <li><Link href="/uitleg/letters-groter-pc" className="font-semibold text-primary hover:underline">Letters groter op computer</Link></li>
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
             <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
             <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
@@ -603,7 +607,8 @@ function ArtikelContent({ slug }: { slug: string }) {
       return (
         <>
           <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
-            Wilt u een plaatje van wat er op uw scherm staat bewaren? Of een kort filmpje van wat u op het scherm doet? Dat kan: met een <strong>screenshot</strong> (een foto van het scherm) of een <strong>schermopname</strong> (een filmpje). Hier leest u hoe het werkt op Android en iPhone.
+            Wilt u een plaatje van wat er op uw scherm staat bewaren? Of een kort filmpje van wat u op het scherm doet? Dat kan: met een <strong>screenshot</strong> (een foto van het scherm) of een <strong>schermopname</strong> (een filmpje). Hier leest u hoe het werkt op Android en iPhone. Werkt u op een computer? Zie{' '}
+            <Link href="/uitleg/screenshot-pc" className="font-bold text-primary hover:underline">Screenshot maken op computer</Link>.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is het verschil?</h2>
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
@@ -637,6 +642,7 @@ function ArtikelContent({ slug }: { slug: string }) {
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
+            <li><Link href="/uitleg/screenshot-pc" className="font-semibold text-primary hover:underline">Screenshot maken op computer</Link></li>
             <li><Link href="/uitleg/fotos-ordenen" className="font-semibold text-primary hover:underline">Foto&apos;s ordenen</Link></li>
             <li><Link href="/digitale-hulp/fotos-kwijt-telefoon" className="font-semibold text-primary hover:underline">Foto&apos;s kwijt op telefoon</Link></li>
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>

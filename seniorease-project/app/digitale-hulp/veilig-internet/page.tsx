@@ -14,6 +14,8 @@ const artikelen = [
   { title: "Phishing herkennen", href: "/digitale-hulp/phishing-herkennen" },
   { title: "Phishing mail herkennen", href: "/digitale-hulp/phishing-mail-herkennen" },
   { title: "Oplichting herkennen", href: "/uitleg/veiligheid" },
+  { title: "DigiD — wat is het?", href: "/uitleg/digid" },
+  { title: "Veilig online bankieren", href: "/uitleg/online-bankieren" },
   { title: "Veilig wachtwoord maken", href: "/digitale-hulp/veilig-wachtwoord-maken" },
   { title: "Wachtwoorden beheren", href: "/uitleg/wachtwoorden" },
 ];

@@ -72,9 +72,22 @@ const clusters = [
       { href: '/uitleg/email-bijlage', label: 'E-mail bijlage openen en opslaan' },
       { href: '/uitleg/bestanden-vinden', label: 'Bestanden vinden (Downloads, Verkenner)' },
       { href: '/uitleg/computer-traag', label: 'Computer traag of vastgelopen' },
+      { href: '/uitleg/screenshot-pc', label: 'Screenshot maken op computer' },
+      { href: '/uitleg/letters-groter-pc', label: 'Letters groter maken op computer' },
+      { href: '/uitleg/programma-installeren', label: 'Programma installeren op computer' },
       { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
       { href: '/digitale-hulp/e-mail-openen', label: 'E-mail openen' },
       { href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' },
+    ],
+  },
+  {
+    titel: 'DigiD & bankieren',
+    omschrijving: 'Veilig inloggen bij overheid en bank — zonder angst.',
+    paginas: [
+      { href: '/uitleg/digid', label: 'DigiD — wat is het en hoe werkt het?' },
+      { href: '/uitleg/online-bankieren', label: 'Veilig online bankieren' },
+      { href: '/uitleg/veiligheid', label: 'Oplichting herkennen' },
+      { href: '/uitleg/wachtwoorden', label: 'Wachtwoorden beheren' },
     ],
   },
   {

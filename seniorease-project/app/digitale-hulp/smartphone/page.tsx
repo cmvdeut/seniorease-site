@@ -15,6 +15,8 @@ const artikelen = [
   { title: "WhatsApp foto's opslaan", href: "/digitale-hulp/whatsapp-fotos-opslaan" },
   { title: "Foto's van telefoon naar computer", href: "/uitleg/fotos-naar-computer" },
   { title: "Letters groter maken op telefoon", href: "/digitale-hulp/letters-groter-maken-telefoon" },
+  { title: "Letters groter maken op computer", href: "/uitleg/letters-groter-pc" },
+  { title: "Screenshot op telefoon", href: "/digitale-hulp/screenshot-en-schermopname-telefoon" },
   { title: "QR-code scannen", href: "/uitleg/qr-code" },
   { title: "Telefoon langzaam oplossen", href: "/digitale-hulp/telefoon-langzaam-oplossen" },
 ];

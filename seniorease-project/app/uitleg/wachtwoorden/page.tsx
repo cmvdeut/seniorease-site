@@ -271,6 +271,9 @@ export default function WachtwoordenPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
+              <Link href="/uitleg/digid" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+                DigiD uitleg →
+              </Link>
               <Link href="/uitleg/veiligheid" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
                 ← Oplichting herkennen
               </Link>
