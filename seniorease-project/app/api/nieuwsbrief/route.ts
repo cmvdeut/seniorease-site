@@ -3,19 +3,94 @@ import { NextRequest, NextResponse } from 'next/server';
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-function getBrevoApiKey(): string | undefined {
-  const candidates = [
+function normalizeBrevoApiKey(raw: string): string {
+  let key = raw.trim();
+
+  if (
+    (key.startsWith('"') && key.endsWith('"')) ||
+    (key.startsWith("'") && key.endsWith("'"))
+  ) {
+    key = key.slice(1, -1).trim();
+  }
+
+  if (key.toLowerCase().startsWith('bearer ')) {
+    key = key.slice(7).trim();
+  }
+
+  if (key.startsWith('eyJ')) {
+    try {
+      const decoded = Buffer.from(key, 'base64').toString('utf8');
+      const parsed = JSON.parse(decoded) as { api_key?: string };
+      if (parsed.api_key?.trim()) {
+        key = parsed.api_key.trim();
+      }
+    } catch {
+      // Gebruik originele waarde als base64-decode mislukt.
+    }
+  }
+
+  return key;
+}
+
+function getBrevoApiKeyCandidates(): string[] {
+  const seen = new Set<string>();
+  const candidates: string[] = [];
+
+  for (const value of [
     process.env.BREVO_API_KEY,
     process.env.BREVO_KEY,
     process.env.SENDINBLUE_API_KEY,
-  ];
+  ]) {
+    if (!value?.trim()) continue;
 
-  for (const value of candidates) {
-    const trimmed = value?.trim();
-    if (trimmed) return trimmed;
+    const normalized = normalizeBrevoApiKey(value);
+    if (!normalized || seen.has(normalized)) continue;
+
+    seen.add(normalized);
+    candidates.push(normalized);
   }
 
-  return undefined;
+  return candidates;
+}
+
+async function verifyBrevoApiKey(apiKey: string): Promise<boolean> {
+  const response = await fetch('https://api.brevo.com/v3/account', {
+    headers: {
+      Accept: 'application/json',
+      'api-key': apiKey,
+    },
+  });
+
+  return response.ok;
+}
+
+async function createBrevoContact(
+  apiKey: string,
+  email: string,
+  listId?: number
+): Promise<Response> {
+  const payload: {
+    email: string;
+    updateEnabled: boolean;
+    listIds?: number[];
+  } = {
+    email,
+    updateEnabled: true,
+  };
+
+  if (listId) {
+    payload.listIds = [listId];
+  }
+
+  return fetch('https://api.brevo.com/v3/contacts', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'api-key': apiKey,
+    },
+    body: JSON.stringify(payload),
+  });
 }
 
 function getBrevoWelcomeTemplateId(): number | undefined {
@@ -58,13 +133,23 @@ function getBrevoListId(): number | undefined {
 }
 
 export async function GET() {
-  const apiKey = getBrevoApiKey();
+  const apiKeys = getBrevoApiKeyCandidates();
   const listId = getBrevoListId();
+  let brevoConnection: 'ok' | 'auth_failed' | 'missing' = 'missing';
+
+  for (const apiKey of apiKeys) {
+    if (await verifyBrevoApiKey(apiKey)) {
+      brevoConnection = 'ok';
+      break;
+    }
+    brevoConnection = 'auth_failed';
+  }
 
   return NextResponse.json({
-    ok: Boolean(apiKey),
-    brevoApiKey: apiKey ? 'configured' : 'missing',
+    ok: brevoConnection === 'ok',
+    brevoApiKey: apiKeys.length > 0 ? 'configured' : 'missing',
     brevoListId: listId ? 'configured' : 'missing',
+    brevoConnection,
   });
 }
 
@@ -95,8 +180,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const apiKey = getBrevoApiKey();
-    if (!apiKey) {
+    const apiKeys = getBrevoApiKeyCandidates();
+    if (apiKeys.length === 0) {
       console.error('Brevo API key ontbreekt. Gecontroleerde variabelen: BREVO_API_KEY, BREVO_KEY, SENDINBLUE_API_KEY');
       return NextResponse.json(
         { success: false, error: 'Nieuwsbrief is tijdelijk niet beschikbaar. Probeer het later opnieuw.' },
@@ -104,32 +189,37 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const payload: {
-      email: string;
-      updateEnabled: boolean;
-      listIds?: number[];
-    } = {
-      email,
-      updateEnabled: true,
-    };
-
     const listId = getBrevoListId();
-    if (listId) {
-      payload.listIds = [listId];
+    let response: Response | null = null;
+    let apiKeyUsed: string | undefined;
+
+    for (const apiKey of apiKeys) {
+      if (!(await verifyBrevoApiKey(apiKey))) {
+        console.error('Brevo API key geweigerd bij account-check');
+        continue;
+      }
+
+      response = await createBrevoContact(apiKey, email, listId);
+      apiKeyUsed = apiKey;
+
+      if (response.status === 401) {
+        console.error('Brevo API key geweigerd bij contact-aanmaak');
+        response = null;
+        continue;
+      }
+
+      break;
     }
 
-    const response = await fetch('https://api.brevo.com/v3/contacts', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-        'api-key': apiKey,
-      },
-      body: JSON.stringify(payload),
-    });
+    if (!response || !apiKeyUsed) {
+      return NextResponse.json(
+        { success: false, error: 'Nieuwsbrief is tijdelijk niet beschikbaar. Probeer het later opnieuw.' },
+        { status: 503 }
+      );
+    }
 
     if (response.status === 201 || response.status === 204) {
-      await sendWelcomeEmail(apiKey, email);
+      await sendWelcomeEmail(apiKeyUsed, email);
       return NextResponse.json({
         success: true,
         message: 'Aanmelding gelukt',
