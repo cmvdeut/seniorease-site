@@ -3,19 +3,20 @@ import Link from "next/link";
 export const metadata = {
   title: "Computer hulp – Digitale hulp voor senioren",
   description:
-    "Uitleg over computer, screenshot maken, bestanden opslaan en programma's installeren. Stap voor stap voor senioren.",
+    "Uitleg over e-mail bijlagen, bestanden vinden, computer traag oplossen en foto's op de pc. Stap voor stap voor senioren.",
   alternates: {
     canonical: "https://seniorease.nl/digitale-hulp/computer",
   },
 };
 
-// Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie.
-// Enkele items linken naar verwante artikelen tot er een eigen pagina is (Computer uitleg, Bestand opslaan).
 const artikelen = [
-  { title: "Computer uitleg", href: "/digitale-hulp" },
-  { title: "Screenshot maken", href: "/digitale-hulp/screenshot-en-schermopname-telefoon" },
-  { title: "Bestand opslaan", href: "/digitale-hulp/wat-is-de-cloud" },
-  { title: "Programma installeren", href: "/digitale-hulp/apps-installeren" },
+  { title: "E-mail bijlage openen en opslaan", href: "/uitleg/email-bijlage" },
+  { title: "Bestanden vinden op uw computer", href: "/uitleg/bestanden-vinden" },
+  { title: "Computer traag of vastgelopen", href: "/uitleg/computer-traag" },
+  { title: "Foto's van telefoon naar computer", href: "/uitleg/fotos-naar-computer" },
+  { title: "Googelen voor beginners", href: "/digitale-hulp/googelen-google-zoeken" },
+  { title: "E-mail openen", href: "/digitale-hulp/e-mail-openen" },
+  { title: "Wat is de cloud?", href: "/digitale-hulp/wat-is-de-cloud" },
 ];
 
 export default function ComputerCategoriePage() {
@@ -34,7 +35,7 @@ export default function ComputerCategoriePage() {
               Computer hulp
             </h1>
             <p className="text-senior-base text-gray-600 mt-2">
-              Uitleg over computer, schermfoto&apos;s, bestanden bewaren en apps of programma&apos;s installeren.
+              E-mail bijlagen, bestanden vinden, traagheid oplossen en meer — stap voor stap op uw pc.
             </p>
           </div>
         </div>
@@ -44,7 +45,7 @@ export default function ComputerCategoriePage() {
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
             <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8">
-              Werkt u op een computer of tablet? Hier vindt u artikelen over schermfoto&apos;s maken, bestanden opslaan (onder andere in de cloud) en veilig programma&apos;s of apps installeren.
+              Werkt u op een laptop of desktop? Hier vindt u rustige uitleg over dagelijkse computervragen — zonder moeilijke termen.
             </p>
 
             <h2 className="text-senior-xl font-bold text-primary mb-4">Artikelen</h2>
@@ -62,11 +63,11 @@ export default function ComputerCategoriePage() {
             </ul>
 
             <p className="text-senior-base text-gray-600 mt-8 pt-6 border-t border-neutral-stone">
-              <strong>Tip:</strong> Staat uw vraag er niet bij? Gebruik de zoekbalk op de pagina{" "}
+              <strong>Tip:</strong> Staat uw vraag er niet bij? Gebruik de zoekbalk op{" "}
               <Link href="/digitale-hulp" className="font-semibold text-primary hover:underline">
                 Digitale hulp
-              </Link>{" "}
-              of kijk bij de andere categorie&apos;s.
+              </Link>
+              .
             </p>
 
             <p className="mt-6 pt-4 border-t border-neutral-stone">

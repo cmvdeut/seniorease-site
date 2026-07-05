@@ -330,6 +330,8 @@ function ArtikelContent({ slug }: { slug: string }) {
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
             <li><Link href="/digitale-hulp/internet-email" className="font-semibold text-primary hover:underline">Internet &amp; e-mail (alle artikelen)</Link></li>
+            <li><Link href="/uitleg/email-bijlage" className="font-semibold text-primary hover:underline">E-mail bijlage openen en opslaan</Link></li>
+            <li><Link href="/uitleg/bestanden-vinden" className="font-semibold text-primary hover:underline">Bestanden vinden op uw computer</Link></li>
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
             <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
             <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>

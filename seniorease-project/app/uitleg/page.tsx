@@ -66,6 +66,18 @@ const clusters = [
     ],
   },
   {
+    titel: 'Computer',
+    omschrijving: 'E-mail, bestanden en uw pc soepel houden.',
+    paginas: [
+      { href: '/uitleg/email-bijlage', label: 'E-mail bijlage openen en opslaan' },
+      { href: '/uitleg/bestanden-vinden', label: 'Bestanden vinden (Downloads, Verkenner)' },
+      { href: '/uitleg/computer-traag', label: 'Computer traag of vastgelopen' },
+      { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
+      { href: '/digitale-hulp/e-mail-openen', label: 'E-mail openen' },
+      { href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' },
+    ],
+  },
+  {
     titel: 'Muziek & e-books',
     omschrijving: 'Muziek luisteren en e-boeken lezen.',
     paginas: [

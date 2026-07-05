@@ -14,7 +14,7 @@ export const metadata = {
 const artikelen = [
   { title: "Wifi instellen", href: "/uitleg/wifi" },
   { title: "E-mail uitleg", href: "/digitale-hulp/e-mail-openen" },
-  { title: "Bijlage openen", href: "/digitale-hulp/e-mail-openen" },
+  { title: "E-mail bijlage openen", href: "/uitleg/email-bijlage" },
   { title: "Internet probleem oplossen", href: "/digitale-hulp/wifi-werkt-niet-oplossen" },
 ];
 
