@@ -43,6 +43,9 @@ video-generator/out/*.mp4
 video-generator/build/
 video-generator/out/
 
+# HyperFrames renders
+hyperframes-prototype/out/
+
 # Cursor local settings
 .cursor/
 

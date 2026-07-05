@@ -1,0 +1,946 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #000;
+      }
+      body {
+        font-family: "Segoe UI", Arial, sans-serif;
+      }
+
+      /* ---- shared slide chrome (ported from video-generator/src/components/TextSlide.tsx) ---- */
+      .slide {
+        position: absolute;
+        inset: 0;
+        background: #f5eee6;
+      }
+      .slide-watermark {
+        position: absolute;
+        bottom: 36px;
+        right: 52px;
+        width: 70px;
+        height: 70px;
+        opacity: 0.25;
+        z-index: 10;
+      }
+      .slide-counter {
+        position: absolute;
+        top: 36px;
+        right: 52px;
+        font-size: 24px;
+        color: #8b5e3c;
+        opacity: 0.6;
+        z-index: 10;
+      }
+      .slide-layout {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        height: 100%;
+        padding: 80px 100px;
+        gap: 60px;
+      }
+      .slide-left {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .slide-left.full {
+        flex: 1;
+      }
+      .slide-left.split {
+        flex: 0 0 48%;
+      }
+      .slide-title {
+        font-weight: bold;
+        color: #8b5e3c;
+        margin-bottom: 44px;
+        border-left: 10px solid #8b5e3c;
+        padding-left: 32px;
+        line-height: 1.25;
+        opacity: 0;
+        transform: translateX(-60px);
+      }
+      .slide-title.full {
+        font-size: 64px;
+      }
+      .slide-title.split {
+        font-size: 52px;
+      }
+      .points {
+        display: flex;
+        flex-direction: column;
+        gap: 28px;
+      }
+      .point {
+        display: flex;
+        align-items: flex-start;
+        gap: 24px;
+        opacity: 0;
+        transform: translateX(-50px);
+      }
+      .point-dot {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #8b5e3c;
+        flex-shrink: 0;
+        margin-top: 10px;
+      }
+      .point-text {
+        color: #1f1f1f;
+        line-height: 1.5;
+      }
+      .point-text.full {
+        font-size: 40px;
+      }
+      .point-text.split {
+        font-size: 34px;
+      }
+      .slide-right {
+        flex: 0 0 48%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      /* ---- phone mockup chrome (ported from PhoneMockup.tsx) ---- */
+      .phone {
+        position: relative;
+        width: 280px;
+        height: 560px;
+        opacity: 0;
+        transform: scale(0.92);
+      }
+      .phone-frame {
+        width: 100%;
+        height: 100%;
+        background: #1a1a1a;
+        border-radius: 40px;
+        padding: 10px;
+        box-shadow:
+          0 30px 80px rgba(0, 0, 0, 0.55),
+          inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+      .phone-screen {
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        border-radius: 32px;
+        overflow: hidden;
+        position: relative;
+      }
+      .phone-notch {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 22px;
+        background: #1a1a1a;
+        border-radius: 0 0 14px 14px;
+        z-index: 10;
+      }
+      .phone-content {
+        position: absolute;
+        inset: 0;
+        padding-top: 22px;
+        overflow: hidden;
+      }
+      .phone-btn {
+        position: absolute;
+        background: #333;
+      }
+      .phone-btn.right {
+        right: -4px;
+        top: 100px;
+        width: 4px;
+        height: 50px;
+        border-radius: 0 3px 3px 0;
+      }
+      .phone-btn.left-1 {
+        left: -4px;
+        top: 80px;
+        width: 4px;
+        height: 35px;
+        border-radius: 3px 0 0 3px;
+      }
+      .phone-btn.left-2 {
+        left: -4px;
+        top: 125px;
+        width: 4px;
+        height: 35px;
+        border-radius: 3px 0 0 3px;
+      }
+
+      /* ---- WhatsApp chat-list screen ---- */
+      .wa-screen {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        position: relative;
+      }
+      .wa-header {
+        background: #075e54;
+        padding: 14px 16px 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .wa-header-title {
+        color: #fff;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .wa-header-icons {
+        display: flex;
+        gap: 16px;
+        color: #fff;
+        font-size: 18px;
+      }
+      .wa-search {
+        background: #fff;
+        margin: 8px 12px;
+        border-radius: 22px;
+        padding: 7px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .wa-search-icon {
+        font-size: 14px;
+        color: #888;
+      }
+      .wa-search-text {
+        font-size: 14px;
+        color: #aaa;
+      }
+      .wa-contact {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 10px 16px;
+        border-bottom: 1px solid #f0f0f0;
+        background: #fff;
+      }
+      .wa-avatar {
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-weight: bold;
+        flex-shrink: 0;
+      }
+      .wa-contact-body {
+        flex: 1;
+        min-width: 0;
+      }
+      .wa-contact-row {
+        display: flex;
+        justify-content: space-between;
+      }
+      .wa-contact-name {
+        font-size: 15px;
+        font-weight: bold;
+        color: #111;
+      }
+      .wa-contact-time {
+        font-size: 12px;
+        color: #888;
+      }
+      .wa-contact-msg {
+        font-size: 13px;
+        color: #666;
+      }
+      .wa-body-fill {
+        flex: 1;
+        background: #f5f5f5;
+      }
+      .wa-fab {
+        position: absolute;
+        bottom: 16px;
+        right: 16px;
+        width: 52px;
+        height: 52px;
+        border-radius: 50%;
+        background: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ---- WhatsApp chat screen ---- */
+      .wa-chat-header {
+        background: #075e54;
+        padding: 10px 12px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .wa-chat-header-name {
+        color: #fff;
+        font-size: 15px;
+        font-weight: bold;
+      }
+      .wa-chat-header-status {
+        color: rgba(255, 255, 255, 0.75);
+        font-size: 11px;
+      }
+      .wa-chat-header-icons {
+        display: flex;
+        gap: 16px;
+        color: #fff;
+        font-size: 18px;
+        margin-left: auto;
+      }
+      .wa-messages {
+        flex: 1;
+        background: #ece5dd;
+        padding: 12px 10px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        overflow-y: hidden;
+      }
+      .wa-bubble {
+        padding: 8px 12px;
+        max-width: 75%;
+        box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+      }
+      .wa-bubble.received {
+        align-self: flex-start;
+        background: #fff;
+        border-radius: 0 10px 10px 10px;
+      }
+      .wa-bubble.sent {
+        align-self: flex-end;
+        background: #dcf8c6;
+        border-radius: 10px 0 10px 10px;
+      }
+      .wa-bubble-text {
+        font-size: 13px;
+        color: #111;
+      }
+      .wa-bubble-time {
+        font-size: 10px;
+        color: #aaa;
+        text-align: right;
+      }
+      .wa-bubble-time.blue {
+        color: #34b7f1;
+      }
+      .wa-attachment-menu {
+        position: absolute;
+        bottom: 52px;
+        left: 8px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        padding: 10px 0;
+        min-width: 150px;
+      }
+      .wa-attachment-item {
+        padding: 10px 20px;
+        font-size: 14px;
+        color: #333;
+      }
+      .wa-input-bar {
+        background: #f0f0f0;
+        padding: 6px 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        margin-top: auto;
+      }
+      .wa-input-field {
+        flex: 1;
+        background: #fff;
+        border-radius: 22px;
+        padding: 8px 14px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .wa-input-emoji,
+      .wa-input-icon {
+        font-size: 16px;
+      }
+      .wa-input-text {
+        font-size: 13px;
+        color: #aaa;
+        flex: 1;
+      }
+      .wa-input-placeholder {
+        position: absolute;
+        font-size: 13px;
+        color: #aaa;
+        opacity: 0;
+      }
+      .wa-send-btn {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: #25d366;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+      }
+
+      /* ---- tap indicator (ported from TapIndicator.tsx) ---- */
+      .tap {
+        position: absolute;
+        transform: translate(-50%, -50%);
+        width: 52px;
+        height: 52px;
+        pointer-events: none;
+        z-index: 20;
+      }
+      .tap-ripple {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        border: 3px solid rgba(255, 255, 255, 0.85);
+        transform: scale(1);
+        opacity: 0;
+      }
+      .tap-dot {
+        position: absolute;
+        inset: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.88);
+        box-shadow: 0 2px 12px rgba(0, 0, 0, 0.35);
+        transform: scale(0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 26px;
+      }
+
+      /* ---- intro / outro (ported from Intro.tsx / Outro.tsx) ---- */
+      .intro,
+      .outro {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      .intro {
+        background: #f5eee6;
+        gap: 40px;
+      }
+      .outro {
+        background: #8b5e3c;
+        gap: 36px;
+      }
+      .intro-logo {
+        width: 200px;
+        height: 200px;
+        transform: scale(0);
+      }
+      .intro-title-wrap {
+        opacity: 0;
+        transform: translateY(30px);
+        text-align: center;
+      }
+      .intro-brand {
+        font-size: 80px;
+        font-weight: bold;
+        color: #8b5e3c;
+      }
+      .intro-subtitle {
+        font-size: 44px;
+        font-weight: bold;
+        color: #1f1f1f;
+        margin-top: 20px;
+      }
+      .outro-inner {
+        opacity: 0;
+        transform: scale(0.85);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 28px;
+      }
+      .outro-logo {
+        width: 160px;
+        height: 160px;
+      }
+      .outro-domain {
+        font-size: 80px;
+        font-weight: bold;
+        color: #fff;
+      }
+      .outro-tagline {
+        font-size: 38px;
+        color: #f5eee6;
+        opacity: 0.9;
+      }
+      .outro-buttons {
+        opacity: 0;
+        margin-top: 20px;
+        display: flex;
+        gap: 32px;
+      }
+      .outro-btn {
+        padding: 18px 52px;
+        border-radius: 50px;
+        font-size: 34px;
+      }
+      .outro-btn.like {
+        border: 3px solid #f5eee6;
+        color: #f5eee6;
+      }
+      .outro-btn.subscribe {
+        background: #f5eee6;
+        color: #8b5e3c;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="whatsapp-fotos"
+      data-start="0"
+      data-duration="37"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Intro: 0s - 3s -->
+      <div id="intro" class="clip intro" data-start="0" data-duration="3" data-track-index="0">
+        <img id="intro-logo" class="intro-logo" src="assets/heart-logo.png" />
+        <div id="intro-title-wrap" class="intro-title-wrap">
+          <div class="intro-brand">SeniorEase</div>
+          <div class="intro-subtitle">WhatsApp foto's versturen</div>
+        </div>
+      </div>
+
+      <!-- Slide 1: "Wat gaan we leren?" 3s - 8s -->
+      <div id="slide-1" class="clip slide" data-start="3" data-duration="5" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" />
+        <div class="slide-counter">1 / 5</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s1-title" class="slide-title full">Wat gaan we leren?</div>
+            <div class="points">
+              <div id="s1-p0" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">Een foto versturen via WhatsApp</div>
+              </div>
+              <div id="s1-p1" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">Stap voor stap uitgelegd</div>
+              </div>
+              <div id="s1-p2" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">In 5 eenvoudige stappen</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: "Stap 1 & 2" 8s - 14s, phone: chat-list, tap=chat-item @20f -->
+      <div id="slide-2" class="clip slide" data-start="8" data-duration="6" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" />
+        <div class="slide-counter">2 / 5</div>
+        <div class="slide-layout">
+          <div class="slide-left split">
+            <div id="s2-title" class="slide-title split">Stap 1 & 2</div>
+            <div class="points">
+              <div id="s2-p0" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">Open WhatsApp op uw telefoon</div>
+              </div>
+              <div id="s2-p1" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">Open het gesprek met de ontvanger</div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-right">
+            <div id="s2-phone" class="phone">
+              <div class="phone-frame">
+                <div class="phone-screen">
+                  <div class="phone-notch"></div>
+                  <div class="phone-content">
+                    <div class="wa-screen">
+                      <div class="wa-header">
+                        <span class="wa-header-title">WhatsApp</span>
+                        <div class="wa-header-icons"><span>&#128269;</span><span>&#8942;</span></div>
+                      </div>
+                      <div class="wa-search">
+                        <span class="wa-search-icon">&#128269;</span>
+                        <span class="wa-search-text">Zoeken...</span>
+                      </div>
+                      <div class="wa-contact">
+                        <div class="wa-avatar" style="width: 46px; height: 46px; background: #e91e63; font-size: 17px">M</div>
+                        <div class="wa-contact-body">
+                          <div class="wa-contact-row">
+                            <span class="wa-contact-name">Mama</span>
+                            <span class="wa-contact-time">09:14</span>
+                          </div>
+                          <span class="wa-contact-msg">Hoe gaat het?</span>
+                        </div>
+                      </div>
+                      <div class="wa-contact">
+                        <div class="wa-avatar" style="width: 46px; height: 46px; background: #2196f3; font-size: 17px">P</div>
+                        <div class="wa-contact-body">
+                          <div class="wa-contact-row">
+                            <span class="wa-contact-name">Peter</span>
+                            <span class="wa-contact-time">Gis</span>
+                          </div>
+                          <span class="wa-contact-msg">Tot morgen &#128077;</span>
+                        </div>
+                      </div>
+                      <div class="wa-contact">
+                        <div class="wa-avatar" style="width: 46px; height: 46px; background: #25d366; font-size: 17px">F</div>
+                        <div class="wa-contact-body">
+                          <div class="wa-contact-row">
+                            <span class="wa-contact-name">Fam. Groep</span>
+                            <span class="wa-contact-time">Ma</span>
+                          </div>
+                          <span class="wa-contact-msg">Gezellig!</span>
+                        </div>
+                      </div>
+                      <div class="wa-body-fill"></div>
+                      <div class="wa-fab">&#9999;&#65039;</div>
+                    </div>
+                  </div>
+                  <div id="s2-tap" class="tap" style="left: 50%; top: 30%" data-layout-allow-occlusion>
+                    <div id="s2-tap-ripple" class="tap-ripple"></div>
+                    <div id="s2-tap-dot" class="tap-dot">&#128070;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-btn right"></div>
+              <div class="phone-btn left-1"></div>
+              <div class="phone-btn left-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: "Stap 3 & 4" 14s - 20s, phone: attachment-menu, tap=attachment @15f -->
+      <div id="slide-3" class="clip slide" data-start="14" data-duration="6" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" />
+        <div class="slide-counter">3 / 5</div>
+        <div class="slide-layout">
+          <div class="slide-left split">
+            <div id="s3-title" class="slide-title split">Stap 3 & 4</div>
+            <div class="points">
+              <div id="s3-p0" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">Tik op het paperclip-icoontje (&#128206;)</div>
+              </div>
+              <div id="s3-p1" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">Kies 'Galerij' of 'Foto & video'</div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-right">
+            <div id="s3-phone" class="phone">
+              <div class="phone-frame">
+                <div class="phone-screen">
+                  <div class="phone-notch"></div>
+                  <div class="phone-content">
+                    <div class="wa-screen">
+                      <div class="wa-chat-header">
+                        <span style="color: #fff; font-size: 18px">&#8592;</span>
+                        <div class="wa-avatar" style="width: 36px; height: 36px; background: #e91e63; font-size: 14px">M</div>
+                        <div style="flex: 1">
+                          <div class="wa-chat-header-name">Mama</div>
+                          <div class="wa-chat-header-status">online</div>
+                        </div>
+                        <div class="wa-chat-header-icons"><span>&#128222;</span><span>&#128249;</span></div>
+                      </div>
+                      <div class="wa-messages">
+                        <div class="wa-bubble received">
+                          <div class="wa-bubble-text">Hoe gaat het? &#128522;</div>
+                          <div class="wa-bubble-time">09:10</div>
+                        </div>
+                        <div class="wa-bubble sent">
+                          <div class="wa-bubble-text">Goed hoor, en met jou?</div>
+                          <div class="wa-bubble-time">09:14 &#10003;&#10003;</div>
+                        </div>
+                      </div>
+                      <div class="wa-attachment-menu">
+                        <div class="wa-attachment-item">&#128247;&nbsp;&nbsp;Camera</div>
+                        <div class="wa-attachment-item">&#128444;&#65039;&nbsp;&nbsp;Galerij</div>
+                        <div class="wa-attachment-item">&#128196;&nbsp;&nbsp;Document</div>
+                      </div>
+                      <div class="wa-input-bar">
+                        <div class="wa-input-field">
+                          <span class="wa-input-emoji">&#128522;</span>
+                          <span class="wa-input-text">Bericht</span>
+                          <span class="wa-input-icon">&#128206;</span>
+                          <span class="wa-input-icon">&#128247;</span>
+                        </div>
+                        <div class="wa-send-btn">&#10148;</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="s3-tap" class="tap" style="left: 14%; top: 89%" data-layout-allow-occlusion>
+                    <div id="s3-tap-ripple" class="tap-ripple"></div>
+                    <div id="s3-tap-dot" class="tap-dot">&#128070;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-btn right"></div>
+              <div class="phone-btn left-1"></div>
+              <div class="phone-btn left-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: "Stap 5" 20s - 27s, phone: chat, tap=send-button @20f -->
+      <div id="slide-4" class="clip slide" data-start="20" data-duration="7" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" />
+        <div class="slide-counter">4 / 5</div>
+        <div class="slide-layout">
+          <div class="slide-left split">
+            <div id="s4-title" class="slide-title split">Stap 5</div>
+            <div class="points">
+              <div id="s4-p0" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">De foto staat klaar in uw bericht</div>
+              </div>
+              <div id="s4-p1" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">Tik op de groene verzend-knop (&#10148;)</div>
+              </div>
+              <div id="s4-p2" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text split">De foto is verstuurd! &#10003;</div>
+              </div>
+            </div>
+          </div>
+          <div class="slide-right">
+            <div id="s4-phone" class="phone">
+              <div class="phone-frame">
+                <div class="phone-screen">
+                  <div class="phone-notch"></div>
+                  <div class="phone-content">
+                    <div class="wa-screen">
+                      <div class="wa-chat-header">
+                        <span style="color: #fff; font-size: 18px">&#8592;</span>
+                        <div class="wa-avatar" style="width: 36px; height: 36px; background: #e91e63; font-size: 14px">M</div>
+                        <div style="flex: 1">
+                          <div class="wa-chat-header-name">Mama</div>
+                          <div class="wa-chat-header-status">online</div>
+                        </div>
+                        <div class="wa-chat-header-icons"><span>&#128222;</span><span>&#128249;</span></div>
+                      </div>
+                      <div class="wa-messages">
+                        <div class="wa-bubble received">
+                          <div class="wa-bubble-text">Hoe gaat het? &#128522;</div>
+                          <div class="wa-bubble-time">09:10</div>
+                        </div>
+                        <div class="wa-bubble sent">
+                          <div class="wa-bubble-text">Goed hoor, en met jou?</div>
+                          <div class="wa-bubble-time">09:14 &#10003;&#10003;</div>
+                        </div>
+                        <div id="s4-new-bubble" class="wa-bubble sent" style="opacity: 0; transform: translateY(12px)">
+                          <div class="wa-bubble-text">Dag mama! &#128075;</div>
+                          <div id="s4-new-bubble-time" class="wa-bubble-time">09:18</div>
+                        </div>
+                      </div>
+                      <div class="wa-input-bar">
+                        <div class="wa-input-field" style="position: relative">
+                          <span class="wa-input-emoji">&#128522;</span>
+                          <span id="s4-input-text" class="wa-input-text" style="color: #111">Dag mama! &#128075;</span>
+                          <span class="wa-input-icon">&#128206;</span>
+                          <span class="wa-input-icon">&#128247;</span>
+                        </div>
+                        <div class="wa-send-btn">&#10148;</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="s4-tap" class="tap" style="left: 90%; top: 89%" data-layout-allow-occlusion>
+                    <div id="s4-tap-ripple" class="tap-ripple"></div>
+                    <div id="s4-tap-dot" class="tap-dot">&#128070;</div>
+                  </div>
+                </div>
+              </div>
+              <div class="phone-btn right"></div>
+              <div class="phone-btn left-1"></div>
+              <div class="phone-btn left-2"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: "Meer hulp nodig?" 27s - 32s -->
+      <div id="slide-5" class="clip slide" data-start="27" data-duration="5" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" />
+        <div class="slide-counter">5 / 5</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s5-title" class="slide-title full">Meer hulp nodig?</div>
+            <div class="points">
+              <div id="s5-p0" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">Bezoek seniorease.nl voor meer uitleg</div>
+              </div>
+              <div id="s5-p1" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">Alles in begrijpelijke taal</div>
+              </div>
+              <div id="s5-p2" class="point">
+                <div class="point-dot"></div>
+                <div class="point-text full">Gratis te gebruiken</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outro: 32s - 37s -->
+      <div id="outro" class="clip outro" data-start="32" data-duration="5" data-track-index="0">
+        <div id="outro-inner" class="outro-inner">
+          <img class="outro-logo" src="assets/heart-logo.png" />
+          <div class="outro-domain">seniorease.nl</div>
+          <div class="outro-tagline">Technologie zonder gedoe</div>
+          <div id="outro-buttons" class="outro-buttons">
+            <div class="outro-btn like">&#128077; Like</div>
+            <div class="outro-btn subscribe">&#128276; Abonneer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      // ---- Intro (0s - 3s), ported from Intro.tsx ----
+      tl.fromTo("#intro-logo", { scale: 0 }, { scale: 1, duration: 0.7, ease: "back.out(1.2)" }, 0);
+      tl.fromTo(
+        "#intro-title-wrap",
+        { opacity: 0, y: 30 },
+        { opacity: 1, y: 0, duration: 0.667, ease: "none" },
+        0.833
+      );
+
+      // ---- Text slide helper timings (ported from TextSlide.tsx) ----
+      // title: fadeIn [0,12f] + titleX [0,15f] -> opacity 0.4s, translateX 0.5s
+      // points: [12 + i*18, 12 + i*18 + 12]f -> 0.4s window, staggered every 0.6s starting at 0.4s
+      function addTitle(id, start) {
+        tl.fromTo(id, { opacity: 0, x: -60 }, { opacity: 1, duration: 0.4, ease: "none" }, start);
+        tl.fromTo(id, { x: -60 }, { x: 0, duration: 0.5, ease: "none" }, start);
+      }
+      function addPoint(id, slideStart, i) {
+        const pStart = slideStart + 0.4 + i * 0.6;
+        tl.fromTo(id, { opacity: 0, x: -50 }, { opacity: 1, x: 0, duration: 0.4, ease: "none" }, pStart);
+      }
+      function addPhoneAppear(idPhone, slideStart) {
+        tl.fromTo(idPhone, { opacity: 0 }, { opacity: 1, duration: 0.667, ease: "none" }, slideStart + 0.167);
+        tl.fromTo(idPhone, { scale: 0.92 }, { scale: 1, duration: 0.7, ease: "back.out(1.2)" }, slideStart);
+      }
+      function addTap(idTap, idRipple, idDot, tapStart) {
+        tl.fromTo(idDot, { scale: 0 }, { scale: 1, duration: 0.7, ease: "back.out(1.4)" }, tapStart);
+        tl.set(idTap, { opacity: 1 }, tapStart);
+        // finite repeat count: 2 (3 total ripple cycles, 1.667s each) safely fits every tap's remaining slide window
+        const rippleTl = gsap.timeline({ repeat: 2 });
+        rippleTl.fromTo(
+          idRipple,
+          { scale: 1, opacity: 0.7 },
+          { scale: 2.8, opacity: 0, duration: 1.167, ease: "none" },
+          0
+        );
+        rippleTl.set(idRipple, { scale: 1, opacity: 0.7 }, 1.667);
+        tl.add(rippleTl, tapStart);
+      }
+
+      // ---- Slide 1: "Wat gaan we leren?" (3s - 8s) ----
+      addTitle("#s1-title", 3.0);
+      addPoint("#s1-p0", 3.0, 0);
+      addPoint("#s1-p1", 3.0, 1);
+      addPoint("#s1-p2", 3.0, 2);
+
+      // ---- Slide 2: "Stap 1 & 2" (8s - 14s), phone chat-list, tap=chat-item @20f (0.667s) ----
+      addTitle("#s2-title", 8.0);
+      addPoint("#s2-p0", 8.0, 0);
+      addPoint("#s2-p1", 8.0, 1);
+      addPhoneAppear("#s2-phone", 8.0);
+      addTap("#s2-tap", "#s2-tap-ripple", "#s2-tap-dot", 8.0 + 0.667);
+
+      // ---- Slide 3: "Stap 3 & 4" (14s - 20s), phone attachment-menu, tap=attachment @15f (0.5s) ----
+      addTitle("#s3-title", 14.0);
+      addPoint("#s3-p0", 14.0, 0);
+      addPoint("#s3-p1", 14.0, 1);
+      addPhoneAppear("#s3-phone", 14.0);
+      addTap("#s3-tap", "#s3-tap-ripple", "#s3-tap-dot", 14.0 + 0.5);
+
+      // ---- Slide 4: "Stap 5" (20s - 27s), phone chat, tap=send-button @20f (0.667s) ----
+      addTitle("#s4-title", 20.0);
+      addPoint("#s4-p0", 20.0, 0);
+      addPoint("#s4-p1", 20.0, 1);
+      addPoint("#s4-p2", 20.0, 2);
+      addPhoneAppear("#s4-phone", 20.0);
+      addTap("#s4-tap", "#s4-tap-ripple", "#s4-tap-dot", 20.0 + 0.667);
+      // sentReveal window: [sendAfter+18, sendAfter+40]f where sendAfter = 20f+22f = 42f -> [60,82]f -> [2.0s,2.733s] local -> abs [22.0, 22.733]
+      tl.fromTo(
+        "#s4-new-bubble",
+        { opacity: 0, y: 12 },
+        { opacity: 1, y: 0, duration: 0.733, ease: "none" },
+        20.0 + 2.0
+      );
+      // inputBarText clears once sentReveal > 0.42 (abs ~22.308s)
+      tl.call(
+        () => {
+          const el = document.getElementById("s4-input-text");
+          el.textContent = "Bericht";
+          el.style.color = "#aaa";
+        },
+        null,
+        20.0 + 2.308
+      );
+      // bubble timestamp gains checkmarks once sentReveal > 0.85 (abs ~22.623s)
+      tl.set("#s4-new-bubble-time", { color: "#34B7F1" }, 20.0 + 2.623);
+      tl.call(
+        () => {
+          document.getElementById("s4-new-bubble-time").textContent = "09:18 ✓✓";
+        },
+        null,
+        20.0 + 2.623
+      );
+
+      // ---- Slide 5: "Meer hulp nodig?" (27s - 32s) ----
+      addTitle("#s5-title", 27.0);
+      addPoint("#s5-p0", 27.0, 0);
+      addPoint("#s5-p1", 27.0, 1);
+      addPoint("#s5-p2", 27.0, 2);
+
+      // ---- Outro (32s - 37s), ported from Outro.tsx ----
+      tl.fromTo("#outro-inner", { opacity: 0, scale: 0.85 }, { opacity: 1, duration: 0.667, ease: "none" }, 32.0);
+      tl.fromTo("#outro-inner", { scale: 0.85 }, { scale: 1, duration: 0.7, ease: "back.out(1.2)" }, 32.0);
+      tl.fromTo("#outro-buttons", { opacity: 0 }, { opacity: 1, duration: 0.667, ease: "none" }, 33.0);
+
+      window.__timelines["whatsapp-fotos"] = tl;
+    </script>
+  </body>
+</html>

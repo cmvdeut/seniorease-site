@@ -3,6 +3,17 @@
 
 ---
 
+## 📌 Volgende onderwerpen (morgen — 20 jun 2026)
+
+Gepland door Maureen, **09:00** publicatie waar van toepassing:
+
+1. **Google Maps** — route plannen, navigeren, kaart lezen (website: `/uitleg/google-maps`)
+2. **Foto's op telefoon** — maken, bewaren, ordenen (website: `/uitleg/fotos-maken`, `/uitleg/fotos-ordenen`)
+
+Formaat: HyperFrames (`hyperframes-prototype/`) — nieuwe video's; legacy Remotion in `video-generator/`.
+
+---
+
 ## Status (bijgewerkt 18 juni 2026)
 
 **YouTube via Blotato:** 6 video's geüpload. 1 live, 5 ingepland (zie kalender hieronder).

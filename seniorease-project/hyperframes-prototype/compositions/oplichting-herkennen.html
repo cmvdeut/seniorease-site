@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="compositions/shared.css" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="compositions/shared-timeline.js"></script>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="oplichting-herkennen"
+      data-start="0"
+      data-duration="65"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <!-- Intro 0–3s -->
+      <div class="clip intro" data-start="0" data-duration="3" data-track-index="0">
+        <img id="intro-logo" class="intro-logo" src="assets/heart-logo.png" alt="" />
+        <div id="intro-title-wrap" class="intro-title-wrap">
+          <div class="intro-brand">SeniorEase</div>
+          <div class="intro-subtitle">Oplichting herkennen</div>
+        </div>
+      </div>
+
+      <!-- Slide 1: 3–9s -->
+      <div class="clip slide" data-start="3" data-duration="6" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">1 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s1-title" class="slide-title full">Wat gaan we leren?</div>
+            <div class="points">
+              <div id="s1-p0" class="point"><div class="point-dot"></div><div class="point-text full">5 alarmsignalen via telefoon en internet</div></div>
+              <div id="s1-p1" class="point"><div class="point-dot"></div><div class="point-text full">Rustig uitgelegd — zonder angst</div></div>
+              <div id="s1-p2" class="point"><div class="point-dot"></div><div class="point-text full">Zo beschermt u uzelf en uw geld</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 2: 9–16s -->
+      <div class="clip slide" data-start="9" data-duration="7" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">2 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s2-badge" class="alert-badge">⚠️ Signaal 1</div>
+            <div id="s2-title" class="slide-title full warn">U wordt onder druk gezet</div>
+            <div class="points">
+              <div id="s2-p0" class="point"><div class="point-dot warn"></div><div class="point-text full">&quot;Betaal nu, anders wordt uw rekening geblokkeerd!&quot;</div></div>
+              <div id="s2-p1" class="point"><div class="point-dot warn"></div><div class="point-text full">Banken en overheid zetten u nooit onder tijdsdruk</div></div>
+              <div id="s2-p2" class="point"><div class="point-dot warn"></div><div class="point-text full">Druk = verdacht</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 3: 16–23s -->
+      <div class="clip slide" data-start="16" data-duration="7" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">3 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s3-badge" class="alert-badge">⚠️ Signaal 2</div>
+            <div id="s3-title" class="slide-title full warn">Onbekend nummer</div>
+            <div class="points">
+              <div id="s3-p0" class="point"><div class="point-dot warn"></div><div class="point-text full">Uw bank stuurt geen SMS van een vreemd nummer</div></div>
+              <div id="s3-p1" class="point"><div class="point-dot warn"></div><div class="point-text full">Kijk goed wie de afzender is</div></div>
+              <div id="s3-p2" class="point"><div class="point-dot warn"></div><div class="point-text full">Twijfelt u? Bel uw bank via het nummer op uw pas</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 4: 23–30s -->
+      <div class="clip slide" data-start="23" data-duration="7" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">4 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s4-badge" class="alert-badge">⚠️ Signaal 3</div>
+            <div id="s4-title" class="slide-title full warn">Spelfouten</div>
+            <div class="points">
+              <div id="s4-p0" class="point"><div class="point-dot warn"></div><div class="point-text full">Nepberichten bevatten vaak spelfouten</div></div>
+              <div id="s4-p1" class="point"><div class="point-dot warn"></div><div class="point-text full">Echte berichten van banken zijn netjes geschreven</div></div>
+              <div id="s4-p2" class="point"><div class="point-dot warn"></div><div class="point-text full">Lees rustig — haast is niet nodig</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 5: 30–38s -->
+      <div class="clip slide" data-start="30" data-duration="8" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">5 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s5-badge" class="alert-badge">⚠️ Signaal 4</div>
+            <div id="s5-title" class="slide-title full warn">Vreemde link</div>
+            <div class="points">
+              <div id="s5-p0" class="point"><div class="point-dot warn"></div><div class="point-text full">rabobank-veilig-inloggen.com is NIET de Rabobank</div></div>
+              <div id="s5-p1" class="point"><div class="point-dot warn"></div><div class="point-text full">Het echte adres is rabobank.nl</div></div>
+              <div id="s5-p2" class="point"><div class="point-dot warn"></div><div class="point-text full">Typ het adres zelf — klik niet zomaar</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 6: 38–46s -->
+      <div class="clip slide" data-start="38" data-duration="8" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">6 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s6-badge" class="alert-badge">⚠️ Signaal 5</div>
+            <div id="s6-title" class="slide-title full warn">Vraag om gegevens of geld</div>
+            <div class="points">
+              <div id="s6-p0" class="point"><div class="point-dot warn"></div><div class="point-text full">Uw bank vraagt NOOIT om uw pincode via SMS</div></div>
+              <div id="s6-p1" class="point"><div class="point-dot warn"></div><div class="point-text full">Ook nooit om geld naar een &quot;veilige rekening&quot;</div></div>
+              <div id="s6-p2" class="point"><div class="point-dot warn"></div><div class="point-text full">Nooit. Geen enkele uitzondering.</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 7: 46–54s -->
+      <div class="clip slide" data-start="46" data-duration="8" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">7 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s7-title" class="slide-title full">Wat doet u bij twijfel?</div>
+            <div class="points">
+              <div id="s7-p0" class="point"><div class="point-dot"></div><div class="point-text full">Hang op of negeer het bericht</div></div>
+              <div id="s7-p1" class="point"><div class="point-dot"></div><div class="point-text full">Bel zelf terug via het officiële nummer</div></div>
+              <div id="s7-p2" class="point"><div class="point-dot"></div><div class="point-text full">Vertel het aan familie of de politie</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Slide 8: 54–60s -->
+      <div class="clip slide" data-start="54" data-duration="6" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">8 / 8</div>
+        <div class="slide-layout">
+          <div class="slide-left full">
+            <div id="s8-title" class="slide-title full">Meer hulp nodig?</div>
+            <div class="points">
+              <div id="s8-p0" class="point"><div class="point-dot"></div><div class="point-text full">Uitgebreide uitleg op seniorease.nl</div></div>
+              <div id="s8-p1" class="point"><div class="point-dot"></div><div class="point-text full">Gratis, in begrijpelijke taal</div></div>
+              <div id="s8-p2" class="point"><div class="point-dot"></div><div class="point-text full">seniorease.nl/uitleg/veiligheid</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Outro 60–65s -->
+      <div class="clip outro" data-start="60" data-duration="5" data-track-index="0">
+        <div id="outro-inner" class="outro-inner">
+          <img class="outro-logo" src="assets/heart-logo.png" alt="" />
+          <div class="outro-domain">seniorease.nl</div>
+          <div class="outro-tagline">Technologie zonder gedoe</div>
+          <div id="outro-buttons" class="outro-buttons">
+            <div class="outro-btn like">👍 Like</div>
+            <div class="outro-btn subscribe">🔔 Abonneer</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      hfAddIntro(tl, "#intro-logo", "#intro-title-wrap");
+
+      hfAddTitle(tl, "#s1-title", 3);
+      hfAddPoint(tl, "#s1-p0", 3, 0);
+      hfAddPoint(tl, "#s1-p1", 3, 1);
+      hfAddPoint(tl, "#s1-p2", 3, 2);
+
+      const slides = [
+        { start: 9, badge: "#s2-badge", title: "#s2-title", points: ["#s2-p0", "#s2-p1", "#s2-p2"] },
+        { start: 16, badge: "#s3-badge", title: "#s3-title", points: ["#s3-p0", "#s3-p1", "#s3-p2"] },
+        { start: 23, badge: "#s4-badge", title: "#s4-title", points: ["#s4-p0", "#s4-p1", "#s4-p2"] },
+        { start: 30, badge: "#s5-badge", title: "#s5-title", points: ["#s5-p0", "#s5-p1", "#s5-p2"] },
+        { start: 38, badge: "#s6-badge", title: "#s6-title", points: ["#s6-p0", "#s6-p1", "#s6-p2"] },
+      ];
+      slides.forEach((s) => {
+        hfAddBadge(tl, s.badge, s.start);
+        hfAddTitle(tl, s.title, s.start);
+        s.points.forEach((p, i) => hfAddPoint(tl, p, s.start, i));
+      });
+
+      hfAddTitle(tl, "#s7-title", 46);
+      hfAddPoint(tl, "#s7-p0", 46, 0);
+      hfAddPoint(tl, "#s7-p1", 46, 1);
+      hfAddPoint(tl, "#s7-p2", 46, 2);
+
+      hfAddTitle(tl, "#s8-title", 54);
+      hfAddPoint(tl, "#s8-p0", 54, 0);
+      hfAddPoint(tl, "#s8-p1", 54, 1);
+      hfAddPoint(tl, "#s8-p2", 54, 2);
+
+      hfAddOutro(tl, "#outro-inner", "#outro-buttons", 60);
+
+      window.__timelines["oplichting-herkennen"] = tl;
+    </script>
+  </body>
+</html>
