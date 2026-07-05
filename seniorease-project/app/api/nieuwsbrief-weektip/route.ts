@@ -19,7 +19,7 @@ function isAuthorized(request: NextRequest): boolean {
   return auth === `Bearer ${secret}`;
 }
 
-async function findCampaignByTag(apiKey: string, tag: string): Promise<number | null> {
+async function findCampaignByTag(apiKey: string, weekId: string): Promise<number | null> {
   const response = await fetch(
     `https://api.brevo.com/v3/emailCampaigns?type=classic&status=sent,draft,queued&limit=50&sort=desc`,
     {
@@ -37,9 +37,7 @@ async function findCampaignByTag(apiKey: string, tag: string): Promise<number | 
     campaigns?: Array<{ id: number; tag?: string; name?: string }>;
   };
 
-  const match = data.campaigns?.find(
-    (campaign) => campaign.tag === tag || campaign.name?.includes(tag)
-  );
+  const match = data.campaigns?.find((campaign) => campaign.name?.includes(`Weektip ${weekId}`));
 
   return match?.id ?? null;
 }
@@ -59,9 +57,9 @@ async function sendWeeklyTip(options: {
   const { apiKey, listId, date, dryRun } = options;
   const weekId = getIsoWeekId(date);
   const tip = getTipForDate(date);
-  const tag = `weektip-${weekId}`;
+  const campaignName = `Weektip ${weekId} — ${tip.title}`;
 
-  const existingId = await findCampaignByTag(apiKey, tag);
+  const existingId = await findCampaignByTag(apiKey, weekId);
   if (existingId) {
     return { weekId, tipSlug: tip.slug, campaignId: existingId, skipped: true };
   }
@@ -79,13 +77,12 @@ async function sendWeeklyTip(options: {
       'api-key': apiKey,
     },
     body: JSON.stringify({
-      name: `Weektip ${weekId} — ${tip.title}`,
+      name: campaignName,
       subject: tip.subject,
       previewText: tip.previewText,
       sender: { name: 'SeniorEase', email: 'support@seniorease.eu' },
       htmlContent: buildNieuwsbriefTipHtml(tip),
       recipients: { listIds: [listId] },
-      tag,
       utmCampaign: `weektip_${weekId.replace('-', '_')}`,
     }),
   });
