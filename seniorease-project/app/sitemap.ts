@@ -2,7 +2,7 @@ import { MetadataRoute } from 'next'
 import { artikelen } from './digitale-hulp/artikelen'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://seniorease.nl'
+  const baseUrl = 'https://www.seniorease.nl'
 
   const artikelUrls: MetadataRoute.Sitemap = artikelen.map((artikel) => ({
     url: `${baseUrl}/digitale-hulp/${artikel.slug}`,

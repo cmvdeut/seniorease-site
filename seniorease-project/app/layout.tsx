@@ -25,7 +25,7 @@ import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 import StickyNav from "./components/StickyNav";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://seniorease.nl'),
+  metadataBase: new URL('https://www.seniorease.nl'),
   title: {
     default: "SeniorEase – Digitale hulp voor senioren",
     template: "%s | SeniorEase"
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "nl_NL",
-    url: "https://seniorease.nl",
+    url: "https://www.seniorease.nl",
     siteName: "SeniorEase",
     title: "SeniorEase - Handige technologie voor senioren",
     description: "Eenvoudige digitale tools speciaal voor senioren. Bibliotheek, rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen.",
@@ -79,7 +79,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://seniorease.nl",
+    canonical: "https://www.seniorease.nl",
   },
   appleWebApp: {
     capable: true,

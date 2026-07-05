@@ -5,7 +5,7 @@ User-agent: *
 Allow: /
 
 # Sitemap locatie
-Sitemap: https://seniorease.nl/sitemap.xml
+Sitemap: https://www.seniorease.nl/sitemap.xml
 
 # Blokkeer admin/test pagina's (als die er zijn)
 Disallow: /api/
