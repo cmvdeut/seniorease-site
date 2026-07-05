@@ -36,10 +36,10 @@ export default function MuziekRadioPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Twee manieren om te luisteren
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Vroeger had u een radio of cd-speler. Nu kunt u via uw telefoon of tablet naar miljoenen nummers en honderden radiozenders luisteren. Op twee manieren:
             </p>
             <div className="grid sm:grid-cols-2 gap-6">
@@ -58,7 +58,7 @@ export default function MuziekRadioPage() {
 
           {/* Spotify */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               🎵 Spotify — muziek op aanvraag
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Streamen via internet, op telefoon of tablet</p>
@@ -154,7 +154,7 @@ export default function MuziekRadioPage() {
 
           {/* DAB+ */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               📻 DAB+ digitale radio
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Helder geluid, veel zenders, geen gedoe</p>
@@ -220,7 +220,7 @@ export default function MuziekRadioPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

@@ -43,7 +43,7 @@ export default function ComputerCategoriePage() {
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-8">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8">
               Werkt u op een computer of tablet? Hier vindt u artikelen over schermfoto&apos;s maken, bestanden opslaan (onder andere in de cloud) en veilig programma&apos;s of apps installeren.
             </p>
 

@@ -32,11 +32,11 @@ export default function UitlegvideoPage() {
             <div className="text-center md:text-left space-y-6">
               {/* Introtekst */}
               <div className="space-y-4">
-                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                   In deze video's laten we rustig zien<br />
                   hoe Mijn Bibliotheek werkt.
                 </p>
-                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                   Alles wordt stap voor stap uitgelegd,<br />
                   met grote letters en een rustig tempo.
                 </p>

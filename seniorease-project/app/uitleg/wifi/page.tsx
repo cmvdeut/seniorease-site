@@ -106,13 +106,13 @@ export default function WifiPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is WiFi?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               WiFi is een draadloze verbinding met het internet. Uw modem of router thuis zendt een signaal uit — uw telefoon of tablet vangt dat signaal op en heeft zo toegang tot internet, zonder dat er een snoer aan zit.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Eenmaal verbonden onthoudt uw toestel het netwerk. De volgende keer dat u thuiskomt, verbindt het automatisch.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -131,7 +131,7 @@ export default function WifiPage() {
 
           {/* Wat heeft u nodig */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat heeft u nodig?
             </h2>
             <div className="space-y-4">
@@ -169,7 +169,7 @@ export default function WifiPage() {
 
           {/* Stap voor stap Android */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               WiFi instellen op Android
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">(Samsung, Motorola, Google Pixel en de meeste andere telefoons)</p>
@@ -222,7 +222,7 @@ export default function WifiPage() {
 
           {/* Stap voor stap iPhone/iPad */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               WiFi instellen op iPhone of iPad
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">(Apple toestellen)</p>
@@ -271,7 +271,7 @@ export default function WifiPage() {
 
           {/* Problemen oplossen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Werkt het niet? Dit kunt u proberen
             </h2>
             <div className="space-y-4">
@@ -312,7 +312,7 @@ export default function WifiPage() {
 
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -348,7 +348,7 @@ export default function WifiPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

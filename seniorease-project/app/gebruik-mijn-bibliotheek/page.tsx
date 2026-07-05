@@ -61,10 +61,10 @@ export default function GebruikMijnBibliotheekPage() {
             
             {/* Uitleg */}
             <div className="text-center md:text-left space-y-4">
-              <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+              <h2 className="text-senior-xl font-bold text-primary mb-4">
                 U gebruikt Mijn Bibliotheek:
               </h2>
-              <div className="space-y-3 text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+              <div className="space-y-3 text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                 <p>• Gratis op de pc</p>
                 <p>• Op telefoon of tablet eerst rustig proberen</p>
               </div>

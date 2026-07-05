@@ -87,14 +87,14 @@ export default function WatIsAIPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               De robots komen... om te helpen met de boodschappenlijst
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               U hebt het vast wel eens gehoord: &quot;AI dit, AI dat.&quot; Op het nieuws, van de kleinkinderen, of van die ene buurman die altijd alles al weet. Maar wat <em>ís</em> het nou eigenlijk? En belangrijker: moet u er bang voor zijn?
             </p>
             <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6">
-              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-semibold">
+              <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed font-semibold">
                 <strong>Het korte antwoord:</strong> Nee. AI bijt niet en het kan ook niet door uw muren kijken. Beloofd.
               </p>
             </div>
@@ -102,23 +102,23 @@ export default function WatIsAIPage() {
 
           {/* AI in gewone-mensen-taal */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               AI in gewone-mensen-taal
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               AI staat voor &quot;Artificial Intelligence&quot; — kunstmatige intelligentie. Klinkt ingewikkeld, maar eigenlijk is het gewoon een slim computerprogramma dat heel goed is in één ding: patronen herkennen en daar iets mee doen.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
               <strong>Vergelijking:</strong> Weet u nog hoe u uw kleinkinderen leerde fietsen? Eerst vallen, dan wankelen, dan rijden. AI leert ook zo — alleen dan met miljoenen voorbeelden tegelijk. En zonder schaafwonden.
             </p>
           </section>
 
           {/* Maar ik gebruik toch geen AI? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               &quot;Maar ik gebruik toch geen AI?&quot;
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Toch wel. Hier zijn voorbeelden die u vast herkent:
             </p>
             <ul className="grid gap-3 sm:grid-cols-2">
@@ -134,14 +134,14 @@ export default function WatIsAIPage() {
                 </li>
               ))}
             </ul>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mt-6 font-semibold">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mt-6 font-semibold">
               U bent dus al een ervaren AI-gebruiker. Gefeliciteerd!
             </p>
           </section>
 
           {/* Wat kunt u ermee? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat kunt u ermee?
             </h2>
             <div className="grid gap-6 sm:grid-cols-2">
@@ -183,7 +183,7 @@ export default function WatIsAIPage() {
 
           {/* Is het niet gevaarlijk? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Is het niet gevaarlijk?
             </h2>
             <div className="grid md:grid-cols-2 gap-8 mb-6">
@@ -204,17 +204,17 @@ export default function WatIsAIPage() {
                 </ul>
               </div>
             </div>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed bg-neutral-cream border-2 border-primary/30 rounded-xl p-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed bg-neutral-cream border-2 border-primary/30 rounded-xl p-4">
               <strong>Vuistregel:</strong> Behandel AI zoals een behulpzame vreemde. Vriendelijk en handig, maar u geeft niet zomaar uw pincode.
             </p>
           </section>
 
           {/* Zelf proberen? CTA */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Zelf proberen?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               De beste manier om AI te leren kennen is gewoon even proberen. U kunt niets kapotmaken!
             </p>
             <p className="text-senior-base font-bold text-gray-800 mb-2">Stappen:</p>
@@ -281,7 +281,7 @@ export default function WatIsAIPage() {
 
           {/* FAQ */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veelgestelde vragen
             </h2>
             <div className="space-y-3">
@@ -321,7 +321,7 @@ export default function WatIsAIPage() {
 
           {/* Afsluiting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <ul className="space-y-3 text-senior-base text-gray-700">

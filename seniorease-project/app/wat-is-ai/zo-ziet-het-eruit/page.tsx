@@ -66,7 +66,7 @@ export default function ZoZietHetEruitPage() {
 
           {/* Video: Bekijk het in actie */}
           <section className="my-8">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary text-center mb-4">
+            <h2 className="text-senior-xl font-bold text-primary text-center mb-4">
               Bekijk het in actie
             </h2>
             <p className="text-center text-gray-600 mb-6 text-senior-base">

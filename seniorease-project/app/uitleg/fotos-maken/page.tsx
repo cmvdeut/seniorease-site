@@ -131,13 +131,13 @@ export default function FotosMakenPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Iedereen kan mooie foto&apos;s maken
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               95% van de senioren deelt foto&apos;s via de telefoon — maar veel mensen zijn niet tevreden over de kwaliteit. De foto&apos;s zijn wazig, te donker of het hoofd is afgesneden.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Goed nieuws: met 5 eenvoudige tips maakt u meteen betere foto&apos;s. Geen dure camera nodig, geen cursus — gewoon uw telefoon en een paar handige gewoontes.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -173,7 +173,7 @@ export default function FotosMakenPage() {
                     </div>
                   </div>
                   <div className="p-8 space-y-5">
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                    <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                       {tip.uitleg}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
@@ -194,7 +194,7 @@ export default function FotosMakenPage() {
 
           {/* Per situatie */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-8">
+            <h2 className="text-senior-xl font-bold text-primary mb-8">
               Tips per situatie
             </h2>
             <div className="space-y-8">
@@ -222,10 +222,10 @@ export default function FotosMakenPage() {
 
           {/* Selfies */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               🤳 Een selfie maken — zo doet u dat
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Een selfie is een foto die u van uzelf maakt met uw eigen telefoon. Heel handig om samen op de foto te gaan, of om een berichtje extra persoonlijk te maken. Met deze tips lukt het meteen.
             </p>
 
@@ -287,10 +287,10 @@ export default function FotosMakenPage() {
 
           {/* Snelle oefening */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Oefen het nu meteen — 5 minuten
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Pak uw telefoon en maak deze 5 oefenfoto&apos;s. Daarna kent u de tips uit uw hoofd:
             </p>
             <ol className="space-y-4">
@@ -313,7 +313,7 @@ export default function FotosMakenPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting — altijd onthouden
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">

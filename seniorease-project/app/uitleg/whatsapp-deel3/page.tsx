@@ -68,7 +68,7 @@ export default function WhatsAppDeel3Page() {
         <div className="max-w-4xl mx-auto space-y-10">
           {/* Intro */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed">
               In dit deel leert u handige extra functies: berichten doorsturen of verwijderen, gesprekken organiseren,
               groepsinstellingen, privacy en back-up. Voor als u WhatsApp al een tijdje gebruikt. Neem gerust uw tijd – deze functies zijn optioneel.
             </p>
@@ -80,7 +80,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* 1. Berichten: doorsturen, verwijderen, beantwoorden */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               1. Berichten: doorsturen, verwijderen en beantwoorden
             </h2>
             <StepIllustration step={1}>
@@ -115,7 +115,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* 2. Organisatie: pinnen, archief, zoeken */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               2. Organisatie: gesprek pinnen, archief en zoeken
             </h2>
             <StepIllustration step={2}>
@@ -150,7 +150,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* 3. Groepen: dempen, admin, verlaten */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               3. Groepen: dempen, admin en groep verlaten
             </h2>
             <StepIllustration step={3}>
@@ -186,7 +186,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* 4. Privacy */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               4. Privacy: laatst gezien, profielfoto en leesbevestigingen
             </h2>
             <StepIllustration step={4}>
@@ -218,7 +218,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* 5. Media en back-up */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               5. Media en back-up: downloaden en reservekopie
             </h2>
             <StepIllustration step={5}>
@@ -256,7 +256,7 @@ export default function WhatsAppDeel3Page() {
 
           {/* Veiligheid */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-amber-300 p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veiligheid: zo blijft u veilig op WhatsApp
             </h2>
             <p className="text-senior-base text-gray-800 leading-relaxed mb-4">
@@ -279,7 +279,7 @@ export default function WhatsAppDeel3Page() {
             <h2 className="text-senior-xl font-bold text-primary mb-4">
               Kort samengevat
             </h2>
-            <ul className="space-y-2 text-senior-base md:text-senior-lg text-gray-800">
+            <ul className="space-y-2 text-senior-sm md:text-senior-base text-gray-800">
               <li><strong>Berichten:</strong> Lang indrukken → Doorsturen, Verwijderen of Beantwoorden.</li>
               <li><strong>Organisatie:</strong> Lang indrukken op gesprek → Pinnen of Archiveren. Zoeken via vergrootglas.</li>
               <li><strong>Groepen:</strong> Groepsnaam → Meldingen dempen, Beheerder, of Groep verlaten.</li>

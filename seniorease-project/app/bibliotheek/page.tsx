@@ -1478,10 +1478,10 @@ Voor vragen: bezoek seniorease.nl
                   <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary mb-3">
                     {t.library.welcomeTitle}
                   </h1>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
                     {t.library.welcomeSubtitle}
                   </p>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
                     {t.library.pcFreeText.split('\n').map((line, i) => (
                       <span key={i}>
                         {line}
@@ -1490,7 +1490,7 @@ Voor vragen: bezoek seniorease.nl
                     ))}
                   </p>
                   <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 mb-4">
-                    <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold text-center">
+                    <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed font-bold text-center">
                       {t.library.reassuranceText.split('\n').map((line, i) => (
                         <span key={i}>
                           {line}
@@ -2124,7 +2124,7 @@ Voor vragen: bezoek seniorease.nl
               {/* Geruststellende tekst wanneer er nog geen boeken zijn */}
               {items.length === 0 && !showAddForm && (
                 <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mb-4">
-                  <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed text-center">
+                  <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed text-center">
                     <span className="font-bold">{t.library.noBooksYet}</span><br />
                     {t.library.noBooksText.split('\n').map((line, i) => (
                       <span key={i}>
@@ -2141,10 +2141,10 @@ Voor vragen: bezoek seniorease.nl
                 <>
                   <div className="bg-green-50 border-4 border-green-400 rounded-xl p-6 mb-4">
                     <div className="text-center">
-                      <h3 className="text-senior-xl md:text-senior-2xl font-bold text-green-800 mb-3">
+                      <h3 className="text-senior-xl font-bold text-green-800 mb-3">
                         {t.library.firstBookSuccess}
                       </h3>
-                      <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+                      <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed">
                         {t.library.firstBookMessage.split('\n').map((line, i) => (
                           <span key={i}>
                             {line}
@@ -2158,7 +2158,7 @@ Voor vragen: bezoek seniorease.nl
                   {/* Zachte volgende stap (optioneel) */}
                   <div className="bg-white border-2 border-gray-200 rounded-xl p-6 mb-4">
                     <div className="text-center">
-                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                      <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                         {t.library.firstBookNext.split('\n').map((line, i) => (
                           <span key={i}>
                             {line}
@@ -2166,15 +2166,15 @@ Voor vragen: bezoek seniorease.nl
                           </span>
                         ))}
                       </p>
-                      <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-2">
+                      <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-2">
                         {t.library.firstBookOptions.split('\n').slice(0, 1).join('')}
                       </p>
-                      <ul className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3 space-y-1">
+                      <ul className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-3 space-y-1">
                         {t.library.firstBookOptions.split('\n').slice(1, 3).map((line, i) => (
                           <li key={i}>{line}</li>
                         ))}
                       </ul>
-                      <p className="text-senior-base md:text-senior-lg text-gray-600 leading-relaxed">
+                      <p className="text-senior-sm md:text-senior-base text-gray-600 leading-relaxed">
                         {t.library.firstBookOptions.split('\n').slice(3).join(' ')}
                       </p>
                     </div>

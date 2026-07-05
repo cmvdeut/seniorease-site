@@ -53,7 +53,7 @@ export default function NieuwsbriefBlok() {
       <div className="inline-flex rounded-xl p-2.5 bg-primary-soft mb-3">
         <Mail size={26} strokeWidth={1.75} className="text-primary" />
       </div>
-      <h2 className="text-2xl mb-2">
+      <h2 className="text-senior-xl mb-2">
         Ontvang elke week een digitale tip
       </h2>
       <p className="text-gray-600 mb-6">

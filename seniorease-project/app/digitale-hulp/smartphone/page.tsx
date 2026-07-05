@@ -43,7 +43,7 @@ export default function SmartphoneCategoriePage() {
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-8">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8">
               Komt u ergens niet uit met uw smartphone? Hier vindt u artikelen over veelgestelde vragen: berichten en foto&apos;s sturen met WhatsApp, letters groter zetten, een trage telefoon sneller maken en een QR-code scannen.
             </p>
 

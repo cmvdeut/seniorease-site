@@ -28,7 +28,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'whatsapp-uitleg-beginners':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Veel mensen willen met familie en vrienden berichten sturen of bellen zonder sms-kosten. WhatsApp is daar een van de meest gebruikte apps voor. Hier leest u wat het is en hoe u begint.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is WhatsApp?</h2>
@@ -94,7 +94,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'whatsapp-fotos-opslaan':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Foto&apos;s die u via WhatsApp krijgt, staan eerst alleen in het gesprek. Om ze op uw telefoon te bewaren, moet u ze opslaan. Hier leest u hoe dat gaat en waar ze terechtkomen.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom zoeken mensen dit?</h2>
@@ -132,7 +132,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'whatsapp-videobellen-uitleg':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Wilt u elkaar zien tijdens het bellen? Met WhatsApp kunt u gratis videobellen. U heeft alleen internet nodig. Hier leest u hoe het werkt.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is videobellen via WhatsApp?</h2>
@@ -168,7 +168,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'telefoon-sneller-maken':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Een trage telefoon is vaak het gevolg van te weinig ruimte, te veel apps die op de achtergrond draaien, of een vol geheugen. Met een paar eenvoudige stappen kunt u uw telefoon vaak weer sneller maken.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Ruimte vrijmaken</h2>
@@ -188,7 +188,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'telefoon-langzaam-oplossen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Uw telefoon reageert traag, loopt vast of heeft weinig ruimte over? Dat komt vaak door volle opslag, te veel openstaande apps of een telefoon die even opnieuw moet opstarten. Hier leest u wat u kunt doen.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom wordt mijn telefoon langzaam?</h2>
@@ -228,7 +228,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'phishing-herkennen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Phishing is wanneer iemand u via e-mail, sms of WhatsApp probeert te laten doorklikken naar een nepwebsite of uw gegevens te laten invullen. Het doel is vaak om uw wachtwoord, pincode of bankgegevens te stelen.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Signalen van phishing</h2>
@@ -256,7 +256,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'phishing-mail-herkennen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Soms krijgt u een e-mail die lijkt van uw bank, de overheid of een bekend bedrijf, maar die eigenlijk van oplichters is. Die proberen uw wachtwoord of gegevens te stelen. Hier leest u wat phishing is en hoe u een nep mail herkent.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is phishing?</h2>
@@ -298,7 +298,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'e-mail-openen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             E-mail is post via internet. U ontvangt berichten van familie, de overheid of winkels. Hier leest u hoe u e-mail opent op uw telefoon of computer. Stap voor stap voor beginners.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat heeft u nodig?</h2>
@@ -340,7 +340,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'apps-installeren':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Apps zijn programma&apos;s op uw telefoon. WhatsApp, de bank, een game: u haalt ze uit een winkel op uw telefoon. Op Android heet die winkel &quot;Play Store&quot;, op de iPhone &quot;App Store&quot;. Alleen via deze winkels installeren is veilig.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom via de winkel?</h2>
@@ -384,7 +384,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'letters-groter-maken-telefoon':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             De letters op uw telefoon zijn te klein om comfortabel te lezen? U kunt de lettergrootte groter zetten in de instellingen. Hier leest u hoe dat gaat op Android en iPhone.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom zoeken mensen dit?</h2>
@@ -425,7 +425,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'wifi-werkt-niet-oplossen':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Geen internet op uw telefoon of computer? Of de wifi valt steeds weg? Meestal lost een van deze stappen het op. Simpel en stap voor stap.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Waarom werkt mijn wifi niet?</h2>
@@ -466,7 +466,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'fotos-kwijt-telefoon':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Foto&apos;s die u kwijt lijkt te zijn, staan soms nog op uw telefoon in een andere map, in de prullenbak of in een cloud-back-up. Zo zoekt u ze terug.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Foto&apos;s-app of Galerij doorzoeken</h2>
@@ -487,10 +487,10 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'wat-is-ai-simpel-uitgelegd':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             AI (kunstmatige intelligentie) is software die teksten kan begrijpen en maken, vragen kan beantwoorden en u kan helpen met zoeken, samenvatten of uitleg. U gebruikt het bijvoorbeeld als u met ChatGPT praat of zoekt via Google.
           </p>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Het is geen mens maar een programma dat patronen uit veel teksten heeft geleerd. Daardoor kan het nuttige antwoorden geven, maar het kan ook fouten maken. Gebruik het als handige helper, niet als enige bron voor belangrijke beslissingen.
           </p>
           <p className="text-senior-base text-gray-700 leading-relaxed">
@@ -502,7 +502,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'veilig-wachtwoord-maken':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Een sterk wachtwoord beschermt uw e-mail, bank en andere accounts. Hier leest u in eenvoudige taal hoe u een veilig wachtwoord maakt dat u toch kunt onthouden.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is een veilig wachtwoord?</h2>
@@ -538,7 +538,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'bluetooth-verbinden':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Bluetooth is een draadloze verbinding over korte afstand. U kunt er bijvoorbeeld een hoofdtelefoon, speaker of handsfree-set mee verbinden met uw telefoon of tablet, zonder kabels.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Stap 1: Bluetooth aanzetten op uw telefoon</h2>
@@ -562,7 +562,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'wat-is-de-cloud':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             U hoort vaak &quot;in de cloud&quot; of &quot;opslaan in de cloud&quot;. Wat betekent dat eigenlijk? En is het veilig? Hier leest u het in eenvoudige taal.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is de cloud?</h2>
@@ -600,7 +600,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'screenshot-en-schermopname-telefoon':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Wilt u een plaatje van wat er op uw scherm staat bewaren? Of een kort filmpje van wat u op het scherm doet? Dat kan: met een <strong>screenshot</strong> (een foto van het scherm) of een <strong>schermopname</strong> (een filmpje). Hier leest u hoe het werkt op Android en iPhone.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Wat is het verschil?</h2>
@@ -646,7 +646,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'googelen-google-zoeken':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Wilt u iets opzoeken op internet? Dan gebruikt u bijna altijd <strong>Google</strong>. Dat heet ook wel <strong>googelen</strong>: u typt een vraag, en Google toont websites met antwoorden. Hier leest u hoe het werkt — rustig en stap voor stap.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Google openen</h2>
@@ -700,7 +700,7 @@ function ArtikelContent({ slug }: { slug: string }) {
     case 'e-bike-fietsapps':
       return (
         <>
-          <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
             Wilt u routes plannen, uw rit bijhouden of handige fiets- of e-bike apps gebruiken? Er zijn apps om te navigeren, afstanden te meten of uw e-bike te koppelen. Hier vindt u een overzicht en link naar de uitgebreide uitleg.
           </p>
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">E-bike en fietsapps</h2>

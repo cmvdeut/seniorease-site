@@ -73,10 +73,10 @@ export default function InsprekenPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Liever spreken dan typen?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Typen op een klein telefoonschermpje kan lastig zijn. Gelukkig kunt u op bijna elke
               smartphone gewoon inspreken — uw telefoon zet uw stem automatisch om naar tekst,
               of stuurt uw stem als spraakbericht.
@@ -100,7 +100,7 @@ export default function InsprekenPage() {
 
           {/* WhatsApp spraakbericht */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               1. Spraakbericht sturen via WhatsApp
             </h2>
             <p className="text-senior-base text-gray-500 mb-6">
@@ -150,7 +150,7 @@ export default function InsprekenPage() {
 
           {/* Inspreken via toetsenbord */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               2. Inspreken via het toetsenbord
             </h2>
             <p className="text-senior-base text-gray-500 mb-6">
@@ -201,7 +201,7 @@ export default function InsprekenPage() {
 
           {/* Google inspreken */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               3. Google inspreken
             </h2>
             <p className="text-senior-base text-gray-500 mb-6">

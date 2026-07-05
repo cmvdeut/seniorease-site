@@ -4,9 +4,9 @@
 
 /*
  * SeniorEase – leesbaarheid en rust
- * ✔ Minimaal 18px tekst (senior-xs = 18px)
- * ✔ Veel witruimte (ruime padding/marges)
- * ✔ Duidelijke knoppen (min 48px, contrast)
+ * ✔ Minimaal 18px tekst (html root)
+ * ✔ Typografie afgestemd op homepage (1.05–1.9rem)
+ * ✔ Duidelijke knoppen (min 48px hoogte)
  * ✔ Rustige kleuren (primary bruin, neutral cream)
  */
 
@@ -41,28 +41,27 @@ body {
     @apply bg-background text-foreground;
   }
 
-  /* Senior-friendly defaults */
-  button, a {
+  /* Knoppen: duidelijk klikbaar, tekst niet oversized */
+  button {
     @apply text-senior-base;
-    min-height: 48px; /* Duidelijke knoppen – minimale klikbare area */
-    min-width: 48px;
+    min-height: 48px;
   }
 
-  /* Serif-koppen (Lora) in diep warm bruin — rustig en volwassen */
+  /* Serif-koppen (Lora) — zelfde verhoudingen als homepage */
   h1 {
-    @apply text-senior-3xl font-heading font-semibold text-secondary;
+    @apply text-senior-2xl font-heading font-semibold text-secondary leading-tight;
   }
 
   h2 {
-    @apply text-senior-2xl font-heading font-semibold text-secondary;
+    @apply text-senior-xl font-heading font-semibold text-secondary leading-snug;
   }
 
   h3 {
-    @apply text-senior-xl font-heading font-semibold text-secondary;
+    @apply text-senior-base font-heading font-semibold text-secondary;
   }
 
   p {
-    @apply text-senior-base leading-relaxed;
+    @apply text-senior-sm leading-relaxed;
   }
 }
 

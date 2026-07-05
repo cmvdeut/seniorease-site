@@ -139,7 +139,7 @@ export default function RekenmachinePage() {
             {/* Display */}
             <div className="bg-neutral-cream rounded-xl p-6 mb-6 border-4 border-primary">
               <div className="text-right">
-                <div className="text-senior-4xl font-bold text-primary font-mono break-all min-h-[100px] flex items-center justify-end">
+                <div className="font-bold text-primary font-mono break-all min-h-[100px] flex items-center justify-end" style={{ fontSize: '4rem', lineHeight: 1.1 }}>
                   {display}
                 </div>
               </div>

@@ -35,13 +35,13 @@ export default function VideoBellenPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is videobellen?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Bij een gewoon telefoongesprek hoort u de ander alleen. Bij videobellen <strong>ziet</strong> u de ander ook — op uw scherm. U kunt elkaars gezicht zien, lachen, en de kleinkinderen groeien zien. Heel fijn als familie ver weg woont!
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               U heeft geen extra apparaat nodig. Uw gewone smartphone of tablet is genoeg.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -60,10 +60,10 @@ export default function VideoBellenPage() {
 
           {/* Welke app */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Welke app gebruikt u?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Er zijn drie veelgebruikte apps voor videobellen. De makkelijkste is WhatsApp — die heeft u waarschijnlijk al.
             </p>
             <div className="space-y-4">
@@ -109,7 +109,7 @@ export default function VideoBellenPage() {
 
           {/* WhatsApp videogesprek stap voor stap */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               💬 Videobellen via WhatsApp — stap voor stap
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">De makkelijkste manier, werkt op elke telefoon</p>
@@ -167,7 +167,7 @@ export default function VideoBellenPage() {
 
           {/* Tips voor goed gesprek */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Tips voor een goed videogesprek
             </h2>
             <div className="space-y-4">
@@ -211,7 +211,7 @@ export default function VideoBellenPage() {
 
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -247,7 +247,7 @@ export default function VideoBellenPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

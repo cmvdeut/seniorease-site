@@ -87,10 +87,10 @@ export default function OvAppPage() {
 
           {/* Wat is 9292 */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is de 9292 app?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               De 9292 app is de officiële reisplanner voor het openbaar vervoer in Nederland.
               U typt waar u vandaan komt en waar u naartoe wilt — de app zoekt de beste route
               met trein, bus, tram, metro of ferry.
@@ -114,7 +114,7 @@ export default function OvAppPage() {
 
           {/* Installeren */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               9292 installeren
             </h2>
             <div className="space-y-4">
@@ -131,7 +131,7 @@ export default function OvAppPage() {
 
           {/* Reis plannen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Een reis plannen
             </h2>
             <ol className="space-y-6">

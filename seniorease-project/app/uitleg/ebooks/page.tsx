@@ -36,10 +36,10 @@ export default function EbooksPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is een e-book?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Een e-book is een digitaal boek — gewoon een boek, maar dan op uw scherm. U leest het via een app op uw telefoon, tablet of een speciale e-reader. Het voordeel: u kunt de letters groter zetten, het leest makkelijk in het donker en u kunt honderden boeken meenemen op reis zonder extra gewicht.
             </p>
             <div className="grid sm:grid-cols-3 gap-4 mb-6">
@@ -64,7 +64,7 @@ export default function EbooksPage() {
 
           {/* Bibliotheek – gratis */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               📖 Gratis lenen via de bibliotheek
             </h2>
             <p className="text-senior-base text-gray-500 mb-6">De makkelijkste en goedkoopste manier</p>
@@ -119,10 +119,10 @@ export default function EbooksPage() {
 
           {/* Kopen: Kobo en Kindle */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               🛒 E-books kopen — Kobo en Kindle
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Wilt u een boek dat niet in de bibliotheek staat, of wilt u het meteen hebben? Dan koopt u het bij Kobo of Kindle. Een e-book kost gemiddeld € 5 tot € 12 — goedkoper dan een papieren boek.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -153,7 +153,7 @@ export default function EbooksPage() {
 
           {/* E-reader */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               📱 E-reader of telefoon — wat is fijner?
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
@@ -192,7 +192,7 @@ export default function EbooksPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">
@@ -221,7 +221,7 @@ export default function EbooksPage() {
 
           {/* Zoektip */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               🔍 Een e-reader kopen?
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">

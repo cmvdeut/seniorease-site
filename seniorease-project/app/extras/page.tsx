@@ -51,16 +51,16 @@ export default function ExtrasPage() {
           {/* Intro */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12 mb-8">
             <div className="text-center md:text-left space-y-4">
-              <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+              <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                 Dit zijn eenvoudige hulpmiddelen binnen SeniorEase.
               </p>
-              <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+              <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                 Sommige mensen vinden ze prettig naast Mijn Bibliotheek.
               </p>
-              <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+              <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                 U hoeft hier niets mee.
               </p>
-              <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+              <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                 Mijn Bibliotheek blijft altijd de hoofdzaak.
               </p>
             </div>

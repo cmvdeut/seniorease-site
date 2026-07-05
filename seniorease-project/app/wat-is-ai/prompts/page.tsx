@@ -123,17 +123,17 @@ export default function PromptsPage() {
 
           {/* Wat is een prompt? */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is een &quot;prompt&quot;?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
               Een prompt is gewoon uw vraag of opdracht aan de AI. Net zoals u iets aan een mens zou vragen! Het mooie is: u hoeft geen speciale taal te leren.
             </p>
           </div>
 
           {/* Gouden regels */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               De gouden regels voor goede prompts
             </h2>
 
@@ -182,7 +182,7 @@ export default function PromptsPage() {
 
           {/* 10 Voorbeeldprompts */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               10 Voorbeeldprompts om te kopiëren
             </h2>
             <p className="text-senior-base text-gray-700 mb-6">
@@ -211,7 +211,7 @@ export default function PromptsPage() {
 
           {/* Vervolgvragen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Vervolgvragen: de geheime superkracht
             </h2>
             <p className="text-senior-base text-gray-700 mb-6">
@@ -230,7 +230,7 @@ export default function PromptsPage() {
 
           {/* Wat als het antwoord niet goed is? */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat als het antwoord niet goed is?
             </h2>
             <p className="text-senior-base text-gray-700 mb-6">
@@ -249,7 +249,7 @@ export default function PromptsPage() {
 
           {/* Samenvatting */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <ul className="space-y-3 text-senior-base text-gray-700">

@@ -87,10 +87,10 @@ export default function BoodschappenBestellenPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Boodschappen zonder de deur uit
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               De meeste grote supermarkten bezorgen uw boodschappen thuis.
               U kiest zelf wanneer de bezorger langskomt — 's ochtends, 's middags of 's avonds.
             </p>
@@ -126,7 +126,7 @@ export default function BoodschappenBestellenPage() {
 
           {/* Stap voor stap */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Zo bestelt u boodschappen
             </h2>
             <p className="text-senior-base text-gray-600 mb-6 italic">
@@ -181,7 +181,7 @@ export default function BoodschappenBestellenPage() {
 
           {/* De bezorging */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               De bezorging
             </h2>
             <ul className="space-y-4">

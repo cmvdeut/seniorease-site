@@ -39,15 +39,15 @@ const config: Config = {
         body: ['var(--font-body)', 'system-ui', 'sans-serif'],
       },
       fontSize: {
-        // Extra grote fonts voor senioren
-        'senior-xs': '1.125rem',   // 18px
-        'senior-sm': '1.25rem',    // 20px
-        'senior-base': '1.5rem',   // 24px
-        'senior-lg': '2rem',       // 32px
-        'senior-xl': '2.5rem',     // 40px
-        'senior-2xl': '3rem',      // 48px
-        'senior-3xl': '4rem',      // 64px
-        'senior-4xl': '5rem',      // 80px
+        // Leesbaar voor senioren, afgestemd op homepage (html = 18px)
+        'senior-xs': '1rem',       // 18px — kleine tekst / labels
+        'senior-sm': '1.05rem',    // ~19px — standaard body
+        'senior-base': '1.15rem',  // ~21px — nadruk, knoppen
+        'senior-lg': '1.3rem',     // ~23px — intro / lead
+        'senior-xl': '1.9rem',     // ~34px — h2
+        'senior-2xl': '2.4rem',    // ~43px — paginatitel
+        'senior-3xl': '3rem',      // ~54px — hero h1
+        'senior-4xl': '3.5rem',    // ~63px — alleen voor speciale hero’s
       },
     },
   },

@@ -36,13 +36,13 @@ export default function HoofdtelefoonPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is een draadloze hoofdtelefoon?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Een draadloze hoofdtelefoon werkt via <strong>Bluetooth</strong> — een soort onzichtbare verbinding tussen uw telefoon en de hoofdtelefoon. Er zit geen snoer aan. U kunt gewoon rondlopen terwijl u muziek luistert of belt.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Eenmaal verbonden hoeft u niets meer in te stellen. Zet de hoofdtelefoon op en de muziek klinkt vanzelf.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -61,7 +61,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Soorten */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Welke soorten zijn er?
             </h2>
             <div className="space-y-4">
@@ -107,7 +107,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Verbinden stap voor stap */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               Bluetooth verbinden — stap voor stap
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Eenmalig instellen, daarna verbindt het vanzelf</p>
@@ -165,7 +165,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Tips */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Handige tips
             </h2>
             <div className="space-y-4">
@@ -209,7 +209,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Zoektip */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               🔍 Een hoofdtelefoon kopen?
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
@@ -229,7 +229,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -265,7 +265,7 @@ export default function HoofdtelefoonPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

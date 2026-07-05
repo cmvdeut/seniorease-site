@@ -88,10 +88,10 @@ export default function YoutubeTvPage() {
 
           {/* Wat is YouTube */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is YouTube?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               YouTube is een gratis website en app waar miljoenen video&apos;s op staan.
               U kunt er kookvideo&apos;s, reisfilmpjes, muziek, nieuws, doe-het-zelf uitleg en nog veel meer op vinden.
             </p>
@@ -115,7 +115,7 @@ export default function YoutubeTvPage() {
 
           {/* YouTube op telefoon of tablet */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               YouTube op uw telefoon of tablet
             </h2>
             <ol className="space-y-6">
@@ -162,7 +162,7 @@ export default function YoutubeTvPage() {
 
           {/* YouTube op computer */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               YouTube op uw computer
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
@@ -212,7 +212,7 @@ export default function YoutubeTvPage() {
 
           {/* YouTube op televisie */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               YouTube op uw televisie kijken
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">

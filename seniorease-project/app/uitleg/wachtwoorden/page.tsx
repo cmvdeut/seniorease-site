@@ -101,13 +101,13 @@ export default function WachtwoordenPage() {
 
           {/* Waarom belangrijk */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Waarom is een sterk wachtwoord zo belangrijk?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Uw wachtwoord is de sleutel tot uw e-mail, bankrekening, DigiD en meer. Een zwak wachtwoord is alsof u de voordeur op een kier laat staan.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Hackers gebruiken computers die duizenden wachtwoorden per seconde proberen. Een simpel wachtwoord als &quot;123456&quot; is in minder dan een seconde gekraakt.
             </p>
             <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
@@ -130,7 +130,7 @@ export default function WachtwoordenPage() {
 
           {/* Zwakke wachtwoorden */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wachtwoorden die u beter kunt vermijden
             </h2>
             <div className="space-y-3">
@@ -159,7 +159,7 @@ export default function WachtwoordenPage() {
                     <h3 className="text-senior-lg md:text-senior-xl font-bold text-primary">{tip.titel}</h3>
                   </div>
                   <div className="p-8 space-y-4">
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">{tip.uitleg}</p>
+                    <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">{tip.uitleg}</p>
                     <div className="bg-green-50 border-2 border-green-200 rounded-xl px-5 py-4">
                       <p className="text-senior-xs font-bold text-green-700 mb-1 uppercase tracking-wide">Voorbeeld:</p>
                       <p className="text-senior-lg font-mono font-bold text-gray-800">{tip.voorbeeld}</p>
@@ -172,10 +172,10 @@ export default function WachtwoordenPage() {
 
           {/* Wachtzin methode uitgelegd */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               De wachtzin methode — makkelijkste manier
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Denk aan iets wat u altijd onthoudt — een herinnering, een hobby, uw tuin. Maak daar een zin van en voeg een cijfer en uitroepteken toe.
             </p>
             <ol className="space-y-5 mb-6">
@@ -205,7 +205,7 @@ export default function WachtwoordenPage() {
 
           {/* Hoe bewaart u wachtwoorden? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Hoe bewaart u uw wachtwoorden veilig?
             </h2>
             <div className="space-y-6">
@@ -252,7 +252,7 @@ export default function WachtwoordenPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting — onthoud dit
             </h2>
             <div className="space-y-3 mb-8">

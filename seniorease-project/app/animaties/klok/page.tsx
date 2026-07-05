@@ -59,14 +59,14 @@ export default function KlokAnimatiePage() {
           <div className="flex flex-wrap gap-4 justify-center">
             <a
               href="/klok"
-              className="bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-senior-base md:text-senior-lg font-bold
+              className="bg-primary text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-senior-sm md:text-senior-base font-bold
                        hover:bg-primary-dark transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
             >
               🕐 Open Grote Klok
             </a>
             <a
               href="/animaties"
-              className="bg-gray-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-senior-base md:text-senior-lg font-bold
+              className="bg-gray-500 text-white px-6 py-3 md:px-8 md:py-4 rounded-xl text-senior-sm md:text-senior-base font-bold
                        hover:bg-gray-600 transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
             >
               ← Terug naar alle animaties

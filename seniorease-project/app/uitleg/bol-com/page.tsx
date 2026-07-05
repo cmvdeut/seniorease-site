@@ -87,10 +87,10 @@ export default function BolComPage() {
 
           {/* Wat is Bol.com */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is Bol.com?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Bol.com is de grootste Nederlandse webwinkel. U kunt er boeken, elektronica, kleding,
               tuinartikelen, speelgoed en nog veel meer bestellen — alles wordt thuisbezorgd.
             </p>
@@ -114,7 +114,7 @@ export default function BolComPage() {
 
           {/* Stap voor stap */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Zo bestelt u iets bij Bol.com
             </h2>
             <ol className="space-y-6">
@@ -173,7 +173,7 @@ export default function BolComPage() {
 
           {/* Bevestiging en bezorging */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Na uw bestelling
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-4">

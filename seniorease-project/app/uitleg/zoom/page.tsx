@@ -87,10 +87,10 @@ export default function ZoomPage() {
 
           {/* Wat is Zoom */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is Zoom?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Zoom is een app om met meerdere mensen tegelijk te videobellen.
               U ziet iedereen op uw scherm en zij zien u. Handig voor een gesprek met de familie,
               een vergadering, of contact met uw huisarts of specialist op afstand.
@@ -115,7 +115,7 @@ export default function ZoomPage() {
 
           {/* Installeren */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Stap 1: Zoom installeren
             </h2>
             <div className="space-y-4">
@@ -143,7 +143,7 @@ export default function ZoomPage() {
 
           {/* Deelnemen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Stap 2: Deelnemen aan een Zoom-gesprek
             </h2>
             <p className="text-senior-base text-gray-700 mb-6">
@@ -190,7 +190,7 @@ export default function ZoomPage() {
 
           {/* Meeting ID */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Deelnemen met een Meeting ID
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-4">

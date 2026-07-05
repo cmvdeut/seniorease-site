@@ -87,10 +87,10 @@ export default function BetalenOvPage() {
 
           {/* Pinpas of OV-chipkaart */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Pinpas of OV-chipkaart — wat is het verschil?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               In het openbaar vervoer checkt u in en uit met een kaartje dat u tegen een gele lezer houdt.
               Dat kan uw gewone pinpas zijn, maar ook de OV-chipkaart. Beide werken op dezelfde manier.
             </p>
@@ -123,7 +123,7 @@ export default function BetalenOvPage() {
 
           {/* Betalen met pinpas */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Betalen met uw pinpas in het OV
             </h2>
             <p className="text-senior-base text-gray-500 mb-6">Inchecken en uitchecken — stap voor stap</p>
@@ -172,7 +172,7 @@ export default function BetalenOvPage() {
 
           {/* OV-chipkaart opladen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               OV-chipkaart opladen
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-4">

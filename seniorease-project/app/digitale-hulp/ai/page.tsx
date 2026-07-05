@@ -41,7 +41,7 @@ export default function AICategoriePage() {
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-8">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8">
               AI (kunstmatige intelligentie) en ChatGPT horen steeds vaker bij het dagelijks gebruik van internet. Hier vindt u uitleg over wat AI is, hoe u ChatGPT stap voor stap gebruikt en waar u het veilig kunt uitproberen.
             </p>
 

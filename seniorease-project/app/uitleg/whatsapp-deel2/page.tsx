@@ -68,7 +68,7 @@ export default function WhatsAppDeel2Page() {
         <div className="max-w-4xl mx-auto space-y-10">
           {/* Intro */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed">
               U kunt WhatsApp naast berichten en foto&apos;s ook gebruiken voor spraakberichten, bellen en groepen.
               Hieronder vindt u uitleg in de volgorde 1 tot 5. Neem gerust uw tijd – u hoeft niet alles in één keer te doen.
             </p>
@@ -80,7 +80,7 @@ export default function WhatsAppDeel2Page() {
 
           {/* 1. Spraakberichten */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               1. Spraakberichten: opnemen en afspelen
             </h2>
             <StepIllustration step={1}>
@@ -111,7 +111,7 @@ export default function WhatsAppDeel2Page() {
 
           {/* 2. Bellen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               2. Bellen: voice- en videobellen
             </h2>
             <StepIllustration step={2}>
@@ -141,7 +141,7 @@ export default function WhatsAppDeel2Page() {
 
           {/* 3. Status */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               3. Status: bekijken of plaatsen
             </h2>
             <StepIllustration step={3}>
@@ -174,7 +174,7 @@ export default function WhatsAppDeel2Page() {
 
           {/* 4. Notificaties */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               4. Notificaties: geluid en meldingen aan/uit
             </h2>
             <StepIllustration step={4}>
@@ -203,7 +203,7 @@ export default function WhatsAppDeel2Page() {
 
           {/* 5. Groepen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               5. Groepen: aanmaken, iemand toevoegen, chatten
             </h2>
             <StepIllustration step={5}>
@@ -244,7 +244,7 @@ export default function WhatsAppDeel2Page() {
             <h2 className="text-senior-xl font-bold text-primary mb-4">
               Kort samengevat
             </h2>
-            <ul className="space-y-2 text-senior-base md:text-senior-lg text-gray-800">
+            <ul className="space-y-2 text-senior-sm md:text-senior-base text-gray-800">
               <li><strong>Spraakbericht:</strong> Microfoon-icoon → inspreken → loslaten of Versturen. Afspelen: tik op het bericht.</li>
               <li><strong>Bellen:</strong> Gesprek openen → telefoon-icoon (geluid) of videocamera-icoon (beeld). Ophangen: rood icoon.</li>
               <li><strong>Status:</strong> Tab Status → bekijken of &quot;Mijn status&quot; plaatsen (foto of tekst, 24 uur zichtbaar).</li>

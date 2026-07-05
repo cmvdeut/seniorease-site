@@ -87,10 +87,10 @@ export default function FaceTimePage() {
 
           {/* Wat is FaceTime */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is FaceTime?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               FaceTime is een gratis app van Apple waarmee u kunt videobellen met familie en vrienden.
               U ziet elkaar tijdens het bellen — alsof u tegenover elkaar zit.
             </p>
@@ -106,7 +106,7 @@ export default function FaceTimePage() {
 
           {/* Hoe werkt het */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Videobellen via FaceTime
             </h2>
             <ol className="space-y-6">
@@ -153,7 +153,7 @@ export default function FaceTimePage() {
 
           {/* FaceTime ontvangen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Een FaceTime-gesprek ontvangen
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-4">

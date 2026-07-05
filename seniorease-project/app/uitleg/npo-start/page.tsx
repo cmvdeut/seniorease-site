@@ -87,10 +87,10 @@ export default function NpoStartPage() {
 
           {/* Wat is NPO Start */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               Wat is NPO Start?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               NPO Start is de gratis terugkijkdienst van de Nederlandse publieke omroep.
               Hiermee kunt u programma&apos;s van NPO 1, NPO 2 en NPO 3 bekijken wanneer u wilt —
               ook als u de uitzending gemist heeft.
@@ -115,7 +115,7 @@ export default function NpoStartPage() {
 
           {/* Installeren */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               NPO Start installeren
             </h2>
             <div className="space-y-4">
@@ -143,7 +143,7 @@ export default function NpoStartPage() {
 
           {/* Programma terugkijken */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Een programma terugkijken
             </h2>
             <ol className="space-y-6">

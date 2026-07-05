@@ -162,13 +162,13 @@ export default function ChatGPTUitlegPage() {
 
           {/* Wat is ChatGPT precies? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is ChatGPT precies?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               ChatGPT is een digitale assistent waarmee u gewoon kunt typen, net als een berichtje sturen. U stelt een vraag, en ChatGPT geeft antwoord. In normale taal, zonder moeilijke woorden.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Het is alsof u een heel belezen vriend heeft die altijd tijd heeft, nooit ongeduldig wordt en alles rustig uitlegt.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -188,7 +188,7 @@ export default function ChatGPTUitlegPage() {
 
           {/* Stap 1: Account aanmaken */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Stap 1 — Account aanmaken (eenmalig, 5 minuten)
             </h2>
             <p className="text-senior-base text-gray-600 mb-8">
@@ -227,7 +227,7 @@ export default function ChatGPTUitlegPage() {
 
           {/* Stap 2: Uw eerste vraag */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Stap 2 — Uw eerste vraag stellen
             </h2>
             <p className="text-senior-base text-gray-600 mb-8">
@@ -275,10 +275,10 @@ export default function ChatGPTUitlegPage() {
 
           {/* Stap 3: Doorvragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Stap 3 — Doorvragen (het geheime trucje)
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               ChatGPT onthoudt wat u eerder in hetzelfde gesprek heeft gevraagd. U kunt dus gewoon doorpraten, zoals met een persoon.
             </p>
 
@@ -308,7 +308,7 @@ export default function ChatGPTUitlegPage() {
               </div>
             </div>
 
-            <p className="text-senior-base md:text-senior-lg font-bold text-gray-800 mb-3">Handige zinnen om te doorvragen:</p>
+            <p className="text-senior-sm md:text-senior-base font-bold text-gray-800 mb-3">Handige zinnen om te doorvragen:</p>
             <ul className="space-y-2">
               {[
                 "\"Kun je dat korter uitleggen?\"",
@@ -327,7 +327,7 @@ export default function ChatGPTUitlegPage() {
 
           {/* 10 Voorbeeldvragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               10 handige vragen om mee te beginnen
             </h2>
             <p className="text-senior-base text-gray-600 mb-8">
@@ -365,10 +365,10 @@ export default function ChatGPTUitlegPage() {
 
           {/* Wat u NIET moet doen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veiligheid — wat u beter niet kunt doen
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               ChatGPT is veilig voor normaal gebruik. Maar net als op internet geldt: wees voorzichtig met uw persoonlijke gegevens.
             </p>
             <div className="grid sm:grid-cols-2 gap-4 mb-6">
@@ -401,7 +401,7 @@ export default function ChatGPTUitlegPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting — in het kort
             </h2>
             <ol className="space-y-4 mb-8">

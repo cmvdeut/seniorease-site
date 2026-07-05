@@ -92,15 +92,15 @@ export default function QRCodePage() {
 
           {/* Wat is een QR-code? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is een QR-code?
             </h2>
             <div className="flex flex-col md:flex-row gap-8 items-start">
               <div className="flex-1">
-                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
                   Een QR-code is dat vierkante plaatje vol zwarte en witte blokjes dat u steeds vaker tegenkomt. Het lijkt op een kruiswoordpuzzel, maar het is eigenlijk een <strong>verkorte link</strong> naar een website of informatie.
                 </p>
-                <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+                <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
                   In plaats van een lang webadres intypen, richt u gewoon uw telefoon op het plaatje — en uw telefoon doet de rest.
                 </p>
                 <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-5">
@@ -163,10 +163,10 @@ export default function QRCodePage() {
 
           {/* Waar komt u ze tegen? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Waar komt u QR-codes tegen?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Overal! Hier zijn situaties die u vast herkent:
             </p>
             <div className="grid sm:grid-cols-2 gap-3">
@@ -181,7 +181,7 @@ export default function QRCodePage() {
 
           {/* Hoe scannen — Android */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Scannen met Android
             </h2>
             <p className="text-senior-base text-gray-600 mb-8">
@@ -193,7 +193,7 @@ export default function QRCodePage() {
                   <div className="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-senior-lg font-bold shadow-md">
                     {stap.num}
                   </div>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed pt-2">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed pt-2">
                     {stap.tekst}
                   </p>
                 </li>
@@ -209,7 +209,7 @@ export default function QRCodePage() {
 
           {/* Hoe scannen — iPhone */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-2">
+            <h2 className="text-senior-xl font-bold text-primary mb-2">
               Scannen met iPhone
             </h2>
             <p className="text-senior-base text-gray-600 mb-8">
@@ -221,7 +221,7 @@ export default function QRCodePage() {
                   <div className="flex-shrink-0 w-12 h-12 bg-primary text-white rounded-full flex items-center justify-center text-senior-lg font-bold shadow-md">
                     {stap.num}
                   </div>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed pt-2">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed pt-2">
                     {stap.tekst}
                   </p>
                 </li>
@@ -237,10 +237,10 @@ export default function QRCodePage() {
 
           {/* Is het veilig? */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Is het veilig?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Meestal wel — maar net als bij e-mail geldt: let even op voor u klikt. Meer over veilig omgaan met links en oplichting leest u in onze{' '}
               <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">uitleg over oplichting herkennen</Link>.
             </p>
@@ -275,7 +275,7 @@ export default function QRCodePage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <ol className="space-y-4 mb-8">

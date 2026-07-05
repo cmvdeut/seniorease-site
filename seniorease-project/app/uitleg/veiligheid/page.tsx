@@ -81,13 +81,13 @@ export default function VeiligheidPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is phishing?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Phishing (spreek uit: &quot;fishing&quot;) is een poging om u te misleiden. Criminelen doen alsof ze uw bank, de overheid of een bekende zijn — om uw gegevens of geld te stelen.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Ze worden steeds beter in nabootsen. Berichten zien er soms precies uit als echt. Maar er zijn altijd signalen die u kunt leren herkennen. Een korte samenvatting vindt u ook in <Link href="/digitale-hulp/phishing-herkennen" className="font-bold text-primary hover:underline">Phishing herkennen</Link>.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -106,10 +106,10 @@ export default function VeiligheidPage() {
 
           {/* Voorbeeld 1: nep SMS */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Voorbeeld 1 — Nep SMS van uw &quot;bank&quot;
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               U ontvangt dit SMS-bericht:
             </p>
             {/* Nep SMS */}
@@ -145,10 +145,10 @@ export default function VeiligheidPage() {
 
           {/* Voorbeeld 2: hulpvraagfraude */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Voorbeeld 2 — Hulpvraagfraude via WhatsApp
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Dit is de meest gebruikte truc bij senioren. U krijgt een WhatsApp-bericht van een onbekend nummer:
             </p>
             {/* Nep WhatsApp */}
@@ -185,7 +185,7 @@ export default function VeiligheidPage() {
 
           {/* 5 alarmsignalen */}
           <section>
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-gray-800 mb-2">
+            <h2 className="text-senior-xl font-bold text-gray-800 mb-2">
               De 5 alarmsignalen
             </h2>
             <p className="text-senior-base text-gray-600 mb-6">
@@ -210,7 +210,7 @@ export default function VeiligheidPage() {
 
           {/* Wat te doen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat doet u als u twijfelt?
             </h2>
             <ol className="space-y-5 mb-8">
@@ -226,7 +226,7 @@ export default function VeiligheidPage() {
                   </div>
                   <div className="flex gap-3 items-start pt-2">
                     <span className="text-2xl flex-shrink-0">{item.icon}</span>
-                    <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">{item.stap}</p>
+                    <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">{item.stap}</p>
                   </div>
                 </li>
               ))}
@@ -239,7 +239,7 @@ export default function VeiligheidPage() {
 
           {/* Handige nummers */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Handige nummers — bewaar deze!
             </h2>
             <div className="grid sm:grid-cols-2 gap-4">
@@ -261,7 +261,7 @@ export default function VeiligheidPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Onthoud dit
             </h2>
             <div className="space-y-3 mb-8">

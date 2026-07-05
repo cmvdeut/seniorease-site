@@ -104,13 +104,13 @@ export default function EBikePage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Uw telefoon als fietsgids
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Met een e-bike kunt u verder komen dan ooit. En met de juiste app op uw telefoon weet u altijd de weg, rijdt u nooit meer een knooppunt voorbij en ziet u precies hoeveel kilometer er nog in uw accu zit.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Geen papieren kaart meer nodig — uw telefoon doet het werk. En als u toch de verkeerde afslag neemt, herberekent de app gewoon de route.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -142,7 +142,7 @@ export default function EBikePage() {
 
           {/* Route apps */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               Handige apps voor onderweg
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Allemaal gratis of bijna gratis te gebruiken</p>
@@ -165,10 +165,10 @@ export default function EBikePage() {
 
           {/* Knooppunten uitleg */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               🔵 Wat zijn knooppunten?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Door heel Nederland en België staan kleine blauwe bordjes met nummers langs fietspaden. Dit zijn <strong>knooppunten</strong>. U rijdt van nummer naar nummer en zo volgt u automatisch mooie, veilige fietspaden — door bossen, langs water en over rustige wegen.
             </p>
             <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6 mb-6">
@@ -196,10 +196,10 @@ export default function EBikePage() {
 
           {/* Bosch app */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               ⚡ De app van uw e-bike-merk
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Veel e-bikes hebben een eigen app waarmee u uw fiets kunt bijstellen en uw ritten kunt bijhouden. Kijk op uw fietsdisplay of in het handleiding welk merk motor uw fiets heeft.
             </p>
             <div className="space-y-4">
@@ -243,7 +243,7 @@ export default function EBikePage() {
 
           {/* Accu tips */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               🔋 Tips voor een langere accu
             </h2>
             <div className="space-y-4">
@@ -261,7 +261,7 @@ export default function EBikePage() {
 
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -297,7 +297,7 @@ export default function EBikePage() {
 
           {/* Zoektip */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-4">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
               🔍 Een product opzoeken?
             </h2>
             <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
@@ -317,7 +317,7 @@ export default function EBikePage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

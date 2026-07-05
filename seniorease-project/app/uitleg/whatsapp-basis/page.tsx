@@ -57,7 +57,7 @@ export default function WhatsAppBasisPage() {
         <div className="max-w-4xl mx-auto space-y-10">
           {/* Intro */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed">
               Met WhatsApp kunt u gratis berichten en foto&apos;s sturen naar familie en vrienden.
               Hieronder vindt u de basis in korte stappen. Neem gerust uw tijd en oefen op uw eigen tempo.
             </p>
@@ -76,7 +76,7 @@ export default function WhatsAppBasisPage() {
 
           {/* Eerste stappen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Eerste stappen met WhatsApp
             </h2>
 
@@ -142,7 +142,7 @@ export default function WhatsAppBasisPage() {
 
           {/* Foto's versturen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Foto&apos;s versturen
             </h2>
             <StepIllustration step={5}>
@@ -156,7 +156,7 @@ export default function WhatsAppBasisPage() {
                 <text x="60" y="155" textAnchor="middle" fill="#6B7280" fontSize="10">Foto kiezen → Versturen</text>
               </svg>
             </StepIllustration>
-            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mt-6">
+            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-sm md:text-senior-base text-gray-800 leading-relaxed mt-6">
               <li>Open WhatsApp en open het gesprek waar u de foto naartoe wilt sturen.</li>
               <li>Tik naast het typveld op het <strong>paperclip-icoon</strong> of het <strong>camera-icoon</strong>.</li>
               <li>Kies &quot;Foto&apos;s&quot; of &quot;Galerij&quot;.</li>
@@ -170,7 +170,7 @@ export default function WhatsAppBasisPage() {
 
           {/* Foto's ontvangen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Foto&apos;s ontvangen en bekijken
             </h2>
             <StepIllustration step={6}>
@@ -183,7 +183,7 @@ export default function WhatsAppBasisPage() {
                 <text x="60" y="135" textAnchor="middle" fill="#6B7280" fontSize="10">Tik op de foto</text>
               </svg>
             </StepIllustration>
-            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mt-6">
+            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-sm md:text-senior-base text-gray-800 leading-relaxed mt-6">
               <li>Open WhatsApp en ga naar het gesprek waar u een melding van hebt (bijv. &quot;1 nieuw bericht&quot; – dat ziet u naast de naam in de lijst).</li>
               <li>In het gesprek ziet u een kleine weergave van de foto. <strong>Tik op de foto</strong> om hem groot te openen.</li>
               <li>U kunt inzoomen door met twee vingers uit elkaar te bewegen op het scherm. Terug: tik op de pijl of buiten de foto.</li>
@@ -193,7 +193,7 @@ export default function WhatsAppBasisPage() {
 
           {/* Duimpje terugsturen */}
           <div className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Duimpje als antwoord sturen
             </h2>
             <StepIllustration step={7}>
@@ -207,7 +207,7 @@ export default function WhatsAppBasisPage() {
                 <text x="60" y="155" textAnchor="middle" fill="#6B7280" fontSize="10">Tik op bericht → Duimpje</text>
               </svg>
             </StepIllustration>
-            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-base md:text-senior-lg text-gray-800 leading-relaxed mt-6">
+            <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-sm md:text-senior-base text-gray-800 leading-relaxed mt-6">
               <li><strong>Houd uw vinger ongeveer 1 seconde</strong> op het bericht waarop u wilt reageren.</li>
               <li>Er verschijnt een rij met kleine plaatjes (emoji&apos;s). Tik op het <strong>duimpje</strong> 👍.</li>
               <li>Uw duimpje wordt als antwoord onder het bericht geplaatst. De ander ziet dat u het bericht hebt gezien en bevestigd.</li>
@@ -222,7 +222,7 @@ export default function WhatsAppBasisPage() {
             <h2 className="text-senior-xl font-bold text-primary mb-4">
               Kort samengevat
             </h2>
-            <ul className="space-y-2 text-senior-base md:text-senior-lg text-gray-800">
+            <ul className="space-y-2 text-senior-sm md:text-senior-base text-gray-800">
               <li><strong>Foto versturen:</strong> Gesprek openen → paperclip/camera → Foto&apos;s kiezen → foto selecteren → Versturen.</li>
               <li><strong>Foto ontvangen:</strong> Gesprek openen → op de foto tikken → eventueel Opslaan.</li>
               <li><strong>Duimpje sturen:</strong> Lang indrukken op een bericht → duimpje 👍 tikken.</li>

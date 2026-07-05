@@ -38,7 +38,7 @@ export default function ZoWerktHetPage() {
                   <h2 className="text-senior-xl font-bold text-primary mb-3">
                     Stap 1
                   </h2>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                     U opent Mijn Bibliotheek op de pc<br />
                     of op uw telefoon of tablet.
                   </p>
@@ -56,7 +56,7 @@ export default function ZoWerktHetPage() {
                   <h2 className="text-senior-xl font-bold text-primary mb-3">
                     Stap 2
                   </h2>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-3">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-3">
                     U voegt een boek toe.<br />
                     Dat kan door de barcode te scannen of in te typen.
                   </p>
@@ -74,7 +74,7 @@ export default function ZoWerktHetPage() {
                   <h2 className="text-senior-xl font-bold text-primary mb-3">
                     Stap 3
                   </h2>
-                  <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed">
+                  <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
                     Uw boeken blijven overzichtelijk bewaard.<br />
                     U kunt ze altijd terugvinden.
                   </p>
@@ -84,7 +84,7 @@ export default function ZoWerktHetPage() {
 
             {/* Afsluitende geruststelling */}
             <div className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-6 mt-8">
-              <p className="text-senior-base md:text-senior-lg text-gray-800 leading-relaxed font-bold text-center">
+              <p className="text-senior-sm md:text-senior-base text-gray-800 leading-relaxed font-bold text-center">
                 U kunt niets kapot maken.<br />
                 U mag alles rustig proberen.
               </p>

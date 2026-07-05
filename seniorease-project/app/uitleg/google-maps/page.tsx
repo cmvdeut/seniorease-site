@@ -37,13 +37,13 @@ export default function GoogleMapsPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Wat is Google Maps?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Google Maps is een gratis app op uw telefoon waarmee u overal een route kunt berekenen. U typt een adres in en de app vertelt u stap voor stap hoe u er komt — lopend, met de auto of met het openbaar vervoer.
             </p>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Het werkt als een navigatiesysteem in uw auto, maar dan op uw telefoon. En het is altijd bijgewerkt met de nieuwste wegen en adressen.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -62,10 +62,10 @@ export default function GoogleMapsPage() {
 
           {/* App openen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               De app openen
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Google Maps staat op bijna elke telefoon al voorgeïnstalleerd. Zoek op uw telefoon naar het icoontje met een gekleurde kaartspeld.
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
@@ -86,7 +86,7 @@ export default function GoogleMapsPage() {
 
           {/* Een adres zoeken */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               📍 Een adres zoeken — stap voor stap
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Zo vindt u elk adres in Nederland</p>
@@ -139,7 +139,7 @@ export default function GoogleMapsPage() {
 
           {/* Route berekenen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-3">
+            <h2 className="text-senior-xl font-bold text-primary mb-3">
               🚗 Een route berekenen
             </h2>
             <p className="text-senior-base text-gray-500 mb-8">Nadat u een adres gevonden heeft</p>
@@ -200,10 +200,10 @@ export default function GoogleMapsPage() {
 
           {/* Waar ben ik */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               📌 Waar ben ik?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Bent u ergens en weet u niet precies waar? Google Maps kan u dat direct vertellen.
             </p>
             <ol className="space-y-4">
@@ -229,10 +229,10 @@ export default function GoogleMapsPage() {
 
           {/* Favorieten opslaan */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               ⭐ Thuis en favorieten opslaan
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               U kunt uw thuisadres en adressen van familie opslaan. Zo hoeft u niet elke keer hetzelfde adres in te typen.
             </p>
             <ol className="space-y-5">
@@ -269,7 +269,7 @@ export default function GoogleMapsPage() {
 
           {/* Veelgestelde vragen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -309,7 +309,7 @@ export default function GoogleMapsPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

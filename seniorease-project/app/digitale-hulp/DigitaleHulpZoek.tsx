@@ -24,7 +24,7 @@ export function DigitaleHulpZoek({ initialQuery = '' }: DigitaleHulpZoekProps) {
         value={zoek}
         onChange={(e) => setZoek(e.target.value)}
         placeholder="Waarmee kunnen we u helpen?"
-        className="w-full text-senior-base md:text-senior-lg px-5 py-4 rounded-xl border-2 border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 mb-4"
+        className="w-full text-senior-sm md:text-senior-base px-5 py-4 rounded-xl border-2 border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 mb-4"
         aria-describedby="zoek-hint"
       />
       <p id="zoek-hint" className="text-senior-sm text-gray-600 mb-6">

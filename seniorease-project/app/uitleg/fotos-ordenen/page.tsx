@@ -35,10 +35,10 @@ export default function FotosOrdenenPage() {
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Waarom foto&apos;s ordenen?
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
               Op uw telefoon staan misschien honderden of zelfs duizenden foto&apos;s. Leuk — maar het is soms lastig om snel een bepaalde foto terug te vinden. Met albums kunt u uw foto&apos;s netjes sorteren: één album voor de kleinkinderen, één voor de vakantie, één voor de tuin.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -57,10 +57,10 @@ export default function FotosOrdenenPage() {
 
           {/* Albums maken */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               📁 Een album maken
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Op zowel Android als iPhone maakt u albums via de Foto&apos;s-app. Dat is de app met het icoontje van een bloem of berglandschap.
             </p>
 
@@ -117,10 +117,10 @@ export default function FotosOrdenenPage() {
 
           {/* Favorieten */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               ❤️ Favoriete foto&apos;s apart zetten
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Heeft u een foto die u echt heel mooi vindt? Zet hem bij uw favorieten. Die zijn altijd snel terug te vinden in een apart mapje.
             </p>
             <div className="space-y-4">
@@ -153,10 +153,10 @@ export default function FotosOrdenenPage() {
 
           {/* Foto's delen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               📤 Foto&apos;s delen met familie
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Een mooie foto wil je toch doorsturen! Dat kan heel gemakkelijk via WhatsApp of e-mail.
             </p>
             <ol className="space-y-5 mb-6">
@@ -188,10 +188,10 @@ export default function FotosOrdenenPage() {
 
           {/* Back-up */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               ☁️ Foto&apos;s bewaren — ook als uw telefoon stukgaat
             </h2>
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
               Wat als uw telefoon verloren gaat of kapotgaat? Dan zijn uw foto&apos;s ook weg — tenzij u een back-up heeft. Gelukkig kan dat automatisch.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -235,7 +235,7 @@ export default function FotosOrdenenPage() {
 
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl md:text-senior-2xl font-bold text-primary mb-6">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">

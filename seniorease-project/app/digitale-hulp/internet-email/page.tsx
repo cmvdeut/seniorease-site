@@ -43,7 +43,7 @@ export default function InternetEmailCategoriePage() {
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <p className="text-senior-base md:text-senior-lg text-gray-700 leading-relaxed mb-8">
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8">
               Heeft u hulp nodig met internet of e-mail? Hier vindt u artikelen over wifi verbinden, e-mail openen en beheren, bijlagen openen en wat u kunt doen als internet of wifi niet werkt.
             </p>
 

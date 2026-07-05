@@ -26,7 +26,7 @@ export default function PrivacyPage() {
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
-            <div className="prose prose-lg max-w-none">
+            <div className="prose max-w-none">
               
               <div className="mb-8">
                 <p className="text-senior-base text-gray-700 mb-4">
