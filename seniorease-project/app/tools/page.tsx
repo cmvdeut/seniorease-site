@@ -8,7 +8,7 @@ import { Camera, Calculator, CheckSquare, CalendarDays, Clock, Brain, BookOpen }
 const tools = [
   {
     title: 'Foto Archief',
-    description: 'Identificeer personen op oude familiefoto\'s. Plaats nummers en voeg namen toe. Handig voor stamboom makers.',
+    description: 'Label personen op oude groepsfoto\'s met nummers en namen. Past bij uw foto-album — exporteer en deel met familie.',
     Icon: Camera,
     href: '/foto-archief',
     category: 'Tools',

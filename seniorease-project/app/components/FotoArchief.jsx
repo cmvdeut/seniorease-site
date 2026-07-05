@@ -384,9 +384,29 @@ export default function FotoArchief() {
           fontSize: '0.9rem',
           opacity: 0.7,
           marginTop: '8px',
-          fontStyle: 'italic'
+          fontStyle: 'italic',
+          maxWidth: '640px',
+          margin: '8px auto 0 auto',
+          lineHeight: 1.5
         }}>
-          Identificeer personen met genummerde annotaties
+          Zet nummers op gezichten en noteer de namen — ideaal voor oude familiefoto&apos;s in uw album
+        </p>
+        <p style={{
+          fontSize: '0.85rem',
+          opacity: 0.65,
+          marginTop: '12px',
+          maxWidth: '680px',
+          margin: '12px auto 0 auto',
+          lineHeight: 1.6
+        }}>
+          Heeft u al albums gemaakt op uw telefoon?{' '}
+          <Link href="/uitleg/fotos-ordenen" style={{ color: '#e8d5b7', textDecoration: 'underline' }}>
+            Zo ordenen en delen
+          </Link>
+          {' '}· Foto op de computer?{' '}
+          <Link href="/uitleg/fotos-naar-computer" style={{ color: '#e8d5b7', textDecoration: 'underline' }}>
+            Naar pc overzetten
+          </Link>
         </p>
       </header>
 
@@ -425,7 +445,7 @@ export default function FotoArchief() {
               <div style={{ fontSize: '4rem', marginBottom: '16px', opacity: 0.5 }}>📷</div>
               <span style={{ fontSize: '1.1rem' }}>Klik om een foto te uploaden</span>
               <span style={{ fontSize: '0.85rem', opacity: 0.6, marginTop: '8px' }}>
-                of sleep een bestand hierheen
+                Oude groepsfoto uit uw album? Upload hem hier en label wie erop staat
               </span>
             </label>
           ) : (

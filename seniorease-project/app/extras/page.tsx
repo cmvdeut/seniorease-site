@@ -6,7 +6,7 @@ export default function ExtrasPage() {
   const extras = [
     {
       title: 'Foto Archief',
-      description: 'Identificeer personen op oude familiefoto\'s. Plaats nummers en voeg namen toe. Handig voor stamboom makers.',
+      description: 'Label personen op oude groepsfoto\'s — handig naast uw foto-album. Exporteer met namenlijst.',
       href: '/foto-archief'
     },
     {

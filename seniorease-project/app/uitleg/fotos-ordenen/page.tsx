@@ -26,6 +26,7 @@ export default function FotosOrdenenPage() {
               <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s maken</Link>
               <span className="text-senior-sm font-bold text-primary underline">Foto&apos;s ordenen</span>
               <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Naar computer</Link>
+              <Link href="/foto-archief" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto Archief</Link>
               <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Videobellen</Link>
             </nav>
           </div>
@@ -303,6 +304,25 @@ export default function FotosOrdenenPage() {
             </div>
           </section>
 
+          {/* Foto Archief — groepsfoto's labelen */}
+          <section className="bg-neutral-cream border-2 border-primary/30 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-primary mb-4">
+              📷 Oude groepsfoto? Wie is dit?
+            </h2>
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+              Heeft u een album met familiefoto&apos;s, maar weet u niet meer precies wie er op die ene oude groepsfoto staan? Met onze gratis tool <strong>Foto Archief</strong> zet u genummerde bolletjes op elk gezicht, vult u de namen in en exporteert u de foto met legenda — handig om te bewaren of via WhatsApp te sturen naar familie.
+            </p>
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+              <strong>Tip:</strong> Maak eerst uw album op de telefoon (zie hierboven). Heeft u een scan of foto op de computer? Upload die in Foto Archief en label wie erop staat — daarna kunt u de foto weer in uw album zetten of delen.
+            </p>
+            <Link
+              href="/foto-archief"
+              className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors shadow-lg"
+            >
+              Open Foto Archief →
+            </Link>
+          </section>
+
           {/* Samenvatting */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl font-bold text-primary mb-6">
@@ -324,6 +344,9 @@ export default function FotosOrdenenPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
+              <Link href="/foto-archief" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+                Foto Archief (namen labelen) →
+              </Link>
               <Link href="/uitleg/fotos-naar-computer" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
                 Foto&apos;s naar computer →
               </Link>

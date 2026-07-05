@@ -336,6 +336,11 @@ export default function FotosNaarComputerPage() {
             <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg</h2>
             <ul className="space-y-3">
               <li>
+                <Link href="/foto-archief" className="text-senior-base font-bold text-primary hover:underline">
+                  Foto Archief — personen labelen op groepsfoto&apos;s →
+                </Link>
+              </li>
+              <li>
                 <Link href="/uitleg/fotos-ordenen" className="text-senior-base font-bold text-primary hover:underline">
                   Foto&apos;s ordenen en back-up →
                 </Link>

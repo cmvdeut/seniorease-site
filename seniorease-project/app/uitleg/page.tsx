@@ -63,6 +63,7 @@ const clusters = [
       { href: '/uitleg/fotos-maken', label: "Foto's maken met uw telefoon" },
       { href: '/uitleg/fotos-ordenen', label: "Foto's ordenen en bewaren" },
       { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
+      { href: '/foto-archief', label: 'Foto Archief — namen op groepsfoto\'s' },
     ],
   },
   {

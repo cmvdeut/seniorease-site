@@ -10,7 +10,7 @@ export const metadata = {
 };
 
 const items = [
-  { title: "Foto Archief", href: "/foto-archief", description: "Personen op oude familiefoto's herkennen en benoemen." },
+  { title: "Foto Archief", href: "/foto-archief", description: "Personen labelen op oude groepsfoto's — past bij uw foto-album." },
   { title: "E-books lezen", href: "/uitleg/ebooks", description: "Digitaal lezen op telefoon, tablet of e-reader." },
   { title: "Spotify en DAB", href: "/uitleg/muziek-radio", description: "Muziek en radio luisteren via apps." },
   { title: "E-bike apps", href: "/uitleg/e-bike", description: "Routes plannen en fietsapps gebruiken." },
