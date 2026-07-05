@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
+import { createHash } from 'crypto';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -59,6 +60,9 @@ function getBrevoEnvDiagnostics() {
       set: Boolean(trimmed),
       format: detectKeyFormat(trimmed, normalized),
       length: normalized.length || undefined,
+      fingerprint: normalized
+        ? createHash('sha256').update(normalized).digest('hex').slice(0, 12)
+        : undefined,
     };
   });
 }
