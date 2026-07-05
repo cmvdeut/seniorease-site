@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lora, Source_Sans_3 } from "next/font/google";
 
 const lora = Lora({
@@ -137,6 +139,8 @@ export default function RootLayout({
           gtag('js', new Date());
           gtag('config', '${GA_ID}');
         `}} />
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

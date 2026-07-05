@@ -141,10 +141,14 @@ export default function PrivacyPage() {
                 
                 <div className="space-y-4 text-senior-base text-gray-700">
                   <p>
-                    Wij gebruiken <strong>geen tracking cookies</strong>, analytics tools of advertentie trackers. De app functioneert zonder persoonlijke tracking. Wij verzamelen geen gebruikersstatistieken of gedragsdata.
+                    Wij gebruiken anonieme statistieken om de website te verbeteren:
                   </p>
+                  <ul className="list-disc pl-6 space-y-2">
+                    <li><strong>Google Analytics</strong> — bezoekersaantallen en populaire pagina&apos;s (anoniem)</li>
+                    <li><strong>Vercel Analytics</strong> — prestaties en gebruik van de website (privacyvriendelijk, geen cookies)</li>
+                  </ul>
                   <p>
-                    De enige cookies die mogelijk worden gebruikt zijn technische cookies die nodig zijn voor de werking van de website (bijv. sessie management).
+                    Wij gebruiken geen advertentie-trackers. Technische cookies kunnen nodig zijn voor de werking van de website.
                   </p>
                 </div>
               </section>

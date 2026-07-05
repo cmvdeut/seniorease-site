@@ -83,7 +83,7 @@ export default function VoorwaardenPage() {
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-1" style={{ fontSize: '1.1rem' }}>2.4 Cookies en Tracking</h3>
-                <p>Wij gebruiken geen tracking cookies of analytics. De app functioneert zonder persoonlijke tracking. Wij verzamelen geen gebruikersstatistieken.</p>
+                <p>Wij gebruiken anonieme statistieken (Google Analytics en Vercel Analytics) om de website te verbeteren. Wij gebruiken geen advertentie-trackers.</p>
               </div>
               <div>
                 <h3 className="font-bold text-gray-800 mb-1" style={{ fontSize: '1.1rem' }}>2.5 Delen van Gegevens</h3>
