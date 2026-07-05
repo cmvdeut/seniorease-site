@@ -18,6 +18,37 @@ function getBrevoApiKey(): string | undefined {
   return undefined;
 }
 
+function getBrevoWelcomeTemplateId(): number | undefined {
+  const raw = process.env.BREVO_WELCOME_TEMPLATE_ID?.trim();
+  if (!raw) return 13;
+
+  const parsed = Number.parseInt(raw, 10);
+  return Number.isNaN(parsed) ? undefined : parsed;
+}
+
+async function sendWelcomeEmail(apiKey: string, email: string): Promise<void> {
+  const templateId = getBrevoWelcomeTemplateId();
+  if (!templateId) return;
+
+  const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      'api-key': apiKey,
+    },
+    body: JSON.stringify({
+      to: [{ email }],
+      templateId,
+    }),
+  });
+
+  if (!response.ok) {
+    const data = await response.json().catch(() => null);
+    console.error('Brevo welkomstmail mislukt:', response.status, data);
+  }
+}
+
 function getBrevoListId(): number | undefined {
   const raw = process.env.BREVO_LIST_ID?.trim();
   if (!raw) return undefined;
@@ -98,6 +129,7 @@ export async function POST(request: NextRequest) {
     });
 
     if (response.status === 201 || response.status === 204) {
+      await sendWelcomeEmail(apiKey, email);
       return NextResponse.json({
         success: true,
         message: 'Aanmelding gelukt',
