@@ -88,15 +88,20 @@ function getBrevoApiKeyCandidates(): string[] {
   return candidates;
 }
 
-async function verifyBrevoApiKey(apiKey: string): Promise<boolean> {
-  const response = await fetch('https://api.brevo.com/v3/account', {
-    headers: {
-      Accept: 'application/json',
-      'api-key': apiKey,
-    },
-  });
+async function verifyBrevoApiKey(apiKey: string): Promise<{ ok: boolean; status: number }> {
+  try {
+    const response = await fetch('https://api.brevo.com/v3/account', {
+      cache: 'no-store',
+      headers: {
+        Accept: 'application/json',
+        'api-key': apiKey,
+      },
+    });
 
-  return response.ok;
+    return { ok: response.ok, status: response.status };
+  } catch {
+    return { ok: false, status: 0 };
+  }
 }
 
 async function createBrevoContact(
@@ -119,6 +124,7 @@ async function createBrevoContact(
 
   return fetch('https://api.brevo.com/v3/contacts', {
     method: 'POST',
+    cache: 'no-store',
     headers: {
       'Content-Type': 'application/json',
       Accept: 'application/json',
@@ -171,12 +177,17 @@ export async function GET() {
   const apiKeys = getBrevoApiKeyCandidates();
   const listId = getBrevoListId();
   let brevoConnection: 'ok' | 'auth_failed' | 'missing' = 'missing';
+  let brevoAccountStatus: number | undefined;
 
   for (const apiKey of apiKeys) {
-    if (await verifyBrevoApiKey(apiKey)) {
+    const accountCheck = await verifyBrevoApiKey(apiKey);
+    brevoAccountStatus = accountCheck.status;
+
+    if (accountCheck.ok) {
       brevoConnection = 'ok';
       break;
     }
+
     brevoConnection = 'auth_failed';
   }
 
@@ -185,6 +196,7 @@ export async function GET() {
     brevoApiKey: apiKeys.length > 0 ? 'configured' : 'missing',
     brevoListId: listId ? 'configured' : 'missing',
     brevoConnection,
+    brevoAccountStatus,
     envDiagnostics: getBrevoEnvDiagnostics(),
   });
 }
@@ -230,11 +242,6 @@ export async function POST(request: NextRequest) {
     let apiKeyUsed: string | undefined;
 
     for (const apiKey of apiKeys) {
-      if (!(await verifyBrevoApiKey(apiKey))) {
-        console.error('Brevo API key geweigerd bij account-check');
-        continue;
-      }
-
       response = await createBrevoContact(apiKey, email, listId);
       apiKeyUsed = apiKey;
 
