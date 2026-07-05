@@ -121,7 +121,11 @@ export default function BolComPage() {
               {[
                 {
                   stap: "Ga naar Bol.com",
-                  uitleg: "Open uw internet-app (Safari of Chrome) en typ bol.com in de adresbalk bovenaan. Of open de Bol.com app als u die heeft geïnstalleerd.",
+                  uitleg: (
+                    <>
+                      Open uw internet-app (Safari of Chrome) en typ <strong>bol.com</strong> in de adresbalk bovenaan. Of open de Bol.com app als u die heeft geïnstalleerd.
+                    </>
+                  ),
                 },
                 {
                   stap: "Zoek een product",

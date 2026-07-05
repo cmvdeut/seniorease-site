@@ -172,11 +172,19 @@ export default function YoutubeTvPage() {
               {[
                 {
                   stap: "YouTube openen in uw browser",
-                  uitleg: "Open uw internetbrowser — dat is het programma waarmee u websites bezoekt, bijvoorbeeld Chrome, Edge of Firefox. Typ bovenaan in de adresbalk: youtube.com en druk op Enter.",
+                  uitleg: (
+                    <>
+                      Open uw internetbrowser — dat is het programma waarmee u websites bezoekt, bijvoorbeeld Chrome, Edge of Firefox. Typ bovenaan in de adresbalk: <strong>youtube.com</strong> en druk op <strong>Enter</strong>.
+                    </>
+                  ),
                 },
                 {
                   stap: "Een video zoeken",
-                  uitleg: "Klik bovenaan in de zoekbalk. Typ wat u wilt zien — bijvoorbeeld 'breien voor beginners' of 'André Rieu concert'. Druk op Enter op uw toetsenbord.",
+                  uitleg: (
+                    <>
+                      Klik bovenaan in de zoekbalk. Typ wat u wilt zien — bijvoorbeeld &apos;breien voor beginners&apos; of &apos;André Rieu concert&apos;. Druk op <strong>Enter</strong> op uw toetsenbord.
+                    </>
+                  ),
                 },
                 {
                   stap: "Een video starten",

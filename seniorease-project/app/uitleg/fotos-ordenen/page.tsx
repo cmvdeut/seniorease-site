@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 export const metadata = {
   title: "Foto's ordenen op uw telefoon – albums maken voor senioren",
-  description: "Hoe maakt u albums en vindt u uw foto's terug? Favorieten apart zetten en delen met familie. Uitleg voor Android én iPhone.",
+  description: "Hoe maakt u albums, zoekt u in uw galerij en vindt u foto's terug? Favorieten apart zetten en delen met familie. Uitleg voor Android én iPhone.",
 };
 
 export default function FotosOrdenenPage() {
@@ -23,7 +23,9 @@ export default function FotosOrdenenPage() {
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Hobby's navigatie">
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">🎨 Hobby&apos;s:</span>
+              <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s maken</Link>
               <span className="text-senior-sm font-bold text-primary underline">Foto&apos;s ordenen</span>
+              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Naar computer</Link>
               <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Videobellen</Link>
             </nav>
           </div>
@@ -151,6 +153,74 @@ export default function FotosOrdenenPage() {
             </div>
           </section>
 
+          {/* Zoeken in de galerij */}
+          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-primary mb-6">
+              🔍 Snel een foto terugvinden — zoeken in uw galerij
+            </h2>
+            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+              Niet alleen albums helpen: de Foto&apos;s-app heeft een <strong>zoekbalk</strong>. Daarmee vindt u foto&apos;s sneller terug — zonder door honderden plaatjes te scrollen.
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6">
+                <h3 className="text-senior-lg font-bold text-green-800 mb-4">🤖 Google Foto&apos;s (Android)</h3>
+                <ol className="space-y-3">
+                  {[
+                    <>Open de app <strong>Google Foto&apos;s</strong>.</>,
+                    <>Tik bovenaan op de <strong>zoekbalk</strong> (&quot;Zoeken in Google Foto&apos;s&quot;).</>,
+                    <>Typ iets wat u zoekt — bijvoorbeeld <strong>kleinkind</strong>, <strong>verjaardag</strong>, <strong>tuin</strong> of een <strong>plaats</strong> (bijv. &quot;Amsterdam&quot;).</>,
+                    <>Tik op <strong>Enter</strong> of op het vergrootglas. U ziet foto&apos;s die daarbij passen.</>,
+                  ].map((stap, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {i + 1}
+                      </div>
+                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+
+              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
+                <h3 className="text-senior-lg font-bold text-blue-800 mb-4">🍎 Foto&apos;s-app (iPhone)</h3>
+                <ol className="space-y-3">
+                  {[
+                    <>Open de app <strong>Foto&apos;s</strong>.</>,
+                    <>Tik onderaan op <strong>Albums</strong> of blijf op <strong>Bibliotheek</strong> — bovenaan staat de <strong>zoekbalk</strong>.</>,
+                    <>Typ een woord, persoon, plaats of datum — bijvoorbeeld <strong>juli 2024</strong> of <strong>kerst</strong>.</>,
+                    <>Tik op een resultaat om die foto te openen.</>,
+                  ].map((stap, i) => (
+                    <li key={i} className="flex gap-3 items-start">
+                      <div className="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
+                        {i + 1}
+                      </div>
+                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                    </li>
+                  ))}
+                </ol>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="bg-neutral-cream border-2 border-primary/20 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-gray-800 mb-2">Wat kunt u intypen?</p>
+                <ul className="space-y-2 text-senior-base text-gray-700">
+                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>onderwerp</strong>: hond, bloemen, eten, kerstboom</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>plaats</strong>: als uw telefoon weet waar de foto gemaakt is</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>maand of jaar</strong>: bijv. &quot;augustus 2025&quot;</li>
+                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>persoon</strong>: als u eerder iemand heeft aangeklikt in Foto&apos;s (iPhone) of Google Foto&apos;s herkent gezichten</li>
+                </ul>
+              </div>
+              <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-amber-800 mb-1">💡 Geen zoekresultaat?</p>
+                <p className="text-senior-base text-gray-700 leading-relaxed">
+                  Scroll in de galerij op <strong>datum</strong> — foto&apos;s staan meestal van nieuw naar oud. Of maak een album voor vaste onderwerpen (kleinkinderen, vakantie). Dan hoeft u niet elke keer te zoeken.
+                </p>
+              </div>
+            </div>
+          </section>
+
           {/* Foto's delen */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl font-bold text-primary mb-6">
@@ -241,9 +311,11 @@ export default function FotosOrdenenPage() {
             <div className="space-y-3 mb-8">
               {[
                 "Maak albums aan voor bijv. 'Kleinkinderen', 'Vakantie', 'Tuin'",
+                "Gebruik de zoekbalk in Google Foto's of Foto's — typ bijv. een plaats, maand of onderwerp",
                 "Tik op het hartje om een foto bij uw favorieten te zetten",
                 "Deel foto's via WhatsApp: open foto → deelknop → WhatsApp → contact",
                 "Zet automatische back-up aan via Google Foto's of iCloud",
+                "Zet foto's over naar uw computer — zie onze uitleg Foto's naar computer",
               ].map((punt, i) => (
                 <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
@@ -252,6 +324,9 @@ export default function FotosOrdenenPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
+              <Link href="/uitleg/fotos-naar-computer" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+                Foto&apos;s naar computer →
+              </Link>
               <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
                 Videobellen met familie →
               </Link>

@@ -136,7 +136,11 @@ export default function BoodschappenBestellenPage() {
               {[
                 {
                   stap: "Ga naar ah.nl",
-                  uitleg: "Open uw browser en typ ah.nl in de adresbalk. Of download de Albert Heijn-app via de App Store of Play Store.",
+                  uitleg: (
+                    <>
+                      Open uw browser en typ <strong>ah.nl</strong> in de adresbalk. Of download de Albert Heijn-app via de <strong>App Store</strong> of <strong>Play Store</strong>.
+                    </>
+                  ),
                 },
                 {
                   stap: "Maak een account aan (eenmalig)",

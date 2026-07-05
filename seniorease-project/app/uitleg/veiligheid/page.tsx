@@ -34,7 +34,11 @@ const alarmsignalen = [
     num: 4,
     icon: "🔗",
     titel: "Vreemde link of webadres",
-    uitleg: "rabobank-veilig-inloggen.com is NIET de Rabobank. Het echte adres is rabobank.nl. Kijk altijd of het adres klopt vóór u klikt.",
+    uitleg: (
+      <>
+        <strong>rabobank-veilig-inloggen.com</strong> is NIET de Rabobank. Het echte adres is <strong>rabobank.nl</strong>. Kijk altijd of het adres klopt vóór u klikt.
+      </>
+    ),
     kleur: "bg-yellow-50 border-yellow-200",
     titelkleur: "text-yellow-800",
   },
@@ -130,7 +134,11 @@ export default function VeiligheidPage() {
               {[
                 { punt: "Onbekend nummer (+31 6...)", uitleg: "De ING stuurt nooit SMS via een 06-nummer." },
                 { punt: "Druk: \"wordt geblokkeerd\"", uitleg: "Angst en haast zijn de favoriete trucjes van oplichters." },
-                { punt: "Vreemd webadres", uitleg: "ing-veilig-login.com is NIET van de ING. De echte site is ing.nl." },
+                { punt: "Vreemd webadres", uitleg: (
+                  <>
+                    <strong>ing-veilig-login.com</strong> is NIET van de ING. De echte site is <strong>ing.nl</strong>.
+                  </>
+                ) },
               ].map((item, i) => (
                 <div key={i} className="flex items-start gap-3 bg-red-50 border-2 border-red-200 rounded-xl p-4">
                   <span className="text-red-600 font-bold text-xl flex-shrink-0">✗</span>

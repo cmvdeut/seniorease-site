@@ -212,7 +212,7 @@ export default function InsprekenPage() {
               Handig als u niet precies weet hoe iets gespeld wordt.
             </p>
             <ol className="space-y-4 list-decimal list-outside pl-6 text-senior-base text-gray-700">
-              <li>Open de <strong>Google-app</strong> of ga naar google.nl in uw browser.</li>
+              <li>Open de <strong>Google-app</strong> of ga naar <strong>google.nl</strong> in uw browser.</li>
               <li>Tik op het <strong>microfoon-icoontje</strong> in de zoekbalk.</li>
               <li>Spreek uw zoekopdracht in, bijv. &quot;wat is het weer in Amsterdam morgen&quot;.</li>
               <li>Google zoekt meteen voor u.</li>

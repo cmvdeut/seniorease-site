@@ -58,10 +58,11 @@ const clusters = [
   },
   {
     titel: "Foto's",
-    omschrijving: "Foto's maken, bewaren en ordenen.",
+    omschrijving: "Foto's maken, bewaren, ordenen en overzetten naar uw computer.",
     paginas: [
       { href: '/uitleg/fotos-maken', label: "Foto's maken met uw telefoon" },
       { href: '/uitleg/fotos-ordenen', label: "Foto's ordenen en bewaren" },
+      { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
     ],
   },
   {

@@ -119,7 +119,8 @@ export default function FotosMakenPage() {
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
               <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp</Link>
               <span className="text-senior-sm font-bold text-primary underline">Foto&apos;s maken</span>
-              <Link href="/uitleg/qr-code" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">QR-code scannen</Link>
+              <Link href="/uitleg/fotos-ordenen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s ordenen</Link>
+              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Naar computer</Link>
             </nav>
           </div>
         </div>

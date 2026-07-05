@@ -58,7 +58,11 @@ const stappenAccount = [
   {
     num: 2,
     titel: "Ga naar chatgpt.com",
-    uitleg: "Typ chatgpt.com in de adresbalk bovenaan en druk op Enter.",
+    uitleg: (
+      <>
+        Typ <strong>chatgpt.com</strong> in de adresbalk bovenaan en druk op <strong>Enter</strong>.
+      </>
+    ),
   },
   {
     num: 3,
