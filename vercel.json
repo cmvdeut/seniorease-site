@@ -7,6 +7,10 @@
     {
       "path": "/api/facebook-post",
       "schedule": "0 8 * * *"
+    },
+    {
+      "path": "/api/nieuwsbrief-weektip",
+      "schedule": "0 7 * * 1"
     }
   ]
 }
