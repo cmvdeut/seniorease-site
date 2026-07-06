@@ -6,6 +6,8 @@ export const YOUTUBE_VIDEOS = {
   chatgptSenioren: "B4-2r7ks4mg",
   /** Oplichting herkennen — 5 waarschuwingstekens (5 jul 2026). */
   oplichtingHerkennen: "uprzSjDAeUg",
+  /** Betere foto's maken — NotebookLM instructievideo (6 jul 2026). */
+  fotosMaken: "4yEKPemRm6U",
 } as const;
 
 /** YouTube-playlist-ID's voor links op de website. */

@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
 export const metadata = {
   title: "Betere foto's maken met uw telefoon – 5 tips voor senioren",
@@ -9,8 +10,8 @@ const tips = [
   {
     num: 1,
     icon: "☀️",
-    titel: "Ga naar het licht toe",
-    kort: "Licht = beste vriend",
+    titel: "Licht op uw onderwerp",
+    kort: "Licht op wat u fotografeert",
     uitleg: "De belangrijkste fototip ooit: zorg dat het licht op uw onderwerp schijnt, niet op de lens van uw telefoon. Staat u binnen? Ga dan bij een raam staan. Buiten? Zorg dat de zon achter u is.",
     doehet: "Sta bij een raam en fotografeer iemand die voor u staat. Verschil is enorm!",
     fout: "Foto tegen het raam in nemen — dan ziet u alleen een silhouet.",
@@ -129,6 +130,43 @@ export default function FotosMakenPage() {
       {/* Content */}
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
+
+          {/* Video */}
+          <section className="my-8 mx-4 sm:mx-0">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEOS.fotosMaken}`}
+                title="Betere foto's maken met uw telefoon – 5 tips voor senioren"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-center text-gray-600 mt-4 text-senior-base">
+              Bekijk de uitlegvideo (±10 minuten) of lees verder voor de tips op deze pagina
+            </p>
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+              <div className="text-4xl" aria-hidden="true">▶️</div>
+              <div>
+                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Meer instructievideo&apos;s</h3>
+                <p className="text-senior-base text-gray-600 mb-4">
+                  Rustige uitleg op YouTube — in uw eigen tempo.
+                </p>
+                <a
+                  href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.tips)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-neutral-cream"
+                >
+                  Bekijk de Tips &amp; Tricks-playlist
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </section>
 
           {/* Intro */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
