@@ -7,6 +7,9 @@ export interface NieuwsbriefTip {
   bullets: string[];
   ctaLabel: string;
   ctaUrl: string;
+  /** Optioneel: link naar instructievideo op YouTube */
+  videoUrl?: string;
+  videoLabel?: string;
 }
 
 /** Eerste verzenddag: maandag 7 juli 2026, 09:00 NL-tijd */
@@ -45,18 +48,20 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
   },
   {
     slug: 'phishing-herkennen',
-    subject: 'Tip van de week: herkent u een nep e-mail?',
-    previewText: 'Zo beschermt u zich tegen oplichting per e-mail of app.',
-    title: 'Phishing herkennen',
+    subject: 'Tip van de week: herkent u een nepbericht?',
+    previewText: 'Zo beschermt u zich tegen oplichting per telefoon of app.',
+    title: 'Oplichting herkennen',
     intro:
-      'Soms krijgt u een e-mail of appje dat van uw bank lijkt te komen, maar dat is het niet. Dit heet phishing.',
+      'Soms krijgt u een bericht dat van uw bank lijkt te komen, maar dat is het niet. Dit heet phishing. Wie de signalen kent, trapt er minder snel in.',
     bullets: [
-      'Klik nooit direct op links in onverwachte e-mails',
-      'Banken vragen nooit per e-mail om uw pincode',
+      'Let op: wordt u onder druk gezet om snel te handelen?',
+      'Banken vragen nooit per SMS of WhatsApp om uw pincode',
       'Twijfelt u? Bel de organisatie via het nummer op hun officiële website',
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
-    ctaUrl: 'https://www.seniorease.nl/digitale-hulp/phishing-herkennen',
+    ctaUrl: 'https://www.seniorease.nl/uitleg/veiligheid',
+    videoUrl: 'https://www.youtube.com/watch?v=uprzSjDAeUg',
+    videoLabel: 'Bekijk de uitlegvideo (±1 minuut)',
   },
   {
     slug: 'wifi-werkt-niet-oplossen',
@@ -102,6 +107,42 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
     ctaUrl: 'https://www.seniorease.nl/uitleg/google-maps',
+    videoUrl: 'https://www.youtube.com/watch?v=QYKisb9t5gg',
+    videoLabel: 'Bekijk de uitlegvideo (±7 minuten)',
+  },
+  {
+    slug: 'fotos-maken-telefoon',
+    subject: 'Tip van de week: mooiere foto\'s met uw telefoon',
+    previewText: 'Eén simpele tip voor scherpere, helderdere foto\'s.',
+    title: 'Foto\'s maken — licht op uw onderwerp',
+    intro:
+      'Veel foto\'s zijn wazig of te donker. Vaak komt dat door iets kleins dat u kunt oplossen. De belangrijkste tip: zorg dat het licht op wat u fotografeert schijnt.',
+    bullets: [
+      'Sta bij een raam — fotografeer met het licht vóór u, niet achter u',
+      'Houd de telefoon stil: twee handen, ellebogen dicht bij uw lichaam',
+      'Tik op het scherm waar u scherp wilt hebben, vóór u de foto maakt',
+    ],
+    ctaLabel: 'Bekijk alle 5 fototips',
+    ctaUrl: 'https://www.seniorease.nl/uitleg/fotos-maken',
+    videoUrl: 'https://www.youtube.com/watch?v=4yEKPemRm6U',
+    videoLabel: 'Bekijk de uitlegvideo op YouTube',
+  },
+  {
+    slug: 'videobellen-whatsapp',
+    subject: 'Tip van de week: uw kleinkind zien terwijl u belt',
+    previewText: 'Videobellen via WhatsApp — rustig uitgelegd.',
+    title: 'Videobellen met familie',
+    intro:
+      'Bij videobellen ziet u de ander op uw scherm — handig als familie ver weg woont. Via WhatsApp is het gratis, zolang u wifi heeft.',
+    bullets: [
+      'Open WhatsApp en tik op het gesprek met de persoon die u wilt bellen',
+      'Tik rechtsboven op het camera-icoontje',
+      'Zit bij een raam voor goed licht op uw gezicht',
+    ],
+    ctaLabel: 'Bekijk de volledige uitleg',
+    ctaUrl: 'https://www.seniorease.nl/uitleg/videobellen',
+    videoUrl: 'https://www.youtube.com/watch?v=hxIVYqSSflU',
+    videoLabel: 'Bekijk de uitlegvideo op YouTube',
   },
   {
     slug: 'veilig-wachtwoord-maken',
@@ -180,6 +221,7 @@ export function buildNieuwsbriefTipHtml(tip: NieuwsbriefTip): string {
 <p style="margin:0 0 20px;">${tip.intro}</p>
 <p style="margin:0 0 8px;font-weight:bold;">Drie handige stappen:</p>
 <ol style="margin:0 0 24px;padding-left:24px;">${bullets}</ol>
+${tip.videoUrl ? `<p style="margin:0 0 20px;text-align:center;"><a href="${tip.videoUrl}" style="color:#8B5E3C;font-size:17px;font-weight:bold;">▶ ${tip.videoLabel ?? 'Bekijk de uitlegvideo'}</a></p>` : ''}
 <p style="margin:0 0 24px;text-align:center;">
 <a href="${tip.ctaUrl}" style="display:inline-block;background:#8B5E3C;color:#fff;text-decoration:none;padding:14px 28px;border-radius:10px;font-size:18px;font-weight:bold;">${tip.ctaLabel}</a>
 </p>
