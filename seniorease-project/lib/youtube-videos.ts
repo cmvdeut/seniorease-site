@@ -10,6 +10,8 @@ export const YOUTUBE_VIDEOS = {
   fotosMaken: "4yEKPemRm6U",
   /** Videobellen via WhatsApp — NotebookLM instructievideo (6 jul 2026). */
   videobellen: "hxIVYqSSflU",
+  /** Google Maps — NotebookLM instructievideo (6 jul 2026). */
+  googleMaps: "QYKisb9t5gg",
 } as const;
 
 /** YouTube-playlist-ID's voor links op de website. */
