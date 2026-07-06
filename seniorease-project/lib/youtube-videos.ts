@@ -8,6 +8,8 @@ export const YOUTUBE_VIDEOS = {
   oplichtingHerkennen: "uprzSjDAeUg",
   /** Betere foto's maken — NotebookLM instructievideo (6 jul 2026). */
   fotosMaken: "4yEKPemRm6U",
+  /** Videobellen via WhatsApp — NotebookLM instructievideo (6 jul 2026). */
+  videobellen: "hxIVYqSSflU",
 } as const;
 
 /** YouTube-playlist-ID's voor links op de website. */
