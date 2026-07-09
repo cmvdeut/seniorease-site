@@ -7,10 +7,10 @@ export const DEFAULT_DESCRIPTION =
   'SeniorEase helpt senioren met technologie — gratis tools én rustige stap-voor-stap uitleg over smartphone, computer en internet. In gewone taal, in uw eigen tempo.';
 
 export const DEFAULT_OG_IMAGE = {
-  url: '/images/senior-vrouw-laptop.png',
+  url: '/opengraph-image',
   width: 1200,
-  height: 800,
-  alt: 'SeniorEase — digitale hulp voor senioren',
+  height: 630,
+  alt: 'SeniorEase — Digitale hulp voor senioren',
 };
 
 type PageMetadataOptions = {
@@ -55,7 +55,7 @@ export function buildPageMetadata({
       siteName: SITE_NAME,
       title: `${title} | ${SITE_NAME}`,
       description,
-      images: [{ url: ogImage, width: 1200, height: 800, alt: title }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
     },
     twitter: {
       card: 'summary_large_image',
