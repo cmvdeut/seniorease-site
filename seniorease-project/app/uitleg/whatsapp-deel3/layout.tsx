@@ -1,3 +1,4 @@
+import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
@@ -9,5 +10,10 @@ export const metadata = buildPageMetadata({
 });
 
 export default function WhatsappDeel3Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return (
+    <>
+      <UitlegJsonLd slug="whatsapp-deel3" />
+      {children}
+    </>
+  );
 }

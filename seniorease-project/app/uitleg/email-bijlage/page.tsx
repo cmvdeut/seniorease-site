@@ -1,4 +1,5 @@
 import { buildPageMetadata } from '@/lib/seo';
+import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -74,6 +75,7 @@ export default function EmailBijlagePage() {
 
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <UitlegJsonLd slug="email-bijlage" />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

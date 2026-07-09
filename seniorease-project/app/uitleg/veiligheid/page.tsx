@@ -1,4 +1,5 @@
 import { buildPageMetadata } from '@/lib/seo';
+import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
@@ -58,6 +59,7 @@ const alarmsignalen = [
 export default function VeiligheidPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <UitlegJsonLd slug="veiligheid" />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

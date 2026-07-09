@@ -1,4 +1,5 @@
 import { buildPageMetadata } from '@/lib/seo';
+import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 
 export const metadata = buildPageMetadata({
@@ -76,6 +77,7 @@ const bewaarmethoden = [
 export default function WachtwoordenPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <UitlegJsonLd slug="wachtwoorden" />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

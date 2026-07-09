@@ -1,4 +1,5 @@
 import { buildPageMetadata } from '@/lib/seo';
+import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 
 export const metadata = buildPageMetadata({
@@ -59,6 +60,7 @@ const stappenIphone = [
 export default function QRCodePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <UitlegJsonLd slug="qr-code" />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

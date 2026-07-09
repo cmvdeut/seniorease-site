@@ -101,6 +101,60 @@ export function buildFAQSchema(
   };
 }
 
+export function buildHowToSchema(
+  name: string,
+  description: string,
+  steps: Array<{ name: string; text: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'HowTo',
+    name,
+    description,
+    step: steps.map((step, index) => ({
+      '@type': 'HowToStep',
+      position: index + 1,
+      name: step.name,
+      text: step.text,
+    })),
+  };
+}
+
+export type UitlegSchemaEntry = {
+  pageName: string;
+  howTo: {
+    name: string;
+    description: string;
+    steps: Array<{ name: string; text: string }>;
+  };
+  faq?: Array<{ question: string; answer: string }>;
+};
+
+export function buildUitlegSchemas(
+  slug: string,
+  entry: UitlegSchemaEntry,
+): Array<Record<string, unknown>> {
+  const path = `/uitleg/${slug}`;
+  const schemas: Array<Record<string, unknown>> = [
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Uitleg', path: '/uitleg' },
+      { name: entry.pageName, path },
+    ]),
+    buildHowToSchema(
+      entry.howTo.name,
+      entry.howTo.description,
+      entry.howTo.steps,
+    ),
+  ];
+
+  if (entry.faq?.length) {
+    schemas.push(buildFAQSchema(entry.faq));
+  }
+
+  return schemas;
+}
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
