@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/wachtwoorden',
   title: "Veilig wachtwoord maken en onthouden – uitleg voor senioren",
   description: "Hoe maakt u een sterk wachtwoord en bewaart u het veilig? Praktische tips zonder ingewikkelde termen, speciaal voor senioren.",
-};
+});
 
 const swakkeVoorbeelden = [
   { ww: "123456", reden: "Te simpel — eerste keuze van hackers" },

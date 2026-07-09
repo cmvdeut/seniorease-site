@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/npo-start" },
-    { "@type": "ListItem", "position": 3, "name": "NPO Start gebruiken", "item": "https://seniorease.nl/uitleg/npo-start" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/npo-start" },
+    { "@type": "ListItem", "position": 3, "name": "NPO Start gebruiken", "item": "https://www.seniorease.nl/uitleg/npo-start" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/npo-start',
   title: "NPO Start gebruiken op tablet of smartphone – uitleg voor senioren",
-  description: "Hoe kijkt u gratis Nederlandse programma's terug via NPO Start? Stap-voor-stap uitleg voor senioren. Journaal, talkshows, documentaires en meer.",
-};
+  description: "Hoe kijkt u gratis Nederlandse programma",
+});
 
 export default function NpoStartPage() {
   return (

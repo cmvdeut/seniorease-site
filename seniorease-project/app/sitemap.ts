@@ -1,409 +1,87 @@
-import { MetadataRoute } from 'next'
-import { artikelen } from './digitale-hulp/artikelen'
+import { MetadataRoute } from 'next';
+import { artikelen } from './digitale-hulp/artikelen';
+import { SITE_URL } from '@/lib/seo';
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.seniorease.nl'
-
-  const artikelUrls: MetadataRoute.Sitemap = artikelen.map((artikel) => ({
-    url: `${baseUrl}/digitale-hulp/${artikel.slug}`,
+function entry(
+  path: string,
+  priority: number,
+  changeFrequency: MetadataRoute.Sitemap[number]['changeFrequency'] = 'monthly',
+): MetadataRoute.Sitemap[number] {
+  return {
+    url: `${SITE_URL}${path}`,
     lastModified: new Date(),
-    changeFrequency: 'monthly',
-    priority: 0.8,
-  }))
-  
-  return [
-    ...artikelUrls,
-    {
-      url: baseUrl,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 1,
-    },
-    {
-      url: `${baseUrl}/bibliotheek`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/rekenmachine`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/kalender`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/klok`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/puzzels`,
-      lastModified: new Date(),
-      changeFrequency: 'daily',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/afvinken`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/tools`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/nuttige-links`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/animaties`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/over-ons`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/hulp`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    // Uitleg-pagina's
-    {
-      url: `${baseUrl}/uitleg/whatsapp-basis`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/whatsapp-deel2`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/whatsapp-deel3`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/videobellen`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/veiligheid`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/wachtwoorden`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/fotos-maken`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/fotos-ordenen`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/fotos-naar-computer`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/email-bijlage`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/bestanden-vinden`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/computer-traag`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/screenshot-pc`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/letters-groter-pc`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/programma-installeren`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/digid`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/online-bankieren`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/ebooks`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/muziek-radio`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/qr-code`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/google-maps`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/e-bike`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/hoofdtelefoon`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg/wifi`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/inspreken`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${baseUrl}/uitleg`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    // Reizen cluster
-    {
-      url: `${baseUrl}/uitleg/betalen-ov`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/google-translate`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/9292`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    // Online winkelen cluster
-    {
-      url: `${baseUrl}/uitleg/bol-com`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/boodschappen-bestellen`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/online-retourneren`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    // Video bellen cluster
-    {
-      url: `${baseUrl}/uitleg/zoom`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/facetime`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    // Streaming & TV cluster
-    {
-      url: `${baseUrl}/uitleg/netflix`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/npo-start`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/uitleg/youtube-tv`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    // AI-pagina's
-    {
-      url: `${baseUrl}/wat-is-ai`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/wat-is-ai/chatgpt`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/wat-is-ai/uitproberen`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/wat-is-ai/prompts`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/wat-is-ai/zo-ziet-het-eruit`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/privacy`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/voorwaarden`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/data-deletion`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/terms`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.3,
-    },
-    {
-      url: `${baseUrl}/download`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/tiktok-download`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.5,
-    },
-    {
-      url: `${baseUrl}/foto-archief`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-    {
-      url: `${baseUrl}/zo-werkt-het`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
-      url: `${baseUrl}/uitlegvideo`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.6,
-    },
-  ]
+    changeFrequency,
+    priority,
+  };
 }
 
+export default function sitemap(): MetadataRoute.Sitemap {
+  const artikelUrls = artikelen.map((artikel) =>
+    entry(`/digitale-hulp/${artikel.slug}`, 0.8),
+  );
 
+  const uitlegSlugs = [
+    'whatsapp-basis', 'whatsapp-deel2', 'whatsapp-deel3', 'videobellen',
+    'veiligheid', 'wachtwoorden', 'fotos-maken', 'fotos-ordenen',
+    'fotos-naar-computer', 'email-bijlage', 'bestanden-vinden',
+    'computer-traag', 'screenshot-pc', 'letters-groter-pc',
+    'programma-installeren', 'digid', 'online-bankieren', 'ebooks',
+    'muziek-radio', 'qr-code', 'google-maps', 'e-bike', 'hoofdtelefoon',
+    'wifi', 'inspreken', 'betalen-ov', 'google-translate', '9292',
+    'bol-com', 'boodschappen-bestellen', 'online-retourneren',
+    'zoom', 'facetime', 'netflix', 'npo-start', 'youtube-tv',
+  ];
+
+  const uitlegUrls = uitlegSlugs.map((slug) => entry(`/uitleg/${slug}`, 0.9));
+
+  const animatieSlugs = [
+    'bibliotheek', 'rekenmachine', 'kalender', 'klok', 'puzzel', 'afvinken',
+  ];
+
+  return [
+    entry('/', 1, 'weekly'),
+    entry('/uitleg', 0.9, 'weekly'),
+    ...uitlegUrls,
+    entry('/digitale-hulp', 0.9, 'weekly'),
+    entry('/digitale-hulp/smartphone', 0.85),
+    entry('/digitale-hulp/computer', 0.85),
+    entry('/digitale-hulp/internet-email', 0.85),
+    entry('/digitale-hulp/veilig-internet', 0.85),
+    entry('/digitale-hulp/ai', 0.85),
+    ...artikelUrls,
+    entry('/wat-is-ai', 0.9),
+    entry('/wat-is-ai/chatgpt', 0.9),
+    entry('/wat-is-ai/uitproberen', 0.6),
+    entry('/wat-is-ai/prompts', 0.6),
+    entry('/wat-is-ai/zo-ziet-het-eruit', 0.6),
+    entry('/bibliotheek', 0.9, 'weekly'),
+    entry('/rekenmachine', 0.8),
+    entry('/kalender', 0.8),
+    entry('/klok', 0.8),
+    entry('/puzzels', 0.7, 'daily'),
+    entry('/afvinken', 0.7),
+    entry('/tools', 0.8),
+    entry('/extras', 0.7),
+    entry('/hobbys', 0.7),
+    entry('/foto-archief', 0.6),
+    entry('/animaties', 0.6),
+    ...animatieSlugs.map((slug) => entry(`/animaties/${slug}`, 0.5)),
+    entry('/contact', 0.6),
+    entry('/over-ons', 0.5, 'yearly'),
+    entry('/hulp', 0.7),
+    entry('/zo-werkt-het', 0.7),
+    entry('/nuttige-links', 0.7),
+    entry('/download', 0.7),
+    entry('/betalen', 0.5),
+    entry('/activeer-licentie', 0.4),
+    entry('/support', 0.5),
+    entry('/gebruik-mijn-bibliotheek', 0.6),
+    entry('/probeer-mijn-bibliotheek', 0.6),
+    entry('/privacy', 0.3, 'yearly'),
+    entry('/voorwaarden', 0.3, 'yearly'),
+    entry('/terms', 0.3, 'yearly'),
+    entry('/data-deletion', 0.3, 'yearly'),
+    entry('/uitlegvideo', 0.6),
+    entry('/tiktok-download', 0.5),
+  ];
+}

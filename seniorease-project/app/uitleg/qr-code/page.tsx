@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/qr-code',
   title: "QR-code scannen met uw telefoon – uitleg voor senioren",
   description: "Wat is een QR-code en hoe scant u hem met uw telefoon? Werkt op Android én iPhone. Eenvoudige uitleg speciaal voor senioren.",
-};
+});
 
 const voorbeelden = [
   { icon: "🍽️", tekst: "Het menu in een restaurant" },

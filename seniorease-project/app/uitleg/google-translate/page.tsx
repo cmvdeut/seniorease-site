@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/google-translate" },
-    { "@type": "ListItem", "position": 3, "name": "Google Translate gebruiken", "item": "https://seniorease.nl/uitleg/google-translate" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/google-translate" },
+    { "@type": "ListItem", "position": 3, "name": "Google Translate gebruiken", "item": "https://www.seniorease.nl/uitleg/google-translate" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/google-translate',
   title: "Google Translate gebruiken – vertalen op reis, uitleg voor senioren",
   description: "Hoe vertaalt u tekst, borden en menukaarten met Google Translate? Stap-voor-stap uitleg voor senioren. Handig op vakantie in het buitenland.",
-};
+});
 
 export default function GoogleTranslatePage() {
   return (

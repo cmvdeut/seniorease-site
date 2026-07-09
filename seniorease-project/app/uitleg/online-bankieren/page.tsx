@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'Veilig online bankieren — uitleg voor senioren',
-  description:
-    'Hoe bankiert u veilig via internet? Inloggen, iDEAL betalen en verdachte afschrijvingen herkennen. Rustige uitleg voor senioren.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/online-bankieren',
+  title: "Veilig online bankieren — uitleg voor senioren",
+  description: "Hoe bankiert u veilig via internet? Inloggen, iDEAL betalen en verdachte afschrijvingen herkennen. Rustige uitleg voor senioren.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

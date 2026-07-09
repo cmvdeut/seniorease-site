@@ -1,10 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/videobellen',
   title: "Videobellen via WhatsApp – stap voor stap uitleg voor senioren",
   description: "Uw kleinkind zien terwijl u belt! Gratis videobellen via WhatsApp. Stap-voor-stap uitleg voor senioren, ook voor beginners.",
-};
+});
 
 export default function VideoBellenPage() {
   return (

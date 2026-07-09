@@ -339,7 +339,7 @@ export default function BibliotheekPage() {
 
       emailBody += '\n---\n';
       emailBody += 'Gegenereerd met Mijn Bibliotheek\n';
-      emailBody += 'https://seniorease.nl';
+      emailBody += 'https://www.seniorease.nl';
 
       // Maak ook een CSV attachment ready
       const headers = ['Type', 'Titel', 'Auteur', 'Barcode', 'Datum toegevoegd', 'Notities'];

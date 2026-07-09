@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Phishing herkennen, oplichting voorkomen, veilig wachtwoord maken. Bescherm uzelf online. Stap voor stap voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp/veilig-internet",
+    canonical: "https://www.seniorease.nl/digitale-hulp/veilig-internet",
   },
 };
 

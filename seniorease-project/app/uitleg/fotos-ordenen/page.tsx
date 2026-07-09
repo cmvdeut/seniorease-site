@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
-  title: "Foto's ordenen op uw telefoon – albums maken voor senioren",
-  description: "Hoe maakt u albums, zoekt u in uw galerij en vindt u foto's terug? Favorieten apart zetten en delen met familie. Uitleg voor Android én iPhone.",
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/fotos-ordenen',
+  title: "Foto",
+  description: "Hoe maakt u albums, zoekt u in uw galerij en vindt u foto",
+});
 
 export default function FotosOrdenenPage() {
   return (

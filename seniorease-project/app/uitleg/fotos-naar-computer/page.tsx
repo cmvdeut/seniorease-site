@@ -1,3 +1,4 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -5,9 +6,9 @@ const breadcrumbSchema = {
   '@context': 'https://schema.org',
   '@type': 'BreadcrumbList',
   itemListElement: [
-    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://seniorease.nl' },
-    { '@type': 'ListItem', position: 2, name: 'Uitleg', item: 'https://seniorease.nl/uitleg' },
-    { '@type': 'ListItem', position: 3, name: "Foto's naar computer", item: 'https://seniorease.nl/uitleg/fotos-naar-computer' },
+    { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.seniorease.nl' },
+    { '@type': 'ListItem', position: 2, name: 'Uitleg', item: 'https://www.seniorease.nl/uitleg' },
+    { '@type': 'ListItem', position: 3, name: "Foto's naar computer", item: 'https://www.seniorease.nl/uitleg/fotos-naar-computer' },
   ],
 };
 
@@ -23,11 +24,11 @@ const howToSchema = {
   ],
 };
 
-export const metadata = {
-  title: "Foto's van telefoon naar computer — stap voor stap uitleg voor senioren",
-  description:
-    "Hoe zet u foto's van uw smartphone over naar uw pc? E-mail, WhatsApp, USB-kabel, Google Foto's of iCloud — rustig uitgelegd, zonder moeilijke termen.",
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/fotos-naar-computer',
+  title: "Foto",
+  description: "Hoe zet u foto",
+});
 
 type Stap = {
   stap: string;

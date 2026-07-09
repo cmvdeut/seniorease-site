@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/9292" },
-    { "@type": "ListItem", "position": 3, "name": "9292 OV-app gebruiken", "item": "https://seniorease.nl/uitleg/9292" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/9292" },
+    { "@type": "ListItem", "position": 3, "name": "9292 OV-app gebruiken", "item": "https://www.seniorease.nl/uitleg/9292" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/9292',
   title: "9292 OV-app gebruiken – reizen met het openbaar vervoer, uitleg senioren",
   description: "Hoe plant u een trein- of busreis met de 9292 app? Stap-voor-stap uitleg voor senioren. Bus, trein, tram en metro in heel Nederland.",
-};
+});
 
 export default function OvAppPage() {
   return (

@@ -1,17 +1,19 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/wifi',
   title: "WiFi instellen op smartphone en tablet – stap voor stap uitleg voor senioren",
   description: "Hoe verbindt u uw smartphone of tablet met het wifi-netwerk thuis? Stap-voor-stap uitleg voor senioren, inclusief wachtwoord invullen en problemen oplossen.",
-};
+});
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/wifi" },
-    { "@type": "ListItem", "position": 3, "name": "WiFi instellen", "item": "https://seniorease.nl/uitleg/wifi" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/wifi" },
+    { "@type": "ListItem", "position": 3, "name": "WiFi instellen", "item": "https://www.seniorease.nl/uitleg/wifi" },
   ],
 };
 

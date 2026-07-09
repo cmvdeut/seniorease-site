@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'E-mail bijlage openen en opslaan — uitleg voor senioren',
-  description:
-    'Hoe opent u een bijlage in een e-mail op uw computer? En waar slaat u die foto of brief veilig op? Stap voor stap uitgelegd.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/email-bijlage',
+  title: "E-mail bijlage openen en opslaan — uitleg voor senioren",
+  description: "Hoe opent u een bijlage in een e-mail op uw computer? En waar slaat u die foto of brief veilig op? Stap voor stap uitgelegd.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

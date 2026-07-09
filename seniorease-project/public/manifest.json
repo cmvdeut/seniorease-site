@@ -1,7 +1,7 @@
 {
-  "name": "SeniorEase - Mijn Bibliotheek",
-  "short_name": "Bibliotheek",
-  "description": "Beheer uw boeken en muziek collectie. Scan barcodes of voer handmatig in.",
+  "name": "SeniorEase – Digitale hulp voor senioren",
+  "short_name": "SeniorEase",
+  "description": "Digitale hulp voor senioren — gratis tools en stap-voor-stap uitleg over smartphone, computer en internet.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F5EEE6",

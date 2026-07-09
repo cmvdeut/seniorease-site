@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/muziek-radio',
   title: "Spotify uitleg voor senioren – muziek en radio op uw telefoon",
   description: "Hoe luistert u naar muziek via Spotify of DAB+ radio? Wat betekent streamen? Duidelijke uitleg stap voor stap, speciaal voor senioren.",
-};
+});
 
 export default function MuziekRadioPage() {
   return (

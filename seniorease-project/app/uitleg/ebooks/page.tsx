@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/ebooks',
   title: "E-books lezen voor senioren – gratis lenen via de bibliotheek",
   description: "Gratis digitale boeken lenen met uw bibliotheekpas via de Libby-app. Letters zo groot als u wilt. Stap-voor-stap uitleg.",
-};
+});
 
 export default function EbooksPage() {
   return (

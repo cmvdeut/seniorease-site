@@ -1,25 +1,42 @@
 # robots.txt voor SeniorEase.nl
-# https://seniorease.nl/robots.txt
+# https://www.seniorease.nl/robots.txt
 
 User-agent: *
 Allow: /
 
-# Sitemap locatie
+# Sitemap & AI discoverability
 Sitemap: https://www.seniorease.nl/sitemap.xml
 
-# Blokkeer admin/test pagina's (als die er zijn)
+# AI search crawlers — welkom om content te indexeren
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Blokkeer admin/test pagina's
 Disallow: /api/
 Disallow: /test-licentie
 Disallow: /test-stripe
+Disallow: /test-demo
 
-# Toegestaan voor alle zoekmachines
 User-agent: Googlebot
 Allow: /
 
 User-agent: Bingbot
 Allow: /
-
-# Crawl-delay (optioneel, niet nodig voor kleine sites)
-# Crawl-delay: 1
-
-

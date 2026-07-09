@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Uitleg over wifi, e-mail openen, bijlagen en internetproblemen oplossen. Stap voor stap voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp/internet-email",
+    canonical: "https://www.seniorease.nl/digitale-hulp/internet-email",
   },
 };
 

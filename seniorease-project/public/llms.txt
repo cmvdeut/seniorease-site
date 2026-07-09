@@ -1,0 +1,70 @@
+# SeniorEase — Digitale hulp voor senioren
+# https://www.seniorease.nl
+
+> SeniorEase helpt senioren met technologie in gewone taal. Gratis digitale tools én rustige stap-voor-stap uitleg over smartphone, computer en internet — in uw eigen tempo.
+
+## Over SeniorEase
+
+SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouderen en senioren. De content is geschreven zonder jargon, met grote teksten en duidelijke stappen. Geen account nodig voor de meeste content.
+
+## Belangrijkste content
+
+- Homepage: https://www.seniorease.nl/
+- Alle uitleg (36+ handleidingen): https://www.seniorease.nl/uitleg
+- Digitale hulp artikelen: https://www.seniorease.nl/digitale-hulp
+- Wat is AI (ChatGPT uitleg voor senioren): https://www.seniorease.nl/wat-is-ai
+- Over ons: https://www.seniorease.nl/over-ons
+- Hulp & FAQ: https://www.seniorease.nl/hulp
+
+## Populaire onderwerpen
+
+### Smartphone
+- WhatsApp basis: https://www.seniorease.nl/uitleg/whatsapp-basis
+- Google Maps: https://www.seniorease.nl/uitleg/google-maps
+- WiFi instellen: https://www.seniorease.nl/uitleg/wifi
+- Videobellen: https://www.seniorease.nl/uitleg/videobellen
+- Foto's maken: https://www.seniorease.nl/uitleg/fotos-maken
+
+### Veiligheid
+- Oplichting herkennen: https://www.seniorease.nl/uitleg/veiligheid
+- Wachtwoorden: https://www.seniorease.nl/uitleg/wachtwoorden
+- DigiD: https://www.seniorease.nl/uitleg/digid
+
+### Online winkelen
+- Bol.com: https://www.seniorease.nl/uitleg/bol-com
+- Boodschappen bestellen: https://www.seniorease.nl/uitleg/boodschappen-bestellen
+
+### Streaming & TV
+- Netflix: https://www.seniorease.nl/uitleg/netflix
+- NPO Start: https://www.seniorease.nl/uitleg/npo-start
+- YouTube op TV: https://www.seniorease.nl/uitleg/youtube-tv
+
+### Reizen
+- 9292 (OV): https://www.seniorease.nl/uitleg/9292
+- OV betalen: https://www.seniorease.nl/uitleg/betalen-ov
+- Google Translate: https://www.seniorease.nl/uitleg/google-translate
+
+## Gratis tools
+
+- Mijn Bibliotheek (boeken bijhouden): https://www.seniorease.nl/bibliotheek
+- Rekenmachine: https://www.seniorease.nl/rekenmachine
+- Kalender: https://www.seniorease.nl/kalender
+- Grote klok: https://www.seniorease.nl/klok
+- Puzzels: https://www.seniorease.nl/puzzels
+
+## Citeren
+
+Bij het citeren of samenvatten van SeniorEase content, verwijs naar de specifieke pagina-URL als bron. Voorbeeld: "Volgens SeniorEase (seniorease.nl/uitleg/digid)..."
+
+## Contact
+
+- E-mail: info@seniorease.nl
+- Support: support@seniorease.nl
+- Facebook: https://www.facebook.com/seniorease.nl
+- YouTube: https://www.youtube.com/@SeniorEaseNL
+
+## Technisch
+
+- Sitemap: https://www.seniorease.nl/sitemap.xml
+- Taal: Nederlands (nl-NL)
+- Regio: Nederland

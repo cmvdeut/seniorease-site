@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/online-retourneren" },
-    { "@type": "ListItem", "position": 3, "name": "Online retourneren", "item": "https://seniorease.nl/uitleg/online-retourneren" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/online-retourneren" },
+    { "@type": "ListItem", "position": 3, "name": "Online retourneren", "item": "https://www.seniorease.nl/uitleg/online-retourneren" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/online-retourneren',
   title: "Online bestelling terugsturen – uitleg retourneren voor senioren",
   description: "Hoe stuurt u een online bestelling terug? Stap-voor-stap uitleg voor senioren: retourlabel aanvragen, inpakken en insturen bij Bol.com en andere webwinkels.",
-};
+});
 
 export default function OnlineRetournerenPage() {
   return (

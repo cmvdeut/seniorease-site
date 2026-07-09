@@ -6,7 +6,7 @@ export const metadata = {
   description:
     "Eenvoudige uitleg en tips voor senioren: telefoon sneller maken, WhatsApp foto's opslaan, phishing herkennen, e-mail en apps. Hulp bij telefoon en computer.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp",
+    canonical: "https://www.seniorease.nl/digitale-hulp",
   },
 };
 

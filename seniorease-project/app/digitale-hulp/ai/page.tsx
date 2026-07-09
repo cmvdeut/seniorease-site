@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Wat is AI, hoe gebruikt u ChatGPT en hoe kunt u AI veilig inzetten? Uitleg voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp/ai",
+    canonical: "https://www.seniorease.nl/digitale-hulp/ai",
   },
 };
 

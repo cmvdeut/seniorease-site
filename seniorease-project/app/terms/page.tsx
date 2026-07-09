@@ -59,7 +59,7 @@ export default function TermsPage() {
               </p>
               <p className="text-senior-base text-gray-700 mb-6">
                 <Link href="/privacy" className="text-primary hover:underline">
-                  https://seniorease.nl/privacy
+                  https://www.seniorease.nl/privacy
                 </Link>
               </p>
 

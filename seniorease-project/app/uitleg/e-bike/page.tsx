@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/e-bike',
   title: "E-bike apps voor senioren – routes plannen en ritten bijhouden",
   description: "Handige apps voor uw elektrische fiets: routes plannen via knooppunten, uw rit bijhouden en de accu in de gaten houden. Uitleg voor senioren.",
-};
+});
 
 const routeApps = [
   {

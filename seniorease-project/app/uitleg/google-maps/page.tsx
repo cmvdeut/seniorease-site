@@ -1,11 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 import { MapsAppGuide } from './MapsAppGuide';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/google-maps',
   title: "Google Maps uitleg voor senioren – route en adres zoeken",
   description: "Hoe gebruikt u Google Maps op uw telefoon? Adres zoeken, route berekenen en uw locatie bekijken. Stap-voor-stap uitleg voor senioren.",
-};
+});
 
 export default function GoogleMapsPage() {
   return (

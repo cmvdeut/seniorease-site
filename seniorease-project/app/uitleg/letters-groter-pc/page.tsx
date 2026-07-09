@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'Letters groter maken op uw computer — uitleg voor senioren',
-  description:
-    'Tekst te klein op uw pc of laptop? Zo zet u grotere letters aan in Windows, Mac en in uw browser. Stap voor stap voor senioren.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/letters-groter-pc',
+  title: "Letters groter maken op uw computer — uitleg voor senioren",
+  description: "Tekst te klein op uw pc of laptop? Zo zet u grotere letters aan in Windows, Mac en in uw browser. Stap voor stap voor senioren.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

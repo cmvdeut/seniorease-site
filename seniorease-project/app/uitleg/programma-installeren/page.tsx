@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'Programma installeren op uw computer — uitleg voor senioren',
-  description:
-    'Hoe installeert u veilig een programma op Windows of Mac? Microsoft Store, officiële website en waar u op moet letten. Stap voor stap.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/programma-installeren',
+  title: "Programma installeren op uw computer — uitleg voor senioren",
+  description: "Hoe installeert u veilig een programma op Windows of Mac? Microsoft Store, officiële website en waar u op moet letten. Stap voor stap.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

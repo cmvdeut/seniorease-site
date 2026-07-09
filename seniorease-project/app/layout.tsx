@@ -4,6 +4,14 @@ import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lora, Source_Sans_3 } from "next/font/google";
+import JsonLd from "./components/JsonLd";
+import {
+  SITE_URL,
+  DEFAULT_DESCRIPTION,
+  DEFAULT_OG_IMAGE,
+  organizationSchema,
+  websiteSchema,
+} from "@/lib/seo";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -25,20 +33,21 @@ import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 import StickyNav from "./components/StickyNav";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.seniorease.nl'),
+  metadataBase: new URL(SITE_URL),
   title: {
     default: "SeniorEase – Digitale hulp voor senioren",
     template: "%s | SeniorEase"
   },
-  description: "SeniorEase biedt eenvoudige digitale tools speciaal voor senioren. Beheer uw boeken collectie, gebruik handige rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen - technologie zonder gedoe.",
+  description: DEFAULT_DESCRIPTION,
   keywords: [
     "senioren", "ouderen", "digitale hulp", "technologie voor senioren",
+    "stap voor stap uitleg", "WhatsApp uitleg", "DigiD uitleg",
     "bibliotheek app", "boeken beheren", "barcode scanner",
     "eenvoudig", "toegankelijk", "grote teksten", "senior-friendly",
     "rekenmachine", "kalender", "puzzels", "grote klok",
     "Nederland", "Nederlandse app", "gratis app", "mobiele app"
   ],
-  authors: [{ name: "SeniorEase", url: "https://seniorease.nl" }],
+  authors: [{ name: "SeniorEase", url: SITE_URL }],
   creator: "SeniorEase",
   publisher: "SeniorEase",
   manifest: "/manifest.json",
@@ -48,24 +57,17 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "nl_NL",
-    url: "https://www.seniorease.nl",
+    url: SITE_URL,
     siteName: "SeniorEase",
-    title: "SeniorEase - Handige technologie voor senioren",
-    description: "Eenvoudige digitale tools speciaal voor senioren. Bibliotheek, rekenmachine, kalender en meer. Grote teksten, duidelijke knoppen.",
-    images: [
-      {
-        url: "/heart-logo.png",
-        width: 512,
-        height: 512,
-        alt: "SeniorEase logo",
-      },
-    ],
+    title: "SeniorEase – Digitale hulp voor senioren",
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE],
   },
   twitter: {
     card: "summary_large_image",
-    title: "SeniorEase - Handige technologie voor senioren",
-    description: "Eenvoudige digitale tools speciaal voor senioren. Grote teksten, duidelijke knoppen - technologie zonder gedoe.",
-    images: ["/heart-logo.png"],
+    title: "SeniorEase – Digitale hulp voor senioren",
+    description: DEFAULT_DESCRIPTION,
+    images: [DEFAULT_OG_IMAGE.url],
   },
   robots: {
     index: true,
@@ -79,7 +81,11 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: "https://www.seniorease.nl",
+    canonical: SITE_URL,
+    languages: {
+      'nl-NL': SITE_URL,
+      'x-default': SITE_URL,
+    },
   },
   appleWebApp: {
     capable: true,
@@ -113,6 +119,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SeniorEase Bibliotheek" />
       </head>
       <body className="antialiased" style={{ margin: 0 }}>
+        <JsonLd data={[organizationSchema, websiteSchema]} />
         <LanguageProviderWrapper>
           <StickyNav />
           {children}

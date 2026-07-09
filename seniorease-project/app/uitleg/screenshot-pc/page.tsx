@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'Screenshot maken op uw computer — uitleg voor senioren',
-  description:
-    'Hoe maakt u een foto van uw computerscherm (screenshot) op Windows of Mac? Waar vindt u die foto terug? Stap voor stap uitgelegd.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/screenshot-pc',
+  title: "Screenshot maken op uw computer — uitleg voor senioren",
+  description: "Hoe maakt u een foto van uw computerscherm (screenshot) op Windows of Mac? Waar vindt u die foto terug? Stap voor stap uitgelegd.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

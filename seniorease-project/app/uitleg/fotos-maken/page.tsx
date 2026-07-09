@@ -1,10 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
-export const metadata = {
-  title: "Betere foto's maken met uw telefoon – 5 tips voor senioren",
-  description: "Mooiere foto's maken met uw smartphone? Met 5 eenvoudige tips lukt het meteen. Ook: selfies maken. Uitleg speciaal voor senioren.",
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/fotos-maken',
+  title: "Betere foto",
+  description: "Mooiere foto",
+});
 
 const tips = [
   {

@@ -1,9 +1,11 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/hoofdtelefoon',
   title: "Draadloze hoofdtelefoon voor senioren – wat is handig en hoe werkt het?",
   description: "Draadloos muziek luisteren of bellen zonder kabels. Uitleg over draadloze hoofdtelefoons en oortjes voor senioren, met tips over wat u moet weten.",
-};
+});
 
 export default function HoofdtelefoonPage() {
   return (

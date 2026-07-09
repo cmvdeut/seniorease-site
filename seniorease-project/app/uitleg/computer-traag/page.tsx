@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'Computer traag of vastgelopen — wat kunt u doen?',
-  description:
-    'Uw computer reageert niet meer of wordt steeds trager? Rustige stappen: programma\'s sluiten, herstarten en opslag opruimen. Uitleg voor senioren.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/computer-traag',
+  title: "Computer traag of vastgelopen — wat kunt u doen?",
+  description: "Uw computer reageert niet meer of wordt steeds trager? Rustige stappen: programma\\",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

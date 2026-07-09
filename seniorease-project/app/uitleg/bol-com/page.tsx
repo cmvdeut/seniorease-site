@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/bol-com" },
-    { "@type": "ListItem", "position": 3, "name": "Bestellen bij Bol.com", "item": "https://seniorease.nl/uitleg/bol-com" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/bol-com" },
+    { "@type": "ListItem", "position": 3, "name": "Bestellen bij Bol.com", "item": "https://www.seniorease.nl/uitleg/bol-com" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/bol-com',
   title: "Bestellen bij Bol.com – uitleg voor senioren stap voor stap",
   description: "Hoe bestelt u veilig iets bij Bol.com? Stap-voor-stap uitleg voor senioren: zoeken, in winkelmandje leggen, betalen met iDEAL en bezorging thuis.",
-};
+});
 
 export default function BolComPage() {
   return (

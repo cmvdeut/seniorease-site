@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Uitleg over WhatsApp, telefoon sneller maken, letters groter zetten en QR-code scannen. Stap voor stap voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp/smartphone",
+    canonical: "https://www.seniorease.nl/digitale-hulp/smartphone",
   },
 };
 

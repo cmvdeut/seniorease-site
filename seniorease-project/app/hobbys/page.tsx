@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Apps en tips voor muziek, foto's, e-books en fietsen. Ontdek uitleg voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/hobbys",
+    canonical: "https://www.seniorease.nl/hobbys",
   },
 };
 

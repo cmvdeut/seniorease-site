@@ -1,11 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
-export const metadata = {
-  title: 'DigiD — wat is het en hoe werkt het? Uitleg voor senioren',
-  description:
-    'Wat is DigiD, hoe vraagt u het aan en hoe logt u veilig in bij de overheid? Rustige uitleg zonder moeilijke termen.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg/digid',
+  title: "DigiD — wat is het en hoe werkt het? Uitleg voor senioren",
+  description: "Wat is DigiD, hoe vraagt u het aan en hoe logt u veilig in bij de overheid? Rustige uitleg zonder moeilijke termen.",
+});
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
 

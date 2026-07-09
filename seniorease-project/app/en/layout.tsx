@@ -1,17 +1,17 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://seniorease.nl'),
+  metadataBase: new URL('https://www.seniorease.nl'),
   title: {
     default: "SeniorEase - Handy technology for seniors",
     template: "%s | SeniorEase"
   },
   description: "SeniorEase offers simple digital tools specially designed for seniors. Manage your book collection, use handy calculator, calendar and more. Large texts, clear buttons - technology without hassle.",
   alternates: {
-    canonical: "https://seniorease.nl/en",
+    canonical: "https://www.seniorease.nl/en",
     languages: {
-      'en': 'https://seniorease.nl/en',
-      'nl': 'https://seniorease.nl',
+      'en': 'https://www.seniorease.nl/en',
+      'nl': 'https://www.seniorease.nl',
     },
   },
 };

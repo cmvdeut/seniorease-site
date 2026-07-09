@@ -7,25 +7,15 @@ import {
 } from 'lucide-react';
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import NieuwsbriefBlok from './components/NieuwsbriefBlok';
+import JsonLd from './components/JsonLd';
+import { webApplicationSchema } from '@/lib/seo';
 
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL';
 
 export default function Home() {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "SeniorEase",
-    "description": "Digitale hulp voor senioren — simpel uitgelegd.",
-    "url": "https://seniorease.nl",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Web, Android, iOS",
-    "audience": { "@type": "Audience", "audienceType": "Senioren, Ouderen" },
-  };
-
   return (
     <main className="min-h-screen" style={{ background: '#F5EEE6' }}>
-      <script type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }} />
+      <JsonLd data={webApplicationSchema} />
 
       {/* ════════════════════════════════════════
           HERO
@@ -35,7 +25,7 @@ export default function Home() {
         <div aria-hidden className="absolute top-0 right-0 hidden lg:block" style={{ width: '58%', height: '85%', opacity: 0.85 }}>
           <Image
             src="/images/senior-vrouw-laptop.png"
-            alt=""
+            alt="Senior die rustig aan een laptop werkt — digitale hulp voor senioren"
             fill
             className="object-cover"
             style={{

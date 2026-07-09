@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/boodschappen-bestellen" },
-    { "@type": "ListItem", "position": 3, "name": "Online boodschappen bestellen", "item": "https://seniorease.nl/uitleg/boodschappen-bestellen" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/boodschappen-bestellen" },
+    { "@type": "ListItem", "position": 3, "name": "Online boodschappen bestellen", "item": "https://www.seniorease.nl/uitleg/boodschappen-bestellen" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/boodschappen-bestellen',
   title: "Online boodschappen bestellen – uitleg voor senioren",
   description: "Hoe bestelt u boodschappen online bij Albert Heijn of Jumbo en laat ze thuisbezorgen? Stap-voor-stap uitleg speciaal voor senioren.",
-};
+});
 
 export default function BoodschappenBestellenPage() {
   return (

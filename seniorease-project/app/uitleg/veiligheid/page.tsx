@@ -1,10 +1,12 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/veiligheid',
   title: "Oplichting herkennen via telefoon en internet – uitleg voor senioren",
   description: "Hoe herkent u nep-SMS, WhatsApp-fraude en phishing? 5 duidelijke alarmsignalen en wat u moet doen. Gratis uitleg voor senioren.",
-};
+});
 
 const alarmsignalen = [
   {

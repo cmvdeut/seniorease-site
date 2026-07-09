@@ -1,3 +1,4 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import { StepIllustration } from './StepIllustration';
 
@@ -5,9 +6,9 @@ const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/whatsapp-basis" },
-    { "@type": "ListItem", "position": 3, "name": "WhatsApp – Eerste stappen", "item": "https://seniorease.nl/uitleg/whatsapp-basis" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/whatsapp-basis" },
+    { "@type": "ListItem", "position": 3, "name": "WhatsApp – Eerste stappen", "item": "https://www.seniorease.nl/uitleg/whatsapp-basis" },
   ],
 };
 
@@ -24,10 +25,11 @@ const howToSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/whatsapp-basis',
   title: "WhatsApp uitleg voor senioren – eerste stappen stap voor stap",
-  description: "Leer WhatsApp gebruiken: berichten sturen, foto's versturen en ontvangen. Duidelijke uitleg speciaal voor senioren, ook voor beginners.",
-};
+  description: "Leer WhatsApp gebruiken: berichten sturen, foto",
+});
 
 export default function WhatsAppBasisPage() {
   return (

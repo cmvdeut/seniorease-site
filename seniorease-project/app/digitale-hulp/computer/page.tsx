@@ -5,7 +5,7 @@ export const metadata = {
   description:
     "Uitleg over e-mail bijlagen, bestanden vinden, computer traag oplossen en foto's op de pc. Stap voor stap voor senioren.",
   alternates: {
-    canonical: "https://seniorease.nl/digitale-hulp/computer",
+    canonical: "https://www.seniorease.nl/digitale-hulp/computer",
   },
 };
 

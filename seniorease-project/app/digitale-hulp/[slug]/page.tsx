@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { artikelen, getArtikelBySlug } from '../artikelen';
+import { buildPageMetadata } from '@/lib/seo';
 
 export async function generateStaticParams() {
   return artikelen.map((a) => ({ slug: a.slug }));
@@ -14,13 +15,12 @@ export async function generateMetadata({
   const { slug } = await params;
   const artikel = getArtikelBySlug(slug);
   if (!artikel) return {};
-  return {
+  return buildPageMetadata({
+    path: `/digitale-hulp/${artikel.slug}`,
     title: `${artikel.title} – stap voor stap voor senioren`,
     description: artikel.description,
-    alternates: {
-      canonical: `https://seniorease.nl/digitale-hulp/${artikel.slug}`,
-    },
-  };
+    keywords: artikel.keywords,
+  });
 }
 
 function ArtikelContent({ slug }: { slug: string }) {
@@ -754,9 +754,9 @@ export default async function DigitaleHulpArtikelPage({
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-      { "@type": "ListItem", "position": 2, "name": "Digitale hulp", "item": "https://seniorease.nl/digitale-hulp" },
-      { "@type": "ListItem", "position": 3, "name": artikel.title, "item": `https://seniorease.nl/digitale-hulp/${artikel.slug}` },
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+      { "@type": "ListItem", "position": 2, "name": "Digitale hulp", "item": "https://www.seniorease.nl/digitale-hulp" },
+      { "@type": "ListItem", "position": 3, "name": artikel.title, "item": `https://www.seniorease.nl/digitale-hulp/${artikel.slug}` },
     ],
   };
 

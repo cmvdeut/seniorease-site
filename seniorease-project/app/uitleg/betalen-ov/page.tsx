@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/betalen-ov" },
-    { "@type": "ListItem", "position": 3, "name": "Betalen in het OV", "item": "https://seniorease.nl/uitleg/betalen-ov" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/betalen-ov" },
+    { "@type": "ListItem", "position": 3, "name": "Betalen in het OV", "item": "https://www.seniorease.nl/uitleg/betalen-ov" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/betalen-ov',
   title: "Betalen in het OV met pinpas of OV-chipkaart – uitleg voor senioren",
   description: "Hoe betaalt u in de bus of trein met uw pinpas of OV-chipkaart? Stap-voor-stap uitleg voor senioren: inchecken, uitchecken en wat te doen bij problemen.",
-};
+});
 
 export default function BetalenOvPage() {
   return (

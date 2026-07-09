@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/facetime" },
-    { "@type": "ListItem", "position": 3, "name": "FaceTime gebruiken", "item": "https://seniorease.nl/uitleg/facetime" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/facetime" },
+    { "@type": "ListItem", "position": 3, "name": "FaceTime gebruiken", "item": "https://www.seniorease.nl/uitleg/facetime" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/facetime',
   title: "FaceTime gebruiken op iPhone of iPad – uitleg voor senioren",
   description: "Hoe belt u gratis via FaceTime op uw iPhone of iPad? Stap-voor-stap uitleg voor senioren. Familie en vrienden zien terwijl u belt.",
-};
+});
 
 export default function FaceTimePage() {
   return (

@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/youtube-tv" },
-    { "@type": "ListItem", "position": 3, "name": "YouTube kijken", "item": "https://seniorease.nl/uitleg/youtube-tv" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/youtube-tv" },
+    { "@type": "ListItem", "position": 3, "name": "YouTube kijken", "item": "https://www.seniorease.nl/uitleg/youtube-tv" },
   ],
 };
 
@@ -55,10 +56,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/youtube-tv',
   title: "YouTube kijken op tablet, telefoon, computer of televisie – uitleg voor senioren",
-  description: "Hoe gebruikt u YouTube? Stap-voor-stap uitleg voor senioren. Video's zoeken op telefoon, tablet, computer of tv — met handige tips.",
-};
+  description: "Hoe gebruikt u YouTube? Stap-voor-stap uitleg voor senioren. Video",
+});
 
 export default function YoutubeTvPage() {
   return (

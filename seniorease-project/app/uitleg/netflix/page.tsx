@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/netflix" },
-    { "@type": "ListItem", "position": 3, "name": "Netflix gebruiken", "item": "https://seniorease.nl/uitleg/netflix" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/netflix" },
+    { "@type": "ListItem", "position": 3, "name": "Netflix gebruiken", "item": "https://www.seniorease.nl/uitleg/netflix" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/netflix',
   title: "Netflix gebruiken op tablet of smartphone – uitleg voor senioren",
   description: "Hoe installeert u Netflix en kijkt u films en series? Stap-voor-stap uitleg speciaal voor senioren, inclusief ondertiteling instellen en zoeken naar films.",
-};
+});
 
 export default function NetflixPage() {
   return (

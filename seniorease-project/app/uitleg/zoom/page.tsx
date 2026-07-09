@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/zoom" },
-    { "@type": "ListItem", "position": 3, "name": "Zoom gebruiken", "item": "https://seniorease.nl/uitleg/zoom" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/zoom" },
+    { "@type": "ListItem", "position": 3, "name": "Zoom gebruiken", "item": "https://www.seniorease.nl/uitleg/zoom" },
   ],
 };
 
@@ -54,10 +55,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/zoom',
   title: "Zoom gebruiken voor senioren – videobellen stap voor stap",
   description: "Hoe doet u mee aan een Zoom-vergadering? Eenvoudige uitleg voor senioren: installeren, deelnemen via een link en uw microfoon en camera instellen.",
-};
+});
 
 export default function ZoomPage() {
   return (

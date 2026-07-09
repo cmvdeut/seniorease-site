@@ -1,12 +1,13 @@
+import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
   "@type": "BreadcrumbList",
   "itemListElement": [
-    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seniorease.nl" },
-    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://seniorease.nl/uitleg/inspreken" },
-    { "@type": "ListItem", "position": 3, "name": "Inspreken op uw telefoon", "item": "https://seniorease.nl/uitleg/inspreken" },
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
+    { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/inspreken" },
+    { "@type": "ListItem", "position": 3, "name": "Inspreken op uw telefoon", "item": "https://www.seniorease.nl/uitleg/inspreken" },
   ],
 };
 
@@ -41,10 +42,11 @@ const faqSchema = {
   ],
 };
 
-export const metadata = {
+export const metadata = buildPageMetadata({
+  path: '/uitleg/inspreken',
   title: "Inspreken op uw telefoon – typen zonder toetsenbord, uitleg voor senioren",
   description: "Hoe spreekt u tekst in op uw smartphone? Uitleg voor senioren: spraakbericht via WhatsApp, inspreken via toetsenbord en Google-zoekopdrachten inspreken.",
-};
+});
 
 export default function InsprekenPage() {
   return (
