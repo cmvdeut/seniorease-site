@@ -627,9 +627,9 @@ export default function AfvinkenPage() {
                 <p className="text-senior-sm font-bold text-gray-800 mb-2">📱 Android</p>
                 <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
                   <li>Open <strong>Chrome</strong> en ga naar seniorease.nl/afvinken</li>
-                  <li>Wacht even tot de pagina geladen is, ververs één keer als dat nodig is</li>
-                  <li>Kijk bovenaan: ziet u een <strong>downloadpijltje</strong>? Tik daarop</li>
-                  <li>Zo niet: drie puntjes → <strong>Toevoegen aan homepage</strong> (of beginscherm)</li>
+                  <li>Tik op de <strong>drie puntjes</strong> rechtsboven</li>
+                  <li>Tik op <strong>Installeren en snelkoppelingen</strong></li>
+                  <li>Kies <strong>App installeren</strong> of <strong>Toevoegen aan beginscherm</strong> en bevestig</li>
                 </ol>
               </div>
             </div>

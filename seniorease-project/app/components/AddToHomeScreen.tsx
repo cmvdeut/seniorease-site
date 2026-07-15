@@ -84,9 +84,9 @@ export default function AddToHomeScreen({
         </p>
       ) : !deferredPrompt ? (
         <p className="text-senior-sm text-green-900 text-center leading-relaxed">
-          Tik op de <strong>drie puntjes</strong> rechtsboven in Chrome, of op het{' '}
-          <strong>downloadpijltje</strong> in de adresbalk. Kies{' '}
-          <strong>Toevoegen aan homepage</strong> / beginscherm.
+          Tik op de <strong>drie puntjes</strong> rechtsboven in Chrome.
+          Kies <strong>Installeren en snelkoppelingen</strong>, daarna{' '}
+          <strong>App installeren</strong> of <strong>Toevoegen aan beginscherm</strong>.
         </p>
       ) : null}
     </div>
