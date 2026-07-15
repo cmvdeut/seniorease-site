@@ -31,6 +31,7 @@ const GA_ID = "G-N1TDJB81RW";
 import Link from "next/link";
 import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
 import StickyNav from "./components/StickyNav";
+import RegisterServiceWorker from "./components/RegisterServiceWorker";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -116,9 +117,11 @@ export default function RootLayout({
         <meta name="theme-color" content="#8B5E3C" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="SeniorEase Bibliotheek" />
+        <meta name="apple-mobile-web-app-title" content="SeniorEase" />
+        <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body className="antialiased" style={{ margin: 0 }}>
+        <RegisterServiceWorker />
         <JsonLd data={[organizationSchema, websiteSchema]} />
         <LanguageProviderWrapper>
           <StickyNav />
