@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -74,10 +74,13 @@ const getSuggestions = (listName: string): string[] => {
 export default function AfvinkenPage() {
   const [checklists, setChecklists] = useState<Checklist[]>([]);
   const [selectedListId, setSelectedListId] = useState<string | null>(null);
+  // Alleen voor suggesties filteren — het veld zelf is uncontrolled (voorkomt achterstevoren typen op telefoon)
   const [newItemText, setNewItemText] = useState('');
   const [newListName, setNewListName] = useState('');
   const [showNewListForm, setShowNewListForm] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const itemInputRef = useRef<HTMLInputElement>(null);
+  const listNameInputRef = useRef<HTMLInputElement>(null);
 
   // Load from localStorage on mount
   useEffect(() => {
@@ -123,15 +126,17 @@ export default function AfvinkenPage() {
   const filteredSuggestions = getFilteredSuggestions();
 
   const createNewList = () => {
-    if (newListName.trim()) {
+    const name = (listNameInputRef.current?.value ?? newListName).trim();
+    if (name) {
       const newList: Checklist = {
         id: Date.now().toString(),
-        name: newListName.trim(),
+        name,
         items: []
       };
       setChecklists([...checklists, newList]);
       setSelectedListId(newList.id);
       setNewListName('');
+      if (listNameInputRef.current) listNameInputRef.current.value = '';
       setShowNewListForm(false);
     }
   };
@@ -146,8 +151,15 @@ export default function AfvinkenPage() {
     }
   };
 
+  const clearItemInput = () => {
+    if (itemInputRef.current) itemInputRef.current.value = '';
+    setNewItemText('');
+    setShowSuggestions(false);
+  };
+
   const addItem = (text?: string) => {
-    const itemText = text || newItemText.trim();
+    const typed = (itemInputRef.current?.value ?? newItemText).trim();
+    const itemText = (text ?? typed).trim();
     if (itemText && selectedListId) {
       const newItem: ListItem = {
         id: Date.now().toString(),
@@ -159,8 +171,7 @@ export default function AfvinkenPage() {
           ? { ...list, items: [...list.items, newItem] }
           : list
       ));
-      setNewItemText('');
-      setShowSuggestions(false);
+      clearItemInput();
     }
   };
 
@@ -266,44 +277,64 @@ export default function AfvinkenPage() {
                 {/* New List Button */}
                 {!showNewListForm ? (
                   <button
+                    type="button"
                     onClick={() => setShowNewListForm(true)}
-                    className="w-full bg-primary text-white py-3 rounded-xl text-senior-base font-bold
-                             hover:bg-primary-dark transition-all shadow-lg mb-4 border-4 border-primary"
+                    className="w-full min-h-[52px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
+                             hover:bg-primary-dark active:bg-primary-dark transition-all shadow-lg mb-4 border-4 border-primary
+                             touch-manipulation"
                   >
                     + Nieuw Lijstje
                   </button>
                 ) : (
-                  <div className="mb-4">
+                  <form
+                    className="mb-4"
+                    onSubmit={(e) => {
+                      e.preventDefault();
+                      createNewList();
+                    }}
+                  >
                     <input
+                      ref={listNameInputRef}
                       type="text"
-                      value={newListName}
+                      defaultValue=""
                       onChange={(e) => setNewListName(e.target.value)}
-                      onKeyPress={(e) => e.key === 'Enter' && createNewList()}
                       placeholder="Naam lijstje..."
-                      className="w-full px-4 py-3 rounded-xl border-4 border-primary text-senior-base mb-2
+                      enterKeyHint="done"
+                      autoComplete="off"
+                      autoCorrect="off"
+                      spellCheck={false}
+                      dir="ltr"
+                      className="w-full min-h-[52px] px-4 py-3 rounded-xl border-4 border-primary text-senior-base mb-2
                                focus:outline-none focus:ring-2 focus:ring-primary"
                       autoFocus
                     />
                     <div className="flex gap-2">
                       <button
-                        onClick={createNewList}
-                        className="flex-1 bg-primary text-white py-2 rounded-xl text-senior-sm font-bold
-                                 hover:bg-primary-dark transition-all"
+                        type="button"
+                        onPointerDown={(e) => {
+                          e.preventDefault();
+                          createNewList();
+                        }}
+                        className="flex-1 min-h-[48px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
+                                 hover:bg-primary-dark active:bg-primary-dark transition-all touch-manipulation"
                       >
-                        ✓
+                        ✓ Klaar
                       </button>
                       <button
-                        onClick={() => {
+                        type="button"
+                        onPointerDown={(e) => {
+                          e.preventDefault();
                           setShowNewListForm(false);
                           setNewListName('');
+                          if (listNameInputRef.current) listNameInputRef.current.value = '';
                         }}
-                        className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-xl text-senior-sm font-bold
-                                 hover:bg-gray-400 transition-all"
+                        className="flex-1 min-h-[48px] bg-gray-300 text-gray-700 py-3 rounded-xl text-senior-base font-bold
+                                 hover:bg-gray-400 active:bg-gray-400 transition-all touch-manipulation"
                       >
                         ✕
                       </button>
                     </div>
-                  </div>
+                  </form>
                 )}
 
                 {/* Lists */}
@@ -386,46 +417,55 @@ export default function AfvinkenPage() {
                     </div>
                   </div>
 
-                  {/* Add Item Form */}
+                  {/* Add Item Form — uncontrolled input (geen cursor-reset op telefoon) */}
                   <div className="mb-6 relative">
-                    <div className="flex gap-2">
+                    <form
+                      className="flex flex-col sm:flex-row gap-3"
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        addItem();
+                      }}
+                    >
                       <div className="flex-1 relative">
                         <input
+                          ref={itemInputRef}
                           type="text"
-                          value={newItemText}
+                          defaultValue=""
                           onChange={(e) => {
                             setNewItemText(e.target.value);
                             setShowSuggestions(true);
                           }}
                           onFocus={() => setShowSuggestions(true)}
                           onBlur={() => {
-                            // Delay to allow clicking on suggestions
-                            setTimeout(() => setShowSuggestions(false), 200);
+                            // Longer delay: mobile taps suggestions after keyboard closes
+                            setTimeout(() => setShowSuggestions(false), 400);
                           }}
-                          onKeyPress={(e) => {
-                            if (e.key === 'Enter') {
-                              if (filteredSuggestions.length > 0) {
-                                selectSuggestion(filteredSuggestions[0]);
-                              } else {
-                                addItem();
-                              }
-                            }
-                          }}
+                          enterKeyHint="done"
+                          autoComplete="off"
+                          autoCorrect="off"
+                          autoCapitalize="sentences"
+                          spellCheck={false}
+                          dir="ltr"
+                          inputMode="text"
                           placeholder="Nieuw item toevoegen..."
-                          className="w-full px-4 py-4 rounded-xl border-4 border-primary text-senior-base
+                          className="w-full min-h-[56px] px-4 py-4 rounded-xl border-4 border-primary text-senior-base
                                    focus:outline-none focus:ring-2 focus:ring-primary"
-                          autoFocus
                         />
                         
                         {/* Suggestions Dropdown */}
                         {showSuggestions && filteredSuggestions.length > 0 && (
-                          <div className="absolute z-10 w-full mt-2 bg-white rounded-xl shadow-xl border-4 border-primary overflow-hidden">
-                            <div className="max-h-64 overflow-y-auto">
+                          <div className="absolute z-20 w-full mt-2 bg-white rounded-xl shadow-xl border-4 border-primary overflow-hidden">
+                            <div className="max-h-48 overflow-y-auto overscroll-contain">
                               {filteredSuggestions.map((suggestion, index) => (
                                 <button
-                                  key={index}
-                                  onClick={() => selectSuggestion(suggestion)}
-                                  className="w-full text-left px-4 py-3 text-senior-base hover:bg-primary/10 
+                                  key={suggestion}
+                                  type="button"
+                                  onPointerDown={(e) => {
+                                    // Prevent input blur from swallowing the tap on mobile
+                                    e.preventDefault();
+                                    selectSuggestion(suggestion);
+                                  }}
+                                  className="w-full text-left px-4 py-3.5 min-h-[48px] text-senior-base hover:bg-primary/10 active:bg-primary/20
                                            border-b-2 border-neutral-stone last:border-b-0 transition-colors
                                            font-semibold text-gray-800"
                                 >
@@ -437,18 +477,23 @@ export default function AfvinkenPage() {
                         )}
                       </div>
                       <button
-                        onClick={() => addItem()}
-                        className="bg-primary text-white px-6 py-4 rounded-xl text-senior-lg font-bold
-                                 hover:bg-primary-dark transition-all shadow-lg border-4 border-primary
-                                 min-w-[120px]"
+                        type="button"
+                        onPointerDown={(e) => {
+                          // Prevent blur + layout jump; add exactly what was typed
+                          e.preventDefault();
+                          addItem();
+                        }}
+                        className="w-full sm:w-auto bg-primary text-white px-6 py-4 rounded-xl text-senior-lg font-bold
+                                 hover:bg-primary-dark active:bg-primary-dark transition-all shadow-lg border-4 border-primary
+                                 min-h-[56px] sm:min-w-[140px] touch-manipulation"
                       >
                         + Toevoegen
                       </button>
-                    </div>
+                    </form>
                     
                     {/* Show all suggestions when input is empty */}
                     {newItemText.trim() === '' && showSuggestions && selectedList && (
-                      <div className="mt-2">
+                      <div className="mt-3">
                         <p className="text-senior-xs text-gray-600 mb-2 font-semibold">
                           💡 Suggesties voor "{selectedList.name}":
                         </p>
@@ -458,13 +503,17 @@ export default function AfvinkenPage() {
                               !selectedList.items.some(item => item.text.toLowerCase() === suggestion.toLowerCase())
                             )
                             .slice(0, 10)
-                            .map((suggestion, index) => (
+                            .map((suggestion) => (
                               <button
-                                key={index}
-                                onClick={() => selectSuggestion(suggestion)}
-                                className="px-4 py-2 bg-neutral-cream border-2 border-primary rounded-lg
+                                key={suggestion}
+                                type="button"
+                                onPointerDown={(e) => {
+                                  e.preventDefault();
+                                  selectSuggestion(suggestion);
+                                }}
+                                className="px-4 py-3 min-h-[44px] bg-neutral-cream border-2 border-primary rounded-lg
                                          text-senior-sm font-semibold text-primary hover:bg-primary hover:text-white
-                                         transition-all"
+                                         active:bg-primary active:text-white transition-all touch-manipulation"
                               >
                                 {suggestion}
                               </button>
@@ -572,9 +621,9 @@ export default function AfvinkenPage() {
                 <p className="text-senior-sm font-bold text-gray-800 mb-2">📱 Android</p>
                 <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
                   <li>Open Chrome en ga naar seniorease.nl/afvinken</li>
-                  <li>Tik op de drie puntjes rechtsboven</li>
-                  <li>Tik op &quot;Toevoegen aan beginscherm&quot;</li>
-                  <li>Tik op &quot;Toevoegen&quot;</li>
+                  <li>Kijk bovenaan in de adresbalk: ziet u een <strong>downloadpijltje</strong>? Tik daarop en bevestig</li>
+                  <li>Ziet u dat pijltje niet? Tik dan op de <strong>drie puntjes</strong> rechtsboven</li>
+                  <li>Kies <strong>&quot;Toevoegen aan homepage&quot;</strong> (of &quot;Toevoegen aan beginscherm&quot;) en bevestig</li>
                 </ol>
               </div>
             </div>
