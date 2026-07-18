@@ -33,6 +33,7 @@ const CloseIcon = () => (
 
 const NAV_LINKS = [
   { href: '/digitale-hulp', label: 'Digitale hulp' },
+  { href: '/kijk-en-help', label: 'Kijk & Help' },
   { href: '/uitleg', label: 'Uitleg' },
   { href: '/tools', label: 'Tools' },
   { href: '/over-ons', label: 'Over ons' },
