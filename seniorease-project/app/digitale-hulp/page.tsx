@@ -29,7 +29,7 @@ export default async function DigitaleHulpPage({
         <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
           Digitale hulp voor senioren
         </h1>
-        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+        <p className="text-gray-500 mb-8 text-senior-lg">
           Duidelijke uitleg en tips voor telefoon, computer en internet. Stap voor stap, zonder ingewikkelde termen.
         </p>
 

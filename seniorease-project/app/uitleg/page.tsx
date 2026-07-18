@@ -121,7 +121,7 @@ export default function UitlegOverzichtPage() {
         <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
           Alle uitleg
         </h1>
-        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+        <p className="text-gray-500 mb-8 text-senior-lg">
           Stap-voor-stap uitleg over technologie — rustig, duidelijk, zonder gedoe.
         </p>
 

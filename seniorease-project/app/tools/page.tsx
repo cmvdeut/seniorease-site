@@ -77,7 +77,7 @@ export default function ToolsPage() {
         <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
           Handige tools
         </h1>
-        <p className="text-gray-500 mb-8" style={{ fontSize: '1.15rem' }}>
+        <p className="text-gray-500 mb-8 text-senior-lg">
           Overzicht van alle beschikbare tools
         </p>
 
@@ -117,7 +117,7 @@ export default function ToolsPage() {
                     <h3 className="font-bold text-gray-800 leading-tight" style={{ fontSize: '1.15rem' }}>
                       {tool.title}
                     </h3>
-                    <span className="text-gray-400 bg-neutral-cream px-2 py-0.5 rounded text-sm">
+                    <span className="text-senior-xs text-primary bg-primary-soft px-2.5 py-1 rounded-lg font-semibold">
                       {tool.category}
                     </span>
                   </div>
