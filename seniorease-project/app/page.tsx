@@ -8,9 +8,27 @@ import {
 import GebruikMijnBibliotheekButton from './components/GebruikMijnBibliotheekButton';
 import NieuwsbriefBlok from './components/NieuwsbriefBlok';
 import JsonLd from './components/JsonLd';
-import { webApplicationSchema } from '@/lib/seo';
+import {
+  buildPageMetadata,
+  DEFAULT_DESCRIPTION,
+  webApplicationSchema,
+} from '@/lib/seo';
 
 const FACEBOOK_PAGE_URL = 'https://www.facebook.com/SeniorEaseNL';
+
+export const metadata = buildPageMetadata({
+  path: '/',
+  title: 'SeniorEase – Digitale hulp voor senioren',
+  description: DEFAULT_DESCRIPTION,
+  absoluteTitle: true,
+  keywords: [
+    'digitale hulp senioren',
+    'technologie voor ouderen',
+    'WhatsApp uitleg',
+    'DigiD uitleg',
+    'gratis tools senioren',
+  ],
+});
 
 export default function Home() {
   return (

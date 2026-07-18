@@ -1,13 +1,14 @@
 import Link from "next/link";
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Computer hulp – Digitale hulp voor senioren",
+export const metadata = buildPageMetadata({
+  path: '/digitale-hulp/computer',
+  title: 'Computer hulp',
   description:
     "Uitleg over e-mail bijlagen, bestanden vinden, computer traag oplossen en foto's op de pc. Stap voor stap voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/digitale-hulp/computer",
-  },
-};
+  keywords: ['computer senioren', 'e-mail bijlage', 'bestanden vinden'],
+});
 
 const artikelen = [
   { title: "E-mail bijlage openen en opslaan", href: "/uitleg/email-bijlage" },
@@ -22,9 +23,17 @@ const artikelen = [
   { title: "Wat is de cloud?", href: "/digitale-hulp/wat-is-de-cloud" },
 ];
 
+const collectionSchema = buildCollectionPageSchema(
+  'Computer hulp voor senioren',
+  "Uitleg over e-mail, bestanden, een trage pc en foto's op de computer.",
+  '/digitale-hulp/computer',
+  artikelen.map((a) => ({ name: a.title, path: a.href })),
+);
+
 export default function ComputerCategoriePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={collectionSchema} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

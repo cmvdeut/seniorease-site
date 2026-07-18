@@ -1,15 +1,31 @@
-import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
+import JsonLd from '@/app/components/JsonLd';
+import { buildPageMetadata, founderPersonSchema, SITE_URL, SITE_NAME } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Over ons | SeniorEase',
-  description: 'Wie zit er achter SeniorEase? Een senior die graag bijblijft met nieuwe technologie en anderen wil helpen hetzelfde te doen.',
+export const metadata = buildPageMetadata({
+  path: '/over-ons',
+  title: 'Over ons',
+  description:
+    'Wie zit er achter SeniorEase? Een senior die graag bijblijft met nieuwe technologie en anderen wil helpen hetzelfde te doen.',
+  keywords: ['over SeniorEase', 'digitale hulp senioren', 'oprichter'],
+});
+
+const aboutPageSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'AboutPage',
+  name: 'Over SeniorEase',
+  description:
+    'Wie zit er achter SeniorEase? Een senior die bijblijft met technologie en anderen helpt met stap-voor-stap uitleg.',
+  url: `${SITE_URL}/over-ons`,
+  mainEntity: founderPersonSchema,
+  isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
 };
 
 export default function OverOnsPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={[aboutPageSchema, founderPersonSchema]} />
       <div className="max-w-3xl mx-auto px-6 py-10">
 
         <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ minHeight: 'auto', fontSize: '1.1rem' }}>

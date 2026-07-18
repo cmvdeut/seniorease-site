@@ -1,13 +1,14 @@
 import Link from "next/link";
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Smartphone hulp – Digitale hulp voor senioren",
+export const metadata = buildPageMetadata({
+  path: '/digitale-hulp/smartphone',
+  title: 'Smartphone hulp',
   description:
-    "Uitleg over WhatsApp, telefoon sneller maken, letters groter zetten en QR-code scannen. Stap voor stap voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/digitale-hulp/smartphone",
-  },
-};
+    'Uitleg over WhatsApp, telefoon sneller maken, letters groter zetten en QR-code scannen. Stap voor stap voor senioren.',
+  keywords: ['smartphone senioren', 'WhatsApp', 'telefoon hulp'],
+});
 
 // Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie
 const artikelen = [
@@ -21,9 +22,17 @@ const artikelen = [
   { title: "Telefoon langzaam oplossen", href: "/digitale-hulp/telefoon-langzaam-oplossen" },
 ];
 
+const collectionSchema = buildCollectionPageSchema(
+  'Smartphone hulp voor senioren',
+  'Uitleg en tips voor uw telefoon: WhatsApp, scherm, snelheid en meer.',
+  '/digitale-hulp/smartphone',
+  artikelen.map((a) => ({ name: a.title, path: a.href })),
+);
+
 export default function SmartphoneCategoriePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={collectionSchema} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

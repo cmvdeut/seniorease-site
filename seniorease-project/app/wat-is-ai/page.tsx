@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { buildPageMetadata } from '@/lib/seo';
 import { YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
-export const metadata = {
-  title: "Wat is AI? Uitleg in gewone taal voor senioren",
-  description: "Wat is kunstmatige intelligentie en gebruikt u het al zonder het te weten? Begrijpelijke uitleg over AI en ChatGPT, speciaal voor senioren.",
-};
+export const metadata = buildPageMetadata({
+  path: '/wat-is-ai',
+  title: 'Wat is AI? Uitleg in gewone taal voor senioren',
+  description:
+    'Wat is kunstmatige intelligentie en gebruikt u het al zonder het te weten? Begrijpelijke uitleg over AI en ChatGPT, speciaal voor senioren.',
+  keywords: ['wat is AI', 'ChatGPT senioren', 'kunstmatige intelligentie'],
+});
 
 export default function WatIsAIPage() {
   return (

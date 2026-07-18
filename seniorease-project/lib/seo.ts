@@ -20,7 +20,16 @@ type PageMetadataOptions = {
   keywords?: string[];
   noIndex?: boolean;
   ogImage?: string;
+  /** Bypass root title.template (e.g. homepage brand title) */
+  absoluteTitle?: boolean;
 };
+
+/** Strip brand suffix so root template `%s | SeniorEase` does not double-append. */
+export function cleanPageTitle(title: string): string {
+  return title
+    .replace(/\s*[|–—-]\s*SeniorEase\s*$/i, '')
+    .trim();
+}
 
 export function absoluteUrl(path: string): string {
   const normalized = path.startsWith('/') ? path : `/${path}`;
@@ -34,32 +43,45 @@ export function buildPageMetadata({
   keywords,
   noIndex = false,
   ogImage = DEFAULT_OG_IMAGE.url,
+  absoluteTitle = false,
 }: PageMetadataOptions): Metadata {
   const url = absoluteUrl(path);
+  const cleanTitle = cleanPageTitle(title);
+  const displayTitle = absoluteTitle ? title : cleanTitle;
+  const socialTitle = absoluteTitle ? title : `${cleanTitle} | ${SITE_NAME}`;
+  const languages =
+    path === '/'
+      ? {
+          'nl-NL': url,
+          nl: url,
+          en: absoluteUrl('/en'),
+          'x-default': url,
+        }
+      : {
+          'nl-NL': url,
+          'x-default': url,
+        };
 
   return {
-    title,
+    title: absoluteTitle ? { absolute: displayTitle } : displayTitle,
     description,
     ...(keywords ? { keywords } : {}),
     alternates: {
       canonical: url,
-      languages: {
-        'nl-NL': url,
-        'x-default': url,
-      },
+      languages,
     },
     openGraph: {
       type: 'website',
       locale: 'nl_NL',
       url,
       siteName: SITE_NAME,
-      title: `${title} | ${SITE_NAME}`,
+      title: socialTitle,
       description,
-      images: [{ url: ogImage, width: 1200, height: 630, alt: title }],
+      images: [{ url: ogImage, width: 1200, height: 630, alt: cleanTitle || title }],
     },
     twitter: {
       card: 'summary_large_image',
-      title: `${title} | ${SITE_NAME}`,
+      title: socialTitle,
       description,
       images: [ogImage],
     },
@@ -120,6 +142,82 @@ export function buildHowToSchema(
   };
 }
 
+export function buildItemListSchema(
+  name: string,
+  items: Array<{ name: string; path: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((item, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
+  };
+}
+
+export function buildCollectionPageSchema(
+  name: string,
+  description: string,
+  path: string,
+  items: Array<{ name: string; path: string }>,
+) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name,
+    description,
+    url: absoluteUrl(path),
+    isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
+    mainEntity: buildItemListSchema(name, items),
+  };
+}
+
+export function buildArticleSchema({
+  title,
+  description,
+  path,
+  keywords,
+}: {
+  title: string;
+  description: string;
+  path: string;
+  keywords?: string[];
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: title,
+    description,
+    url: absoluteUrl(path),
+    inLanguage: 'nl-NL',
+    isAccessibleForFree: true,
+    author: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+      logo: {
+        '@type': 'ImageObject',
+        url: absoluteUrl('/heart-logo.png'),
+      },
+    },
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': absoluteUrl(path),
+    },
+    ...(keywords?.length ? { keywords: keywords.join(', ') } : {}),
+  };
+}
+
 export type UitlegSchemaEntry = {
   pageName: string;
   howTo: {
@@ -155,6 +253,28 @@ export function buildUitlegSchemas(
   return schemas;
 }
 
+export const founderPersonSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Oprichter van SeniorEase',
+  jobTitle: 'Oprichter',
+  description:
+    'Een senior die bijblijft met technologie en stap-voor-stap uitleg schrijft voor andere senioren — in gewone taal, zonder jargon.',
+  url: absoluteUrl('/over-ons'),
+  worksFor: {
+    '@type': 'Organization',
+    name: SITE_NAME,
+    url: SITE_URL,
+  },
+  knowsAbout: [
+    'digitale hulp voor senioren',
+    'technologie-uitleg',
+    'WhatsApp',
+    'DigiD',
+    'ChatGPT voor beginners',
+  ],
+};
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
@@ -163,10 +283,22 @@ export const organizationSchema = {
   logo: absoluteUrl('/heart-logo.png'),
   description: DEFAULT_DESCRIPTION,
   email: 'info@seniorease.nl',
+  foundingDate: '2024',
+  founder: {
+    '@type': 'Person',
+    name: 'Oprichter van SeniorEase',
+    url: absoluteUrl('/over-ons'),
+  },
   sameAs: [
     'https://www.facebook.com/seniorease.nl',
     'https://www.youtube.com/@SeniorEaseNL',
   ],
+  contactPoint: {
+    '@type': 'ContactPoint',
+    email: 'info@seniorease.nl',
+    contactType: 'customer support',
+    availableLanguage: ['Dutch', 'nl'],
+  },
 };
 
 export const websiteSchema = {
@@ -186,6 +318,48 @@ export const websiteSchema = {
     'query-input': 'required name=search_term_string',
   },
 };
+
+export const TOOLS_LIST_ITEMS = [
+  { name: 'Foto Archief', path: '/foto-archief' },
+  { name: 'Rekenmachine', path: '/rekenmachine' },
+  { name: 'Afvinken maar!', path: '/afvinken' },
+  { name: 'Verjaardagskalender', path: '/kalender' },
+  { name: 'Grote Klok', path: '/klok' },
+  { name: 'Dagelijkse Puzzel', path: '/puzzels' },
+  { name: 'Mijn Bibliotheek', path: '/bibliotheek' },
+] as const;
+
+export const toolsCollectionSchema = buildCollectionPageSchema(
+  'Gratis digitale tools voor senioren',
+  'Overzicht van alle gratis SeniorEase tools: bibliotheek, rekenmachine, kalender, klok en puzzels.',
+  '/tools',
+  [...TOOLS_LIST_ITEMS],
+);
+
+export const DIGITALE_HULP_FAQ = [
+  {
+    question: 'Wat is digitale hulp voor senioren?',
+    answer:
+      'Digitale hulp voor senioren is uitleg over telefoon, computer en internet in gewone taal. Op SeniorEase vindt u stap-voor-stap artikelen over WhatsApp, wifi, phishing, DigiD en meer — zonder jargon.',
+  },
+  {
+    question: 'Is SeniorEase gratis te gebruiken?',
+    answer:
+      'Ja. De meeste uitleg en tools op seniorease.nl zijn gratis in de browser. Voor de Android-app Mijn Bibliotheek geldt een eenmalige aankoop in de Play Store.',
+  },
+  {
+    question: 'Waar vind ik uitleg over WhatsApp of DigiD?',
+    answer:
+      'Onder Alle uitleg (seniorease.nl/uitleg) en Digitale hulp (seniorease.nl/digitale-hulp). Zoek op het onderwerp of blader via de categorieën smartphone, computer en veilig internet.',
+  },
+  {
+    question: 'Voor wie is SeniorEase bedoeld?',
+    answer:
+      'Voor senioren en ouderen in Nederland die rustig willen leren omgaan met smartphone, computer en internet — in hun eigen tempo, met grote teksten en duidelijke stappen.',
+  },
+] as const;
+
+export const digitaleHulpFaqSchema = buildFAQSchema([...DIGITALE_HULP_FAQ]);
 
 export const webApplicationSchema = {
   '@context': 'https://schema.org',

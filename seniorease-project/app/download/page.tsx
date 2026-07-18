@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import type { Metadata } from 'next';
 import MobileDownload from '../components/MobileDownload';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Download Mijn Bibliotheek | SeniorEase',
+export const metadata = buildPageMetadata({
+  path: '/download',
+  title: 'Download Mijn Bibliotheek',
   description: 'Download de Mijn Bibliotheek app via Google Play Store voor Android.',
-};
+  keywords: ['download Mijn Bibliotheek', 'Android app', 'Google Play'],
+});
 
 const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.maureen.biblitoheek';
 

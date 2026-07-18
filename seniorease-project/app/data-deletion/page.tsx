@@ -1,14 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
 
-export default function DataDeletionPage() {
-  useEffect(() => {
-    // Update document title
-    document.title = 'User Data Deletion – SeniorEase | SeniorEase';
-  }, []);
-  return (
+export default function DataDeletionPage() {  return (
     <main className="min-h-screen bg-neutral-cream">
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">

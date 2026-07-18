@@ -1,9 +1,13 @@
 import Link from 'next/link';
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Zo ziet ChatGPT eruit",
-  description: "Screenshots en uitleg van de ChatGPT en Claude interface. Waar typt u uw vraag en waar verschijnt het antwoord?",
-};
+export const metadata = buildPageMetadata({
+  path: '/wat-is-ai/zo-ziet-het-eruit',
+  title: 'Zo ziet ChatGPT eruit',
+  description:
+    'Screenshots en uitleg van de ChatGPT en Claude interface. Waar typt u uw vraag en waar verschijnt het antwoord?',
+  keywords: ['ChatGPT interface', 'Claude', 'AI scherm'],
+});
 
 const placeholderSteps = [
   {

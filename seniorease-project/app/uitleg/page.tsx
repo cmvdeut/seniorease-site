@@ -1,10 +1,14 @@
 import Link from 'next/link';
-import type { Metadata } from 'next';
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: 'Alle uitleg | SeniorEase',
-  description: 'Overzicht van alle stap-voor-stap uitleg voor senioren: videobellen, streaming, online winkelen, reizen en meer.',
-};
+export const metadata = buildPageMetadata({
+  path: '/uitleg',
+  title: 'Alle uitleg',
+  description:
+    'Overzicht van alle stap-voor-stap uitleg voor senioren: videobellen, streaming, online winkelen, reizen en meer.',
+  keywords: ['uitleg senioren', 'stap voor stap', 'technologie uitleg', 'WhatsApp', 'DigiD'],
+});
 
 const clusters = [
   {
@@ -109,9 +113,21 @@ const clusters = [
   },
 ];
 
+const uitlegListItems = clusters.flatMap((cluster) =>
+  cluster.paginas.map((p) => ({ name: p.label, path: p.href })),
+);
+
+const uitlegCollectionSchema = buildCollectionPageSchema(
+  'Alle uitleg voor senioren',
+  'Overzicht van alle stap-voor-stap uitleg voor senioren: videobellen, streaming, online winkelen, reizen en meer.',
+  '/uitleg',
+  uitlegListItems,
+);
+
 export default function UitlegOverzichtPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={uitlegCollectionSchema} />
       <div className="max-w-4xl mx-auto px-6 py-10">
 
         <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>

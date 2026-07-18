@@ -1,13 +1,14 @@
 import Link from "next/link";
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Internet & e-mail – Digitale hulp voor senioren",
+export const metadata = buildPageMetadata({
+  path: '/digitale-hulp/internet-email',
+  title: 'Internet & e-mail',
   description:
-    "Uitleg over wifi, e-mail openen, bijlagen en internetproblemen oplossen. Stap voor stap voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/digitale-hulp/internet-email",
-  },
-};
+    'Uitleg over wifi, e-mail openen, bijlagen en internetproblemen oplossen. Stap voor stap voor senioren.',
+  keywords: ['wifi senioren', 'e-mail', 'internet hulp'],
+});
 
 // Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie.
 // Bijlage openen: geen aparte pagina, link naar e-mail-openen als verwant onderwerp.
@@ -18,9 +19,17 @@ const artikelen = [
   { title: "Internet probleem oplossen", href: "/digitale-hulp/wifi-werkt-niet-oplossen" },
 ];
 
+const collectionSchema = buildCollectionPageSchema(
+  'Internet & e-mail voor senioren',
+  'Uitleg over wifi, e-mail en internetproblemen oplossen.',
+  '/digitale-hulp/internet-email',
+  artikelen.map((a) => ({ name: a.title, path: a.href })),
+);
+
 export default function InternetEmailCategoriePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={collectionSchema} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

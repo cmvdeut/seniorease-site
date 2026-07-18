@@ -2,6 +2,9 @@ import { MetadataRoute } from 'next';
 import { artikelen } from './digitale-hulp/artikelen';
 import { SITE_URL } from '@/lib/seo';
 
+/** Stable lastmod — avoid “always today” on every build */
+const LASTMOD = new Date('2026-07-18');
+
 function entry(
   path: string,
   priority: number,
@@ -9,7 +12,7 @@ function entry(
 ): MetadataRoute.Sitemap[number] {
   return {
     url: `${SITE_URL}${path}`,
-    lastModified: new Date(),
+    lastModified: LASTMOD,
     changeFrequency,
     priority,
   };
@@ -40,6 +43,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     entry('/', 1, 'weekly'),
+    entry('/en', 0.5, 'monthly'),
+    entry('/en/bibliotheek', 0.4, 'monthly'),
     entry('/uitleg', 0.9, 'weekly'),
     ...uitlegUrls,
     entry('/digitale-hulp', 0.9, 'weekly'),
@@ -61,27 +66,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/puzzels', 0.7, 'daily'),
     entry('/afvinken', 0.7),
     entry('/tools', 0.8),
+    entry('/kijk-en-help', 0.95, 'weekly'),
     entry('/extras', 0.7),
     entry('/hobbys', 0.7),
     entry('/foto-archief', 0.6),
     entry('/animaties', 0.6),
     ...animatieSlugs.map((slug) => entry(`/animaties/${slug}`, 0.5)),
     entry('/contact', 0.6),
-    entry('/over-ons', 0.5, 'yearly'),
+    entry('/over-ons', 0.7, 'yearly'),
     entry('/hulp', 0.7),
     entry('/zo-werkt-het', 0.7),
     entry('/nuttige-links', 0.7),
     entry('/download', 0.7),
-    entry('/betalen', 0.5),
-    entry('/activeer-licentie', 0.4),
-    entry('/support', 0.5),
-    entry('/gebruik-mijn-bibliotheek', 0.6),
-    entry('/probeer-mijn-bibliotheek', 0.6),
     entry('/privacy', 0.3, 'yearly'),
     entry('/voorwaarden', 0.3, 'yearly'),
-    entry('/terms', 0.3, 'yearly'),
-    entry('/data-deletion', 0.3, 'yearly'),
     entry('/uitlegvideo', 0.6),
-    entry('/tiktok-download', 0.5),
   ];
 }

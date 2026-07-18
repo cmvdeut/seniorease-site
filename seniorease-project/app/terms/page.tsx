@@ -1,14 +1,8 @@
 'use client';
 
 import Link from 'next/link';
-import { useEffect } from 'react';
 
 export default function TermsPage() {
-  useEffect(() => {
-    // Update document title
-    document.title = 'Terms of Service – SeniorEase | SeniorEase';
-  }, []);
-
   return (
     <main className="min-h-screen bg-neutral-cream">
       {/* Header */}

@@ -1,13 +1,14 @@
 import Link from "next/link";
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "AI uitleg – Digitale hulp voor senioren",
+export const metadata = buildPageMetadata({
+  path: '/digitale-hulp/ai',
+  title: 'AI uitleg',
   description:
-    "Wat is AI, hoe gebruikt u ChatGPT en hoe kunt u AI veilig inzetten? Uitleg voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/digitale-hulp/ai",
-  },
-};
+    'Wat is AI, hoe gebruikt u ChatGPT en hoe kunt u AI veilig inzetten? Uitleg voor senioren.',
+  keywords: ['AI senioren', 'ChatGPT', 'kunstmatige intelligentie'],
+});
 
 // Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie.
 const artikelen = [
@@ -16,9 +17,17 @@ const artikelen = [
   { title: "AI gebruiken", href: "/wat-is-ai/uitproberen" },
 ];
 
+const collectionSchema = buildCollectionPageSchema(
+  'AI uitleg voor senioren',
+  'Wat is AI, hoe gebruikt u ChatGPT en hoe kunt u AI veilig inzetten?',
+  '/digitale-hulp/ai',
+  artikelen.map((a) => ({ name: a.title, path: a.href })),
+);
+
 export default function AICategoriePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={collectionSchema} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

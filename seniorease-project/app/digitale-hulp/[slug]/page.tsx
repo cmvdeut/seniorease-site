@@ -1,7 +1,13 @@
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { artikelen, getArtikelBySlug } from '../artikelen';
-import { buildPageMetadata } from '@/lib/seo';
+import {
+  buildArticleSchema,
+  buildBreadcrumbSchema,
+  buildPageMetadata,
+} from '@/lib/seo';
+import JsonLd from '@/app/components/JsonLd';
+import KijkEnHelpCta from '@/app/components/KijkEnHelpCta';
 
 export async function generateStaticParams() {
   return artikelen.map((a) => ({ slug: a.slug }));
@@ -750,19 +756,24 @@ export default async function DigitaleHulpArtikelPage({
   const artikel = getArtikelBySlug(slug);
   if (!artikel) notFound();
 
-  const breadcrumbSchema = {
-    "@context": "https://schema.org",
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
-      { "@type": "ListItem", "position": 2, "name": "Digitale hulp", "item": "https://www.seniorease.nl/digitale-hulp" },
-      { "@type": "ListItem", "position": 3, "name": artikel.title, "item": `https://www.seniorease.nl/digitale-hulp/${artikel.slug}` },
-    ],
-  };
+  const path = `/digitale-hulp/${artikel.slug}`;
+  const schemas = [
+    buildBreadcrumbSchema([
+      { name: 'Home', path: '/' },
+      { name: 'Digitale hulp', path: '/digitale-hulp' },
+      { name: artikel.title, path },
+    ]),
+    buildArticleSchema({
+      title: artikel.title,
+      description: artikel.description,
+      path,
+      keywords: artikel.keywords,
+    }),
+  ];
 
   return (
     <main className="min-h-screen bg-neutral-cream">
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
+      <JsonLd data={schemas} />
       <header className="bg-white border-b border-neutral-stone/40 py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -796,6 +807,9 @@ export default async function DigitaleHulpArtikelPage({
                 ← Alle artikelen Digitale hulp
               </Link>
             </p>
+          </div>
+          <div className="mt-8">
+            <KijkEnHelpCta />
           </div>
         </div>
       </section>

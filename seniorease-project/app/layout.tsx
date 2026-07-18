@@ -81,13 +81,7 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: SITE_URL,
-    languages: {
-      'nl-NL': SITE_URL,
-      'x-default': SITE_URL,
-    },
-  },
+  // Canonical/hreflang per pagina via buildPageMetadata — niet hier op homepage vastzetten
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",

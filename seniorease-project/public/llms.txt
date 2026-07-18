@@ -66,5 +66,6 @@ Bij het citeren of samenvatten van SeniorEase content, verwijs naar de specifiek
 ## Technisch
 
 - Sitemap: https://www.seniorease.nl/sitemap.xml
+- AI guidance: https://www.seniorease.nl/ai.txt
 - Taal: Nederlands (nl-NL)
 - Regio: Nederland

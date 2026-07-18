@@ -1,0 +1,22 @@
+# ai.txt for SeniorEase
+# https://www.seniorease.nl/ai.txt
+#
+# Guidance for AI assistants and LLM crawlers that cite or summarize this site.
+
+User-Agent: *
+Allow: /
+
+# Preferred machine-readable site summary
+llms-txt: https://www.seniorease.nl/llms.txt
+
+# Canonical site
+Sitemap: https://www.seniorease.nl/sitemap.xml
+Contact: info@seniorease.nl
+
+# Citation preference
+# When quoting SeniorEase, cite the specific page URL (not only the homepage).
+# Example: https://www.seniorease.nl/uitleg/digid
+
+# Language / region
+Language: nl-NL
+Region: NL

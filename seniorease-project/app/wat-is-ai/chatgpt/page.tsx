@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { buildPageMetadata } from '@/lib/seo';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
-export const metadata = {
-  title: "ChatGPT uitleg voor beginners – stap voor stap voor senioren",
-  description: "Hoe gebruikt u ChatGPT? Account aanmaken, eerste vraag stellen en 10 handige voorbeelden. Uitleg voor senioren en beginners.",
-};
+export const metadata = buildPageMetadata({
+  path: '/wat-is-ai/chatgpt',
+  title: 'ChatGPT uitleg voor beginners – stap voor stap voor senioren',
+  description:
+    'Hoe gebruikt u ChatGPT? Account aanmaken, eerste vraag stellen en 10 handige voorbeelden. Uitleg voor senioren en beginners.',
+  keywords: ['ChatGPT uitleg', 'ChatGPT senioren', 'AI beginners'],
+});
 
 const voorbeeldvragen = [
   {

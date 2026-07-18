@@ -1,13 +1,14 @@
 import Link from "next/link";
+import JsonLd from '@/app/components/JsonLd';
+import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Veilig internet – Digitale hulp voor senioren",
+export const metadata = buildPageMetadata({
+  path: '/digitale-hulp/veilig-internet',
+  title: 'Veilig internet',
   description:
-    "Phishing herkennen, oplichting voorkomen, veilig wachtwoord maken. Bescherm uzelf online. Stap voor stap voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/digitale-hulp/veilig-internet",
-  },
-};
+    'Phishing herkennen, oplichting voorkomen, veilig wachtwoord maken. Bescherm uzelf online. Stap voor stap voor senioren.',
+  keywords: ['phishing', 'veilig internet', 'oplichting senioren'],
+});
 
 // Later dynamisch maken: bijv. uit CMS of artikelen.ts filteren op categorie.
 const artikelen = [
@@ -20,9 +21,17 @@ const artikelen = [
   { title: "Wachtwoorden beheren", href: "/uitleg/wachtwoorden" },
 ];
 
+const collectionSchema = buildCollectionPageSchema(
+  'Veilig internet voor senioren',
+  'Phishing herkennen, oplichting voorkomen en veilig wachtwoorden maken.',
+  '/digitale-hulp/veilig-internet',
+  artikelen.map((a) => ({ name: a.title, path: a.href })),
+);
+
 export default function VeiligInternetCategoriePage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <JsonLd data={collectionSchema} />
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">

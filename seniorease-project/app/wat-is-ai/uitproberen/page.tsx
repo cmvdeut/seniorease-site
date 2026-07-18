@@ -1,10 +1,14 @@
 import Link from 'next/link';
+import { buildPageMetadata } from '@/lib/seo';
 import AIDemoChat from '../../components/AIDemoChat';
 
-export const metadata = {
-  title: "AI uitproberen (Demo)",
-  description: "Probeer een interactieve demo van een AI-assistent. Recept, brief, bijsluiter of gedicht — zie hoe AI u kan helpen.",
-};
+export const metadata = buildPageMetadata({
+  path: '/wat-is-ai/uitproberen',
+  title: 'AI uitproberen (Demo)',
+  description:
+    'Probeer een interactieve demo van een AI-assistent. Recept, brief, bijsluiter of gedicht — zie hoe AI u kan helpen.',
+  keywords: ['AI demo', 'ChatGPT proberen', 'AI senioren'],
+});
 
 export default function UitproberenPage() {
   return (

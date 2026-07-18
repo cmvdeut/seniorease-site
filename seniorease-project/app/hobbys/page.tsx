@@ -1,13 +1,13 @@
 import Link from "next/link";
+import { buildPageMetadata } from '@/lib/seo';
 
-export const metadata = {
-  title: "Hobby's – SeniorEase",
+export const metadata = buildPageMetadata({
+  path: '/hobbys',
+  title: "Hobby's",
   description:
     "Apps en tips voor muziek, foto's, e-books en fietsen. Ontdek uitleg voor senioren.",
-  alternates: {
-    canonical: "https://www.seniorease.nl/hobbys",
-  },
-};
+  keywords: ['hobby senioren', 'e-books', 'muziek', 'foto archief'],
+});
 
 const items = [
   { title: "Foto Archief", href: "/foto-archief", description: "Personen labelen op oude groepsfoto's — past bij uw foto-album." },
