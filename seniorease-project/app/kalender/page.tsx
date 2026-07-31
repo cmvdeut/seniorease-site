@@ -300,11 +300,11 @@ export default function KalenderPage() {
             </Link>
             <div className="flex items-center gap-3">
               <Image 
-                src="/heart-logo.png" 
-                alt="SeniorEase hartlogo" 
-                width={100} 
-                height={100}
-                className="w-32 h-32"
+                src="/images/tools/kalender.png" 
+                alt="" 
+                width={64} 
+                height={64}
+                className="w-16 h-16 rounded-xl object-cover"
               />
               <div>
                 <h1 className="text-senior-xl font-bold text-primary">Verjaardagskalender</h1>

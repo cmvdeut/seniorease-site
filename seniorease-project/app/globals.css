@@ -3,34 +3,29 @@
 @tailwind utilities;
 
 /*
- * SeniorEase – leesbaarheid en rust
- * ✔ Minimaal 18px tekst (html root)
- * ✔ Typografie afgestemd op homepage (1.05–1.9rem)
- * ✔ Duidelijke knoppen (min 48px hoogte)
- * ✔ Rustige kleuren (primary bruin, neutral cream)
+ * SeniorEase — navy / gold / cream
+ * ✔ Minimaal 18px tekst
+ * ✔ Knoppen ≥ 48px
  */
 
 :root {
-  --background: #F5EEE6;
-  --foreground: #1F1F1F;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #2A2A2A;
-    --foreground: #FAF9F6;
-  }
+  --background: #F7F2EA;
+  --foreground: #0F1F3D;
+  --color-navy: #0F1F3D;
+  --color-cream: #F7F2EA;
+  --color-gold: #D9A96B;
+  --color-slate: #5C6B84;
 }
 
 html {
-  font-size: 18px; /* Minimaal 18px overal */
+  font-size: 18px;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: inherit;
-  font-size: 1rem; /* 18px via html */
+  font-size: 1rem;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -38,26 +33,24 @@ body {
 
 @layer base {
   body {
-    @apply bg-background text-foreground;
+    @apply bg-cream text-navy;
   }
 
-  /* Knoppen: duidelijk klikbaar, tekst niet oversized */
   button {
     @apply text-senior-base;
     min-height: 48px;
   }
 
-  /* Serif-koppen (Lora) — zelfde verhoudingen als homepage */
   h1 {
-    @apply text-senior-2xl font-heading font-semibold text-secondary leading-tight;
+    @apply text-senior-2xl font-heading font-semibold text-navy leading-tight;
   }
 
   h2 {
-    @apply text-senior-xl font-heading font-semibold text-secondary leading-snug;
+    @apply text-senior-xl font-heading font-semibold text-navy leading-snug;
   }
 
   h3 {
-    @apply text-senior-base font-heading font-semibold text-secondary;
+    @apply text-senior-base font-heading font-semibold text-navy;
   }
 
   p {
@@ -65,8 +58,6 @@ body {
   }
 }
 
-/* Verberg demo banner expliciet - web versie is altijd volledig gratis */
-/* Deze CSS verbergt de demo banner die mogelijk nog in cache staat */
 div.bg-yellow-100.border-b-2.border-yellow-400.py-4 {
   display: none !important;
   visibility: hidden !important;

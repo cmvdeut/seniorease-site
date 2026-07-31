@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
+import Image from 'next/image';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wachtwoorden',
@@ -85,12 +86,23 @@ export default function WachtwoordenPage() {
             <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
-              Wachtwoorden — veilig en toch te onthouden
-            </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
-              70% van de senioren worstelt met wachtwoorden. Na deze uitleg niet meer.
-            </p>
+            <div className="flex items-start gap-4">
+              <Image
+                src="/images/tools/wachtwoord.png"
+                alt=""
+                width={56}
+                height={56}
+                className="w-14 h-14 rounded-xl object-cover shrink-0 mt-1"
+              />
+              <div className="min-w-0">
+                <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+                  Wachtwoorden — veilig en toch te onthouden
+                </h1>
+                <p className="text-senior-base text-gray-600 mt-2">
+                  70% van de senioren worstelt met wachtwoorden. Na deze uitleg niet meer.
+                </p>
+              </div>
+            </div>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Veiligheid navigatie">
               <span className="text-senior-sm text-gray-500 font-semibold mr-1">🔒 Veiligheid:</span>
               <Link href="/uitleg/veiligheid" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Oplichting herkennen</Link>

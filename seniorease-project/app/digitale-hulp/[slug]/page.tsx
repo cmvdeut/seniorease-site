@@ -8,6 +8,7 @@ import {
 } from '@/lib/seo';
 import JsonLd from '@/app/components/JsonLd';
 import KijkEnHelpCta from '@/app/components/KijkEnHelpCta';
+import { getGuideBadge } from '@/app/components/GuideTopicBadge';
 
 export async function generateStaticParams() {
   return artikelen.map((a) => ({ slug: a.slug }));
@@ -771,6 +772,8 @@ export default async function DigitaleHulpArtikelPage({
     }),
   ];
 
+  const badge = getGuideBadge(artikel.slug, 'md');
+
   return (
     <main className="min-h-screen bg-neutral-cream">
       <JsonLd data={schemas} />
@@ -784,12 +787,21 @@ export default async function DigitaleHulpArtikelPage({
             >
               ← Digitale hulp
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
-              {artikel.title}
-            </h1>
-            <p className="text-senior-base text-gray-500 mt-2">
-              {artikel.description}
-            </p>
+            <div className="flex items-start gap-4">
+              {badge && (
+                <span className="shrink-0 mt-1 opacity-90" aria-hidden>
+                  {badge}
+                </span>
+              )}
+              <div className="min-w-0">
+                <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+                  {artikel.title}
+                </h1>
+                <p className="text-senior-base text-gray-500 mt-2">
+                  {artikel.description}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </header>

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import JsonLd from '@/app/components/JsonLd';
 import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
+import { ShieldBadge } from '@/app/components/GuideTopicBadge';
 
 export const metadata = buildPageMetadata({
   path: '/digitale-hulp/veilig-internet',
@@ -41,12 +42,19 @@ export default function VeiligInternetCategoriePage() {
             >
               ← Terug naar Digitale hulp
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
-              Veilig internet
-            </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
-              Herkennen van nepberichten, sterke wachtwoorden en bescherming tegen oplichting.
-            </p>
+            <div className="flex items-start gap-4">
+              <span className="shrink-0 mt-1 opacity-90" aria-hidden>
+                <ShieldBadge size="md" />
+              </span>
+              <div className="min-w-0">
+                <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+                  Veilig internet
+                </h1>
+                <p className="text-senior-base text-gray-600 mt-2">
+                  Herkennen van nepberichten, sterke wachtwoorden en bescherming tegen oplichting.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </header>

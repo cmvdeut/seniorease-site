@@ -28,9 +28,9 @@ const sourceSans = Source_Sans_3({
 });
 
 const GA_ID = "G-N1TDJB81RW";
-import Link from "next/link";
 import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
-import StickyNav from "./components/StickyNav";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 import RegisterServiceWorker from "./components/RegisterServiceWorker";
 
 export const metadata: Metadata = {
@@ -96,7 +96,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#8B5E3C",
+  themeColor: "#0F1F3D",
 };
 
 export default function RootLayout({
@@ -108,7 +108,7 @@ export default function RootLayout({
     <html lang="nl" className={`${lora.variable} ${sourceSans.variable} ${sourceSans.className}`}>
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#8B5E3C" />
+        <meta name="theme-color" content="#0F1F3D" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="SeniorEase" />
@@ -118,22 +118,9 @@ export default function RootLayout({
         <RegisterServiceWorker />
         <JsonLd data={[organizationSchema, websiteSchema]} />
         <LanguageProviderWrapper>
-          <StickyNav />
+          <Header />
           {children}
-          <footer className="bg-white border-t border-neutral-stone/40 py-6">
-            <div className="max-w-4xl mx-auto px-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-gray-700" style={{ fontSize: '1rem' }}>
-              <p>© 2026 SeniorEase</p>
-              <div className="flex gap-5">
-                <Link href="/over-ons" className="hover:text-primary transition-colors">Over ons</Link>
-                <Link href="/contact" className="hover:text-primary transition-colors">Contact</Link>
-                <Link href="/voorwaarden" className="hover:text-primary transition-colors">Voorwaarden</Link>
-              </div>
-              <div className="flex gap-4">
-                <a href="https://www.facebook.com/seniorease.nl" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">Facebook</a>
-                <a href="https://www.youtube.com/@SeniorEaseNL" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors">YouTube</a>
-              </div>
-            </div>
-          </footer>
+          <Footer />
         </LanguageProviderWrapper>
         {/* Google Analytics */}
         <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
