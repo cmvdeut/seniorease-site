@@ -15,7 +15,11 @@ type Common = {
   className?: string;
 };
 
-type AsLink = Common & { href: string; onClick?: () => void };
+type AsLink = Common & {
+  href: string;
+  onClick?: () => void;
+  'aria-current'?: 'page' | 'step' | 'location' | 'date' | 'time' | boolean | undefined;
+};
 type AsButton = Common &
   ButtonHTMLAttributes<HTMLButtonElement> & { href?: undefined };
 
@@ -44,6 +48,7 @@ export default function SeniorButton(props: AsLink | AsButton) {
       <Link
         href={props.href}
         onClick={props.onClick}
+        aria-current={props['aria-current']}
         className={`${base} ${className}`.trim()}
       >
         {content}

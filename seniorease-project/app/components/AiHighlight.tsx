@@ -24,11 +24,11 @@ export default function AiHighlight({ spacious = false }: AiHighlightProps) {
               <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3 leading-tight">
                 AI en ChatGPT — gewoon proberen
               </h2>
-              <p className="text-navy/80 text-senior-sm leading-relaxed mb-4 max-w-2xl">
+              <p className="text-navy/85 text-senior-sm leading-relaxed mb-4 max-w-2xl">
                 Met AI (zoals ChatGPT) kunt u vragen stellen in gewone taal: een recept, een
                 uitleg, een ideetje voor een brief. Handig om sneller inzicht te krijgen.
               </p>
-              <p className="text-navy/80 text-senior-sm leading-relaxed mb-4 max-w-2xl">
+              <p className="text-navy/85 text-senior-sm leading-relaxed mb-4 max-w-2xl">
                 <strong className="text-navy font-semibold">Wist u dat?</strong> Als u googelt, ziet
                 u links bovenaan vaak de knop <strong className="text-navy">AI-modus</strong>. Tik
                 daarop en u kunt in gewone taal vragen stellen — gratis, via Google. Geen aparte

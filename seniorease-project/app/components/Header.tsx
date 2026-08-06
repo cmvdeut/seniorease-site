@@ -79,7 +79,12 @@ export default function Header() {
               </Link>
             );
           })}
-          <SeniorButton href="/contact" className="ml-3 xl:ml-4 px-5 xl:px-6" icon={Mail}>
+          <SeniorButton
+            href="/contact"
+            className="ml-3 xl:ml-4 px-5 xl:px-6"
+            icon={Mail}
+            aria-current={isActivePath(pathname, '/contact') ? 'page' : undefined}
+          >
             Contact
           </SeniorButton>
         </nav>
@@ -127,6 +132,7 @@ export default function Header() {
             className="w-full mt-2"
             icon={Mail}
             onClick={() => setOpen(false)}
+            aria-current={isActivePath(pathname, '/contact') ? 'page' : undefined}
           >
             Contact
           </SeniorButton>
