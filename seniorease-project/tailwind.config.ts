@@ -1,8 +1,8 @@
 import type { Config } from "tailwindcss";
 
 /**
- * SeniorEase — navy / gold / cream (homepage redesign)
- * brand-brown blijft als legacy tijdens migratie van overige pagina’s.
+ * SeniorEase — originele huisstijl (seniorease.nl / Original/)
+ * Layout = redesign; kleuren = exact origineel.
  */
 const config: Config = {
   content: [
@@ -15,42 +15,46 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        // Donker warm (header/footer) — live #2E241C
         navy: {
-          DEFAULT: '#0F1F3D',
-          light: '#1B2E52',
+          DEFAULT: '#2E241C',
+          light: '#3D3229',
         },
+        // Merkbruin — exact live / Original #8B5E3C
         gold: {
-          DEFAULT: '#D9A96B',
-          light: '#E8C393',
+          DEFAULT: '#8B5E3C',
+          light: '#A07654',
         },
+        // Warme steen — live #E0D5CA
         slate: {
-          DEFAULT: '#5C6B84',
-          dark: '#4A586E',
-          light: '#7A8B9C',
+          DEFAULT: '#E0D5CA',
+          dark: '#D4C4B5',
+          light: '#EBE3DA',
         },
-        cream: '#F7F2EA',
-        // Aliassen voor bestaande classes tijdens migratie
+        cream: '#F5EEE6',
+        // Off-white — iets warmer/zachter dan fel #FAF9F6
+        paper: '#F7F2EB',
         primary: {
-          DEFAULT: '#0F1F3D',
-          light: '#1B2E52',
-          dark: '#0A1528',
-          soft: 'rgba(15, 31, 61, 0.08)',
+          DEFAULT: '#8B5E3C',
+          light: '#A07654',
+          dark: '#6D4A30',
+          soft: 'rgba(139, 94, 60, 0.08)',
         },
         secondary: {
-          DEFAULT: '#0F1F3D',
-          light: '#1B2E52',
-          dark: '#0A1528',
+          DEFAULT: '#2E241C',
+          light: '#3D3229',
+          dark: '#1F1F1F',
         },
         accent: {
-          DEFAULT: '#D9A96B',
-          light: '#E8C393',
-          dark: '#C49555',
-          soft: 'rgba(217, 169, 107, 0.35)',
+          DEFAULT: '#8B5E3C',
+          light: '#A07654',
+          dark: '#6D4A30',
+          soft: 'rgba(139, 94, 60, 0.35)',
         },
         beige: {
-          DEFAULT: '#D9A96B',
-          light: '#E8C393',
-          dark: '#C49555',
+          DEFAULT: '#8B5E3C',
+          light: '#A07654',
+          dark: '#6D4A30',
         },
         'brand-brown': {
           DEFAULT: '#8B5E3C',
@@ -59,8 +63,8 @@ const config: Config = {
           soft: 'rgba(139,94,60,0.08)',
         },
         neutral: {
-          cream: '#F7F2EA',
-          stone: '#D9A96B',
+          cream: '#F5EEE6',
+          stone: '#E0D5CA',
           warm: '#D4CEC3',
         },
       },
@@ -70,27 +74,29 @@ const config: Config = {
         serif: ['var(--font-heading)', 'Georgia', 'serif'],
       },
       fontSize: {
-        'senior-xs': '1rem',
-        'senior-sm': '1.05rem',
-        'senior-base': '1.15rem',
-        'senior-lg': '1.3rem',
+        'senior-xs': '1.125rem', // 18px
+        'senior-sm': '1.25rem', // 20px
+        'senior-base': '1.25rem',
+        'senior-lg': '1.35rem',
         'senior-xl': '1.9rem',
-        'senior-2xl': '2.4rem',
-        'senior-3xl': '3rem',
-        'senior-4xl': '3.5rem',
+        'senior-2xl': '2.25rem',
+        'senior-3xl': '2.75rem',
       },
       borderRadius: {
-        'senior': '1.5rem',
+        senior: '1.5rem', // 24px — Stitch zachte vormen
       },
-      boxShadow: {
-        'senior-card': '0 4px 20px rgba(0,0,0,0.05)',
+      maxWidth: {
+        senior: '1200px',
       },
       minHeight: {
-        'touch': '48px',
-        'touch-lg': '60px',
+        touch: '60px',
+      },
+      minWidth: {
+        touch: '60px',
       },
     },
   },
   plugins: [],
 };
+
 export default config;

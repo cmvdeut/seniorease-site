@@ -1,14 +1,76 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+type Mode = 'rekenen' | 'valuta';
+
+const CURRENCIES = [
+  { code: 'EUR', label: 'Euro (EUR)' },
+  { code: 'USD', label: 'Amerikaanse dollar (USD)' },
+  { code: 'GBP', label: 'Britse pond (GBP)' },
+  { code: 'CHF', label: 'Zwitserse frank (CHF)' },
+  { code: 'TRY', label: 'Turkse lira (TRY)' },
+  { code: 'PLN', label: 'Poolse zloty (PLN)' },
+  { code: 'CAD', label: 'Canadese dollar (CAD)' },
+  { code: 'AUD', label: 'Australische dollar (AUD)' },
+  { code: 'THB', label: 'Thaise baht (THB)' },
+  { code: 'SEK', label: 'Zweedse kroon (SEK)' },
+  { code: 'ZAR', label: 'Zuid-Afrikaanse rand (ZAR)' },
+] as const;
+
+type CurrencyCode = (typeof CURRENCIES)[number]['code'];
+
+function formatNl(n: number, maxFrac = 4) {
+  return new Intl.NumberFormat('nl-NL', {
+    maximumFractionDigits: maxFrac,
+    minimumFractionDigits: 0,
+  }).format(n);
+}
+
+function CalcButton({
+  onClick,
+  children,
+  className = '',
+  wide,
+}: {
+  onClick: () => void;
+  children: React.ReactNode;
+  className?: string;
+  wide?: boolean;
+}) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`min-h-[72px] sm:min-h-[80px] rounded-senior border border-navy/10 font-bold text-navy text-senior-xl sm:text-senior-2xl hover:bg-slate transition-colors active:scale-[0.98] flex items-center justify-center bg-paper ${
+        wide ? 'col-span-2' : ''
+      } ${className}`}
+    >
+      {children}
+    </button>
+  );
+}
+
 export default function RekenmachinePage() {
+  const [mode, setMode] = useState<Mode>('rekenen');
+
+  // Calculator
   const [display, setDisplay] = useState('0');
   const [previousValue, setPreviousValue] = useState<number | null>(null);
   const [operation, setOperation] = useState<string | null>(null);
   const [waitingForNewValue, setWaitingForNewValue] = useState(false);
+
+  // Currency
+  const [amount, setAmount] = useState('100');
+  const [fromCur, setFromCur] = useState<CurrencyCode>('EUR');
+  const [toCur, setToCur] = useState<CurrencyCode>('USD');
+  const [result, setResult] = useState<number | null>(null);
+  const [rate, setRate] = useState<number | null>(null);
+  const [rateDate, setRateDate] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
 
   const inputNumber = (num: string) => {
     if (waitingForNewValue) {
@@ -35,25 +97,8 @@ export default function RekenmachinePage() {
     setWaitingForNewValue(false);
   };
 
-  const performOperation = (nextOperation: string) => {
-    const inputValue = parseFloat(display);
-
-    if (previousValue === null) {
-      setPreviousValue(inputValue);
-    } else if (operation) {
-      const currentValue = previousValue || 0;
-      const newValue = calculate(currentValue, inputValue, operation);
-
-      setDisplay(String(newValue));
-      setPreviousValue(newValue);
-    }
-
-    setWaitingForNewValue(true);
-    setOperation(nextOperation);
-  };
-
-  const calculate = (firstValue: number, secondValue: number, operation: string): number => {
-    switch (operation) {
+  const calculate = (firstValue: number, secondValue: number, op: string): number => {
+    switch (op) {
       case '+':
         return firstValue + secondValue;
       case '-':
@@ -67,9 +112,21 @@ export default function RekenmachinePage() {
     }
   };
 
+  const performOperation = (nextOperation: string) => {
+    const inputValue = parseFloat(display);
+    if (previousValue === null) {
+      setPreviousValue(inputValue);
+    } else if (operation) {
+      const newValue = calculate(previousValue, inputValue, operation);
+      setDisplay(String(newValue));
+      setPreviousValue(newValue);
+    }
+    setWaitingForNewValue(true);
+    setOperation(nextOperation);
+  };
+
   const handleEquals = () => {
     const inputValue = parseFloat(display);
-
     if (previousValue !== null && operation) {
       const newValue = calculate(previousValue, inputValue, operation);
       setDisplay(String(newValue));
@@ -79,124 +136,287 @@ export default function RekenmachinePage() {
     }
   };
 
-  const Button = ({ onClick, children, className = '' }: { onClick: () => void; children: React.ReactNode; className?: string }) => {
-    // Base classes for all buttons
-    const baseClasses = 'border-4 rounded-xl font-bold hover:opacity-90 active:scale-95 transition-all shadow-lg min-h-[80px] min-w-[80px] flex items-center justify-center text-senior-2xl';
-    
-    return (
-      <button
-        onClick={onClick}
-        className={`${baseClasses} ${className}`}
-      >
-        {children}
-      </button>
-    );
+  const convert = useCallback(async () => {
+    const value = parseFloat(amount.replace(',', '.'));
+    if (!Number.isFinite(value) || value < 0) {
+      setError('Vul een geldig bedrag in.');
+      setResult(null);
+      return;
+    }
+    if (fromCur === toCur) {
+      setResult(value);
+      setRate(1);
+      setRateDate(null);
+      setError('');
+      return;
+    }
+
+    setLoading(true);
+    setError('');
+    try {
+      // api.frankfurter.app redirect mist CORS — gebruik het canonieke .dev-endpoint
+      const url = `https://api.frankfurter.dev/v1/latest?from=${fromCur}&to=${toCur}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Koers ophalen mislukt');
+      const data = (await res.json()) as {
+        date?: string;
+        rates?: Record<string, number>;
+      };
+      const r = data.rates?.[toCur];
+      if (typeof r !== 'number') throw new Error('Valuta niet beschikbaar');
+      setRate(r);
+      setResult(value * r);
+      setRateDate(data.date ?? null);
+    } catch {
+      setError('De wisselkoers kon niet worden opgehaald. Probeer het zo opnieuw.');
+      setResult(null);
+      setRate(null);
+    } finally {
+      setLoading(false);
+    }
+  }, [amount, fromCur, toCur]);
+
+  useEffect(() => {
+    if (mode !== 'valuta') return;
+    const t = setTimeout(() => {
+      void convert();
+    }, 300);
+    return () => clearTimeout(t);
+  }, [mode, convert]);
+
+  const swapCurrencies = () => {
+    setFromCur(toCur);
+    setToCur(fromCur);
   };
 
+  const tabClass = (active: boolean) =>
+    `flex-1 min-h-[56px] px-4 py-3 rounded-full font-semibold text-senior-sm transition-colors ${
+      active
+        ? 'bg-gold text-white'
+        : 'bg-paper text-navy border border-navy/10 hover:border-gold/40'
+    }`;
+
   return (
-    <div className="min-h-screen bg-neutral-cream flex flex-col">
-      {/* Header */}
-      <header className="bg-neutral-cream border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
-          <div className="flex items-center justify-between flex-wrap gap-4">
-            <Link
-              href="/tools"
-              className="inline-flex items-center gap-3 text-primary hover:text-primary-dark transition-colors font-semibold"
-            >
-              <span className="text-3xl">←</span>
-              <span className="text-senior-base">Terug naar tools</span>
-            </Link>
-            <div className="flex items-center gap-3">
-              <Image 
-                src="/images/tools/rekenmachine.png" 
-                alt="" 
-                width={64} 
-                height={64}
-                className="w-16 h-16 rounded-xl object-cover"
-              />
-              <div>
-                <h1 className="text-senior-xl font-bold text-primary">Rekenmachine</h1>
-              </div>
-            </div>
-            <Link
-              href="/animaties/rekenmachine"
-              className="bg-accent text-white px-6 py-3 rounded-xl text-senior-base font-bold
-                       hover:bg-accent-dark transition-all shadow-lg hover:shadow-xl
-                       flex items-center gap-2 whitespace-nowrap"
-            >
-              <span>📹</span>
-              <span>Bekijk uitleg</span>
-            </Link>
+    <div className="min-h-screen bg-cream flex flex-col">
+      <header className="border-b border-navy/10 py-5">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 flex items-center justify-between flex-wrap gap-4">
+          <Link
+            href="/tools"
+            className="inline-flex items-center gap-2 text-gold hover:text-gold-light font-semibold text-senior-sm min-h-[44px]"
+          >
+            ← Terug naar tools
+          </Link>
+          <div className="flex items-center gap-3">
+            <Image
+              src="/images/tools/rekenmachine.png"
+              alt=""
+              width={56}
+              height={56}
+              className="w-14 h-14 rounded-xl object-cover"
+            />
+            <h1 className="font-serif text-navy text-senior-xl font-semibold">Rekenmachine</h1>
           </div>
+          <div className="w-[140px] hidden sm:block" aria-hidden />
         </div>
       </header>
 
-      {/* Calculator */}
-      <main className="flex-1 container mx-auto px-6 py-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6 md:p-8">
-            
-            {/* Display */}
-            <div className="bg-neutral-cream rounded-xl p-6 mb-6 border-4 border-primary">
-              <div className="text-right">
-                <div className="font-bold text-primary font-mono break-all min-h-[100px] flex items-center justify-end" style={{ fontSize: '4rem', lineHeight: 1.1 }}>
+      <main className="flex-1 max-w-senior mx-auto px-5 sm:px-6 py-8 w-full">
+        <div className="max-w-xl mx-auto">
+          <div className="flex gap-3 mb-8" role="tablist" aria-label="Rekenmachine of valuta">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'rekenen'}
+              className={tabClass(mode === 'rekenen')}
+              onClick={() => setMode('rekenen')}
+            >
+              Rekenen
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={mode === 'valuta'}
+              className={tabClass(mode === 'valuta')}
+              onClick={() => setMode('valuta')}
+            >
+              Valuta omrekenen
+            </button>
+          </div>
+
+          {mode === 'rekenen' ? (
+            <div className="bg-slate rounded-senior border border-navy/8 p-5 sm:p-7">
+              <div
+                className="bg-paper rounded-senior border border-navy/8 p-5 mb-5 min-h-[100px] flex items-center justify-end"
+                aria-live="polite"
+              >
+                <p className="font-bold text-navy font-mono text-right break-all text-[2.5rem] sm:text-[3.25rem] leading-tight m-0">
                   {display}
-                </div>
+                </p>
+              </div>
+
+              <div className="grid grid-cols-4 gap-3">
+                <CalcButton onClick={clear} wide className="bg-navy text-white border-navy hover:bg-navy-light">
+                  Wissen
+                </CalcButton>
+                <CalcButton
+                  onClick={() => performOperation('÷')}
+                  className="bg-gold text-white border-gold hover:bg-gold-light"
+                >
+                  ÷
+                </CalcButton>
+                <CalcButton
+                  onClick={() => performOperation('×')}
+                  className="bg-gold text-white border-gold hover:bg-gold-light"
+                >
+                  ×
+                </CalcButton>
+
+                <CalcButton onClick={() => inputNumber('7')}>7</CalcButton>
+                <CalcButton onClick={() => inputNumber('8')}>8</CalcButton>
+                <CalcButton onClick={() => inputNumber('9')}>9</CalcButton>
+                <CalcButton
+                  onClick={() => performOperation('-')}
+                  className="bg-gold text-white border-gold hover:bg-gold-light"
+                >
+                  −
+                </CalcButton>
+
+                <CalcButton onClick={() => inputNumber('4')}>4</CalcButton>
+                <CalcButton onClick={() => inputNumber('5')}>5</CalcButton>
+                <CalcButton onClick={() => inputNumber('6')}>6</CalcButton>
+                <CalcButton
+                  onClick={() => performOperation('+')}
+                  className="bg-gold text-white border-gold hover:bg-gold-light"
+                >
+                  +
+                </CalcButton>
+
+                <CalcButton onClick={() => inputNumber('1')}>1</CalcButton>
+                <CalcButton onClick={() => inputNumber('2')}>2</CalcButton>
+                <CalcButton onClick={() => inputNumber('3')}>3</CalcButton>
+                <CalcButton
+                  onClick={handleEquals}
+                  className="row-span-2 bg-gold text-white border-gold hover:bg-gold-light"
+                >
+                  =
+                </CalcButton>
+
+                <CalcButton onClick={() => inputNumber('0')} wide>
+                  0
+                </CalcButton>
+                <CalcButton onClick={inputDecimal}>.</CalcButton>
               </div>
             </div>
+          ) : (
+            <div className="bg-slate rounded-senior border border-navy/8 p-5 sm:p-7 space-y-5">
+              <div>
+                <label htmlFor="valuta-bedrag" className="block font-semibold text-navy text-senior-sm mb-2">
+                  Bedrag
+                </label>
+                <input
+                  id="valuta-bedrag"
+                  type="text"
+                  inputMode="decimal"
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
+                  className="w-full min-h-touch rounded-senior border-2 border-navy/12 bg-paper text-navy text-senior-lg px-5 py-3 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/25"
+                />
+              </div>
 
-            {/* Buttons */}
-            <div className="grid grid-cols-4 gap-4">
-              {/* Row 1 */}
-              <Button onClick={clear} className="col-span-2 bg-secondary text-white border-secondary hover:bg-secondary-dark">
-                Wissen
-              </Button>
-              <Button onClick={() => performOperation('÷')} className="bg-primary text-white border-primary hover:bg-primary-dark text-senior-3xl">
-                ÷
-              </Button>
-              <Button onClick={() => performOperation('×')} className="bg-primary text-white border-primary hover:bg-primary-dark text-senior-3xl">
-                ×
-              </Button>
+              <div>
+                <label htmlFor="valuta-van" className="block font-semibold text-navy text-senior-sm mb-2">
+                  Van
+                </label>
+                <select
+                  id="valuta-van"
+                  value={fromCur}
+                  onChange={(e) => setFromCur(e.target.value as CurrencyCode)}
+                  className="w-full min-h-touch rounded-senior border-2 border-navy/12 bg-paper text-navy text-senior-sm px-4 py-3 focus:outline-none focus:border-gold"
+                >
+                  {CURRENCIES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-              {/* Row 2 */}
-              <Button onClick={() => inputNumber('7')}>7</Button>
-              <Button onClick={() => inputNumber('8')}>8</Button>
-              <Button onClick={() => inputNumber('9')}>9</Button>
-              <Button onClick={() => performOperation('-')} className="bg-primary text-white border-primary hover:bg-primary-dark text-senior-3xl">
-                −
-              </Button>
+              <div className="flex justify-center">
+                <button
+                  type="button"
+                  onClick={swapCurrencies}
+                  className="min-h-[48px] min-w-[48px] px-5 rounded-full bg-paper border border-navy/10 text-gold font-semibold text-senior-sm hover:border-gold"
+                  aria-label="Valuta omdraaien"
+                >
+                  ↕ Omdraaien
+                </button>
+              </div>
 
-              {/* Row 3 */}
-              <Button onClick={() => inputNumber('4')}>4</Button>
-              <Button onClick={() => inputNumber('5')}>5</Button>
-              <Button onClick={() => inputNumber('6')}>6</Button>
-              <Button onClick={() => performOperation('+')} className="bg-primary text-white border-primary hover:bg-primary-dark text-senior-3xl">
-                +
-              </Button>
+              <div>
+                <label htmlFor="valuta-naar" className="block font-semibold text-navy text-senior-sm mb-2">
+                  Naar
+                </label>
+                <select
+                  id="valuta-naar"
+                  value={toCur}
+                  onChange={(e) => setToCur(e.target.value as CurrencyCode)}
+                  className="w-full min-h-touch rounded-senior border-2 border-navy/12 bg-paper text-navy text-senior-sm px-4 py-3 focus:outline-none focus:border-gold"
+                >
+                  {CURRENCIES.map((c) => (
+                    <option key={c.code} value={c.code}>
+                      {c.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
-              {/* Row 4 */}
-              <Button onClick={() => inputNumber('1')}>1</Button>
-              <Button onClick={() => inputNumber('2')}>2</Button>
-              <Button onClick={() => inputNumber('3')}>3</Button>
-              <Button onClick={handleEquals} className="row-span-2 bg-primary text-white border-primary hover:bg-primary-dark">
-                =
-              </Button>
+              <button
+                type="button"
+                onClick={() => void convert()}
+                disabled={loading}
+                className="w-full min-h-touch rounded-full bg-gold hover:bg-gold-light text-white font-semibold text-senior-sm transition-colors disabled:opacity-50"
+              >
+                {loading ? 'Even geduld…' : 'Omrekenen'}
+              </button>
 
-              {/* Row 5 */}
-              <Button onClick={() => inputNumber('0')} className="col-span-2">0</Button>
-              <Button onClick={inputDecimal}>.</Button>
-            </div>
+              {error && (
+                <p className="text-red-700 text-senior-sm m-0" role="alert">
+                  {error}
+                </p>
+              )}
 
-            {/* Info */}
-            <div className="mt-6 bg-blue-50 border-2 border-blue-300 rounded-xl p-4">
-              <p className="text-senior-sm text-blue-900 text-center">
-                💡 Tip: Gebruik grote knoppen voor eenvoudig rekenen
+              {result !== null && !error && (
+                <div
+                  className="bg-paper rounded-senior border border-navy/8 p-5 text-center"
+                  aria-live="polite"
+                >
+                  <p className="text-navy/60 text-senior-sm mb-2 m-0">Resultaat</p>
+                  <p className="font-serif text-navy text-[1.75rem] sm:text-[2.1rem] font-semibold m-0 leading-tight">
+                    {formatNl(result, 2)} {toCur}
+                  </p>
+                  {rate !== null && (
+                    <p className="text-navy/65 text-senior-xs mt-3 m-0">
+                      Koers: 1 {fromCur} = {formatNl(rate, 4)} {toCur}
+                      {rateDate
+                        ? ` · ${new Date(rateDate).toLocaleDateString('nl-NL', {
+                            day: 'numeric',
+                            month: 'long',
+                            year: 'numeric',
+                          })}`
+                        : ''}
+                    </p>
+                  )}
+                </div>
+              )}
+
+              <p className="text-navy/55 text-senior-xs leading-relaxed m-0">
+                Koersen via de Europese Centrale Bank (Frankfurter). Dit is een indicatie — uw bank
+                kan een iets andere koers gebruiken.
               </p>
             </div>
-          </div>
+          )}
         </div>
       </main>
     </div>
   );
 }
-

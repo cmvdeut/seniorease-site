@@ -12,38 +12,38 @@ export const metadata = buildPageMetadata({
 
 export default function GoogleMapsPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="google-maps" />
       {/* Header */}
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Google Maps gebruiken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Nooit meer verdwalen — uw telefoon weet precies hoe u er komt!
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
-              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp basis</Link>
-              <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Videobellen</Link>
-              <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s maken</Link>
-              <span className="text-senior-sm font-bold text-primary underline">Google Maps</span>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
+              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">WhatsApp basis</Link>
+              <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Videobellen</Link>
+              <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Foto&apos;s maken</Link>
+              <span className="text-senior-sm font-bold text-gold underline">Google Maps</span>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
           <section className="my-8 mx-4 sm:mx-0">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden  aspect-video">
               <iframe
                 width="100%"
                 height="100%"
@@ -55,21 +55,21 @@ export default function GoogleMapsPage() {
                 className="w-full h-full"
               />
             </div>
-            <p className="text-center text-gray-600 mt-4 text-senior-base">
+            <p className="text-center text-navy/70 mt-4 text-senior-base">
               Bekijk de uitlegvideo (±7 minuten) of lees verder voor de stappen op deze pagina
             </p>
-            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>
               <div>
-                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Meer instructievideo&apos;s</h3>
-                <p className="text-senior-base text-gray-600 mb-4">
+                <h3 className="text-senior-lg font-bold text-navy mb-1">Meer instructievideo&apos;s</h3>
+                <p className="text-senior-base text-navy/70 mb-4">
                   Rustige uitleg op YouTube — in uw eigen tempo.
                 </p>
                 <a
                   href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.tips)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-neutral-cream"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-gold border-navy/8 bg-cream"
                 >
                   Bekijk de Tips &amp; Tricks-playlist
                   <span aria-hidden="true">→</span>
@@ -79,14 +79,14 @@ export default function GoogleMapsPage() {
           </section>
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Wat is Google Maps?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Google Maps is een gratis app op uw telefoon waarmee u overal een route kunt berekenen. U typt een adres in en de app vertelt u stap voor stap hoe u er komt — lopend, met de auto of met het openbaar vervoer.
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Het werkt als een navigatiesysteem in uw auto, maar dan op uw telefoon. En het is altijd bijgewerkt met de nieuwste wegen en adressen.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -95,9 +95,9 @@ export default function GoogleMapsPage() {
                 { icon: "🚗", label: "Route berekenen" },
                 { icon: "📍", label: "Zien waar u bent" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -106,35 +106,35 @@ export default function GoogleMapsPage() {
           <MapsAppGuide />
 
           {/* App openen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               De app openen
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Google Maps staat op bijna elke telefoon al voorgeïnstalleerd. Zoek op uw telefoon naar het icoontje met een gekleurde kaartspeld.
             </p>
             <div className="grid sm:grid-cols-2 gap-5">
               <div className="bg-green-50 border-2 border-green-300 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-gray-800 mb-2">🤖 Android-telefoon</p>
-                <p className="text-senior-base text-gray-700 leading-relaxed">Het Google Maps-icoontje staat op uw beginscherm of in de lijst met apps. Het ziet eruit als een rode kaartspeld op een gekleurde kaart.</p>
+                <p className="text-senior-base font-bold text-navy mb-2">🤖 Android-telefoon</p>
+                <p className="text-senior-base text-navy/80 leading-relaxed">Het Google Maps-icoontje staat op uw beginscherm of in de lijst met apps. Het ziet eruit als een rode kaartspeld op een gekleurde kaart.</p>
               </div>
-              <div className="bg-blue-50 border-2 border-blue-300 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-gray-800 mb-2">🍎 iPhone</p>
-                <p className="text-senior-base text-gray-700 leading-relaxed">Zoek op uw beginscherm naar &apos;Maps&apos; (Apple&apos;s eigen kaarten-app) of download Google Maps gratis via de App Store. Beide apps werken goed.</p>
+              <div className="bg-paper border-2 border-navy/8 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-navy mb-2">🍎 iPhone</p>
+                <p className="text-senior-base text-navy/80 leading-relaxed">Zoek op uw beginscherm naar &apos;Maps&apos; (Apple&apos;s eigen kaarten-app) of download Google Maps gratis via de App Store. Beide apps werken goed.</p>
               </div>
             </div>
-            <div className="mt-5 bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-amber-800 mb-1">💡 App niet gevonden?</p>
-              <p className="text-senior-base text-gray-700">Zoek in de App Store (iPhone) of Play Store (Android) naar &apos;Google Maps&apos; en tik op Installeren. Het is gratis.</p>
+            <div className="mt-5 bg-paper border border-navy/10 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-amber-800 mb-1">App niet gevonden?</p>
+              <p className="text-senior-base text-navy/80">Zoek in de App Store (iPhone) of Play Store (Android) naar &apos;Google Maps&apos; en tik op Installeren. Het is gratis.</p>
             </div>
           </section>
 
           {/* Een adres zoeken */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-3">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-3">
               📍 Een adres zoeken — stap voor stap
             </h2>
-            <p className="text-senior-base text-gray-500 mb-8">Zo vindt u elk adres in Nederland</p>
+            <p className="text-senior-base text-navy/55 mb-8">Zo vindt u elk adres in Nederland</p>
 
             <ol className="space-y-6">
               {[
@@ -165,15 +165,15 @@ export default function GoogleMapsPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -183,11 +183,11 @@ export default function GoogleMapsPage() {
           </section>
 
           {/* Route berekenen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-3">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-3">
               🚗 Een route berekenen
             </h2>
-            <p className="text-senior-base text-gray-500 mb-8">Nadat u een adres gevonden heeft</p>
+            <p className="text-senior-base text-navy/55 mb-8">Nadat u een adres gevonden heeft</p>
 
             <ol className="space-y-6 mb-8">
               {[
@@ -213,15 +213,15 @@ export default function GoogleMapsPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -231,24 +231,24 @@ export default function GoogleMapsPage() {
 
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { icon: "🚗", label: "Auto", kleur: "bg-blue-50 border-blue-200" },
+                { icon: "🚗", label: "Auto", kleur: "bg-paper border-navy/8" },
                 { icon: "🚌", label: "Bus / trein", kleur: "bg-orange-50 border-orange-200" },
                 { icon: "🚶", label: "Lopen", kleur: "bg-green-50 border-green-200" },
               ].map((item, i) => (
                 <div key={i} className={`rounded-xl border-2 ${item.kleur} p-4 text-center`}>
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Waar ben ik */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               📌 Waar ben ik?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Bent u ergens en weet u niet precies waar? Google Maps kan u dat direct vertellen.
             </p>
             <ol className="space-y-4">
@@ -259,25 +259,25 @@ export default function GoogleMapsPage() {
                 "Tik op de blauwe stip voor meer informatie, zoals de straatnaam",
               ].map((stap, i) => (
                 <li key={i} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">
+                  <div className="flex-shrink-0 w-9 h-9 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">
                     {i + 1}
                   </div>
-                  <p className="text-senior-base text-gray-700 leading-relaxed pt-1" dangerouslySetInnerHTML={{ __html: stap }} />
+                  <p className="text-senior-base text-navy/80 leading-relaxed pt-1" dangerouslySetInnerHTML={{ __html: stap }} />
                 </li>
               ))}
             </ol>
-            <div className="mt-6 bg-blue-50 border-2 border-blue-200 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-blue-800 mb-1">ℹ️ Locatie moet aanstaan</p>
-              <p className="text-senior-base text-gray-700">Voor &apos;Waar ben ik?&apos; moet uw locatie aanstaan. De app vraagt daar toestemming voor. Tik op &apos;Toestaan&apos; als dat nog niet is gebeurd.</p>
+            <div className="mt-6 bg-paper border border-navy/8 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-navy/75 mb-1">ℹ️ Locatie moet aanstaan</p>
+              <p className="text-senior-base text-navy/80">Voor &apos;Waar ben ik?&apos; moet uw locatie aanstaan. De app vraagt daar toestemming voor. Tik op &apos;Toestaan&apos; als dat nog niet is gebeurd.</p>
             </div>
           </section>
 
           {/* Favorieten opslaan */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               ⭐ Thuis en favorieten opslaan
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               U kunt uw thuisadres en adressen van familie opslaan. Zo hoeft u niet elke keer hetzelfde adres in te typen.
             </p>
             <ol className="space-y-5">
@@ -300,12 +300,12 @@ export default function GoogleMapsPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                   </div>
                 </li>
               ))}
@@ -313,8 +313,8 @@ export default function GoogleMapsPage() {
           </section>
 
           {/* Veelgestelde vragen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -340,12 +340,12 @@ export default function GoogleMapsPage() {
                   antwoord: "Ga even naar buiten of bij een raam staan. Binnenshuis kan de locatie een beetje afwijken. Wacht even en tik opnieuw op het locatie-icoontje.",
                 },
               ].map((item, i) => (
-                <div key={i} className="border-2 border-neutral-stone rounded-xl overflow-hidden">
-                  <div className="bg-primary/10 px-6 py-4 border-b border-neutral-stone">
-                    <p className="text-senior-base font-bold text-primary">❓ {item.vraag}</p>
+                <div key={i} className="border-2 border-navy/10 rounded-xl overflow-hidden">
+                  <div className="bg-gold/10 px-6 py-4 border-b border-navy/10">
+                    <p className="text-senior-base font-bold text-gold">❓ {item.vraag}</p>
                   </div>
                   <div className="px-6 py-4">
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.antwoord}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.antwoord}</p>
                   </div>
                 </div>
               ))}
@@ -353,8 +353,8 @@ export default function GoogleMapsPage() {
           </section>
 
           {/* Samenvatting */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">
@@ -365,17 +365,17 @@ export default function GoogleMapsPage() {
                 "Sla thuis op zodat u het niet elke keer hoeft in te typen",
                 "Verkeerd gereden? De app herberekent automatisch",
               ].map((punt, i) => (
-                <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
+                <div key={i} className="flex items-start gap-3 bg-cream border-2 border-navy/8/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
-                  <p className="text-senior-base text-gray-700 leading-relaxed">{punt}</p>
+                  <p className="text-senior-base text-navy/80 leading-relaxed">{punt}</p>
                 </div>
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 ← Videobellen
               </Link>
-              <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
+              <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 ← Terug naar home
               </Link>
             </div>

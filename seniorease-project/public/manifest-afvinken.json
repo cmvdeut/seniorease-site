@@ -1,0 +1,33 @@
+{
+  "name": "Afvinken",
+  "short_name": "Afvinken",
+  "description": "Takenlijstje altijd bij de hand. Afvinken maar! van SeniorEase.",
+  "start_url": "/afvinken",
+  "scope": "/afvinken",
+  "id": "/afvinken",
+  "display": "standalone",
+  "background_color": "#F5EEE6",
+  "theme_color": "#8B5E3C",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "categories": ["productivity", "utilities"]
+}

@@ -96,7 +96,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   maximumScale: 5,
-  themeColor: "#0F1F3D",
+  themeColor: "#8B5E3C",
 };
 
 export default function RootLayout({
@@ -107,11 +107,8 @@ export default function RootLayout({
   return (
     <html lang="nl" className={`${lora.variable} ${sourceSans.variable} ${sourceSans.className}`}>
       <head>
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#0F1F3D" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="SeniorEase" />
+        {/* manifest + apple web app title komen uit metadata (pagina kan overriden) */}
+        <meta name="theme-color" content="#8B5E3C" />
         <link rel="apple-touch-icon" href="/icon-192.png" />
       </head>
       <body className="antialiased" style={{ margin: 0 }}>

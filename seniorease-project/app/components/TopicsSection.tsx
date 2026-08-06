@@ -77,17 +77,17 @@ function Panel({
   ctaHref: string;
 }) {
   return (
-    <div className="bg-slate-dark/80 rounded-2xl p-6 sm:p-8 shadow-lg flex flex-col">
-      <h2 className="font-serif text-white text-[1.6rem] sm:text-[1.85rem] mb-6 font-semibold leading-tight">
+    <div className="bg-slate rounded-senior p-7 sm:p-9 shadow-sm border border-navy/8 flex flex-col">
+      <h2 className="font-serif text-navy text-[1.65rem] sm:text-[1.9rem] mb-8 font-semibold leading-tight">
         {title}
       </h2>
-      <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-7 flex-1 content-start">
+      <div className="grid grid-cols-2 gap-4 sm:gap-5 mb-9 flex-1 content-start">
         {children}
       </div>
       <div className="flex justify-center mt-auto">
         <Link
           href={ctaHref}
-          className="inline-flex items-center justify-center min-h-[52px] px-8 py-3 font-semibold text-navy bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-sm"
+          className="inline-flex items-center justify-center min-h-touch px-9 py-3 font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-sm"
         >
           Bekijk alles
         </Link>
@@ -98,8 +98,8 @@ function Panel({
 
 export default function TopicsSection() {
   return (
-    <section className="bg-slate py-16">
-      <div className="max-w-6xl mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+    <section className="bg-cream py-20 md:py-24">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
         <Panel title="Meest bekeken gidsen" ctaHref="/uitleg">
           {GUIDES.map((g) => (
             <TopicCard

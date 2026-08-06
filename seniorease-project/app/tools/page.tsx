@@ -1,150 +1,93 @@
-'use client';
-
-import { useState } from 'react';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-import { Camera, Calculator, CheckSquare, CalendarDays, Clock, Brain, BookOpen } from 'lucide-react';
+import JsonLd from '@/app/components/JsonLd';
+import PopularCard from '@/app/components/PopularCard';
+import NieuwsbriefBlok from '@/app/components/NieuwsbriefBlok';
+import { YoutubeChannelCta } from '@/app/components/YoutubeHint';
+import { buildPageMetadata, toolsCollectionSchema } from '@/lib/seo';
+import { ToolsCategorieen } from './ToolsCategorieen';
 
-const tools = [
-  {
-    title: 'Foto Archief',
-    description: 'Label personen op oude groepsfoto\'s met nummers en namen. Past bij uw foto-album — exporteer en deel met familie.',
-    Icon: Camera,
-    href: '/foto-archief',
-    category: 'Tools',
-  },
+export const metadata = buildPageMetadata({
+  path: '/tools',
+  title: 'Handige tools voor senioren',
+  description:
+    'Rekenmachine, verjaardagskalender, afvinken, klok, puzzels en meer. Grote knoppen, rustig ontworpen voor senioren.',
+  keywords: ['tools senioren', 'rekenmachine', 'verjaardagskalender', 'afvinken'],
+});
+
+const POPULAIR = [
   {
     title: 'Rekenmachine',
-    description: 'Grote knoppen en duidelijk display. Eenvoudig rekenen.',
-    Icon: Calculator,
     href: '/rekenmachine',
-    category: 'Tools',
-  },
-  {
-    title: 'Afvinken maar!',
-    description: 'Lijstjes maken en eenvoudig afvinken. Niets vergeten!',
-    Icon: CheckSquare,
-    href: '/afvinken',
-    category: 'Tools',
+    description: 'Grote knoppen — ook valuta omrekenen.',
   },
   {
     title: 'Verjaardagskalender',
-    description: 'Verjaardagen bijhouden met filters voor kinderen, kleinkinderen, vrienden en familie.',
-    Icon: CalendarDays,
     href: '/kalender',
-    category: 'Tools',
+    description: 'Nooit meer een verjaardag vergeten.',
   },
   {
-    title: 'Grote Klok',
-    description: 'Duidelijke weergave van tijd en datum met extra grote cijfers.',
-    Icon: Clock,
-    href: '/klok',
-    category: 'Tools',
-  },
-  {
-    title: 'Dagelijkse Puzzel',
-    description: 'Elke dag een nieuwe puzzel! Sudoku, woordzoeker en meer.',
-    Icon: Brain,
-    href: '/puzzels',
-    category: 'Ontspanning',
+    title: 'Afvinken maar!',
+    href: '/afvinken',
+    description: 'Boodschappen en to-dolijstjes.',
   },
   {
     title: 'Mijn Bibliotheek',
-    description: 'Beheer uw boeken en muziek collectie. Scan barcodes met uw camera. Gratis op pc • €4,99 eenmalig op Android',
-    Icon: BookOpen,
     href: '/bibliotheek',
-    category: 'Apps',
+    description: 'Boeken en muziek bijhouden.',
   },
-];
-
-const categories = ['Alle', 'Tools', 'Apps', 'Ontspanning'];
+] as const;
 
 export default function ToolsPage() {
-  const [selectedCategory, setSelectedCategory] = useState('Alle');
-
-  const filteredTools = selectedCategory === 'Alle'
-    ? tools
-    : tools.filter(tool => tool.category === selectedCategory);
-
   return (
-    <div className="min-h-screen bg-neutral-cream">
-      <div className="max-w-5xl mx-auto px-6 py-10">
+    <main className="min-h-screen bg-cream">
+      <JsonLd data={toolsCollectionSchema} />
 
-        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
-          ← Terug naar home
-        </Link>
-
-        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
-          Handige tools
-        </h1>
-        <p className="text-gray-500 mb-8 text-senior-lg">
-          Overzicht van alle beschikbare tools
-        </p>
-
-        {/* Categorie filter */}
-        <div className="flex flex-wrap gap-3 mb-8">
-          {categories.map((category) => (
-            <button
-              key={category}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-5 py-2 rounded-xl font-semibold transition-all border`}
-              style={{
-                fontSize: '1.05rem',
-                background: selectedCategory === category ? '#8B5E3C' : '#fff',
-                color: selectedCategory === category ? '#fff' : '#8B5E3C',
-                borderColor: selectedCategory === category ? '#8B5E3C' : '#d6c5b5',
-              }}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-
-        {/* Tools grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-          {filteredTools.map((tool) => (
-            <Link
-              key={tool.href}
-              href={tool.href}
-              className="group bg-white rounded-xl shadow-sm border border-neutral-stone/40 hover:shadow-md hover:border-primary/30 transition-all duration-200 overflow-hidden"
-            >
-              <div className="p-6">
-                <div className="flex items-center gap-4 mb-3">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0" style={{ background: '#F5EEE6' }}>
-                    <tool.Icon size={24} style={{ color: '#8B5E3C' }} />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <h3 className="font-bold text-gray-800 leading-tight" style={{ fontSize: '1.15rem' }}>
-                      {tool.title}
-                    </h3>
-                    <span className="text-senior-xs text-primary bg-primary-soft px-2.5 py-1 rounded-lg font-semibold">
-                      {tool.category}
-                    </span>
-                  </div>
-                </div>
-                <p className="text-gray-600 leading-relaxed mb-3" style={{ fontSize: '1rem' }}>
-                  {tool.description}
-                </p>
-                <span className="text-primary font-semibold group-hover:underline" style={{ fontSize: '1rem' }}>
-                  Open →
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-
-        {/* Info box */}
-        <div className="rounded-xl p-6 border border-amber-200" style={{ background: '#FFFBF0' }}>
-          <p className="font-bold text-gray-900 mb-1" style={{ fontSize: '1.1rem' }}>Er komen steeds nieuwe tools bij</p>
-          <p className="text-gray-600 mb-4" style={{ fontSize: '1rem' }}>
-            Wilt u als eerste weten wanneer er een nieuwe tool is? Meld u aan voor de gratis nieuwsbrief.
-          </p>
-          <Link href="/#nieuwsbrief" className="inline-block font-bold text-white py-2.5 px-5 rounded-xl hover:opacity-90 transition-opacity bg-primary" style={{ fontSize: '1rem', minHeight: 'auto' }}>
-            Meld u aan →
+      <section className="bg-cream">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 pt-14 md:pt-20 pb-10 md:pb-12">
+          <Link
+            href="/"
+            className="text-gold hover:text-gold-light font-semibold mb-8 inline-flex text-senior-sm min-h-[44px] items-center"
+          >
+            ← Terug naar home
           </Link>
-        </div>
 
-      </div>
-    </div>
+          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-10 max-w-2xl">
+            Handige tools met grote knoppen.
+          </h1>
+
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3">
+            Of kies een onderwerp
+          </h2>
+          <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
+            Grote knoppen naar alle tools per thema.
+          </p>
+          <ToolsCategorieen />
+        </div>
+      </section>
+
+      <section className="bg-slate py-16 md:py-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-8">
+            Meest bekeken
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            {POPULAIR.map((item) => (
+              <PopularCard key={item.href} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cream py-16 md:py-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 space-y-8">
+          <NieuwsbriefBlok />
+
+          <YoutubeChannelCta
+            title="Liever een filmpje?"
+            description="Op YouTube laten we rustig zien hoe Mijn Bibliotheek en andere onderwerpen werken."
+          />
+        </div>
+      </section>
+    </main>
   );
 }

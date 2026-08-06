@@ -64,40 +64,40 @@ export const metadata = buildPageMetadata({
 
 export default function YoutubeTvPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               YouTube kijken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Gratis video&apos;s kijken op uw tablet, smartphone, computer of televisie — stap voor stap uitgelegd.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is YouTube */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is YouTube?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               YouTube is een gratis website en app waar miljoenen video&apos;s op staan.
               U kunt er kookvideo&apos;s, reisfilmpjes, muziek, nieuws, doe-het-zelf uitleg en nog veel meer op vinden.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Alles is gratis te bekijken. Er worden soms korte reclames getoond — die kunt u na een paar seconden overslaan.
             </p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
@@ -107,17 +107,17 @@ export default function YoutubeTvPage() {
                 { icon: "💻", label: "Ook op de computer" },
                 { icon: "📺", label: "Ook op televisie" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* YouTube op telefoon of tablet */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               YouTube op uw telefoon of tablet
             </h2>
             <ol className="space-y-6">
@@ -145,15 +145,15 @@ export default function YoutubeTvPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -163,11 +163,11 @@ export default function YoutubeTvPage() {
           </section>
 
           {/* YouTube op computer */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               YouTube op uw computer
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Heeft u een laptop of desktop? Dan kunt u YouTube ook gewoon in uw internetbrowser bekijken — geen app installeren nodig.
             </p>
             <ol className="space-y-6">
@@ -203,15 +203,15 @@ export default function YoutubeTvPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -221,48 +221,48 @@ export default function YoutubeTvPage() {
           </section>
 
           {/* YouTube op televisie */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               YouTube op uw televisie kijken
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Heeft u een Smart TV? Dan kunt u YouTube rechtstreeks op uw televisie kijken — op een groot scherm, met uw afstandsbediening.
             </p>
             <div className="space-y-4">
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">1</div>
+                <div className="flex-shrink-0 w-10 h-10 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">1</div>
                 <div>
-                  <p className="text-senior-base font-bold text-gray-800">Controleer of uw tv een Smart TV is</p>
-                  <p className="text-senior-base text-gray-700">Druk op de Home-knop van uw afstandsbediening. Als er een beginscherm met apps verschijnt, heeft u een Smart TV.</p>
+                  <p className="text-senior-base font-bold text-navy">Controleer of uw tv een Smart TV is</p>
+                  <p className="text-senior-base text-navy/80">Druk op de Home-knop van uw afstandsbediening. Als er een beginscherm met apps verschijnt, heeft u een Smart TV.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">2</div>
+                <div className="flex-shrink-0 w-10 h-10 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">2</div>
                 <div>
-                  <p className="text-senior-base font-bold text-gray-800">Zoek YouTube op het beginscherm</p>
-                  <p className="text-senior-base text-gray-700">Vaak staat YouTube er al op. Zo niet, ga dan naar de &quot;App Store&quot; of &quot;Apps&quot; van uw televisie en installeer YouTube.</p>
+                  <p className="text-senior-base font-bold text-navy">Zoek YouTube op het beginscherm</p>
+                  <p className="text-senior-base text-navy/80">Vaak staat YouTube er al op. Zo niet, ga dan naar de &quot;App Store&quot; of &quot;Apps&quot; van uw televisie en installeer YouTube.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-start">
-                <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">3</div>
+                <div className="flex-shrink-0 w-10 h-10 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">3</div>
                 <div>
-                  <p className="text-senior-base font-bold text-gray-800">Zoeken met de afstandsbediening</p>
-                  <p className="text-senior-base text-gray-700">Open YouTube op uw tv en gebruik het schermtoetsenbord om te zoeken. Op sommige afstandsbedieningen kunt u ook inspreken via een microfoonknop.</p>
+                  <p className="text-senior-base font-bold text-navy">Zoeken met de afstandsbediening</p>
+                  <p className="text-senior-base text-navy/80">Open YouTube op uw tv en gebruik het schermtoetsenbord om te zoeken. Op sommige afstandsbedieningen kunt u ook inspreken via een microfoonknop.</p>
                 </div>
               </div>
             </div>
-            <div className="mt-6 p-4 rounded-xl bg-amber-50 border-2 border-amber-200">
-              <p className="text-senior-base font-bold text-gray-800">💡 Geen Smart TV?</p>
-              <p className="text-senior-base text-gray-700 mt-1">U kunt uw telefoon ook via een kabeltje (HDMI-adapter) of draadloos (Chromecast) verbinden met uw televisie. Vraag dit eventueel aan een familielid.</p>
+            <div className="mt-6 p-4 rounded-xl bg-paper border border-navy/10">
+              <p className="text-senior-base font-bold text-navy">Geen Smart TV?</p>
+              <p className="text-senior-base text-navy/80 mt-1">U kunt uw telefoon ook via een kabeltje (HDMI-adapter) of draadloos (Chromecast) verbinden met uw televisie. Vraag dit eventueel aan een familielid.</p>
             </div>
           </section>
 
           {/* Ideeën */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-4">
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-4">
               Wat kunt u zoeken op YouTube?
             </h2>
-            <p className="text-senior-base text-gray-700 mb-4">Hier zijn wat ideeën om mee te beginnen:</p>
+            <p className="text-senior-base text-navy/80 mb-4">Hier zijn wat ideeën om mee te beginnen:</p>
             <ul className="grid sm:grid-cols-2 gap-3">
               {[
                 "Klassieke muziek of uw favoriete artiest",
@@ -274,8 +274,8 @@ export default function YoutubeTvPage() {
                 "Documentaires over geschiedenis of natuur",
                 "Breien, haken of andere hobby's",
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
-                  <span className="text-primary font-bold mt-1">▶</span>
+                <li key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
+                  <span className="text-gold font-bold mt-1">▶</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -283,31 +283,31 @@ export default function YoutubeTvPage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Veelgestelde vragen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is YouTube gratis?</p>
-                <p className="text-senior-base text-gray-700">Ja, YouTube is gratis. Er worden wel korte advertenties getoond die u na een paar seconden kunt overslaan.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is YouTube gratis?</p>
+                <p className="text-senior-base text-navy/80">Ja, YouTube is gratis. Er worden wel korte advertenties getoond die u na een paar seconden kunt overslaan.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Kan ik YouTube ook zonder internet gebruiken?</p>
-                <p className="text-senior-base text-gray-700">Nee, voor YouTube heeft u internet nodig. Gebruik bij voorkeur wifi zodat u geen mobiele data verbruikt.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Kan ik YouTube ook zonder internet gebruiken?</p>
+                <p className="text-senior-base text-navy/80">Nee, voor YouTube heeft u internet nodig. Gebruik bij voorkeur wifi zodat u geen mobiele data verbruikt.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Hoe sla ik een video op voor later?</p>
-                <p className="text-senior-base text-gray-700">Klik of tik onder de video op &quot;Opslaan&quot; (of het bladwijzer-icoontje). De video wordt opgeslagen in uw &quot;Bekijk later&quot;-lijst. Hiervoor heeft u wel een gratis Google-account nodig.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Hoe sla ik een video op voor later?</p>
+                <p className="text-senior-base text-navy/80">Klik of tik onder de video op &quot;Opslaan&quot; (of het bladwijzer-icoontje). De video wordt opgeslagen in uw &quot;Bekijk later&quot;-lijst. Hiervoor heeft u wel een gratis Google-account nodig.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/netflix" className="text-senior-base font-bold text-primary hover:underline">Netflix gebruiken →</Link></li>
-              <li><Link href="/uitleg/npo-start" className="text-senior-base font-bold text-primary hover:underline">NPO Start gebruiken →</Link></li>
-              <li><Link href="/uitleg/wifi" className="text-senior-base font-bold text-primary hover:underline">WiFi instellen →</Link></li>
+              <li><Link href="/uitleg/netflix" className="text-senior-base font-semibold text-gold hover:text-gold-light">Netflix gebruiken →</Link></li>
+              <li><Link href="/uitleg/npo-start" className="text-senior-base font-semibold text-gold hover:text-gold-light">NPO Start gebruiken →</Link></li>
+              <li><Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light">WiFi instellen →</Link></li>
             </ul>
           </section>
 

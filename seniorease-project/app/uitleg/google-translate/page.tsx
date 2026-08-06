@@ -63,40 +63,40 @@ export const metadata = buildPageMetadata({
 
 export default function GoogleTranslatePage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Google Translate gebruiken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Tekst vertalen op reis — stap voor stap uitgelegd voor senioren.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is Google Translate */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is Google Translate?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Google Translate is een gratis app die tekst vertaalt naar meer dan 100 talen.
               Handig als u op vakantie bent en een bord, menukaart of briefje niet kunt lezen.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               U kunt tekst typen, inspreken of uw camera op een bord richten — en Google Translate
               vertaalt het meteen.
             </p>
@@ -106,35 +106,35 @@ export default function GoogleTranslatePage() {
                 { icon: "🎤", label: "Inspreken" },
                 { icon: "📷", label: "Camera op bord richten" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Installeren */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Google Translate installeren
             </h2>
-            <p className="text-senior-base text-gray-700 mb-4">Op Android staat Google Translate er soms al op. Zo niet:</p>
+            <p className="text-senior-base text-navy/80 mb-4">Op Android staat Google Translate er soms al op. Zo niet:</p>
             <div className="space-y-4">
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-4">
-                <p className="text-senior-base font-bold text-blue-900 mb-2">📱 Android</p>
-                <p className="text-senior-base text-gray-700">Open de <strong>Play Store</strong>, zoek op <strong>Google Translate</strong> en tik op Installeren.</p>
+              <div className="bg-paper border border-navy/8 rounded-xl p-4">
+                <p className="text-senior-base font-bold text-navy mb-2">📱 Android</p>
+                <p className="text-senior-base text-navy/80">Open de <strong>Play Store</strong>, zoek op <strong>Google Translate</strong> en tik op Installeren.</p>
               </div>
               <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-4">
                 <p className="text-senior-base font-bold text-gray-900 mb-2">🍎 iPhone / iPad</p>
-                <p className="text-senior-base text-gray-700">Open de <strong>App Store</strong>, zoek op <strong>Google Translate</strong> en tik op Krijg.</p>
+                <p className="text-senior-base text-navy/80">Open de <strong>App Store</strong>, zoek op <strong>Google Translate</strong> en tik op Krijg.</p>
               </div>
             </div>
           </section>
 
           {/* Tekst vertalen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Tekst vertalen
             </h2>
             <ol className="space-y-6">
@@ -157,12 +157,12 @@ export default function GoogleTranslatePage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                   </div>
                 </li>
               ))}
@@ -170,52 +170,52 @@ export default function GoogleTranslatePage() {
           </section>
 
           {/* Camera vertalen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Borden en menukaarten vertalen met de camera
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Dit is de handigste functie op vakantie. U richt uw camera op een tekst en ziet
               meteen de vertaling op uw scherm — zonder typen.
             </p>
-            <ol className="space-y-4 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+            <ol className="space-y-4 list-decimal list-outside pl-6 text-senior-base text-navy/80">
               <li>Open Google Translate en tik op het <strong>camera-icoontje</strong> onderaan.</li>
               <li>Kies <strong>Instant</strong> voor directe vertaling op het scherm.</li>
               <li>Richt uw camera op de tekst. De vertaling verschijnt automatisch over de tekst heen.</li>
               <li>Tik op het scherm als u de vertaling wilt vastzetten om hem rustig te lezen.</li>
             </ol>
-            <div className="mt-6 p-4 rounded-xl bg-amber-50 border-2 border-amber-200">
-              <p className="text-senior-base font-bold text-gray-800">💡 Tip voor op vakantie</p>
-              <p className="text-senior-base text-gray-700 mt-1">Download de taal van het land dat u bezoekt voor gebruik zonder internet. Zo werkt de vertaling ook als u geen wifi heeft. Ga naar de taal in Google Translate en tik op het downloadpijltje.</p>
+            <div className="mt-6 p-4 rounded-xl bg-paper border border-navy/10">
+              <p className="text-senior-base font-bold text-navy">Tip voor op vakantie</p>
+              <p className="text-senior-base text-navy/80 mt-1">Download de taal van het land dat u bezoekt voor gebruik zonder internet. Zo werkt de vertaling ook als u geen wifi heeft. Ga naar de taal in Google Translate en tik op het downloadpijltje.</p>
             </div>
           </section>
 
           {/* FAQ */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-6">Veelgestelde vragen</h2>
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Kan Google Translate ook offline werken?</p>
-                <p className="text-senior-base text-gray-700">Ja. Download de taal van tevoren via de app. Dan werkt het ook zonder internet — handig onderweg.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Kan Google Translate ook offline werken?</p>
+                <p className="text-senior-base text-navy/80">Ja. Download de taal van tevoren via de app. Dan werkt het ook zonder internet — handig onderweg.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Hoe vertaal ik een menukaart?</p>
-                <p className="text-senior-base text-gray-700">Tik op het camera-icoontje, kies Instant en richt uw camera op de menukaart. De vertaling verschijnt direct op uw scherm.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Hoe vertaal ik een menukaart?</p>
+                <p className="text-senior-base text-navy/80">Tik op het camera-icoontje, kies Instant en richt uw camera op de menukaart. De vertaling verschijnt direct op uw scherm.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is Google Translate gratis?</p>
-                <p className="text-senior-base text-gray-700">Ja, volledig gratis.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is Google Translate gratis?</p>
+                <p className="text-senior-base text-navy/80">Ja, volledig gratis.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg over reizen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over reizen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/google-maps" className="text-senior-base font-bold text-primary hover:underline">Google Maps gebruiken →</Link></li>
-              <li><Link href="/uitleg/9292" className="text-senior-base font-bold text-primary hover:underline">9292 OV-app gebruiken →</Link></li>
-              <li><Link href="/uitleg/wifi" className="text-senior-base font-bold text-primary hover:underline">WiFi instellen →</Link></li>
+              <li><Link href="/uitleg/google-maps" className="text-senior-base font-semibold text-gold hover:text-gold-light">Google Maps gebruiken →</Link></li>
+              <li><Link href="/uitleg/9292" className="text-senior-base font-semibold text-gold hover:text-gold-light">9292 OV-app gebruiken →</Link></li>
+              <li><Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light">WiFi instellen →</Link></li>
             </ul>
           </section>
 

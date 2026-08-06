@@ -47,7 +47,7 @@ export async function GET(request: NextRequest) {
       console.error('[Demo APK] Error:', fileError?.message);
       
       // Redirect naar directe public folder link
-      const origin = request.headers.get('origin') || request.headers.get('host') || 'https://seniorease.nl';
+      const origin = request.headers.get('origin') || request.headers.get('host') || 'https://www.seniorease.nl';
       const baseUrl = origin.startsWith('http') ? origin : `https://${origin}`;
       const publicUrl = `${baseUrl}/Seniorease-Bibliotheek-Demo.apk`;
       
@@ -59,7 +59,7 @@ export async function GET(request: NextRequest) {
     console.error('[Demo APK] Server error:', error);
     
     // Laatste redmiddel: redirect naar public folder
-    const origin = request.headers.get('origin') || request.headers.get('host') || 'https://seniorease.nl';
+    const origin = request.headers.get('origin') || request.headers.get('host') || 'https://www.seniorease.nl';
     const baseUrl = origin.startsWith('http') ? origin : `https://${origin}`;
     const publicUrl = `${baseUrl}/Seniorease-Bibliotheek-Demo.apk`;
     

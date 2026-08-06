@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function DemoDownload() {
   const [currentUrl, setCurrentUrl] = useState('');
-  const [demoUrl, setDemoUrl] = useState<string>('https://seniorease.nl/Seniorease-Bibliotheek-Demo.apk');
+  const [demoUrl, setDemoUrl] = useState<string>('https://www.seniorease.nl/Seniorease-Bibliotheek-Demo.apk');
   
   useEffect(() => {
     if (typeof window !== 'undefined') {

@@ -10,42 +10,42 @@ export const metadata = buildPageMetadata({
 
 export default function FotosOrdenenPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="fotos-ordenen" />
       {/* Header */}
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Digitale foto&apos;s ordenen op uw telefoon
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Al uw mooie herinneringen netjes op een rij — makkelijk terug te vinden en te delen.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Hobby's navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">🎨 Hobby&apos;s:</span>
-              <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s maken</Link>
-              <span className="text-senior-sm font-bold text-primary underline">Foto&apos;s ordenen</span>
-              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Naar computer</Link>
-              <Link href="/foto-archief" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto Archief</Link>
-              <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Videobellen</Link>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">🎨 Hobby&apos;s:</span>
+              <Link href="/uitleg/fotos-maken" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Foto&apos;s maken</Link>
+              <span className="text-senior-sm font-bold text-gold underline">Foto&apos;s ordenen</span>
+              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Naar computer</Link>
+              <Link href="/foto-archief" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Foto Archief</Link>
+              <Link href="/uitleg/videobellen" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Videobellen</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Waarom foto&apos;s ordenen?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Op uw telefoon staan misschien honderden of zelfs duizenden foto&apos;s. Leuk — maar het is soms lastig om snel een bepaalde foto terug te vinden. Met albums kunt u uw foto&apos;s netjes sorteren: één album voor de kleinkinderen, één voor de vakantie, één voor de tuin.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -54,20 +54,20 @@ export default function FotosOrdenenPage() {
                 { icon: "❤️", label: "Mooiste foto's apart" },
                 { icon: "📤", label: "Makkelijk delen" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Albums maken */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               📁 Een album maken
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Op zowel Android als iPhone maakt u albums via de Foto&apos;s-app. Dat is de app met het icoontje van een bloem of berglandschap.
             </p>
 
@@ -90,15 +90,15 @@ export default function FotosOrdenenPage() {
                       <div className="flex-shrink-0 w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {i + 1}
                       </div>
-                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                      <p className="text-senior-base text-navy/80 leading-relaxed pt-0.5">{stap}</p>
                     </li>
                   ))}
                 </ol>
               </div>
 
               {/* iPhone */}
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-                <h3 className="text-senior-lg font-bold text-blue-800 mb-4 flex items-center gap-2">
+              <div className="bg-paper border border-navy/8 rounded-xl p-6">
+                <h3 className="text-senior-lg font-bold text-navy/75 mb-4 flex items-center gap-2">
                   🍎 iPhone
                 </h3>
                 <ol className="space-y-3">
@@ -114,7 +114,7 @@ export default function FotosOrdenenPage() {
                       <div className="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {i + 1}
                       </div>
-                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                      <p className="text-senior-base text-navy/80 leading-relaxed pt-0.5">{stap}</p>
                     </li>
                   ))}
                 </ol>
@@ -123,11 +123,11 @@ export default function FotosOrdenenPage() {
           </section>
 
           {/* Favorieten */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               ❤️ Favoriete foto&apos;s apart zetten
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Heeft u een foto die u echt heel mooi vindt? Zet hem bij uw favorieten. Die zijn altijd snel terug te vinden in een apart mapje.
             </p>
             <div className="space-y-4">
@@ -143,15 +143,15 @@ export default function FotosOrdenenPage() {
                   icon: "🍎",
                   platform: "iPhone",
                   uitleg: "Open de foto en tik op het hartje ❤️ onderaan het scherm. In uw albumoverzicht staat een map 'Favorieten' waar ze automatisch in komen.",
-                  kleur: "bg-blue-50 border-blue-200",
-                  tekstkleur: "text-blue-800",
+                  kleur: "bg-paper border-navy/8",
+                  tekstkleur: "text-navy/75",
                 },
               ].map((item, i) => (
                 <div key={i} className={`rounded-xl border-2 ${item.kleur} px-6 py-5 flex gap-4 items-start`}>
                   <span className="text-3xl flex-shrink-0">{item.icon}</span>
                   <div>
                     <p className={`text-senior-base font-bold ${item.tekstkleur} mb-1`}>{item.platform}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                   </div>
                 </div>
               ))}
@@ -159,11 +159,11 @@ export default function FotosOrdenenPage() {
           </section>
 
           {/* Zoeken in de galerij */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               🔍 Snel een foto terugvinden — zoeken in uw galerij
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Niet alleen albums helpen: de Foto&apos;s-app heeft een <strong>zoekbalk</strong>. Daarmee vindt u foto&apos;s sneller terug — zonder door honderden plaatjes te scrollen.
             </p>
 
@@ -181,14 +181,14 @@ export default function FotosOrdenenPage() {
                       <div className="flex-shrink-0 w-7 h-7 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {i + 1}
                       </div>
-                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                      <p className="text-senior-base text-navy/80 leading-relaxed pt-0.5">{stap}</p>
                     </li>
                   ))}
                 </ol>
               </div>
 
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-                <h3 className="text-senior-lg font-bold text-blue-800 mb-4">🍎 Foto&apos;s-app (iPhone)</h3>
+              <div className="bg-paper border border-navy/8 rounded-xl p-6">
+                <h3 className="text-senior-lg font-bold text-navy/75 mb-4">🍎 Foto&apos;s-app (iPhone)</h3>
                 <ol className="space-y-3">
                   {[
                     <>Open de app <strong>Foto&apos;s</strong>.</>,
@@ -200,7 +200,7 @@ export default function FotosOrdenenPage() {
                       <div className="flex-shrink-0 w-7 h-7 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold text-sm">
                         {i + 1}
                       </div>
-                      <p className="text-senior-base text-gray-700 leading-relaxed pt-0.5">{stap}</p>
+                      <p className="text-senior-base text-navy/80 leading-relaxed pt-0.5">{stap}</p>
                     </li>
                   ))}
                 </ol>
@@ -208,18 +208,18 @@ export default function FotosOrdenenPage() {
             </div>
 
             <div className="space-y-4">
-              <div className="bg-neutral-cream border-2 border-primary/20 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-gray-800 mb-2">Wat kunt u intypen?</p>
-                <ul className="space-y-2 text-senior-base text-gray-700">
-                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>onderwerp</strong>: hond, bloemen, eten, kerstboom</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>plaats</strong>: als uw telefoon weet waar de foto gemaakt is</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>maand of jaar</strong>: bijv. &quot;augustus 2025&quot;</li>
-                  <li className="flex gap-2"><span className="text-primary">•</span>Een <strong>persoon</strong>: als u eerder iemand heeft aangeklikt in Foto&apos;s (iPhone) of Google Foto&apos;s herkent gezichten</li>
+              <div className="bg-cream border-2 border-navy/8/20 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-navy mb-2">Wat kunt u intypen?</p>
+                <ul className="space-y-2 text-senior-base text-navy/80">
+                  <li className="flex gap-2"><span className="text-gold">•</span>Een <strong>onderwerp</strong>: hond, bloemen, eten, kerstboom</li>
+                  <li className="flex gap-2"><span className="text-gold">•</span>Een <strong>plaats</strong>: als uw telefoon weet waar de foto gemaakt is</li>
+                  <li className="flex gap-2"><span className="text-gold">•</span>Een <strong>maand of jaar</strong>: bijv. &quot;augustus 2025&quot;</li>
+                  <li className="flex gap-2"><span className="text-gold">•</span>Een <strong>persoon</strong>: als u eerder iemand heeft aangeklikt in Foto&apos;s (iPhone) of Google Foto&apos;s herkent gezichten</li>
                 </ul>
               </div>
-              <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-amber-800 mb-1">💡 Geen zoekresultaat?</p>
-                <p className="text-senior-base text-gray-700 leading-relaxed">
+              <div className="bg-paper border border-navy/10 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-amber-800 mb-1">Geen zoekresultaat?</p>
+                <p className="text-senior-base text-navy/80 leading-relaxed">
                   Scroll in de galerij op <strong>datum</strong> — foto&apos;s staan meestal van nieuw naar oud. Of maak een album voor vaste onderwerpen (kleinkinderen, vakantie). Dan hoeft u niet elke keer te zoeken.
                 </p>
               </div>
@@ -227,11 +227,11 @@ export default function FotosOrdenenPage() {
           </section>
 
           {/* Foto's delen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               📤 Foto&apos;s delen met familie
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Een mooie foto wil je toch doorsturen! Dat kan heel gemakkelijk via WhatsApp of e-mail.
             </p>
             <ol className="space-y-5 mb-6">
@@ -243,30 +243,30 @@ export default function FotosOrdenenPage() {
                 { stap: "Kies de ontvanger en verstuur", detail: "Selecteer het contact en tik op Verzenden" },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-10 h-10 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">
+                  <div className="flex-shrink-0 w-10 h-10 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">
                     {i + 1}
                   </div>
                   <div className="pt-1">
-                    <p className="text-senior-base font-bold text-gray-800">{item.stap}</p>
-                    {item.detail && <p className="text-senior-sm text-gray-500 mt-0.5">{item.detail}</p>}
+                    <p className="text-senior-base font-bold text-navy">{item.stap}</p>
+                    {item.detail && <p className="text-senior-sm text-navy/55 mt-0.5">{item.detail}</p>}
                   </div>
                 </li>
               ))}
             </ol>
-            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-amber-800 mb-1">💡 Tip: meerdere foto's tegelijk sturen</p>
-              <p className="text-senior-base text-gray-700 leading-relaxed">
+            <div className="bg-paper border border-navy/10 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-amber-800 mb-1">Tip: meerdere foto's tegelijk sturen</p>
+              <p className="text-senior-base text-navy/80 leading-relaxed">
                 Houd uw vinger op één foto totdat er een vinkje verschijnt. Tik daarna op alle andere foto&apos;s die u wilt toevoegen. Dan kunt u ze in één keer doorsturen.
               </p>
             </div>
           </section>
 
           {/* Back-up */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               ☁️ Foto&apos;s bewaren — ook als uw telefoon stukgaat
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Wat als uw telefoon verloren gaat of kapotgaat? Dan zijn uw foto&apos;s ook weg — tenzij u een back-up heeft. Gelukkig kan dat automatisch.
             </p>
             <div className="grid md:grid-cols-2 gap-6">
@@ -279,14 +279,14 @@ export default function FotosOrdenenPage() {
                     "Tik op 'Back-up inschakelen'",
                     "Klaar — foto's worden automatisch opgeslagen",
                   ].map((stap, i) => (
-                    <li key={i} className="flex gap-2 text-senior-base text-gray-700">
+                    <li key={i} className="flex gap-2 text-senior-base text-navy/80">
                       <span className="text-green-600 flex-shrink-0">✓</span>{stap}
                     </li>
                   ))}
                 </ul>
               </div>
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-                <h3 className="text-senior-lg font-bold text-blue-800 mb-3">🍎 iPhone: iCloud</h3>
+              <div className="bg-paper border border-navy/8 rounded-xl p-6">
+                <h3 className="text-senior-lg font-bold text-navy/75 mb-3">🍎 iPhone: iCloud</h3>
                 <ul className="space-y-2">
                   {[
                     "Ga naar Instellingen (het tandwiel)",
@@ -294,42 +294,42 @@ export default function FotosOrdenenPage() {
                     "Tik op 'iCloud' → 'Foto's'",
                     "Zet 'iCloud-foto's' aan",
                   ].map((stap, i) => (
-                    <li key={i} className="flex gap-2 text-senior-base text-gray-700">
+                    <li key={i} className="flex gap-2 text-senior-base text-navy/80">
                       <span className="text-blue-600 flex-shrink-0">✓</span>{stap}
                     </li>
                   ))}
                 </ul>
               </div>
             </div>
-            <div className="mt-4 bg-neutral-cream border-2 border-primary/20 rounded-xl p-4">
-              <p className="text-senior-sm text-gray-600">
-                💡 De gratis opslag is voldoende voor duizenden foto&apos;s. Pas als u heel veel video&apos;s opslaat, kunt u meer ruimte nodig hebben.
+            <div className="mt-4 bg-cream border-2 border-navy/8/20 rounded-xl p-4">
+              <p className="text-senior-sm text-navy/70">
+                De gratis opslag is voldoende voor duizenden foto&apos;s. Pas als u heel veel video&apos;s opslaat, kunt u meer ruimte nodig hebben.
               </p>
             </div>
           </section>
 
           {/* Foto Archief — groepsfoto's labelen */}
-          <section className="bg-neutral-cream border-2 border-primary/30 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-cream border-2 border-navy/8/30 rounded-2xl p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               📷 Oude groepsfoto? Wie is dit?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Heeft u een album met familiefoto&apos;s, maar weet u niet meer precies wie er op die ene oude groepsfoto staan? Met onze gratis tool <strong>Foto Archief</strong> zet u genummerde bolletjes op elk gezicht, vult u de namen in en exporteert u de foto met legenda — handig om te bewaren of via WhatsApp te sturen naar familie.
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               <strong>Tip:</strong> Maak eerst uw album op de telefoon (zie hierboven). Heeft u een scan of foto op de computer? Upload die in Foto Archief en label wie erop staat — daarna kunt u de foto weer in uw album zetten of delen.
             </p>
             <Link
               href="/foto-archief"
-              className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-base font-bold hover:bg-gold-light transition-colors "
             >
               Open Foto Archief →
             </Link>
           </section>
 
           {/* Samenvatting */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">
@@ -341,23 +341,23 @@ export default function FotosOrdenenPage() {
                 "Zet automatische back-up aan via Google Foto's of iCloud",
                 "Zet foto's over naar uw computer — zie onze uitleg Foto's naar computer",
               ].map((punt, i) => (
-                <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
+                <div key={i} className="flex items-start gap-3 bg-cream border-2 border-navy/8/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
-                  <p className="text-senior-base text-gray-700 leading-relaxed">{punt}</p>
+                  <p className="text-senior-base text-navy/80 leading-relaxed">{punt}</p>
                 </div>
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/foto-archief" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+              <Link href="/foto-archief" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 Foto Archief (namen labelen) →
               </Link>
-              <Link href="/uitleg/fotos-naar-computer" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+              <Link href="/uitleg/fotos-naar-computer" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 Foto&apos;s naar computer →
               </Link>
-              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 Videobellen met familie →
               </Link>
-              <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
+              <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 ← Terug naar home
               </Link>
             </div>

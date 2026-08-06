@@ -63,52 +63,52 @@ export const metadata = buildPageMetadata({
 
 export default function FaceTimePage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               FaceTime gebruiken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Gratis videobellen op uw iPhone of iPad — stap voor stap uitgelegd.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is FaceTime */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is FaceTime?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               FaceTime is een gratis app van Apple waarmee u kunt videobellen met familie en vrienden.
               U ziet elkaar tijdens het bellen — alsof u tegenover elkaar zit.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               FaceTime staat al op uw iPhone of iPad — u hoeft niets te installeren.
               De andere persoon heeft ook een iPhone, iPad of Mac nodig.
             </p>
-            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-4">
-              <p className="text-senior-base font-bold text-gray-800">📱 Heeft de andere persoon een Android?</p>
-              <p className="text-senior-base text-gray-700 mt-1">Gebruik dan <Link href="/uitleg/videobellen" className="text-primary font-bold hover:underline">WhatsApp videobellen</Link> of <Link href="/uitleg/zoom" className="text-primary font-bold hover:underline">Zoom</Link> — die werken op alle telefoons.</p>
+            <div className="bg-paper border border-navy/10 rounded-xl p-4">
+              <p className="text-senior-base font-bold text-navy">📱 Heeft de andere persoon een Android?</p>
+              <p className="text-senior-base text-navy/80 mt-1">Gebruik dan <Link href="/uitleg/videobellen" className="text-gold font-bold hover:underline">WhatsApp videobellen</Link> of <Link href="/uitleg/zoom" className="text-gold font-bold hover:underline">Zoom</Link> — die werken op alle telefoons.</p>
             </div>
           </section>
 
           {/* Hoe werkt het */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Videobellen via FaceTime
             </h2>
             <ol className="space-y-6">
@@ -136,15 +136,15 @@ export default function FaceTimePage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -154,34 +154,34 @@ export default function FaceTimePage() {
           </section>
 
           {/* FaceTime ontvangen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Een FaceTime-gesprek ontvangen
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-4">
               Als iemand u belt via FaceTime, verschijnt er een melding op uw scherm met de naam van de beller.
             </p>
             <div className="space-y-4">
               <div className="flex gap-4 items-center bg-green-50 border-2 border-green-200 rounded-xl p-4">
                 <span className="text-4xl">✅</span>
                 <div>
-                  <p className="text-senior-base font-bold text-gray-800">Opnemen</p>
-                  <p className="text-senior-base text-gray-700">Tik op de groene knop of veeg omhoog op de melding.</p>
+                  <p className="text-senior-base font-bold text-navy">Opnemen</p>
+                  <p className="text-senior-base text-navy/80">Tik op de groene knop of veeg omhoog op de melding.</p>
                 </div>
               </div>
               <div className="flex gap-4 items-center bg-red-50 border-2 border-red-200 rounded-xl p-4">
                 <span className="text-4xl">❌</span>
                 <div>
-                  <p className="text-senior-base font-bold text-gray-800">Weigeren</p>
-                  <p className="text-senior-base text-gray-700">Tik op de rode knop als u nu niet kunt praten.</p>
+                  <p className="text-senior-base font-bold text-navy">Weigeren</p>
+                  <p className="text-senior-base text-navy/80">Tik op de rode knop als u nu niet kunt praten.</p>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Handige tips */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-4">Handige tips</h2>
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-4">Handige tips</h2>
             <ul className="space-y-4">
               {[
                 { tip: "Zet uw telefoon neer op een tafel en leun iets achterover — zo hoeft u hem niet vast te houden en ziet de ander uw gezicht goed." },
@@ -189,8 +189,8 @@ export default function FaceTimePage() {
                 { tip: "Spreek normaal — u hoeft niet hard te praten. De microfoon van uw iPhone vangt uw stem prima op." },
                 { tip: "Zit met uw rug naar het licht (raam of lamp). Dan ziet uw gezicht er helder uit voor de ander." },
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
-                  <span className="text-primary font-bold mt-1 text-xl">💡</span>
+                <li key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
+                  <span className="text-gold font-bold mt-1 text-xl">💡</span>
                   <span>{item.tip}</span>
                 </li>
               ))}
@@ -198,31 +198,31 @@ export default function FaceTimePage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Veelgestelde vragen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Werkt FaceTime ook op Android?</p>
-                <p className="text-senior-base text-gray-700">Nee, FaceTime werkt alleen op iPhone, iPad en Mac. Heeft de ander een Android? Gebruik dan <Link href="/uitleg/videobellen" className="text-primary font-bold hover:underline">WhatsApp videobellen</Link>.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Werkt FaceTime ook op Android?</p>
+                <p className="text-senior-base text-navy/80">Nee, FaceTime werkt alleen op iPhone, iPad en Mac. Heeft de ander een Android? Gebruik dan <Link href="/uitleg/videobellen" className="text-gold font-bold hover:underline">WhatsApp videobellen</Link>.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is FaceTime gratis?</p>
-                <p className="text-senior-base text-gray-700">Ja, FaceTime is volledig gratis. U heeft alleen internet nodig.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is FaceTime gratis?</p>
+                <p className="text-senior-base text-navy/80">Ja, FaceTime is volledig gratis. U heeft alleen internet nodig.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Ik zie mezelf ondersteboven. Hoe los ik dat op?</p>
-                <p className="text-senior-base text-gray-700">Draai uw telefoon rechtop. FaceTime past het beeld automatisch aan.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Ik zie mezelf ondersteboven. Hoe los ik dat op?</p>
+                <p className="text-senior-base text-navy/80">Draai uw telefoon rechtop. FaceTime past het beeld automatisch aan.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg over videobellen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over videobellen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/zoom" className="text-senior-base font-bold text-primary hover:underline">Zoom gebruiken →</Link></li>
-              <li><Link href="/uitleg/videobellen" className="text-senior-base font-bold text-primary hover:underline">Videobellen via WhatsApp →</Link></li>
-              <li><Link href="/uitleg/wifi" className="text-senior-base font-bold text-primary hover:underline">WiFi instellen →</Link></li>
+              <li><Link href="/uitleg/zoom" className="text-senior-base font-semibold text-gold hover:text-gold-light">Zoom gebruiken →</Link></li>
+              <li><Link href="/uitleg/videobellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Videobellen via WhatsApp →</Link></li>
+              <li><Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light">WiFi instellen →</Link></li>
             </ul>
           </section>
 

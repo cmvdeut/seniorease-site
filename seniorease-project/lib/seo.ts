@@ -345,7 +345,7 @@ export const DIGITALE_HULP_FAQ = [
   {
     question: 'Is SeniorEase gratis te gebruiken?',
     answer:
-      'Ja. De meeste uitleg en tools op seniorease.nl zijn gratis in de browser. Voor de Android-app Mijn Bibliotheek geldt een eenmalige aankoop in de Play Store.',
+      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis uitproberen via de Play Store of de website.',
   },
   {
     question: 'Waar vind ik uitleg over WhatsApp of DigiD?',
@@ -394,8 +394,14 @@ export const CLIENT_PAGE_METADATA = {
     path: '/rekenmachine',
     title: 'Grote rekenmachine voor senioren',
     description:
-      'Eenvoudige online rekenmachine met grote knoppen en duidelijke cijfers. Gratis te gebruiken, geen account nodig.',
-    keywords: ['rekenmachine senioren', 'grote rekenmachine', 'online rekenmachine'],
+      'Eenvoudige online rekenmachine met grote knoppen — en valuta omrekenen (euro, dollar, pond en meer). Gratis, geen account.',
+    keywords: [
+      'rekenmachine senioren',
+      'grote rekenmachine',
+      'valuta omrekenen',
+      'wisselkoers',
+      'online rekenmachine',
+    ],
   }),
   kalender: buildPageMetadata({
     path: '/kalender',
@@ -406,17 +412,17 @@ export const CLIENT_PAGE_METADATA = {
   }),
   klok: buildPageMetadata({
     path: '/klok',
-    title: 'Grote klok — altijd de tijd duidelijk zichtbaar',
+    title: 'Grote klok en aftellen voor senioren',
     description:
-      'Een grote, duidelijke online klok voor senioren. Leesbaar op elk scherm. Gratis te gebruiken.',
-    keywords: ['grote klok', 'online klok', 'klok senioren'],
+      'Een grote, duidelijke online klok — en een eenvoudige aftelklok. Leesbaar op elk scherm. Gratis te gebruiken.',
+    keywords: ['grote klok', 'online klok', 'aftellen', 'timer senioren', 'klok senioren'],
   }),
   puzzels: buildPageMetadata({
     path: '/puzzels',
     title: 'Dagelijkse puzzels voor senioren',
     description:
-      'Speel elke dag een nieuwe puzzel. Sudoku, woordzoeker en meer — rustig en in uw eigen tempo. Gratis.',
-    keywords: ['puzzels senioren', 'sudoku', 'woordzoeker', 'hersentraining'],
+      'Speel Sudoku, Memory of een korte quiz — maximaal twee per uur. Daarna even iets sociaals doen. Gratis en in uw eigen tempo.',
+    keywords: ['puzzels senioren', 'sudoku', 'memory', 'quiz', 'hersentraining'],
   }),
   afvinken: buildPageMetadata({
     path: '/afvinken',

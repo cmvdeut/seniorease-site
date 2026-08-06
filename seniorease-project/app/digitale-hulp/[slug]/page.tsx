@@ -9,6 +9,11 @@ import {
 import JsonLd from '@/app/components/JsonLd';
 import KijkEnHelpCta from '@/app/components/KijkEnHelpCta';
 import { getGuideBadge } from '@/app/components/GuideTopicBadge';
+import WhatsAppBeginnersGuide from '@/app/components/guide/WhatsAppBeginnersGuide';
+import GoogleZoekenGuide from '@/app/components/guide/GoogleZoekenGuide';
+import EmailOpenenGuide from '@/app/components/guide/EmailOpenenGuide';
+import WhatsAppFotosGuide from '@/app/components/guide/WhatsAppFotosGuide';
+import WhatsAppVideobellenGuide from '@/app/components/guide/WhatsAppVideobellenGuide';
 
 export async function generateStaticParams() {
   return artikelen.map((a) => ({ slug: a.slug }));
@@ -695,7 +700,7 @@ function ArtikelContent({ slug }: { slug: string }) {
                 href="https://www.youtube.com/playlist?list=PLw97JnScZym8Ae4tlW7j38EfvMKMRIBem"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-white"
+                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-paper"
               >
                 Bekijk tips-video&apos;s op YouTube
                 <span aria-hidden="true">→</span>
@@ -774,10 +779,55 @@ export default async function DigitaleHulpArtikelPage({
 
   const badge = getGuideBadge(artikel.slug, 'md');
 
+  if (artikel.slug === 'whatsapp-uitleg-beginners') {
+    return (
+      <>
+        <JsonLd data={schemas} />
+        <WhatsAppBeginnersGuide />
+      </>
+    );
+  }
+
+  if (artikel.slug === 'whatsapp-fotos-opslaan') {
+    return (
+      <>
+        <JsonLd data={schemas} />
+        <WhatsAppFotosGuide />
+      </>
+    );
+  }
+
+  if (artikel.slug === 'whatsapp-videobellen-uitleg') {
+    return (
+      <>
+        <JsonLd data={schemas} />
+        <WhatsAppVideobellenGuide />
+      </>
+    );
+  }
+
+  if (artikel.slug === 'googelen-google-zoeken') {
+    return (
+      <>
+        <JsonLd data={schemas} />
+        <GoogleZoekenGuide />
+      </>
+    );
+  }
+
+  if (artikel.slug === 'e-mail-openen') {
+    return (
+      <>
+        <JsonLd data={schemas} />
+        <EmailOpenenGuide />
+      </>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-neutral-cream">
       <JsonLd data={schemas} />
-      <header className="bg-white border-b border-neutral-stone/40 py-6">
+      <header className="bg-paper border-b border-neutral-stone/40 py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
             <Link
@@ -808,7 +858,7 @@ export default async function DigitaleHulpArtikelPage({
 
       <section className="container mx-auto px-6 py-10">
         <div className="max-w-4xl mx-auto">
-          <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 md:p-12">
+          <div className="bg-paper rounded-xl shadow-sm border border-neutral-stone/40 p-8 md:p-12">
             <ArtikelContent slug={artikel.slug} />
             <p className="mt-10 pt-6 border-t border-neutral-stone/40">
               <Link

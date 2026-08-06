@@ -63,40 +63,40 @@ export const metadata = buildPageMetadata({
 
 export default function BolComPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Bestellen bij Bol.com
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Veilig online winkelen — stap voor stap uitgelegd voor senioren.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is Bol.com */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is Bol.com?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Bol.com is de grootste Nederlandse webwinkel. U kunt er boeken, elektronica, kleding,
               tuinartikelen, speelgoed en nog veel meer bestellen — alles wordt thuisbezorgd.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Bol.com is een betrouwbare winkel. U betaalt via iDEAL (uw eigen bank) en heeft
               altijd 30 dagen de tijd om een product terug te sturen als u er niet tevreden mee bent.
             </p>
@@ -106,17 +106,17 @@ export default function BolComPage() {
                 { icon: "🏠", label: "Thuisbezorgd" },
                 { icon: "↩️", label: "30 dagen retour" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Stap voor stap */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Zo bestelt u iets bij Bol.com
             </h2>
             <ol className="space-y-6">
@@ -160,15 +160,15 @@ export default function BolComPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -178,11 +178,11 @@ export default function BolComPage() {
           </section>
 
           {/* Bevestiging en bezorging */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Na uw bestelling
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-4">
               Na de betaling ontvangt u een bevestigingsmail van Bol.com. Daarin staat uw bestelnummer
               en de verwachte bezorgdatum.
             </p>
@@ -192,8 +192,8 @@ export default function BolComPage() {
                 "Veel producten worden de volgende dag bezorgd.",
                 "Als u niet thuis bent, laat de bezorger het pakket achter bij een buurman of een afhaalpunt.",
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
-                  <span className="text-primary font-bold mt-1">✓</span>
+                <li key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
+                  <span className="text-gold font-bold mt-1">✓</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -201,8 +201,8 @@ export default function BolComPage() {
           </section>
 
           {/* Veilig winkelen tips */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-4">
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-4">
               Veilig online winkelen
             </h2>
             <ul className="space-y-4">
@@ -212,7 +212,7 @@ export default function BolComPage() {
                 { tip: "Bewaar uw bevestigingsmail. Daarin staan uw bestelnummer en de contactgegevens als er iets mis gaat." },
                 { tip: "Twijfelt u aan een website? Zoek op Google naar de naam van de winkel plus het woord 'betrouwbaar' om ervaringen van anderen te lezen." },
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
+                <li key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
                   <span className="text-2xl">🔒</span>
                   <span>{item.tip}</span>
                 </li>
@@ -221,31 +221,31 @@ export default function BolComPage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Veelgestelde vragen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is bestellen bij Bol.com veilig?</p>
-                <p className="text-senior-base text-gray-700">Ja, Bol.com is een grote, betrouwbare Nederlandse webwinkel. U heeft altijd 30 dagen bedenktijd.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is bestellen bij Bol.com veilig?</p>
+                <p className="text-senior-base text-navy/80">Ja, Bol.com is een grote, betrouwbare Nederlandse webwinkel. U heeft altijd 30 dagen bedenktijd.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Hoe lang duurt bezorging?</p>
-                <p className="text-senior-base text-gray-700">Veel producten worden de volgende dag bezorgd als u voor een bepaald tijdstip bestelt. Op de productpagina staat de verwachte bezorgdatum.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Hoe lang duurt bezorging?</p>
+                <p className="text-senior-base text-navy/80">Veel producten worden de volgende dag bezorgd als u voor een bepaald tijdstip bestelt. Op de productpagina staat de verwachte bezorgdatum.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Wat als ik iets wil terugsturen?</p>
-                <p className="text-senior-base text-gray-700">U heeft 30 dagen de tijd. Log in, ga naar &apos;Mijn bestellingen&apos; en kies &apos;Retourneren&apos;. Meer uitleg: <Link href="/uitleg/online-retourneren" className="text-primary font-bold hover:underline">terugsturen uitgelegd</Link>.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Wat als ik iets wil terugsturen?</p>
+                <p className="text-senior-base text-navy/80">U heeft 30 dagen de tijd. Log in, ga naar &apos;Mijn bestellingen&apos; en kies &apos;Retourneren&apos;. Meer uitleg: <Link href="/uitleg/online-retourneren" className="text-gold font-bold hover:underline">terugsturen uitgelegd</Link>.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg over online winkelen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over online winkelen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/boodschappen-bestellen" className="text-senior-base font-bold text-primary hover:underline">Online boodschappen bestellen →</Link></li>
-              <li><Link href="/uitleg/online-retourneren" className="text-senior-base font-bold text-primary hover:underline">Iets terugsturen: hoe werkt dat? →</Link></li>
-              <li><Link href="/uitleg/veiligheid" className="text-senior-base font-bold text-primary hover:underline">Veilig op internet →</Link></li>
+              <li><Link href="/uitleg/boodschappen-bestellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Online boodschappen bestellen →</Link></li>
+              <li><Link href="/uitleg/online-retourneren" className="text-senior-base font-semibold text-gold hover:text-gold-light">Iets terugsturen: hoe werkt dat? →</Link></li>
+              <li><Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-gold hover:text-gold-light">Veilig op internet →</Link></li>
             </ul>
           </section>
 

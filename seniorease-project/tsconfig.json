@@ -38,9 +38,16 @@
   "exclude": [
     "node_modules",
     "tutorial-maker",
+    "tutorial-maker-app",
     "Original",
     "mnt",
     "video-generator",
+    "hyperframes-prototype",
+    "Agent",
+    "videos",
+    "TikTok",
+    "Facebook",
+    "contentplan",
     "../video-generator"
   ]
 }

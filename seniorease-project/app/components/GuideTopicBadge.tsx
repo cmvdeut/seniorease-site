@@ -15,7 +15,7 @@ const icon: Record<BadgeSize, string> = {
 export function GoogleBadge({ size = 'sm' }: { size?: BadgeSize }) {
   return (
     <span
-      className={`flex ${box[size]} items-center justify-center bg-white/90 shadow-sm`}
+      className={`flex ${box[size]} items-center justify-center bg-paper/90 shadow-sm`}
       aria-hidden
     >
       <svg viewBox="0 0 24 24" className={icon[size]}>

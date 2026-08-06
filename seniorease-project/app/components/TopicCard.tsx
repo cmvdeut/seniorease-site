@@ -7,12 +7,16 @@ export type TopicCardProps = {
   title: string;
   href: string;
   imageUrl?: string;
-  /** Geïllustreerd icoon zonder foto (tools) — kleiner, lager, iets doorzichtig */
+  /** Geïllustreerd icoon zonder foto (tools homepage) */
   illustrationUrl?: string;
   illustrationBg?: string;
-  /** Fallback Lucide-icoon */
+  /** Lucide-icoon */
   Icon?: LucideIcon;
   iconBg?: string;
+  /** Gold icoon i.p.v. navy (tools-pagina) */
+  iconGold?: boolean;
+  /** Merk-icoon (bijv. lachend SeniorEase-hart) */
+  brandIconUrl?: string;
   /** Optioneel icoon bovenop de foto (gidsen) */
   overlay?: ReactNode;
 };
@@ -25,12 +29,14 @@ export default function TopicCard({
   illustrationBg = '#F3EDE4',
   Icon,
   iconBg = '#F3EDE4',
+  iconGold = false,
+  brandIconUrl,
   overlay,
 }: TopicCardProps) {
   return (
     <Link
       href={href}
-      className="group bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col h-full"
+      className="group bg-paper rounded-senior shadow-sm hover:shadow-md transition-shadow overflow-hidden flex flex-col h-full border border-navy/6"
     >
       {imageUrl ? (
         <div className="relative aspect-[5/4] w-full bg-cream shrink-0">
@@ -52,6 +58,16 @@ export default function TopicCard({
             </span>
           )}
         </div>
+      ) : brandIconUrl ? (
+        <div className="relative aspect-[5/4] w-full shrink-0 flex items-center justify-center bg-primary/10">
+          <Image
+            src={brandIconUrl}
+            alt=""
+            width={88}
+            height={88}
+            className="object-contain group-hover:scale-105 transition-transform w-16 h-16 sm:w-[5.25rem] sm:h-[5.25rem]"
+          />
+        </div>
       ) : illustrationUrl ? (
         <div
           className="relative aspect-[5/4] w-full shrink-0 flex items-end justify-center pb-[18%]"
@@ -67,20 +83,31 @@ export default function TopicCard({
         </div>
       ) : Icon ? (
         <div
-          className="aspect-[5/4] w-full flex items-end justify-center pb-[18%] shrink-0"
-          style={{ background: iconBg }}
+          className={`aspect-[5/4] w-full flex items-center justify-center shrink-0 ${
+            iconGold ? 'bg-primary/10' : ''
+          }`}
+          style={iconGold ? undefined : { background: iconBg }}
         >
-          <Icon
-            size={36}
-            strokeWidth={1.5}
-            className="text-navy opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all"
-            aria-hidden
-          />
+          {iconGold ? (
+            <Icon
+              size={48}
+              strokeWidth={1.75}
+              className="text-gold group-hover:text-gold-light group-hover:scale-105 transition-transform duration-200"
+              aria-hidden
+            />
+          ) : (
+            <Icon
+              size={36}
+              strokeWidth={1.5}
+              className="text-navy opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all"
+              aria-hidden
+            />
+          )}
         </div>
       ) : (
         <div className="aspect-[5/4] w-full bg-gold/30 shrink-0" />
       )}
-      <span className="px-2.5 py-3.5 text-center font-semibold text-navy text-[0.95rem] sm:text-senior-xs leading-snug flex-1 flex items-center justify-center">
+      <span className="px-3 py-4 text-center font-semibold text-navy text-senior-xs leading-snug flex-1 flex items-center justify-center min-h-[3.25rem]">
         {title}
       </span>
     </Link>

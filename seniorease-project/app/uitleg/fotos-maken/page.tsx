@@ -29,8 +29,8 @@ const tips = [
     uitleg: "Onscherpe foto's komen bijna altijd door bewegen op het moment van de foto. Houd uw telefoon vast met twee handen, houd uw ellebogen dicht bij uw lichaam, of leun met uw rug tegen een muur.",
     doehet: "Adem rustig in, houd even in en druk pas af als u uitademt — net als een scherpschutter!",
     fout: "Met uitgestrekte arm fotograferen terwijl u op de knop drukt.",
-    kleur: "bg-blue-50 border-blue-200",
-    titelkleur: "text-blue-800",
+    kleur: "bg-paper border-navy/8",
+    titelkleur: "text-navy/75",
   },
   {
     num: 3,
@@ -102,42 +102,42 @@ const situaties = [
 
 export default function FotosMakenPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="fotos-maken" />
       {/* Header */}
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
             <Link
               href="/"
-              className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
+              className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base"
             >
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Betere foto&apos;s maken met uw smartphone
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               5 simpele tips — geen technische kennis nodig. Gewoon proberen!
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone uitleg navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
-              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp</Link>
-              <span className="text-senior-sm font-bold text-primary underline">Foto&apos;s maken</span>
-              <Link href="/uitleg/fotos-ordenen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s ordenen</Link>
-              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Naar computer</Link>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
+              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">WhatsApp</Link>
+              <span className="text-senior-sm font-bold text-gold underline">Foto&apos;s maken</span>
+              <Link href="/uitleg/fotos-ordenen" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Foto&apos;s ordenen</Link>
+              <Link href="/uitleg/fotos-naar-computer" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Naar computer</Link>
             </nav>
           </div>
         </div>
       </header>
 
       {/* Content */}
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
           <section className="my-8 mx-4 sm:mx-0">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden  aspect-video">
               <iframe
                 width="100%"
                 height="100%"
@@ -149,21 +149,21 @@ export default function FotosMakenPage() {
                 className="w-full h-full"
               />
             </div>
-            <p className="text-center text-gray-600 mt-4 text-senior-base">
+            <p className="text-center text-navy/70 mt-4 text-senior-base">
               Bekijk de uitlegvideo (±10 minuten) of lees verder voor de tips op deze pagina
             </p>
-            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>
               <div>
-                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Meer instructievideo&apos;s</h3>
-                <p className="text-senior-base text-gray-600 mb-4">
+                <h3 className="text-senior-lg font-bold text-navy mb-1">Meer instructievideo&apos;s</h3>
+                <p className="text-senior-base text-navy/70 mb-4">
                   Rustige uitleg op YouTube — in uw eigen tempo.
                 </p>
                 <a
                   href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.tips)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-neutral-cream"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-gold border-navy/8 bg-cream"
                 >
                   Bekijk de Tips &amp; Tricks-playlist
                   <span aria-hidden="true">→</span>
@@ -173,14 +173,14 @@ export default function FotosMakenPage() {
           </section>
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Iedereen kan mooie foto&apos;s maken
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               95% van de senioren deelt foto&apos;s via de telefoon — maar veel mensen zijn niet tevreden over de kwaliteit. De foto&apos;s zijn wazig, te donker of het hoofd is afgesneden.
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Goed nieuws: met 5 eenvoudige tips maakt u meteen betere foto&apos;s. Geen dure camera nodig, geen cursus — gewoon uw telefoon en een paar handige gewoontes.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -189,9 +189,9 @@ export default function FotosMakenPage() {
                 { icon: "⏱️", label: "Tips in 2 minuten geleerd" },
                 { icon: "🎯", label: "Direct resultaat" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
@@ -199,34 +199,34 @@ export default function FotosMakenPage() {
 
           {/* 5 Tips */}
           <section>
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-6">
+            <h2 className="text-senior-xl font-bold text-navy mb-6">
               De 5 gouden tips
             </h2>
             <div className="space-y-6">
               {tips.map((tip) => (
-                <div key={tip.num} className={`bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden`}>
+                <div key={tip.num} className={`bg-slate rounded-senior border border-navy/8 overflow-hidden`}>
                   <div className={`${tip.kleur} border-b-2 border-inherit px-8 py-5 flex items-center gap-4`}>
                     <div className="flex-shrink-0 w-14 h-14 bg-white rounded-full flex items-center justify-center text-3xl shadow-md border-2 border-white">
                       {tip.icon}
                     </div>
                     <div>
-                      <span className="text-senior-xs font-bold text-gray-500 uppercase tracking-wide">Tip {tip.num}</span>
+                      <span className="text-senior-xs font-bold text-navy/55 uppercase tracking-wide">Tip {tip.num}</span>
                       <h3 className={`text-senior-lg md:text-senior-xl font-bold ${tip.titelkleur}`}>{tip.titel}</h3>
-                      <p className="text-senior-sm text-gray-600 italic">{tip.kort}</p>
+                      <p className="text-senior-sm text-navy/70 italic">{tip.kort}</p>
                     </div>
                   </div>
                   <div className="p-8 space-y-5">
-                    <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
+                    <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed">
                       {tip.uitleg}
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4">
                       <div className="flex-1 bg-green-50 border-2 border-green-200 rounded-xl p-4">
                         <p className="text-senior-sm font-bold text-green-800 mb-1">✅ Doe dit:</p>
-                        <p className="text-senior-base text-gray-700">{tip.doehet}</p>
+                        <p className="text-senior-base text-navy/80">{tip.doehet}</p>
                       </div>
                       <div className="flex-1 bg-red-50 border-2 border-red-200 rounded-xl p-4">
                         <p className="text-senior-sm font-bold text-red-800 mb-1">❌ Niet dit:</p>
-                        <p className="text-senior-base text-gray-700">{tip.fout}</p>
+                        <p className="text-senior-base text-navy/80">{tip.fout}</p>
                       </div>
                     </div>
                   </div>
@@ -236,27 +236,27 @@ export default function FotosMakenPage() {
           </section>
 
           {/* Per situatie */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-8">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-8">
               Tips per situatie
             </h2>
             <div className="space-y-8">
               {situaties.map((situatie, i) => (
                 <div key={i}>
-                  <h3 className="text-senior-lg font-bold text-gray-800 mb-4 flex items-center gap-3">
+                  <h3 className="text-senior-lg font-bold text-navy mb-4 flex items-center gap-3">
                     <span className="text-3xl">{situatie.icon}</span>
                     {situatie.titel}
                   </h3>
                   <ul className="space-y-3 ml-12">
                     {situatie.tips.map((tip, j) => (
                       <li key={j} className="flex items-start gap-3">
-                        <span className="text-primary font-bold text-xl flex-shrink-0 mt-0.5">•</span>
-                        <p className="text-senior-base text-gray-700 leading-relaxed">{tip}</p>
+                        <span className="text-gold font-bold text-xl flex-shrink-0 mt-0.5">•</span>
+                        <p className="text-senior-base text-navy/80 leading-relaxed">{tip}</p>
                       </li>
                     ))}
                   </ul>
                   {i < situaties.length - 1 && (
-                    <div className="mt-8 border-t-2 border-neutral-stone" />
+                    <div className="mt-8 border-t-2 border-navy/10" />
                   )}
                 </div>
               ))}
@@ -264,18 +264,18 @@ export default function FotosMakenPage() {
           </section>
 
           {/* Selfies */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               🤳 Een selfie maken — zo doet u dat
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Een selfie is een foto die u van uzelf maakt met uw eigen telefoon. Heel handig om samen op de foto te gaan, of om een berichtje extra persoonlijk te maken. Met deze tips lukt het meteen.
             </p>
 
             {/* Voorkant camera */}
-            <div className="bg-amber-50 border-2 border-amber-200 rounded-xl p-5 mb-6">
+            <div className="bg-paper border border-navy/10 rounded-xl p-5 mb-6">
               <p className="text-senior-base font-bold text-amber-800 mb-2">📷 Stap 1: Zet de camera om</p>
-              <p className="text-senior-base text-gray-700 leading-relaxed">
+              <p className="text-senior-base text-navy/80 leading-relaxed">
                 Uw telefoon heeft twee camera&apos;s: één aan de achterkant (voor gewone foto&apos;s) en één aan de voorkant (voor selfies). Tik op het icoontje met twee pijltjes of een omgedraaide camera — dan draait de camera om en ziet u uzelf op het scherm.
               </p>
             </div>
@@ -309,11 +309,11 @@ export default function FotosMakenPage() {
                   uitleg: "Kijk even wat er achter u te zien is. Een rommelige kamer of volle wasmand valt op. Een neutrale muur of raam ziet er altijd netjes uit.",
                 },
               ].map((tip, i) => (
-                <div key={i} className="flex gap-4 items-start bg-neutral-cream border-2 border-primary/20 rounded-xl px-5 py-4">
+                <div key={i} className="flex gap-4 items-start bg-cream border-2 border-navy/8/20 rounded-xl px-5 py-4">
                   <span className="text-2xl flex-shrink-0">{tip.icon}</span>
                   <div>
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{tip.titel}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{tip.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{tip.titel}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{tip.uitleg}</p>
                   </div>
                 </div>
               ))}
@@ -322,18 +322,18 @@ export default function FotosMakenPage() {
             {/* Samen op de foto */}
             <div className="bg-green-50 border-2 border-green-200 rounded-xl p-5">
               <p className="text-senior-base font-bold text-green-800 mb-2">👫 Samen op de foto?</p>
-              <p className="text-senior-base text-gray-700 leading-relaxed">
+              <p className="text-senior-base text-navy/80 leading-relaxed">
                 Houd de telefoon iets verder weg zodat iedereen erin past. Strek uw arm goed uit, of vraag iemand anders om de telefoon vast te houden. Maak gerust 3 foto&apos;s — kies daarna de leukste.
               </p>
             </div>
           </section>
 
           {/* Snelle oefening */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Oefen het nu meteen — 5 minuten
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Pak uw telefoon en maak deze 5 oefenfoto&apos;s. Daarna kent u de tips uit uw hoofd:
             </p>
             <ol className="space-y-4">
@@ -345,37 +345,37 @@ export default function FotosMakenPage() {
                 "Maak 5 foto's van hetzelfde — kies daarna de beste",
               ].map((stap, i) => (
                 <li key={i} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-9 h-9 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-base">
+                  <div className="flex-shrink-0 w-9 h-9 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">
                     {i + 1}
                   </div>
-                  <p className="text-senior-base text-gray-700 leading-relaxed pt-1">{stap}</p>
+                  <p className="text-senior-base text-navy/80 leading-relaxed pt-1">{stap}</p>
                 </li>
               ))}
             </ol>
           </section>
 
           {/* Samenvatting */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Samenvatting — altijd onthouden
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8">
               {tips.map((tip) => (
-                <div key={tip.num} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={tip.num} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{tip.icon}</div>
-                  <p className="text-senior-base font-bold text-gray-800">{tip.kort}</p>
+                  <p className="text-senior-base font-bold text-navy">{tip.kort}</p>
                 </div>
               ))}
             </div>
-            <p className="text-senior-lg font-bold text-primary mb-2">
+            <p className="text-senior-lg font-bold text-gold mb-2">
               Oefening baart kunst! 📸
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               De eerste paar keer denkt u nog aan de tips. Na een weekje is het gewoon. Uw familie zal verbaasd zijn van de mooie foto&apos;s!
             </p>
             <Link
               href="/"
-              className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg"
+              className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors "
             >
               ← Terug naar home
             </Link>

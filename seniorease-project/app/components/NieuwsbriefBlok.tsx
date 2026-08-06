@@ -49,30 +49,35 @@ export default function NieuwsbriefBlok() {
   };
 
   return (
-    <section id="nieuwsbrief" className="bg-amber-50 border border-amber-200 rounded-2xl p-8 my-8 mx-auto max-w-2xl text-center scroll-mt-24">
-      <div className="inline-flex rounded-xl p-2.5 bg-primary-soft mb-3">
-        <Mail size={26} strokeWidth={1.75} className="text-primary" />
+    <section
+      id="nieuwsbrief"
+      className="bg-slate rounded-senior border border-navy/8 p-7 sm:p-9 max-w-2xl scroll-mt-24"
+    >
+      <div className="inline-flex rounded-2xl p-3 bg-paper text-gold mb-4">
+        <Mail size={26} strokeWidth={1.75} aria-hidden />
       </div>
-      <h2 className="text-senior-xl mb-2">
+      <h2 className="font-serif text-navy text-senior-lg font-semibold mb-2">
         Ontvang elke week een digitale tip
       </h2>
-      <p className="text-gray-600 mb-6">
+      <p className="text-navy/70 text-senior-sm mb-6 leading-relaxed">
         Gratis. Geen spam. Altijd opzegbaar.
       </p>
 
       {status === 'success' ? (
-        <div className="bg-green-50 border border-green-200 rounded-xl p-5 text-left">
-          <p className="font-bold text-green-800 mb-1" style={{ fontSize: '1.15rem' }}>
-            Bedankt voor uw aanmelding!
-          </p>
-          <p className="text-green-700" style={{ fontSize: '1.05rem' }}>
-            U ontvangt binnenkort uw eerste tip per e-mail. Kijk ook even in uw spam-map als u niets ziet.
+        <div className="bg-paper border border-navy/10 rounded-senior p-5 text-left">
+          <p className="font-semibold text-navy text-senior-sm mb-1">Bedankt voor uw aanmelding!</p>
+          <p className="text-navy/75 text-senior-sm leading-relaxed m-0">
+            U ontvangt binnenkort uw eerste tip per e-mail. Kijk ook even in uw spam-map als u
+            niets ziet.
           </p>
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="text-left space-y-4">
           <div>
-            <label htmlFor="nieuwsbrief-email" className="block font-bold text-gray-800 mb-2" style={{ fontSize: '1.1rem' }}>
+            <label
+              htmlFor="nieuwsbrief-email"
+              className="block font-semibold text-navy text-senior-sm mb-2"
+            >
               Uw e-mailadres
             </label>
             <input
@@ -87,26 +92,22 @@ export default function NieuwsbriefBlok() {
               }}
               placeholder="bijvoorbeeld@email.nl"
               autoComplete="email"
-              className={`w-full rounded-xl border bg-white text-gray-800 placeholder-gray-400 focus:outline-none focus:border-primary focus:ring-2 focus:ring-primary/20 transition-colors ${
-                error ? 'border-red-300 bg-red-50' : 'border-neutral-stone/60'
+              className={`w-full min-h-touch rounded-senior border-2 bg-paper text-navy text-senior-sm placeholder:text-navy/40 px-5 py-3.5 focus:outline-none focus:border-gold focus:ring-2 focus:ring-gold/25 ${
+                error ? 'border-red-300 bg-red-50' : 'border-navy/12'
               }`}
-              style={{ fontSize: '1.2rem', padding: '0.9rem 1.25rem' }}
             />
-            {error && (
-              <p className="mt-2 text-red-600" style={{ fontSize: '1rem' }}>{error}</p>
-            )}
+            {error && <p className="mt-2 text-red-700 text-senior-xs">{error}</p>}
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full font-bold text-white py-4 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50 bg-primary"
-            style={{ fontSize: '1.15rem' }}
+            className="w-full min-h-touch font-semibold text-white text-senior-sm py-3.5 rounded-full bg-gold hover:bg-gold-light transition-colors disabled:opacity-50"
           >
             {isSubmitting ? 'Even geduld...' : 'Meld me aan →'}
           </button>
 
-          <p className="text-gray-500 text-center" style={{ fontSize: '0.95rem' }}>
+          <p className="text-navy/55 text-senior-xs text-center leading-relaxed m-0">
             Eén tip per week. U kunt zich altijd uitschrijven via de link onderaan elke e-mail.
           </p>
         </form>

@@ -63,41 +63,41 @@ export const metadata = buildPageMetadata({
 
 export default function ZoomPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Zoom gebruiken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Deelnemen aan een videogesprek via Zoom — stap voor stap uitgelegd.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is Zoom */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is Zoom?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Zoom is een app om met meerdere mensen tegelijk te videobellen.
               U ziet iedereen op uw scherm en zij zien u. Handig voor een gesprek met de familie,
               een vergadering, of contact met uw huisarts of specialist op afstand.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               U hoeft zelf geen vergadering aan te maken. Als iemand anders u uitnodigt,
               tikt u gewoon op de link — en u bent er al.
             </p>
@@ -107,23 +107,23 @@ export default function ZoomPage() {
                 { icon: "🔗", label: "Deelnemen via een link" },
                 { icon: "💻", label: "Op telefoon, tablet of computer" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Installeren */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Stap 1: Zoom installeren
             </h2>
             <div className="space-y-4">
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-                <h3 className="text-senior-base font-bold text-blue-900 mb-3">📱 Op Android</h3>
-                <ol className="space-y-2 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+              <div className="bg-paper border border-navy/8 rounded-xl p-6">
+                <h3 className="text-senior-base font-bold text-navy mb-3">📱 Op Android</h3>
+                <ol className="space-y-2 list-decimal list-outside pl-6 text-senior-base text-navy/80">
                   <li>Open de <strong>Play Store</strong>.</li>
                   <li>Zoek op <strong>Zoom</strong>.</li>
                   <li>Tik op <strong>Installeren</strong> bij &quot;Zoom - One Platform to Connect&quot;.</li>
@@ -131,24 +131,24 @@ export default function ZoomPage() {
               </div>
               <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6">
                 <h3 className="text-senior-base font-bold text-gray-900 mb-3">🍎 Op iPhone of iPad</h3>
-                <ol className="space-y-2 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+                <ol className="space-y-2 list-decimal list-outside pl-6 text-senior-base text-navy/80">
                   <li>Open de <strong>App Store</strong>.</li>
                   <li>Zoek op <strong>Zoom</strong>.</li>
                   <li>Tik op <strong>Krijg</strong> en bevestig met uw vingerafdruk of wachtwoord.</li>
                 </ol>
               </div>
             </div>
-            <p className="text-senior-sm text-gray-500 mt-4">
+            <p className="text-senior-sm text-navy/55 mt-4">
               U hoeft geen account aan te maken als u alleen deelneemt aan iemand anders zijn vergadering.
             </p>
           </section>
 
           {/* Deelnemen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Stap 2: Deelnemen aan een Zoom-gesprek
             </h2>
-            <p className="text-senior-base text-gray-700 mb-6">
+            <p className="text-senior-base text-navy/80 mb-6">
               U ontvangt een uitnodiging via e-mail of WhatsApp. Daarin staat een link of een Meeting ID met wachtwoord.
             </p>
             <ol className="space-y-6">
@@ -173,15 +173,15 @@ export default function ZoomPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -191,14 +191,14 @@ export default function ZoomPage() {
           </section>
 
           {/* Meeting ID */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Deelnemen met een Meeting ID
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-4">
               Heeft u een Meeting ID en wachtwoord gekregen in plaats van een link? Doe dan het volgende:
             </p>
-            <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+            <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-navy/80">
               <li>Open de Zoom-app.</li>
               <li>Tik op <strong>Deelnemen aan vergadering</strong> (of &quot;Join a Meeting&quot;).</li>
               <li>Voer het <strong>Meeting ID</strong> in — een reeks cijfers zoals 123 456 7890.</li>
@@ -207,31 +207,31 @@ export default function ZoomPage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-6">Veelgestelde vragen</h2>
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Moet ik een account aanmaken?</p>
-                <p className="text-senior-base text-gray-700">Nee. Als u alleen deelneemt, heeft u geen account nodig. Tik op de link en u bent er al.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Moet ik een account aanmaken?</p>
+                <p className="text-senior-base text-navy/80">Nee. Als u alleen deelneemt, heeft u geen account nodig. Tik op de link en u bent er al.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Ze kunnen mij niet zien of horen. Wat doe ik?</p>
-                <p className="text-senior-base text-gray-700">Kijk of het microfoon- en camera-icoontje onderin niet doorgestreept zijn. Tik erop om ze in te schakelen. Geef Zoom toestemming als uw telefoon daarom vraagt.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Ze kunnen mij niet zien of horen. Wat doe ik?</p>
+                <p className="text-senior-base text-navy/80">Kijk of het microfoon- en camera-icoontje onderin niet doorgestreept zijn. Tik erop om ze in te schakelen. Geef Zoom toestemming als uw telefoon daarom vraagt.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is Zoom gratis?</p>
-                <p className="text-senior-base text-gray-700">Ja, deelnemen is altijd gratis. De organisator kan gratis gesprekken houden tot 40 minuten.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is Zoom gratis?</p>
+                <p className="text-senior-base text-navy/80">Ja, deelnemen is altijd gratis. De organisator kan gratis gesprekken houden tot 40 minuten.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg over videobellen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over videobellen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/facetime" className="text-senior-base font-bold text-primary hover:underline">FaceTime gebruiken (iPhone/iPad) →</Link></li>
-              <li><Link href="/uitleg/videobellen" className="text-senior-base font-bold text-primary hover:underline">Videobellen via WhatsApp →</Link></li>
-              <li><Link href="/uitleg/wifi" className="text-senior-base font-bold text-primary hover:underline">WiFi instellen →</Link></li>
+              <li><Link href="/uitleg/facetime" className="text-senior-base font-semibold text-gold hover:text-gold-light">FaceTime gebruiken (iPhone/iPad) →</Link></li>
+              <li><Link href="/uitleg/videobellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Videobellen via WhatsApp →</Link></li>
+              <li><Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light">WiFi instellen →</Link></li>
             </ul>
           </section>
 

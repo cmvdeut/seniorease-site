@@ -11,36 +11,36 @@ export const metadata = buildPageMetadata({
 
 export default function VideoBellenPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="videobellen" />
       {/* Header */}
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Videobellen met familie
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Uw kleinkind zien terwijl u belt — het is makkelijker dan u denkt!
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Hobby's navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">🎨 Hobby&apos;s:</span>
-              <Link href="/uitleg/fotos-ordenen" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Foto&apos;s ordenen</Link>
-              <span className="text-senior-sm font-bold text-primary underline">Videobellen</span>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">🎨 Hobby&apos;s:</span>
+              <Link href="/uitleg/fotos-ordenen" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Foto&apos;s ordenen</Link>
+              <span className="text-senior-sm font-bold text-gold underline">Videobellen</span>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
           <section className="my-8 mx-4 sm:mx-0">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden  aspect-video">
               <iframe
                 width="100%"
                 height="100%"
@@ -52,21 +52,21 @@ export default function VideoBellenPage() {
                 className="w-full h-full"
               />
             </div>
-            <p className="text-center text-gray-600 mt-4 text-senior-base">
+            <p className="text-center text-navy/70 mt-4 text-senior-base">
               Bekijk de uitlegvideo (±9 minuten) of lees verder voor de stappen op deze pagina
             </p>
-            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>
               <div>
-                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Meer instructievideo&apos;s</h3>
-                <p className="text-senior-base text-gray-600 mb-4">
+                <h3 className="text-senior-lg font-bold text-navy mb-1">Meer instructievideo&apos;s</h3>
+                <p className="text-senior-base text-navy/70 mb-4">
                   Rustige uitleg op YouTube — in uw eigen tempo.
                 </p>
                 <a
                   href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.tips)}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-neutral-cream"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-gold border-navy/8 bg-cream"
                 >
                   Bekijk de Tips &amp; Tricks-playlist
                   <span aria-hidden="true">→</span>
@@ -76,14 +76,14 @@ export default function VideoBellenPage() {
           </section>
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Wat is videobellen?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Bij een gewoon telefoongesprek hoort u de ander alleen. Bij videobellen <strong>ziet</strong> u de ander ook — op uw scherm. U kunt elkaars gezicht zien, lachen, en de kleinkinderen groeien zien. Heel fijn als familie ver weg woont!
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               U heeft geen extra apparaat nodig. Uw gewone smartphone of tablet is genoeg.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -92,20 +92,20 @@ export default function VideoBellenPage() {
                 { icon: "🌐", label: "Gratis via wifi of data" },
                 { icon: "👴👵", label: "Makkelijk te leren" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Welke app */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Welke app gebruikt u?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Er zijn drie veelgebruikte apps voor videobellen. De makkelijkste is WhatsApp — die heeft u waarschijnlijk al.
             </p>
             <div className="space-y-4">
@@ -122,7 +122,7 @@ export default function VideoBellenPage() {
                   icon: "🍎",
                   naam: "FaceTime (alleen iPhone)",
                   beschrijving: "Heeft u een iPhone? Dan staat FaceTime er al op. Heel helder beeld. Werkt alleen als de andere persoon ook een iPhone of iPad heeft.",
-                  kleur: "bg-blue-50 border-blue-300",
+                  kleur: "bg-paper border-navy/8",
                   badge: "Alleen iPhone",
                   badgekleur: "bg-blue-600",
                 },
@@ -139,10 +139,10 @@ export default function VideoBellenPage() {
                   <span className="text-4xl flex-shrink-0">{app.icon}</span>
                   <div className="flex-1">
                     <div className="flex flex-wrap items-center gap-3 mb-2">
-                      <h3 className="text-senior-lg font-bold text-gray-800">{app.naam}</h3>
+                      <h3 className="text-senior-lg font-bold text-navy">{app.naam}</h3>
                       <span className={`text-xs font-bold text-white ${app.badgekleur} px-2 py-0.5 rounded-full`}>{app.badge}</span>
                     </div>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{app.beschrijving}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{app.beschrijving}</p>
                   </div>
                 </div>
               ))}
@@ -150,11 +150,11 @@ export default function VideoBellenPage() {
           </section>
 
           {/* WhatsApp videogesprek stap voor stap */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-3">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-3">
               💬 Videobellen via WhatsApp — stap voor stap
             </h2>
-            <p className="text-senior-base text-gray-500 mb-8">De makkelijkste manier, werkt op elke telefoon</p>
+            <p className="text-senior-base text-navy/55 mb-8">De makkelijkste manier, werkt op elke telefoon</p>
 
             <ol className="space-y-6">
               {[
@@ -185,15 +185,15 @@ export default function VideoBellenPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -203,13 +203,13 @@ export default function VideoBellenPage() {
 
             <div className="mt-8 bg-green-50 border-2 border-green-200 rounded-xl p-5">
               <p className="text-senior-base font-bold text-green-800 mb-1">✅ Ophangen</p>
-              <p className="text-senior-base text-gray-700">Tik op de rode knop met een telefoonhoorn om het gesprek te beëindigen. Die knop staat tijdens het gesprek onderaan uw scherm.</p>
+              <p className="text-senior-base text-navy/80">Tik op de rode knop met een telefoonhoorn om het gesprek te beëindigen. Die knop staat tijdens het gesprek onderaan uw scherm.</p>
             </div>
           </section>
 
           {/* Tips voor goed gesprek */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Tips voor een goed videogesprek
             </h2>
             <div className="space-y-4">
@@ -240,11 +240,11 @@ export default function VideoBellenPage() {
                   uitleg: "Een videogesprek gebruikt meer batterij dan bellen. Sluit uw telefoon aan als u lang wilt praten.",
                 },
               ].map((tip, i) => (
-                <div key={i} className="flex gap-4 items-start bg-neutral-cream border-2 border-primary/20 rounded-xl px-5 py-4">
+                <div key={i} className="flex gap-4 items-start bg-cream border-2 border-navy/8/20 rounded-xl px-5 py-4">
                   <span className="text-2xl flex-shrink-0">{tip.icon}</span>
                   <div>
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{tip.titel}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{tip.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{tip.titel}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{tip.uitleg}</p>
                   </div>
                 </div>
               ))}
@@ -252,8 +252,8 @@ export default function VideoBellenPage() {
           </section>
 
           {/* Veelgestelde vragen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -275,12 +275,12 @@ export default function VideoBellenPage() {
                   antwoord: "Ja! In WhatsApp kunt u met meerdere mensen tegelijk videobellen via een groepsgesprek. Open een groepschat en tik op het camera-icoontje. Of gebruik Zoom voor grotere groepen.",
                 },
               ].map((item, i) => (
-                <div key={i} className="border-2 border-neutral-stone rounded-xl overflow-hidden">
-                  <div className="bg-primary/10 px-6 py-4 border-b border-neutral-stone">
-                    <p className="text-senior-base font-bold text-primary">❓ {item.vraag}</p>
+                <div key={i} className="border-2 border-navy/10 rounded-xl overflow-hidden">
+                  <div className="bg-gold/10 px-6 py-4 border-b border-navy/10">
+                    <p className="text-senior-base font-bold text-gold">❓ {item.vraag}</p>
                   </div>
                   <div className="px-6 py-4">
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.antwoord}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.antwoord}</p>
                   </div>
                 </div>
               ))}
@@ -288,8 +288,8 @@ export default function VideoBellenPage() {
           </section>
 
           {/* Samenvatting */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">
@@ -300,17 +300,17 @@ export default function VideoBellenPage() {
                 "Rode knop = ophangen",
                 "Gratis via wifi — zorg dat uw telefoon opgeladen is",
               ].map((punt, i) => (
-                <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
+                <div key={i} className="flex items-start gap-3 bg-cream border-2 border-navy/8/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
-                  <p className="text-senior-base text-gray-700 leading-relaxed">{punt}</p>
+                  <p className="text-senior-base text-navy/80 leading-relaxed">{punt}</p>
                 </div>
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/uitleg/fotos-ordenen" className="inline-flex items-center gap-2 bg-white border-2 border-primary text-primary px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary/10 transition-colors">
+              <Link href="/uitleg/fotos-ordenen" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 ← Foto&apos;s ordenen
               </Link>
-              <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
+              <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 ← Terug naar home
               </Link>
             </div>

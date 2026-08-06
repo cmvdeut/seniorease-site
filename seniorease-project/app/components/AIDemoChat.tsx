@@ -111,7 +111,7 @@ export default function AIDemoChat() {
       {/* Header */}
       <div className="bg-primary text-white p-6 rounded-t-2xl">
         <div className="flex items-center gap-4">
-          <div className="w-14 h-14 bg-white/20 rounded-full flex items-center justify-center shrink-0">
+          <div className="w-14 h-14 bg-paper/20 rounded-full flex items-center justify-center shrink-0">
             <span className="text-2xl" aria-hidden>🤖</span>
           </div>
           <div>
@@ -125,7 +125,7 @@ export default function AIDemoChat() {
       <div className="bg-neutral-cream border-x-2 border-b-2 border-neutral-stone p-6 min-h-[420px]">
         {!selectedDemo ? (
           <div className="space-y-6">
-            <div className="bg-white p-6 rounded-xl shadow-sm border-2 border-primary/20">
+            <div className="bg-paper p-6 rounded-xl shadow-sm border-2 border-primary/20">
               <p className="text-senior-base text-gray-700 mb-4">
                 👋 Hallo! Ik ben een AI-assistent. Klik op een voorbeeld om te zien hoe ik u kan helpen.
               </p>
@@ -149,7 +149,7 @@ export default function AIDemoChat() {
                   key={item.key}
                   type="button"
                   onClick={() => handleSelectDemo(item.key as ConversationKey)}
-                  className="text-left p-5 bg-white border-2 border-neutral-stone rounded-xl hover:border-primary hover:bg-primary/5 transition-all min-h-[72px]"
+                  className="text-left p-5 bg-paper border-2 border-neutral-stone rounded-xl hover:border-primary hover:bg-primary/5 transition-all min-h-[72px]"
                 >
                   <span className="text-2xl mr-3 align-middle">{item.icon}</span>
                   <span className="text-senior-base font-bold text-primary align-middle">{item.title}</span>
@@ -168,7 +168,7 @@ export default function AIDemoChat() {
 
             {isTyping ? (
               <div className="flex justify-start">
-                <div className="bg-white border-2 border-neutral-stone p-5 rounded-2xl rounded-tl-sm shadow-sm">
+                <div className="bg-paper border-2 border-neutral-stone p-5 rounded-2xl rounded-tl-sm shadow-sm">
                   <div className="flex items-center gap-3 text-gray-500">
                     <div className="flex gap-1.5">
                       <span className="w-3 h-3 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0ms' }} aria-hidden />
@@ -181,7 +181,7 @@ export default function AIDemoChat() {
               </div>
             ) : showResponse && (
               <div className="flex justify-start">
-                <div className="bg-white border-2 border-neutral-stone p-5 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]">
+                <div className="bg-paper border-2 border-neutral-stone p-5 rounded-2xl rounded-tl-sm shadow-sm max-w-[90%]">
                   <div className="whitespace-pre-wrap text-senior-base text-gray-700 leading-relaxed [&_strong]:font-bold [&_strong]:text-gray-800">
                     {demoConversations[selectedDemo].response}
                   </div>
@@ -194,7 +194,7 @@ export default function AIDemoChat() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="w-full py-4 bg-white border-2 border-primary text-primary rounded-xl font-bold text-senior-base hover:bg-primary/10 transition-colors"
+                  className="w-full py-4 bg-paper border-2 border-primary text-primary rounded-xl font-bold text-senior-base hover:bg-primary/10 transition-colors"
                 >
                   ← Probeer een ander voorbeeld
                 </button>
@@ -205,7 +205,7 @@ export default function AIDemoChat() {
       </div>
 
       {/* Footer */}
-      <div className="bg-white border-2 border-t-0 border-neutral-stone p-5 rounded-b-2xl">
+      <div className="bg-paper border-2 border-t-0 border-neutral-stone p-5 rounded-b-2xl">
         <div className="flex items-center gap-2 text-gray-400">
           <input
             type="text"

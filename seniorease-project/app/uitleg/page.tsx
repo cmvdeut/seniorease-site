@@ -1,6 +1,10 @@
 import Link from 'next/link';
 import JsonLd from '@/app/components/JsonLd';
+import PopularCard from '@/app/components/PopularCard';
+import { YoutubeChannelCta } from '@/app/components/YoutubeHint';
 import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
+import { UITLEG_CLUSTERS } from './clusters';
+import { UitlegCategorieen } from './UitlegCategorieen';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg',
@@ -10,110 +14,7 @@ export const metadata = buildPageMetadata({
   keywords: ['uitleg senioren', 'stap voor stap', 'technologie uitleg', 'WhatsApp', 'DigiD'],
 });
 
-const clusters = [
-  {
-    titel: 'Streaming & TV',
-    omschrijving: 'Films, series en programma\'s kijken op uw tablet of tv.',
-    paginas: [
-      { href: '/uitleg/netflix', label: 'Netflix gebruiken' },
-      { href: '/uitleg/npo-start', label: 'NPO Start – gratis tv terugkijken' },
-      { href: '/uitleg/youtube-tv', label: 'YouTube kijken' },
-    ],
-  },
-  {
-    titel: 'Videobellen',
-    omschrijving: 'Familie en vrienden zien terwijl u belt.',
-    paginas: [
-      { href: '/uitleg/videobellen', label: 'Videobellen via WhatsApp' },
-      { href: '/uitleg/zoom', label: 'Zoom gebruiken' },
-      { href: '/uitleg/facetime', label: 'FaceTime (iPhone/iPad)' },
-    ],
-  },
-  {
-    titel: 'Online winkelen',
-    omschrijving: 'Veilig bestellen en thuis laten bezorgen.',
-    paginas: [
-      { href: '/uitleg/bol-com', label: 'Bestellen bij Bol.com' },
-      { href: '/uitleg/boodschappen-bestellen', label: 'Online boodschappen bestellen' },
-      { href: '/uitleg/online-retourneren', label: 'Iets terugsturen' },
-    ],
-  },
-  {
-    titel: 'Reizen',
-    omschrijving: 'Handige apps voor onderweg en op vakantie.',
-    paginas: [
-      { href: '/uitleg/google-maps', label: 'Google Maps gebruiken' },
-      { href: '/uitleg/google-translate', label: 'Google Translate – vertalen op reis' },
-      { href: '/uitleg/9292', label: '9292 OV-app – trein en bus plannen' },
-      { href: '/uitleg/betalen-ov', label: 'Betalen in het OV met pinpas of OV-chipkaart' },
-    ],
-  },
-  {
-    titel: 'Smartphone basics',
-    omschrijving: 'De basis van uw smartphone of tablet.',
-    paginas: [
-      { href: '/uitleg/whatsapp-basis', label: 'WhatsApp – eerste stappen' },
-      { href: '/uitleg/wifi', label: 'WiFi instellen' },
-      { href: '/uitleg/qr-code', label: 'QR-code scannen' },
-      { href: '/uitleg/veiligheid', label: 'Oplichting herkennen' },
-      { href: '/uitleg/wachtwoorden', label: 'Wachtwoorden beheren' },
-      { href: '/uitleg/inspreken', label: 'Iets inspreken op uw telefoon' },
-    ],
-  },
-  {
-    titel: "Foto's",
-    omschrijving: "Foto's maken, bewaren, ordenen en overzetten naar uw computer.",
-    paginas: [
-      { href: '/uitleg/fotos-maken', label: "Foto's maken met uw telefoon" },
-      { href: '/uitleg/fotos-ordenen', label: "Foto's ordenen en bewaren" },
-      { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
-      { href: '/foto-archief', label: 'Foto Archief — namen op groepsfoto\'s' },
-    ],
-  },
-  {
-    titel: 'Computer',
-    omschrijving: 'E-mail, bestanden en uw pc soepel houden.',
-    paginas: [
-      { href: '/uitleg/email-bijlage', label: 'E-mail bijlage openen en opslaan' },
-      { href: '/uitleg/bestanden-vinden', label: 'Bestanden vinden (Downloads, Verkenner)' },
-      { href: '/uitleg/computer-traag', label: 'Computer traag of vastgelopen' },
-      { href: '/uitleg/screenshot-pc', label: 'Screenshot maken op computer' },
-      { href: '/uitleg/letters-groter-pc', label: 'Letters groter maken op computer' },
-      { href: '/uitleg/programma-installeren', label: 'Programma installeren op computer' },
-      { href: '/uitleg/fotos-naar-computer', label: "Foto's van telefoon naar computer" },
-      { href: '/digitale-hulp/e-mail-openen', label: 'E-mail openen' },
-      { href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' },
-    ],
-  },
-  {
-    titel: 'DigiD & bankieren',
-    omschrijving: 'Veilig inloggen bij overheid en bank — zonder angst.',
-    paginas: [
-      { href: '/uitleg/digid', label: 'DigiD — wat is het en hoe werkt het?' },
-      { href: '/uitleg/online-bankieren', label: 'Veilig online bankieren' },
-      { href: '/uitleg/veiligheid', label: 'Oplichting herkennen' },
-      { href: '/uitleg/wachtwoorden', label: 'Wachtwoorden beheren' },
-    ],
-  },
-  {
-    titel: 'Muziek & e-books',
-    omschrijving: 'Muziek luisteren en e-boeken lezen.',
-    paginas: [
-      { href: '/uitleg/muziek-radio', label: 'Muziek en radio op uw telefoon' },
-      { href: '/uitleg/ebooks', label: 'E-books lezen' },
-    ],
-  },
-  {
-    titel: 'Hobby & vrije tijd',
-    omschrijving: "Handige uitleg voor uw hobby's.",
-    paginas: [
-      { href: '/uitleg/e-bike', label: 'E-bike app gebruiken' },
-      { href: '/uitleg/hoofdtelefoon', label: 'Hoofdtelefoon instellen' },
-    ],
-  },
-];
-
-const uitlegListItems = clusters.flatMap((cluster) =>
+const uitlegListItems = UITLEG_CLUSTERS.flatMap((cluster) =>
   cluster.paginas.map((p) => ({ name: p.label, path: p.href })),
 );
 
@@ -124,46 +25,83 @@ const uitlegCollectionSchema = buildCollectionPageSchema(
   uitlegListItems,
 );
 
+const POPULAIR = [
+  {
+    title: 'Mobiel parkeren',
+    href: '/uitleg/mobiel-parkeren',
+    description: 'Parkeren betalen met een app — zonder muntjes.',
+  },
+  {
+    title: 'OV betalen met uw pinpas',
+    href: '/uitleg/betalen-ov',
+    description: 'Inchecken zonder OV-chipkaart: met contactloze pinpas.',
+  },
+  {
+    title: 'WhatsApp – eerste stappen',
+    href: '/uitleg/whatsapp-basis',
+    description: 'Berichten sturen en de basis van WhatsApp.',
+  },
+  {
+    title: 'DigiD — hoe werkt het?',
+    href: '/uitleg/digid',
+    description: 'Veilig inloggen bij de overheid.',
+  },
+] as const;
+
 export default function UitlegOverzichtPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <JsonLd data={uitlegCollectionSchema} />
-      <div className="max-w-4xl mx-auto px-6 py-10">
 
-        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
-          ← Terug naar home
-        </Link>
+      <section className="bg-cream">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 pt-14 md:pt-20 pb-10 md:pb-12">
+          <Link
+            href="/"
+            className="text-gold hover:text-gold-light font-semibold mb-8 inline-flex text-senior-sm min-h-[44px] items-center"
+          >
+            ← Terug naar home
+          </Link>
 
-        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
-          Alle uitleg
-        </h1>
-        <p className="text-gray-500 mb-8 text-senior-lg">
-          Stap-voor-stap uitleg over technologie — rustig, duidelijk, zonder gedoe.
-        </p>
+          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-10 max-w-2xl">
+            Stap-voor-stap uitleg over technologie.
+          </h1>
 
-        <div className="space-y-4">
-          {clusters.map((cluster, i) => (
-            <section key={i} className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-6 md:p-8">
-              <h2 className="text-senior-lg font-bold text-gray-900 mb-1">{cluster.titel}</h2>
-              <p className="text-senior-sm text-gray-500 mb-4">{cluster.omschrijving}</p>
-              <ul className="divide-y divide-neutral-stone/30">
-                {cluster.paginas.map((p, j) => (
-                  <li key={j}>
-                    <Link
-                      href={p.href}
-                      className="flex items-center justify-between text-senior-base font-semibold text-gray-800 hover:text-primary transition-colors py-3 group"
-                      style={{ minHeight: 'auto' }}
-                    >
-                      {p.label}
-                      <span className="text-gray-300 group-hover:text-primary transition-colors text-senior-base">›</span>
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </section>
-          ))}
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3">
+            Of kies een onderwerp
+          </h2>
+          <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
+            Grote knoppen naar alle uitleg per thema.
+          </p>
+          <UitlegCategorieen />
         </div>
-      </div>
+      </section>
+
+      <section className="bg-slate py-16 md:py-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-8">
+            Meest bekeken
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            {POPULAIR.map((item) => (
+              <PopularCard key={item.href} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-cream py-12 md:py-16">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 space-y-10">
+          <YoutubeChannelCta />
+          <p className="text-center">
+            <Link
+              href="/digitale-hulp"
+              className="text-senior-sm font-semibold text-gold hover:text-gold-light"
+            >
+              Liever zoeken? Ga naar Digitale hulp →
+            </Link>
+          </p>
+        </div>
+      </section>
     </main>
   );
 }

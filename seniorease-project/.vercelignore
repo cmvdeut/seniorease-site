@@ -1,0 +1,27 @@
+# Grote lokale mappen — niet nodig voor de Next.js site
+videos
+video-generator
+tutorial-maker-app
+tutorial-maker
+hyperframes-prototype
+youtube-animaties
+TikTok
+Facebook
+Faecebook
+Agent
+contentplan
+screenshots
+Original
+assets
+social-media
+mnt
+CLAUDE
+.agents
+.claude
+.cursor
+Carousel Plan
+.next
+node_modules
+*.mp4
+*.mov
+*.webm

@@ -16,15 +16,15 @@ function StappenLijst({ stappen }: { stappen: Stap[] }) {
     <ol className="space-y-6">
       {stappen.map((item, i) => (
         <li key={i} className="flex gap-5 items-start list-none">
-          <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+          <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
             {i + 1}
           </div>
           <div className="pt-1 flex-1">
-            <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-            <div className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</div>
+            <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+            <div className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</div>
             {item.tip && (
-              <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                💡 {item.tip}
+              <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                {item.tip}
               </p>
             )}
           </div>
@@ -83,69 +83,69 @@ export default function ScreenshotPcPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="screenshot-pc" />
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/digitale-hulp/computer" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/digitale-hulp/computer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Computer hulp
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Screenshot maken op uw computer
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Een foto van uw scherm — handig om iets te bewaren of door te sturen.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Computer uitleg navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">💻 Computer:</span>
-              <span className="text-senior-sm font-bold text-primary underline">Screenshot pc</span>
-              <Link href="/uitleg/letters-groter-pc" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Letters groter</Link>
-              <Link href="/uitleg/programma-installeren" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Programma installeren</Link>
-              <Link href="/digitale-hulp/screenshot-en-schermopname-telefoon" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Screenshot telefoon</Link>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">💻 Computer:</span>
+              <span className="text-senior-sm font-bold text-gold underline">Screenshot pc</span>
+              <Link href="/uitleg/letters-groter-pc" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Letters groter</Link>
+              <Link href="/uitleg/programma-installeren" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Programma installeren</Link>
+              <Link href="/digitale-hulp/screenshot-en-schermopname-telefoon" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Screenshot telefoon</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Wat is een screenshot?</h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Wat is een screenshot?</h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed">
               Een <strong>screenshot</strong> (schermafbeelding) is een foto van wat er op uw scherm staat. Handig voor een foutmelding, een bevestiging, een recept of een bericht dat u wilt bewaren of naar familie wilt sturen. Op de telefoon werkt het anders — zie{' '}
-              <Link href="/digitale-hulp/screenshot-en-schermopname-telefoon" className="font-bold text-primary hover:underline">Screenshot op telefoon</Link>.
+              <Link href="/digitale-hulp/screenshot-en-schermopname-telefoon" className="font-semibold text-gold hover:text-gold-light">Screenshot op telefoon</Link>.
             </p>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Windows — stap voor stap</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Windows — stap voor stap</h2>
             <StappenLijst stappen={windowsStappen} />
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Mac — stap voor stap</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Mac — stap voor stap</h2>
             <StappenLijst stappen={macStappen} />
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Waar vind ik mijn screenshot?</h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Waar vind ik mijn screenshot?</h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Op Windows vaak in <strong>Afbeeldingen → Schermafbeeldingen</strong>. Heeft u zelf opgeslagen? Kijk in <strong>Downloads</strong> of op het <strong>Bureaublad</strong>. Meer hulp:{' '}
-              <Link href="/uitleg/bestanden-vinden" className="font-bold text-primary hover:underline">Bestanden vinden</Link>.
+              <Link href="/uitleg/bestanden-vinden" className="font-semibold text-gold hover:text-gold-light">Bestanden vinden</Link>.
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed">
               Wilt u de foto per e-mail sturen? Zie{' '}
-              <Link href="/uitleg/email-bijlage" className="font-bold text-primary hover:underline">E-mail bijlage openen en opslaan</Link> — daar staat ook hoe u zelf een bijlage toevoegt.
+              <Link href="/uitleg/email-bijlage" className="font-semibold text-gold hover:text-gold-light">E-mail bijlage openen en opslaan</Link> — daar staat ook hoe u zelf een bijlage toevoegt.
             </p>
           </section>
 
-          <section className="bg-neutral-cream border-2 border-primary/20 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Let op bij delen</h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
+          <section className="bg-cream border-2 border-navy/8/20 rounded-2xl p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Let op bij delen</h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed">
               Controleer vóór u een screenshot doorstuurt of er geen <strong>wachtwoorden</strong>, <strong>bankgegevens</strong> of persoonlijke brieven in beeld staan. Meer over veilig omgaan met gegevens:{' '}
-              <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link>.
+              <Link href="/uitleg/veiligheid" className="font-semibold text-gold hover:text-gold-light">Oplichting herkennen</Link>.
             </p>
           </section>
 

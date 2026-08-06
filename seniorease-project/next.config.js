@@ -12,6 +12,11 @@ const nextConfig = {
   async rewrites() {
     return [{ source: '/favicon.ico', destination: '/heart-logo.png' }];
   },
+  async redirects() {
+    return [
+      { source: '/terms', destination: '/voorwaarden', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

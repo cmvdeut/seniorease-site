@@ -54,3 +54,6 @@ hyperframes-prototype/out/
 next-env.d.ts
 
 .vercel
+
+.vercel
+.env*.local

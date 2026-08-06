@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 
-const ZAPIER_WEBHOOK = process.env.ZAPIER_WEBHOOK_URL ?? "";
-
+/** Voorheen webhook naar Zapier; posting gebeurt nu handmatig. */
 const posts: Record<string, string> = {
   "2026-03-26":
     "Wist u dat u op uw telefoon ook kunt inspreken in plaats van typen? 🎤 Bij WhatsApp, e-mail, Google — gewoon zeggen wat u wilt. Geen gedoe met kleine letters meer. Gratis uitleg: seniorease.nl/uitleg/inspreken",
@@ -25,12 +24,10 @@ export async function GET() {
     return NextResponse.json({ status: "geen post vandaag", date: today });
   }
 
-  const res = await fetch(ZAPIER_WEBHOOK, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ message }),
+  return NextResponse.json({
+    status: "handmatig",
+    date: today,
+    message,
+    hint: "Automatische Zapier-koppeling is verwijderd. Kopieer de tekst naar Meta Business Suite of Facebook.",
   });
-
-  const data = await res.json();
-  return NextResponse.json({ status: "verstuurd", date: today, zapier: data });
 }

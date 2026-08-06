@@ -63,41 +63,41 @@ export const metadata = buildPageMetadata({
 
 export default function NpoStartPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               NPO Start gebruiken
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Gratis Nederlandse programma&apos;s terugkijken op uw tablet of smartphone — stap voor stap uitgelegd.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Wat is NPO Start */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wat is NPO Start?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               NPO Start is de gratis terugkijkdienst van de Nederlandse publieke omroep.
               Hiermee kunt u programma&apos;s van NPO 1, NPO 2 en NPO 3 bekijken wanneer u wilt —
               ook als u de uitzending gemist heeft.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Denk aan het Journaal, Nieuwsuur, talkshows, documentaires, natuurprogramma&apos;s en series.
               Alles gratis, zonder abonnement.
             </p>
@@ -107,23 +107,23 @@ export default function NpoStartPage() {
                 { icon: "🆓", label: "Helemaal gratis" },
                 { icon: "⏰", label: "Kijk wanneer u wilt" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Installeren */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               NPO Start installeren
             </h2>
             <div className="space-y-4">
-              <div className="bg-blue-50 border-2 border-blue-200 rounded-xl p-6">
-                <h3 className="text-senior-base font-bold text-blue-900 mb-3">📱 Op Android</h3>
-                <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+              <div className="bg-paper border border-navy/8 rounded-xl p-6">
+                <h3 className="text-senior-base font-bold text-navy mb-3">📱 Op Android</h3>
+                <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-navy/80">
                   <li>Open de <strong>Play Store</strong>.</li>
                   <li>Zoek op <strong>NPO Start</strong>.</li>
                   <li>Tik op het rode NPO-icoontje en tik op <strong>Installeren</strong>.</li>
@@ -131,21 +131,21 @@ export default function NpoStartPage() {
               </div>
               <div className="bg-gray-50 border-2 border-gray-200 rounded-xl p-6">
                 <h3 className="text-senior-base font-bold text-gray-900 mb-3">🍎 Op iPhone of iPad</h3>
-                <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-gray-700">
+                <ol className="space-y-3 list-decimal list-outside pl-6 text-senior-base text-navy/80">
                   <li>Open de <strong>App Store</strong>.</li>
                   <li>Zoek op <strong>NPO Start</strong>.</li>
                   <li>Tik op <strong>Krijg</strong> en bevestig met uw vingerafdruk of wachtwoord.</li>
                 </ol>
               </div>
             </div>
-            <p className="text-senior-sm text-gray-500 mt-4">
+            <p className="text-senior-sm text-navy/55 mt-4">
               U hoeft geen account aan te maken om te kijken. Gewoon openen en kijken.
             </p>
           </section>
 
           {/* Programma terugkijken */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Een programma terugkijken
             </h2>
             <ol className="space-y-6">
@@ -169,15 +169,15 @@ export default function NpoStartPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -187,8 +187,8 @@ export default function NpoStartPage() {
           </section>
 
           {/* Populaire programma's */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-4">
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-4">
               Populaire programma&apos;s op NPO Start
             </h2>
             <ul className="space-y-2">
@@ -201,8 +201,8 @@ export default function NpoStartPage() {
                 "Dokter Tinus, Goede Tijden Slechte Tijden en andere series",
                 "Natuur- en reisprogramma's",
               ].map((item, i) => (
-                <li key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
-                  <span className="text-primary font-bold mt-1">▶</span>
+                <li key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
+                  <span className="text-gold font-bold mt-1">▶</span>
                   <span>{item}</span>
                 </li>
               ))}
@@ -210,31 +210,31 @@ export default function NpoStartPage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Veelgestelde vragen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Is NPO Start gratis?</p>
-                <p className="text-senior-base text-gray-700">Ja, NPO Start is volledig gratis. U heeft geen account nodig om programma&apos;s te kijken.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Is NPO Start gratis?</p>
+                <p className="text-senior-base text-navy/80">Ja, NPO Start is volledig gratis. U heeft geen account nodig om programma&apos;s te kijken.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Hoe lang blijven programma&apos;s beschikbaar?</p>
-                <p className="text-senior-base text-gray-700">De meeste programma&apos;s blijven enkele weken tot maanden beschikbaar. Sommige zijn vanwege auteursrechten maar kort te zien.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Hoe lang blijven programma&apos;s beschikbaar?</p>
+                <p className="text-senior-base text-navy/80">De meeste programma&apos;s blijven enkele weken tot maanden beschikbaar. Sommige zijn vanwege auteursrechten maar kort te zien.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Kan ik NPO Start ook op mijn televisie kijken?</p>
-                <p className="text-senior-base text-gray-700">Ja. Op een Smart TV kunt u de NPO Start app installeren via de app-winkel van uw televisie.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Kan ik NPO Start ook op mijn televisie kijken?</p>
+                <p className="text-senior-base text-navy/80">Ja. Op een Smart TV kunt u de NPO Start app installeren via de app-winkel van uw televisie.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/netflix" className="text-senior-base font-bold text-primary hover:underline">Netflix gebruiken →</Link></li>
-              <li><Link href="/uitleg/youtube-tv" className="text-senior-base font-bold text-primary hover:underline">YouTube kijken op tv →</Link></li>
-              <li><Link href="/uitleg/wifi" className="text-senior-base font-bold text-primary hover:underline">WiFi instellen →</Link></li>
+              <li><Link href="/uitleg/netflix" className="text-senior-base font-semibold text-gold hover:text-gold-light">Netflix gebruiken →</Link></li>
+              <li><Link href="/uitleg/youtube-tv" className="text-senior-base font-semibold text-gold hover:text-gold-light">YouTube kijken op tv →</Link></li>
+              <li><Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light">WiFi instellen →</Link></li>
             </ul>
           </section>
 

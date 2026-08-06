@@ -1,5 +1,8 @@
 import Link from 'next/link';
 import JsonLd from '@/app/components/JsonLd';
+import FAQAccordion from '@/app/components/FAQAccordion';
+import PopularCard from '@/app/components/PopularCard';
+import { YoutubeChannelCta } from '@/app/components/YoutubeHint';
 import {
   buildCollectionPageSchema,
   buildPageMetadata,
@@ -8,6 +11,7 @@ import {
 } from '@/lib/seo';
 import { artikelen } from './artikelen';
 import { DigitaleHulpZoek } from './DigitaleHulpZoek';
+import { DigitaleHulpCategorieen } from './DigitaleHulpCategorieen';
 
 export const metadata = buildPageMetadata({
   path: '/digitale-hulp',
@@ -33,6 +37,39 @@ const digitaleHulpCollectionSchema = buildCollectionPageSchema(
   hubItems,
 );
 
+const POPULAIR = [
+  {
+    title: 'WhatsApp voor beginners',
+    href: '/digitale-hulp/whatsapp-uitleg-beginners',
+    description: 'Berichten sturen, foto’s en eerste stappen.',
+  },
+  {
+    title: 'Googelen voor beginners',
+    href: '/digitale-hulp/googelen-google-zoeken',
+    description: 'Iets opzoeken op Google, stap voor stap.',
+  },
+] as const;
+
+const DIGITALE_HULP_FAQ_ITEMS = DIGITALE_HULP_FAQ.map((item) => {
+  if (item.question !== 'Is SeniorEase gratis te gebruiken?') return item;
+  return {
+    question: item.question,
+    answer: (
+      <>
+        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app{' '}
+        <Link
+          href="/bibliotheek"
+          className="font-semibold text-gold underline hover:text-gold-light"
+        >
+          Mijn Bibliotheek
+        </Link>{' '}
+        is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis
+        uitproberen.
+      </>
+    ),
+  };
+});
+
 export default async function DigitaleHulpPage({
   searchParams,
 }: {
@@ -42,53 +79,63 @@ export default async function DigitaleHulpPage({
   const initialQuery = typeof params.q === 'string' ? params.q.trim() : '';
 
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <JsonLd data={[digitaleHulpCollectionSchema, digitaleHulpFaqSchema]} />
-      <div className="max-w-4xl mx-auto px-6 py-10">
 
-        <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ fontSize: '1.1rem' }}>
-          ← Terug naar home
-        </Link>
+      {/* Intro + zoek */}
+      <section className="bg-cream">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 pt-14 md:pt-20 pb-10 md:pb-12">
+          <Link
+            href="/"
+            className="text-gold hover:text-gold-light font-semibold mb-8 inline-flex text-senior-sm min-h-[44px] items-center"
+          >
+            ← Terug naar home
+          </Link>
 
-        <h1 className="font-bold text-gray-900 mb-2 leading-tight" style={{ fontSize: '2.4rem', letterSpacing: '-0.01em' }}>
-          Digitale hulp voor senioren
-        </h1>
-        <p className="text-gray-500 mb-8 text-senior-lg">
-          Duidelijke uitleg en tips voor telefoon, computer en internet. Stap voor stap, zonder ingewikkelde termen.
-        </p>
+          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-8 max-w-2xl">
+            Stap-voor-stap uitleg over telefoon, computer en internet.
+          </h1>
 
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8">
-          <div className="bg-neutral-cream rounded-xl p-5 mb-8 border border-neutral-stone/40">
-            <p className="text-gray-800 leading-relaxed mb-2" style={{ fontSize: '1.1rem' }}>
-              Komt u ergens niet uit met uw telefoon of computer?
-            </p>
-            <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.05rem' }}>
-              Hier vindt u artikelen over veelvoorkomende vragen: foto&apos;s bewaren, uw apparaat sneller maken, veilig e-mailen en oplichting herkennen.
-            </p>
+          <div className="max-w-2xl">
+            <DigitaleHulpZoek initialQuery={initialQuery} />
           </div>
-
-          <DigitaleHulpZoek initialQuery={initialQuery} />
         </div>
+      </section>
 
-        <section className="mt-10 bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8" aria-labelledby="faq-heading">
-          <h2 id="faq-heading" className="font-bold text-gray-900 mb-6" style={{ fontSize: '1.5rem' }}>
-            Veelgestelde vragen
+      {/* Categorieën */}
+      <section className="bg-cream pb-16 md:pb-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3">
+            Of kies een onderwerp
           </h2>
-          <div className="space-y-6">
-            {DIGITALE_HULP_FAQ.map((item) => (
-              <div key={item.question}>
-                <h3 className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.15rem' }}>
-                  {item.question}
-                </h3>
-                <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.05rem' }}>
-                  {item.answer}
-                </p>
-              </div>
+          <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
+            Grote knoppen naar alle artikelen per thema.
+          </p>
+          <DigitaleHulpCategorieen />
+        </div>
+      </section>
+
+      {/* Populair */}
+      <section className="bg-slate py-16 md:py-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
+          <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-8">
+            Meest bekeken
+          </h2>
+          <div className="grid sm:grid-cols-2 gap-4 md:gap-5">
+            {POPULAIR.map((item) => (
+              <PopularCard key={item.href} {...item} />
             ))}
           </div>
-        </section>
+        </div>
+      </section>
 
-      </div>
+      {/* FAQ */}
+      <section className="bg-cream py-16 md:py-20">
+        <div className="max-w-senior mx-auto px-5 sm:px-6 space-y-12">
+          <FAQAccordion items={DIGITALE_HULP_FAQ_ITEMS} title="Veelgestelde vragen" embedded />
+          <YoutubeChannelCta />
+        </div>
+      </section>
     </main>
   );
 }

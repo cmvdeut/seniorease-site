@@ -8,7 +8,7 @@ const PLAY_STORE_URL = 'https://play.google.com/store/apps/details?id=com.mauree
 export default function MobileDownload() {
   return (
     <div className="flex flex-col items-center">
-      <div className="bg-white p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-4">
+      <div className="bg-paper p-4 rounded-xl shadow-lg border-2 border-gray-200 mb-4">
         <QRCodeSVG
           value={PLAY_STORE_URL}
           size={180}

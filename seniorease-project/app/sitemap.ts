@@ -31,7 +31,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'programma-installeren', 'digid', 'online-bankieren', 'ebooks',
     'muziek-radio', 'qr-code', 'google-maps', 'e-bike', 'hoofdtelefoon',
     'wifi', 'inspreken', 'betalen-ov', 'google-translate', '9292',
-    'bol-com', 'boodschappen-bestellen', 'online-retourneren',
+    'bol-com', 'boodschappen-bestellen', 'online-retourneren', 'mobiel-parkeren',
     'zoom', 'facetime', 'netflix', 'npo-start', 'youtube-tv',
   ];
 

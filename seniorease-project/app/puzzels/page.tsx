@@ -1,58 +1,113 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import PuzzleDoneBanner from './PuzzleDoneBanner';
+import Quiz from './Quiz';
+import {
+  MAX_PUZZLES_PER_HOUR,
+  canStartAnotherPuzzle,
+  completionsLeftThisHour,
+  minutesUntilNextPuzzleSlot,
+  pickSocialTip,
+  recordPuzzleCompletion,
+} from './puzzle-limit';
 
-// Dagelijkse puzzel rotatie op basis van datum
-function getDailyPuzzleType(): string {
+// Dagelijkse puzzel: Sudoku → Memory → Quiz
+function getDailyPuzzleType(): 'sudoku' | 'memory' | 'quiz' {
   const today = new Date();
-  const dayOfYear = Math.floor((today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000);
-  const puzzleTypes = ['sudoku', 'woordzoeker', 'kruiswoord', 'memory'];
-  return puzzleTypes[dayOfYear % puzzleTypes.length];
+  const dayOfYear = Math.floor(
+    (today.getTime() - new Date(today.getFullYear(), 0, 0).getTime()) / 86400000
+  );
+  const types = ['sudoku', 'memory', 'quiz'] as const;
+  return types[dayOfYear % types.length];
 }
 
+type PuzzleGameProps = {
+  canStartNew: boolean;
+  onCompleted: () => void;
+  puzzlesLeftThisHour: number;
+  minutesUntilNext: number;
+  socialTip: string;
+};
+
 // Sudoku Component
-function Sudoku() {
+function Sudoku({
+  canStartNew,
+  onCompleted,
+  puzzlesLeftThisHour,
+  minutesUntilNext,
+  socialTip,
+}: PuzzleGameProps) {
   const [board, setBoard] = useState<(number | null)[][]>([]);
   const [solution, setSolution] = useState<number[][]>([]);
+  const [givens, setGivens] = useState<boolean[][]>([]);
   const [selectedCell, setSelectedCell] = useState<[number, number] | null>(null);
   const [mistakes, setMistakes] = useState(0);
   const [completed, setCompleted] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
+  const countedRef = useRef(false);
 
   // Genereer een simpele senior-friendly Sudoku
   useEffect(() => {
+    const saved = localStorage.getItem(`sudoku-${getTodayKey()}-${difficulty}`);
+    if (saved) {
+      try {
+        const data = JSON.parse(saved);
+        if (data.board?.length && data.solution?.length) {
+          setBoard(data.board);
+          setSolution(data.solution);
+          setGivens(
+            data.givens?.length
+              ? data.givens
+              : data.board.map((row: (number | null)[]) => row.map((cell: number | null) => cell !== null))
+          );
+          setMistakes(data.mistakes || 0);
+          setHintsUsed(data.hintsUsed || 0);
+          setCompleted(data.completed || false);
+          countedRef.current = Boolean(data.completed);
+          return;
+        }
+      } catch {
+        /* start nieuw */
+      }
+    }
+
     const newPuzzle = generateSudoku(difficulty);
     setBoard(newPuzzle.puzzle);
     setSolution(newPuzzle.solution);
-    
-    // Laad voortgang uit localStorage
-    const saved = localStorage.getItem(`sudoku-${getTodayKey()}-${difficulty}`);
-    if (saved) {
-      const data = JSON.parse(saved);
-      setBoard(data.board);
-      setMistakes(data.mistakes || 0);
-      setHintsUsed(data.hintsUsed || 0);
-      setCompleted(data.completed || false);
-    } else {
-      setMistakes(0);
-      setHintsUsed(0);
-      setCompleted(false);
-    }
+    setGivens(newPuzzle.puzzle.map((row) => row.map((cell) => cell !== null)));
+    setMistakes(0);
+    setHintsUsed(0);
+    setCompleted(false);
+    countedRef.current = false;
+    setSelectedCell(null);
   }, [difficulty]);
 
   // Save voortgang
   useEffect(() => {
-    if (board.length > 0) {
-      localStorage.setItem(`sudoku-${getTodayKey()}-${difficulty}`, JSON.stringify({
-        board,
-        mistakes,
-        hintsUsed,
-        completed
-      }));
+    if (board.length > 0 && solution.length > 0) {
+      localStorage.setItem(
+        `sudoku-${getTodayKey()}-${difficulty}`,
+        JSON.stringify({
+          board,
+          solution,
+          givens,
+          mistakes,
+          hintsUsed,
+          completed,
+        })
+      );
     }
-  }, [board, mistakes, hintsUsed, completed, difficulty]);
+  }, [board, solution, givens, mistakes, hintsUsed, completed, difficulty]);
+
+  useEffect(() => {
+    if (completed && !countedRef.current) {
+      countedRef.current = true;
+      onCompleted();
+    }
+  }, [completed, onCompleted]);
 
   function getTodayKey() {
     return new Date().toISOString().split('T')[0];
@@ -69,21 +124,20 @@ function Sudoku() {
       [7, 1, 3, 9, 2, 4, 8, 5, 6],
       [9, 6, 1, 5, 3, 7, 2, 8, 4],
       [2, 8, 7, 4, 1, 9, 6, 3, 5],
-      [3, 4, 5, 2, 8, 6, 1, 7, 9]
+      [3, 4, 5, 2, 8, 6, 1, 7, 9],
     ];
 
-    const puzzle: (number | null)[][] = solution.map(row => [...row]);
-    
-    // Aantal cellen verwijderen op basis van moeilijkheidsgraad
+    const puzzle: (number | null)[][] = solution.map((row) => [...row]);
+
     let cellsToRemove: number;
     if (level === 'easy') {
-      cellsToRemove = 35; // Makkelijk: veel nummers blijven staan
+      cellsToRemove = 35;
     } else if (level === 'medium') {
-      cellsToRemove = 45; // Gemiddeld
+      cellsToRemove = 45;
     } else {
-      cellsToRemove = 55; // Moeilijk: weinig nummers blijven staan
+      cellsToRemove = 55;
     }
-    
+
     let removed = 0;
     while (removed < cellsToRemove) {
       const row = Math.floor(Math.random() * 9);
@@ -97,61 +151,79 @@ function Sudoku() {
     return { puzzle, solution };
   }
 
-  function handleCellClick(row: number, col: number) {
-    if (solution[row] && solution[row][col] && board[row][col] === null) {
-      setSelectedCell([row, col]);
+  function isEmpty(row: number, col: number) {
+    return board[row]?.[col] == null;
+  }
+
+  function findEmptyCell(): [number, number] | null {
+    for (let r = 0; r < 9; r++) {
+      for (let c = 0; c < 9; c++) {
+        if (isEmpty(r, c)) return [r, c];
+      }
     }
+    return null;
+  }
+
+  function handleCellClick(row: number, col: number) {
+    if (!isEmpty(row, col) || givens[row]?.[col]) return;
+    setSelectedCell([row, col]);
   }
 
   function handleNumberInput(num: number) {
-    if (!selectedCell) return;
+    if (!selectedCell || completed) return;
     const [row, col] = selectedCell;
-    
+    if (!isEmpty(row, col) || givens[row]?.[col]) return;
+
     if (solution[row][col] === num) {
-      const newBoard = board.map(r => [...r]);
+      const newBoard = board.map((r) => [...r]);
       newBoard[row][col] = num;
       setBoard(newBoard);
       setSelectedCell(null);
-      
-      // Check of puzzel compleet is
+
       if (isPuzzleComplete(newBoard)) {
         setCompleted(true);
       }
     } else {
-      setMistakes(mistakes + 1);
+      setMistakes((m) => m + 1);
     }
   }
 
   function isPuzzleComplete(currentBoard: (number | null)[][]) {
-    return currentBoard.every((row, i) => 
-      row.every((cell, j) => cell === solution[i][j])
-    );
+    return currentBoard.every((row, i) => row.every((cell, j) => cell === solution[i][j]));
   }
 
+  /** Hint vult het geselecteerde lege vakje, of anders het eerste lege vakje. */
   function useHint() {
-    if (!selectedCell) {
-      alert('Selecteer eerst een vakje waar je een hint voor wilt!');
-      return;
+    if (completed) return;
+
+    let target = selectedCell;
+    if (!target || !isEmpty(target[0], target[1]) || givens[target[0]]?.[target[1]]) {
+      target = findEmptyCell();
     }
-    const [row, col] = selectedCell;
-    const newBoard = board.map(r => [...r]);
+    if (!target) return;
+
+    const [row, col] = target;
+    const newBoard = board.map((r) => [...r]);
     newBoard[row][col] = solution[row][col];
     setBoard(newBoard);
-    setHintsUsed(hintsUsed + 1);
+    setHintsUsed((h) => h + 1);
     setSelectedCell(null);
-    
+
     if (isPuzzleComplete(newBoard)) {
       setCompleted(true);
     }
   }
 
   function resetPuzzle() {
+    if (!canStartNew) return;
     const newPuzzle = generateSudoku(difficulty);
     setBoard(newPuzzle.puzzle);
     setSolution(newPuzzle.solution);
+    setGivens(newPuzzle.puzzle.map((row) => row.map((cell) => cell !== null)));
     setMistakes(0);
     setHintsUsed(0);
     setCompleted(false);
+    countedRef.current = false;
     setSelectedCell(null);
     localStorage.removeItem(`sudoku-${getTodayKey()}-${difficulty}`);
   }
@@ -159,6 +231,8 @@ function Sudoku() {
   if (board.length === 0) {
     return <div className="text-senior-lg text-center py-12">Laden...</div>;
   }
+
+  const hasEmptyCells = findEmptyCell() !== null;
 
   return (
     <div className="space-y-6">
@@ -172,14 +246,17 @@ function Sudoku() {
         </div>
       </div>
 
+      <p className="text-senior-sm text-gray-600 text-center m-0">
+        Tik een leeg vakje aan, of gebruik Hint om een cijfer voor u in te vullen.
+      </p>
+
       {/* Sudoku Grid */}
       <div className="grid grid-cols-9 gap-0 mx-auto" style={{ width: 'fit-content' }}>
-        {board.map((row, rowIdx) => (
+        {board.map((row, rowIdx) =>
           row.map((cell, colIdx) => {
             const isSelected = selectedCell?.[0] === rowIdx && selectedCell?.[1] === colIdx;
-            const isGiven = solution[rowIdx] && solution[rowIdx][colIdx] && 
-                           generateSudoku().puzzle[rowIdx][colIdx] !== null;
-            
+            const isGiven = Boolean(givens[rowIdx]?.[colIdx]);
+
             return (
               <div
                 key={`${rowIdx}-${colIdx}`}
@@ -194,20 +271,20 @@ function Sudoku() {
                   hover:bg-blue-100
                 `}
               >
-                {cell || ''}
+                {cell ?? ''}
               </div>
             );
           })
-        ))}
+        )}
       </div>
 
       {/* Number Buttons */}
       <div className="grid grid-cols-3 gap-3 max-w-sm mx-auto">
-        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map(num => (
+        {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
           <button
             key={num}
             onClick={() => handleNumberInput(num)}
-            disabled={!selectedCell}
+            disabled={!selectedCell || completed}
             className="py-4 px-6 bg-primary text-white rounded-lg text-senior-xl font-bold 
                      hover:bg-primary-dark disabled:opacity-50 disabled:cursor-not-allowed
                      transition-colors"
@@ -221,7 +298,7 @@ function Sudoku() {
       <div className="flex flex-col sm:flex-row gap-4 justify-center">
         <button
           onClick={useHint}
-          disabled={!selectedCell || completed}
+          disabled={!hasEmptyCells || completed}
           className="py-3 px-8 bg-accent text-white rounded-lg text-senior-base font-bold
                    hover:bg-accent-dark disabled:opacity-50 disabled:cursor-not-allowed
                    transition-colors"
@@ -230,23 +307,22 @@ function Sudoku() {
         </button>
         <button
           onClick={resetPuzzle}
+          disabled={!canStartNew}
           className="py-3 px-8 bg-gray-600 text-white rounded-lg text-senior-base font-bold
-                   hover:bg-gray-700 transition-colors"
+                   hover:bg-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           🔄 Nieuwe puzzel
         </button>
       </div>
 
-      {/* Completion Message */}
       {completed && (
-        <div className="bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center">
-          <div className="text-senior-xl font-bold text-green-800 mb-2">
-            Gefeliciteerd!
-          </div>
-          <div className="text-senior-base text-green-700">
-            Je hebt de Sudoku opgelost met {mistakes} fouten en {hintsUsed} hints!
-          </div>
-        </div>
+        <PuzzleDoneBanner
+          title="Gefeliciteerd!"
+          detail={`U heeft de Sudoku opgelost met ${mistakes} fouten en ${hintsUsed} hints.`}
+          socialTip={socialTip}
+          puzzlesLeftThisHour={puzzlesLeftThisHour}
+          minutesUntilNext={minutesUntilNext}
+        />
       )}
     </div>
   );
@@ -759,13 +835,20 @@ function Kruiswoord() {
 }
 
 // Memory Game Component
-function Memory() {
+function Memory({
+  canStartNew,
+  onCompleted,
+  puzzlesLeftThisHour,
+  minutesUntilNext,
+  socialTip,
+}: PuzzleGameProps) {
   const [cards, setCards] = useState<{ id: number; emoji: string; flipped: boolean; matched: boolean }[]>([]);
   const [flippedIndices, setFlippedIndices] = useState<number[]>([]);
   const [moves, setMoves] = useState(0);
   const [hintsUsed, setHintsUsed] = useState(0);
   const [gameWon, setGameWon] = useState(false);
   const [difficulty, setDifficulty] = useState<'easy' | 'medium' | 'hard'>('easy');
+  const countedRef = useRef(false);
 
   useEffect(() => {
     initializeGame();
@@ -778,12 +861,21 @@ function Memory() {
       setMoves(data.moves || 0);
       setHintsUsed(data.hintsUsed || 0);
       setGameWon(data.gameWon || false);
+      countedRef.current = Boolean(data.gameWon);
     } else {
       setMoves(0);
       setHintsUsed(0);
       setGameWon(false);
+      countedRef.current = false;
     }
   }, [difficulty]);
+
+  useEffect(() => {
+    if (gameWon && !countedRef.current) {
+      countedRef.current = true;
+      onCompleted();
+    }
+  }, [gameWon, onCompleted]);
 
   useEffect(() => {
     if (cards.length > 0) {
@@ -829,6 +921,7 @@ function Memory() {
     setMoves(0);
     setHintsUsed(0);
     setGameWon(false);
+    countedRef.current = false;
   }
 
   function handleCardClick(index: number) {
@@ -914,43 +1007,49 @@ function Memory() {
         <div className="flex flex-wrap gap-3">
           <button
             onClick={() => {
+              if (!canStartNew) return;
               setDifficulty('easy');
               initializeGame();
               localStorage.removeItem(`memory-${getTodayKey()}-easy`);
             }}
+            disabled={!canStartNew && difficulty !== 'easy'}
             className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
               difficulty === 'easy'
                 ? 'bg-green-500 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            } disabled:opacity-50`}
           >
             🟢 Makkelijk (12 kaarten)
           </button>
           <button
             onClick={() => {
+              if (!canStartNew) return;
               setDifficulty('medium');
               initializeGame();
               localStorage.removeItem(`memory-${getTodayKey()}-medium`);
             }}
+            disabled={!canStartNew && difficulty !== 'medium'}
             className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
               difficulty === 'medium'
                 ? 'bg-yellow-500 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            } disabled:opacity-50`}
           >
             🟡 Gemiddeld (16 kaarten)
           </button>
           <button
             onClick={() => {
+              if (!canStartNew) return;
               setDifficulty('hard');
               initializeGame();
               localStorage.removeItem(`memory-${getTodayKey()}-hard`);
             }}
+            disabled={!canStartNew && difficulty !== 'hard'}
             className={`py-2 px-6 rounded-lg text-senior-base font-bold transition-colors ${
               difficulty === 'hard'
                 ? 'bg-red-500 text-white'
                 : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-            }`}
+            } disabled:opacity-50`}
           >
             🔴 Moeilijk (24 kaarten)
           </button>
@@ -1004,26 +1103,26 @@ function Memory() {
         </button>
         <button
           onClick={() => {
+            if (!canStartNew) return;
             initializeGame();
             localStorage.removeItem(`memory-${getTodayKey()}-${difficulty}`);
           }}
+          disabled={!canStartNew}
           className="py-3 px-8 bg-gray-600 text-white rounded-lg text-senior-base font-bold
-                   hover:bg-gray-700"
+                   hover:bg-gray-700 disabled:opacity-50 disabled:cursor-not-allowed"
         >
           🔄 Nieuw spel
         </button>
       </div>
 
-      {/* Win Message */}
       {gameWon && (
-        <div className="bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center">
-          <div className="text-senior-xl font-bold text-green-800 mb-2">
-            Gefeliciteerd!
-          </div>
-          <div className="text-senior-base text-green-700">
-            Je hebt het spel voltooid in {moves} zetten met {hintsUsed} hints!
-          </div>
-        </div>
+        <PuzzleDoneBanner
+          title="Gefeliciteerd!"
+          detail={`U heeft het Memory-spel voltooid in ${moves} zetten met ${hintsUsed} hints.`}
+          socialTip={socialTip}
+          puzzlesLeftThisHour={puzzlesLeftThisHour}
+          minutesUntilNext={minutesUntilNext}
+        />
       )}
     </div>
   );
@@ -1031,17 +1130,44 @@ function Memory() {
 
 // Main Puzzels Page
 export default function PuzzelsPage() {
-  const [todaysPuzzle, setTodaysPuzzle] = useState<string>('');
+  const [todaysPuzzle, setTodaysPuzzle] = useState<'sudoku' | 'memory' | 'quiz' | ''>('');
+  const [puzzlesLeft, setPuzzlesLeft] = useState(MAX_PUZZLES_PER_HOUR);
+  const [minutesUntilNext, setMinutesUntilNext] = useState(0);
+  const [socialTip, setSocialTip] = useState(SOCIAL_TIP_FALLBACK);
+  const [canStartNew, setCanStartNew] = useState(true);
+
+  function refreshLimit() {
+    setPuzzlesLeft(completionsLeftThisHour());
+    setMinutesUntilNext(minutesUntilNextPuzzleSlot());
+    setCanStartNew(canStartAnotherPuzzle());
+  }
 
   useEffect(() => {
     setTodaysPuzzle(getDailyPuzzleType());
+    setSocialTip(pickSocialTip());
+    refreshLimit();
+    const id = window.setInterval(refreshLimit, 30_000);
+    return () => window.clearInterval(id);
   }, []);
 
-  const puzzleNames: { [key: string]: string } = {
+  function handlePuzzleCompleted() {
+    recordPuzzleCompletion();
+    setSocialTip(pickSocialTip(Date.now()));
+    refreshLimit();
+  }
+
+  const puzzleNames = {
     sudoku: 'Sudoku',
-    woordzoeker: 'Woordzoeker',
-    kruiswoord: 'Kruiswoordpuzzel',
-    memory: 'Memory'
+    memory: 'Memory',
+    quiz: 'Quiz',
+  } as const;
+
+  const gameProps: PuzzleGameProps = {
+    canStartNew,
+    onCompleted: handlePuzzleCompleted,
+    puzzlesLeftThisHour: puzzlesLeft,
+    minutesUntilNext,
+    socialTip,
   };
 
   return (
@@ -1071,7 +1197,10 @@ export default function PuzzelsPage() {
               Dagelijkse Puzzel
             </h1>
             <p className="text-senior-base text-gray-600 mt-2">
-              Vandaag: {puzzleNames[todaysPuzzle] || 'Laden...'}
+              Vandaag: {todaysPuzzle ? puzzleNames[todaysPuzzle] : 'Laden...'}
+            </p>
+            <p className="text-senior-sm text-gray-500 mt-1">
+              Maximaal {MAX_PUZZLES_PER_HOUR} puzzels per uur — daarna even iets sociaals doen.
             </p>
           </div>
         </div>
@@ -1079,20 +1208,43 @@ export default function PuzzelsPage() {
 
       {/* Puzzel Content */}
       <main className="container mx-auto px-6 py-12">
+        {!canStartNew && (
+          <div className="max-w-4xl mx-auto mb-6">
+            <PuzzleDoneBanner
+              title="Even pauzeren"
+              detail="U heeft dit uur al genoeg gepuzzeld."
+              socialTip={socialTip}
+              puzzlesLeftThisHour={0}
+              minutesUntilNext={minutesUntilNext}
+            />
+          </div>
+        )}
+
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6 md:p-8">
-          {todaysPuzzle === 'sudoku' && <Sudoku />}
-          {todaysPuzzle === 'woordzoeker' && <Woordzoeker />}
-          {todaysPuzzle === 'kruiswoord' && <Kruiswoord />}
-          {todaysPuzzle === 'memory' && <Memory />}
+          {todaysPuzzle === 'sudoku' && <Sudoku {...gameProps} />}
+          {todaysPuzzle === 'memory' && <Memory {...gameProps} />}
+          {todaysPuzzle === 'quiz' && <Quiz {...gameProps} />}
         </div>
 
-        {/* Info */}
-        <div className="max-w-4xl mx-auto mt-8 text-center text-senior-sm text-gray-600">
-          <p>🔄 Elke dag om middernacht een nieuwe puzzel!</p>
-          <p className="mt-2">Je voortgang wordt automatisch opgeslagen.</p>
+        <div className="max-w-4xl mx-auto mt-8 text-center text-senior-sm text-gray-600 space-y-3">
+          <p className="m-0">Elke dag wisselt de activiteit tussen Sudoku, Memory en Quiz.</p>
+          <p className="m-0">Uw voortgang wordt automatisch opgeslagen.</p>
+          <p className="m-0 pt-2 border-t border-gray-200">
+            Heeft u een suggestie voor een andere puzzel? Stuur die gerust naar{' '}
+            <a
+              href="mailto:support@seniorease.nl?subject=Suggestie%20voor%20een%20puzzel"
+              className="text-primary font-semibold hover:underline"
+            >
+              support@seniorease.nl
+            </a>
+            .
+          </p>
         </div>
       </main>
     </div>
   );
 }
+
+const SOCIAL_TIP_FALLBACK = 'Bel of app eens iemand die u graag spreekt.';
+
 

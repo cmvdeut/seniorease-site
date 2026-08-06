@@ -73,48 +73,48 @@ const faqSchema = {
 
 export default function WifiPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       {/* Header */}
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               WiFi instellen
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Verbinding maken met internet thuis — stap voor stap uitgelegd.
             </p>
-            <p className="text-senior-sm text-gray-700 mt-3 max-w-2xl">
+            <p className="text-senior-sm text-navy/80 mt-3 max-w-2xl">
               Geen internet op uw telefoon of tablet? Hier leest u hoe u verbinding maakt met uw wifi thuis en wat u kunt doen als het niet lukt.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">📱 Smartphone:</span>
-              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">WhatsApp</Link>
-              <Link href="/uitleg/google-maps" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Google Maps</Link>
-              <span className="text-senior-sm font-bold text-primary underline">WiFi instellen</span>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
+              <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">WhatsApp</Link>
+              <Link href="/uitleg/google-maps" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Google Maps</Link>
+              <span className="text-senior-sm font-bold text-gold underline">WiFi instellen</span>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Wat is WiFi?
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               WiFi is een draadloze verbinding met het internet. Uw modem of router thuis zendt een signaal uit — uw telefoon of tablet vangt dat signaal op en heeft zo toegang tot internet, zonder dat er een snoer aan zit.
             </p>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Eenmaal verbonden onthoudt uw toestel het netwerk. De volgende keer dat u thuiskomt, verbindt het automatisch.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
@@ -123,17 +123,17 @@ export default function WifiPage() {
                 { icon: "🏠", label: "Werkt thuis via uw router" },
                 { icon: "🔁", label: "Verbindt automatisch" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Wat heeft u nodig */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Wat heeft u nodig?
             </h2>
             <div className="space-y-4">
@@ -154,27 +154,27 @@ export default function WifiPage() {
                   uitleg: "Dit staat vaak op een sticker op de onderkant of achterkant van uw router. Het heet soms 'Wachtwoord', 'Password', 'WPA key' of 'WiFi-sleutel'.",
                 },
               ].map((item, i) => (
-                <div key={i} className="flex gap-4 items-start bg-neutral-cream border-2 border-primary/20 rounded-xl px-5 py-4">
+                <div key={i} className="flex gap-4 items-start bg-cream border-2 border-navy/8/20 rounded-xl px-5 py-4">
                   <span className="text-3xl flex-shrink-0">{item.icon}</span>
                   <div>
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.titel}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.titel}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                   </div>
                 </div>
               ))}
             </div>
-            <div className="mt-6 bg-amber-50 border-2 border-amber-200 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-amber-800 mb-1">💡 Wachtwoord kwijt?</p>
-              <p className="text-senior-base text-gray-700">Kijk op de sticker op uw router. Staat het er niet op? Bel uw internetprovider — zij kunnen het wachtwoord opnieuw instellen.</p>
+            <div className="mt-6 bg-paper border border-navy/10 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-amber-800 mb-1">Wachtwoord kwijt?</p>
+              <p className="text-senior-base text-navy/80">Kijk op de sticker op uw router. Staat het er niet op? Bel uw internetprovider — zij kunnen het wachtwoord opnieuw instellen.</p>
             </div>
           </section>
 
           {/* Stap voor stap Android */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-2">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-2">
               WiFi instellen op Android
             </h2>
-            <p className="text-senior-base text-gray-500 mb-8">(Samsung, Motorola, Google Pixel en de meeste andere telefoons)</p>
+            <p className="text-senior-base text-navy/55 mb-8">(Samsung, Motorola, Google Pixel en de meeste andere telefoons)</p>
 
             <ol className="space-y-6">
               {[
@@ -205,15 +205,15 @@ export default function WifiPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -223,11 +223,11 @@ export default function WifiPage() {
           </section>
 
           {/* Stap voor stap iPhone/iPad */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-2">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-2">
               WiFi instellen op iPhone of iPad
             </h2>
-            <p className="text-senior-base text-gray-500 mb-8">(Apple toestellen)</p>
+            <p className="text-senior-base text-navy/55 mb-8">(Apple toestellen)</p>
 
             <ol className="space-y-6">
               {[
@@ -254,15 +254,15 @@ export default function WifiPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -272,8 +272,8 @@ export default function WifiPage() {
           </section>
 
           {/* Problemen oplossen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Werkt het niet? Dit kunt u proberen
             </h2>
             <div className="space-y-4">
@@ -299,13 +299,13 @@ export default function WifiPage() {
                   icon: "📞",
                 },
               ].map((item, i) => (
-                <div key={i} className="border-2 border-neutral-stone rounded-xl overflow-hidden">
-                  <div className="bg-primary/10 px-6 py-4 border-b border-neutral-stone flex items-center gap-3">
+                <div key={i} className="border-2 border-navy/10 rounded-xl overflow-hidden">
+                  <div className="bg-gold/10 px-6 py-4 border-b border-navy/10 flex items-center gap-3">
                     <span className="text-2xl">{item.icon}</span>
-                    <p className="text-senior-base font-bold text-primary">{item.probleem}</p>
+                    <p className="text-senior-base font-bold text-gold">{item.probleem}</p>
                   </div>
                   <div className="px-6 py-4">
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.oplossing}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.oplossing}</p>
                   </div>
                 </div>
               ))}
@@ -313,8 +313,8 @@ export default function WifiPage() {
           </section>
 
           {/* Veelgestelde vragen */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Veel gestelde vragen
             </h2>
             <div className="space-y-5">
@@ -336,12 +336,12 @@ export default function WifiPage() {
                   antwoord: "Kijk naar de bovenkant van uw scherm. Als u het WiFi-icoontje ziet (een soort waaier van streepjes), bent u verbonden. Op Android staat er soms ook 'WiFi' in de statusbalk.",
                 },
               ].map((item, i) => (
-                <div key={i} className="border-2 border-neutral-stone rounded-xl overflow-hidden">
-                  <div className="bg-primary/10 px-6 py-4 border-b border-neutral-stone">
-                    <p className="text-senior-base font-bold text-primary">❓ {item.vraag}</p>
+                <div key={i} className="border-2 border-navy/10 rounded-xl overflow-hidden">
+                  <div className="bg-gold/10 px-6 py-4 border-b border-navy/10">
+                    <p className="text-senior-base font-bold text-gold">❓ {item.vraag}</p>
                   </div>
                   <div className="px-6 py-4">
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.antwoord}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.antwoord}</p>
                   </div>
                 </div>
               ))}
@@ -349,8 +349,8 @@ export default function WifiPage() {
           </section>
 
           {/* Samenvatting */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Samenvatting
             </h2>
             <div className="space-y-3 mb-8">
@@ -361,13 +361,13 @@ export default function WifiPage() {
                 "Werkt het niet? Zet de router even uit en weer aan",
                 "Hulp nodig? Bel uw internetprovider",
               ].map((punt, i) => (
-                <div key={i} className="flex items-start gap-3 bg-neutral-cream border-2 border-primary/30 rounded-xl px-5 py-4">
+                <div key={i} className="flex items-start gap-3 bg-cream border-2 border-navy/8/30 rounded-xl px-5 py-4">
                   <span className="text-green-600 font-bold text-xl flex-shrink-0">✅</span>
-                  <p className="text-senior-base text-gray-700 leading-relaxed">{punt}</p>
+                  <p className="text-senior-base text-navy/80 leading-relaxed">{punt}</p>
                 </div>
               ))}
             </div>
-            <Link href="/" className="inline-flex items-center gap-2 bg-primary text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-primary-dark transition-colors shadow-lg">
+            <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
               ← Terug naar home
             </Link>
           </section>

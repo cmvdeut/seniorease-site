@@ -63,41 +63,41 @@ export const metadata = buildPageMetadata({
 
 export default function OnlineRetournerenPage() {
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Terug naar home
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Online bestelling terugsturen
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Niet tevreden? Zo stuurt u een product eenvoudig terug.
             </p>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Intro */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               U heeft altijd bedenktijd
             </h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
               Als u iets online koopt, heeft u volgens de wet altijd <strong>minimaal 14 dagen bedenktijd</strong>.
               U mag het product in die tijd terugsturen zonder dat u een reden hoeft te geven.
               U krijgt dan het volledige aankoopbedrag terug.
             </p>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-6">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               Veel grote webwinkels geven zelfs <strong>30 dagen</strong> of meer. Dat staat altijd vermeld
               op de website of in de bevestigingsmail die u na uw bestelling ontvangt.
             </p>
@@ -107,17 +107,17 @@ export default function OnlineRetournerenPage() {
                 { icon: "👗", label: "Kleding: vaak 30+ dagen" },
                 { icon: "⚖️", label: "Wettelijk minimaal 14 dagen" },
               ].map((item, i) => (
-                <div key={i} className="bg-neutral-cream border-2 border-primary/30 rounded-xl p-4 text-center">
+                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-4xl mb-2">{item.icon}</div>
-                  <p className="text-senior-sm font-bold text-gray-800">{item.label}</p>
+                  <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
           {/* Retourneren bij Bol.com */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
               Terugsturen bij Bol.com
             </h2>
             <ol className="space-y-6">
@@ -149,15 +149,15 @@ export default function OnlineRetournerenPage() {
                 },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start list-none">
-                  <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+                  <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
                   <div className="pt-1 flex-1">
-                    <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-                    <p className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</p>
+                    <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</p>
                     {item.tip && (
-                      <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                        💡 {item.tip}
+                      <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                        {item.tip}
                       </p>
                     )}
                   </div>
@@ -167,11 +167,11 @@ export default function OnlineRetournerenPage() {
           </section>
 
           {/* Geld terug */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
               Wanneer krijgt u uw geld terug?
             </h2>
-            <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-4">
               Zodra de winkel uw retour heeft ontvangen en goedgekeurd, ontvangt u het geld terug.
               Dit duurt meestal <strong>3 tot 14 dagen</strong> na ontvangst van uw pakket.
             </p>
@@ -182,8 +182,8 @@ export default function OnlineRetournerenPage() {
                 "Bij iDEAL-betalingen gaat dit doorgaans snel.",
                 "Heeft u na 14 dagen nog niets ontvangen? Neem dan contact op met de klantenservice.",
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-3 text-senior-base text-gray-700">
-                  <span className="text-primary font-bold mt-1">✓</span>
+                <div key={i} className="flex items-start gap-3 text-senior-base text-navy/80">
+                  <span className="text-gold font-bold mt-1">✓</span>
                   <span>{item}</span>
                 </div>
               ))}
@@ -191,31 +191,31 @@ export default function OnlineRetournerenPage() {
           </section>
 
           {/* FAQ */}
-          <section className="bg-amber-50 border-2 border-amber-200 rounded-2xl p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-gray-800 mb-6">Veelgestelde vragen</h2>
+          <section className="bg-paper border border-navy/10 rounded-2xl p-8 md:p-10">
+            <h2 className="text-senior-xl font-bold text-navy mb-6">Veelgestelde vragen</h2>
             <div className="space-y-6">
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Hoelang heb ik de tijd om iets terug te sturen?</p>
-                <p className="text-senior-base text-gray-700">Minimaal 14 dagen volgens de wet. Bol.com geeft 30 dagen. Dit staat in de bevestigingsmail van uw bestelling.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Hoelang heb ik de tijd om iets terug te sturen?</p>
+                <p className="text-senior-base text-navy/80">Minimaal 14 dagen volgens de wet. Bol.com geeft 30 dagen. Dit staat in de bevestigingsmail van uw bestelling.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Kost retourneren geld?</p>
-                <p className="text-senior-base text-gray-700">Bij Bol.com is retourneren gratis. Bij andere winkels kunnen retourkosten gelden. Kijk dit na voordat u iets bestelt.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Kost retourneren geld?</p>
+                <p className="text-senior-base text-navy/80">Bij Bol.com is retourneren gratis. Bij andere winkels kunnen retourkosten gelden. Kijk dit na voordat u iets bestelt.</p>
               </div>
               <div>
-                <p className="text-senior-base font-bold text-gray-800 mb-1">Wanneer krijg ik mijn geld terug?</p>
-                <p className="text-senior-base text-gray-700">Binnen 14 dagen nadat de winkel uw retour heeft ontvangen en goedgekeurd.</p>
+                <p className="text-senior-base font-bold text-navy mb-1">Wanneer krijg ik mijn geld terug?</p>
+                <p className="text-senior-base text-navy/80">Binnen 14 dagen nadat de winkel uw retour heeft ontvangen en goedgekeurd.</p>
               </div>
             </div>
           </section>
 
           {/* Gerelateerd */}
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg over online winkelen</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over online winkelen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/bol-com" className="text-senior-base font-bold text-primary hover:underline">Bestellen bij Bol.com →</Link></li>
-              <li><Link href="/uitleg/boodschappen-bestellen" className="text-senior-base font-bold text-primary hover:underline">Online boodschappen bestellen →</Link></li>
-              <li><Link href="/uitleg/veiligheid" className="text-senior-base font-bold text-primary hover:underline">Veilig op internet →</Link></li>
+              <li><Link href="/uitleg/bol-com" className="text-senior-base font-semibold text-gold hover:text-gold-light">Bestellen bij Bol.com →</Link></li>
+              <li><Link href="/uitleg/boodschappen-bestellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Online boodschappen bestellen →</Link></li>
+              <li><Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-gold hover:text-gold-light">Veilig op internet →</Link></li>
             </ul>
           </section>
 

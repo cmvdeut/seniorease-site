@@ -11,15 +11,14 @@ type HeroProps = {
 };
 
 /**
- * Hero met de bestaande SeniorEase-foto (senior-vrouw-laptop),
- * toegepast zoals op de live homepage: rechts als zachte mask-fade
- * op desktop, afgeronde foto onder de tekst op mobiel.
+ * Hero met SeniorEase-foto: rechts als zachte mask-fade op desktop,
+ * afgeronde foto onder de tekst op mobiel.
  */
 export default function Hero({
   headline = 'Vertrouwd raken met technologie in uw eigen tempo.',
   subtext = 'Stap-voor-stap digitale hulp, gidsen en handige tools voor senioren.',
   ctaLabel = 'Begin met leren',
-  ctaHref = '/uitleg',
+  ctaHref = '/digitale-hulp',
   imageSrc = '/images/senior-vrouw-laptop.png',
   imageAlt = 'Senior vrouw gebruikt laptop thuis',
 }: HeroProps) {
@@ -52,7 +51,7 @@ export default function Hero({
         />
       </div>
 
-      <div className="relative max-w-6xl mx-auto px-5 sm:px-6 py-12 md:py-16 lg:py-20">
+      <div className="relative max-w-senior mx-auto px-5 sm:px-6 py-14 md:py-16 lg:py-20">
         <div className="max-w-xl md:max-w-[46%] lg:max-w-[42%]">
           <h1 className="font-serif text-[2.25rem] sm:text-[2.6rem] lg:text-senior-3xl text-navy mb-5 leading-[1.12] font-semibold">
             {headline}
@@ -62,20 +61,20 @@ export default function Hero({
           </p>
           <Link
             href={ctaHref}
-            className="inline-flex items-center justify-center min-h-[56px] px-8 py-3.5 font-semibold text-navy bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-base"
+            className="inline-flex items-center justify-center min-h-touch px-8 py-3.5 font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-base"
           >
             {ctaLabel}
           </Link>
         </div>
 
-        {/* Mobiel: foto onder de tekst, zachte ronde vorm */}
+        {/* Mobiel: foto onder de tekst */}
         <div className="mt-10 md:hidden">
           <Image
             src={imageSrc}
             alt={imageAlt}
             width={640}
             height={360}
-            className="w-full object-cover rounded-3xl"
+            className="w-full object-cover rounded-senior"
             style={{ objectPosition: '65% 25%' }}
             priority
           />

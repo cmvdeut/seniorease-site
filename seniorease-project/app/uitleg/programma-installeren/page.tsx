@@ -16,15 +16,15 @@ function StappenLijst({ stappen }: { stappen: Stap[] }) {
     <ol className="space-y-6">
       {stappen.map((item, i) => (
         <li key={i} className="flex gap-5 items-start list-none">
-          <div className="flex-shrink-0 w-11 h-11 bg-primary text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
+          <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
             {i + 1}
           </div>
           <div className="pt-1 flex-1">
-            <p className="text-senior-base font-bold text-gray-800 mb-1">{item.stap}</p>
-            <div className="text-senior-base text-gray-700 leading-relaxed">{item.uitleg}</div>
+            <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
+            <div className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</div>
             {item.tip && (
-              <p className="text-senior-sm text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2 mt-2">
-                💡 {item.tip}
+              <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+                {item.tip}
               </p>
             )}
           </div>
@@ -76,72 +76,72 @@ export default function ProgrammaInstallerenPage() {
   ];
 
   return (
-    <main className="min-h-screen bg-neutral-cream">
+    <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="programma-installeren" />
-      <header className="bg-white border-b-2 border-neutral-stone py-6">
-        <div className="container mx-auto px-6">
+      <header className="bg-cream border-b border-navy/10 py-6">
+        <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
-            <Link href="/digitale-hulp/computer" className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base">
+            <Link href="/digitale-hulp/computer" className="inline-flex items-center gap-2 text-gold hover:text-gold-light mb-4 text-senior-base">
               ← Computer hulp
             </Link>
-            <h1 className="text-senior-2xl md:text-senior-3xl font-bold text-primary">
+            <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
               Programma installeren op uw computer
             </h1>
-            <p className="text-senior-base text-gray-600 mt-2">
+            <p className="text-senior-base text-navy/70 mt-2">
               Veilig software op uw pc zetten — via de winkel of de officiële website.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Computer uitleg navigatie">
-              <span className="text-senior-sm text-gray-500 font-semibold mr-1">💻 Computer:</span>
-              <Link href="/uitleg/screenshot-pc" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Screenshot pc</Link>
-              <Link href="/uitleg/letters-groter-pc" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Letters groter</Link>
-              <span className="text-senior-sm font-bold text-primary underline">Programma installeren</span>
-              <Link href="/digitale-hulp/apps-installeren" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Apps op telefoon</Link>
+              <span className="text-senior-sm text-navy/55 font-semibold mr-1">💻 Computer:</span>
+              <Link href="/uitleg/screenshot-pc" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Screenshot pc</Link>
+              <Link href="/uitleg/letters-groter-pc" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Letters groter</Link>
+              <span className="text-senior-sm font-bold text-gold underline">Programma installeren</span>
+              <Link href="/digitale-hulp/apps-installeren" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">Apps op telefoon</Link>
             </nav>
           </div>
         </div>
       </header>
 
-      <div className="container mx-auto px-6 py-12">
+      <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Programma vs app</h2>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed">
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Programma vs app</h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed">
               Op uw <strong>telefoon</strong> heet het een app (Play Store of App Store). Op uw <strong>computer</strong> heet het een programma. Het idee is hetzelfde: software die u extra functies geeft — e-mail, foto&apos;s bewerken, muziek luisteren. Voor apps op uw telefoon:{' '}
-              <Link href="/digitale-hulp/apps-installeren" className="font-bold text-primary hover:underline">Apps installeren op telefoon</Link>.
+              <Link href="/digitale-hulp/apps-installeren" className="font-semibold text-gold hover:text-gold-light">Apps installeren op telefoon</Link>.
             </p>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Via Microsoft Store (aanbevolen)</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Via Microsoft Store (aanbevolen)</h2>
             <StappenLijst stappen={storeStappen} />
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8 md:p-10">
-            <h2 className="text-senior-xl font-bold text-primary mb-6">Via de officiële website</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">Via de officiële website</h2>
             <StappenLijst stappen={websiteStappen} />
           </section>
 
           <section className="bg-red-50 border-2 border-red-200 rounded-2xl p-8 md:p-10">
             <h2 className="text-senior-xl font-bold text-red-800 mb-4">Waar u op moet letten</h2>
-            <ul className="space-y-3 text-senior-sm md:text-senior-base text-gray-700">
+            <ul className="space-y-3 text-senior-sm md:text-senior-base text-navy/80">
               <li>❌ Klik <strong>niet</strong> op vreemde links in e-mails of pop-ups (&quot;Uw computer is besmet!&quot;).</li>
               <li>❌ Installeer geen programma&apos;s die u per telefoon laat betalen of om uw pincode vragen.</li>
               <li>✅ Gebruik de Microsoft Store, Mac App Store of de echte website van het bedrijf.</li>
               <li>✅ Heeft u hulp nodig? Vraag een vertrouwd familielid mee te kijken.</li>
             </ul>
-            <p className="text-senior-sm md:text-senior-base text-gray-700 mt-4">
+            <p className="text-senior-sm md:text-senior-base text-navy/80 mt-4">
               Meer over nepberichten:{' '}
-              <Link href="/uitleg/veiligheid" className="font-bold text-primary hover:underline">Oplichting herkennen</Link>.
+              <Link href="/uitleg/veiligheid" className="font-semibold text-gold hover:text-gold-light">Oplichting herkennen</Link>.
             </p>
           </section>
 
-          <section className="bg-white rounded-2xl shadow-xl border-4 border-neutral-stone p-8">
-            <h2 className="text-senior-xl font-bold text-primary mb-4">Meer uitleg</h2>
+          <section className="bg-slate rounded-senior border border-navy/8 p-8">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/bestanden-vinden" className="text-senior-base font-bold text-primary hover:underline">Bestanden vinden (Downloads) →</Link></li>
-              <li><Link href="/uitleg/computer-traag" className="text-senior-base font-bold text-primary hover:underline">Computer traag →</Link></li>
-              <li><Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="text-senior-base font-bold text-primary hover:underline">Internet / wifi problemen →</Link></li>
+              <li><Link href="/uitleg/bestanden-vinden" className="text-senior-base font-semibold text-gold hover:text-gold-light">Bestanden vinden (Downloads) →</Link></li>
+              <li><Link href="/uitleg/computer-traag" className="text-senior-base font-semibold text-gold hover:text-gold-light">Computer traag →</Link></li>
+              <li><Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Internet / wifi problemen →</Link></li>
             </ul>
           </section>
 

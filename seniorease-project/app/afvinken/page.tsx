@@ -4,6 +4,8 @@ import { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import AddToHomeScreen from '../components/AddToHomeScreen';
+import ChecklistPicker from './ChecklistPicker';
+import type { TemplatePack } from './templates';
 
 interface ListItem {
   id: string;
@@ -15,6 +17,10 @@ interface Checklist {
   id: string;
   name: string;
   items: ListItem[];
+}
+
+function makeId(prefix: string) {
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
 }
 
 // Suggesties per lijst type
@@ -80,32 +86,35 @@ export default function AfvinkenPage() {
   const [newListName, setNewListName] = useState('');
   const [showNewListForm, setShowNewListForm] = useState(false);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [wizardTip, setWizardTip] = useState('');
+  const [hydrated, setHydrated] = useState(false);
   const itemInputRef = useRef<HTMLInputElement>(null);
   const listNameInputRef = useRef<HTMLInputElement>(null);
+  const listsSectionRef = useRef<HTMLDivElement>(null);
+  const mainListRef = useRef<HTMLDivElement>(null);
 
   // Load from localStorage on mount
   useEffect(() => {
-    const saved = localStorage.getItem('seniorease-checklists');
+    const saved = localStorage.getItem('seniorease-checklists-v4');
     if (saved) {
       try {
         const parsed = JSON.parse(saved);
-        setChecklists(parsed);
-        // Select first list if available
-        if (parsed.length > 0 && !selectedListId) {
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setChecklists(parsed);
           setSelectedListId(parsed[0].id);
         }
       } catch (e) {
         console.error('Error loading checklists:', e);
       }
     }
+    setHydrated(true);
   }, []);
 
-  // Save to localStorage whenever checklists change
+  // Save to localStorage whenever checklists change (na eerste load)
   useEffect(() => {
-    if (checklists.length > 0) {
-      localStorage.setItem('seniorease-checklists', JSON.stringify(checklists));
-    }
-  }, [checklists]);
+    if (!hydrated) return;
+    localStorage.setItem('seniorease-checklists-v4', JSON.stringify(checklists));
+  }, [checklists, hydrated]);
 
   const selectedList = checklists.find(list => list.id === selectedListId);
   
@@ -126,30 +135,95 @@ export default function AfvinkenPage() {
 
   const filteredSuggestions = getFilteredSuggestions();
 
+  const focusList = (listId: string) => {
+    setSelectedListId(listId);
+    window.setTimeout(() => {
+      mainListRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 50);
+  };
+
   const createNewList = () => {
     const name = (listNameInputRef.current?.value ?? newListName).trim();
     if (name) {
       const newList: Checklist = {
-        id: Date.now().toString(),
+        id: makeId('list'),
         name,
-        items: []
+        items: [],
       };
-      setChecklists([...checklists, newList]);
-      setSelectedListId(newList.id);
+      setChecklists((prev) => [...prev, newList]);
+      focusList(newList.id);
       setNewListName('');
       if (listNameInputRef.current) listNameInputRef.current.value = '';
       setShowNewListForm(false);
+      setWizardTip('');
     }
   };
 
-  const deleteList = (listId: string) => {
-    if (confirm('Weet u zeker dat u deze lijst wilt verwijderen?')) {
-      const updated = checklists.filter(list => list.id !== listId);
-      setChecklists(updated);
-      if (selectedListId === listId) {
-        setSelectedListId(updated.length > 0 ? updated[0].id : null);
-      }
+  const applyPacks = (packs: TemplatePack[], label: string) => {
+    const existingNames = new Set(checklists.map((l) => l.name));
+    const allAlreadyThere = packs.every((pack) =>
+      pack.lists.every((t) => existingNames.has(t.name))
+    );
+
+    if (allAlreadyThere) {
+      const firstName = packs[0]?.lists[0]?.name;
+      const existing = checklists.find((l) => l.name === firstName);
+      if (existing) focusList(existing.id);
+      setWizardTip(`${label} staat al klaar — open een lijstje hieronder.`);
+      return;
     }
+
+    const stamp = Date.now();
+    const fresh: Checklist[] = [];
+
+    packs.forEach((pack, packIndex) => {
+      pack.lists.forEach((t, index) => {
+        if (existingNames.has(t.name)) return;
+        existingNames.add(t.name);
+        fresh.push({
+          id: `tpl-${pack.id}-${stamp}-${packIndex}-${index}`,
+          name: t.name,
+          items: t.items.map((text, i) => ({
+            id: `tpl-item-${stamp}-${packIndex}-${index}-${i}`,
+            text,
+            checked: false,
+          })),
+        });
+      });
+    });
+
+    if (fresh.length === 0) return;
+
+    setChecklists((prev) => [...prev, ...fresh]);
+    focusList(fresh[0].id);
+    setWizardTip(`${label}: ${fresh.length} lijstje${fresh.length === 1 ? '' : 's'} toegevoegd.`);
+  };
+
+  const deleteList = (listId: string) => {
+    const list = checklists.find((l) => l.id === listId);
+    const label = list?.name ?? 'dit lijstje';
+    if (!window.confirm(`Wilt u "${label}" verwijderen?`)) return;
+
+    const updated = checklists.filter((l) => l.id !== listId);
+    setChecklists(updated);
+    if (selectedListId === listId) {
+      setSelectedListId(updated.length > 0 ? updated[0].id : null);
+    }
+    setWizardTip('Lijstje verwijderd.');
+  };
+
+  const deleteAllLists = () => {
+    if (checklists.length === 0) return;
+    if (
+      !window.confirm(
+        `Wilt u alle ${checklists.length} lijstjes verwijderen? Dit kunt u niet ongedaan maken.`
+      )
+    ) {
+      return;
+    }
+    setChecklists([]);
+    setSelectedListId(null);
+    setWizardTip('Alle lijstjes zijn verwijderd.');
   };
 
   const clearItemInput = () => {
@@ -264,128 +338,181 @@ export default function AfvinkenPage() {
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-6 py-8">
         <div className="max-w-4xl mx-auto">
-          
+          <section
+            className="mb-8 rounded-senior border border-navy/10 bg-slate p-5 sm:p-6"
+            aria-labelledby="afvinken-install-title"
+          >
+            <h2
+              id="afvinken-install-title"
+              className="font-serif text-navy text-senior-lg font-semibold text-center m-0 mb-2"
+            >
+              Zet Afvinken op uw telefoon
+            </h2>
+            <p className="text-senior-sm text-navy/70 text-center m-0 mb-5">
+              Dan opent u het met één tik, zoals een app.
+            </p>
+            <div className="max-w-md mx-auto">
+              <AddToHomeScreen label="Zet op beginscherm" />
+            </div>
+          </section>
+
           {/* Lists Sidebar & Main Content */}
           <div className="grid md:grid-cols-4 gap-6">
             
             {/* Sidebar - Lists */}
             <div className="md:col-span-1">
               <div className="bg-white rounded-2xl shadow-lg border-4 border-primary p-4">
-                <h2 className="text-senior-lg font-bold text-primary mb-4 text-center">
+                <h2 className="text-senior-lg font-bold text-primary mb-2 text-center">
                   Mijn Lijstjes
                 </h2>
-                
-                {/* New List Button */}
-                {!showNewListForm ? (
-                  <button
-                    type="button"
-                    onClick={() => setShowNewListForm(true)}
-                    className="w-full min-h-[52px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
-                             hover:bg-primary-dark active:bg-primary-dark transition-all shadow-lg mb-4 border-4 border-primary
-                             touch-manipulation"
-                  >
-                    + Nieuw Lijstje
-                  </button>
-                ) : (
-                  <form
-                    className="mb-4"
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      createNewList();
-                    }}
-                  >
-                    <input
-                      ref={listNameInputRef}
-                      type="text"
-                      defaultValue=""
-                      onChange={(e) => setNewListName(e.target.value)}
-                      placeholder="Naam lijstje..."
-                      enterKeyHint="done"
-                      autoComplete="off"
-                      autoCorrect="off"
-                      spellCheck={false}
-                      dir="ltr"
-                      className="w-full min-h-[52px] px-4 py-3 rounded-xl border-4 border-primary text-senior-base mb-2
-                               focus:outline-none focus:ring-2 focus:ring-primary"
-                      autoFocus
-                    />
-                    <div className="flex gap-2">
-                      <button
-                        type="button"
-                        onPointerDown={(e) => {
-                          e.preventDefault();
-                          createNewList();
-                        }}
-                        className="flex-1 min-h-[48px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
-                                 hover:bg-primary-dark active:bg-primary-dark transition-all touch-manipulation"
-                      >
-                        ✓ Klaar
-                      </button>
-                      <button
-                        type="button"
-                        onPointerDown={(e) => {
-                          e.preventDefault();
-                          setShowNewListForm(false);
-                          setNewListName('');
-                          if (listNameInputRef.current) listNameInputRef.current.value = '';
-                        }}
-                        className="flex-1 min-h-[48px] bg-gray-300 text-gray-700 py-3 rounded-xl text-senior-base font-bold
-                                 hover:bg-gray-400 active:bg-gray-400 transition-all touch-manipulation"
-                      >
-                        ✕
-                      </button>
-                    </div>
-                  </form>
-                )}
+                <p className="text-senior-xs text-gray-500 text-center mb-4 m-0 leading-snug">
+                  Begin leeg, of kies een checklist-categorie.
+                </p>
 
-                {/* Lists */}
-                <div className="space-y-2 max-h-[500px] overflow-y-auto">
-                  {checklists.length === 0 ? (
-                    <p className="text-senior-sm text-gray-500 text-center py-4">
-                      Maak uw eerste lijstje!
-                    </p>
+                <div className="mb-4">
+                  {!showNewListForm ? (
+                    <button
+                      type="button"
+                      onClick={() => setShowNewListForm(true)}
+                      className="w-full min-h-[52px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
+                               hover:bg-primary-dark active:bg-primary-dark transition-all shadow-lg border-4 border-primary
+                               touch-manipulation"
+                    >
+                      + Lege lijst
+                    </button>
                   ) : (
-                    checklists.map((list) => (
-                      <div
-                        key={list.id}
-                        className={`p-3 rounded-xl border-4 cursor-pointer transition-all
-                          ${selectedListId === list.id
-                            ? 'bg-primary text-white border-primary shadow-lg'
-                            : 'bg-neutral-cream border-neutral-stone hover:border-primary'
-                          }`}
-                        onClick={() => setSelectedListId(list.id)}
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex-1">
-                            <div className={`text-senior-sm font-bold ${selectedListId === list.id ? 'text-white' : 'text-gray-800'}`}>
+                    <form
+                      onSubmit={(e) => {
+                        e.preventDefault();
+                        createNewList();
+                      }}
+                    >
+                      <input
+                        ref={listNameInputRef}
+                        type="text"
+                        defaultValue=""
+                        onChange={(e) => setNewListName(e.target.value)}
+                        placeholder="Naam lijstje..."
+                        enterKeyHint="done"
+                        autoComplete="off"
+                        autoCorrect="off"
+                        spellCheck={false}
+                        dir="ltr"
+                        className="w-full min-h-[52px] px-4 py-3 rounded-xl border-4 border-primary text-senior-base mb-2
+                                 focus:outline-none focus:ring-2 focus:ring-primary"
+                        autoFocus
+                      />
+                      <div className="flex gap-2">
+                        <button
+                          type="button"
+                          onPointerDown={(e) => {
+                            e.preventDefault();
+                            createNewList();
+                          }}
+                          className="flex-1 min-h-[48px] bg-primary text-white py-3 rounded-xl text-senior-base font-bold
+                                   hover:bg-primary-dark active:bg-primary-dark transition-all touch-manipulation"
+                        >
+                          ✓ Klaar
+                        </button>
+                        <button
+                          type="button"
+                          onPointerDown={(e) => {
+                            e.preventDefault();
+                            setShowNewListForm(false);
+                            setNewListName('');
+                            if (listNameInputRef.current) listNameInputRef.current.value = '';
+                          }}
+                          className="flex-1 min-h-[48px] bg-gray-300 text-gray-700 py-3 rounded-xl text-senior-base font-bold
+                                   hover:bg-gray-400 active:bg-gray-400 transition-all touch-manipulation"
+                        >
+                          ✕
+                        </button>
+                      </div>
+                    </form>
+                  )}
+                </div>
+
+                <div className="mb-4 pt-3 border-t-2 border-gray-100">
+                  <p className="text-senior-xs font-semibold text-navy mb-3 text-center m-0">
+                    Klaar-voor-gebruik checklists
+                  </p>
+                  <ChecklistPicker
+                    onCreate={applyPacks}
+                    alreadyHasListNames={new Set(checklists.map((l) => l.name))}
+                  />
+                  {wizardTip ? (
+                    <p className="text-senior-xs text-green-800 bg-green-50 border border-green-200 rounded-lg px-3 py-2 mt-3 m-0 leading-snug">
+                      {wizardTip}
+                    </p>
+                  ) : null}
+                </div>
+
+                {checklists.length > 0 && (
+                  <div ref={listsSectionRef} className="space-y-2 pt-3 border-t-2 border-gray-100">
+                    <div className="flex items-center justify-between gap-2 mb-2">
+                      <p className="text-senior-xs font-semibold text-gray-600 text-center m-0 flex-1">
+                        Uw lijstjes ({checklists.length})
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onPointerDown={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        deleteAllLists();
+                      }}
+                      className="w-full min-h-[44px] mb-2 rounded-xl border-2 border-red-300 bg-red-50 text-red-700 text-senior-xs font-bold touch-manipulation hover:bg-red-100"
+                    >
+                      Alle lijstjes wissen
+                    </button>
+                    <div className="max-h-[280px] overflow-y-auto space-y-2">
+                      {checklists.map((list) => (
+                        <div
+                          key={list.id}
+                          className={`p-3 rounded-xl border-4 transition-all
+                            ${selectedListId === list.id
+                              ? 'bg-primary text-white border-primary shadow-lg'
+                              : 'bg-neutral-cream border-neutral-stone hover:border-primary'
+                            }`}
+                        >
+                          <button
+                            type="button"
+                            className="w-full text-left touch-manipulation"
+                            onClick={() => focusList(list.id)}
+                          >
+                            <div className={`text-senior-sm font-bold truncate ${selectedListId === list.id ? 'text-white' : 'text-gray-800'}`}>
                               {list.name}
                             </div>
                             <div className={`text-senior-xs ${selectedListId === list.id ? 'text-white/80' : 'text-gray-500'}`}>
-                              {list.items.length} items
+                              {list.items.filter((i) => i.checked).length}/{list.items.length} afgevinkt
                             </div>
-                          </div>
-                          {checklists.length > 1 && (
-                            <button
-                              onClick={(e) => {
-                                e.stopPropagation();
-                                deleteList(list.id);
-                              }}
-                              className="text-red-500 hover:text-red-700 text-xl font-bold ml-2"
-                              title="Verwijder lijstje"
-                            >
-                              ×
-                            </button>
-                          )}
+                          </button>
+                          <button
+                            type="button"
+                            onPointerDown={(e) => {
+                              e.preventDefault();
+                              e.stopPropagation();
+                              deleteList(list.id);
+                            }}
+                            className={`mt-2 w-full min-h-[44px] rounded-lg text-senior-xs font-bold border-2 touch-manipulation
+                              ${
+                                selectedListId === list.id
+                                  ? 'bg-white/15 border-white/40 text-white hover:bg-white/25'
+                                  : 'bg-red-50 border-red-200 text-red-700 hover:bg-red-100'
+                              }`}
+                          >
+                            Verwijderen
+                          </button>
                         </div>
-                      </div>
-                    ))
-                  )}
-                </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
 
             {/* Main Content - Selected List */}
-            <div className="md:col-span-3">
+            <div className="md:col-span-3" ref={mainListRef}>
               {selectedList ? (
                 <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-6 md:p-8">
                   {/* List Header */}
@@ -393,13 +520,14 @@ export default function AfvinkenPage() {
                     <h2 className="text-senior-2xl font-bold text-primary mb-2">
                       {selectedList.name}
                     </h2>
-                    <div className="flex items-center gap-4 text-senior-sm text-gray-600 flex-wrap">
+                    <div className="flex items-center gap-4 text-senior-sm text-gray-600 flex-wrap mb-3">
                       <span>
                         {selectedList.items.filter(item => item.checked).length} / {selectedList.items.length} afgevinkt
                       </span>
-                      <div className="flex gap-3">
+                      <div className="flex gap-3 flex-wrap">
                         {selectedList.items.some(item => item.checked) && (
                           <button
+                            type="button"
                             onClick={clearCompleted}
                             className="text-orange-600 hover:text-orange-800 font-semibold underline"
                           >
@@ -408,6 +536,7 @@ export default function AfvinkenPage() {
                         )}
                         {selectedList.items.length > 0 && (
                           <button
+                            type="button"
                             onClick={clearAllItems}
                             className="text-red-600 hover:text-red-800 font-semibold underline"
                           >
@@ -416,6 +545,16 @@ export default function AfvinkenPage() {
                         )}
                       </div>
                     </div>
+                    <button
+                      type="button"
+                      onPointerDown={(e) => {
+                        e.preventDefault();
+                        deleteList(selectedList.id);
+                      }}
+                      className="min-h-[48px] px-5 rounded-xl border-2 border-red-300 bg-red-50 text-red-700 text-senior-sm font-bold touch-manipulation hover:bg-red-100"
+                    >
+                      Dit lijstje verwijderen
+                    </button>
                   </div>
 
                   {/* Add Item Form — uncontrolled input (geen cursor-reset op telefoon) */}
@@ -580,7 +719,8 @@ export default function AfvinkenPage() {
                     Maak uw eerste lijstje!
                   </h2>
                   <p className="text-senior-base text-gray-600 mb-6">
-                    Klik op "Nieuw Lijstje" om te beginnen
+                    Links: een <strong>lege lijst</strong>, of klap een categorie open —
+                    vakantie, stedentrip, feest & gelegenheid of boodschappen.
                   </p>
                 </div>
               )}
@@ -598,41 +738,6 @@ export default function AfvinkenPage() {
               <li>Klik op het vinkje om items af te vinken</li>
               <li>Verwijder afgevinkte items met "Afgevinkte items wissen"</li>
             </ul>
-          </div>
-
-          {/* Op telefoon zetten */}
-          <div className="mt-4 bg-green-50 border-2 border-green-300 rounded-xl p-6">
-            <h3 className="text-senior-base font-bold text-green-900 mb-3 text-center">
-              📱 Altijd bij de hand op uw telefoon
-            </h3>
-            <p className="text-senior-sm text-green-800 mb-4 text-center">
-              Zet Afvinken maar! op uw beginscherm — gratis, zonder app-store.
-            </p>
-
-            <div className="mb-5 max-w-md mx-auto">
-              <AddToHomeScreen label="Zet op beginscherm" />
-            </div>
-
-            <div className="grid sm:grid-cols-2 gap-4">
-              <div className="bg-white border border-green-200 rounded-lg p-4">
-                <p className="text-senior-sm font-bold text-gray-800 mb-2">🍎 iPhone / iPad</p>
-                <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
-                  <li>Open <strong>Safari</strong> (niet Chrome) en ga naar seniorease.nl/afvinken</li>
-                  <li>Tik op het deelknopje onderaan (vierkantje met pijltje omhoog)</li>
-                  <li>Tik op &quot;Zet op beginscherm&quot;</li>
-                  <li>Tik op &quot;Voeg toe&quot;</li>
-                </ol>
-              </div>
-              <div className="bg-white border border-green-200 rounded-lg p-4">
-                <p className="text-senior-sm font-bold text-gray-800 mb-2">📱 Android</p>
-                <ol className="text-senior-sm text-gray-700 space-y-1 list-decimal list-outside pl-4">
-                  <li>Open <strong>Chrome</strong> en ga naar seniorease.nl/afvinken</li>
-                  <li>Tik op de <strong>drie puntjes</strong> rechtsboven</li>
-                  <li>Tik op <strong>Installeren en snelkoppelingen</strong></li>
-                  <li>Kies <strong>App installeren</strong> of <strong>Toevoegen aan beginscherm</strong> en bevestig</li>
-                </ol>
-              </div>
-            </div>
           </div>
 
         </div>
