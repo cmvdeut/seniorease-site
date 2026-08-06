@@ -35,9 +35,9 @@ export default function TrustStrip() {
               key={title}
               className="flex flex-col items-center text-center gap-3"
             >
-              <div className="rounded-full p-3.5 bg-primary-soft">
+              <div className="rounded-full p-4 bg-primary-soft">
                 <Icon
-                  size={26}
+                  size={32}
                   strokeWidth={1.75}
                   className="text-primary"
                   aria-hidden
@@ -46,7 +46,7 @@ export default function TrustStrip() {
               <h2 className="font-serif text-navy text-senior-sm font-semibold leading-snug m-0">
                 {title}
               </h2>
-              <p className="text-navy/70 text-senior-xs leading-relaxed m-0 max-w-sm">
+              <p className="text-navy/85 text-senior-xs leading-relaxed m-0 max-w-sm">
                 {desc}
               </p>
             </li>
