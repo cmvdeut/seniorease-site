@@ -1,6 +1,8 @@
 import JsonLd from './components/JsonLd';
 import Hero from './components/Hero';
+import TrustStrip from './components/TrustStrip';
 import TopicsSection from './components/TopicsSection';
+import AiHighlight from './components/AiHighlight';
 import FAQAccordion from './components/FAQAccordion';
 import {
   buildPageMetadata,
@@ -19,6 +21,8 @@ export const metadata = buildPageMetadata({
     'WhatsApp uitleg',
     'DigiD uitleg',
     'gratis tools senioren',
+    'ChatGPT senioren',
+    'AI voor senioren',
   ],
 });
 
@@ -27,7 +31,9 @@ export default function Home() {
     <main className="min-h-screen bg-cream">
       <JsonLd data={webApplicationSchema} />
       <Hero />
+      <TrustStrip />
       <TopicsSection />
+      <AiHighlight spacious />
       <FAQAccordion />
     </main>
   );

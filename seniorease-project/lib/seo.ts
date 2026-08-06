@@ -448,7 +448,8 @@ export const CLIENT_PAGE_METADATA = {
   voorwaarden: buildPageMetadata({
     path: '/voorwaarden',
     title: 'Algemene voorwaarden',
-    description: 'Algemene voorwaarden voor het gebruik van SeniorEase en Mijn Bibliotheek.',
+    description:
+      'Algemene voorwaarden voor de website SeniorEase en de app Mijn Bibliotheek.',
   }),
   tools: buildPageMetadata({
     path: '/tools',

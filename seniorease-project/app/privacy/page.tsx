@@ -72,7 +72,9 @@ export default function PrivacyPage() {
                       1.3 Betalingsgegevens
                     </h3>
                     <p>
-                      Betalingen worden volledig verwerkt door Stripe, een gerenommeerde betalingsprovider. Wij zien <strong>nooit</strong> uw creditcardgegevens, bankgegevens of andere betalingsdetails. Stripe voldoet aan de hoogste beveiligingsstandaarden (PCI-DSS compliant).
+                      Aankopen van de Mijn Bibliotheek-app verlopen via de Google Play Store.
+                      Betalingen worden door Google verwerkt. Wij zien <strong>nooit</strong> uw
+                      creditcardgegevens, bankgegevens of andere betalingsdetails.
                     </p>
                   </div>
                 </div>
@@ -127,7 +129,8 @@ export default function PrivacyPage() {
                       3.3 Beveiliging
                     </h3>
                     <p>
-                      Wij nemen beveiliging serieus. Onze website gebruikt HTTPS encryptie. Betalingen worden verwerkt via de beveiligde servers van Stripe.
+                      Wij nemen beveiliging serieus. Onze website gebruikt HTTPS-encryptie.
+                      App-aankopen worden verwerkt via de beveiligde systemen van Google Play.
                     </p>
                   </div>
                 </div>
@@ -164,7 +167,7 @@ export default function PrivacyPage() {
                     Wij delen uw gegevens <strong>niet</strong> met derden, behalve:
                   </p>
                   <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li><strong>Stripe</strong>: Voor betalingsverwerking (alleen betalingsgegevens, niet uw bibliotheek data)</li>
+                    <li><strong>Google Play</strong>: voor betalingsverwerking van de Mijn Bibliotheek-app (geen bibliotheekdata)</li>
                     <li><strong>Wettelijke verplichtingen</strong>: Als dit wettelijk vereist is</li>
                   </ul>
                   <p className="mt-4">
