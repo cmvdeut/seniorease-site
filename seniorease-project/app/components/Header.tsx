@@ -3,16 +3,27 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import {
+  Menu,
+  X,
+  Smartphone,
+  BookOpen,
+  PlayCircle,
+  Wrench,
+  Users,
+  Mail,
+  type LucideIcon,
+} from 'lucide-react';
 import BrandLogo from './BrandLogo';
+import SeniorButton from './SeniorButton';
 
-const NAV_LINKS = [
-  { href: '/digitale-hulp', label: 'Digitale hulp' },
-  { href: '/uitleg', label: 'Gidsen' },
-  { href: '/kijk-en-help', label: 'Kijk & Help' },
-  { href: '/tools', label: 'Tools' },
-  { href: '/over-ons', label: 'Over ons' },
-] as const;
+const NAV_LINKS: { href: string; label: string; Icon: LucideIcon }[] = [
+  { href: '/digitale-hulp', label: 'Digitale hulp', Icon: Smartphone },
+  { href: '/uitleg', label: 'Gidsen', Icon: BookOpen },
+  { href: '/kijk-en-help', label: 'Kijk & Help', Icon: PlayCircle },
+  { href: '/tools', label: 'Tools', Icon: Wrench },
+  { href: '/over-ons', label: 'Over ons', Icon: Users },
+];
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -58,8 +69,8 @@ export default function Header() {
                 href={href}
                 className={
                   active
-                    ? 'px-2.5 xl:px-3 py-2.5 text-senior-xs font-semibold text-gold border-b-2 border-gold whitespace-nowrap'
-                    : 'px-2.5 xl:px-3 py-2.5 text-senior-xs font-semibold text-navy/80 hover:text-gold transition-colors whitespace-nowrap'
+                    ? 'px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-gold border-b-2 border-gold whitespace-nowrap'
+                    : 'px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-navy/90 hover:text-gold transition-colors whitespace-nowrap'
                 }
                 style={{ minHeight: '48px', display: 'inline-flex', alignItems: 'center' }}
                 aria-current={active ? 'page' : undefined}
@@ -68,14 +79,9 @@ export default function Header() {
               </Link>
             );
           })}
-          <Link
-            href="/contact"
-            className="ml-3 xl:ml-4 px-5 xl:px-6 py-2 text-senior-xs font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors whitespace-nowrap"
-            style={{ minHeight: '44px', display: 'inline-flex', alignItems: 'center' }}
-            aria-current={isActivePath(pathname, '/contact') ? 'page' : undefined}
-          >
+          <SeniorButton href="/contact" className="ml-3 xl:ml-4 px-5 xl:px-6" icon={Mail}>
             Contact
-          </Link>
+          </SeniorButton>
         </nav>
 
         <button
@@ -96,7 +102,7 @@ export default function Header() {
           id="mobiel-hoofdmenu"
           className="lg:hidden bg-paper border-t border-navy/10 px-4 sm:px-6 pb-5 pt-2 space-y-1"
         >
-          {NAV_LINKS.map(({ href, label }) => {
+          {NAV_LINKS.map(({ href, label, Icon }) => {
             const active = isActivePath(pathname, href);
             return (
               <Link
@@ -104,25 +110,26 @@ export default function Header() {
                 href={href}
                 className={
                   active
-                    ? 'flex items-center px-4 py-3.5 text-senior-xs font-semibold text-white bg-gold rounded-2xl'
-                    : 'flex items-center px-4 py-3.5 text-senior-xs font-semibold text-navy hover:bg-cream rounded-2xl transition-colors'
+                    ? 'flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-white bg-gold rounded-2xl'
+                    : 'flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-navy hover:bg-cream rounded-2xl transition-colors'
                 }
                 style={{ minHeight: '56px' }}
                 aria-current={active ? 'page' : undefined}
                 onClick={() => setOpen(false)}
               >
-                {label}
+                <Icon size={22} strokeWidth={2} aria-hidden className="shrink-0" />
+                <span>{label}</span>
               </Link>
             );
           })}
-          <Link
+          <SeniorButton
             href="/contact"
-            className="flex items-center justify-center mt-2 px-4 py-3.5 text-senior-xs font-semibold text-white bg-gold hover:bg-gold-light rounded-full text-center transition-colors"
-            style={{ minHeight: '56px' }}
+            className="w-full mt-2"
+            icon={Mail}
             onClick={() => setOpen(false)}
           >
             Contact
-          </Link>
+          </SeniorButton>
         </div>
       )}
     </header>
