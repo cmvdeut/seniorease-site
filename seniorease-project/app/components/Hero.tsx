@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import Image from 'next/image';
+import SeniorButton from './SeniorButton';
 
 type HeroProps = {
   headline?: string;
@@ -56,15 +56,10 @@ export default function Hero({
           <h1 className="font-serif text-[2.25rem] sm:text-[2.6rem] lg:text-senior-3xl text-navy mb-5 leading-[1.12] font-semibold">
             {headline}
           </h1>
-          <p className="text-navy/70 text-senior-lg mb-8 leading-relaxed max-w-md">
+          <p className="text-navy/85 text-senior-lg mb-8 leading-relaxed max-w-md">
             {subtext}
           </p>
-          <Link
-            href={ctaHref}
-            className="inline-flex items-center justify-center min-h-touch px-8 py-3.5 font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-base"
-          >
-            {ctaLabel}
-          </Link>
+          <SeniorButton href={ctaHref}>{ctaLabel}</SeniorButton>
         </div>
 
         {/* Mobiel: foto onder de tekst */}

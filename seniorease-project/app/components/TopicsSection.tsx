@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
-import Link from 'next/link';
 import TopicCard from './TopicCard';
+import SeniorButton from './SeniorButton';
 import {
   GoogleBadge,
   WhatsAppBadge,
@@ -85,12 +85,7 @@ function Panel({
         {children}
       </div>
       <div className="flex justify-center mt-auto">
-        <Link
-          href={ctaHref}
-          className="inline-flex items-center justify-center min-h-touch px-9 py-3 font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-sm"
-        >
-          Bekijk alles
-        </Link>
+        <SeniorButton href={ctaHref}>Bekijk alles</SeniorButton>
       </div>
     </div>
   );

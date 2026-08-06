@@ -1,6 +1,6 @@
-import Link from 'next/link';
 import { Sparkles } from 'lucide-react';
 import YoutubeHint from '@/app/components/YoutubeHint';
+import SeniorButton from './SeniorButton';
 
 type AiHighlightProps = {
   /** Iets meer padding op homepage */
@@ -34,24 +34,20 @@ export default function AiHighlight({ spacious = false }: AiHighlightProps) {
                 daarop en u kunt in gewone taal vragen stellen — gratis, via Google. Geen aparte
                 app nodig.
               </p>
-              <p className="text-navy/70 text-senior-sm leading-relaxed mb-6 max-w-2xl">
+              <p className="text-navy/85 text-senior-sm leading-relaxed mb-6 max-w-2xl">
                 Belangrijk: vertrouw AI niet voor 100%. Controleer belangrijke feiten (gezondheid,
                 geld, overheidszaken). Gebruik het als hulp voor inzichten — niet als enige bron.
               </p>
 
               <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
-                <Link
-                  href="/digitale-hulp/ai"
-                  className="inline-flex items-center justify-center min-h-touch px-7 py-3 font-semibold text-white bg-gold hover:bg-gold-light rounded-full transition-colors text-senior-sm"
-                >
-                  AI-uitleg bekijken →
-                </Link>
-                <Link
+                <SeniorButton href="/digitale-hulp/ai">AI-uitleg bekijken</SeniorButton>
+                <SeniorButton
                   href="/digitale-hulp/googelen-google-zoeken"
-                  className="inline-flex items-center justify-center min-h-touch px-7 py-3 font-semibold text-navy bg-paper hover:bg-cream rounded-full transition-colors text-senior-sm border border-navy/10"
+                  variant="secondary"
+                  icon={false}
                 >
-                  Eerst googelen leren →
-                </Link>
+                  Eerst googelen leren
+                </SeniorButton>
               </div>
 
               <div className="mt-5">
