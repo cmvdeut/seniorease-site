@@ -84,7 +84,7 @@ export default function ComputerTraagPage() {
           Windows installeert soms updates op de achtergrond. Laat de computer een keer rustig <strong>herstarten</strong> na een melding &quot;Update vereist&quot;. Dat hoort bij onderhoud — geen paniek.
         </>
       ),
-      tip: 'Klik nooit op vreemde pop-ups met &quot;Uw computer is besmet! Bel dit nummer!&quot; — dat is oplichting, geen echte Windows-melding.',
+      tip: 'Klik nooit op vreemde pop-ups met "Uw computer is besmet! Bel dit nummer!" — dat is oplichting, geen echte Windows-melding.',
     },
     {
       stap: 'Internet traag of computer traag?',

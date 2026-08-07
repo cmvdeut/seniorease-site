@@ -80,7 +80,7 @@ export default function DigidPage() {
           U krijgt een verzoek op uw telefoon (DigiD app) of een <strong>sms-code</strong>. Bevestig alleen als <strong>u zelf</strong> net op Inloggen heeft geklikt. Ziet u een verzoek terwijl u niets deed? <strong>Niet</strong> goedkeuren — dat kan oplichting zijn.
         </>
       ),
-      tip: 'Installeert u de DigiD app? Doe dat via de officiële Play Store of App Store — zoek op &quot;DigiD&quot; van de overheid.',
+      tip: 'Installeert u de DigiD app? Doe dat via de officiële Play Store of App Store — zoek op "DigiD" van de overheid.',
     },
   ];
 

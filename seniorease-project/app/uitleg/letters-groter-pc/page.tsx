@@ -23,7 +23,7 @@ function StappenLijst({ stappen }: { stappen: Stap[] }) {
             <p className="text-senior-base font-bold text-navy mb-1">{item.stap}</p>
             <div className="text-senior-base text-navy/80 leading-relaxed">{item.uitleg}</div>
             {item.tip && (
-              <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-3 py-2 mt-2">
+              <p className="text-senior-sm text-navy/70 bg-paper border border-navy/10 rounded-lg px-4 py-3 mt-2 leading-relaxed break-words">
                 {item.tip}
               </p>
             )}
@@ -43,7 +43,7 @@ export default function LettersGroterPcPage() {
           Klik op <strong>Start</strong> → <strong>Instellingen</strong> (tandwiel) → <strong>Toegankelijkheid</strong> → <strong>Weergave</strong>. Bij <strong>Tekstgrootte</strong> sleept u de schuif naar rechts voor grotere letters. Klik op <strong>Toepassen</strong>.
         </>
       ),
-      tip: 'Oudere Windows? Zoek in Instellingen naar &quot;Schaal en indeling&quot; en verhoog het percentage (bijv. 125% of 150%).',
+      tip: 'Oudere Windows? Zoek in Instellingen naar "Schaal en indeling" en verhoog het percentage (bijv. 125% of 150%).',
     },
     {
       stap: 'Alles groter maken (schalen)',
