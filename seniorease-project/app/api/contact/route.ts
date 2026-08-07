@@ -153,7 +153,7 @@ export async function POST(request: NextRequest) {
         continue;
       }
 
-      // 2) Bevestiging naar de bezoeker (optioneel maar verwacht)
+      // 2) Bevestiging naar de bezoeker — inclusief hun bericht
       const confirm = await sendBrevoEmail(apiKey, {
         sender,
         to: [{ email: emailTrimmed, name: nameTrimmed }],
@@ -164,8 +164,23 @@ export async function POST(request: NextRequest) {
           <p>Bedankt voor uw bericht. Wij hebben het ontvangen en reageren zo spoedig mogelijk
           (meestal binnen 1–2 werkdagen).</p>
           <p><strong>Uw onderwerp:</strong> ${safeSubject}</p>
+          <p><strong>Uw bericht:</strong></p>
+          <p style="white-space:pre-wrap;border-left:3px solid #8B5E3C;padding-left:12px;margin:12px 0;">${safeMessage}</p>
           <p>Met vriendelijke groet,<br>SeniorEase</p>
         `,
+        textContent: [
+          `Beste ${nameTrimmed},`,
+          '',
+          'Bedankt voor uw bericht. Wij hebben het ontvangen en reageren zo spoedig mogelijk (meestal binnen 1–2 werkdagen).',
+          '',
+          `Uw onderwerp: ${subjectLabel}`,
+          '',
+          'Uw bericht:',
+          messageTrimmed,
+          '',
+          'Met vriendelijke groet,',
+          'SeniorEase',
+        ].join('\n'),
         tags: ['contact-confirmation'],
       });
 
