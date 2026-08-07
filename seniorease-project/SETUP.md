@@ -7,7 +7,7 @@ Je hebt nu een complete Next.js applicatie met:
 - ✅ "Grote Klok" web-app (real-time tijd & datum)
 - ✅ Senior-friendly styling (grote teksten, knoppen)
 - ✅ TypeScript + Tailwind CSS
-- ✅ Netlify configuratie
+- ✅ Vercel deployment (live site)
 - ✅ MCP configuratie voor Cursor
 
 ## 📋 Volgende Stappen
@@ -63,42 +63,26 @@ git push -u origin main
 
 Vervang `JOUW_GEBRUIKERSNAAM` met je GitHub username!
 
-### STAP 5: Netlify Koppelen
+### STAP 5: Vercel Koppelen
 
-1. Ga naar https://app.netlify.com
-2. Klik "Add new site" > "Import an existing project"
-3. Kies "GitHub" en autoriseer Netlify
-4. Selecteer je `seniorease` repository
-5. Build settings zijn automatisch correct (staat al in `netlify.toml`)
-6. Klik "Deploy site"
+1. Ga naar https://vercel.com
+2. Import het GitHub-project (`seniorease-site`)
+3. Root directory: `seniorease-project` (als de repo die map bevat)
+4. Deploy — framework: Next.js
 
-⏱️ Eerste deploy duurt 2-3 minuten.
+⏱️ Eerste deploy duurt meestal 1–3 minuten.
 
 ### STAP 6: Custom Domain Koppelen
 
-1. In Netlify, ga naar: Site settings > Domain management
-2. Klik "Add custom domain"
-3. Voer in: `seniorease.nl`
-4. Netlify geeft je DNS records
+1. In Vercel: Project → Settings → Domains
+2. Voeg toe: `seniorease.nl` en `www.seniorease.nl`
+3. Volg de DNS-instructies van Vercel bij je domeinprovider (Strato)
 
-5. Ga naar je domain provider (waar je seniorease.nl hebt gekocht)
-6. Voeg deze DNS records toe:
-   ```
-   Type: A
-   Name: @
-   Value: 75.2.60.5
-   
-   Type: CNAME
-   Name: www
-   Value: [jouw-site].netlify.app
-   ```
-
-⏱️ DNS propagatie: 5 minuten - 24 uur (meestal binnen 1 uur)
+⏱️ DNS-propagatie: meestal binnen een uur, soms tot 24 uur.
 
 ### STAP 7: SSL Certificaat
 
-Netlify activeert automatisch HTTPS voor je domein (gratis!).
-Check na 10-15 minuten of https://seniorease.nl werkt.
+Vercel activeert automatisch HTTPS. Check of https://seniorease.nl werkt.
 
 ## 🤖 MCP Setup in Cursor
 
@@ -221,10 +205,10 @@ git config --global user.name "Jouw Naam"
 git config --global user.email "jouw@email.com"
 ```
 
-### Netlify build fails
+### Vercel build fails
 - Check of `package.json` correct is
-- Check Node version (zou 20 moeten zijn)
-- Check build logs in Netlify dashboard
+- Check Node version (20+)
+- Check build logs in het Vercel dashboard
 
 ## 📞 Hulp nodig?
 
@@ -237,7 +221,7 @@ Vraag gewoon aan Claude (mij!) in Cursor:
 
 - [ ] `npm run dev` werkt lokaal
 - [ ] Code gepusht naar GitHub
-- [ ] Site deployed op Netlify
+- [ ] Site deployed op Vercel
 - [ ] Custom domain werkt (seniorease.nl)
 - [ ] HTTPS actief
 - [ ] MCP configured in Cursor

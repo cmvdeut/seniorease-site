@@ -89,20 +89,12 @@ D:\MAUREEN\DEV\Seniorease\
 
 ## 🌐 Deploy
 
-### Netlify (actief) ✅
+### Vercel (actief)
 - **Live URL**: [seniorease.nl](https://seniorease.nl)
 - **GitHub**: [github.com/cmvdeut/seniorease-site](https://github.com/cmvdeut/seniorease-site)
-- **Auto-deploy**: Elke push naar `main` branch triggert automatisch een nieuwe deployment
+- **Auto-deploy**: Elke push naar `main` triggert een deployment op Vercel
 
-### Handmatige deployment via CLI:
-```bash
-netlify deploy --prod
-```
-
-### Optie 2: STRATO
-1. Upload alle bestanden naar `public_html` folder
-2. Zorg dat `index.html` in root staat
-3. Test PWA functionaliteit na upload
+We gebruiken **geen** Netlify.
 
 ## 🎨 Styling
 

@@ -5,7 +5,7 @@
 ```
 ┌─────────────────────────────────────────────────────────┐
 │                    seniorease.nl                         │
-│                  (Netlify Hosting)                       │
+│                  (Vercel Hosting)                        │
 └─────────────────────────────────────────────────────────┘
                           ↑
                           │ Auto-deploy bij push
@@ -46,7 +46,7 @@ Build & Deploy:
 ├── npm (package manager)
 ├── Git (version control)
 ├── GitHub (code hosting)
-└── Netlify
+└── Vercel
     ├── Automatic deployments
     ├── CDN distribution
     └── SSL certificates
@@ -118,7 +118,7 @@ Spacing & Touch Targets:
    └─→ git push origin main
 
 5. Auto-deploy
-   └─→ Netlify detecteert push
+   └─→ Vercel detecteert push
    └─→ Build & deploy automatisch
    └─→ Live op seniorease.nl binnen 2-3 min
 ```
@@ -155,7 +155,7 @@ Jij (in Cursor):
          │
          ↓
 ┌─────────────────────────────────────┐
-│  Netlify Auto-Deploy                 │
+│  Vercel Auto-Deploy                  │
 │  - Detecteert nieuwe commit          │
 │  - Triggers build                    │
 │  - Deploys naar productie            │
@@ -203,7 +203,7 @@ FASE 5: Community (Week 13+)
 ## 🔒 Beveiliging & Privacy
 
 ```
-✅ HTTPS (SSL via Netlify)
+✅ HTTPS (SSL via Vercel)
 ✅ Geen tracking cookies
 ✅ Privacy-first design
 ✅ Lokale data storage (PWA)
@@ -223,7 +223,7 @@ Optimalisaties:
 ├── Next.js automatic code splitting
 ├── Image optimization
 ├── CSS minification
-└── CDN via Netlify
+└── CDN via Vercel
 ```
 
 ---
@@ -239,8 +239,8 @@ Optimalisaties:
 **Tailwind CSS**
 → Snelle styling, geen CSS conflicts, responsive
 
-**Netlify**
-→ Gratis hosting, auto-deploys, CDN, SSL
+**Vercel**
+→ Hosting, auto-deploys, CDN, SSL
 
 **MCP + Claude**
 → AI-powered development, snellere iteratie

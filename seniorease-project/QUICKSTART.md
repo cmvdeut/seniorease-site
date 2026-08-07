@@ -24,14 +24,13 @@ git remote add origin https://github.com/JOUW_USERNAME/seniorease.git
 git push -u origin main
 ```
 
-### 4️⃣ Deploy op Netlify
-1. https://app.netlify.com → "Add new site"
-2. Kies je GitHub repo
-3. Klik "Deploy"
-4. Klaar! ✅
+### 4️⃣ Deploy op Vercel
+1. https://vercel.com → Import GitHub-repo
+2. Deploy (Next.js)
+3. Klaar! ✅
 
 ### 5️⃣ Koppel domein
-Netlify → Site settings → Domain management → Add `seniorease.nl`
+Vercel → Project → Settings → Domains → Add `seniorease.nl`
 
 ---
 
@@ -46,7 +45,6 @@ seniorease-project/
 │   └── globals.css        # Styling
 ├── package.json           # Dependencies
 ├── tailwind.config.ts     # Tailwind met senior-fonts
-├── netlify.toml          # Auto-deploy config
 ├── README.md             # Project documentatie
 └── SETUP.md              # Uitgebreide setup gids
 ```
@@ -59,7 +57,7 @@ seniorease-project/
 ✅ **Responsive** - Werkt op alle devices  
 ✅ **TypeScript** - Type-safe code  
 ✅ **Tailwind CSS** - Snelle styling  
-✅ **Netlify Ready** - 1-click deploy  
+✅ **Vercel** - Auto-deploy via GitHub  
 
 ## 🤖 MCP in Cursor?
 

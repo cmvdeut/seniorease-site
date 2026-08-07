@@ -11,7 +11,7 @@ Je hebt nu een **volledig werkende website** met:
 - ✅ **Responsive layout** - Werkt op desktop, tablet én mobiel
 - ✅ **TypeScript** - Type-safe code voor minder bugs
 - ✅ **Tailwind CSS** - Met custom senior-vriendelijke font sizes
-- ✅ **Netlify configuratie** - Ready voor 1-click deployment
+- ✅ **Vercel deployment** - Live via GitHub
 - ✅ **MCP setup** - Voor AI-powered development in Cursor
 
 ### 📁 Project Structuur (12 bestanden)
@@ -38,7 +38,6 @@ seniorease-project/
 ├── ⚙️ tailwind.config.ts   ← Tailwind + custom fonts
 ├── ⚙️ next.config.js       ← Next.js settings
 ├── ⚙️ postcss.config.js    ← CSS processing
-├── ⚙️ netlify.toml         ← Deploy config
 ├── ⚙️ mcp-config.json      ← MCP template
 └── 📄 .gitignore           ← Git ignore rules
 ```
@@ -72,16 +71,16 @@ npm run dev
 - Maak nieuwe repository "seniorease"
 - Push je code (zie QUICKSTART.md)
 
-**5. Netlify deployment** (10 min)
-- Koppel GitHub repo aan Netlify
-- Auto-deploy naar tijdelijke URL
+**5. Vercel deployment** (10 min)
+- Koppel GitHub repo aan Vercel
+- Auto-deploy naar productie-URL
 - Test of alles werkt
 
 ### OVERMORGEN 🌐
 
 **6. Domain koppeling** (15 min + wachttijd)
-- Koppel seniorease.nl aan Netlify
-- DNS configuratie
+- Koppel seniorease.nl aan Vercel
+- DNS configuratie bij Strato
 - Wacht op propagatie (1-24 uur)
 - ✅ LIVE op seniorease.nl!
 
@@ -119,7 +118,7 @@ Na MCP setup kan je dingen zeggen als:
 ## 💪 Je Sterktes vs Uitdagingen
 
 ### ✅ Sterktes
-- **Tech stack compleet** - Cursor, GitHub, Netlify
+- **Tech stack compleet** - Cursor, GitHub, Vercel
 - **Domain klaar** - seniorease.nl beschikbaar
 - **Duidelijke niche** - Senior-focus geeft richting
 - **Schaalbare basis** - Makkelijk uit te breiden
@@ -221,9 +220,9 @@ Start met deze volgorde:
 2. **Git push fails**
    → GitHub credentials instellen (zie SETUP.md)
 
-3. **Netlify build fails**
-   → Check build logs in Netlify dashboard
-   → Meestal Node version issue (zet op 20)
+3. **Vercel build fails**
+   → Check build logs in Vercel dashboard
+   → Meestal Node version issue (zet op 20+)
 
 4. **DNS niet werkend**
    → Duurt 1-24 uur, heb geduld
@@ -243,7 +242,7 @@ Je bent klaar als:
 - [ ] Homepage ziet er goed uit ✅
 - [ ] Grote Klok werkt en tikt ✅
 - [ ] Code op GitHub staat ✅
-- [ ] Site live op Netlify ✅
+- [ ] Site live op Vercel ✅
 - [ ] seniorease.nl bereikbaar (met HTTPS) ✅
 - [ ] MCP in Cursor werkend ✅
 - [ ] Claude kan direct wijzigingen maken ✅

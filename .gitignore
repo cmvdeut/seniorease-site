@@ -1,4 +1,4 @@
-# Netlify
+# Local deploy caches (do not use Netlify)
 .netlify/
 .netlify/**
 
@@ -31,3 +31,6 @@ tutorial-maker.zip
 seniorease-project/tutorial-maker/
 seniorease-project/tutorial-maker-app/
 seniorease-project/tutorial-maker.zip
+
+.vercel
+.env*.local

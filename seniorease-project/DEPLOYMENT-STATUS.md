@@ -34,12 +34,13 @@
 
 ## 🔍 Deployment Configuratie
 
-### Netlify Config
-- ✅ `netlify.toml` aanwezig
-- ⚠️ **Maar**: Er zijn veel Vercel documenten, wat suggereert dat Vercel wordt gebruikt
+### Vercel (actief)
+- Live site via GitHub → Vercel
+- Domein: `seniorease.nl` / `www.seniorease.nl`
+- Geen Netlify meer in gebruik
 
-### Vercel Config
-- 📄 Veel Vercel setup documenten aanwezig:
+### DNS / domein docs
+- 📄 Vercel setup documenten aanwezig:
   - `VERCEL-DOMEIN-SETUP.md`
   - `VERCEL-DOMEIN-STAP-VOOR-STAP.md`
   - `VERCEL-DNS-FIX.md`
@@ -167,7 +168,7 @@ git push origin main
 
 ## 📝 Notities
 
-- **Netlify.toml** is aanwezig, maar Vercel documentatie suggereert dat Vercel wordt gebruikt
+- **Deploy**: alleen Vercel (geen Netlify)
 - **Code is klaar** - alle tools zijn aanwezig en werken
 - **Automatische detectie** zorgt dat test/live mode correct werkt
 - **GitHub repository** is actief: `cmvdeut/seniorease-site`
