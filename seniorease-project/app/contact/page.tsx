@@ -73,84 +73,96 @@ export default function ContactPage() {
           Heeft u vragen, opmerkingen of hulp nodig? Wij helpen u graag.
         </p>
 
-        {/* Success */}
-        {submitStatus === 'success' && (
-          <div className="bg-green-50 border border-green-200 rounded-xl p-6 mb-6">
-            <h3 className="font-bold text-green-800 mb-1" style={{ fontSize: '1.2rem' }}>Bericht verzonden</h3>
-            <p className="text-green-700" style={{ fontSize: '1.1rem' }}>
+        {/* Success — formulier verdwijnt na verzenden */}
+        {submitStatus === 'success' ? (
+          <div className="bg-green-50 border border-green-200 rounded-xl p-8 mb-6 text-center">
+            <h2 className="font-bold text-green-800 mb-2" style={{ fontSize: '1.35rem' }}>
+              Bericht verzonden
+            </h2>
+            <p className="text-green-700 mb-6" style={{ fontSize: '1.15rem' }}>
               Wij hebben uw bericht ontvangen en reageren zo spoedig mogelijk.
             </p>
-          </div>
-        )}
-
-        {/* Error */}
-        {submitStatus === 'error' && (
-          <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
-            <h3 className="font-bold text-red-800 mb-1" style={{ fontSize: '1.2rem' }}>Er ging iets mis</h3>
-            <p className="text-red-700" style={{ fontSize: '1.1rem' }}>
-              Uw bericht kon niet worden verzonden. Probeer het opnieuw of stuur een e-mail naar{' '}
-              <a href="mailto:info@seniorease.nl" className="underline">info@seniorease.nl</a>
-            </p>
-          </div>
-        )}
-
-        {/* Formulier */}
-        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6">
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div>
-              <label htmlFor="name" className="block font-bold text-gray-800 mb-1 text-senior-base">
-                Uw naam <span className="text-red-500">*</span>
-              </label>
-              <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}
-                className={inputClass('name')} placeholder="Bijvoorbeeld: Jan Jansen" />
-              {errors.name && <p className="mt-1 text-senior-sm text-red-600">{errors.name}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block font-bold text-gray-800 mb-1 text-senior-base">
-                Uw e-mailadres <span className="text-red-500">*</span>
-              </label>
-              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}
-                className={inputClass('email')} placeholder="bijvoorbeeld@email.nl" />
-              {errors.email && <p className="mt-1 text-senior-sm text-red-600">{errors.email}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="subject" className="block font-bold text-gray-800 mb-1 text-senior-base">
-                Onderwerp <span className="text-red-500">*</span>
-              </label>
-              <select id="subject" name="subject" value={formData.subject} onChange={handleChange}
-                className={inputClass('subject')}>
-                <option value="">Kies een onderwerp...</option>
-                <option value="algemeen">Algemene vraag</option>
-                <option value="technisch">Technische support</option>
-                <option value="licentie">Vraag over licentie</option>
-                <option value="bug">Bug melding</option>
-                <option value="suggestie">Suggestie</option>
-                <option value="anders">Anders</option>
-              </select>
-              {errors.subject && <p className="mt-1 text-senior-sm text-red-600">{errors.subject}</p>}
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block font-bold text-gray-800 mb-1 text-senior-base">
-                Uw bericht <span className="text-red-500">*</span>
-              </label>
-              <textarea id="message" name="message" value={formData.message} onChange={handleChange}
-                rows={5} className={inputClass('message')} placeholder="Beschrijf uw vraag of opmerking..." />
-              {errors.message && <p className="mt-1 text-senior-sm text-red-600">{errors.message}</p>}
-            </div>
-
             <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full font-bold text-white py-4 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50"
-              style={{ background: '#8B5E3C', fontSize: '1.15rem' }}
+              type="button"
+              onClick={() => setSubmitStatus('idle')}
+              className="font-semibold text-primary hover:underline"
+              style={{ fontSize: '1.1rem' }}
             >
-              {isSubmitting ? 'Verzenden...' : 'Verstuur bericht'}
+              Nog een bericht sturen
             </button>
-          </form>
-        </div>
+          </div>
+        ) : (
+          <>
+            {/* Error */}
+            {submitStatus === 'error' && (
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6 mb-6">
+                <h3 className="font-bold text-red-800 mb-1" style={{ fontSize: '1.2rem' }}>Er ging iets mis</h3>
+                <p className="text-red-700" style={{ fontSize: '1.1rem' }}>
+                  Uw bericht kon niet worden verzonden. Probeer het opnieuw of stuur een e-mail naar{' '}
+                  <a href="mailto:info@seniorease.nl" className="underline">info@seniorease.nl</a>
+                </p>
+              </div>
+            )}
+
+            {/* Formulier */}
+            <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8 mb-6">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div>
+                  <label htmlFor="name" className="block font-bold text-gray-800 mb-1 text-senior-base">
+                    Uw naam <span className="text-red-500">*</span>
+                  </label>
+                  <input type="text" id="name" name="name" value={formData.name} onChange={handleChange}
+                    className={inputClass('name')} placeholder="Bijvoorbeeld: Jan Jansen" />
+                  {errors.name && <p className="mt-1 text-senior-sm text-red-600">{errors.name}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="email" className="block font-bold text-gray-800 mb-1 text-senior-base">
+                    Uw e-mailadres <span className="text-red-500">*</span>
+                  </label>
+                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}
+                    className={inputClass('email')} placeholder="bijvoorbeeld@email.nl" />
+                  {errors.email && <p className="mt-1 text-senior-sm text-red-600">{errors.email}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="subject" className="block font-bold text-gray-800 mb-1 text-senior-base">
+                    Onderwerp <span className="text-red-500">*</span>
+                  </label>
+                  <select id="subject" name="subject" value={formData.subject} onChange={handleChange}
+                    className={inputClass('subject')}>
+                    <option value="">Kies een onderwerp...</option>
+                    <option value="algemeen">Algemene vraag</option>
+                    <option value="technisch">Technische support</option>
+                    <option value="licentie">Vraag over licentie</option>
+                    <option value="bug">Bug melding</option>
+                    <option value="suggestie">Suggestie</option>
+                    <option value="anders">Anders</option>
+                  </select>
+                  {errors.subject && <p className="mt-1 text-senior-sm text-red-600">{errors.subject}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block font-bold text-gray-800 mb-1 text-senior-base">
+                    Uw bericht <span className="text-red-500">*</span>
+                  </label>
+                  <textarea id="message" name="message" value={formData.message} onChange={handleChange}
+                    rows={5} className={inputClass('message')} placeholder="Beschrijf uw vraag of opmerking..." />
+                  {errors.message && <p className="mt-1 text-senior-sm text-red-600">{errors.message}</p>}
+                </div>
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting}
+                  className="w-full font-bold text-white py-4 rounded-xl hover:opacity-90 transition-opacity disabled:opacity-50"
+                  style={{ background: '#8B5E3C', fontSize: '1.15rem' }}
+                >
+                  {isSubmitting ? 'Verzenden...' : 'Verstuur bericht'}
+                </button>
+              </form>
+            </div>
+          </>
+        )}
 
         {/* Direct e-mail */}
         <div className="grid sm:grid-cols-2 gap-4 mb-6">
