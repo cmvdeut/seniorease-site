@@ -117,11 +117,14 @@ export default function ContactPage() {
                 </div>
 
                 <div>
-                  <label htmlFor="email" className="block font-bold text-gray-800 mb-1 text-senior-base">
-                    Uw e-mailadres <span className="text-red-500">*</span>
-                  </label>
-                  <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}
-                    className={inputClass('email')} placeholder="bijvoorbeeld@email.nl" />
+              <label htmlFor="email" className="block font-bold text-gray-800 mb-1 text-senior-base">
+                Uw e-mailadres <span className="text-red-500">*</span>
+              </label>
+              <p className="text-gray-600 mb-2" style={{ fontSize: '1rem' }}>
+                Hierop ontvangt u een bevestiging, en hierop antwoorden wij.
+              </p>
+              <input type="email" id="email" name="email" value={formData.email} onChange={handleChange}
+                className={inputClass('email')} placeholder="bijvoorbeeld@email.nl" />
                   {errors.email && <p className="mt-1 text-senior-sm text-red-600">{errors.email}</p>}
                 </div>
 
