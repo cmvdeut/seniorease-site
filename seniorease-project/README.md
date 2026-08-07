@@ -75,7 +75,7 @@ seniorease/
 - **Framework**: Next.js 14 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
-- **Deployment**: Netlify
+- **Deployment**: Vercel
 - **Version Control**: GitHub
 
 ## 📝 Licentie
