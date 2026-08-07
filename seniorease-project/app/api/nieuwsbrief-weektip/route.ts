@@ -80,7 +80,7 @@ async function sendWeeklyTip(options: {
       name: campaignName,
       subject: tip.subject,
       previewText: tip.previewText,
-      sender: { name: 'SeniorEase', email: 'support@seniorease.eu' },
+      sender: { name: 'SeniorEase', email: 'info@seniorease.nl' },
       htmlContent: buildNieuwsbriefTipHtml(tip),
       recipients: { listIds: [listId] },
       utmCampaign: `weektip_${weekId.replace('-', '_')}`,

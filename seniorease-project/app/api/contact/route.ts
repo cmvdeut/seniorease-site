@@ -29,7 +29,7 @@ function getContactInbox(): string {
 
 function getContactSender() {
   const email =
-    process.env.BREVO_SENDER_EMAIL?.trim() || 'support@seniorease.eu';
+    process.env.BREVO_SENDER_EMAIL?.trim() || 'info@seniorease.nl';
   const name = process.env.BREVO_SENDER_NAME?.trim() || 'SeniorEase';
   return { email, name };
 }
