@@ -1482,10 +1482,16 @@ Voor vragen: bezoek seniorease.nl
                     {t.library.welcomeSubtitle}
                   </p>
                   <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
-                    {t.library.pcFreeText.split('\n').map((line, i) => (
+                    {t.library.pcFreeText.split('\n').map((line, i, lines) => (
                       <span key={i}>
-                        {line}
-                        {i < t.library.pcFreeText.split('\n').length - 1 && <br />}
+                        {line.split(/(gratis|free)/gi).map((part, j) =>
+                          /^(gratis|free)$/i.test(part) ? (
+                            <strong key={j}>{part}</strong>
+                          ) : (
+                            <span key={j}>{part}</span>
+                          )
+                        )}
+                        {i < lines.length - 1 && <br />}
                       </span>
                     ))}
                   </p>
