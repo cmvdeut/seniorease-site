@@ -25,10 +25,57 @@ const howToSchema = {
   ],
 };
 
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Kost WhatsApp geld?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "WhatsApp zelf is gratis. Via wifi betaalt u geen sms-kosten. Met mobiele data telt het gebruik mee voor uw databundel.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe open ik WhatsApp?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Tik op het groene icoon met het witte telefoontje op uw telefoonscherm. Staat het er niet? Zoek in de App Store of Play Store op WhatsApp en installeer de app.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe stuur ik een bericht?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open een gesprek, tik in het witte vak onderaan, typ uw tekst en tik op het blauwe verzend-icoon.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe stuur ik een foto?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "In een gesprek tikt u op het paperclip- of camera-icoon naast het typvak, kiest u een foto en tikt u op versturen.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Is WhatsApp veilig?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Berichten zijn versleuteld, maar stuur nooit wachtwoorden of bankgegevens via WhatsApp. Klik niet op vreemde links. Twijfelt u? Bel de persoon via een nummer dat u kent.",
+      },
+    },
+  ],
+};
+
 export const metadata = buildPageMetadata({
   path: '/uitleg/whatsapp-basis',
   title: "WhatsApp uitleg voor senioren – eerste stappen stap voor stap",
-  description: "Leer WhatsApp gebruiken: berichten sturen, foto",
+  description: "Leer WhatsApp gebruiken: berichten sturen, foto's versturen en veilig appen. Rustige uitleg voor senioren, stap voor stap.",
 });
 
 export default function WhatsAppBasisPage() {
@@ -36,6 +83,7 @@ export default function WhatsAppBasisPage() {
     <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <header className="bg-cream border-b border-navy/10 py-6">
         <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">

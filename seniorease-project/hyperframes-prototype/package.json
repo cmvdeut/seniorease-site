@@ -7,7 +7,12 @@
     "check": "hyperframes lint && hyperframes validate && hyperframes inspect",
     "render:whatsapp-fotos": "hyperframes render -o out/whatsapp-fotos.mp4",
     "render:oplichting": "hyperframes render -c compositions/oplichting-herkennen.html -o out/oplichting-herkennen.mp4",
-    "render": "npm run render:whatsapp-fotos && npm run render:oplichting"
+    "render:oplichting-reels": "hyperframes render -c compositions/oplichting-herkennen-portrait.html -o out/oplichting-herkennen-reels.mp4 --quality high",
+    "render:oplichting-feed": "hyperframes render -c compositions/oplichting-herkennen-feed.html -o out/oplichting-herkennen-feed-4x5.mp4 --quality high",
+    "render:fotos-maken": "hyperframes render -c compositions/fotos-maken.html -o out/fotos-maken.mp4",
+    "render:fotos-maken-uitleg": "hyperframes render -c compositions/fotos-maken-uitleg.html -o out/fotos-maken-uitleg.mp4",
+    "preview:fotos-maken": "hyperframes preview",
+    "render": "npm run render:whatsapp-fotos && npm run render:oplichting && npm run render:fotos-maken"
   },
   "devDependencies": {
     "hyperframes": "0.7.35"

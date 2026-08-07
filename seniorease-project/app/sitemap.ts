@@ -2,8 +2,8 @@ import { MetadataRoute } from 'next';
 import { artikelen } from './digitale-hulp/artikelen';
 import { SITE_URL } from '@/lib/seo';
 
-/** Stable lastmod — avoid “always today” on every build */
-const LASTMOD = new Date('2026-07-18');
+/** Stable lastmod — bump when important pages change (signals freshness to Google) */
+const LASTMOD = new Date('2026-08-07');
 
 function entry(
   path: string,

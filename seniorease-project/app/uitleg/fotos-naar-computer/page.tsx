@@ -24,10 +24,41 @@ const howToSchema = {
   ],
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Wat is de makkelijkste manier?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Voor de meeste mensen is e-mail of WhatsApp het eenvoudigst: stuur de foto naar uzelf en open die op de computer.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Werkt USB-kabel altijd?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Niet altijd. Sommige telefoons vragen om toestemming op het scherm. Op een Mac werkt een iPhone vaak beter via iCloud of AirDrop dan via kabel.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Blijven mijn foto\'s op de telefoon staan?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Ja. Kopiëren of delen naar de computer verwijdert de foto\'s niet van uw telefoon, tenzij u ze zelf wist.',
+      },
+    },
+  ],
+};
+
 export const metadata = buildPageMetadata({
   path: '/uitleg/fotos-naar-computer',
-  title: "Foto",
-  description: "Hoe zet u foto",
+  title: "Foto's van telefoon naar computer – uitleg voor senioren",
+  description: "Hoe zet u foto's van uw smartphone over naar de computer? E-mail, WhatsApp, USB, Google Foto's of iCloud — rustig uitgelegd.",
 });
 
 type Stap = {
@@ -176,6 +207,7 @@ export default function FotosNaarComputerPage() {
     <main className="min-h-screen bg-cream">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
 
       <header className="bg-cream border-b border-navy/10 py-6">
         <div className="max-w-senior mx-auto px-5 sm:px-6">

@@ -10,7 +10,7 @@
 | 2 | `WhatsApp-Berichten-reels.mp4` | 9:16 *(nog te renderen)* | seniorease.nl/uitleg/whatsapp-basis |
 | 3 | `whatsapp-fotos-reels.mp4` | 9:16 *(nog te renderen)* | seniorease.nl/uitleg/whatsapp-basis |
 | 4 | `video-reels.mp4` | 9:16 ✅ | seniorease.nl |
-| 5 | `oplichting-herkennen-reels.mp4` | 9:16 ✅ | seniorease.nl/uitleg/veiligheid |
+| 5 | `oplichting-herkennen-feed-4x5.mp4` (groep) / `oplichting-herkennen-reels.mp4` (Reel) | 4:5 ✅ / 9:16 ✅ | seniorease.nl/uitleg/veiligheid |
 | 6 | `Betere_foto_s_met_telefoon (1).mp4` | 16:9 ✅ *(optioneel)* | seniorease.nl/uitleg/fotos-maken |
 | 7 | `videobellen-notebooklm.mp4` | 16:9 ✅ *(optioneel)* | seniorease.nl/uitleg/videobellen |
 | 8 | `google-maps-notebooklm.mp4` | 16:9 ✅ *(optioneel)* | seniorease.nl/uitleg/google-maps |
@@ -134,7 +134,8 @@ Waar loopt u het meest tegenaan met technologie? Ik lees het graag hieronder.
 
 ## 5. Oplichting herkennen — 5 alarmsignalen
 
-**Video bijvoegen:** `video-generator\out\oplichting-herkennen-reels.mp4` (9:16 Reel, 1080×1920)
+**Video bijvoegen (Facebook-groep):** `hyperframes-prototype\out\oplichting-herkennen-feed-4x5.mp4` (4:5, 1080×1350)  
+**Reel / pagina:** `hyperframes-prototype\out\oplichting-herkennen-reels.mp4` (9:16)
 
 ```
 Heeft u wel eens een bericht gekregen dat "van uw bank" leek, maar toch niet klopte?

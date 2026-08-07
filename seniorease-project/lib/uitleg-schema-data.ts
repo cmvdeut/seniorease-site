@@ -297,6 +297,28 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
         { name: 'Groepen', text: 'Tik op Nieuwe groep, selecteer contacten, geef een naam en tik op Maken.' },
       ],
     },
+    faq: [
+      {
+        question: 'Kost bellen via WhatsApp geld?',
+        answer:
+          'Nee, via wifi is bellen en videobellen met WhatsApp gratis. Met mobiele data telt het mee voor uw databundel.',
+      },
+      {
+        question: 'Hoe stuur ik een spraakbericht?',
+        answer:
+          'Open een gesprek, houd het microfoon-icoontje rechts naast het typvak ingedrukt, spreek in en laat los om te versturen.',
+      },
+      {
+        question: 'Kan ik een groep dempen?',
+        answer:
+          'Ja. Open de groep, tik op de groepsnaam bovenaan en kies meldingen dempen. U blijft in de groep, maar krijgt geen geluid meer bij elk bericht.',
+      },
+      {
+        question: 'Wie ziet mijn status?',
+        answer:
+          'Standaard zien contacten die u in WhatsApp heeft uw status. U kunt dat beperken via Instellingen → Privacy → Status.',
+      },
+    ],
   },
   'whatsapp-deel3': {
     pageName: 'WhatsApp Deel 3',
@@ -311,5 +333,27 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
         { name: 'Back-up maken', text: 'Instellingen → Chats → Back-up van chat → Back-up maken.' },
       ],
     },
+    faq: [
+      {
+        question: 'Kan ik een bericht terugtrekken?',
+        answer:
+          'Ja. Houd het bericht lang ingedrukt, kies Verwijderen en daarna Voor iedereen — als het nog niet te lang geleden is verstuurd.',
+      },
+      {
+        question: 'Wat is een back-up van chats?',
+        answer:
+          'Een back-up bewaart uw gesprekken in de cloud (Google of iCloud). Bij een nieuwe telefoon kunt u die gesprekken terugzetten.',
+      },
+      {
+        question: 'Hoe houd ik mijn profielfoto privé?',
+        answer:
+          'Ga naar Instellingen → Account → Privacy → Profielfoto en kies Mijn contacten of Niemand.',
+      },
+      {
+        question: 'Wat doe ik bij een verdacht bericht of link?',
+        answer:
+          'Klik niet op de link en stuur geen codes of bankgegevens. Bel de afzender via een nummer dat u kent, of bekijk de uitleg over oplichting herkennen op SeniorEase.',
+      },
+    ],
   },
 };

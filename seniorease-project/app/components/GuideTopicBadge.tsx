@@ -99,21 +99,48 @@ export function MailBadge({ size = 'sm' }: { size?: BadgeSize }) {
   );
 }
 
+export function DigiDBadge({ size = 'sm' }: { size?: BadgeSize }) {
+  return (
+    <span
+      className={`flex ${box[size]} items-center justify-center bg-[#0B5C8A]/90 shadow-sm`}
+      aria-hidden
+    >
+      <svg viewBox="0 0 24 24" className={icon[size]} fill="none">
+        <rect x="4" y="5" width="16" height="14" rx="2" fill="white" />
+        <path
+          d="M8 10h8M8 13h5"
+          stroke="#0B5C8A"
+          strokeWidth="1.75"
+          strokeLinecap="round"
+        />
+        <circle cx="16.5" cy="13.5" r="1.5" fill="#0B5C8A" />
+      </svg>
+    </span>
+  );
+}
+
 /** Badge bij slug of pad — voor homepage-kaarten én artikelpagina’s */
 export function getGuideBadge(
   slugOrPath: string,
   size: BadgeSize = 'sm',
 ): ReactNode | null {
-  const key = slugOrPath.replace(/^\/digitale-hulp\//, '').replace(/\/$/, '');
+  const key = slugOrPath
+    .replace(/^\/digitale-hulp\//, '')
+    .replace(/^\/uitleg\//, '')
+    .replace(/\/$/, '');
   switch (key) {
     case 'googelen-google-zoeken':
       return <GoogleBadge size={size} />;
     case 'whatsapp-uitleg-beginners':
+    case 'whatsapp-basis':
       return <WhatsAppBadge size={size} />;
     case 'veilig-internet':
+    case 'veiligheid':
       return <ShieldBadge size={size} />;
     case 'e-mail-openen':
       return <MailBadge size={size} />;
+    case 'digid':
+      return <DigiDBadge size={size} />;
     default:
       return null;
   }

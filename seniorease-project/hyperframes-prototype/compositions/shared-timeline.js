@@ -21,5 +21,7 @@ function hfAddIntro(tl, logoId, titleWrapId) {
 function hfAddOutro(tl, innerId, buttonsId, start) {
   tl.fromTo(innerId, { opacity: 0, scale: 0.85 }, { opacity: 1, duration: 0.667, ease: "none" }, start);
   tl.fromTo(innerId, { scale: 0.85 }, { scale: 1, duration: 0.7, ease: "back.out(1.2)" }, start);
-  tl.fromTo(buttonsId, { opacity: 0 }, { opacity: 1, duration: 0.667, ease: "none" }, start + 1);
+  if (buttonsId) {
+    tl.fromTo(buttonsId, { opacity: 0 }, { opacity: 1, duration: 0.667, ease: "none" }, start + 1);
+  }
 }

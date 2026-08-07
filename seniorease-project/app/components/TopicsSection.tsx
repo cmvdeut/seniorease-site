@@ -5,7 +5,7 @@ import {
   GoogleBadge,
   WhatsAppBadge,
   ShieldBadge,
-  MailBadge,
+  DigiDBadge,
 } from './GuideTopicBadge';
 
 const GUIDES: {
@@ -15,28 +15,28 @@ const GUIDES: {
   overlay: ReactNode;
 }[] = [
   {
-    title: 'Google gebruiken',
-    href: '/digitale-hulp/googelen-google-zoeken',
-    imageUrl: '/images/topics/google-v3.jpg',
-    overlay: <GoogleBadge />,
+    title: 'DigiD — wat is het?',
+    href: '/uitleg/digid',
+    imageUrl: '/images/topics/email-v3.jpg',
+    overlay: <DigiDBadge />,
   },
   {
-    title: 'WhatsApp basis',
-    href: '/digitale-hulp/whatsapp-uitleg-beginners',
-    imageUrl: '/images/topics/whatsapp-v4.jpg',
-    overlay: <WhatsAppBadge />,
-  },
-  {
-    title: 'Veilig internetten',
-    href: '/digitale-hulp/veilig-internet',
+    title: 'Oplichting herkennen',
+    href: '/uitleg/veiligheid',
     imageUrl: '/images/topics/veilig-v3.jpg',
     overlay: <ShieldBadge />,
   },
   {
-    title: 'E-mail instellen',
-    href: '/digitale-hulp/e-mail-openen',
-    imageUrl: '/images/topics/email-v3.jpg',
-    overlay: <MailBadge />,
+    title: 'WhatsApp basis',
+    href: '/uitleg/whatsapp-basis',
+    imageUrl: '/images/topics/whatsapp-v4.jpg',
+    overlay: <WhatsAppBadge />,
+  },
+  {
+    title: 'Google gebruiken',
+    href: '/digitale-hulp/googelen-google-zoeken',
+    imageUrl: '/images/topics/google-v3.jpg',
+    overlay: <GoogleBadge />,
   },
 ];
 

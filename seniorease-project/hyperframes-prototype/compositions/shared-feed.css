@@ -1,0 +1,72 @@
+/* Facebook feed 4:5 (1080×1350) — load after shared.css */
+html,
+body {
+  width: 1080px;
+  height: 1350px;
+}
+
+.slide-watermark {
+  bottom: 36px;
+  right: 36px;
+  width: 48px;
+  height: 48px;
+}
+.slide-counter {
+  top: 36px;
+  right: 36px;
+  font-size: 20px;
+}
+.slide-layout {
+  padding: 88px 56px;
+  gap: 24px;
+}
+.slide-title.full {
+  font-size: 44px;
+  margin-bottom: 24px;
+  padding-left: 20px;
+  border-left-width: 8px;
+}
+.slide-title.split {
+  font-size: 38px;
+}
+.points {
+  gap: 18px;
+}
+.point-text.full {
+  font-size: 30px;
+  line-height: 1.35;
+}
+.point-text.split {
+  font-size: 28px;
+}
+.intro-logo {
+  width: 140px;
+  height: 140px;
+}
+.intro-brand {
+  font-size: 56px;
+}
+.intro-subtitle {
+  font-size: 34px;
+  margin-top: 14px;
+}
+.outro-logo {
+  width: 120px;
+  height: 120px;
+}
+.outro-domain {
+  font-size: 52px;
+}
+.outro-tagline {
+  font-size: 28px;
+}
+.outro-btn {
+  padding: 14px 36px;
+  font-size: 26px;
+}
+.alert-badge,
+.tip-badge {
+  font-size: 22px;
+  padding: 6px 14px;
+  margin-bottom: 16px;
+}

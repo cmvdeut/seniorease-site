@@ -58,6 +58,37 @@ const howToSchema = {
   ],
 };
 
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: [
+    {
+      '@type': 'Question',
+      name: 'Welke parkeerapp moet ik gebruiken?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Dat hangt van uw gemeente af. Kijk op het bord bij de parkeerplaats of op de gemeentesite. Vaak ziet u Parkmobile, Yellowbrick of een lokale app.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Moet ik muntjes meenemen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Nee, bij mobiel parkeren betaalt u via de app. Wel even controleren of het bord mobiel betalen toestaat.',
+      },
+    },
+    {
+      '@type': 'Question',
+      name: 'Wat als ik vergeet te stoppen?',
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: 'Zet een wekker of herinnering. Sommige apps sturen een melding. Stop altijd in de app als u wegrijdt, anders loopt de tijd door.',
+      },
+    },
+  ],
+};
+
 export default function MobielParkerenPage() {
   return (
     <main className="min-h-screen bg-cream">
@@ -68,6 +99,10 @@ export default function MobielParkerenPage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-14 md:py-20">
