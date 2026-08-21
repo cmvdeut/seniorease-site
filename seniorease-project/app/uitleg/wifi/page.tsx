@@ -387,6 +387,31 @@ export default function WifiPage() {
                 </div>
               ))}
             </div>
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mt-8 mb-4">
+              Gerelateerde uitleg
+            </h2>
+            <ul className="space-y-2 mb-8">
+              <li>
+                <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  QR-code scannen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/google-maps" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  Waar ben ik? Google Maps
+                </Link>
+              </li>
+              <li>
+                <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  WhatsApp-foto opslaan
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  Oplichting herkennen
+                </Link>
+              </li>
+            </ul>
             <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
               ← Terug naar home
             </Link>

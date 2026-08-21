@@ -5,8 +5,15 @@ import type { ReactNode } from 'react';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/bestanden-vinden',
-  title: "Bestanden vinden op uw computer — Downloads, Bureaublad en Verkenner",
-  description: "Waar staan uw foto\\",
+  title: 'Bestanden vinden op uw computer — Downloads, Bureaublad en Verkenner',
+  description:
+    'Waar staan uw foto’s, downloads en documenten? Zo vindt u mappen in Verkenner (Windows) of Finder (Mac) — rustig uitgelegd.',
+  keywords: [
+    'bestanden vinden computer',
+    'downloads map windows',
+    'verkenner uitleg',
+    'waar staan mijn downloads',
+  ],
 });
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };

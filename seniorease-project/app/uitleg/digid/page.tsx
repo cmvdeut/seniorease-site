@@ -5,8 +5,16 @@ import type { ReactNode } from 'react';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/digid',
-  title: "DigiD — wat is het en hoe werkt het? Uitleg voor senioren",
-  description: "Wat is DigiD, hoe vraagt u het aan en hoe logt u veilig in bij de overheid? Rustige uitleg zonder moeilijke termen.",
+  title: 'DigiD: wat is het, aanvragen en veilig inloggen',
+  description:
+    'DigiD is uw gratis inlog voor de overheid (belasting, toeslagen, MijnOverheid). Hoe vraagt u het aan en hoe logt u veilig in — zonder jargon.',
+  keywords: [
+    'digid',
+    'digid aanvragen',
+    'digid inloggen',
+    'wat is digid',
+    'digid uitleg senioren',
+  ],
 });
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
@@ -94,10 +102,10 @@ export default function DigidPage() {
               ← Veilig internet
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              DigiD — wat is het en hoe werkt het?
+              DigiD: wat is het, aanvragen en veilig inloggen
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Uw digitale sleutel voor de overheid — rustig uitgelegd.
+              Uw gratis digitale sleutel voor de overheid — rustig uitgelegd.
             </p>
           </div>
         </div>
@@ -145,6 +153,7 @@ export default function DigidPage() {
           <section className="bg-slate rounded-senior border border-navy/8 p-8">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>
             <ul className="space-y-3">
+              <li><Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-gold hover:text-gold-light">Oplichting herkennen →</Link></li>
               <li><Link href="/uitleg/online-bankieren" className="text-senior-base font-semibold text-gold hover:text-gold-light">Veilig online bankieren →</Link></li>
               <li><Link href="/uitleg/wachtwoorden" className="text-senior-base font-semibold text-gold hover:text-gold-light">Wachtwoorden beheren →</Link></li>
               <li><Link href="/digitale-hulp/apps-installeren" className="text-senior-base font-semibold text-gold hover:text-gold-light">DigiD app installeren (telefoon) →</Link></li>

@@ -14,9 +14,10 @@ const TOC = [
 
 const RELATED = [
   { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp basis' },
+  { href: '/uitleg/fotos-maken', label: "Foto's maken" },
+  { href: '/uitleg/wifi', label: 'Wifi instellen' },
+  { href: '/uitleg/qr-code', label: 'QR-code scannen' },
   { href: '/digitale-hulp/whatsapp-videobellen-uitleg', label: 'WhatsApp videobellen' },
-  { href: '/digitale-hulp/veilig-internet', label: 'Veilig internetten' },
-  { href: '/uitleg/whatsapp-basis', label: 'WhatsApp uitgebreid' },
 ] as const;
 
 const LEARN_ITEMS = [

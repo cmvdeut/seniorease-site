@@ -384,8 +384,14 @@ export default function GoogleMapsPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
-                ← Videobellen
+              <Link href="/uitleg/wifi" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                Wifi instellen →
+              </Link>
+              <Link href="/uitleg/qr-code" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                QR-code scannen →
+              </Link>
+              <Link href="/uitleg/9292" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                9292 reizen →
               </Link>
               <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 ← Terug naar home

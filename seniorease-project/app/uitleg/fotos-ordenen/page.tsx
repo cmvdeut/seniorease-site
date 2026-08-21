@@ -4,8 +4,15 @@ import Link from 'next/link';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/fotos-ordenen',
-  title: "Foto",
-  description: "Hoe maakt u albums, zoekt u in uw galerij en vindt u foto",
+  title: "Foto's ordenen op uw telefoon — albums en zoeken",
+  description:
+    "Albums maken, foto's terugvinden in Galerij of Google Foto's, favorieten en backup. Rustige uitleg voor smartphone.",
+  keywords: [
+    "foto's ordenen telefoon",
+    'albums maken galerij',
+    "foto's zoeken smartphone",
+    'google foto albums',
+  ],
 });
 
 export default function FotosOrdenenPage() {
@@ -348,14 +355,17 @@ export default function FotosOrdenenPage() {
               ))}
             </div>
             <div className="flex flex-wrap gap-4">
-              <Link href="/foto-archief" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
-                Foto Archief (namen labelen) →
+              <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                WhatsApp-foto opslaan →
+              </Link>
+              <Link href="/uitleg/fotos-maken" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                Betere foto&apos;s maken →
               </Link>
               <Link href="/uitleg/fotos-naar-computer" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
                 Foto&apos;s naar computer →
               </Link>
-              <Link href="/uitleg/videobellen" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
-                Videobellen met familie →
+              <Link href="/foto-archief" className="inline-flex items-center gap-2 bg-white border-2 border-navy/8 text-gold px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold/10 transition-colors">
+                Foto Archief (namen labelen) →
               </Link>
               <Link href="/" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 ← Terug naar home

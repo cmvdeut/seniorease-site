@@ -5,8 +5,15 @@ import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/you
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/fotos-maken',
-  title: "Betere foto",
-  description: "Mooiere foto",
+  title: "Betere foto's maken met uw smartphone — 5 tips",
+  description:
+    "Mooiere foto's met uw telefoon: licht, stilhouden, inzoomen vermijden. Vijf simpele tips — geen technische kennis nodig.",
+  keywords: [
+    "betere foto's maken telefoon",
+    'smartphone fotograferen tips',
+    "foto's maken senioren",
+    'camera tips telefoon',
+  ],
 });
 
 const tips = [
@@ -373,6 +380,31 @@ export default function FotosMakenPage() {
             <p className="text-senior-base text-navy/80 leading-relaxed mb-6">
               De eerste paar keer denkt u nog aan de tips. Na een weekje is het gewoon. Uw familie zal verbaasd zijn van de mooie foto&apos;s!
             </p>
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mt-8 mb-4">
+              Gerelateerde uitleg
+            </h2>
+            <ul className="space-y-2 mb-8">
+              <li>
+                <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  WhatsApp-foto opslaan in galerij
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/fotos-ordenen" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  Digitale foto&apos;s ordenen
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/fotos-naar-computer" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  Foto&apos;s naar de computer
+                </Link>
+              </li>
+              <li>
+                <Link href="/uitleg/qr-code" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  QR-code scannen
+                </Link>
+              </li>
+            </ul>
             <Link
               href="/"
               className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors "
