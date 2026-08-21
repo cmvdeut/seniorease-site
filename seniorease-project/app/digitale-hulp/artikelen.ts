@@ -20,8 +20,15 @@ export const artikelen: Artikel[] = [
   },
   {
     slug: "whatsapp-fotos-opslaan",
-    title: "WhatsApp foto's opslaan",
-    description: "Hoe bewaart u foto's die u via WhatsApp krijgt op uw telefoon? Stap voor stap uitgelegd voor senioren.",
+    title: "WhatsApp-foto opslaan in galerij",
+    description:
+      "Foto uit WhatsApp bewaren in uw galerij? Tik op de foto en kies downloaden of opslaan. Werkt op Android en iPhone — rustig, stap voor stap.",
+    keywords: [
+      "whatsapp foto opslaan",
+      "foto whatsapp naar galerij",
+      "whatsapp fotos downloaden",
+      "foto uit whatsapp bewaren",
+    ],
   },
   {
     slug: "whatsapp-videobellen-uitleg",

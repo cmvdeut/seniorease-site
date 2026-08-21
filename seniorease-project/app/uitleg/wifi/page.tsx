@@ -3,8 +3,16 @@ import Link from 'next/link';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wifi',
-  title: "WiFi instellen op smartphone en tablet – stap voor stap uitleg voor senioren",
-  description: "Hoe verbindt u uw smartphone of tablet met het wifi-netwerk thuis? Stap-voor-stap uitleg voor senioren, inclusief wachtwoord invullen en problemen oplossen.",
+  title: 'Wifi instellen op uw telefoon — wachtwoord invullen',
+  description:
+    'Wifi thuis verbinden: Instellingen openen, netwerk kiezen, wachtwoord typen. Ook als verbinden niet lukt. Duidelijke stappen voor smartphone en tablet.',
+  keywords: [
+    'wifi instellen',
+    'wifi wachtwoord invullen',
+    'wifi verbinden telefoon',
+    'wifi instellen smartphone',
+    'wifi werkt niet',
+  ],
 });
 
 const breadcrumbSchema = {
