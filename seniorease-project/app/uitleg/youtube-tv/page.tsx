@@ -58,8 +58,16 @@ const faqSchema = {
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/youtube-tv',
-  title: "YouTube kijken op tablet, telefoon, computer of televisie – uitleg voor senioren",
-  description: "Hoe gebruikt u YouTube? Stap-voor-stap uitleg voor senioren. Video",
+  title: 'YouTube kijken op telefoon, tablet of tv — stap voor stap',
+  description:
+    'YouTube openen, een video zoeken en afspelen op telefoon, tablet, computer of Smart TV. Gratis, duidelijk uitgelegd — ook voor beginners.',
+  keywords: [
+    'youtube kijken',
+    'youtube uitleg senioren',
+    'youtube op televisie',
+    'youtube tablet',
+    'youtube gratis',
+  ],
 });
 
 export default function YoutubeTvPage() {
@@ -76,10 +84,10 @@ export default function YoutubeTvPage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              YouTube kijken
+              YouTube kijken op telefoon, tablet of tv
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Gratis video&apos;s kijken op uw tablet, smartphone, computer of televisie — stap voor stap uitgelegd.
+              Video zoeken en afspelen — gratis, op telefoon, tablet, computer of Smart TV.
             </p>
           </div>
         </div>

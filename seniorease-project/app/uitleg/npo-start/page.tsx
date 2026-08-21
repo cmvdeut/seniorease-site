@@ -57,8 +57,16 @@ const faqSchema = {
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/npo-start',
-  title: "NPO Start gebruiken op tablet of smartphone – uitleg voor senioren",
-  description: "Hoe kijkt u gratis Nederlandse programma",
+  title: 'NPO Start: gratis Nederlandse tv terugkijken',
+  description:
+    'NPO Start installeren en programma’s van NPO 1, 2 en 3 terugkijken op tablet of telefoon. Gratis, zonder abonnement — stap voor stap.',
+  keywords: [
+    'npo start',
+    'npo start terugkijken',
+    'gratis nederlandse programma',
+    'npo start tablet',
+    'npo start senioren',
+  ],
 });
 
 export default function NpoStartPage() {
@@ -75,10 +83,10 @@ export default function NpoStartPage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              NPO Start gebruiken
+              NPO Start: gratis tv terugkijken
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Gratis Nederlandse programma&apos;s terugkijken op uw tablet of smartphone — stap voor stap uitgelegd.
+              Nederlandse programma’s terugkijken op tablet of telefoon — gratis, stap voor stap.
             </p>
           </div>
         </div>

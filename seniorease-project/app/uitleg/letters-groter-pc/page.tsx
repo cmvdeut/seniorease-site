@@ -5,8 +5,16 @@ import type { ReactNode } from 'react';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/letters-groter-pc',
-  title: "Letters groter maken op uw computer — uitleg voor senioren",
-  description: "Tekst te klein op uw pc of laptop? Zo zet u grotere letters aan in Windows, Mac en in uw browser. Stap voor stap voor senioren.",
+  title: 'Tekst groter maken op Windows of Mac (pc & laptop)',
+  description:
+    'Letters te klein op uw computer? Zo maakt u tekst groter in Windows, op Mac en in de browser (Ctrl + plus). Rustige stappen voor beter lezen.',
+  keywords: [
+    'letters groter maken computer',
+    'tekst groter windows',
+    'lettergrootte pc',
+    'tekst vergroten laptop',
+    'schaal windows 125%',
+  ],
 });
 
 type Stap = { stap: string; uitleg: ReactNode; tip?: string };
@@ -88,10 +96,10 @@ export default function LettersGroterPcPage() {
               ← Computer hulp
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              Letters groter maken op uw computer
+              Tekst groter maken op Windows of Mac
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Beter lezen op uw pc, laptop of in de browser — zonder moeite.
+              Letters te klein op pc of laptop? Zo past u lettergrootte en zoom aan — rustig uitgelegd.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Computer uitleg navigatie">
               <span className="text-senior-sm text-navy/55 font-semibold mr-1">💻 Computer:</span>

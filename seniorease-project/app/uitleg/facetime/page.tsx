@@ -57,8 +57,16 @@ const faqSchema = {
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/facetime',
-  title: "FaceTime gebruiken op iPhone of iPad – uitleg voor senioren",
-  description: "Hoe belt u gratis via FaceTime op uw iPhone of iPad? Stap-voor-stap uitleg voor senioren. Familie en vrienden zien terwijl u belt.",
+  title: 'FaceTime: gratis videobellen op iPhone of iPad',
+  description:
+    'FaceTime openen, iemand kiezen en videobellen. Gratis via wifi of data — alleen voor iPhone, iPad of Mac. Stap voor stap uitgelegd.',
+  keywords: [
+    'facetime',
+    'facetime videobellen',
+    'facetime iphone',
+    'gratis videobellen apple',
+    'facetime uitleg',
+  ],
 });
 
 export default function FaceTimePage() {
@@ -75,10 +83,10 @@ export default function FaceTimePage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              FaceTime gebruiken
+              FaceTime: gratis videobellen
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Gratis videobellen op uw iPhone of iPad — stap voor stap uitgelegd.
+              Familie zien terwijl u belt — op iPhone of iPad, stap voor stap.
             </p>
           </div>
         </div>
