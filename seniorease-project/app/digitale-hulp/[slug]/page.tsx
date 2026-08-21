@@ -4,6 +4,8 @@ import { artikelen, getArtikelBySlug } from '../artikelen';
 import {
   buildArticleSchema,
   buildBreadcrumbSchema,
+  buildFAQSchema,
+  buildHowToSchema,
   buildPageMetadata,
 } from '@/lib/seo';
 import JsonLd from '@/app/components/JsonLd';
@@ -776,6 +778,51 @@ export default async function DigitaleHulpArtikelPage({
       keywords: artikel.keywords,
     }),
   ];
+
+  if (artikel.slug === 'whatsapp-fotos-opslaan') {
+    schemas.push(
+      buildHowToSchema(
+        'WhatsApp-foto opslaan in galerij',
+        'Foto uit WhatsApp bewaren in uw galerij, op Android en iPhone.',
+        [
+          {
+            name: 'Foto openen',
+            text: 'Open het gesprek en tik op de foto zodat die groot opent.',
+          },
+          {
+            name: 'Foto opslaan',
+            text: 'Tik op het download- of opslaan-icoontje (pijl naar beneden of schijf).',
+          },
+          {
+            name: 'Terugvinden in Galerij',
+            text: 'Open Foto’s of Galerij. De foto staat vaak in de map WhatsApp of bij Recente.',
+          },
+        ],
+      ),
+      buildFAQSchema([
+        {
+          question: 'Waar staat de foto na het opslaan?',
+          answer:
+            'In de app Foto’s of Galerij. Vaak in een map “WhatsApp” of bij Recente.',
+        },
+        {
+          question: 'Werkt dit op Android én iPhone?',
+          answer:
+            'Ja. Open de foto, tik op downloaden of opslaan, en zoek hem daarna in Galerij of Foto’s.',
+        },
+        {
+          question: 'Ik zie geen knop om op te slaan — wat nu?',
+          answer:
+            'Tik eerst op de foto zodat die groot opent. De downloadknop zit meestal rechtsboven. Soms via de drie puntjes → Opslaan.',
+        },
+        {
+          question: 'Kan ik meerdere foto’s tegelijk bewaren?',
+          answer:
+            'Ja. Houd één foto ingedrukt, tik op andere foto’s, en kies Opslaan of Downloaden.',
+        },
+      ]),
+    );
+  }
 
   const badge = getGuideBadge(artikel.slug, 'md');
 

@@ -46,6 +46,14 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Waar vind ik het wifi-wachtwoord?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Meestal op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Bel uw internetprovider."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Moet ik elke keer opnieuw het wachtwoord invoeren?",
       "acceptedAnswer": {
         "@type": "Answer",
@@ -93,13 +101,13 @@ export default function WifiPage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              WiFi instellen
+              Wifi instellen op uw telefoon
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Verbinding maken met internet thuis — stap voor stap uitgelegd.
+              Netwerk kiezen, wachtwoord invullen, verbinden — ook als het niet lukt.
             </p>
             <p className="text-senior-sm text-navy/80 mt-3 max-w-2xl">
-              Geen internet op uw telefoon of tablet? Hier leest u hoe u verbinding maakt met uw wifi thuis en wat u kunt doen als het niet lukt.
+              Geen internet op uw telefoon of tablet? Hier leest u hoe u verbinding maakt met wifi thuis en wat u doet als verbinden misgaat.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
               <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
@@ -327,6 +335,10 @@ export default function WifiPage() {
             </h2>
             <div className="space-y-5">
               {[
+                {
+                  vraag: "Waar vind ik het wifi-wachtwoord?",
+                  antwoord: "Meestal op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Bel uw internetprovider — zij helpen u verder.",
+                },
                 {
                   vraag: "Moet ik elke keer opnieuw het wachtwoord invoeren?",
                   antwoord: "Nee. Zodra u eenmaal verbonden bent, onthoudt uw telefoon het netwerk. Thuis verbindt het automatisch zodra u binnen bereik bent.",

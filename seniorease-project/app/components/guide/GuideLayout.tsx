@@ -2,6 +2,7 @@ import type { ReactNode } from 'react';
 
 type GuideLayoutProps = {
   title: string;
+  subtitle?: string;
   badge?: ReactNode;
   learnBox?: ReactNode;
   sidebar?: ReactNode;
@@ -14,6 +15,7 @@ type GuideLayoutProps = {
  */
 export default function GuideLayout({
   title,
+  subtitle,
   badge,
   learnBox,
   sidebar,
@@ -29,9 +31,16 @@ export default function GuideLayout({
               {badge}
             </span>
           )}
-          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] lg:text-senior-2xl font-semibold leading-tight">
-            {title}
-          </h1>
+          <div className="min-w-0">
+            <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] lg:text-senior-2xl font-semibold leading-tight">
+              {title}
+            </h1>
+            {subtitle && (
+              <p className="text-senior-base text-navy/70 mt-2 max-w-2xl leading-relaxed">
+                {subtitle}
+              </p>
+            )}
+          </div>
         </div>
 
         <div className="grid lg:grid-cols-[1fr_260px] gap-8 lg:gap-12 items-start">

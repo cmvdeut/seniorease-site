@@ -30,10 +30,10 @@ export default function GoogleMapsPage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              Google Maps gebruiken
+              Waar ben ik nu? Locatie en route met Google Maps
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Nooit meer verdwalen — uw telefoon weet precies hoe u er komt!
+              Zie waar u bent op de kaart, zoek een adres en vraag de route — rustig uitgelegd.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
               <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
@@ -327,6 +327,10 @@ export default function GoogleMapsPage() {
             </h2>
             <div className="space-y-5">
               {[
+                {
+                  vraag: "Hoe zie ik waar ik nu ben?",
+                  antwoord: "Open Google Maps en tik op het blauwe locatie-icoontje rechtsonder. De kaart springt naar uw plek: de blauwe stip bent u. Tik op de stip voor meer info, zoals de straatnaam. Locatie moet wel aanstaan op uw telefoon.",
+                },
                 {
                   vraag: "Kost Google Maps geld?",
                   antwoord: "Nee, Google Maps is helemaal gratis. U heeft wel een internetverbinding nodig — via wifi of mobiele data. Het dataverbruik valt mee, maar als u veel navigeert, is wifi thuis altijd het zuinigst.",

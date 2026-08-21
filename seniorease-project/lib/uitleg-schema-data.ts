@@ -4,10 +4,11 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
   'google-maps': {
     pageName: 'Google Maps',
     howTo: {
-      name: 'Google Maps gebruiken — adres zoeken',
-      description: 'Zo vindt u elk adres in Nederland met Google Maps op uw telefoon.',
+      name: 'Waar ben ik nu? Locatie zien met Google Maps',
+      description: 'Zo ziet u waar u bent, zoekt u een adres en vraagt u de route — met Google Maps op uw telefoon.',
       steps: [
         { name: 'Open Google Maps', text: 'Tik op het Maps-icoontje op uw telefoon. U ziet een kaart van uw omgeving.' },
+        { name: 'Tik op mijn locatie', text: 'Tik rechtsonder op het blauwe locatie-icoontje. De blauwe stip toont waar u nu bent.' },
         { name: 'Tik op de zoekbalk bovenaan', text: "Bovenaan het scherm staat een balk met 'Zoeken in Maps'. Tik daarop. Uw toetsenbord verschijnt." },
         { name: 'Typ het adres', text: "Typ de straatnaam, het huisnummer en de plaatsnaam. Bijvoorbeeld: 'Kerkstraat 12 Utrecht'. De app geeft suggesties zodra u begint." },
         { name: 'Tik op het adres in de lijst', text: 'Onder de zoekbalk verschijnen adressen die overeenkomen met wat u typt. Tik op het juiste adres.' },
@@ -15,6 +16,11 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
       ],
     },
     faq: [
+      {
+        question: 'Hoe zie ik waar ik nu ben op Google Maps?',
+        answer:
+          'Open Google Maps en tik op het blauwe locatie-icoontje rechtsonder. De kaart springt naar uw plek: de blauwe stip bent u. Tik op de stip voor de straatnaam.',
+      },
       { question: 'Kost Google Maps geld?', answer: 'Nee, Google Maps is helemaal gratis. U heeft wel een internetverbinding nodig via wifi of mobiele data.' },
       { question: 'Werkt het ook zonder internet?', answer: 'Deels. U kunt een kaartgebied downloaden voor offline gebruik. Voor live routes heeft u wel internet nodig.' },
       { question: 'De stem zegt iets en ik mis de afslag — wat nu?', answer: 'Geen zorgen! De app herberekent automatisch de route als u de verkeerde weg gaat.' },
@@ -237,8 +243,9 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
   'qr-code': {
     pageName: 'QR-code scannen',
     howTo: {
-      name: 'QR-code scannen met uw smartphone',
-      description: 'Die vierkante blokjespuzzel in 4 stappen gescand.',
+      name: 'QR-code scannen met uw telefoon',
+      description:
+        'Open de Camera-app, richt op de vierkante code en tik op de link. Werkt op Android en iPhone — meestal zonder aparte app.',
       steps: [
         { name: 'Open de Camera-app', text: 'Open de Camera-app op uw telefoon.' },
         { name: 'Richt de camera op de QR-code', text: 'Houd uw telefoon stil op circa 20 cm afstand.' },
@@ -246,6 +253,28 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
         { name: 'Tik op de melding', text: 'De link of informatie opent zich automatisch.' },
       ],
     },
+    faq: [
+      {
+        question: 'Heb ik een aparte app nodig om een QR-code te scannen?',
+        answer:
+          'Meestal niet. Op Android en iPhone scant de Camera-app de code. Open Camera, richt op de QR-code en tik op de melding of link.',
+      },
+      {
+        question: 'Werkt het op Android én iPhone?',
+        answer:
+          'Ja. Camera openen, richten, op de banner of melding tikken. Op iPhone ziet u vaak een gele banner bovenaan.',
+      },
+      {
+        question: 'Er gebeurt niets als ik richt — wat nu?',
+        answer:
+          'Zorg voor licht, houd stil op circa 20 cm, maak de lens schoon. Op oudere telefoons kan Google Lens of een QR-scanner helpen.',
+      },
+      {
+        question: 'Is elke QR-code veilig?',
+        answer:
+          'Niet altijd. Scan vooral bekende plekken. Kijk naar de link vóór u tikt. Onbekende codes via WhatsApp liever niet openen.',
+      },
+    ],
   },
   'e-bike': {
     pageName: 'E-bike en telefoon',

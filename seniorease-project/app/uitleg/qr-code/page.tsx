@@ -81,13 +81,13 @@ export default function QRCodePage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              QR-code scannen met uw smartphone
+              QR-code scannen met uw telefoon
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Die vierkante blokjespuzzel uitgelegd — en in 4 stappen gescand.
+              Android en iPhone: open de Camera-app, richt op de vierkante code, tik op de link.
             </p>
             <p className="text-senior-sm text-navy/80 mt-3 max-w-2xl">
-              Hier leest u wat een QR-code is, waar u ze tegenkomt en hoe u ze veilig scant met uw telefoon.
+              Meestal heeft u geen aparte app nodig. Hier leest u wat een QR-code is, waar u ze tegenkomt en hoe u veilig scant.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone uitleg navigatie">
               <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
@@ -283,6 +283,42 @@ export default function QRCodePage() {
               <p className="text-senior-base text-navy/80">
                 Wanneer uw telefoon de QR-code leest, ziet u eerst de link voordat u erop tikt. Herkent u de website niet? Tik dan niet verder.
               </p>
+            </div>
+          </section>
+
+          {/* Veelgestelde vragen */}
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
+              Veelgestelde vragen
+            </h2>
+            <div className="space-y-5">
+              {[
+                {
+                  vraag: 'Heb ik een aparte app nodig om een QR-code te scannen?',
+                  antwoord:
+                    'Meestal niet. Op Android en iPhone scant de Camera-app de code. Open Camera, richt op de QR-code en tik op de melding of link die verschijnt.',
+                },
+                {
+                  vraag: 'Werkt het op Android én iPhone?',
+                  antwoord:
+                    'Ja. De stappen zijn hetzelfde: Camera openen, richten, op de banner of melding tikken. Op iPhone ziet u vaak een gele banner bovenaan.',
+                },
+                {
+                  vraag: 'Er gebeurt niets als ik richt — wat nu?',
+                  antwoord:
+                    'Zorg voor voldoende licht, houd de telefoon stil op circa 20 cm, en maak de lens schoon. Op oudere telefoons kan een QR-scanner in Instellingen of via Google Lens helpen.',
+                },
+                {
+                  vraag: 'Is elke QR-code veilig?',
+                  antwoord:
+                    'Niet altijd. Scan vooral codes op bekende plekken (restaurant, museum, officiële brief). Kijk naar de link voordat u tikt. Onbekende codes via WhatsApp? Liever niet openen.',
+                },
+              ].map((item) => (
+                <div key={item.vraag} className="border-b border-navy/10 pb-5 last:border-0 last:pb-0">
+                  <h3 className="text-senior-base font-bold text-navy mb-2">{item.vraag}</h3>
+                  <p className="text-senior-base text-navy/80 leading-relaxed">{item.antwoord}</p>
+                </div>
+              ))}
             </div>
           </section>
 
