@@ -1,5 +1,6 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
+import YoutubeVideoJsonLd from '@/app/components/YoutubeVideoJsonLd';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
@@ -13,6 +14,7 @@ export default function VideoBellenPage() {
   return (
     <main className="min-h-screen bg-cream">
       <UitlegJsonLd slug="videobellen" />
+      <YoutubeVideoJsonLd videoKey="videobellen" />
       {/* Header */}
       <header className="bg-cream border-b border-navy/10 py-6">
         <div className="max-w-senior mx-auto px-5 sm:px-6">

@@ -14,6 +14,61 @@ export const YOUTUBE_VIDEOS = {
   googleMaps: 'QYKisb9t5gg',
 } as const;
 
+/** Metadata voor VideoObject + YouTube Studio checklist. */
+export const YOUTUBE_VIDEO_META: Record<
+  keyof typeof YOUTUBE_VIDEOS,
+  { name: string; description: string; uploadDate: string; path: string }
+> = {
+  watIsAi: {
+    name: 'Wat is AI? Uitleg voor senioren',
+    description:
+      'Wat is kunstmatige intelligentie in gewone taal? Rustige uitleg voor beginners.',
+    uploadDate: '2026-06-01',
+    path: '/wat-is-ai',
+  },
+  zoZietChatGptErUit: {
+    name: 'Zo ziet ChatGPT eruit — korte rondleiding',
+    description: 'Hoe ziet het ChatGPT-scherm eruit? Kort en duidelijk voor senioren.',
+    uploadDate: '2026-06-10',
+    path: '/wat-is-ai/chatgpt',
+  },
+  chatgptSenioren: {
+    name: 'ChatGPT voor senioren — stap voor stap',
+    description:
+      'ChatGPT gebruiken zonder jargon: wat het is, hoe u begint, en waar u op let.',
+    uploadDate: '2026-06-19',
+    path: '/wat-is-ai/chatgpt',
+  },
+  oplichtingHerkennen: {
+    name: 'Oplichting herkennen — 5 waarschuwingstekens',
+    description:
+      'Vijf signalen van phishing en WhatsApp-oplichting. Rustige uitleg zodat u veilig blijft.',
+    uploadDate: '2026-07-05',
+    path: '/uitleg/veiligheid',
+  },
+  fotosMaken: {
+    name: "Betere foto's maken met uw smartphone — 5 tips",
+    description:
+      "Mooiere foto's met licht, stilhouden en eenvoudige tips. Geen technische kennis nodig.",
+    uploadDate: '2026-07-06',
+    path: '/uitleg/fotos-maken',
+  },
+  videobellen: {
+    name: 'Videobellen via WhatsApp — uitleg voor senioren',
+    description:
+      'Familie zien terwijl u belt: WhatsApp-videogesprek starten, stap voor stap.',
+    uploadDate: '2026-07-06',
+    path: '/uitleg/videobellen',
+  },
+  googleMaps: {
+    name: 'Waar ben ik nu? Google Maps locatie en route',
+    description:
+      'Zie waar u bent op de kaart, zoek een adres en vraag de route. Rustige uitleg voor senioren.',
+    uploadDate: '2026-07-06',
+    path: '/uitleg/google-maps',
+  },
+};
+
 /** YouTube-playlist-ID's voor links op de website. */
 export const YOUTUBE_PLAYLISTS = {
   ai: 'PLw97JnScZym-GYObZWKuAbfzRe_Mx2Jej',
@@ -60,6 +115,11 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
     id: 'whatsapp',
     label: 'Bekijk WhatsApp-video’s',
   },
+  '/digitale-hulp/whatsapp-fotos-opslaan': {
+    kind: 'playlist',
+    id: 'whatsapp',
+    label: 'Bekijk WhatsApp-video’s',
+  },
   '/digitale-hulp/googelen-google-zoeken': {
     kind: 'playlist',
     id: 'tips',
@@ -73,6 +133,25 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
   '/digitale-hulp/ai': { kind: 'playlist', id: 'ai', label: 'Bekijk AI-video’s' },
   '/wat-is-ai': { kind: 'playlist', id: 'ai', label: 'Bekijk AI-video’s' },
   '/wat-is-ai/chatgpt': { kind: 'video', id: 'chatgptSenioren', label: 'Bekijk de ChatGPT-video' },
+  '/uitleg/wifi': {
+    kind: 'playlist',
+    id: 'tips',
+    label: 'Bekijk Tips & Tricks-video’s',
+  },
+  '/uitleg/qr-code': {
+    kind: 'playlist',
+    id: 'tips',
+    label: 'Bekijk Tips & Tricks-video’s',
+  },
+  '/uitleg/digid': {
+    kind: 'playlist',
+    id: 'tips',
+    label: 'Bekijk Tips & Tricks-video’s',
+  },
+  '/uitleg/youtube-tv': {
+    kind: 'channel',
+    label: 'Bekijk SeniorEase-video’s op YouTube',
+  },
   '/bibliotheek': { kind: 'channel', label: 'Bekijk Bibliotheek-video’s op YouTube' },
   '/uitlegvideo': { kind: 'channel', label: 'Bekijk uitlegvideo’s op YouTube' },
 };

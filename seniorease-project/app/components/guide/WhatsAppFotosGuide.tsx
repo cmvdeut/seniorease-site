@@ -3,7 +3,9 @@ import GuideLearnBox from './GuideLearnBox';
 import GuideStep from './GuideStep';
 import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
+import GuideVideoCta from './GuideVideoCta';
 import { WhatsAppBadge } from '@/app/components/GuideTopicBadge';
+import { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
 
 const TOC = [
   { id: 'stap-1', label: 'Foto openen' },
@@ -109,6 +111,12 @@ export default function WhatsAppFotosGuide() {
         </p>
         <p>Open alleen foto&apos;s van mensen die u kent, om veilig te blijven.</p>
       </GuideStep>
+
+      <GuideVideoCta
+        description="Op YouTube staan rustige WhatsApp-video’s: berichten, foto’s en meer — in uw eigen tempo."
+        href={whatsappPlaylistHref()}
+        linkLabel="Bekijk WhatsApp-video’s op YouTube"
+      />
 
       <section id="faq" className="scroll-mt-24 space-y-5">
         <h2 className="font-serif text-senior-xl font-semibold text-navy">

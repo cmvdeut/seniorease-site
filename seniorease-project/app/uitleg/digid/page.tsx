@@ -1,5 +1,6 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
+import YoutubeWatchCta, { tipsPlaylistHref } from '@/app/components/YoutubeWatchCta';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -149,6 +150,12 @@ export default function DigidPage() {
               <Link href="/digitale-hulp/phishing-mail-herkennen" className="font-semibold text-gold hover:text-gold-light">Phishing mail herkennen</Link>.
             </p>
           </section>
+
+          <YoutubeWatchCta
+            description="Liever meekijken? Op YouTube vindt u rustige Tips & Tricks over veilig internetten en oplichting herkennen."
+            href={tipsPlaylistHref()}
+            linkLabel="Bekijk Tips & Tricks op YouTube"
+          />
 
           <section className="bg-slate rounded-senior border border-navy/8 p-8">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>

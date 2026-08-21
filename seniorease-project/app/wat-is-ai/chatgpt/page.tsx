@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { buildPageMetadata } from '@/lib/seo';
+import YoutubeVideoJsonLd from '@/app/components/YoutubeVideoJsonLd';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
@@ -88,6 +89,7 @@ const stappenAccount = [
 export default function ChatGPTUitlegPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
+      <YoutubeVideoJsonLd videoKey="chatgptSenioren" />
       {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">

@@ -1,5 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
+import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube-videos';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -122,6 +124,13 @@ export default function YoutubeTvPage() {
               ))}
             </div>
           </section>
+
+          <YoutubeWatchCta
+            title="Onze uitlegvideo’s"
+            description="SeniorEase heeft een eigen YouTube-kanaal met rustige uitleg over WhatsApp, veiligheid, Maps en meer. Zoekt u in YouTube op SeniorEaseNL, dan vindt u ons."
+            href={YOUTUBE_CHANNEL_URL}
+            linkLabel="Open @SeniorEaseNL op YouTube"
+          />
 
           {/* YouTube op telefoon of tablet */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">

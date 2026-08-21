@@ -142,6 +142,38 @@ export function buildHowToSchema(
   };
 }
 
+export function buildVideoObjectSchema({
+  name,
+  description,
+  videoId,
+  uploadDate,
+  path,
+}: {
+  name: string;
+  description: string;
+  videoId: string;
+  uploadDate: string;
+  path: string;
+}) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name,
+    description,
+    thumbnailUrl: `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`,
+    uploadDate,
+    contentUrl: `https://www.youtube.com/watch?v=${videoId}`,
+    embedUrl: `https://www.youtube.com/embed/${videoId}`,
+    inLanguage: 'nl-NL',
+    publisher: {
+      '@type': 'Organization',
+      name: SITE_NAME,
+      url: SITE_URL,
+    },
+    mainEntityOfPage: absoluteUrl(path),
+  };
+}
+
 export function buildItemListSchema(
   name: string,
   items: Array<{ name: string; path: string }>,
