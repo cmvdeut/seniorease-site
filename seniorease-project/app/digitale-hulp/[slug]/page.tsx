@@ -765,7 +765,7 @@ export default async function DigitaleHulpArtikelPage({
   if (!artikel) notFound();
 
   const path = `/digitale-hulp/${artikel.slug}`;
-  const schemas = [
+  const schemas: Array<Record<string, unknown>> = [
     buildBreadcrumbSchema([
       { name: 'Home', path: '/' },
       { name: 'Digitale hulp', path: '/digitale-hulp' },
