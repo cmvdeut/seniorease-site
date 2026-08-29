@@ -1,5 +1,6 @@
 import { MetadataRoute } from 'next';
 import { artikelen } from './digitale-hulp/artikelen';
+import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal/lesmateriaal-data';
 import { SITE_URL } from '@/lib/seo';
 
 /** Stable lastmod — bump when important pages change (signals freshness to Google) */
@@ -66,6 +67,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/puzzels', 0.7, 'daily'),
     entry('/afvinken', 0.7),
     entry('/tools', 0.8),
+    entry('/lesmateriaal', 0.9, 'weekly'),
+    ...LESMATERIAAL_PAKKETTEN.map((p) => entry(`/lesmateriaal/${p.slug}`, 0.85)),
+    entry('/lesmateriaal/begeleiders', 0.75),
+    entry('/lesmateriaal/woordenlijst', 0.7),
+    entry('/lesmateriaal/beamer', 0.65),
+    entry('/lesmateriaal/bedankt', 0.3),
     entry('/kijk-en-help', 0.95, 'weekly'),
     entry('/extras', 0.7),
     entry('/hobbys', 0.7),

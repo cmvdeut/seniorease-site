@@ -8,6 +8,7 @@ import {
   X,
   Smartphone,
   BookOpen,
+  ClipboardList,
   PlayCircle,
   Wrench,
   Users,
@@ -20,6 +21,7 @@ import SeniorButton from './SeniorButton';
 const NAV_LINKS: { href: string; label: string; Icon: LucideIcon }[] = [
   { href: '/digitale-hulp', label: 'Digitale hulp', Icon: Smartphone },
   { href: '/uitleg', label: 'Gidsen', Icon: BookOpen },
+  { href: '/lesmateriaal', label: 'Lesmateriaal', Icon: ClipboardList },
   { href: '/kijk-en-help', label: 'Kijk & Help', Icon: PlayCircle },
   { href: '/tools', label: 'Tools', Icon: Wrench },
   { href: '/over-ons', label: 'Over ons', Icon: Users },

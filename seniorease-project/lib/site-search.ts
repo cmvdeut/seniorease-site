@@ -1,9 +1,11 @@
 import { artikelen } from '@/app/digitale-hulp/artikelen';
+import { LESMATERIAAL_PAKKETTEN } from '@/app/lesmateriaal/lesmateriaal-data';
 
 export type SearchCategory =
   | 'Digitale hulp'
   | 'Uitleg'
   | 'AI & ChatGPT'
+  | 'Lesmateriaal'
   | 'Tools'
   | 'Website';
 
@@ -24,6 +26,35 @@ export const SITE_SEARCH_INDEX: SiteSearchItem[] = [
     category: 'Digitale hulp' as const,
     keywords: a.keywords,
   })),
+
+  {
+    href: '/lesmateriaal',
+    title: 'Lesmateriaal',
+    description: 'Print-PDF\'s voor bibliotheken: telefoon, WhatsApp, veilig online, DigiD, internet, AI.',
+    category: 'Lesmateriaal',
+    keywords: ['lesmateriaal', 'cursus', 'bibliotheek', 'buurthuis', 'PDF', 'les'],
+  },
+  ...LESMATERIAAL_PAKKETTEN.map((p) => ({
+    href: `/lesmateriaal/${p.slug}`,
+    title: `Pakket ${p.code}: ${p.title}`,
+    description: p.description,
+    category: 'Lesmateriaal' as const,
+    keywords: [p.code, p.title, 'les', 'senioren'],
+  })),
+  {
+    href: '/lesmateriaal/begeleiders',
+    title: 'Voor begeleiders',
+    description: 'Rollen, didactiek en afspraken in de zaal.',
+    category: 'Lesmateriaal',
+    keywords: ['begeleider', 'vrijwilliger', 'docent', 'helper'],
+  },
+  {
+    href: '/lesmateriaal/woordenlijst',
+    title: 'Woordenlijst',
+    description: 'Digitale termen in gewone taal — downloaden, wifi, DigiD, AI.',
+    category: 'Lesmateriaal',
+    keywords: ['woordenlijst', 'jargon', 'downloaden', 'uploaden'],
+  },
 
   // Categorie-overzichten
   {
@@ -226,4 +257,6 @@ export const SEARCH_SUGGESTIONS = [
   'foto',
   'e-mail',
   'bibliotheek',
+  'lesmateriaal',
+  'DigiD',
 ];

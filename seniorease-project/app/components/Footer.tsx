@@ -20,6 +20,7 @@ function YoutubeIcon() {
 const navCol = [
   { href: '/digitale-hulp', label: 'Digitale hulp' },
   { href: '/uitleg', label: 'Gidsen' },
+  { href: '/lesmateriaal', label: 'Lesmateriaal' },
   { href: '/kijk-en-help', label: 'Kijk & Help' },
   { href: '/tools', label: 'Tools' },
   { href: '/over-ons', label: 'Over ons' },
