@@ -14,6 +14,9 @@ import { Check } from 'lucide-react';
 
 type Props = { params: Promise<{ slug: string }> };
 
+/** Stripe-env op runtime (Vercel), niet alleen bij build inbakken */
+export const dynamic = 'force-dynamic';
+
 export async function generateStaticParams() {
   return LESMATERIAAL_PAKKETTEN.map((p) => ({ slug: p.slug }));
 }

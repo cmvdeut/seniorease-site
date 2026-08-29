@@ -10,6 +10,9 @@ import { LesmateriaalFaq } from './LesmateriaalFaq';
 import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal-data';
 import { ClipboardList, Users, Projector, Mail } from 'lucide-react';
 
+/** Stripe-env op runtime (Vercel), niet alleen bij build inbakken */
+export const dynamic = 'force-dynamic';
+
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal',
   title: 'Lesmateriaal voor bibliotheken en cursusleiders',

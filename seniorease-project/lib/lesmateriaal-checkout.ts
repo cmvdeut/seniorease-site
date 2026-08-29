@@ -25,15 +25,21 @@ function slugToEnvKey(slug: string): string {
   return `NEXT_PUBLIC_STRIPE_LESMATERIAAL_${slug.toUpperCase().replace(/-/g, '_')}`;
 }
 
+function normalizePaymentLink(value: string | undefined): string | null {
+  const base = value?.trim();
+  if (base?.startsWith('https://buy.stripe.com/')) return base;
+  return null;
+}
+
 function resolvePaymentLinkBase(type: LesmateriaalProductType, slug?: string): string | null {
   if (type === 'pakket' && slug) {
-    const specific = process.env[slugToEnvKey(slug)];
-    if (specific?.startsWith('https://buy.stripe.com/')) return specific;
+    const specific = normalizePaymentLink(process.env[slugToEnvKey(slug)]);
+    if (specific) return specific;
   }
 
   for (const key of ENV_BY_TYPE[type]) {
-    const base = process.env[key];
-    if (base?.startsWith('https://buy.stripe.com/')) return base;
+    const base = normalizePaymentLink(process.env[key]);
+    if (base) return base;
   }
 
   return null;
