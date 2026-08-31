@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/app/components/JsonLd';
 import LesmateriaalPakketBestelPanel from '@/app/components/LesmateriaalPakketBestelPanel';
+import { LesmateriaalLicentieBlok } from '../LesmateriaalLicentieBlok';
 import { buildPageMetadata, SITE_URL } from '@/lib/seo';
 import {
   LESMATERIAAL_PAKKETTEN,
@@ -28,7 +29,7 @@ export async function generateMetadata({ params }: Props) {
   return buildPageMetadata({
     path: `/lesmateriaal/${slug}`,
     title: `Pakket ${pakket.code}: ${pakket.title}`,
-    description: `${pakket.description} Vier lessen à 90 minuten. ${formatPrijs(pakket.price)} per pakket.`,
+    description: `${pakket.description} Digitaal lesboek: vier lessen à 90 minuten. ${formatPrijs(pakket.price)} per pakket.`,
     keywords: ['lesmateriaal', pakket.title, 'senioren', 'PDF', pakket.code],
   });
 }
@@ -47,7 +48,7 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
   const productSchema = {
     '@context': 'https://schema.org',
     '@type': 'Product',
-    name: `SeniorEase lesmateriaal pakket ${pakket.code}`,
+    name: `SeniorEase digitaal lesboek pakket ${pakket.code}`,
     description: pakket.description,
     brand: { '@type': 'Brand', name: 'SeniorEase' },
     offers: {
@@ -169,7 +170,8 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
             Direct bestellen
           </h2>
           <p className="text-navy/70 text-senior-sm leading-relaxed mb-6">
-            PDF-download per e-mail. Geschikt voor bibliotheken, buurthuizen en particulieren.
+            Digitaal lesboek (PDF) per e-mail — download, print en geef les. Geen online cursus.
+            Geschikt voor bibliotheken, buurthuizen en particulieren.
           </p>
           <LesmateriaalPakketBestelPanel
             slug={slug}
@@ -182,6 +184,9 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
             pakketPaymentLinkBase={pakketPaymentLinkBase}
             losPaymentLinkBase={losPaymentLinkBase}
           />
+          <div className="mt-6">
+            <LesmateriaalLicentieBlok variant="compact" />
+          </div>
         </div>
       </div>
     </main>

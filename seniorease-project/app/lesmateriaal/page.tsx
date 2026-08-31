@@ -7,6 +7,8 @@ import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
 import { LesmateriaalPakketten } from './LesmateriaalPakketten';
 import { LesmateriaalPricing, LesmateriaalPrijsBadge } from './LesmateriaalPricing';
 import { LesmateriaalFaq } from './LesmateriaalFaq';
+import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
+import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
 import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal-data';
 import { ClipboardList, Users, Projector, Mail } from 'lucide-react';
 
@@ -15,15 +17,16 @@ export const dynamic = 'force-dynamic';
 
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal',
-  title: 'Lesmateriaal voor bibliotheken en cursusleiders',
+  title: 'Digitaal lesmateriaal voor bibliotheken en begeleiders',
   description:
-    'Kant-en-klare les-PDF’s voor senioren: telefoon, WhatsApp, veilig online, DigiD, internet en AI. Draaiboek, oefentaken en beamer-slides. Vanaf €6,95 per les.',
+    'Digitaal lesboek (PDF) voor rustige doe-middagen met senioren: draaiboek, oefentaken en beamer-slides. Geen online cursus — download en print zelf. Vanaf €6,95 per les.',
   keywords: [
     'lesmateriaal senioren',
+    'digitaal lesboek',
     'digitaal vaardigheden',
     'bibliotheek',
     'buurthuis',
-    'cursus',
+    'begeleider',
     'PDF',
     'WhatsApp les',
     'DigiD les',
@@ -41,8 +44,8 @@ const hubItems = [
 ];
 
 const collectionSchema = buildCollectionPageSchema(
-  'SeniorEase lesmateriaal',
-  'Printbare les-PDF’s voor rustige doe-middagen met senioren.',
+  'SeniorEase digitaal lesmateriaal',
+  'Digitaal lesboek (PDF) voor rustige doe-middagen met senioren — voor begeleiders in bibliotheek en buurthuis.',
   '/lesmateriaal',
   hubItems,
 );
@@ -69,12 +72,16 @@ export default function LesmateriaalPage() {
           </div>
 
           <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-5 max-w-3xl">
-            Lesmateriaal voor rustige doe-middagen.
+            Digitaal lesmateriaal voor rustige doe-middagen.
           </h1>
-          <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-10">
-            Kant-en-klaar printpakket: draaiboek voor u, oefentaken voor deelnemers, zaalchecklist
-            en nazorgkaart. Elke les 90 minuten — deelnemers oefenen op hun{' '}
-            <strong>eigen</strong> telefoon, tablet of computer.
+          <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-4">
+            Een <strong>digitaal lesboek (PDF)</strong> per thema: draaiboek voor u, oefentaken
+            voor deelnemers, zaalchecklist en nazorgkaart. Geen online cursus — u downloadt,
+            print en geeft les in uw eigen tempo.
+          </p>
+          <p className="text-navy/60 text-senior-sm leading-relaxed max-w-2xl mb-10">
+            Elke les 90 minuten. Deelnemers oefenen op hun <strong>eigen</strong> telefoon,
+            tablet of computer.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
@@ -96,7 +103,13 @@ export default function LesmateriaalPage() {
 
           <LesmateriaalPricing />
 
+          <LesmateriaalVerwachting />
+
           <LesmateriaalFaq />
+
+          <div className="mb-16 md:mb-20">
+            <LesmateriaalLicentieBlok />
+          </div>
 
           <LesmateriaalPakketten />
         </div>
@@ -108,8 +121,8 @@ export default function LesmateriaalPage() {
             Organisatiepakket bestellen
           </h2>
           <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8">
-            Alle thema&apos;s A–G in één keer — inclusief printrechten en begeleidersgids. Liever
-            eerst overleggen? Dat kan ook.
+            Compleet digitaal lesmateriaal A–G met <strong>locatie-licentie</strong>: één vestiging,
+            meerdere lesgroepen. Inclusief printrechten en begeleidersgids.
           </p>
           <LesmateriaalOrganisatieBestel
             checkoutEnabled={compleetCheckoutEnabled}

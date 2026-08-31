@@ -32,7 +32,8 @@ const TIERS: PricingTier[] = [
       'Deelnemerskaart en oefentaken',
       'Zaalchecklist en nazorgkaart',
       '90 minuten — eigen telefoon of tablet',
-      'Direct per e-mail (PDF)',
+      'Digitaal lesboek (PDF) — geen online cursus',
+      'Direct per e-mail (download)',
     ],
     cta: { label: 'Kies een les', href: '#themapakketten' },
   },
@@ -47,9 +48,9 @@ const TIERS: PricingTier[] = [
     features: [
       'Alles uit losse les, vier keer',
       '4 lessen à 90 minuten',
+      'Digitaal lesboek — download & print',
       'Beamer-PDF inbegrepen (waar beschikbaar)',
       'Sluit aan bij gratis gidsen op de site',
-      'WhatsApp, DigiD, AI en meer',
     ],
     cta: { label: 'Bekijk thema\'s', href: '#themapakketten' },
   },
@@ -61,10 +62,10 @@ const TIERS: PricingTier[] = [
     tagline: 'Bibliotheek, buurthuis of stichting.',
     features: [
       'Alle themapakketten A–G',
-      'Printrechten voor uw locatie(s)',
+      'Locatie-licentie: één vestiging',
+      'Printrechten voor meerdere lesgroepen',
       'Begeleidersgids inbegrepen',
       'Beamer-PDF waar beschikbaar',
-      'Eén aankoop — heel jaar lesgeven',
     ],
     cta: { label: 'Direct bestellen', href: '#organisatie-bestellen' },
   },
@@ -85,21 +86,21 @@ export function LesmateriaalPricing() {
     isLesmateriaalCheckoutEnabled('compleet');
 
   return (
-    <section aria-labelledby="lesmateriaal-pricing-heading" className="mb-16 md:mb-20">
+    <section aria-labelledby="lesmateriaal-pricing-heading" className="mb-12 md:mb-14">
       <p className="text-gold font-bold text-senior-xs uppercase tracking-[0.12em] mb-3">
         Eenvoudige prijzen
       </p>
       <h2
         id="lesmateriaal-pricing-heading"
-        className="font-serif text-navy text-[1.65rem] sm:text-[2rem] font-semibold leading-tight mb-3 max-w-2xl"
+        className="font-serif text-navy text-[1.45rem] sm:text-[1.65rem] font-semibold leading-tight mb-2 max-w-2xl"
       >
         Kies wat bij u past.
       </h2>
-      <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-3">
+      <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-2">
         Losse les, heel thema of alles voor uw organisatie. Eenmalige betaling — geen
         abonnement.
       </p>
-      <p className="text-navy/55 text-senior-xs leading-relaxed max-w-2xl mb-10">
+      <p className="text-navy/55 text-senior-xs leading-relaxed max-w-2xl mb-8">
         Alle prijzen zijn inclusief BTW. Wilt u een officiële factuur op naam van uw
         organisatie?{' '}
         <Link href="/contact" className="text-gold underline hover:text-gold-light">
@@ -108,35 +109,35 @@ export function LesmateriaalPricing() {
         — online betalen via Stripe kan ook.
       </p>
 
-      <ul className="grid lg:grid-cols-3 gap-5 lg:gap-6 items-stretch list-none p-0 m-0">
+      <ul className="grid lg:grid-cols-3 gap-3 lg:gap-4 items-stretch list-none p-0 m-0 max-w-4xl">
         {TIERS.map((tier) => (
           <li key={tier.id} className="flex">
             <article
-              className={`relative flex flex-col w-full rounded-2xl border bg-paper p-6 sm:p-7 transition-shadow ${
+              className={`relative flex flex-col w-full rounded-xl border bg-paper p-4 sm:p-5 transition-shadow ${
                 tier.featured
-                  ? 'border-gold border-2 shadow-[0_8px_32px_rgba(139,94,60,0.15)] lg:-mt-2 lg:mb-2'
+                  ? 'border-gold border-2 shadow-[0_6px_24px_rgba(139,94,60,0.12)]'
                   : 'border-navy/10 hover:border-navy/20 hover:shadow-sm'
               }`}
             >
               {tier.badge && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold px-4 py-1 text-[0.7rem] sm:text-senior-xs font-bold uppercase tracking-wide text-white">
+                <span className="absolute -top-2.5 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full bg-gold px-3 py-0.5 text-[0.65rem] sm:text-[0.7rem] font-bold uppercase tracking-wide text-white">
                   {tier.badge}
                 </span>
               )}
 
-              <header className="mb-5 pt-1">
-                <h3 className="font-serif text-navy text-[1.35rem] font-semibold mb-1">
+              <header className="mb-3 pt-0.5">
+                <h3 className="font-serif text-navy text-[1.1rem] sm:text-[1.15rem] font-semibold mb-0.5">
                   {tier.name}
                 </h3>
-                <p className="text-navy/60 text-senior-sm leading-snug">{tier.tagline}</p>
+                <p className="text-navy/60 text-[0.9rem] leading-snug">{tier.tagline}</p>
               </header>
 
-              <div className="mb-6">
-                <p className="flex items-baseline gap-1.5 flex-wrap">
-                  <span className="font-serif text-navy text-[2.25rem] sm:text-[2.5rem] font-semibold leading-none">
+              <div className="mb-4">
+                <p className="flex items-baseline gap-1 flex-wrap">
+                  <span className="font-serif text-navy text-[1.75rem] sm:text-[1.85rem] font-semibold leading-none">
                     {formatPrijs(tier.price)}
                   </span>
-                  <span className="text-navy/50 text-senior-sm font-medium">
+                  <span className="text-navy/50 text-[0.85rem] font-medium">
                     / {tier.priceNote}
                   </span>
                 </p>
@@ -144,24 +145,24 @@ export function LesmateriaalPricing() {
 
               <Link
                 href={tier.cta.href}
-                className={`mb-7 w-full inline-flex items-center justify-center min-h-touch px-6 py-3.5 font-semibold text-senior-sm rounded-full border-2 transition-colors touch-manipulation ${
+                className={`mb-5 w-full inline-flex items-center justify-center min-h-[44px] px-4 py-2.5 font-semibold text-[0.9rem] rounded-full border-2 transition-colors touch-manipulation ${
                   tier.featured
-                    ? 'bg-gold hover:bg-gold-light text-white border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)]'
+                    ? 'bg-gold hover:bg-gold-light text-white border-navy/25 shadow-[0_2px_0_0_rgba(46,36,28,0.18)]'
                     : 'bg-cream hover:bg-slate text-navy border-navy/15'
                 }`}
               >
                 {tier.cta.label} →
               </Link>
 
-              <ul className="space-y-3 flex-1">
+              <ul className="space-y-2 flex-1">
                 {tier.features.map((feature) => (
                   <li
                     key={feature}
-                    className="flex items-start gap-2.5 text-navy/80 text-senior-sm leading-snug"
+                    className="flex items-start gap-2 text-navy/80 text-[0.875rem] leading-snug"
                   >
                     <Check
                       className="text-gold shrink-0 mt-0.5"
-                      size={18}
+                      size={15}
                       strokeWidth={2.5}
                       aria-hidden
                     />

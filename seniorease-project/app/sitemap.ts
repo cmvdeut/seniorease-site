@@ -70,6 +70,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/lesmateriaal', 0.9, 'weekly'),
     ...LESMATERIAAL_PAKKETTEN.map((p) => entry(`/lesmateriaal/${p.slug}`, 0.85)),
     entry('/lesmateriaal/begeleiders', 0.75),
+    entry('/lesmateriaal/interessepeiling', 0.6),
     entry('/lesmateriaal/woordenlijst', 0.7),
     entry('/lesmateriaal/beamer', 0.65),
     entry('/lesmateriaal/bedankt', 0.3),

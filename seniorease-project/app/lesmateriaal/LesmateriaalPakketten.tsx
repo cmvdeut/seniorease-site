@@ -9,8 +9,8 @@ export function LesmateriaalPakketten() {
         Kies uw thema (A–G)
       </h2>
       <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
-        Elk themapakket: 4 lessen à 90 minuten voor {formatPrijs(PAKKET_PRIJS)}. Pakket F heeft
-        twee varianten (telefoon of computer).
+        Elk thema is een digitaal lesboek (PDF): 4 lessen à 90 minuten voor {formatPrijs(PAKKET_PRIJS)}.
+        Pakket F heeft twee varianten (telefoon of computer).
       </p>
 
       <ul

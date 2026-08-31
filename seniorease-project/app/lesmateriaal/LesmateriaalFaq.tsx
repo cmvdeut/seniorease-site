@@ -41,6 +41,16 @@ export const LESMATERIAAL_FAQ = [
       'Ja. Het compleet organisatiepakket bevat alle thema\'s A t/m G, inclusief AI voor dagelijks gebruik, plus beamer-PDF\'s waar die klaar zijn.',
   },
   {
+    question: 'Is dit een online cursus?',
+    answer:
+      'Nee. U koopt een digitaal lesboek (PDF) om te downloaden en te printen. Geen inlog op een leeromgeving, geen verplichte video\'s en geen abonnement. Gratis gidsen op seniorease.nl zijn apart en blijven gratis.',
+  },
+  {
+    question: 'Wat mag ik met het lesmateriaal doen?',
+    answer:
+      'Themapakket of losse les: voor eigen gebruik of één lesgroep. Organisatie-licentie (compleet pakket): gebruik op één locatie voor meerdere lesgroepen; printen voor deelnemers op die locatie is toegestaan. Doorverkoop, openbaar online delen of gebruik op andere locaties is niet toegestaan. Zie ook de gebruikslicentie op deze pagina.',
+  },
+  {
     question: 'Zijn de prijzen inclusief BTW?',
     answer:
       'Ja. Alle genoemde bedragen (losse les, themapakket en organisatiepakket) zijn inclusief BTW. Bij online betaling via Stripe ontvangt u een betalingsbewijs per e-mail.',
