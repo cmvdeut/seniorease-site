@@ -2,70 +2,73 @@
 
 Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
-**Belangrijk:** zeg wachtwoorden en SMS-codes niet hardop. Echt inloggen is vandaag niet verplicht.
+**Wachtwoorden en codes nooit hardop.** Echt inloggen is vandaag **niet verplicht**.
+
+---
+
+## Wat is DigiD?
+
+DigiD is uw **persoonlijke digitale inlogmethode** voor **overheidsorganisaties** — en soms voor **andere organisaties** die DigiD gebruiken (bijv. zorg, MijnOverheid, Belastingdienst, gemeente).
 
 ---
 
 ## Oefentaak 1 — digid.nl zelf openen
 
-**Doel:** de echte DigiD-site openen zonder een link uit een mail.
+1. Open **Chrome**, **Safari** of **Edge**.  
+2. Typ in de adresbalk: `digid.nl`  
+3. Open de pagina.  
+4. Controleer: staat **digid.nl** in de balk?
 
-### Op telefoon of tablet
-1. Open **Chrome** of **Safari**.  
-2. Tik in de adresbalk.  
-3. Typ precies: `digid.nl`  
-4. Open de pagina.
-
-### Op de computer
-1. Open **Edge** of **Chrome**.  
-2. Klik in de adresbalk.  
-3. Typ precies: `digid.nl`  
-4. Druk op Enter.
-
-**Klaar als:** u de DigiD-site ziet en in de balk echt **digid.nl** staat.
+**Klaar als:** de DigiD-site open is.
 
 ---
 
-## Oefentaak 2 — Inlogscherm bekijken
+## Oefentaak 2 — Inloggen vinden
 
-**Doel:** weten hoe inloggen eruitziet — zonder codes te delen.
-
-1. Zoek op de pagina de knop **Inloggen** (of vergelijkbaar).  
+1. Zoek de knop **Inloggen**.  
 2. Tik/klik erop.  
-3. Kijk: velden voor inloggen (gebruikersnaam / wachtwoord).  
-4. **Log vandaag niet verplicht in.** Wilt u oefenen? Vraag de helper 1-op-1.
+3. Kijk naar het inlogscherm (velden voor inloggen).  
+4. **Log vandaag niet verplicht in.** Wilt u oefenen? Vraag de helper 1-op-1 — scherm privé.
 
-**Klaar als:** u het inlogscherm heeft gezien.
+**Klaar als:** u Inloggen heeft gevonden en het scherm heeft gezien.
 
 ---
 
-## Oefentaak 3 — DigiD-app
+## Oefentaak 3 — DigiD-app herkennen
 
-**Doel:** de app vinden of openen.
+**Op telefoon of tablet:**
 
-### Op telefoon of tablet
 1. Zoek het icoon **DigiD** op uw startscherm.  
-2. Staat het er niet: open Play Store / App Store → zoek `DigiD`.  
-3. Open de app **of** bekijk de store-pagina (installeren mag, is niet verplicht).
+2. Open de app even — of zoek in Play Store / App Store.  
+3. Sluit de app weer als u klaar bent.
 
-### Op de computer
-1. U heeft geen DigiD-app op de pc — dat is normaal.  
-2. Onthoud: de app zit op de **telefoon**; op de computer gebruikt u digid.nl.  
-3. Optioneel: open digid.nl en zoek info over de DigiD-app.
+**Op de computer:**
 
-**Klaar als:** u de app heeft geopend, of weet waar die te vinden is (telefoon) / dat de pc digid.nl gebruikt.
+1. De DigiD-app hoort op uw **mobiel** — dat is normaal.  
+2. Op de pc gebruikt u **digid.nl**.
+
+**Klaar als:** u de app kent (mobiel) of weet dat digid.nl op de computer hoort.
 
 ---
 
-## Oefentaak 4 — Codes niet delen
+## Oefentaak 4 — Veilig afsluiten + codes
 
-**Doel:** de veiligheidsregel hardop of zacht oefenen.
+1. **Sluit af:** uitloggen, of tabblad/app sluiten.  
+2. Onthoud: **niemand** vraagt uw DigiD-code via WhatsApp, SMS of een vreemde beller.  
+3. Zeg zacht of hardop: **“Nee. Ik geef geen DigiD-code via telefoon of chat.”**
 
-1. Stel: iemand belt of appt: “Ik ben van DigiD / de Belastingdienst. Geef uw code.”  
-2. Zeg: **“Nee. Ik geef geen DigiD-code via telefoon of WhatsApp.”**  
-3. Wat doet u? Ophangen / negeren → zelf digid.nl of de DigiD-app openen (of IDO vragen).
+**Klaar als:** u heeft afgesloten en de regel kent.
 
-**Klaar als:** u de zin een keer heeft gezegd of gelezen.
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open **digid.nl** zelf.  
+2. Zoek **Inloggen**.  
+3. Herken de **DigiD-app** op uw mobiel (of weet: op pc = digid.nl).  
+4. **Sluit veilig af** (uitloggen of sluiten).
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
 
 ---
 
@@ -73,10 +76,10 @@ Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
 | Situatie | Tip |
 |----------|-----|
-| Geen DigiD-account | Niet klassikaal aanvragen → IDO / Digisterker / digid.nl Aanvragen thuis met helper |
-| SMS-code zichtbaar | Scherm wegdraaien van de groep |
-| Verkeerde site | Adresbalk checken: digid.nl |
-| Mac/Safari | Zelfde stappen; helper 1-op-1 |
+| Geen DigiD-account | Niet klassikaal aanvragen → IDO / digid.nl thuis |
+| SMS-code zichtbaar | Scherm van de groep wegdraaien |
+| Verkeerde site | Adresbalk: digid.nl |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken. Geen schaamte.

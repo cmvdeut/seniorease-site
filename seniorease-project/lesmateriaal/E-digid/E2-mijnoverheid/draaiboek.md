@@ -1,14 +1,14 @@
 # Draaiboek — E2: MijnOverheid
 
-**Pakket E — DigiD & digitale overheid** · Versie 1.0  
+**Pakket E — DigiD & digitale overheid** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die E1 aankunnen en MijnOverheid willen openen  
-**Gids / site:** https://www.mijnoverheid.nl  
+**Doelgroep:** Mensen die E1 aankunnen en MijnOverheid praktisch willen gebruiken  
+**Site:** https://www.mijnoverheid.nl  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** telefoon/tablet of computer (kaders)  
+**Apparaat:** telefoon/tablet of computer  
 **Zaal:** geen bord — A4’s + voordoen
 
-**Let op:** inloggen met DigiD is **privé**. Wie inlogt: 1-op-1 met helper, scherm niet tonen aan de groep. Wie niet wil inloggen: tot aan het DigiD-scherm meedoen — dat telt.
+**Privacy:** inloggen is privé. Geen berichten of persoonlijke gegevens klassikaal bespreken.
 
 ---
 
@@ -16,33 +16,33 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel — **zonder** persoonlijke inhoud te tonen |
+| **Helper (vrijwilliger)** | 1-op-1 bij inloggen — scherm privé |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+**Afspraken:** codes nooit hardop · privacy eerst · tot aan DigiD-scherm telt als iemand niet wil inloggen.
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. **mijnoverheid.nl** zelf openen (typen)  
-2. Uitleggen wat MijnOverheid ongeveer is (post van de overheid)  
-3. De weg naar **Inloggen met DigiD** vinden  
-4. (Optioneel) één keer veilig inloggen en de startpagina herkennen  
+1. **mijnoverheid.nl** zelf openen  
+2. **Inloggen** vinden  
+3. (Optioneel) inloggen en de **Berichtenbox** herkennen  
+4. Weten **waar berichten** en **persoonlijke gegevens** staan — zonder inhoud klassikaal te bespreken  
+5. **Berichtenbox** openen, **teruggaan** en **uitloggen**  
+6. **Zelfstandig:** site openen → Inloggen → Berichtenbox vinden → terug → uitloggen  
 
 ## Wat u níet doet
 
-- Geen berichten hardop voorlezen uit iemands MijnOverheid  
+- Geen berichten hardop voorlezen  
+- Geen persoonlijke inhoud klassikaal tonen  
 - Geen DigiD-codes hardop  
-- Geen Belastingdienst-aangifte vandaag (E3)  
-- Geen claim dat SeniorEase Digisterker vervangt  
+- Geen aangifte of Belastingdienst-zaken (E3)  
 
 ## Voorbereiding
 
 - [ ] Wifi op A4  
-- [ ] digid.nl / mijnoverheid.nl bereikbaar  
+- [ ] mijnoverheid.nl bereikbaar  
 - [ ] Helper vrij voor 1-op-1 login  
 - [ ] Deelnemerskaarten + oefentaken  
 
@@ -56,30 +56,38 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag openen we MijnOverheid — de digitale brievenbus van de overheid. Inloggen mag, hoeft niet. Codes zeggen we niet hardop.”
+**Zegt u:** “MijnOverheid is uw digitale post van de overheid. We oefenen rustig openen en de Berichtenbox vinden. Inhoud van berichten bespreken we niet in de groep.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam + telefoon of computer. Heeft u al weleens MijnOverheid gebruikt?
+Voornaam + apparaat. Al MijnOverheid gebruikt?
 
-### 12:25–12:45 — Stap 1: Site openen (oefentaak 1)
+### 12:25–12:42 — Stap 1: Site openen (oefentaak 1)
 
-Typ zelf: `mijnoverheid.nl`. Check de adresbalk.
+Typ `mijnoverheid.nl`. Check adresbalk.
 
-### 12:45–13:05 — Stap 2: Wat ziet u? + Inloggen vinden (oefentaak 2)
+### 12:42–13:00 — Stap 2: Inloggen vinden (oefentaak 2)
 
-Kort: berichten van overheid, gegevens inzien. Zoek knop **Inloggen** / DigiD.
+Kort: berichten en gegevens van de overheid. Knop **Inloggen** / DigiD.
 
-### 13:05–13:10 — Pauze
+### 13:00–13:05 — Pauze
 
-### 13:10–13:35 — Stap 3: DigiD-stap (oefentaak 3)
+### 13:05–13:25 — Stap 3: Optioneel inloggen + Berichtenbox (oefentaak 3)
 
-Tot DigiD-scherm. Optioneel inloggen 1-op-1. Daarna: startpagina / berichtenbox **alleen voor uzelf** bekijken.
+1-op-1 inloggen. **Berichtenbox** vinden — laat zien *waar* berichten staan, niet *wat* erin staat. Ook: waar **persoonlijke gegevens** staan (menu/kop — geen details).
 
-### 13:35–13:45 — Stap 4: Uitloggen + afronding (oefentaak 4)
+### 13:25–13:35 — Stap 4: Teruggaan en uitloggen (oefentaak 4)
 
-Wie is ingelogd: **uitloggen**. Nazorg. Volgende: E3.
+Terug uit Berichtenbox. **Uitloggen**. Niet ingelogd? tot aan Inloggen is genoeg.
+
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
+
+Zelf: mijnoverheid.nl → Inloggen → Berichtenbox herkennen (ingelogd) of Inloggen-knop (niet ingelogd) → terug → uitloggen.
+
+### 13:42–13:45 — Afronding
+
+Nazorg. Volgende: E3.
 
 ## Als de tijd krap is
 
-Geen echte login. **Niet schrappen:** mijnoverheid.nl typen + Inloggen-knop vinden.
+Geen echte login. **Niet schrappen:** site typen + Inloggen + Berichtenbox als concept.

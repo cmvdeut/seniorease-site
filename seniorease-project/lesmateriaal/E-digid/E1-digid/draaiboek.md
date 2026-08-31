@@ -1,14 +1,14 @@
 # Draaiboek — E1: DigiD
 
-**Pakket E — DigiD & digitale overheid** · Versie 1.0  
+**Pakket E — DigiD & digitale overheid** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
 **Doelgroep:** Mensen die DigiD willen begrijpen en veilig openen  
-**Gids:** https://www.seniorease.nl (DigiD / overheid waar beschikbaar) · digid.nl  
+**Gids:** https://www.seniorease.nl · digid.nl  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** telefoon/tablet **of** computer — korte kaders in de oefeningen  
+**Apparaat:** telefoon/tablet **of** computer  
 **Zaal:** geen bord/beamer — A4’s + voordoen op toestel
 
-**Positionering:** SeniorEase-toon naast Digisterker/IDO. Geen claim “vervangt Digisterker”. Bij vastlopers: IDO/bibliotheek noemen.
+**Positionering:** rustige kennismaking — geen vervanging van Digisterker/IDO. Bij aanvragen of vastlopers: IDO/bibliotheek.
 
 ---
 
@@ -16,35 +16,35 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen |
+| **Helper (vrijwilliger)** | 1-op-1 bij vastlopers |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+**Afspraken:** max. 8–10 · één stap tegelijk · **wachtwoorden en codes nooit hardop** · we wachten op elkaar.
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Uitleggen **waar DigiD voor is** (inloggen bij overheid)  
+1. Uitleggen wat **DigiD** is: uw **persoonlijke digitale inlogmethode** voor overheidsorganisaties — en andere organisaties die DigiD gebruiken  
 2. **digid.nl** zelf openen (typen, geen link uit een mail)  
-3. De **DigiD-app** vinden of weten dat die bestaat  
-4. Weten: **codes nooit** delen via WhatsApp, SMS van vreemden of telefoon  
+3. **Inloggen** vinden en het inlogscherm herkennen  
+4. De **DigiD-app** op een geschikt mobiel apparaat herkennen (op de computer: digid.nl)  
+5. **Veilig afsluiten** (uitloggen of tabblad/app sluiten)  
+6. **Zelfstandig:** digid.nl → Inloggen → app herkennen → afsluiten  
 
 ## Wat u níet doet
 
-- Geen klassikale DigiD **aanvragen** (paspoort/ID, privacy — helper 1-op-1 of IDO)  
-- Geen wachtwoorden of SMS-codes hardop laten voorlezen  
-- Geen echte Belastingdienst-zaken vandaag (E3)  
+- Geen klassikale DigiD-**aanvragen** (paspoort/ID — helper 1-op-1 of IDO)  
+- **Echt inloggen** is optioneel — wie wil: 1-op-1 met helper, scherm privé  
+- Geen wachtwoorden of codes hardop  
 - Geen paniekzaaierij  
 
 ## Voorbereiding
 
 - [ ] Wifi op A4  
-- [ ] Eigen toestel: digid.nl en eventueel DigiD-app klaar om voor te doen  
+- [ ] digid.nl bereikbaar op demo-toestel  
 - [ ] Deelnemerskaarten + oefentaken  
-- [ ] Weten waar IDO / Digisterker in de buurt is  
+- [ ] IDO/Digisterker-info paraat  
 
 ## Didactiek
 
@@ -56,37 +56,39 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag leren we DigiD rustig kennen: wat het is, hoe u digid.nl opent, en hoe u veilig blijft. Wachtwoorden en codes zeggen we niet hardop.”
+**Zegt u:** “Welkom. DigiD is uw persoonlijke digitale inlog voor de overheid — en soms andere organisaties. We typen digid.nl zelf. Wachtwoorden zeggen we niet hardop.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam + telefoon of computer vandaag. Heeft u al DigiD? (ja/nee genoeg)
+Voornaam + telefoon of computer. Al DigiD? (ja/nee)
 
-### 12:25–12:40 — Stap 1: Wat is DigiD? (kort) + oefentaak 1
+### 12:25–12:40 — Stap 1: Wat is DigiD? + digid.nl (oefentaak 1)
 
-DigiD = digitale sleutel voor overheid (Belastingdienst, zorg, gemeente, MijnOverheid).  
-**Doen:** open digid.nl door het adres **zelf te typen**.
+**Kort:** DigiD = persoonlijke digitale inlog — Belastingdienst, gemeente, MijnOverheid, zorg, soms ook andere partijen.  
+**Doen:** typ zelf `digid.nl`.
 
-### 12:40–13:00 — Stap 2: Inlogscherm bekijken (oefentaak 2)
+### 12:40–13:00 — Stap 2: Inloggen bekijken (oefentaak 2)
 
-Kijk naar Inloggen. Leg uit: gebruikersnaam + wachtwoord + vaak SMS of app-bevestiging.  
-**Niet verplicht** vandaag echt in te loggen. Wie wil oefenen: 1-op-1 met helper, scherm niet delen.
+Knop **Inloggen**. Velden bekijken. **Niet verplicht** inloggen — optioneel 1-op-1.
 
 ### 13:00–13:05 — Pauze
 
-### 13:05–13:25 — Stap 3: DigiD-app (oefentaak 3)
+### 13:05–13:22 — Stap 3: DigiD-app (oefentaak 3)
 
-Zoek of open de **DigiD-app**. Niet geïnstalleerd? Store zoeken — installeren optioneel (account nodig).
+Op **telefoon/tablet:** DigiD-app zoeken of openen. Op **computer:** app hoort op mobiel; u gebruikt digid.nl.
 
-### 13:25–13:40 — Stap 4: Veiligheid (oefentaak 4)
+### 13:22–13:32 — Stap 4: Veilig afsluiten + codes (oefentaak 4)
 
-Regel: DigiD-code vraagt de overheid **niet** via WhatsApp of een vreemde beller.  
-Oefen: startscherm — zeg “Nee” hardop of zacht.
+Uitloggen of app/tabblad sluiten. Regel: niemand vraagt uw DigiD-code via WhatsApp of een vreemde beller.
+
+### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+
+Zonder voordoen: digid.nl → Inloggen → DigiD-app herkennen (mobiel) → veilig afsluiten.
 
 ### 13:40–13:45 — Afronding
 
-Nazorg. Volgende: E2 MijnOverheid. IDO noemen indien nuttig.
+Nazorg. Volgende: E2 MijnOverheid.
 
 ## Als de tijd krap is
 
-Schrap app-installatie. **Niet schrappen:** digid.nl typen + codes niet delen.
+Schrap app-installatie. **Niet schrappen:** digid.nl typen + Inloggen + eindopdracht.

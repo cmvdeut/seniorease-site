@@ -8,59 +8,71 @@ from _pdf_base import BeamerPDF  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "beamer" / "SeniorEase-G2-Beamer-v1.pdf"
 
-SLIDES = [
-    (
-        "AI-chat openen",
-        "de chatpagina vinden",
-        [
-            "Open Chrome, Safari of Edge",
-            "Typ de URL van de A4 (bijv. chatgpt.com)",
-            "Wacht tot het chatvenster zichtbaar is",
-        ],
-        "u het chatvenster of startscherm ziet",
-        "Inloggen niet verplicht — helper helpt bij blokkerend scherm.",
-    ),
-    (
-        "Eerste vraag",
-        "een vraag typen en antwoord krijgen",
-        [
-            "Tik/klik in het typvak onderaan",
-            "Typ: Leg wifi uit in eenvoudige taal voor een beginner",
-            "Versturen — lees het antwoord rustig",
-        ],
-        "u een antwoord op het scherm ziet",
-    ),
-    (
-        "Uw eigen vraag",
-        "zelf iets praktisch vragen",
-        [
-            "Typ bijv.: Recept voor Hollandse erwtensoep voor 4 personen",
-            "Of: Weer morgen in [uw plaats]",
-            "Versturen — lees het antwoord",
-        ],
-        "u uw eigen vraag heeft gesteld",
-        "Geen BSN, wachtwoord of medische gegevens.",
-    ),
-    (
-        "Nieuw gesprek",
-        "opnieuw beginnen zonder oude chat",
-        [
-            "Zoek Nieuw gesprek, + of New chat",
-            "Tik/klik erop",
-            "U ziet een leeg typvak",
-        ],
-        "u een lege chat heeft",
-    ),
-]
-
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     pdf = BeamerPDF("G2", "AI openen en gebruiken")
     pdf.title_slide()
-    for i, slide in enumerate(SLIDES, 1):
-        note = slide[4] if len(slide) > 4 else None
-        pdf.oefentaak_slide(i, slide[0], slide[1], slide[2], slide[3], note)
+
+    pdf.concept_slide(
+        "Vandaag op de beamer",
+        [
+            "Eerst kijken hoe een gesprek werkt",
+            "Daarna doet u het zelf op uw toestel",
+        ],
+    )
+    pdf.concept_slide(
+        "Demo: één gesprek",
+        [
+            "1. Geef mij een eenvoudig recept voor erwtensoep.",
+            "2. Maak het voor 2 personen.",
+            "3. Maak een boodschappenlijstje.",
+        ],
+        label="Demo",
+        note="AI onthoudt binnen dit gesprek de context.",
+    )
+    pdf.concept_slide(
+        "Zelfde gesprek of nieuw?",
+        [
+            "Zelfde gesprek = AI onthoudt wat u eerder vroeg",
+            "Nieuw gesprek = schone lei",
+        ],
+    )
+
+    pdf.oefentaak_slide(
+        1,
+        "AI openen",
+        "typvak en versturen vinden",
+        ["Open de URL van de A4", "Zoek typvak en verstuurknop (pijl)"],
+        "u typvak en versturen ziet",
+        "Inloggen niet verplicht.",
+    )
+    pdf.oefentaak_slide(
+        2,
+        "Gesprek met vervolg",
+        "context in één gesprek ervaren",
+        [
+            "Typ het erwtensoep-recept",
+            "Zelfde gesprek: Maak het voor 2 personen",
+            "Daarna: Maak een boodschappenlijstje",
+        ],
+        "u drie antwoorden in één gesprek heeft",
+    )
+    pdf.oefentaak_slide(
+        3,
+        "Nieuw gesprek",
+        "schone lei starten",
+        ["Zoek Nieuw gesprek of +", "U ziet een leeg typvak"],
+        "u een lege chat heeft",
+    )
+    pdf.oefentaak_slide(
+        5,
+        "Zelfstandig",
+        "hele route zelf",
+        ["Openen", "Vraag + vervolgvraag", "Nieuw gesprek"],
+        "u de route zelf kent",
+    )
+
     pdf.output(str(OUT))
     print(f"Beamer-PDF geschreven: {OUT}")
     return OUT

@@ -1,82 +1,64 @@
 # Oefentaken — G2 AI openen en gebruiken
 
-Voor de deelnemer. Op **telefoon, tablet of computer**.
-
-**Belangrijk:** typ vandaag **geen** BSN, wachtwoord, bankgegevens of medische details.
-
-De begeleider zegt welke site u gebruikt (bijv. ChatGPT, Gemini of Copilot).
+Op **telefoon, tablet of computer**. Geen geheimen typen.
 
 ---
 
-## Oefentaak 1 — AI-chat openen
+## Oefentaak 1 — AI openen
 
-**Doel:** de chatpagina vinden.
+1. Open de browser. Typ de URL van de A4.  
+2. Zoek het **typvak** onderaan.  
+3. Zoek de **verstuurknop** (pijl of Enter).  
+4. Inloggen niet verplicht — helper helpt of kijk mee.
 
-### Op telefoon of tablet
-1. Open **Chrome** of **Safari**.  
-2. Typ de URL die op de **A4** staat (bijv. `chatgpt.com`).  
-3. Wacht tot de pagina laadt.  
-4. Inloggen? **Niet verplicht vandaag.** Vraag de helper als er een scherm blokkeert.
-
-### Op de computer
-1. Open **Edge** of **Chrome**.  
-2. Typ de URL — Enter.  
-3. Zelfde: inloggen niet verplicht.
-
-**Klaar als:** u het chatvenster of startscherm ziet.
+**Klaar als:** u typvak en versturen ziet.
 
 ---
 
-## Oefentaak 2 — Eerste vraag
+## Oefentaak 2 — Gesprek met vervolgvragen
 
-**Doel:** een vraag typen en een antwoord krijgen.
+**Doel:** ervaren dat AI in één gesprek de context onthoudt.
 
-1. Tik/klik in het **typvak** (onderaan).  
-2. Typ precies:  
-   `Leg wifi uit in eenvoudige taal voor een beginner.`  
-3. Tik/klik **Versturen** (pijl of Enter).  
-4. Wacht. Lees het antwoord rustig.
+1. Typ: `Geef mij een eenvoudig recept voor erwtensoep.` — versturen. Lees.  
+2. **In hetzelfde gesprek:** `Maak het voor 2 personen.` — versturen.  
+3. Nog: `Maak een boodschappenlijstje.` — versturen.  
+4. Merk op: AI “weet” nog dat het over erwtensoep gaat.
 
-**Klaar als:** u een antwoord op het scherm ziet.
+**Tip:** wacht tot het antwoord klaar is (of stop als er een stop-knop is).
 
----
-
-## Oefentaak 3 — Uw eigen vraag
-
-**Doel:** zelf iets praktisch vragen.
-
-1. Typ iets eenvoudigs — **geen** persoonlijke gegevens. Bijvoorbeeld:  
-   - `Recept voor Hollandse erwtensoep voor 4 personen`  
-   - `Weer morgen in Utrecht` (vul uw plaats in)  
-   - `Wat is WhatsApp in het kort?`  
-2. Versturen. Lees het antwoord.  
-3. Vraag uzelf: zou ik dit **blind** geloven? (G4 gaat daar dieper op in.)
-
-**Klaar als:** u uw eigen vraag heeft gesteld.
+**Klaar als:** u drie antwoorden in één gesprek heeft.
 
 ---
 
-## Oefentaak 4 — Nieuw gesprek
+## Oefentaak 3 — Nieuw gesprek
 
-**Doel:** opnieuw beginnen zonder oude chat.
-
-1. Zoek **Nieuw gesprek**, **+** of **New chat** (afhankelijk van de site).  
-2. Tik/klik erop.  
-3. U ziet een leeg typvak.
+1. Zoek **Nieuw gesprek**, **+** of **New chat**.  
+2. Tik/klik. Leeg typvak.  
+3. Onthoud: hier is de erwtensoep **weg** — schone lei.
 
 **Klaar als:** u een lege chat heeft.
 
 ---
 
-## Helper
+## Oefentaak 4 — Eigen vraag + vervolg
 
-| Situatie | Tip |
-|----------|-----|
-| Inloggen verplicht | Helper 1-op-1; of meekijken bij buurman |
-| Site in het Engels | Typ gewoon in het Nederlands |
-| Geen antwoord | Wifi? Even wachten. Pagina verversen |
-| Typvak niet gevonden | Onderaan scherm; soms moet u eerst scrollen |
+1. Typ iets praktisch (geen persoonsgegevens).  
+2. Stel **één vervolgvraag** in hetzelfde gesprek (bijv. “Korter.” of “Voor 2 personen.”).  
+3. **Bonus:** probeer **spraak** als u een microfoon-icoon ziet.
+
+**Klaar als:** u vraag + vervolg heeft gedaan.
 
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe.
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open AI zelf.  
+2. Stel een vraag. Lees.  
+3. Stel een **vervolgvraag** in hetzelfde gesprek.  
+4. Start een **nieuw gesprek**.
+
+**Klaar als:** u de hele route zelf kent.
+
+---
+
+**Vast?** Hand opsteken.

@@ -2,6 +2,8 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
+**Deel alleen met iemand die u vertrouwt. Geen bankpassen of codes op foto’s.**
+
 ---
 
 ## Oefentaak 1 — Chat openen
@@ -15,45 +17,62 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
 ---
 
-## Oefentaak 2 — Een foto sturen
+## Oefentaak 2 — Foto uit de galerij sturen
 
-**Doel:** één foto uit de galerij versturen.
+**Doel:** één foto versturen — **hoofdroute: galerij**.
 
-1. Tik op **paperclip**, **+** of **camera** naast het typvak.  
-2. Kies **Foto’s** / **Galerij** / **Fotobibliotheek**.  
-3. Kies **één** foto.  
-4. Tik op **Versturen**.
+1. Kijk bovenaan: klopt de **naam** van de ontvanger?  
+2. Tik op **paperclip**, **+** of **camera** naast het typvak.  
+3. Kies **Foto’s** / **Galerij** (niet verplicht: nieuwe foto maken).  
+4. Kies **één** foto.  
+5. **Controleer vóór Versturen:**
+   - Klopt de **foto**?  
+   - Klopt de **ontvanger** (naam bovenaan)?  
+6. Tik op **Versturen**.
 
-**Klaar als:** de foto in de chat verschijnt.
-
-**Lukt de knop niet?** Hand opsteken. Op Android en iPhone zitten de knoppen iets anders.
+**Klaar als:** de foto in de juiste chat staat.
 
 ---
 
 ## Oefentaak 3 — Foto groot bekijken
 
-**Doel:** een foto groot op het scherm zien.
+**Doel:** een foto op volledig scherm zien.
 
 1. Tik in de chat op de foto.  
-2. De foto wordt groter.  
-3. Terug: tik op de pijl of buiten de foto.
+2. Bekijk op volledig scherm (eventueel zoomen met twee vingers).  
+3. Ga terug met de pijl.
 
-**Klaar als:** u de foto groot heeft gezien en weer terug bent in de chat.
+**Klaar als:** u de foto groot heeft bekeken en terug bent in de chat.
 
 ---
 
-## Oefentaak 4 — Document (optioneel)
+## Oefentaak 4 — Oefen-PDF ontvangen, openen en terugvinden
 
-**Doel:** zien hoe u een bestand / PDF stuurt.
+**Doel:** een document via WhatsApp gebruiken.
 
-1. In de chat: tik weer op **paperclip** of **+**.  
-2. Kies **Document** / **Bestand** / **Bestanden**.  
-3. Kies een eenvoudig bestand (als u die heeft) — of kijk mee terwijl de begeleider het voordoet.  
-4. Versturen (alleen als u dat wilt).
+1. De begeleider stuurt een **veilige oefen-PDF**.  
+2. Wacht tot het bestand in de chat staat.  
+3. **Tik** op de PDF → **open** het document.  
+4. Kijk kort — **sluit** (terug naar WhatsApp).  
+5. **Scroll** in de chat en **vind** de PDF opnieuw.  
+6. **Open** de PDF nog een keer.
 
-**Klaar als:** u Document/Bestand heeft gezien (sturen mag, is niet verplicht).
+**Klaar als:** u de PDF heeft geopend, gesloten en opnieuw gevonden.
 
-**Geen document op uw telefoon?** Alleen meekijken is ook goed.
+**Geen PDF ontvangen?** Hand opsteken — helper helpt.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+**Doel:** foto en document zelf doen.
+
+1. Open chat met begeleider of buur.  
+2. Stuur **één foto** uit de galerij — **controleer foto en ontvanger** vóór Versturen.  
+3. Vind de **oefen-PDF** in de chat.  
+4. Open → sluit → open opnieuw.
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
 
 ---
 
@@ -63,8 +82,8 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 |----------|---------|----------------|
 | Bijlage | Paperclip of + | + of camera |
 | Galerij | Galerij / Foto’s | Foto’s |
-| Document | Document / Bestanden | Document / Bestanden |
-| Foto groot | Tik op de foto | Tik op de foto |
+| PDF openen | Tik op bestand in chat | Tik op bestand in chat |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken — de helper komt naar u toe.

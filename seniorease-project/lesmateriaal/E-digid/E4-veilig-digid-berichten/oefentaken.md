@@ -1,66 +1,62 @@
-# Oefentaken — E4 Veilig DigiD-berichten
+# Oefentaken — E4 Berichtenbox en berichten van de overheid
 
 Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
-**Belangrijk:** tik niet op verdachte links. Geef geen DigiD-codes door.
+**Privacy:** lees berichten niet hardop. Codes niet delen.
 
 ---
 
-## Oefentaak 1 — Oefenbericht beoordelen
+## Oefentaak 1 — MijnOverheid en Berichtenbox
 
-**Doel:** signalen herkennen zonder te klikken.
+1. Open de browser. Typ: `mijnoverheid.nl`  
+2. Log optioneel in (helper 1-op-1, codes stil).  
+3. Zoek de **Berichtenbox** (Berichten / Inbox).
 
-1. Lees het **oefenbericht** van de begeleider of de scenario-A4.  
-2. Welke signalen ziet u? (druk, code vragen, rare link, WhatsApp van “overheid”)  
-3. Tik **niet** op links.
-
-**Klaar als:** u minstens één signaal heeft genoemd.
+**Klaar als:** u de Berichtenbox heeft gevonden (ingelogd) of weet waar die staat.
 
 ---
 
-## Oefentaak 2 — Zelf checken
+## Oefentaak 2 — Afzender, onderwerp en bericht openen
 
-**Doel:** bij twijfel zelf de echte site openen.
+1. Kijk naar **afzender** en **onderwerp** van een bericht — alleen voor uzelf.  
+2. Open **één bericht**.  
+3. Ziet u een **PDF** of **bijlage**? Herken het icoon — open alleen als u wilt, privé.
 
-### Op telefoon of tablet
-1. Ga naar het startscherm.  
-2. Open Chrome of Safari.  
-3. Typ: `digid.nl` **of** `mijnoverheid.nl`  
-4. Controleer de adresbalk.
-
-### Op de computer
-1. Open de browser.  
-2. Typ `digid.nl` of `mijnoverheid.nl` — Enter.  
-3. Controleer de adresbalk.
-
-**Klaar als:** de echte site open is (niet via een link in het bericht).
+**Klaar als:** u een bericht heeft geopend (ingelogd) of de stappen kent (niet ingelogd: samen met begeleider meekijken op demo).
 
 ---
 
-## Oefentaak 3 — Wat zegt u?
+## Oefentaak 3 — Teruggaan en uitloggen
 
-**Doel:** een rustige reactie paraat hebben.
+1. Ga **terug** (pijl / logo MijnOverheid).  
+2. Zoek **Uitloggen** / **Afmelden**.  
+3. Sluit tabblad of app.
 
-1. Stel: beller of WhatsApp vraagt om uw DigiD-code.  
-2. Zeg: **“Nee. Ik geef geen DigiD-code via telefoon of chat.”**  
-3. Wat doet u daarna? Ophangen / negeren → zelf digid.nl → of IDO.
-
-**Klaar als:** u de zin een keer heeft gezegd of gelezen.
+**Klaar als:** u netjes bent teruggegaan en uitgelogd.
 
 ---
 
-## Oefentaak 4 — Eigen berichten bekijken (optioneel)
+## Oefentaak 4 — E-mailmelding en korte veiligheid
 
-**Doel:** in uw eigen inbox alleen kijken.
+1. Onthoud: een **e-mail** “u heeft een bericht in MijnOverheid” is vaak alleen een **melding**.  
+2. Het **echte bericht** staat in **MijnOverheid** — open die site **zelf** (`mijnoverheid.nl`).  
+3. Bij twijfel: **niet klikken** op de link in de mail → zelf typen.  
+4. **Kort:** overheid vraagt **nooit** uw DigiD-code via WhatsApp of een vreemde beller.  
+5. Meer oefenen met oplichting? **Pakket D — Veilig online.**
 
-1. Open **Berichten** (SMS) of **mail**.  
-2. Zoek een bericht over DigiD, Belastingdienst of pakket/overheid.  
-3. Lees — **tik niet** op links als u twijfelt.  
-4. Twijfel? Doe zoals bij oefening 2: zelf typen.
+**Klaar als:** u het verschil kent tussen melding en bericht.
 
-**Geen zo’n bericht?** Klaar na oefening 1–3.
+---
 
-**Klaar als:** u heeft gekeken zonder een verdachte link te openen.
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open **mijnoverheid.nl** zelf.  
+2. Ga naar de **Berichtenbox**.  
+3. Bekijk **afzender** en **onderwerp**.  
+4. Open een bericht — herken eventuele **PDF/bijlage**.  
+5. Ga **terug** en **log uit**.
+
+**Klaar als:** u de hele route zelf heeft gedaan.
 
 ---
 
@@ -68,9 +64,10 @@ Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
 | Situatie | Tip |
 |----------|-----|
-| Emotioneel verhaal | Erkennen, kort houden, door naar stappen |
-| Wil pakket D | Noemen: Veilig online D1–D4 |
-| Iemand wil code tonen | Stoppen — privacy |
+| Geen berichten | Route oefenen; demo van begeleider |
+| Wil fraude-oefening | Pakket D D1–D4 |
+| Iemand deelt inhoud | Privacy — vriendelijk stoppen |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

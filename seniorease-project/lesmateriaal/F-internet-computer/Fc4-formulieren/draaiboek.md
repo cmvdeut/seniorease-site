@@ -3,9 +3,11 @@
 **Pakket F — Internet (computer)** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
 **Doelgroep:** Mensen die een formulier op een website willen invullen  
-**Gids:** https://www.seniorease.nl  
+**Oefenpagina:** https://www.seniorease.nl/oefenen/formulier  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** computer of laptop + internet
+**Apparaat:** computer of laptop + internet (primair Windows)
+
+**Oefenformulier:** mag **echt verzonden** worden — SeniorEase slaat **geen persoonsgegevens** op. Gebruik oefengegevens (`Jan`, `test@voorbeeld.nl`). Werkt de pagina niet? Dan blijft **Verzenden** alleen demonstratie (Contact-pagina: niet verzenden).
 
 ---
 
@@ -13,29 +15,31 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Contactpagina openen, oefengegevens voorlezen |
-| **Helper (vrijwilliger)** | 1-op-1 bij klikken in velden, toetsenbord, scrollen |
-
-**Bent u zelf ook senior?** Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+| **Begeleider (docent)** | Oefenformulier openen, veldtypen tonen |
+| **Helper (vrijwilliger)** | 1-op-1 bij velden, foutmeldingen, scrollen |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **formulier** op een website openen  
-2. **Velden invullen** met muis en toetsenbord  
-3. **Scrollen** en invoer **controleren**  
-4. Weten: pas **verzenden** als u zeker bent (vandaag niet)  
+1. Een **formulier** openen  
+2. **Tekstveld**, **e-mailveld**, **keuzelijst**, **vinkvakje** en **keuzerondje** gebruiken  
+3. **Verplichte velden** en een **foutmelding** herkennen  
+4. **Corrigeren** en alles **controleren** vóór verzenden  
+5. (Optioneel) op het oefenformulier **verzenden** — of alleen kijken naar Verzenden  
+6. **Zelfstandig** een formulier volledig oefenen  
 
 ## Wat u níet doet
 
-- Geen formulier **verzenden** vandaag  
+- Geen echte persoonsgegevens of bankzaken  
 - Geen DigiD/overheid (pakket E)  
 - Geen betalen  
 
 ## Voorbereiding
 
 - [ ] Pc's aan, internet werkt  
+- [ ] Controleer: `seniorease.nl/oefenen/formulier` bereikbaar  
+- [ ] Fallback: Contact-pagina — **niet** verzenden  
 - [ ] Deelnemerskaarten + oefentaken  
 
 ## Didactiek
@@ -48,35 +52,41 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag oefenen we een formulier invullen. We versturen het vandaag niet — alleen typen en controleren.”
+**Zegt u:** “Vandaag oefenen we een formulier: typen, kiezen, vinken, fouten herstellen. Op het oefenformulier mag u verzenden — er worden geen gegevens bewaard.”
 
 ### 12:15–12:25 — Kennismaking
 
 Voornaam. Wel eens een formulier online ingevuld?
 
-### 12:25–12:45 — Stap 1: Formulier openen (oefentaak 1)
+### 12:25–12:45 — Stap 1: Formulier openen + tekst/e-mail (oefentaak 1)
 
-**Doen:** seniorease.nl → Contact.
+Typ `seniorease.nl/oefenen/formulier`.  
+Tekstveld Naam: `Jan`. E-mail: `test@voorbeeld.nl`.
 
-### 12:45–13:05 — Stap 2: Invullen (oefentaak 2)
+### 12:45–13:00 — Stap 2: Keuzelijst, vinkvakje, keuzerondje (oefentaak 2)
 
-**Doen:** Naam `Jan`, e-mail `test@voorbeeld.nl`, bericht `Dit is een oefening`.  
-**Zegt u:** “Nog niet op Verzenden — dat is bewust.”
+Dropdown, checkbox, radio — elk één keer.
 
-### 13:05–13:10 — Pauze
+### 13:00–13:05 — Pauze
 
-### 13:10–13:30 — Stap 3: Controleren (oefentaak 3)
+### 13:05–13:25 — Stap 3: Verplicht, foutmelding, corrigeren (oefentaak 3)
 
-**Doen:** scrollen, lezen wat u typte. Eventueel Backspace en corrigeren.
+Laat één verplicht veld leeg → Verzenden → foutmelding zien → corrigeren.  
+Alles nakijken.
 
-### 13:30–13:40 — Stap 4: Regels (oefentaak 4)
+### 13:25–13:35 — Stap 4: Verzenden of alleen demonstratie (oefentaak 4)
 
-**Zegt u:** “Thuis pas verzenden als u zeker bent. Gemeente en DigiD: pakket E.”
+Oefenformulier: mag verzenden → successcherm.  
+Geen oefenpagina: Verzenden alleen **aanwijzen**, niet klikken.
 
-### 13:40–13:45 — Afronding
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
 
-Nazorg. **Laatste les** pakket F-computer. Telefoon? Pakket F-telefoon.
+Hele formulier zelf: openen → alle veldtypen → controleren → (optioneel) verzenden.
+
+### 13:42–13:45 — Afronding
+
+Nazorg. **Pakket F-computer compleet.** Telefoon? Pakket F-telefoon. DigiD? Pakket E.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4 als u de regels mondeling kort noemt.
+**Niet schrappen:** veldtypen + foutmelding/corrigeren + eindopdracht.

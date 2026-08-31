@@ -39,6 +39,7 @@ class LessonPDF(FPDF):
         super().__init__(format="A4", unit="mm")
         self._header_label = header_label
         self._package_label = package_label
+        self._footer_version = PDF_VERSION
         self.set_auto_page_break(auto=True, margin=20)
         self.set_margins(20, 20, 20)
         self.add_font("DejaVu", "", str(FONT_DIR / "DejaVuSans.ttf"))
@@ -47,6 +48,12 @@ class LessonPDF(FPDF):
 
     def _left(self) -> None:
         self.set_x(self.l_margin)
+
+    def ensure_space(self, needed_mm: float) -> None:
+        """Nieuwe pagina als er te weinig ruimte is voor het volgende blok."""
+        # Onderkant bruikbaar vlak ≈ paginahoogte − footer-marge
+        if self.get_y() + needed_mm > self.h - self.b_margin:
+            self.add_page()
 
     def _logo_path(self) -> Path | None:
         if LOGO_SMILE.exists():
@@ -76,13 +83,16 @@ class LessonPDF(FPDF):
         self._logo_mark(20, 2.5, 8)
         self.set_font("DejaVu", "", 8)
         self.set_text_color(*GOLD)
+        # Vaste breedtes i.p.v. cell(0): voorkomt dat de cursor rechts blijft hangen.
         self.set_xy(30, 4)
-        self.cell(0, 4, self._header_label, align="L")
+        self.cell(120, 4, self._header_label, align="L")
         self.set_text_color(*MUTED)
-        self.cell(0, 4, "seniorease.nl", align="R", new_x="LMARGIN", new_y="NEXT")
+        self.cell(40, 4, "seniorease.nl", align="R")
         self.set_draw_color(*GOLD)
         self.line(20, 14, 190, 14)
-        self.ln(8)
+        # Altijd onder de headerbalk beginnen (links uitgelijnd)
+        self.set_y(22)
+        self._left()
 
     def footer(self) -> None:
         self.set_y(-16)
@@ -91,8 +101,15 @@ class LessonPDF(FPDF):
         self.ln(2)
         self.set_font("DejaVu", "", 8)
         self.set_text_color(*MUTED)
-        self.cell(0, 4, LICENSE_FOOTER, align="L")
-        self.cell(0, 4, f"Pagina {self.page_no()}/{{nb}}  |  {PDF_VERSION}", align="R")
+        self.set_x(self.l_margin)
+        self.cell(120, 4, LICENSE_FOOTER, align="L")
+        self.cell(
+            50,
+            4,
+            f"Pagina {self.page_no()}/{{nb}}  |  {self._footer_version}",
+            align="R",
+        )
+        self._left()
 
     def cover(self, title: str, subtitle: str, intro: str, contents: list[str], meta: list[str]) -> None:
         self.add_page()
@@ -140,20 +157,30 @@ class LessonPDF(FPDF):
         self.ln(4)
 
     def h2(self, text: str) -> None:
+        # Tijdlijn niet halverwege laten beginnen: liever bovenaan een nieuwe pagina.
+        if text.lower().startswith("tijdlijn") and self.get_y() > 100:
+            self.add_page()
+        else:
+            # Kop + minstens één inhoudsregel bij elkaar houden
+            self.ensure_space(18)
         self.ln(2)
         self._left()
         self.set_font("DejaVu", "B", 13)
         self.set_text_color(*GOLD)
         self.multi_cell(0, 7, text)
         self.ln(1)
+        self._left()
 
     def h3(self, text: str) -> None:
+        # Voorkom wees-kopjes onderaan (tijdlijn-stappen + body eronder)
+        self.ensure_space(16)
         self.ln(1)
         self._left()
         self.set_font("DejaVu", "B", 11)
         self.set_text_color(*NAVY)
         self.multi_cell(0, 6, text)
         self.ln(0.5)
+        self._left()
 
     def body(self, text: str) -> None:
         self._left()
@@ -161,6 +188,7 @@ class LessonPDF(FPDF):
         self.set_text_color(*NAVY)
         self.multi_cell(0, 5.5, text)
         self.ln(1)
+        self._left()
 
     def muted(self, text: str) -> None:
         self._left()
@@ -168,8 +196,10 @@ class LessonPDF(FPDF):
         self.set_text_color(*MUTED)
         self.multi_cell(0, 4.8, text)
         self.ln(0.5)
+        self._left()
 
     def bullet(self, text: str) -> None:
+        self.ensure_space(10)
         self._left()
         self.set_font("DejaVu", "", 11)
         self.set_text_color(*NAVY)
@@ -178,6 +208,7 @@ class LessonPDF(FPDF):
         self._left()
 
     def numbered(self, n: int, text: str) -> None:
+        self.ensure_space(10)
         self._left()
         self.set_font("DejaVu", "B", 11)
         self.set_text_color(*GOLD)
@@ -188,11 +219,27 @@ class LessonPDF(FPDF):
         self._left()
 
     def check(self, text: str) -> None:
+        self.ensure_space(10)
         self._left()
         self.set_font("DejaVu", "", 11)
         self.set_text_color(*NAVY)
         self.cell(8, 5.5, "\u2610")
         self.multi_cell(self.epw - 8, 5.5, text)
+        self._left()
+
+    def tijdlijn_item(self, when: str, what: str) -> None:
+        """Compacte tijdlijnregel: tijdstip + wat, bij elkaar op één pagina."""
+        self.ensure_space(14 if what.strip() else 10)
+        self._left()
+        self.set_font("DejaVu", "B", 11)
+        self.set_text_color(*NAVY)
+        self.multi_cell(0, 5.5, when)
+        if what.strip():
+            self._left()
+            self.set_font("DejaVu", "", 10)
+            self.set_text_color(*MUTED)
+            self.multi_cell(0, 5, what)
+        self.ln(1.2)
         self._left()
 
     def box(self, title: str, lines: list[str]) -> None:
@@ -349,7 +396,7 @@ class LessonPDF(FPDF):
 
 
 class BeamerPDF(FPDF):
-    """Liggende slides: 1 oefentaak per pagina. Optioneel — print blijft de basis."""
+    """Liggende slides voor begeleider. Print blijft op tafel; beamer ondersteunt kijken → doen."""
 
     def __init__(self, lesson_code: str, lesson_title: str) -> None:
         super().__init__(orientation="L", format="A4", unit="mm")
@@ -376,7 +423,10 @@ class BeamerPDF(FPDF):
         self.set_fill_color(*GOLD)
         self.rect(x, y, size, size, style="F")
 
-    def title_slide(self, subtitle: str = "Oefentaken — optioneel op beamer") -> None:
+    def title_slide(
+        self,
+        subtitle: str = "Beamer voor de begeleider — daarna oefenen op eigen toestel",
+    ) -> None:
         self.add_page()
         self.set_fill_color(*NAVY)
         self.rect(0, 0, 297, 210, "F")
@@ -391,17 +441,64 @@ class BeamerPDF(FPDF):
         self.set_font("DejaVu", "B", 36)
         self.set_text_color(*WHITE)
         self.multi_cell(253, 14, self._lesson_title)
-        self.set_xy(22, 130)
+        self.set_xy(22, 120)
         self.set_font("DejaVu", "", 16)
         self.set_text_color(*CREAM)
         self.multi_cell(
             253,
             8,
-            "Geen beamer in de zaal? Geen probleem — deelnemers volgen hun print op tafel.",
+            "Kijken op de beamer → zelf doen → samen controleren → volgende stap.\n"
+            "Geen beamer? Print op tafel + voordoen op eigen toestel.",
         )
         self.set_xy(22, 168)
         self.set_font("DejaVu", "I", 12)
-        self.cell(0, 6, "Volgende pagina = oefentaak 1  |  Page Down / spatie in PDF-viewer")
+        self.cell(0, 6, "Page Down / spatie = volgende dia")
+
+    def concept_slide(
+        self,
+        title: str,
+        lines: list[str],
+        note: str | None = None,
+        label: str = "Uitleg",
+    ) -> None:
+        """Korte uitleg-/demodia vóór of tussen oefentaken."""
+        self.add_page()
+        self.set_fill_color(*NAVY)
+        self.rect(0, 0, 297, 22, "F")
+        self._logo_mark(22, 4, 14)
+        self.set_xy(42, 7)
+        self.set_font("DejaVu", "B", 13)
+        self.set_text_color(*WHITE)
+        self.cell(120, 8, f"{self._lesson_code}  —  {label}")
+        self.set_font("DejaVu", "", 10)
+        self.set_text_color(*CREAM)
+        self.cell(0, 8, "Eerst kijken — daarna zelf doen", align="R")
+
+        self.set_xy(22, 36)
+        self.set_font("DejaVu", "B", 28)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 12, title)
+
+        y = 60
+        self.set_text_color(*NAVY)
+        for line in lines:
+            self.set_xy(22, y)
+            self.set_font("DejaVu", "", 20)
+            self.multi_cell(253, 10, line)
+            y = self.get_y() + 4
+            if y > 160:
+                break
+
+        if note:
+            self.set_xy(22, 175)
+            self.set_font("DejaVu", "I", 13)
+            self.set_text_color(*MUTED)
+            self.multi_cell(253, 6, note)
+
+        self.set_y(198)
+        self.set_font("DejaVu", "", 9)
+        self.set_text_color(*MUTED)
+        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {PDF_VERSION}", align="C")
 
     def oefentaak_slide(
         self,

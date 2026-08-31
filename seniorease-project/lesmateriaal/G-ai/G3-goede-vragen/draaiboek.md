@@ -6,7 +6,7 @@
 **Gids:** https://www.seniorease.nl/wat-is-ai/prompts  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** telefoon, tablet of computer + wifi  
-**Zaal:** geen bord/beamer
+**Zaal:** **Inclusief beamerpresentatie voor de begeleider.** Deelnemers oefenen daarna op hun eigen toestel. Print altijd meenemen.
 
 ---
 
@@ -14,36 +14,33 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeelden slecht/goed, tempo, groep laten vergelijken |
-| **Helper (vrijwilliger)** | 1-op-1 bij typen, versturen, lezen |
-
-Zie ook [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+| **Begeleider (docent)** | Beamer: slecht/goed + live kleine wijziging in vraag |
+| **Helper (vrijwilliger)** | 1-op-1 bij typen |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een vraag **duidelijk** formuleren (wie, wat, hoe kort)  
-2. Een **vervolgvraag** stellen als het antwoord te vaag is  
-3. Drie **soorten vragen** proberen (uitleg, stappenplan, tekst schrijven)  
-4. Weten: **meer detail = beter antwoord**  
+1. De methode gebruiken: **Wat wilt u? + belangrijke informatie + hoe wilt u het antwoord?**  
+2. **Vervolgvragen** stellen: korter, eenvoudiger, voorbeeld, 5 stappen, leg stap 3 uit  
+3. Drie soorten: uitleg, stappenplan, tekst schrijven  
+4. **Zelfstandig** een duidelijke vraag + twee vervolgen  
 
 ## Wat u níet doet
 
-- Geen persoonlijke gegevens  
-- Geen lange verhalen als verplichting — korte vragen zijn genoeg  
-- Geen “perfecte prompts” eisen — rustig experimenteren  
+- Geen technische term “prompt” verplichten  
+- Geen geheimen  
+- Geen “perfecte” vragen eisen  
 
 ## Voorbereiding
 
-- [ ] **Kaart slecht/goed** uit PDF printen (1× voor de groep)  
-- [ ] Zelfde **AI-URL** als G2 op A4  
-- [ ] Wifi op A4  
-- [ ] Deelnemers kunnen AI-chat openen (G2 of vandaag kort herhalen)  
+- [ ] Beamer-PDF G3  
+- [ ] Kaart slecht/goed  
+- [ ] AI-URL + wifi + print  
 
 ## Didactiek
 
-Kijken → Doen → Controleren → Pauzeren. Laat deelnemers **antwoorden vergelijken** met buur.
+**Kijken op de beamer → zelf doen → samen controleren → volgende stap.**
 
 ---
 
@@ -51,44 +48,48 @@ Kijken → Doen → Controleren → Pauzeren. Laat deelnemers **antwoorden verge
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Vandaag leert u **betere vragen** stellen. Hoe duidelijker u vraagt, hoe nuttiger het antwoord. Geen geheimen intypen.”
+**Zegt u:** “Vandaag: betere vragen. Op de beamer zie je hoe één zin het antwoord verandert.”
 
-### 12:15–12:25 — Kennismaking + kaart
+### 12:15–12:25 — Kennismaking + methode (beamer)
 
-Toon kaart **slecht vs goed**:
+**Methode:**  
+> Wat wilt u? + belangrijke informatie + hoe wilt u het antwoord?
 
-- Slecht: “Vertel over internet.”  
-- Goed: “Leg in maximaal 5 korte zinnen uit wat wifi is, voor iemand van 70 die net begint.”
+Voorbeeld:  
+`Schrijf een vriendelijke WhatsApp om mijn buurvrouw te bedanken voor het water geven van de planten. Maximaal 4 zinnen.`
 
 ### 12:25–12:45 — Stap 1: Duidelijke vraag (oefentaak 1)
 
-**Doen:** iedereen typt de **goede** wifi-vraag. Antwoord lezen.  
-**Bespreken:** was dit duidelijker dan een vage vraag?
+**Beamer:** vaag vs duidelijk.  
+**Doen:** typ de WhatsApp-bedanktekst (of wifi-voorbeeld).
 
-### 12:45–13:05 — Stap 2: Vervolgvraag (oefentaak 2)
+### 12:45–13:05 — Stap 2: Vervolgvragen (oefentaak 2) — kernvaardigheid
 
-Te moeilijk? Typ: `Leg het nog simpeler uit, alsof u tegen mijn kleinkind praat.`  
-Vergelijk eerste en tweede antwoord.
+**Beamer live:** zelfde gesprek, kleine opdrachten:
+
+- `Korter.`  
+- `Iets vriendelijker.`  
+- `Geef een voorbeeld.`  
+- `Maak er 5 stappen van.`  
+- `Ik begrijp stap 3 niet. Leg die nog eens uit.`  
+- `Leg het nog eenvoudiger uit, zonder moeilijke woorden.`
+
+**Doen:** deelnemers proberen minstens **drie** van deze vervolgen.
 
 ### 13:05–13:10 — Pauze
 
-### 13:10–13:30 — Stap 3: Drie soorten (oefentaak 3)
+### 13:10–13:28 — Stap 3: Drie soorten (oefentaak 3)
 
-1. **Uitleg:** QR-code  
-2. **Stappenplan:** foto maken  
-3. **Tekst:** korte sms “ik kom later”
+Uitleg / stappenplan / korte tekst — elk apart.
 
-Elk apart versturen. Drie antwoorden = drie soorten hulp.
+### 13:28–13:38 — Eindopdracht zelfstandig (oefentaak 4)
 
-### 13:30–13:40 — Stap 4: Eigen praktische vraag (oefentaak 4)
+Eigen vraag met de methode + twee vervolgvragen.
 
-Deelnemer bedenkt zelf iets (recept, brief algemeen, tuin-tip).  
-**Kritisch:** zou u dit blind vertrouwen?
+### 13:38–13:45 — Afronding
 
-### 13:40–13:45 — Afronding
-
-Volgende: **G4 AI veilig gebruiken**.
+Nazorg. Volgende: G4.
 
 ## Als de tijd krap is
 
-Schrap één van de drie vragen in oefentaak 3. **Niet schrappen:** duidelijke vraag + vervolgvraag.
+**Niet schrappen:** methode + vervolgvragen + eindopdracht.

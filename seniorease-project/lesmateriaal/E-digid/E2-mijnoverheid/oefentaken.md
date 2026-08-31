@@ -2,67 +2,65 @@
 
 Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
-**Belangrijk:** codes niet hardop. Inloggen is optioneel. Lees geen berichten hardop voor.
+**Privacy:** codes niet hardop. **Lees geen berichten hardop voor.** Inhoud is privé.
 
 ---
 
 ## Oefentaak 1 — mijnoverheid.nl openen
 
-**Doel:** de echte site openen.
-
-### Op telefoon of tablet
-1. Open Chrome of Safari.  
-2. Typ in de adresbalk: `mijnoverheid.nl`  
-3. Open de pagina. Controleer: staat **mijnoverheid.nl** in de balk?
-
-### Op de computer
-1. Open Edge of Chrome.  
-2. Typ: `mijnoverheid.nl` — Enter.  
+1. Open de browser.  
+2. Typ: `mijnoverheid.nl`  
 3. Controleer de adresbalk.
 
 **Klaar als:** de site open is met het juiste adres.
 
 ---
 
-## Oefentaak 2 — Inloggen-knop vinden
+## Oefentaak 2 — Inloggen vinden
 
-**Doel:** weten waar DigiD begint — nog niet inloggen.
+1. Kijk kort wat MijnOverheid is (digitale post van de overheid).  
+2. Zoek **Inloggen** of **Inloggen met DigiD**.  
+3. Tik/klik — stop als u niet verder wilt. Dat is goed.
 
-1. Kijk op de pagina wat MijnOverheid ongeveer is (korte tekst / koppen).  
-2. Zoek de knop **Inloggen** of **Inloggen met DigiD**.  
-3. Tik/klik erop zodat u bij DigiD komt (of bijna).  
-4. Stop hier als u niet wilt inloggen — dat is goed genoeg.
-
-**Klaar als:** u de Inloggen-knop heeft gevonden (en eventueel DigiD ziet).
+**Klaar als:** u de Inloggen-knop heeft gevonden.
 
 ---
 
-## Oefentaak 3 — Optioneel: inloggen (1-op-1)
+## Oefentaak 3 — Berichtenbox en gegevens (optioneel ingelogd)
 
-**Doel:** één keer veilig binnenkomen.
+**Doel:** weten *waar* dingen staan — niet de inhoud klassikaal bespreken.
 
-1. Vraag de **helper** om naast u te zitten.  
-2. Log in met DigiD zoals u gewend bent (wachtwoord, SMS of app).  
-3. **Zeg codes niet hardop.** Draai het scherm van de groep weg.  
-4. Kijk rustig naar de startpagina of berichtenbox — alleen voor uzelf.
+1. Wilt u inloggen? Vraag de **helper** 1-op-1 — codes stil, scherm privé.  
+2. Zoek de **Berichtenbox** (of Inbox / Berichten).  
+3. Kijk **alleen voor uzelf** — lees niet hardop.  
+4. Zoek ook waar **persoonlijke gegevens** staan (menu, Mijn gegevens o.i.d.) — zonder details te delen.
 
-**Geen DigiD of wilt u niet?** Sla deze oefening over. Oefening 1 en 2 tellen.
+**Niet ingelogd?** Onthoud: na inloggen vindt u de Berichtenbox meestal op de startpagina.
 
-**Klaar als:** u bent ingelogd **of** u heeft bewust overgeslagen.
+**Klaar als:** u de Berichtenbox heeft gevonden (ingelogd) of weet waar die staat (niet ingelogd).
 
 ---
 
-## Oefentaak 4 — Uitloggen
+## Oefentaak 4 — Teruggaan en uitloggen
 
-**Doel:** netjes afsluiten.
+1. Ga **terug** uit een bericht of het menu (pijl terug / MijnOverheid-logo).  
+2. Zoek **Uitloggen** / **Afmelden** (als u bent ingelogd).  
+3. Sluit tabblad of app als u wilt.
 
-1. Als u bent ingelogd: zoek **Uitloggen** / **Afmelden**.  
-2. Tik/klik daarop.  
-3. Sluit het tabblad of de browser als u wilt.
+**Niet ingelogd?** Terug naar startscherm — klaar.
 
-**Niet ingelogd?** Ga terug naar het startscherm — klaar.
+**Klaar als:** u netjes bent teruggegaan en uitgelogd (of niet was ingelogd).
 
-**Klaar als:** u uitgelogd bent, of u was niet ingelogd.
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open **mijnoverheid.nl** zelf.  
+2. Zoek **Inloggen**.  
+3. (Optioneel ingelogd) Vind de **Berichtenbox**.  
+4. Ga **terug** en **log uit** (of sluit af).
+
+**Klaar als:** u de weg zelf kent.
 
 ---
 
@@ -71,9 +69,9 @@ Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 | Situatie | Tip |
 |----------|-----|
 | Verkeerde site | Adresbalk: mijnoverheid.nl |
-| DigiD lukt niet | Niet forceren; IDO noemen |
-| Iemand leest berichten hardop | Stop vriendelijk — privacy |
-| Mac/Safari | Zelfde stappen |
+| DigiD lukt niet | Niet forceren; IDO |
+| Iemand leest berichten hardop | Vriendelijk stoppen — privacy |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

@@ -17,3 +17,21 @@ SLATE = _mod.SLATE
 MUTED = _mod.MUTED
 WHITE = _mod.WHITE
 PDF_VERSION = _mod.PDF_VERSION
+
+_LM_DIR = Path(__file__).resolve().parent.parent
+import sys
+
+if str(_LM_DIR) not in sys.path:
+    sys.path.insert(0, str(_LM_DIR))
+
+
+LESSON_VERSION = "v1.1"
+
+
+class FLessonPDF(LessonPDF):
+    """Pakket F-computer: lesversie v1.1 in de footer."""
+
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self._footer_version = LESSON_VERSION
+

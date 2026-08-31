@@ -6,74 +6,66 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**. Wifi aan.
 
 ## Oefentaak 1 — Browser openen
 
-**Doel:** Chrome of Safari open hebben.
-
-1. Zoek het icoon **Chrome** (kleurrijk) of **Safari** (kompas).  
+1. Zoek **Chrome** (kleurrijk) of **Safari** (kompas).  
 2. Tik erop.  
-3. U ziet een leeg scherm of een startpagina met een **zoekvak** of **adresbalk** bovenaan.
+3. U ziet een **zoekvak** of **adresbalk** bovenaan.
 
 **Klaar als:** de browser open is.
 
-**Lukt het niet?** Hand opsteken.
+---
+
+## Oefentaak 2 — Specifieker zoeken
+
+1. Tik in het zoekvak. Typ: `bloemenwinkel` — Zoeken.  
+2. Kijk naar de resultaten.  
+3. Zoek opnieuw: `bloemenwinkel` + **uw woonplaats** (bijv. `bloemenwinkel Utrecht`).  
+4. Vergelijk: welke zoekvraag geeft nuttiger resultaten?
+
+**Tip:** meerdere woorden helpen Google beter te begrijpen wat u wilt.
+
+**Klaar als:** u een bredere én een specifiekere zoekvraag heeft gedaan.
 
 ---
 
-## Oefentaak 2 — Iets opzoeken
+## Oefentaak 3 — Twee resultaten vergelijken
 
-**Doel:** een zoekvraag typen en resultaten zien.
+1. Kijk naar **twee** resultaten: titel, korte tekst eronder, webadres.  
+2. Ziet u **Gesponsord**? Dat betekent: **advertentie**. Controleer of dit echt het resultaat is dat u zoekt.  
+3. Kies welk resultaat beter past — tik erop.  
+4. Ga **terug** met de pijl.
 
-1. Tik in het **zoekvak** of de **adresbalk** bovenaan.  
-2. Typ precies (kies één):  
-   - `recept pannenkoeken`  
-   - of: `weer morgen`  
-3. Tik op **Zoeken** of druk op Enter (toetsenbord).  
-4. Kijk of u een lijst met resultaten of een direct antwoord ziet.
-
-**Klaar als:** u zoekresultaten ziet.
-
-**Tip:** meerdere woorden geven vaak betere antwoorden.
+**Klaar als:** u twee resultaten heeft vergeleken, één geopend en bent teruggegaan.
 
 ---
 
-## Oefentaak 3 — Een resultaat openen
+## Oefentaak 4 — Eigen zoekvraag
 
-**Doel:** één pagina bekijken en teruggaan.
-
-1. Tik op **één** resultaat in de lijst.  
-2. Ziet u **Gesponsord**? Probeer dan een ander resultaat (geen advertentie).  
-3. Lees kort wat er staat.  
-4. Ga **terug** met de pijl linksboven (of terug-knop).
-
-**Klaar als:** u een pagina heeft geopend en weer terug bent bij de zoekresultaten.
-
----
-
-## Oefentaak 4 — Zelf een vraag bedenken
-
-**Doel:** zelf iets opzoeken.
-
-1. Bedenk iets praktisch, bijvoorbeeld:  
-   - `kapper` (eventueel met uw woonplaats)  
-   - `postkantoor`  
-   - `apotheek`  
-2. Typ het in het zoekvak.  
-3. Zoeken / Enter.  
-4. Kijk of u een nuttig resultaat ziet.
+1. Bedenk iets praktisch: `kapper` + plaats, `postkantoor`, of `apotheek openingstijden`.  
+2. Typ met **meerdere woorden**. Zoeken.  
+3. Vergelijk kort twee resultaten.
 
 **Klaar als:** u uw eigen zoekvraag heeft gedaan.
 
 ---
 
-## Apparaatverschillen (helper)
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open de browser zelf.  
+2. Typ een **eigen, specifieke** zoekvraag.  
+3. Vergelijk **twee** resultaten (Gesponsord = advertentie — check of het klopt).  
+4. Open één resultaat. Ga **terug**.
+
+**Klaar als:** u de hele zoekroute zelf heeft gedaan.
+
+---
+
+## Helper
 
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
 | Browser | Vaak Chrome | Safari |
-| Google | google.nl typen of zoeken in adresbalk | Zelfde |
-| Zoeken | Vergrootglas of Enter op toetsenbord | Zelfde |
 | Terug | Pijl linksboven | Pijl linksboven |
 
-Helper: leg niet alles klassikaal uit — alleen bij wie vastzit.
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

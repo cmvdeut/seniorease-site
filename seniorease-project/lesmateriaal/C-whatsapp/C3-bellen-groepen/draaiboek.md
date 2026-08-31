@@ -1,8 +1,8 @@
 # Draaiboek — C3: Bellen, videobellen en groepen
 
-**Pakket C — WhatsApp** · Versie 1.0  
+**Pakket C — WhatsApp** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die C1–C2 aankunnen en willen bellen of een groep begrijpen  
+**Doelgroep:** Mensen die C1–C2 aankunnen  
 **Gids:** https://www.seniorease.nl/uitleg/whatsapp-basis  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** eigen telefoon of tablet (wifi sterk aanbevolen voor video)  
@@ -14,39 +14,29 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
+| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+**Afspraken:** max. 8–10 · één stap tegelijk · hand opsteken · we wachten op elkaar.
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **spraakoproep** via WhatsApp starten en beëindigen  
-2. Een **video-oproep** starten (of meekijken als het niet lukt)  
-3. Een **bestaande groep** openen en een kort bericht sturen  
-4. Weten: u hoeft **geen** nieuwe groep aan te maken als dat spannend is  
+1. Een **spraakoproep** starten en netjes **ophangen**  
+2. Een **video-oproep** proberen — **microfoon dempen**, **voor-/achtercamera wisselen**  
+3. **Wifi vs mobiele data** kort bij videobellen (wifi = vaak stabieler; data = uit bundel)  
+4. Een **bestaande groep** openen, **deelnemers zien** en een bericht sturen  
+5. **Meldingen dempen** in een groep  
+6. **Zelfstandig:** bellen → korte video → groep openen → deelnemers aanwijzen  
 
-## Wat u níet doet
-
-- Geen grote groepen met 20+ mensen verplichten  
-- Geen beheerder-rechten / groepsinstellingen uitdiepen  
-- Geen status / verhalen  
-- Geen computer, bord of presentatie  
+**Optioneel:** zelf een groep maken — alleen met helper, niet verplicht.
 
 ## Voorbereiding
 
-- [ ] Wifi op A4 (video lust data)  
-- [ ] Begeleider-nummer op A4  
-- [ ] Optioneel: een **oefengroep** “SeniorEase les” van tevoren aangemaakt met wie dat wil  
-- [ ] Helper: microfoon/camera-toestemming 1-op-1  
-
-## Didactiek
-
-Kijken → Doen → Controleren → Pauzeren.
+- [ ] Wifi op A4  
+- [ ] Optioneel: oefengroep “SeniorEase les”  
+- [ ] Helper: camera/microfoon-toestemming  
 
 ---
 
@@ -54,33 +44,37 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Vandaag oefenen we bellen via WhatsApp — eerst met geluid, daarna kort video. Groepen alleen rustig openen.”
+**Zegt u:** “Vandaag bellen we via WhatsApp — eerst geluid, dan kort video. Wifi is handig voor video.”
 
-### 12:15–12:25 — Kennismaking
+### 12:25–12:45 — Stap 1: Spraakoproep (oefentaak 1–2)
 
-Voornaam + Android/iPhone. Heeft u al een WhatsApp-groep (familie)?
+Telefoon-icoon → kort praten → ophangen tot belscherm weg is.
 
-### 12:25–12:50 — Stap 1: Spraakoproep (oefentaak 1 + 2)
+### 12:45–13:05 — Stap 2: Video + bediening (oefentaak 3)
 
-Open chat met begeleider of buur. Tik op het **telefoon-icoon**. Kort praten. Ophangen.  
-**Controleren:** lukte starten én stoppen?
-
-### 12:50–13:05 — Stap 2: Video-oproep (oefentaak 3)
-
-Zelfde chat → **camera/video-icoon**. Kort (30–60 sec). Ophangen.  
-Lukt camera-toestemming niet: helper of alleen meekijken.
+Camera-icoon → 30–60 sec.  
+**Laat zien:** **microfoon dempen** (icoon doorkrassen) · **camera wisselen** (voor/achter) · **ophangen**.  
+**Kort:** wifi = meestal stabiel voor video · mobiele data = kan uit uw bundel.
 
 ### 13:05–13:10 — Pauze
 
-### 13:10–13:35 — Stap 3: Groep openen (oefentaak 4)
+### 13:10–13:25 — Stap 3: Groep + deelnemers (oefentaak 4)
 
-Open een **bestaande** groep, of de oefengroep van de begeleider. Stuur: `Hallo, oefening groep.`  
-**Niet verplicht:** zelf een groep aanmaken — alleen als iemand het wil en de helper helpt.
+Open **bestaande groep** of oefengroep. Tik op **groepsnaam** bovenaan → zie **deelnemers** / ledenlijst.  
+Stuur: `Hallo, oefening groep.`
 
-### 13:35–13:45 — Afronding
+### 13:25–13:32 — Stap 4: Groep dempen (oefentaak 5)
 
-Nazorg. Volgende: C4 Privacy en fraude (kort).
+Groepsnaam → **Meldingen dempen** / Stil. Proberen — eventueel weer uit.
+
+### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 6)
+
+Spraakoproep of video (kort) → groep openen → **drie deelnemers aanwijzen** in de lijst.
+
+### 13:40–13:45 — Afronding
+
+Nazorg. Volgende: C4 Privacy en fraude.
 
 ## Als de tijd krap is
 
-Schrap video of groepen. **Niet schrappen:** spraakoproep starten en ophangen.
+Schrap video of dempen. **Niet schrappen:** spraakoproep + groep met deelnemerslijst.

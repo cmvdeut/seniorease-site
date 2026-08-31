@@ -1,94 +1,77 @@
 #!/usr/bin/env python3
-"""C1 WhatsApp berichten - telefoon/tablet."""
+"""C1 WhatsApp berichten."""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import CLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-C1-Berichten-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF("SeniorEase  |  C1 Berichten  |  Pakket C  |  v1.0",
-        package_label="Pakket C - WhatsApp")
+    pdf = CLessonPDF(
+        f"SeniorEase  |  C1 Berichten  |  Pakket C  |  {LESSON_VERSION}",
+        package_label="Pakket C - WhatsApp",
+    )
     pdf.alias_nb_pages()
 
     pdf.cover(
         "C1 - Berichten sturen",
         "Lesmiddag 90 minuten",
-        "Op het eigen toestel: WhatsApp openen, een gesprek starten, een tekstbericht "
-        "sturen. Fotos komen in les C2. Geen bord, geen presentatie.",
+        "WhatsApp openen, bericht sturen, typefout corrigeren, emoji, vinkjes begrijpen, "
+        "lezen en beantwoorden, bericht verwijderen. Fotos in C2. Geen bord.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op het toestel)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
+            "Versie 1.1 - augustus 2026",
             "Gids: seniorease.nl/uitleg/whatsapp-basis",
             "Pakket C (4 lessen): EUR 19,95",
         ],
-    )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(
-        0,
-        5,
-        "Toon: volwassen, rustig. Kijken, doen, controleren, pauzeren. Geen tempo.",
     )
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
     pdf.rollen_docent_helper()
-    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Telefoon of tablet  |  Geen bord/beamer")
+    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Telefoon of tablet")
 
     pdf.h2("Wat deelnemers na afloop kunnen")
     for i, t in enumerate(
         [
-            "WhatsApp openen",
-            "Een gesprek openen of starten",
-            "Een tekstbericht sturen",
-            "Zien of het bericht is verzonden",
+            "WhatsApp openen; gesprek starten of openen",
+            "Bericht sturen; typefout corrigeren; emoji",
+            "Vinkjes begrijpen (blauw = leesbewijzen aan)",
+            "Ontvangen bericht lezen en beantwoorden",
+            "Bericht kort verwijderen (oefenbericht)",
+            "Zelfstandig: gesprek - sturen - antwoord",
         ],
         1,
     ):
         pdf.numbered(i, t)
 
-    pdf.h2("Wat u niet doet")
-    pdf.bullet("Geen fotos (C2)")
-    pdf.bullet("Geen groepen, status of videobellen (C3)")
-    pdf.bullet("Geen nieuw account tenzij helper 1-op-1")
-    pdf.bullet("Geen computer, bord of presentatie")
-
-    pdf.h2("Voorbereiding")
-    pdf.bullet("Wifi op A4; uw nummer op A4")
-    pdf.bullet("WhatsApp op uw telefoon klaar")
-    pdf.bullet("Helper: installeren en Android/iPhone")
+    pdf.h2("Vinkjes - kort")
+    pdf.bullet("Een grijs = verzonden")
+    pdf.bullet("Twee grijs = afgeleverd")
+    pdf.bullet("Twee blauw = gelezen (alleen als leesbewijzen aan staan)")
 
     pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Wifi. Heeft u WhatsApp? Zo niet: helper. Welkom: vandaag een bericht sturen.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam + Android/iPhone. Geen bankgegevens via WhatsApp.")
-    pdf.h3("12:25-12:40 - Stap 1: openen (oefentaak 1)")
-    pdf.body("Groene icoon. Chatlijst zichtbaar?")
-    pdf.h3("12:40-13:00 - Stap 2: gesprek (oefentaak 2)")
-    pdf.body("Bestaande chat of nieuw naar begeleider/buur. Nog niet typen.")
-    pdf.h3("13:00-13:05 - Pauze")
-    pdf.h3("13:05-13:30 - Stap 3: bericht (oefentaak 3)")
-    pdf.body('Typ: "Hallo, dit is een oefening van de lesmiddag." Verstuurknop (pijl).')
-    pdf.h3("13:30-13:40 - Stap 4: controleren (oefentaak 4)")
-    pdf.body("Vinkjes / verzonden. Eventueel kort antwoord lezen.")
-    pdf.h3("13:40-13:45 - Afronding")
-    pdf.body("Nazorg. Volgende: C2.")
+    pdf.tijdlijn_item("Openen", "")
+    pdf.tijdlijn_item("Gesprek", "")
+    pdf.tijdlijn_item("Bericht + typefout", "")
+    pdf.tijdlijn_item("Emoji", "")
+    pdf.tijdlijn_item("Vinkjes", "")
+    pdf.tijdlijn_item("Lezen/beantwoorden", "")
+    pdf.tijdlijn_item("Verwijderen", "")
+    pdf.tijdlijn_item("Eindopdracht", "")
 
     pdf.h2("Als de tijd krap is")
-    pdf.bullet("Schrap oefentaak 4")
-    pdf.bullet("Niet schrappen: openen, gesprek, bericht sturen")
+    pdf.bullet("Schrap emoji of verwijderen")
+    pdf.bullet("Niet schrappen: sturen, vinkjes, beantwoorden, eindopdracht")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -101,83 +84,55 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket C  -  telefoon of tablet")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket C  -  {LESSON_VERSION}")
     pdf.ln(2)
 
     pdf.h2("Wat u vandaag oefent")
     pdf.numbered(1, "WhatsApp openen")
-    pdf.numbered(2, "Een gesprek openen")
-    pdf.numbered(3, "Een tekstbericht sturen")
-    pdf.numbered(4, "Controleren of het is verzonden")
+    pdf.numbered(2, "Gesprek openen")
+    pdf.numbered(3, "Bericht sturen + typefout")
+    pdf.numbered(4, "Emoji")
+    pdf.numbered(5, "Vinkjes")
+    pdf.numbered(6, "Lezen en beantwoorden")
+    pdf.numbered(7, "Zelfstandig")
 
-    pdf.h2("Stappen")
-    pdf.numbered(1, "Groene icoon - WhatsApp")
-    pdf.numbered(2, "Tik op een naam (of nieuw gesprek)")
-    pdf.numbered(3, "Typ in het witte vak - tik op de pijl")
-
-    pdf.h2("Oefenzin")
-    pdf.quote("Hallo, dit is een oefening van de lesmiddag.")
-
-    pdf.box(
-        "Onthoud",
-        ["Nooit bankgegevens of wachtwoorden via WhatsApp sturen."],
-    )
+    pdf.box("Onthoud", ["Nooit bankgegevens via WhatsApp. Blauwe vinkjes = leesbewijzen."])
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.muted("Op uw eigen telefoon of tablet.")
+    pdf.muted(f"Versie {LESSON_VERSION.lstrip('v')}.")
 
-    pdf.h2("Oefentaak 1 - WhatsApp openen")
-    pdf.numbered(1, "Zoek het groene icoon.")
-    pdf.numbered(2, "Tik erop.")
-    pdf.body("Klaar als: u de chatlijst ziet.")
-
-    pdf.h2("Oefentaak 2 - Gesprek openen")
-    pdf.numbered(1, "Tik op een bekende naam - of nieuw gesprek naar de begeleider (nummer op A4).")
-    pdf.numbered(2, "U ziet het typvak onderaan.")
-    pdf.body("Klaar als: u een open gesprek ziet.")
-
-    pdf.h2("Oefentaak 3 - Bericht sturen")
-    pdf.numbered(1, "Tik in het typvak.")
-    pdf.numbered(2, 'Typ: Hallo, dit is een oefening van de lesmiddag.')
-    pdf.numbered(3, "Tik op de verstuurknop (pijl).")
-    pdf.body("Klaar als: uw bericht rechts in de chat staat.")
-
-    pdf.h2("Oefentaak 4 - Controleren")
-    pdf.numbered(1, "Kijk naar vinkjes of verzonden.")
-    pdf.numbered(2, "Optioneel: lees een kort antwoord.")
-    pdf.body("Klaar als: u ziet dat het bericht is weggegaan.")
-
-    pdf.h2("Android / iPhone (helper)")
-    pdf.bullet("Nieuwe chat: Android vaak rechtsonder; iPhone vaak rechtsboven")
-    pdf.bullet("Geen WhatsApp: Play Store of App Store - helper 1-op-1")
+    for title, body in [
+        ("Oefentaak 1 - WhatsApp openen", "Groene icoon - chatlijst."),
+        ("Oefentaak 2 - Gesprek openen", "Juiste naam bovenaan."),
+        ("Oefentaak 3 - Bericht + typefout", "Zin typen - fout - wissen - versturen."),
+        ("Oefentaak 4 - Emoji", "Smiley - kiezen - versturen."),
+        ("Oefentaak 5 - Vinkjes", "Een/twee grijs; blauw = leesbewijzen."),
+        ("Oefentaak 6 - Lezen en beantwoorden", "Antwoord lezen - kort reageren."),
+        ("Oefentaak 7 - Verwijderen", "Lang indrukken - Verwijder voor mij (oefenbericht)."),
+        ("Oefentaak 8 - Zelfstandig", "Gesprek - sturen - antwoord."),
+    ]:
+        pdf.h2(title)
+        pdf.body(body)
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
-        "Geen bord of beamer nodig",
-        "Wifi-wachtwoord op A4",
-        "Begeleider-nummer op A4",
+        "Wifi + begeleider-nummer op A4",
         "WhatsApp op begeleider-telefoon werkt",
         "8-10x deelnemerskaart en oefentaken",
-        "8-10x nazorgkaart",
-        "Helper aanwezig",
+        "Helper voor installeren/Android-iPhone",
     ]:
         pdf.check(t)
 
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "WhatsApp openen - gesprek kiezen - typen - pijl om te versturen.",
-            "Nooit bankgegevens via WhatsApp.",
+            "WhatsApp - gesprek - typen - pijl. Emoji via smiley.",
+            "Vinkjes: blauw alleen met leesbewijzen aan.",
             "seniorease.nl/uitleg/whatsapp-basis",
             "Volgende les: C2 Fotos en documenten.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

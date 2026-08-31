@@ -2,11 +2,11 @@
 
 **Pakket G — AI voor dagelijks gebruik** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Na G1 of vergelijkbaar — eerste echte chat-oefening  
+**Doelgroep:** Na G1 — eerste echte chat-oefening  
 **Gids:** https://www.seniorease.nl/wat-is-ai/chatgpt  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** telefoon, tablet of computer + wifi  
-**Zaal:** geen bord/beamer — voordoen op eigen toestel
+**Zaal:** **Inclusief beamerpresentatie voor de begeleider.** Deelnemers oefenen daarna op hun eigen toestel. Print altijd meenemen.
 
 ---
 
@@ -14,38 +14,37 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | URL tonen, tempo bepalen, voorbeeldvragen voorlezen |
-| **Helper (vrijwilliger)** | 1-op-1 bij inlogscherm, typvak, versturen-knop |
-
-**Bent u zelf ook senior?** Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+| **Begeleider (docent)** | Live demo op beamer: gesprek met vervolgvragen |
+| **Helper (vrijwilliger)** | 1-op-1 bij typvak, versturen, inloggen |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **AI-chat** openen (begeleider kiest: ChatGPT, Gemini of Copilot)  
-2. Een **vraag typen** en op Enter / versturen  
-3. Het **antwoord lezen**  
-4. Een **nieuw gesprek** starten  
+1. Een **AI-chat** openen  
+2. **Vraag → antwoord lezen → vervolgvraag → antwoord aanpassen**  
+3. Weten: in **hetzelfde gesprek** onthoudt AI de context  
+4. Verschil: **verder praten** vs **nieuw gesprek**  
+5. Verstuurknop herkennen; antwoord afwachten (of stoppen)  
+6. **Zelfstandig** een kort gesprek met twee vervolgvragen  
+7. Optioneel: **spraak** invoeren (bonus)  
 
 ## Wat u níet doet
 
-- Geen account **klassikaal** aanmaken (1-op-1 met helper als deelnemer wil)  
-- Geen persoonlijke gegevens intypen (BSN, wachtwoord, bank, medisch)  
-- Geen diepe prompt-techniek (dat is G3)  
-- Geen paniek als de site Engels is — typ gewoon Nederlands  
+- Geen geheimen / persoonsgegevens  
+- Geen account klassikaal  
+- Geen diepe “prompt”-theorie (G3)  
 
 ## Voorbereiding
 
-- [ ] **Start-URL** op A4 (één site voor de hele groep: `chatgpt.com` of `gemini.google.com`)  
-- [ ] Wifi + wachtwoord op A4  
-- [ ] Eigen toestel getest: site laadt? Chat zichtbaar zonder login?  
-- [ ] Deelnemerskaarten + oefentaken  
-- [ ] Optioneel: deelnemers hebben G1 gedaan (appeltaart-proef) — zo niet, kort herhalen wat AI is  
+- [ ] Beamer-PDF G2  
+- [ ] AI-URL op A4  
+- [ ] Wifi + print  
+- [ ] Demo getest: erwtensoep → 2 personen → boodschappenlijst  
 
 ## Didactiek
 
-Kijken → Doen → Controleren → Pauzeren.
+**Kijken op de beamer → zelf doen → samen controleren → volgende stap.**
 
 ---
 
@@ -53,55 +52,49 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag gaat u zelf chatten met AI. Eén site, rustig tempo. Geen geheimen intypen — geen wachtwoord, geen BSN.”
+**Zegt u:** “Vandaag chatten we echt. Eerst kijk ik op de beamer hoe één gesprek verder gaat. Daarna doet u het zelf.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam. Telefoon, tablet of computer? Heeft u G1 gedaan of al eens geprobeerd?
+Voornaam. Telefoon, tablet of computer?
 
-### 12:25–12:45 — Stap 1: AI openen (oefentaak 1)
+### 12:25–12:40 — Beamer + openen (oefentaak 1)
 
-**Kijken:** begeleider toont URL op A4 en op eigen scherm.  
-**Doen:** iedereen opent dezelfde site.  
-**Controleren:** helper — chatvenster of startscherm zichtbaar?  
-Inloggen mag overslaan; meekijken bij buur is OK.
+URL openen. Typvak. **Verstuurknop** (pijl). Wachten op antwoord.
 
-### 12:45–13:05 — Stap 2: Eerste vraag (oefentaak 2)
+### 12:40–13:00 — Beamerdemo: gesprek met context (oefentaak 2)
 
-**Kijken:** begeleider typt: `Leg wifi uit in eenvoudige taal voor een beginner.`  
-**Doen:** iedereen dezelfde vraag — versturen — antwoord lezen.  
-**Pauzeren:** wacht tot driekwart een antwoord ziet.
+**Live op beamer:**
 
-### 13:05–13:10 — Pauze
+1. `Geef mij een eenvoudig recept voor erwtensoep.`  
+2. (zelfde gesprek) `Maak het voor 2 personen.`  
+3. `Maak een boodschappenlijstje.`  
 
-### 13:10–13:30 — Stap 3: Eigen vraag (oefentaak 3)
+**Zegt u:** “AI onthoudt binnen dit gesprek wat u eerder vroeg. Dat doet Google zo niet.”
 
-**Doen:** deelnemer kiest iets praktisch, bijv.:
+**Doen:** deelnemers herhalen dezelfde drie stappen.
 
-- `Recept voor Hollandse erwtensoep voor 4 personen`  
-- `Weer morgen in [plaats]`  
-- `Wat is WhatsApp in het kort?`
+### 13:00–13:05 — Pauze
 
-Geen persoonlijke gegevens. Lees antwoord rustig.
+### 13:05–13:20 — Verder praten vs nieuw gesprek (oefentaak 3)
 
-### 13:30–13:40 — Stap 4: Nieuw gesprek (oefentaak 4)
+**Beamer:** toon **Nieuw gesprek** / +.  
+In nieuw gesprek bestaat de erwtensoep-context niet meer.  
+**Doen:** nieuw gesprek starten.
 
-**Kijken:** begeleider toont **Nieuw gesprek** / **+** / **New chat**.  
-**Doen:** lege chat — schone lei voor volgende les.
+### 13:20–13:32 — Eigen korte chat (oefentaak 4)
+
+Eigen onderwerp + **één vervolgvraag**. Geen geheimen.  
+Bonus: spraakknop als die er is.
+
+### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+
+Zelf: openen → vraag → vervolgvraag → nieuw gesprek.
 
 ### 13:40–13:45 — Afronding
 
-Nazorgkaart. Volgende: **G3 Goede vragen stellen**.
+Nazorg. Volgende: G3.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4. **Niet schrappen:** openen + wifi-vraag + minstens één eigen vraag.
-
-## Helper — veelvoorkomend
-
-| Situatie | Tip |
-|----------|-----|
-| Inloggen verplicht | 1-op-1; of meekijken bij buur |
-| Site in het Engels | Typ Nederlands — werkt meestal |
-| Geen antwoord | Wifi? Even wachten. Pagina verversen |
-| Verkeerde site | Terug naar URL op A4 |
+**Niet schrappen:** openen + driestaps-gesprek + verschil nieuw gesprek + eindopdracht.

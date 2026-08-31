@@ -1,67 +1,87 @@
 # Oefentaken — D1 Nepberichten
 
-Voor de deelnemer (print of achterkant van de deelnemerskaart).  
-U werkt op uw **eigen telefoon of tablet**.
+Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
-**Belangrijk:** tik vandaag **niet** op links in een bericht, tenzij de begeleider dat zegt.
+**Tik vandaag niet op links in een bericht.**
+
+**3-stappenregel:** STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.
+
+---
+
+## Vijf vragen bij een bericht
+
+1. Verwachtte ik dit bericht?  
+2. Moet ik haast maken?  
+3. Wordt om geld, gegevens, codes of inloggen gevraagd?  
+4. Moet ik via een link, QR of telefoonnummer in het bericht handelen?  
+5. Kan ik dit zelf controleren via de officiële app, website of een contactgegeven dat ik al had?
+
+Een **bekende naam of logo** in het bericht bewijst **niet** dat het echt is.  
+**Spelfouten** zijn geen betrouwbaar alarm — fraudeberichten kunnen foutloos zijn.
 
 ---
 
 ## Oefentaak 1 — Berichten openen
 
-**Doel:** de berichten-app open hebben.
-
 1. Zoek het icoon **Berichten** (soms SMS of Messages).  
 2. Tik erop.  
 3. U ziet een lijst met gesprekken.
 
-**Klaar als:** u de lijst met berichten ziet.
-
-**Lukt het niet?** Steek uw hand op. Op Android en iPhone heten de knoppen soms anders — dat is normaal.
+**Klaar als:** u de lijst ziet.
 
 ---
 
-## Oefentaak 2 — Eén bericht alleen bekijken
+## Oefentaak 2 — Alleen kijken
 
-**Doel:** een bericht lezen **zonder** ergens op te tikken.
+1. Open het **oefenbericht** van de begeleider (of één gesprek — **niet** op links tikken).  
+2. Lees de tekst. Kijk naar de afzender.  
+3. Loop de **vijf vragen** door (hardop of zacht).
 
-1. Tik op **één** gesprek (of op het oefenbericht van de begeleider).  
-2. Lees de tekst rustig.  
-3. Ziet u een blauwe of onderstreepte link? **Tik er niet op.**  
-4. Kijk samen met de begeleider naar de vijf alarmsignalen op uw deelnemerskaart.  
-5. Welke signalen ziet u in dit bericht? (mag hardop of zacht)
-
-**Klaar als:** u de tekst heeft gelezen en geen link heeft geopend.
+**Klaar als:** u heeft gelezen zonder een link te openen.
 
 ---
 
-## Oefentaak 3 — Zelf checken (browser)
+## Oefentaak 3 — Officiële route (DigiD of overheid)
 
-**Doel:** bij twijfel zelf een bekend adres typen.
+**Hoofdregel:** Onverwacht bericht over geld, gegevens of inloggen? **Niet via het bericht handelen.**
 
-1. Ga terug naar het **startscherm** van uw telefoon of tablet.  
-2. Open **Chrome** of **Safari** (internetbrowser).  
-3. Tik in de adresbalk bovenaan.  
-4. Typ precies: `digid.nl`  
-5. Open de pagina.  
-6. Kijk of in de balk echt **digid.nl** staat.
+1. **Sluit** het bericht. Ga naar het startscherm.  
+2. Open **zelf** de **DigiD-app** (als u die heeft) — **niet** via het bericht.  
+   **Of:** open Chrome/Safari en typ zelf: `digid.nl`.  
+3. Kijk of u op de echte app of het echte adres bent.
 
-**Klaar als:** u digid.nl zelf heeft getypt en geopend (geen link uit een SMS).
-
-**Tip:** zo oefent u “zelf checken” — handig bij twijfel over bank of overheid.
+**Klaar als:** u de officiële route zelf heeft geopend.
 
 ---
 
-## Apparaatverschillen (voor de helper)
+## Oefentaak 4 — Algemeen: bericht sluiten, app zelf openen
+
+1. Stel: “Uw pakket wacht — tik hier.”  
+2. **Sluit** het bericht.  
+3. Open **zelf** de officiële app (bijv. PostNL) **of** typ zelf `postnl.nl`.
+
+**Klaar als:** u het bericht heeft gesloten en zelf de officiële route heeft geopend.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Lees het oefenbericht. **Niets aanklikken.**  
+2. Beoordeel met de vijf vragen.  
+3. Open **zelf** een officiële app of typ een bekend webadres.
+
+**Klaar als:** u alle drie stappen zelf heeft gedaan.
+
+---
+
+## Apparaatverschillen (helper)
 
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
-| Berichten-app | Berichten / Messages | Berichten (groen) |
-| Browser | Vaak Chrome | Safari |
-| Adresbalk | Bovenaan in Chrome | Bovenaan of onderaan in Safari |
-| Terug naar start | Rondje of veeg omhoog | Streepje onderaan / Home |
+| Berichten | Berichten / Messages | Berichten (groen) |
+| Browser | Chrome | Safari |
+| Officiële app | Zelf zoeken op startscherm | Idem |
 
-Helper: leg niet alle verschillen klassikaal uit. Alleen bij de persoon die vastzit.
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken. Twijfel is verstandig.

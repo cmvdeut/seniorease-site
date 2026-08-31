@@ -81,6 +81,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/animaties', 0.6),
     ...animatieSlugs.map((slug) => entry(`/animaties/${slug}`, 0.5)),
     entry('/contact', 0.6),
+    entry('/oefenen/formulier', 0.4),
     entry('/over-ons', 0.7, 'yearly'),
     entry('/hulp', 0.7),
     entry('/zo-werkt-het', 0.7),

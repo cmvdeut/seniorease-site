@@ -1,12 +1,11 @@
 # Draaiboek — D2: Phishing, links en QR-codes
 
-**Pakket D — Veilig online** · Versie 1.3  
+**Pakket D — Veilig online** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
 **Doelgroep:** Mensen die op telefoon of tablet surfen en soms QR scannen  
 **Gids:** https://www.seniorease.nl/uitleg/veiligheid  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet (geen computer in deze les)  
-**Zaal:** geen bord, beamer of presentatie nodig — alleen prints + telefoon van de begeleider
+**Apparaat:** eigen telefoon of tablet  
 
 ---
 
@@ -14,43 +13,42 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen |
+| **Helper (vrijwilliger)** | 1-op-1 bij vastlopers |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+**Toon:** rustig. Twijfel is reden om te stoppen.
 
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+---
+
+## SeniorEase 3-stappenregel
+
+**STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.**
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. De browser openen en een adres **zelf typen**  
-2. In de adresbalk zien of het adres klopt  
-3. Een link in een bericht **bekijken zonder te openen**  
-4. Een QR van de begeleider veilig scannen — en weten wanneer ze dat **niet** doen  
+1. Een webadres **zelf typen** en in de adresbalk controleren  
+2. De **echte domeinnaam** herkennen (niet de eerste woorden van een lange link)  
+3. Een link in een bericht **niet openen** bij twijfel  
+4. Een QR scannen: **eerst het adres/betaalscherm bekijken**, daarna pas verder  
+5. Weten: scannen betekent **niet** dat de bestemming betrouwbaar is  
+6. **Zelfstandig:** adres zelf typen → voorbeeld-domein beoordelen → QR-regel toepassen  
 
-## Wat u níet doet in deze les
+## Wat u níet doet
 
-- Geen verdachte of onbekende links openen  
-- Geen QR van een briefje op de deur / auto “ter oefening” scannen  
+- Geen verdachte links openen; geen werkende nep-links  
+- Geen **lang indrukken** als verplichte oefening (werkt niet overal hetzelfde; per ongeluk openen)  
+- Geen woorden als *secure*, *check* of *veilig-inloggen* als automatisch bewijs van nep  
 - Geen bank inloggen  
-- Geen computer/pc  
-- Geen bord of PowerPoint vereisen  
 
 ## Voorbereiding
 
-- [ ] Wifi-wachtwoord op een **A4** (tafel of deur)  
-- [ ] Eigen telefoon klaar om voor te doen  
-- [ ] **Voorbeeldkaart echt/nep** printen (staat in de PDF): `digid.nl` = goed · `digid-check-nu.net` = niet openen  
-- [ ] **Eén veilige QR** printen → naar `https://www.seniorease.nl/uitleg/veiligheid`  
-- [ ] Deelnemerskaarten + oefentaken uitgedeeld  
-
-**Geen bord / beamer / presentatie.** U houdt de voorbeeldkaart of uw telefoon omhoog.
-
-## Didactiek
-
-Kijken → Doen → Controleren → Pauzeren (zoals WhatsApp / D1).
+- [ ] Wifi op A4  
+- [ ] Voorbeeldkaart **domeinnamen** (geen klikbare nep-links):  
+      `iets.digid.nl` → relevant is **digid.nl**  
+      `digid.nl.nepsite.com` → de echte site is **nepsite.com**  
+- [ ] **Eén veilige QR** naar seniorease.nl/uitleg/veiligheid  
 
 ---
 
@@ -58,46 +56,41 @@ Kijken → Doen → Controleren → Pauzeren (zoals WhatsApp / D1).
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:**  
-“Welkom. Vandaag oefenen we links en QR-codes op uw telefoon of tablet. We typen zelf veilige adressen. Verdachte links openen we niet.”
+**Zegt u:** “Vandaag: zelf typen, de echte website herkennen, en bij QR eerst kijken waar u terechtkomt.”
 
-### 12:15–12:25 — Kennismaking
+### 12:15–12:25 — Kennismaking + 3-stappenregel
 
-Voornaam + Android of iPhone. Afspraken: één stap tegelijk; hand opsteken; geen vreemde links aanklikken.
+### 12:25–12:40 — Stap 1: Zelf typen (oefentaak 1)
 
-### 12:25–12:35 — Wat is phishing? (kort)
+Browser → zelf `digid.nl` → kijk in de adresbalk.
 
-In gewone taal: iemand lokt u naar een valse site. Voorbeelden: “rekening geblokkeerd”, “pakket wacht”.  
-Daarna meteen doen — niet lang praten.
+### 12:40–13:00 — Stap 2: Echte domeinnaam (oefentaak 2)
 
-### 12:35–12:55 — Stap 1: Adres zelf typen (oefentaak 1)
+Toon de voorbeeldkaart (alleen kijken, niets openen dat nep is).  
+**Zegt u:** “Kijk naar het **laatste deel** van de naam vóór .nl of .com. Bij `digid.nl.nepsite.com` bent u op **nepsite.com** — niet bij DigiD.”  
+Typ zelf `postnl.nl` en check de balk.
 
-**Kijken:** browser openen, adresbalk, typen (op uw telefoon, omhoog).  
-**Doen:** iedereen typt `digid.nl` en kijkt of dat in de balk staat.  
-**Controleren:** helper loopt rond.
+### 13:00–13:05 — Pauze
 
-### 12:55–13:10 — Stap 2: Echt vs nep + tweede adres (oefentaak 2)
+### 13:05–13:20 — Stap 3: Link in bericht — niet openen (oefentaak 3)
 
-Toon de **voorbeeldkaart** (A4): `digid.nl` = goed · `digid-check-nu.net` = niet openen.  
-**Doen:** typ zelf ook `postnl.nl`. Vergelijk met de voorbeeldkaart (alleen kijken, nep niet openen).
+Bij twijfel: **niet tikken**. Bericht wegleggen. Zelf een bekend adres typen.  
+Helper mag 1-op-1 tonen hoe een link eruitziet — **niet** de groep verplicht lang indrukken.
 
-### 13:10–13:15 — Pauze
+### 13:20–13:32 — Stap 4: QR (oefentaak 4)
 
-### 13:15–13:30 — Stap 3: Link in een bericht — niet openen (oefentaak 3)
+Scan **alleen** de QR van de begeleider.  
+**Regel:** scan → **kijk eerst** welk adres of betaalscherm verschijnt → **controleer** → pas daarna verder.  
+**Zegt u:** “Een QR op een rekening, parkeerautomaat of poster kan **vervangen** zijn. Scannen is niet automatisch veilig.”
 
-**Kijken:** in SMS/WhatsApp een link **lang indrukken** om te zien waar die naartoe lijkt te gaan — **niet openen** als het vreemd is.  
-**Doen:** open een oud bericht mét link, of een oefenbericht van de begeleider. Als er geen link is: begeleider toont op eigen telefoon.  
-**Regel:** twijfel → niet openen → zelf typen.
+### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
 
-### 13:30–13:40 — Stap 4: QR van de begeleider (oefentaak 4)
-
-**Doen:** scan **alleen** de QR die de begeleider heeft gemaakt (SeniorEase).  
-**Zegt u:** “QR van een onbekend briefje of auto: niet scannen. Alleen als u weet wie hem neerzette.”
+Zelf een bekend adres typen → op de voorbeeldkaart een domein aanwijzen → QR-regel in eigen woorden.
 
 ### 13:40–13:45 — Afronding
 
-Nazorgkaart. Volgende: D3 WhatsApp- en sms-fraude.
+Volgende: D3 WhatsApp- en sms-fraude.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 3 of 4. **Niet schrappen:** zelf typen + QR-regel.
+Schrap tweede typed adres. **Niet schrappen:** domeinnaam + QR-regel + eindopdracht.

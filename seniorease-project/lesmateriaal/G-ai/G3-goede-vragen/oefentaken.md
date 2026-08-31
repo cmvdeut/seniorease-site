@@ -1,64 +1,58 @@
 # Oefentaken — G3 Goede vragen stellen
 
-Open dezelfde AI-chat als in G2. Geen persoonlijke gegevens typen.
+Open dezelfde AI-chat als in G2. Geen persoonlijke gegevens.
+
+**Methode:** Wat wilt u? + belangrijke informatie + hoe wilt u het antwoord?
 
 ---
 
 ## Oefentaak 1 — Een duidelijke vraag
 
-**Doel:** specifiek vragen — niet vaag.
+1. Typ bijvoorbeeld:  
+   `Schrijf een vriendelijke WhatsApp om mijn buurvrouw te bedanken voor het water geven van de planten. Maximaal 4 zinnen.`  
+   Of:  
+   `Leg in maximaal 5 korte zinnen uit wat wifi is, voor iemand die net begint.`  
+2. Versturen. Lees het antwoord.
 
-1. Open uw AI-chat.  
-2. Typ:  
-   `Leg in maximaal 5 korte zinnen uit wat wifi is, voor iemand van 70 die net begint.`  
-3. Versturen. Lees het antwoord.
-
-**Klaar als:** u een begrijpelijk antwoord ziet.
-
-**Tip:** *wie* (beginner van 70), *wat* (wifi), *hoe kort* (5 zinnen) — dat helpt AI.
+**Klaar als:** u een bruikbaar antwoord ziet.
 
 ---
 
-## Oefentaak 2 — Vervolgvraag
+## Oefentaak 2 — Vervolgvragen (belangrijk)
 
-**Doel:** bijsturen als het antwoord te moeilijk is.
+In **hetzelfde gesprek**, probeer minstens **drie** van deze:
 
-1. In **hetzelfde gesprek**, typ:  
-   `Leg het nog simpeler uit, alsof u tegen mijn kleinkind praat.`  
-2. Versturen. Vergelijk met het eerste antwoord.
+- `Korter.`  
+- `Iets vriendelijker.`  
+- `Geef een voorbeeld.`  
+- `Maak er 5 stappen van.`  
+- `Ik begrijp stap 3 niet. Leg die nog eens uit.`  
+- `Leg het nog eenvoudiger uit, zonder moeilijke woorden.`
 
-**Klaar als:** u een tweede, eenvoudiger antwoord heeft gelezen.
+**Klaar als:** u drie vervolgen heeft gedaan en het verschil ziet.
 
 ---
 
-## Oefentaak 3 — Drie soorten vragen
+## Oefentaak 3 — Drie soorten hulp
 
-**Doel:** verschillende soorten hulp proberen.
-
-Stel **drie** vragen (elk apart versturen):
+Stel **drie** vragen (elk apart of in nieuw gesprek):
 
 1. **Uitleg:** `Wat is een QR-code? Kort antwoord.`  
-2. **Stappenplan:** `Geef 4 stappen om een foto te maken met een smartphone.`  
+2. **Stappen:** `Geef 4 stappen om een foto te maken met een smartphone.`  
 3. **Tekst:** `Schrijf een korte vriendelijke sms dat ik later kom (2 zinnen).`
 
-**Klaar als:** u drie antwoorden heeft gezien.
+**Klaar als:** u drie antwoorden heeft.
 
 ---
 
-## Oefentaak 4 — Uw eigen praktische vraag
+## Oefentaak 4 — Zelfstandig (eindopdracht)
 
-**Doel:** iets bedenken dat u echt wilt weten.
+1. Bedenk iets praktisch met de methode (wat + info + hoe).  
+2. Versturen.  
+3. Stel **twee vervolgvragen** (bijv. korter + zonder moeilijke woorden).
 
-1. Bedenk iets praktisch — **geen** BSN, medisch, bank of wachtwoord.  
-   Bijvoorbeeld:  
-   - `Recept voor pannenkoeken voor 2 personen`  
-   - `3 tips voor tomaten in de moestuin`  
-   - `Schrijf een korte bedank-sms voor een verjaardagskaart`  
-2. Typ uw vraag. Versturen.  
-3. Lees kritisch: zou u dit antwoord **vertrouwen** zonder na te denken?
-
-**Klaar als:** u uw eigen vraag heeft gesteld.
+**Klaar als:** u vraag + twee vervolgen zelf heeft gedaan.
 
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe.
+**Vast?** Hand opsteken.

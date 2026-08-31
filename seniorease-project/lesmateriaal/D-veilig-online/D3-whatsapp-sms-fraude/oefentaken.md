@@ -2,64 +2,68 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
-**Belangrijk:** geen geld overmaken. Tik niet op verdachte links.
+**Geen geld overmaken. Geen verdachte links. Geen scherm delen.**
+
+**3-stappenregel:** STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.
+
+**Hoofdregel:** Geld, code, haast of geheimhouding? Stop en controleer via een contactgegeven dat u **zelf al had**.
 
 ---
 
-## Oefentaak 1 — Oefenbericht in WhatsApp
+## Oefentaak 1 — Familie-oefening
 
-**Doel:** een verdacht verzoek herkennen in WhatsApp.
+1. Open **WhatsApp** (of lees de A4 van de begeleider).  
+2. Lees het oefenbericht: nieuw nummer + geld + geheim.  
+3. Tik **niet** op links. Maak **niets** over.
 
-1. Open **WhatsApp**.  
-2. Open het **oefenbericht** van de begeleider  
-   (of lees de scenario-A4 die de begeleider toont).  
-3. Lees de tekst. Tik **niet** op links.  
-4. Welke signalen ziet u? (nieuw nummer? geld? “vertel het niet”?)
+**Klaar als:** u het bericht heeft gelezen en gestopt.
 
-**Klaar als:** u het bericht heeft gelezen en geen geld heeft overgemaakt.
-
-**Geen WhatsApp?** Steek uw hand op — u doet mee met de A4.
+**Geen WhatsApp?** Meedoen met de A4.
 
 ---
 
-## Oefentaak 2 — Bekend contact zoeken
+## Oefentaak 2 — Zelf terugbellen
 
-**Doel:** weten welk nummer u wél mag gebruiken bij twijfel.
+1. Open **Contacten**. Zoek iemand die u **al kende**.  
+2. Zeg hardop of zacht: **“Ik bel u zelf terug via het officiële nummer.”**  
+3. Bij banktwijfel: open **zelf** de **officiële bank-app**, of typ zelf de website van uw bank.  
+   Gebruik een nummer dat u **al had opgeslagen** of dat op de **officiële site/app** staat.  
+   (Niet elk bankpasje toont een bruikbaar nummer — dat is geen vaste methode.)
 
-1. Open **Contacten** of het **telefoonboek**.  
-2. Zoek iemand die u al lang kent (familie of vriend).  
-3. Open dat contact. Kijk naar het nummer.  
-4. Onthoud: bij een rare WhatsApp belt of appt u **dit** nummer — niet een “nieuw nummer” uit het bericht.
-
-**Klaar als:** u een bekend contact op het scherm heeft.
-
-**Optioneel:** stuur die persoon: `Alles goed? Even een oefening van de les.` — alleen als u wilt.
+**Klaar als:** u de zin heeft gezegd en een officiële route heeft aangewezen.
 
 ---
 
-## Oefentaak 3 — SMS alleen bekijken
+## Oefentaak 3 — Nep-bankmedewerker / helpdesk
 
-**Doel:** een sms lezen zonder op een link te tikken.
+Lees het tweede oefenbericht: “Ik ben van de bank. Installeer deze app / deel uw scherm. Snel.”
 
-1. Open **Berichten** (SMS).  
-2. Open één bericht (eigen inbox of oefenbericht).  
-3. Ziet u een link? **Tik er niet op.**  
-4. Ziet u druk of een bank/pakket-verhaal? Noem het hardop of zacht.
+1. Welke signalen? (haast, software, scherm delen, onverwachte beller)  
+2. Wat doet u? **Ophangen.** Geen software. Geen scherm delen.  
+3. Zeg: **“Ik bel u zelf terug via het officiële nummer.”**  
+4. Open zelf de bank-app of typ zelf de bank-site.
 
-**Klaar als:** u de tekst heeft gelezen zonder een link te openen.
+**Klaar als:** u weet: nooit installeren of scherm delen op verzoek van een onverwachte beller.
 
 ---
 
-## Oefentaak 4 — Wat zegt u?
+## Oefentaak 4 — SMS alleen bekijken
 
-**Doel:** één rustige zin paraat hebben.
+1. Open **Berichten**.  
+2. Lees één bericht. Ziet u een link? **Tik er niet op.**
 
-1. Lees hardop of zacht:  
-   **“Ik bel je even op het nummer dat ik al had.”**  
-2. Ga terug naar het **startscherm**.  
-3. Leg het rare bericht weg (niet beantwoorden met geld of codes).
+**Klaar als:** u heeft gelezen zonder te klikken.
 
-**Klaar als:** u de zin een keer heeft gezegd of gelezen.
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Beoordeel één oefenbericht (familie of helpdesk).  
+2. Stop — niet betalen, niet klikken, niet installeren.  
+3. Zeg de terugbelzin.  
+4. Open zelf een bekend contact of de officiële bank-app/site.
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
 
 ---
 
@@ -69,8 +73,8 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 |----------|---------|----------------|
 | WhatsApp | Groen icoon | Groen icoon |
 | Contacten | Contacten / Telefoon | Contacten |
-| SMS | Berichten | Berichten |
-| Geen WhatsApp | Scenario-A4 + SMS-oefening | Idem |
+| Geen WhatsApp | Scenario-A4 | Idem |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken. Twijfel is verstandig.

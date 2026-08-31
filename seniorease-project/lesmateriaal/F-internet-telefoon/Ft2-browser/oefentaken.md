@@ -4,76 +4,72 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**. Wifi aan.
 
 ---
 
-## Oefentaak 1 — Een website openen
-
-**Doel:** een adres zelf typen (niet via Google).
+## Oefentaak 1 — Zoeken of adres typen?
 
 1. Open **Chrome** of **Safari**.  
-2. Tik in de **adresbalk** bovenaan (waar een webadres staat).  
-3. Typ: `seniorease.nl`  
-4. Tik op **Enter** of **Ga** op het toetsenbord.  
-5. Wacht tot de pagina laadt.
+2. Tik in de **adresbalk**. Typ: `seniorease.nl` — Ga / Enter.  
+3. Kijk in de adresbalk: staat er **seniorease.nl**? Dan weet u op welke website u bent.  
+4. Onthoud: via Google *zoekt* u; via de adresbalk *typt u het adres* van een site die u al kent.
 
-**Klaar als:** u de SeniorEase-website ziet.
-
-**Tip:** u hoeft geen `https://` te typen — alleen het adres is genoeg.
+**Klaar als:** u seniorease.nl heeft geopend en de adresbalk heeft gecontroleerd.
 
 ---
 
-## Oefentaak 2 — Terug en vooruit
+## Oefentaak 2 — Link openen en terug
 
-**Doel:** tussen pagina’s navigeren zonder opnieuw te zoeken.
+1. Tik op **één link** op de pagina.  
+2. Kijk opnieuw in de **adresbalk**.  
+3. Tik de **pijl terug** (Chrome vaak linksboven; Safari soms linksonder of linksboven).  
+4. Probeer eventueel **vooruit** (niet altijd zichtbaar).
 
-1. Op seniorease.nl: tik op **één link** (bijv. Digitale hulp of Contact).  
-2. Kijk of u op een andere pagina bent.  
-3. Tik op de **pijl terug** (linksboven in de browser).  
-4. U bent weer op de vorige pagina.  
-5. Ziet u een **pijl vooruit**? Probeer die ook (niet op elk toestel zichtbaar).
-
-**Klaar als:** u terug bent gegaan met de pijl terug.
+**Klaar als:** u terug bent gegaan met de pijl.
 
 ---
 
-## Oefentaak 3 — Tabbladen openen en wisselen
+## Oefentaak 3 — Nieuw tabblad en wisselen
 
-**Doel:** twee websites tegelijk open hebben.
+1. Open het **tabblad-overzicht** (Chrome: vaak vierkantje met cijfer; Safari: vaak twee vierkantjes).  
+2. Tik op **+** voor een **nieuw tabblad**.  
+3. Typ: `weer.nl` of `nos.nl` — Ga.  
+4. Wissel terug naar **seniorease.nl**. Wissel nog een keer.
 
-1. Zoek het **tabblad-icoon** (vaak een vierkantje met cijfer, of twee overlappende vierkantjes).  
-2. Tik op het **plusje** (+) voor een **nieuw tabblad**.  
-3. Typ in de adresbalk: `weer.nl` of `nos.nl` en ga.  
-4. Wissel terug naar het tabblad met **seniorease.nl** (tik op het tabblad of op het tabblad-overzicht).  
-5. Wissel nog een keer heen en weer.
+**Lukt het niet?** Hand opsteken — de helper toont het op *uw* toestel.
 
-**Klaar als:** u twee tabbladen heeft geopend en ertussen kunt wisselen.
-
----
-
-## Oefentaak 4 — Een tabblad sluiten
-
-**Doel:** één pagina wegdoen zonder de browser te sluiten.
-
-1. Open het **tabblad-overzicht** (tabblad-icoon).  
-2. Zoek het **kruisje** op het tabblad dat u wilt sluiten (niet de grote terug-knop).  
-3. Sluit **één** tabblad — laat minstens één tabblad open.  
-4. U zit nog steeds in de browser.
-
-**Klaar als:** één tabblad is gesloten en u kunt verder surfen.
-
-**Let op:** het kruisje op het **tabblad** is iets anders dan de app helemaal afsluiten.
+**Klaar als:** u tussen twee tabbladen wisselt.
 
 ---
 
-## Apparaatverschillen (helper)
+## Oefentaak 4 — Tabblad sluiten
 
-| Situatie | Android (Chrome) | iPhone / iPad (Safari) |
-|----------|------------------|-------------------------|
-| Adresbalk | Bovenaan | Bovenaan |
-| Terug | Pijl linksboven | Pijl linksonder of linksboven |
-| Nieuw tabblad | + naast tabblad-icoon | + in tabblad-overzicht |
-| Tabbladen zien | Vierkantje met cijfer | Twee vierkantjes onderaan |
-| Tabblad sluiten | Kruisje op tabblad | Veeg weg of kruisje |
+1. Open het tabblad-overzicht.  
+2. Sluit **één** tabblad: vaak een **kruisje**, op Safari soms **wegvegen**.  
+3. Laat minstens één tabblad open — de browser blijft open.
 
-Helper: toon op uw toestel, leg niet alles klassikaal uit.
+**Klaar als:** één tabblad is gesloten en u kunt verder.
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Typ een **website** in de adresbalk.  
+2. Open een **link**. Ga **terug**.  
+3. Open een **nieuw tabblad** met een **tweede website**.  
+4. **Wissel** tussen tabbladen.  
+5. **Sluit** één tabblad.
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
+
+---
+
+## Helper
+
+| Situatie | Chrome (vaak Android) | Safari (vaak iPhone) |
+|----------|----------------------|----------------------|
+| Tabbladen | Vierkantje met cijfer | Twee vierkantjes |
+| Nieuw | + | + in overzicht |
+| Sluiten | Kruisje | Kruisje of veeg |
+| Terug | Pijl linksboven | Pijl links(onder/boven) |
+
+---
+
+**Vast?** Hand opsteken.

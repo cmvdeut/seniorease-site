@@ -1,14 +1,14 @@
-# Draaiboek — E4: Veilig omgaan met DigiD-berichten
+# Draaiboek — E4: Berichtenbox en berichten van de overheid
 
-**Pakket E — DigiD & digitale overheid** · Versie 1.0  
+**Pakket E — DigiD & digitale overheid** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die DigiD gebruiken en berichten over DigiD/overheid veilig willen beoordelen  
-**Gids:** digid.nl · mijnoverheid.nl · seniorease.nl/uitleg/veiligheid  
+**Doelgroep:** Mensen die MijnOverheid kennen en berichten praktisch willen lezen  
+**Site:** mijnoverheid.nl  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** telefoon/tablet of computer  
-**Zaal:** geen bord — scenario-A4 + veilig oefenbericht
+**Zaal:** geen bord — A4’s + voordoen
 
-**Let op:** dit sluit aan op pakket **D** (veilig online). E4 blijft bij DigiD/overheid; dieper phishing = D.
+**Positionering:** praktisch berichten lezen — **niet** opnieuw fraude-oefeningen (daarvoor: **Pakket D**).
 
 ---
 
@@ -16,39 +16,34 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider (docent)** | Stappen voorbeeld — geen persoonlijke inhoud klassikaal |
+| **Helper (vrijwilliger)** | 1-op-1 bij inloggen |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+**Afspraken:** privacy · codes niet hardop · e-mailmelding ≠ het echte bericht.
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een bericht over DigiD/Belastingdienst **beoordelen** zonder te klikken  
-2. **digid.nl** of **mijnoverheid.nl** zelf openen als check  
-3. Weten: overheid vraagt **geen** DigiD-code via WhatsApp of vreemde beller  
-4. Bij twijfel: negeren + zelf typen of IDO  
+1. **MijnOverheid** openen → **Berichtenbox** vinden  
+2. **Afzender** en **onderwerp** bekijken  
+3. Een bericht **openen** → eventuele **PDF/bijlage** herkennen  
+4. **Teruggaan** en **uitloggen**  
+5. Weten: een **e-mailmelding** is niet het bericht zelf — bij twijfel zelf **mijnoverheid.nl** openen  
+6. **Zelfstandig:** volledige route zelf doen  
 
 ## Wat u níet doet
 
-- Geen echte phishing-links openen  
-- Geen paniek of schaamte  
-- Geen volledige pakket-D-reeks  
+- Geen uitgebreide fraude-oefeningen (→ **Pakket D: Veilig online**)  
+- Geen berichten hardop voorlezen  
+- Geen phishing-links openen  
 
 ## Voorbereiding
 
 - [ ] Wifi op A4  
-- [ ] Veilig oefen-SMS/WhatsApp **zonder** gevaarlijke link, of scenario-A4  
+- [ ] mijnoverheid.nl bereikbaar  
+- [ ] Helper voor 1-op-1 login  
 - [ ] Deelnemerskaarten + oefentaken  
-
-### Voorbeeld oefenbericht (veilig)
-
-> OEFENING SeniorEase — geen echt bericht.  
-> “Uw DigiD wordt geblokkeerd. Stuur uw code naar dit nummer.”  
-> Wat doet u?
 
 ## Didactiek
 
@@ -60,34 +55,39 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag oefenen we berichten over DigiD — rustig. We klikken niet op verdachte links. Twijfel is verstandig.”
+**Zegt u:** “Vandaag oefenen we de Berichtenbox: berichten van de overheid rustig openen. Inhoud bespreken we niet in de groep. Kreeg u een e-mail? Dat is vaak alleen een melding — het echte bericht staat in MijnOverheid.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam. Weleens een rare DigiD-SMS of mail gehad? (ja/nee)
+Voornaam. Kreeg u weleens een mail over MijnOverheid? (ja/nee — geen inhoud delen)
 
-### 12:25–12:50 — Stap 1: Alarmsignalen DigiD (oefentaak 1)
+### 12:25–12:40 — Stap 1: MijnOverheid + Berichtenbox (oefentaak 1)
 
-Druk, code vragen, rare link, “Belastingdienst” via WhatsApp. Oefenbericht lezen — niet klikken.
+Typ `mijnoverheid.nl`. Optioneel inloggen 1-op-1. **Berichtenbox** vinden.
 
-### 12:50–13:05 — Stap 2: Zelf checken (oefentaak 2)
+### 12:40–13:00 — Stap 2: Bericht openen (oefentaak 2)
 
-Startscherm → browser → typ `digid.nl` of `mijnoverheid.nl`.
+**Afzender** en **onderwerp** bekijken. Eén bericht openen — alleen voor uzelf. **PDF/bijlage** herkennen (icoon, download).
 
-### 13:05–13:10 — Pauze
+### 13:00–13:05 — Pauze
 
-### 13:10–13:30 — Stap 3: Wat zegt u / wat doet u? (oefentaak 3)
+### 13:05–13:20 — Stap 3: Teruggaan + uitloggen (oefentaak 3)
 
-Zin oefenen + bekend nummer / IDO.
+Terug uit bericht. **Uitloggen**.
 
-### 13:30–13:40 — Stap 4: Eigen inbox kijken (oefentaak 4)
+### 13:20–13:32 — Stap 4: E-mailmelding ≠ bericht + korte veiligheid (oefentaak 4)
 
-SMS/mail openen — alleen kijken. Verdacht? Niet openen van links.
+Leg uit: mail/SMS “u heeft een bericht” → open zelf **mijnoverheid.nl**, klik niet op de link in de mail als u twijfelt.  
+**Kort:** geen DigiD-code via chat/beller. Meer oefenen? **Pakket D**.
+
+### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+
+Zelf: MijnOverheid → Berichtenbox → afzender/onderwerp → bericht openen → bijlage herkennen → terug → uitloggen.
 
 ### 13:40–13:45 — Afronding
 
-Nazorg. **Pakket E compleet.** Pakket D noemen voor meer veiligheid.
+Nazorg. **Pakket E compleet.** Pakket D noemen voor veilig online handelen.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4. **Niet schrappen:** oefenbericht + digid.nl typen + geen code delen.
+**Niet schrappen:** Berichtenbox-route + e-mailmelding-uitleg + eindopdracht.

@@ -1,6 +1,6 @@
 # Draaiboek — B1: Muis, toetsenbord en bureaublad
 
-**Pakket B — Computer & laptop** · Versie 1.0  
+**Pakket B — Computer & laptop** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
 **Doelgroep:** Mensen die voor het eerst of onzeker met een Windows-pc of laptop werken  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
@@ -24,10 +24,13 @@
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. De **muis** bewegen, één keer klikken en dubbelklikken  
-2. Het **toetsenbord** gebruiken om een kort woord te typen  
-3. Het **bureaublad** herkennen  
-4. Het **Start-menu** openen (Windows)  
+1. De **muis** bewegen, klikken en dubbelklikken  
+2. Het **bureaublad** herkennen en het **Start-menu** openen  
+3. Een korte **zin typen** en een fout **corrigeren** (Backspace, spatie)  
+4. **Shift** en **Caps Lock** gebruiken voor hoofdletters — en **Caps Lock herkennen** als die per ongeluk aanstaat  
+5. De **rechtermuisknop** kennen (kort: extra menu)  
+6. Een **verkeerd venster** sluiten met het kruisje  
+7. **Zelfstandig:** Start → Kladblok → zin typen → fout corrigeren → sluiten  
 
 ## Wat u níet doet
 
@@ -40,7 +43,7 @@
 
 - [ ] Pc’s/laptops aan, opgeladen, muis werkt  
 - [ ] Extra muizen meenemen (handig bij laptops met lastig touchpad)  
-- [ ] Kladblok of Word/Kladblok klaarzetten voor typ-oefening  
+- [ ] Kladblok klaarzetten voor typ-oefening  
 - [ ] Deelnemerskaarten + oefentaken  
 - [ ] Helper: touchpad vs muis; Mac apart  
 
@@ -61,24 +64,37 @@ Kijken → Doen → Controleren → Pauzeren.
 
 Voornaam. Heeft u thuis Windows of Apple? Muis of touchpad?
 
-### 12:25–12:45 — Stap 1: Muis (oefentaak 1)
+### 12:25–12:40 — Stap 1: Muis (oefentaak 1)
 
-Bewegen → pijltje op het scherm. Eén keer **linksklik**.  
-**Dubbelklik** op een icoon (bijv. Prullenbak of Deze pc — openen mag; daarna sluiten met kruisje).
+Bewegen → pijltje op het scherm. Eén keer **linksklik**. **Dubbelklik** op een icoon. Sluiten met **kruisje**.
 
-### 12:45–13:05 — Stap 2: Bureaublad + Start (oefentaak 2)
+### 12:40–12:50 — Stap 2: Bureaublad + Start (oefentaak 2)
 
 Herken bureaublad (iconen, taakbalk). Open **Start** (Windows-logo). Sluit weer.
 
+### 12:50–13:05 — Stap 3: Typen (oefentaak 3)
+
+Start → `kladblok`. Typ: `Hallo, dit is mijn oefening.` Spatiebalk, Backspace (foutje maken en corrigeren).
+
 ### 13:05–13:10 — Pauze
 
-### 13:10–13:30 — Stap 3: Toetsenbord (oefentaak 3)
+### 13:10–13:22 — Stap 4: Hoofdletters en rechtermuisknop (oefentaak 4)
 
-Open Kladblok (via Start → typ `kladblok`). Typ: `Hallo`. Spatiebalk, Backspace oefenen.
+**Shift:** houd Shift ingedrukt + letter = één hoofdletter (bijv. `H` in Hallo).  
+**Caps Lock:** lampje of icoon — alles hoofdletters. Staat alles in HOOFDLETTERS? Caps Lock nog eens indrukken om uit te zetten.  
+**Rechtermuisknop (kort):** klik **rechts** op het bureaublad — er verschijnt een **menu**. Klik ergens anders om het menu weg te doen. Geen ingewikkelde opties vandaag.
 
-### 13:30–13:40 — Stap 4: Scrollen / touchpad kort (oefentaak 4)
+### 13:22–13:28 — Stap 5: Scrollen (oefentaak 5)
 
-Muiswiel of twee vingers op touchpad. Alleen als er iets te scrollen is (Start-lijst of een geopend venster).
+Muiswiel of twee vingers op touchpad in Start-lijst of open venster.
+
+### 13:28–13:33 — Stap 6: Verkeerd venster sluiten (oefentaak 6)
+
+Open per ongeluk iets anders. Sluit met **kruisje**. Open opnieuw wat u wilde.
+
+### 13:33–13:40 — Eindopdracht zelfstandig (oefentaak 7)
+
+Iedereen **zonder voordoen:** Start → Kladblok → zin typen → fout corrigeren → Kladblok sluiten met kruisje.
 
 ### 13:40–13:45 — Afronding
 
@@ -86,4 +102,5 @@ Nazorg. Volgende: B2 Vensters en programma’s.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4. **Niet schrappen:** klikken, bureaublad, Start, kort typen.
+Schrap oefentaak 5 (scrollen) of verkort oefentaak 6.  
+**Niet schrappen:** klikken, Start, typen + Shift, verkeerd venster sluiten, eindopdracht.

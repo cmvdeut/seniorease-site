@@ -1,72 +1,83 @@
-# Oefentaken — A1 Toestel leren kennen
+# Oefentaken — A1 Ik ken mijn telefoon en durf hem te bedienen
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
 ---
 
-## Oefentaak 1 — Scherm aan en vergrendelen
+## Onthoud
 
-**Doel:** het scherm aan en weer op slot zetten.
-
-1. Druk kort op de **aan/uit-knop** aan de zijkant (of bovenkant).  
-2. Het scherm gaat aan (of u ziet het vergrendelscherm).  
-3. Ontgrendel zoals u gewend bent (code, vinger, gezicht of veeg).  
-4. Zet het scherm weer op slot met dezelfde knop (kort drukken).
-
-**Klaar als:** u het scherm aan én weer vergrendeld heeft.
-
-**Let op:** zeg uw code niet hardop. Helper mag meekijken op verzoek.
+> **Oeps, ik zit ergens waar ik niet wil zijn**  
+> U hoeft niet in paniek te raken.  
+> Ga terug naar uw startscherm.  
+> **Uw telefoon is niet kapot.**
 
 ---
 
-## Oefentaak 2 — Startscherm herkennen
+## Oefentaak 1 — Scherm aan, vergrendelen en ontgrendelen
 
-**Doel:** terug naar de iconen.
+1. Druk kort op de **aan/uit-knop**.  
+2. Ontgrendel zoals u gewend bent.  
+3. Zet het scherm weer op slot.
 
-1. Ontgrendel het toestel.  
-2. Zoek het **startscherm**: een overzicht met app-iconen.  
-3. Open per ongeluk een app? Ga terug naar start:
-   - **Android:** vaak een rondje of vierkantje onderaan, of veeg omhoog  
-   - **iPhone / iPad:** veeg omhoog vanaf de onderkant, of druk op de ronde Home-knop  
-
-**Klaar als:** u de iconen weer ziet.
+**Klaar als:** scherm aan én vergrendeld. Code niet hardop zeggen.
 
 ---
 
-## Oefentaak 3 — Scrollen / vegen
+## Oefentaak 2 — Startscherm en “Oeps, terug” *(belangrijk)*
 
-**Doel:** het scherm verschuiven zonder bang te zijn.
+1. Herken het **startscherm** (de iconen).  
+2. Open **Klok** → ga **terug**.  
+3. Open **Instellingen** → kijk kort → **wijzig niets** → ga terug.  
+4. Veeg naar een **andere pagina** van uw startscherm → ga terug.
 
-1. Op het startscherm: veeg **zacht** met één vinger omhoog of naar links.  
-2. Kijk of er meer iconen of een andere pagina verschijnt.  
-3. Veeg terug tot u weer een vertrouwd startscherm ziet.
-
-**Klaar als:** u één keer heeft geveegd en weer terug bent.
-
----
-
-## Oefentaak 4 — Eén app openen en terug
-
-**Doel:** een app openen en weer terug naar start.
-
-1. Tik op één eenvoudige app, bijvoorbeeld **Klok**, **Weer** of **Instellingen**.  
-2. Kijk kort wat u ziet. **Wijzig niets** in Instellingen.  
-3. Ga terug naar het startscherm (zoals bij oefening 2).
-
-**Klaar als:** de app open was en u weer de iconen ziet.
+**Klaar als:** u drie keer “verkeerd” bent gegaan en steeds terug bent.
 
 ---
 
-## Apparaatverschillen (helper)
+## Oefentaak 3 — Tikken, lang indrukken, vegen en scrollen
 
-| Situatie | Android | iPhone / iPad |
-|----------|---------|----------------|
-| Aan/uit | Vaak rechterzijkant | Vaak rechterzijkant |
-| Terug naar start | Rondje / vierkant / veeg omhoog | Veeg omhoog of Home-knop |
-| Te veel apps open | Recent-knop; niet verplicht vandaag | Veeg omhoog en vasthouden; niet verplicht |
-| Tablet | Zelfde idee, groter scherm | iPad: zelfde als iPhone-logica |
+1. **Tik** zacht op een icoon.  
+2. **Houd lang ingedrukt** — voel trillen of zie een menu. Laat los.  
+3. **Veeg** op het startscherm.  
+4. Open **Weer** en **scroll** een stukje.
 
-Helper: niet alle verschillen klassikaal uitleggen — alleen bij wie vastzit.
+**Klaar als:** u het verschil voelt tussen tik, lang indrukken en vegen.
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+## Oefentaak 4 — Volume en stil *(echt oefenen)*
+
+1. Druk **volume +** en **volume −**. Hoor u het verschil?  
+2. Kijk bovenin: **bel**, **trillen** of **stil**?  
+3. *(Optioneel)* Begeleider speelt kort een geluid — zet volume zachter en harder.
+
+**Klaar als:** u volume heeft **gehoord** veranderen.
+
+---
+
+## Oefentaak 5 — Meldingen en helderheid
+
+**Meldingen:** veeg vanaf boven → kijk → ga weer weg (niet alles openen).  
+**Helderheid:** Instellingen → helderheid omhoog/omlaag → terug naar start.
+
+**Klaar als:** u een melding heeft gezien en helderheid heeft aangepast.
+
+---
+
+## Oefentaak 6 — App openen, terug en wisselen
+
+1. **Klok** open → terug; **Weer** open → terug.  
+2. Open beide; **wissel** tussen apps (helper helpt).  
+3. Terug naar **startscherm**.
+
+**Klaar als:** u twee apps heeft geopend en weer bij de iconen bent.
+
+---
+
+## Oefentaak 7 — Lettergrootte *(optioneel)*
+
+Instellingen → lettergrootte groter/kleiner → terugzetten → terug.
+
+---
+
+**Vast?** Hand opsteken — de helper komt naar u toe.

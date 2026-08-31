@@ -1,11 +1,13 @@
-# Draaiboek — Fc3: Downloaden
+# Draaiboek — Fc3: Veilig downloaden en bestanden herkennen
 
 **Pakket F — Internet (computer)** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die een bestand van internet op de computer willen zetten  
+**Doelgroep:** Mensen die veilig een bestand van internet willen halen  
 **Gids:** https://www.seniorease.nl  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** computer of laptop + internet
+**Apparaat:** computer of laptop + internet (primair Windows)
+
+**Positionering:** downloaden *van internet* — mapbeheer/knippen hoort bij **pakket B3**.
 
 ---
 
@@ -13,30 +15,32 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Veilige link aanwijzen, voorbeeld op scherm |
-| **Helper (vrijwilliger)** | 1-op-1 bij Verkenner, Downloads-map, pop-ups |
-
-**Bent u zelf ook senior?** Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+| **Begeleider (docent)** | Veilige link aanwijzen, echte knop vs advertentie tonen |
+| **Helper (vrijwilliger)** | 1-op-1 bij Downloads-map en pop-ups |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **document** openen via een veilige link  
-2. Een bestand **downloaden**  
-3. Het bestand **terugvinden** in Downloads  
-4. Het bestand **opnieuw openen**  
+1. Alleen downloaden **wat u verwacht**, van een **site die u controleert**  
+2. De **echte downloadknop** herkennen versus advertentie/pop-up  
+3. Een **veilige oefendownload** doen  
+4. Het bestand **terugvinden** in Downloads en opnieuw openen  
+5. **PDF** en enkele veelvoorkomende bestandstypen herkennen  
+6. Een vreemde **virusmelding** niet aanklikken  
+7. **Zelfstandig** de veilige downloadroute doen  
 
 ## Wat u níet doet
 
 - Geen downloads van onbekende sites  
-- Geen pop-ups (“virus”, “u heeft gewonnen”) openen  
+- Geen Knippen/Plakken naar Documenten (→ **B3**)  
 - Geen printen diep (B4)  
+- Geen pop-ups openen  
 
 ## Voorbereiding
 
 - [ ] **Veilige downloadlink** klaar (PDF op seniorease.nl)  
-- [ ] **Kaart Downloads** uit PDF printen  
+- [ ] Optioneel: A4 “Downloads terugvinden”  
 - [ ] Pc's aan, internet werkt  
 
 ## Didactiek
@@ -49,37 +53,47 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Welkom. Vandaag downloaden we rustig één bestand — alleen van een link die ik aanwijs. En we zoeken het daarna terug.”
+**Zegt u:** “Vandaag downloaden we één veilig bestand. Alleen wat u verwacht, van een site die klopt. Pop-ups over een virus? Niet aanklikken.”
 
 ### 12:15–12:25 — Kennismaking
 
 Voornaam. Wel eens iets gedownload?
 
-### 12:25–12:45 — Stap 1: Document openen (oefentaak 1)
+### 12:25–12:45 — Stap 1: Veiligheidsregels + site openen (oefentaak 1)
 
-**Doen:** browser → link van begeleider → document zichtbaar?
+**Regels:**  
+1. Download alleen wat u **verwacht**.  
+2. Controleer in de **adresbalk van welke website** het komt.  
+3. Echte knop ≠ grote advertentie / pop-up.  
+4. Vreemde virusmelding → **sluiten**, niet klikken.  
 
-### 12:45–13:05 — Stap 2: Downloaden (oefentaak 2)
+**Doen:** open de veilige link van de begeleider — check adresbalk.
 
-**Kijken:** knop Downloaden of pijltje omlaag.  
-**Doen:** klik → Opslaan in Downloads.  
-**Zegt u:** “Pop-ups over een virus? Sluiten — niet klikken.”
+### 12:45–13:00 — Stap 2: Downloaden (oefentaak 2)
 
-### 13:05–13:10 — Pauze
+Echte downloadknop / pijltje. Opslaan in Downloads.  
+**Zegt u:** “Fel ‘Download nu!’ in een kader? Vaak advertentie — negeren.”
 
-### 13:10–13:30 — Stap 3: Terugvinden (oefentaak 3)
+### 13:00–13:05 — Pauze
 
-**Kijken:** Verkenner → Downloads (map-icoon taakbalk).  
-**Doen:** bestand zoeken en herkennen.
+### 13:05–13:25 — Stap 3: Downloads-map + openen (oefentaak 3)
 
-### 13:30–13:40 — Stap 4: Opnieuw openen (oefentaak 4)
+Verkenner → Downloads → bestand vinden → dubbelklik.
 
-**Doen:** dubbelklik op bestand.
+### 13:25–13:35 — Stap 4: Bestandstypen (oefentaak 4)
 
-### 13:40–13:45 — Afronding
+**PDF** = document (vaak rood icoon / `.pdf`).  
+Kort: **foto** (`.jpg`/`.png`), **Word** (`.docx`), **zip** (`.zip` — mapje met bestanden; voorzichtig).  
+Oefenbestand = PDF.
 
-Nazorg. Volgende: Fc4 Formulieren.
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
+
+Zelf: site checken → downloaden → Downloads → openen. Geen pop-ups.
+
+### 13:42–13:45 — Afronding
+
+Nazorg. Volgende: Fc4 Formulieren. Mappen verplaatsen? Pakket B3.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4 als openen in oefentaak 3 al lukt.
+**Niet schrappen:** regels + veilige download + Downloads-map + eindopdracht.

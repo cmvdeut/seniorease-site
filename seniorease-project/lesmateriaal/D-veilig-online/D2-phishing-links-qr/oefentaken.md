@@ -2,61 +2,69 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
-**Belangrijk:** open geen verdachte links. Scan alleen de QR van de begeleider.
+**Open geen verdachte links. Scan alleen de QR van de begeleider.**
+
+**3-stappenregel:** STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.
 
 ---
 
-## Oefentaak 1 — DigiD zelf typen
-
-**Doel:** een veilig adres zelf in de browser zetten.
+## Oefentaak 1 — Adres zelf typen
 
 1. Open **Chrome** of **Safari**.  
 2. Tik in de **adresbalk**.  
 3. Typ precies: `digid.nl`  
-4. Open de pagina.  
-5. Kijk: staat er echt **digid.nl** in de balk?
+4. Open de pagina. Staat **digid.nl** in de balk?
 
-**Klaar als:** u digid.nl zelf heeft getypt en geopend.
-
----
-
-## Oefentaak 2 — PostNL typen + voorbeeldkaart
-
-**Doel:** nog een bekend adres typen; echt en nep herkennen op de A4 van de begeleider.
-
-1. Blijf in de browser (of open opnieuw).  
-2. Typ: `postnl.nl`  
-3. Kijk of **postnl.nl** in de balk staat.  
-4. Kijk naar de **voorbeeldkaart** die de begeleider toont: welk adres is echt, welk is nep? (niet openen wat nep is)
-
-**Klaar als:** u postnl.nl heeft geopend en het verschil op de voorbeeldkaart heeft gezien.
+**Klaar als:** u digid.nl zelf heeft getypt.
 
 ---
 
-## Oefentaak 3 — Link bekijken, niet openen
+## Oefentaak 2 — De echte website herkennen
 
-**Doel:** een link in een bericht zien zonder erop te tikken.
+Kijk naar de **voorbeeldkaart** van de begeleider (niet openen wat nep is):
 
-1. Open **Berichten** of **WhatsApp**.  
-2. Zoek een bericht met een blauwe of onderstreepte link — of het oefenbericht van de begeleider.  
-3. Tik de link **niet** kort aan.  
-4. Optioneel (als de begeleider het voordoet): **lang indrukken** op de link om te zien welk adres erachter zit.  
-5. Bij twijfel: bericht wegleggen. Typ liever zelf een bekend adres (zoals bij oefening 1).
+| Wat u ziet (voorbeeld, niet aanklikken) | Echte website |
+|-----------------------------------------|---------------|
+| `iets.digid.nl` | **digid.nl** (dat is DigiD) |
+| `digid.nl.nepsite.com` | **nepsite.com** (niet DigiD) |
 
-**Klaar als:** u een link heeft gezien zonder die te openen (of mee heeft gekeken bij de begeleider).
+1. Typ zelf: `postnl.nl`  
+2. Check de adresbalk.  
+3. Wijs op de kaart: waar is de **echte** naam van de site?
+
+**Klaar als:** u postnl.nl heeft getypt en het verschil op de kaart heeft gezien.
 
 ---
 
-## Oefentaak 4 — QR van de begeleider
+## Oefentaak 3 — Link: niet openen bij twijfel
 
-**Doel:** één veilige QR scannen; weten wanneer u dat niet doet.
+1. Open Berichten of WhatsApp.  
+2. Ziet u een link? **Tik er niet op.**  
+3. Bij twijfel: bericht wegleggen. Typ zelf een bekend adres (zoals oefening 1).
 
-1. Open de **camera** of de QR-scanner van uw telefoon.  
-2. Richt op de **QR van de begeleider** (SeniorEase).  
-3. Open de melding / link die verschijnt.  
-4. Kijk of u op de SeniorEase-veiligheidspagina komt.
+**Klaar als:** u een link heeft gezien zonder die te openen.
 
-**Klaar als:** u die QR heeft gescand én weet: onbekend briefje of sticker → **niet** scannen.
+---
+
+## Oefentaak 4 — QR: eerst kijken, dan verder
+
+1. Open de **camera**. Richt op de **QR van de begeleider**.  
+2. Er verschijnt een adres of scherm — **open nog niet meteen**.  
+3. **Kijk:** welk adres of betaalscherm is dit? Past het bij SeniorEase?  
+4. Pas daarna openen.  
+5. Onthoud: een QR op een rekening, parkeerautomaat of poster kan **vervangen** zijn. Scannen is **niet** automatisch veilig.
+
+**Klaar als:** u heeft gescand, eerst gekeken, en daarna geopend.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Typ zelf een bekend adres (`digid.nl` of `postnl.nl`).  
+2. Wijs op de voorbeeldkaart: wat is de echte website?  
+3. Zeg de QR-regel: scan → kijken → controleren → pas daarna verder.
+
+**Klaar als:** u alle drie stappen zelf heeft gedaan.
 
 ---
 
@@ -65,9 +73,9 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
 | Browser | Chrome | Safari |
-| Link voorvertonen | Vaak lang indrukken | Vaak lang indrukken |
-| QR | Camera-app of “Google Lens” | Camera-app |
-| QR werkt niet | Helper helpt 1-op-1; niet klassikaal forceren | Idem |
+| QR | Camera of Google Lens | Camera |
+| Link niet openen | Kort tikken vermijden | Idem |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken. Twijfel is verstandig.

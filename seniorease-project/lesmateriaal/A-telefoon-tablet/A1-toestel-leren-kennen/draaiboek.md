@@ -1,8 +1,8 @@
-# Draaiboek — A1: Uw smartphone of tablet leren kennen
+# Draaiboek — A1: Ik ken mijn telefoon en durf hem te bedienen
 
-**Pakket A — Telefoon & tablet** · Versie 1.0  
+**Pakket A — Telefoon & tablet** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die net een smartphone of tablet hebben, of onzeker zijn over de basis  
+**Doelgroep:** Mensen die hun telefoon of tablet al hebben, maar **onzeker** zijn — bang om iets kapot te maken, of die de basis nog niet durven te oefenen  
 **Gids:** https://www.seniorease.nl (basis / telefoon — waar beschikbaar)  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** eigen telefoon of tablet (opgeladen)  
@@ -14,36 +14,44 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
 | **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
-
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
 
 **Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
 
 ---
 
+## Kernboodschap van vandaag
+
+> **Oeps, ik zit ergens waar ik niet wil zijn**  
+> U hoeft niet in paniek te raken.  
+> Ga terug naar uw startscherm.  
+> **Uw telefoon is niet kapot.**
+
+Veel deelnemers kennen hun toestel al een beetje — maar **durven** niet alles uit te proberen. Vandaag oefenen we dat expres: ergens naartoe, en weer terug.
+
+---
+
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Het toestel **aan- en uitzetten** (of vergrendelen / ontgrendelen)  
-2. Het **startscherm** herkennen en terugkeren  
-3. Het scherm **omhoog en omlaag** bewegen (scrollen)  
-4. Een app **openen** en weer **sluiten** / terug  
+1. Scherm **aan- en uitzetten**, **vergrendelen** en **ontgrendelen**  
+2. Het **startscherm** herkennen — en **altijd terug** kunnen  
+3. Verschil voelen tussen **tikken**, **lang indrukken** en **vegen**; **scrollen**  
+4. **Volume** harder/zachter zetten; **stil/trillen** herkennen — **echt gehoord**  
+5. **Meldingen** herkennen; **helderheid** van het scherm aanpassen  
+6. Een app **openen**, **sluiten/terug**, en **tussen twee apps wisselen**  
+7. *(Optioneel)* **Lettergrootte** herkennen of aanpassen  
 
 ## Wat u níet doet
 
-- Geen apps installeren (dat is A2)  
-- Geen wifi instellen (dat is A3)  
-- Geen foto’s maken (dat is A4)  
-- Geen computer, bord of presentatie  
+- Geen apps installeren (A2) · geen wifi (A3) · geen foto’s (A4)  
+- Geen diepe Instellingen wijzigen — wel openen en **terug**
 
 ## Voorbereiding
 
-- [ ] Wifi-wachtwoord op A4 (handig, niet verplicht voor A1)  
-- [ ] Eigen telefoon/tablet klaar om voor te doen  
-- [ ] Oplaadkabels / powerbank meenemen (vaak leeg toestel)  
-- [ ] Deelnemerskaarten + oefentaken uitgedeeld  
-- [ ] Helper weet: Android vs iPhone knoppen verschillen — 1-op-1 helpen  
+- [ ] Oplaadkabels / powerbank  
+- [ ] Begeleider-toestel: volume, melding, helderheid demo-klaar  
+- [ ] Helper: Android vs iPhone 1-op-1  
 
 ## Didactiek
 
@@ -55,40 +63,40 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:**  
-“Welkom. Vandaag leren we uw telefoon of tablet rustig kennen. U werkt op uw eigen toestel. We wachten op elkaar. Er is geen tempo.”
+**Zegt u:** “Welkom. Vandaag gaat het om **durven**. Eigen toestel. Geen tempo.”
 
-### 12:15–12:25 — Kennismaking
+### 12:15–12:22 — Kennismaking + kernboodschap
 
-Voornaam + **Android of iPhone/iPad**. Helper noteert globaal wie wat heeft.
+Voornaam + Android/iPhone. Kernboodschap voorlezen.
 
-### 12:25–12:40 — Stap 1: Aan, uit, vergrendelen (oefentaak 1)
+### 12:22–12:32 — Oefentaak 1: aan/uit en vergrendelen
 
-**Kijken:** knop zijkant (aan/uit / sluimer).  
-**Doen:** scherm aan → vergrendelen → weer ontgrendelen (code, vinger of veeg — wat zij gewend zijn).  
-**Niet:** ieders code hardop laten zeggen.
+Knop zijkant. Ontgrendelen. Codes niet hardop.
 
-### 12:40–13:00 — Stap 2: Startscherm en terug (oefentaak 2)
+### 12:32–12:45 — Oefentaak 2: Oeps terug *(hoofdmoment)*
 
-**Doen:** herken het startscherm (iconen). Open per ongeluk iets? Terug naar start (rondje / streepje / Home).  
-**Controleren:** “Ziet u weer de iconen?”
+Klok → terug. Instellingen → kijken → terug. Andere startscherm-pagina → terug.  
+**Zegt u:** “Uw telefoon is niet kapot.”
 
-### 13:00–13:05 — Pauze
+### 12:45–12:50 — Pauze
 
-### 13:05–13:25 — Stap 3: Scrollen (oefentaak 3)
+### 12:50–13:00 — Oefentaak 3: tik, lang indrukken, vegen, scrollen
 
-**Doen:** vinger zacht over het scherm omhoog/omlaag of naar een tweede startscherm-pagina.  
-**Zegt u:** “Alsof u een blad papier verschuift — niet te hard drukken.”
+### 13:00–13:10 — Oefentaak 4: volume en stil *(echt oefenen)*
 
-### 13:25–13:40 — Stap 4: Eén app openen en terug (oefentaak 4)
+Volume +/-. Kort geluid laten horen. Bel/trillen/stil herkennen.
 
-**Doen:** open bijv. Klok, Weer of Instellingen (niet wijzigen). Daarna terug naar startscherm.  
-**Controleren:** app dicht / startscherm zichtbaar.
+### 13:10–13:18 — Oefentaak 5: meldingen en helderheid
 
-### 13:40–13:45 — Afronding
+### 13:18–13:28 — Oefentaak 6: apps openen, terug, wisselen
 
-Nazorgkaart. Volgende les: A2 Apps installeren.
+### 13:28–13:33 — Oefentaak 7 *(optioneel)*: lettergrootte
+
+### 13:33–13:45 — Afronding
+
+Kernboodschap herhalen. Nazorg. Volgende: A2.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 3. **Niet schrappen:** vergrendelen + startscherm + één app openen/terug.
+Schrap oefentaak 7; verkort oefentaak 5 (meldingen **of** helderheid).  
+**Niet schrappen:** Oeps-terug, volume oefenen, vergrendelen.

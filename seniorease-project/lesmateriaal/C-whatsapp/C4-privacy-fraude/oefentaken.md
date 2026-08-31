@@ -2,7 +2,13 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
-**Belangrijk:** geen geld overmaken. Tik niet op verdachte links.
+**Geen geld overmaken. Geen verdachte links openen.**
+
+---
+
+## Hoofdregel
+
+**Geld, code, haast of geheimhouding? Stop en controleer via een contactgegeven dat u zelf al had.**
 
 ---
 
@@ -11,53 +17,85 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 **Doel:** bij de instellingen komen.
 
 1. Open **WhatsApp**.  
-2. Tik op **Instellingen**  
-   - Android: vaak drie puntjes of uw foto/icoon → Instellingen  
-   - iPhone: vaak rechtsonder **Instellingen**  
-3. U ziet een menu met o.a. Account en Privacy.
+2. Ga naar **Instellingen** (tandwiel, drie puntjes of tab onderaan).
 
 **Klaar als:** u het instellingenmenu ziet.
 
 ---
 
-## Oefentaak 2 — Privacy bekijken
+## Oefentaak 2 — Privacy-instellingen
 
-**Doel:** het privacy-scherm openen.
+**Doel:** belangrijke privacy-opties kennen en eventueel aanpassen.
 
 1. Tik op **Privacy**.  
-2. Kijk naar bijvoorbeeld **Profielfoto**, **Laatst gezien** of **Info**.  
-3. Tik er één open en kijk welke keuzes er zijn (Iedereen / Mijn contacten / Niemand).  
-4. **Wijzig alleen** als u dat wilt. Anders: alleen kijken en terug.
+2. **Profielfoto:** kies wie uw foto mag zien (bijv. **Mijn contacten**).  
+3. **Laatst gezien en online:** kijk welke keuzes er zijn — pas aan als u wilt.  
+4. **Groepen** (wie mag u toevoegen): kijk de opties — eventueel **Mijn contacten**.  
+5. Ga terug naar het hoofdmenu.
 
-**Klaar als:** u Privacy heeft geopend en één optie heeft bekeken.
-
----
-
-## Oefentaak 3 — Blokkeren vinden (niet verplicht uitvoeren)
-
-**Doel:** weten waar blokkeren staat.
-
-1. Ga terug naar een chat (of open een chat).  
-2. Tik op de naam bovenaan, of op **meer** (drie puntjes).  
-3. Zoek **Blokkeren** of **Contact blokkeren**.  
-4. **Blokkeer vandaag niemand** tenzij u dat echt wilt — ga anders terug.
-
-**Klaar als:** u Blokkeren heeft gezien (of samen met de helper).
+**Klaar als:** u Profielfoto en Laatst gezien heeft geopend (Groepen mag meekijken).
 
 ---
 
-## Oefentaak 4 — Verdacht verzoek: wat doet u?
+## Oefentaak 3 — Blokkeren en Rapporteren (demo)
 
-**Doel:** de gouden regel oefenen.
+**Doel:** weten waar Blokkeren en Rapporteren staan.
 
-1. Lees het **oefenbericht** van de begeleider of de scenario-A4.  
-2. Welke signalen ziet u? (nieuw nummer, geld, “vertel het niet”)  
-3. Open **Contacten** en zoek iemand die u al kende.  
-4. Onthoud: bij twijfel belt of appt u **dat** nummer — niet het nieuwe nummer.
+1. Open chat met **demo-spamnummer** van de begeleider (A4).  
+2. Tik op de **naam** bovenaan of **meer** (drie puntjes).  
+3. Tik op **Blokkeren** → bevestig.  
+4. **Deblokkeer** daarna weer.  
+5. **Kijk** waar **Rapporteren** staat (zelfde menu) — vandaag hoeft u niet te rapporteren, alleen **herkennen**.
 
-**Klaar als:** u de signalen heeft genoemd en een bekend contact heeft gevonden.
+**Blokkeer geen echt familielid** — alleen het oefennummer.
 
-**Gouden regel:** geheim + geld = stop.
+**Klaar als:** u Blokkeren heeft geoefend en weet waar Rapporteren staat.
+
+---
+
+## Oefentaak 4 — Scenario 1: familie/fraude
+
+**Doel:** de hoofdregel oefenen.
+
+**Oefentekst (geen echt verzoek):**
+
+> “Oma, ik heb een nieuw nummer. Stuur 100 euro. Vertel mama niet.”
+
+1. Welke **signalen** ziet u? (geld, geheim, nieuw nummer)  
+2. Wat doet u? → **Stop.** Geen geld.  
+3. Open **Contacten** en zoek het **bekende nummer** van die persoon.  
+4. Bel of app via **dat** nummer — niet het nieuwe nummer.
+
+**Klaar als:** u de signalen kunt noemen en weet: stop + bekend contact.
+
+---
+
+## Oefentaak 5 — Scenario 2: link en haast
+
+**Doel:** haast en links herkennen.
+
+**Oefentekst (geen echt verzoek):**
+
+> “Uw pakket is mislukt. Betaal 2,99 vandaag via deze link: [link].”
+
+1. Welke **signalen**? (haast, onbekende link, klein bedrag)  
+2. Wat doet u? → **Niet klikken.** Geen betalen.  
+3. **Stop** — controleer via een **officiële site** (zelf intypen) of vraag hulp.
+
+**Klaar als:** u haast + link als signalen kunt noemen.
+
+---
+
+## Oefentaak 6 — Zelfstandig (eindopdracht)
+
+**Doel:** privacy en hoofdregel zelf toepassen.
+
+1. Open **Instellingen → Privacy**.  
+2. Controleer **één** instelling (Profielfoto of Laatst gezien).  
+3. Zeg de **hoofdregel** in eigen woorden.  
+4. Lees **één scenario** (A4) — noem signalen en wat u doet.
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
 
 ---
 
@@ -65,10 +103,10 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
-| Instellingen | Drie puntjes / profiel | Tab Instellingen rechtsonder |
-| Privacy | Instellingen → Privacy | Instellingen → Privacy |
-| Blokkeren | Chat → meer / contactinfo | Chat → naam → Blokkeren |
-| Menu anders | WhatsApp-versies verschillen — helper zoekt mee | Idem |
+| Instellingen | Drie puntjes / profiel | Tab Instellingen |
+| Blokkeren | Contactinfo → Blokkeren | Naam → Blokkeren |
+| Rapporteren | Vaak bij Blokkeren | Vaak bij Blokkeren |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken — de helper komt naar u toe. Twijfel is verstandig.

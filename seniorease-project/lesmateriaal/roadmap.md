@@ -87,10 +87,10 @@ Zo onderhoudt u één les i.p.v. twee bijna identieke.
 |-----|-----------|
 | E1 | DigiD |
 | E2 | MijnOverheid |
-| E3 | Online zaken gemeente / Belastingdienst |
-| E4 | Veilig omgaan met DigiD-berichten |
+| E3 | Gemeente en Belastingdienst |
+| E4 | Berichtenbox en berichten van de overheid |
 
-**Status:** **E1–E4 klaar** — `E-digid/`. Geen vervanging Digisterker; IDO noemen mag. E4 verwijst door naar D.
+**Status:** **E1–E4 v1.1** — `E-digid/`. Praktische kennismaking digitale overheid (niet Digisterker). E4 = Berichtenbox; fraude dieper in pakket D.
 
 ---
 
@@ -104,19 +104,19 @@ Zo onderhoudt u één les i.p.v. twee bijna identieke.
 |-----|-----------|
 | Fc1 | Zoeken met Google |
 | Fc2 | Websites en tabbladen |
-| Fc3 | Downloaden |
+| Fc3 | Veilig downloaden en bestanden herkennen |
 | Fc4 | Formulieren invullen |
 
 #### F-Telefoon / tablet
 
 | Les | Onderwerp |
 |-----|-----------|
-| Ft1 | Zoeken |
+| Ft1 | Iets opzoeken op Google |
 | Ft2 | Browser gebruiken |
 | Ft3 | QR-codes openen |
-| Ft4 | Formulieren en downloads terugvinden |
+| Ft4 | Formulieren en downloads |
 
-**Status:** **F compleet** — telefoon/tablet (`F-internet-telefoon/`, Ft1–Ft4) en computer (`F-internet-computer/`, Fc1–Fc4). Legacy `03-google-maps` (zoeken + Maps) — Maps optioneel als bonus.
+**Status:** **F v1.1** — computer (`F-internet-computer/`) én telefoon (`F-internet-telefoon/`). Twee pakketten: muis/toetsenbord vs aanraken + QR + mobiele formulieren. Oefenformulier: `/oefenen/formulier`. Maps optioneel als bonus.
 
 In de shop: twee producten à €19,95, of “kies uw variant”.
 
@@ -126,7 +126,7 @@ In de shop: twee producten à €19,95, of “kies uw variant”.
 
 | Pakket | Wanneer |
 |--------|---------|
-| **G. AI voor dagelijks gebruik** | **Klaar** — `G-ai/` (G1–G4), zelfde €19,95-regel |
+| **G. AI voor dagelijks gebruik** | **Klaar v1.1** — `G-ai/` (G1–G4), beamer **onderdeel van pakket** (niet alleen bonus) |
 | **Woordenlijst** | Na G — jargon in gewone taal ([woordenlijst.md](woordenlijst.md)), gratis bijlage of org-bundel |
 | Foto’s & herinneringen (verdieping) | Als A4 te smal blijkt (back-up, ordenen) |
 
@@ -155,7 +155,7 @@ E-mail en contactenbeheer: onderbrengen in C/F of later kort pakket — niet de 
 6. **E** DigiD & overheid  
 7. ~~Optioneel **G** AI~~ **klaar** (`G-ai/`)  
 8. **Woordenlijst** — digitale termen in gewone taal ([woordenlijst.md](woordenlijst.md)); daarna eventueel PDF  
-9. **Beamer-slides** (optioneel) — pilot pakket G; print blijft basis ([beamer/README.md](beamer/README.md))  
+9. **Beamer-slides** — **pakket G:** onderdeel van het pakket (gekoppeld aan draaiboek). Andere pakketten: print-first ([beamer/README.md](beamer/README.md))  
 
 ---
 

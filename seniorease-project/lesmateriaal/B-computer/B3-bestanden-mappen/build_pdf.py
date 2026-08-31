@@ -4,38 +4,36 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import BLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-B3-Bestanden-Mappen-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF("SeniorEase  |  B3 Bestanden & mappen  |  Pakket B  |  v1.0",
-        package_label="Pakket B - Computer & laptop")
+    pdf = BLessonPDF(
+        f"SeniorEase  |  B3 Bestanden & mappen  |  Pakket B  |  {LESSON_VERSION}",
+        package_label="Pakket B - Computer & laptop",
+    )
     pdf.alias_nb_pages()
 
     pdf.cover(
         "B3 - Bestanden en mappen",
         "Lesmiddag 90 minuten",
-        "Op de computer: Verkenner openen, een map maken, een tekst opslaan en "
-        "terugvinden. Mappen = dozen. Geen presentatie verplicht.",
+        "Verkenner, map maken, opslaan met map controleren, Documenten vs Downloads, "
+        "Naam wijzigen, Verkenner sluiten en bestand zelf terugvinden.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op de computer)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
+            "Versie 1.1 - augustus 2026",
             "Pakket B (4 lessen): EUR 19,95",
             "Vorige: B2 - Volgende: B4",
         ],
     )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(0, 5, "Geen USB of cloud verplicht. Documenten op de pc is genoeg.")
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
@@ -46,38 +44,35 @@ def build() -> Path:
     for i, t in enumerate(
         [
             "Verkenner en Documenten openen",
-            "Map en bestand uit elkaar houden",
-            "Een map aanmaken",
-            "Een tekst opslaan en terugvinden",
+            "Map aanmaken; map vs bestand",
+            "Opslaan - altijd eerst: in welke map ben ik?",
+            "Documenten vs Downloads begrijpen",
+            "Hernoemen via Naam wijzigen (geen F2 als standaard)",
+            "Verkenner sluiten en bestand zelf terugvinden",
+            "Zelfstandig: opslaan - sluiten - terugvinden",
         ],
         1,
     ):
         pdf.numbered(i, t)
 
-    pdf.h2("Wat u niet doet")
-    pdf.bullet("Geen USB verplicht")
-    pdf.bullet("Geen cloud-account verplicht")
-    pdf.bullet("Geen downloaden van internet (B4)")
-
     pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Welkom. Bewaren en terugvinden - mappen als dozen.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam. Weleens iets kwijt op de pc?")
-    pdf.h3("12:25-12:45 - Stap 1: Verkenner (oefentaak 1)")
-    pdf.body("Gele map / Verkenner - Documenten.")
-    pdf.h3("12:45-13:05 - Stap 2: map maken (oefentaak 2)")
-    pdf.body("Nieuw - Map - Oefening SeniorEase.")
-    pdf.h3("13:05-13:10 - Pauze")
-    pdf.h3("13:10-13:30 - Stap 3: opslaan (oefentaak 3)")
-    pdf.body("Kladblok - Opslaan als - map kiezen - oefening.")
-    pdf.h3("13:30-13:40 - Stap 4: terugvinden (oefentaak 4)")
-    pdf.body("Verkenner - map - dubbelklik bestand.")
-    pdf.h3("13:40-13:45 - Afronding")
-    pdf.body("Nazorg. Volgende: B4.")
+    pdf.tijdlijn_item("12:25-12:40 - Verkenner (oefentaak 1)", "Documenten. Kort: Documenten vs Downloads.")
+    pdf.tijdlijn_item("12:40-12:52 - Map maken (oefentaak 2)", "Oefening SeniorEase.")
+    pdf.tijdlijn_item(
+        "12:52-13:05 - Opslaan (oefentaak 3)",
+        "In welke map ben ik? - Opslaan als - oefening.",
+    )
+    pdf.tijdlijn_item("13:10-13:18 - Terugvinden (oefentaak 4)", "")
+    pdf.tijdlijn_item(
+        "13:18-13:25 - Naam wijzigen (oefentaak 5)",
+        "Rechtermuisknop - Naam wijzigen - oefening-vandaag.",
+    )
+    pdf.tijdlijn_item("13:25-13:32 - Verkenner dicht (oefentaak 6)", "Sluiten - zelf opnieuw openen.")
+    pdf.tijdlijn_item("13:32-13:40 - Eindopdracht (oefentaak 7)", "")
+    pdf.tijdlijn_item("13:40-13:45 - Afronding", "Nazorg. Volgende: B4.")
 
     pdf.h2("Als de tijd krap is")
-    pdf.bullet("Niet schrappen: map maken + opslaan + terugvinden")
+    pdf.bullet("Niet schrappen: map + opslaan + zelf terugvinden")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -90,76 +85,71 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket B  -  computer of laptop")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket B  -  {LESSON_VERSION}")
     pdf.ln(2)
 
     pdf.h2("Wat u vandaag oefent")
-    pdf.numbered(1, "Verkenner / Documenten openen")
-    pdf.numbered(2, "Een map maken")
-    pdf.numbered(3, "Een bestand opslaan")
-    pdf.numbered(4, "Het bestand terugvinden")
+    pdf.numbered(1, "Verkenner / Documenten")
+    pdf.numbered(2, "Map maken")
+    pdf.numbered(3, "Opslaan (map controleren!)")
+    pdf.numbered(4, "Terugvinden")
+    pdf.numbered(5, "Naam wijzigen")
+    pdf.numbered(6, "Verkenner dicht - zelf terug")
+    pdf.numbered(7, "Zelfstandig")
 
-    pdf.h2("Map of bestand?")
-    pdf.bullet("Map = doos (kan andere dingen bevatten)")
-    pdf.bullet("Bestand = het document zelf (bijv. tekst of foto)")
-
-    pdf.h2("Opslaan - stappen")
-    pdf.numbered(1, "Bestand - Opslaan als")
-    pdf.numbered(2, "Kies de map")
-    pdf.numbered(3, "Geef een naam - Opslaan")
-
-    pdf.box("Onthoud", ["Documenten - eigen map - opslaan - later terug via Verkenner."])
+    pdf.box(
+        "Opslaan",
+        [
+            "Altijd eerst: In welke map ben ik?",
+            "Documenten = zelf bewaren. Downloads = van internet (B4).",
+        ],
+    )
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
+    pdf.muted(f"Versie {LESSON_VERSION.lstrip('v')}.")
 
     pdf.h2("Oefentaak 1 - Verkenner")
-    pdf.numbered(1, "Open Verkenner (gele map).")
-    pdf.numbered(2, "Ga naar Documenten.")
-    pdf.body("Klaar als: u in Documenten bent.")
+    pdf.body("Documenten. Documenten vs Downloads.")
 
     pdf.h2("Oefentaak 2 - Map maken")
-    pdf.numbered(1, "Nieuw - Map.")
-    pdf.numbered(2, "Naam: Oefening SeniorEase - Enter.")
-    pdf.body("Klaar als: de map zichtbaar is.")
+    pdf.body("Oefening SeniorEase.")
 
     pdf.h2("Oefentaak 3 - Opslaan")
-    pdf.numbered(1, "Open Kladblok - typ: Dit is mijn oefening.")
-    pdf.numbered(2, "Bestand - Opslaan als.")
-    pdf.numbered(3, "Kies de map Oefening SeniorEase.")
-    pdf.numbered(4, "Naam: oefening - Opslaan.")
-    pdf.body("Klaar als: opgeslagen zonder fout.")
+    pdf.body("In welke map ben ik? - oefening - Opslaan.")
 
     pdf.h2("Oefentaak 4 - Terugvinden")
-    pdf.numbered(1, "Verkenner - Documenten - Oefening SeniorEase.")
-    pdf.numbered(2, "Dubbelklik op oefening.")
-    pdf.body("Klaar als: uw zin weer zichtbaar is.")
+    pdf.body("Map - dubbelklik.")
+
+    pdf.h2("Oefentaak 5 - Naam wijzigen")
+    pdf.body("Rechtermuisknop - Naam wijzigen - oefening-vandaag.")
+
+    pdf.h2("Oefentaak 6 - Verkenner dicht")
+    pdf.body("Sluiten - zelf opnieuw vinden.")
+
+    pdf.h2("Oefentaak 7 - Zelfstandig")
+    pdf.body("Opslaan - sluiten - terugvinden.")
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
         "Pc's aan; Verkenner werkt",
         "Documenten bereikbaar",
         "Extra muizen",
         "8-10x deelnemerskaart en oefentaken",
-        "8-10x nazorgkaart",
-        "Helper voor Opslaan als / OneDrive-keuze",
+        "Helper voor Opslaan als / OneDrive",
     ]:
         pdf.check(t)
 
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Map = doos. Verkenner = gele map. Bewaar in Documenten in uw eigen map.",
-            "Opslaan als - map kiezen - naam - Opslaan. Terug: zelfde map openen.",
+            "Map = doos. Verkenner = gele map.",
+            "Opslaan: in welke map ben ik? - naam - Opslaan.",
+            "Naam wijzigen via menu, niet F2 als standaard.",
             "seniorease.nl",
-            "Volgende les: B4 Downloaden, printen en documenten openen.",
+            "Volgende les: B4 Downloaden en printen.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

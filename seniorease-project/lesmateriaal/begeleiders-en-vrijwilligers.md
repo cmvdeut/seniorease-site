@@ -37,7 +37,7 @@ Dat mag — en soms helpt het zelfs, omdat deelnemers u makkelijker aanspreken.
 - **Wachtwoorden, pincodes en DigiD-codes nooit hardop** zeggen of laten voorlezen.  
 - **Geen schaamte:** “Ik snap het ook niet meteen” is normaal.  
 - **Geen bord of presentatie nodig** — A4-prints + uw toestel is genoeg.  
-- **Beamer (optioneel):** als de zaal er een heeft, open het **beamer-PDF** (1 slide per oefentaak). Print **altijd** mee — zie [beamer/README.md](beamer/README.md).
+- **Beamer (pakket G):** open het **beamer-PDF** — eerst kijken/demo, daarna oefenen op eigen toestel. Print **altijd** mee — zie [beamer/README.md](beamer/README.md).
 
 ---
 

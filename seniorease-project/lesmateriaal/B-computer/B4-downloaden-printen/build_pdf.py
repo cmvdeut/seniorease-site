@@ -4,38 +4,36 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import BLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-B4-Downloaden-Printen-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF("SeniorEase  |  B4 Downloaden & printen  |  Pakket B  |  v1.0",
-        package_label="Pakket B - Computer & laptop")
+    pdf = BLessonPDF(
+        f"SeniorEase  |  B4 Downloaden & printen  |  Pakket B  |  {LESSON_VERSION}",
+        package_label="Pakket B - Computer & laptop",
+    )
     pdf.alias_nb_pages()
 
     pdf.cover(
         "B4 - Downloaden, printen en documenten openen",
         "Lesmiddag 90 minuten",
-        "Op de computer: een veilig document openen, downloaden, terugvinden en printen "
-        "(of printvoorbeeld / Print to PDF). Einde pakket B.",
+        "Veilig document openen, veiligheidscheck vóór downloaden, terugvinden in "
+        "Downloads, printen met pagina's controleren. Einde pakket B.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op de computer)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
+            "Versie 1.1 - augustus 2026",
             "Pakket B compleet - EUR 19,95 voor 4 lessen",
             "Alleen downloads die de begeleider aanwijst",
         ],
     )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(0, 5, "Geen verdachte pop-ups. Geen printer? Printvoorbeeld telt als geslaagd.")
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
@@ -45,45 +43,42 @@ def build() -> Path:
     pdf.h2("Wat deelnemers na afloop kunnen")
     for i, t in enumerate(
         [
-            "Een document in de browser openen",
-            "Veilig downloaden naar Downloads of Documenten",
-            "Het bestand terugvinden en openen",
-            "Printen of printvoorbeeld / Print to PDF gebruiken",
+            "Document in browser openen",
+            "Vóór downloaden: veiligheidscheck (verwacht, bron, naam, pop-ups)",
+            "Downloaden naar Downloads of Documenten",
+            "Bestand terugvinden en openen",
+            "Printen met aantal pagina's controleren",
+            "Zelfstandig: openen - check - download - vinden - printvoorbeeld",
         ],
         1,
     ):
         pdf.numbered(i, t)
 
-    pdf.h2("Wat u niet doet")
-    pdf.bullet("Geen verdachte downloads of virus-pop-ups")
-    pdf.bullet("Geen betaalde software installeren")
-    pdf.bullet("Geen printerdrivers uitdiepen")
+    pdf.h2("Regel")
+    pdf.body(
+        "Download/open alleen bestanden die u verwacht en waarvan u de bron vertrouwt."
+    )
 
-    pdf.h2("Voorbereiding")
-    pdf.bullet("Veilige oefen-PDF of bekende link klaarzetten")
-    pdf.bullet("Printer getest OF Microsoft Print to PDF")
-    pdf.bullet("Map Downloads op de demo-pc kennen")
+    pdf.h2("Veiligheidscheck vóór downloaden")
+    pdf.numbered(1, "Verwacht ik dit bestand?")
+    pdf.numbered(2, "Vertrouw ik de bron?")
+    pdf.numbered(3, "Herken ik de bestandsnaam?")
+    pdf.numbered(4, "Geen vreemde pop-ups?")
 
     pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Welkom. Alleen bestanden die wij aanwijzen.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam. Thuis een printer?")
-    pdf.h3("12:25-12:45 - Stap 1: openen (oefentaak 1)")
-    pdf.body("Browser - veilige link/PDF van de begeleider.")
-    pdf.h3("12:45-13:05 - Stap 2: downloaden (oefentaak 2)")
-    pdf.body("Download-knop - Opslaan - wachten tot klaar.")
-    pdf.h3("13:05-13:10 - Pauze")
-    pdf.h3("13:10-13:30 - Stap 3: terugvinden (oefentaak 3)")
-    pdf.body("Verkenner - Downloads - dubbelklik.")
-    pdf.h3("13:30-13:40 - Stap 4: printen (oefentaak 4)")
-    pdf.body("Ctrl+P. Printer of Print to PDF of alleen voorbeeld.")
-    pdf.h3("13:40-13:45 - Afronding")
-    pdf.body("Nazorg. Pakket B compleet.")
+    pdf.tijdlijn_item("12:25-12:40 - Openen (oefentaak 1)", "")
+    pdf.tijdlijn_item("12:40-12:55 - Check + downloaden (oefentaak 2)", "")
+    pdf.tijdlijn_item("13:00-13:15 - Terugvinden (oefentaak 3)", "")
+    pdf.tijdlijn_item(
+        "13:15-13:28 - Printen (oefentaak 4)",
+        "Ctrl+P - aantal pagina's controleren - Afdrukken of voorbeeld.",
+    )
+    pdf.tijdlijn_item("13:28-13:40 - Eindopdracht (oefentaak 5)", "")
+    pdf.tijdlijn_item("13:40-13:45 - Afronding", "Pakket B compleet.")
 
     pdf.h2("Als de tijd krap is")
     pdf.bullet("Schrap echt printen")
-    pdf.bullet("Niet schrappen: openen, downloaden, terugvinden")
+    pdf.bullet("Niet schrappen: openen, check, downloaden, terugvinden")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -96,82 +91,63 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket B  -  computer of laptop")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket B  -  {LESSON_VERSION}")
     pdf.ln(2)
 
     pdf.h2("Wat u vandaag oefent")
     pdf.numbered(1, "Document openen")
-    pdf.numbered(2, "Downloaden")
+    pdf.numbered(2, "Veiligheidscheck + downloaden")
     pdf.numbered(3, "Terugvinden in Downloads")
-    pdf.numbered(4, "Printen of printvoorbeeld")
-
-    pdf.h2("Downloaden - stappen")
-    pdf.numbered(1, "Alleen wat de begeleider aanwijst")
-    pdf.numbered(2, "Download / pijltje")
-    pdf.numbered(3, "Opslaan - wachten")
-    pdf.numbered(4, "Openen via Verkenner - Downloads")
-
-    pdf.h2("Printen")
-    pdf.bullet("Ctrl + P (of Bestand - Afdrukken)")
-    pdf.bullet("Geen printer: Print to PDF of stop bij het voorbeeld")
+    pdf.numbered(4, "Printen (pagina's controleren)")
+    pdf.numbered(5, "Zelfstandig")
 
     pdf.box(
-        "Veiligheid",
-        ["Geen pop-ups over virus of prijzen aanklikken. Twijfel? Vraag de helper."],
+        "Vóór downloaden",
+        [
+            "Verwacht bestand? Betrouwbare bron?",
+            "Herkenbare naam? Geen vreemde pop-ups?",
+        ],
     )
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.muted("Alleen de download die de begeleider aanwijst.")
+    pdf.muted(f"Alleen download van de begeleider. Versie {LESSON_VERSION.lstrip('v')}.")
 
     pdf.h2("Oefentaak 1 - Openen")
-    pdf.numbered(1, "Open de browser.")
-    pdf.numbered(2, "Ga naar de link of het bestand van de begeleider.")
-    pdf.body("Klaar als: u het document ziet.")
+    pdf.body("Browser - link van begeleider.")
 
-    pdf.h2("Oefentaak 2 - Downloaden")
-    pdf.numbered(1, "Klik op Downloaden / pijltje.")
-    pdf.numbered(2, "Opslaan in Downloads of Documenten.")
-    pdf.numbered(3, "Wacht tot het klaar is.")
-    pdf.body("Klaar als: download klaar is.")
+    pdf.h2("Oefentaak 2 - Check + downloaden")
+    pdf.body("Vier vragen - Downloaden - Opslaan - wachten.")
 
     pdf.h2("Oefentaak 3 - Terugvinden")
-    pdf.numbered(1, "Verkenner - Downloads (of Documenten).")
-    pdf.numbered(2, "Dubbelklik op het oefenbestand.")
-    pdf.body("Klaar als: het document weer open is.")
+    pdf.body("Verkenner - Downloads - dubbelklik.")
 
     pdf.h2("Oefentaak 4 - Printen")
-    pdf.numbered(1, "Ctrl + P (of Bestand - Afdrukken).")
-    pdf.numbered(2, "Bekijk het voorbeeld.")
-    pdf.numbered(3, "Print een pagina - of Print to PDF - of stop bij het voorbeeld.")
-    pdf.body("Klaar als: u het afdrukscherm heeft gebruikt.")
+    pdf.body("Ctrl+P - aantal pagina's controleren - Afdrukken of voorbeeld.")
+
+    pdf.h2("Oefentaak 5 - Zelfstandig")
+    pdf.body("Hele keten zelf doen.")
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
         "Wifi werkt",
         "Veilige oefen-PDF of link klaar",
         "Printer getest OF Print to PDF",
-        "Map Downloads bekend",
         "8-10x deelnemerskaart en oefentaken",
-        "8-10x nazorgkaart",
-        "Helper tegen pop-ups / verkeerde downloads",
+        "Helper tegen pop-ups",
     ]:
         pdf.check(t)
 
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Download alleen wat u verwacht. Terugvinden: Verkenner - Downloads.",
-            "Printen: Ctrl+P. Geen printer? Print to PDF of voorbeeld.",
+            "Alleen downloaden wat u verwacht van een bron die u vertrouwt.",
+            "Terugvinden: Verkenner - Downloads.",
+            "Printen: Ctrl+P - controleer aantal pagina's.",
             "seniorease.nl",
             "Pakket B is compleet. Opfrisser: les B1.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

@@ -1,56 +1,66 @@
-# Oefentaken — Fc3 Downloaden
+# Oefentaken — Fc3 Veilig downloaden en bestanden herkennen
 
 Voor de deelnemer. Op een **computer of laptop**.
 
-**Belangrijk:** download alleen wat de **begeleider** aanwijst.
+**Download alleen wat de begeleider aanwijst.**
 
 ---
 
-## Oefentaak 1 — Document openen
+## Oefentaak 1 — Site controleren
 
-**Doel:** een PDF of pagina zien.
+1. Open de browser.  
+2. Ga naar de **link** die de begeleider geeft.  
+3. Kijk in de **adresbalk**: van welke website komt dit?  
+4. Onthoud: download alleen wat u **verwacht**, van een site die klopt.
 
-1. Open de **browser**.  
-2. Ga naar de **link** die de begeleider geeft (veilige PDF op seniorease.nl).  
-3. Kijk of het document op het scherm verschijnt.
-
-**Klaar als:** u het oefendocument ziet.
+**Klaar als:** u het oefendocument ziet en het webadres heeft gecontroleerd.
 
 ---
 
-## Oefentaak 2 — Downloaden
+## Oefentaak 2 — Echt downloaden (niet de advertentie)
 
-**Doel:** het bestand op de computer zetten.
-
-1. Zoek **Downloaden** of het **pijltje omlaag**.  
-2. **Klik** erop.  
-3. Kies **Opslaan** / **Opslaan als** als Windows dat vraagt — map **Downloads**.  
-4. Wacht tot de download klaar is (melding rechtsonder of in de browser).
+1. Zoek de **echte** knop **Downloaden** of het **pijltje omlaag** bij het document.  
+2. Grote felgekleurde knoppen of pop-ups ernaast? Vaak **advertentie** — niet klikken.  
+3. Klik de echte knop → **Opslaan** in map **Downloads**.  
+4. Verschijnt er een vreemde **virusmelding**? **Sluiten** — niet aanklikken. Vraag de helper.
 
 **Klaar als:** de download klaar is.
 
 ---
 
-## Oefentaak 3 — Terugvinden
+## Oefentaak 3 — Terugvinden en openen
 
-**Doel:** het bestand in Downloads vinden.
-
-1. Open **Verkenner** (map-icoon op taakbalk).  
+1. Open **Verkenner** (map-icoon op de taakbalk).  
 2. Klik links op **Downloads**.  
-3. Zoek het oefenbestand (vaak bovenaan).
+3. Zoek het oefenbestand (vaak bovenaan).  
+4. **Dubbelklik** om het te openen.
 
-**Klaar als:** u het bestand in Downloads ziet.
+**Klaar als:** u het bestand in Downloads heeft gevonden en geopend.
 
 ---
 
-## Oefentaak 4 — Opnieuw openen
+## Oefentaak 4 — Bestandstypen herkennen
 
-**Doel:** het gedownloade bestand openen.
+1. Kijk naar uw oefenbestand: dat is een **PDF** (document, vaak eindigt op `.pdf`).  
+2. Onthoud kort:  
+   - **PDF** — document om te lezen  
+   - **Foto** — `.jpg` of `.png`  
+   - **Word** — `.docx`  
+   - **Zip** — `.zip` (meerdere bestanden in één; alleen openen als u het verwacht)  
+3. Vraag bij twijfel de helper — open geen onbekende types.
 
-1. **Dubbelklik** op het bestand in Downloads.  
-2. Het opent in de browser of PDF-viewer.
+**Klaar als:** u PDF kunt aanwijzen en de andere namen kort kent.
 
-**Klaar als:** het document weer open is.
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open opnieuw de **veilige link** van de begeleider.  
+2. Controleer de **adresbalk**.  
+3. Download met de **echte** knop (geen advertentie/pop-up).  
+4. Vind het bestand in **Downloads** en open het.
+
+**Klaar als:** u de veilige route zelf heeft gedaan.
 
 ---
 
@@ -58,9 +68,11 @@ Voor de deelnemer. Op een **computer of laptop**.
 
 | Situatie | Tip |
 |----------|-----|
-| Download niet gevonden | Browser: download-icoon; map Downloads |
+| Download niet gevonden | Browser-downloadicoon; map Downloads |
 | Pop-up “virus” | Sluiten — niet klikken |
+| Wil bestand verplaatsen | Pakket B3 (mappen) |
 | Mac | Finder → Downloads; helper 1-op-1 |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

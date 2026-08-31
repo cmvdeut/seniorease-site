@@ -1,12 +1,16 @@
 # Draaiboek — Ft4: Formulieren en downloads
 
-**Pakket F — Internet (telefoon/tablet)** · Versie 1.0  
+**Pakket F — Internet (telefoon/tablet)** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die een formulier op een website invullen of een bestand downloaden  
-**Gids:** https://www.seniorease.nl  
+**Doelgroep:** Mensen die een formulier op de telefoon/tablet invullen (en eenvoudig downloaden)  
+**Oefenpagina:** https://www.seniorease.nl/oefenen/formulier  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** eigen telefoon of tablet + wifi  
 **Zaal:** geen bord/beamer — wifi op A4
+
+**Hoofdonderwerp:** formulieren. Downloaden blijft **eenvoudig** (veilige PDF → Bestanden → Downloads).
+
+**Oefenformulier:** mag **echt verzonden** worden — geen persoonsgegevens opgeslagen. Gebruik oefengegevens. Werkt het niet? Contact-pagina → Verzenden alleen demonstratie.
 
 ---
 
@@ -14,35 +18,32 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
-
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+| **Begeleider (docent)** | Oefenformulier + veilige PDF-link |
+| **Helper (vrijwilliger)** | 1-op-1: toetsenbord, Downloads (iPhone: iCloud / Op mijn iPhone) |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **formulier** op een website openen en velden invullen  
-2. Door een formulier **scrollen** en het toetsenbord gebruiken  
-3. Een **bestand downloaden** (via een veilige link van u)  
-4. Een download **terugvinden** (Downloads / Bestanden)  
+1. Een **formulier** openen op telefoon/tablet  
+2. **Tekstveld**, **e-mailveld**, **keuzelijst**, **vinkvakje** gebruiken  
+3. **Verplicht veld** en **foutmelding** herkennen en **corrigeren**  
+4. Alles **controleren** vóór verzenden; optioneel verzenden op oefenformulier  
+5. Eenvoudig: veilige **PDF downloaden** → **Bestanden** → **Downloads** → opnieuw openen  
+6. **Zelfstandig** formulier-route (plus korte download)  
 
 ## Wat u níet doet
 
-- Geen formulier **verzenden** vandaag (alleen invullen als oefening)  
-- Geen DigiD, bank of betalen (pakket E / D)  
-- Geen downloads van onbekende sites of pop-ups  
+- Geen DigiD/bank/betalen (E / D)  
+- Geen downloads van onbekende sites  
 - Geen computer  
 
 ## Voorbereiding
 
-- [ ] Wifi-wachtwoord op A4  
-- [ ] **Veilige downloadlink** klaar (bijv. een PDF op seniorease.nl — deelt u mondeling of via A4)  
-- [ ] **Kaart “Downloads terugvinden”** uit de PDF printen  
-- [ ] Eigen telefoon/tablet klaar om voor te doen  
+- [ ] Wifi op A4  
+- [ ] Controleer: `seniorease.nl/oefenen/formulier`  
+- [ ] Veilige PDF-link klaar  
+- [ ] Kaart Downloads (Android + iPhone) printen  
 - [ ] Deelnemerskaarten + oefentaken  
 
 ## Didactiek
@@ -55,34 +56,40 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-Wifi. **Zegt u:** “Welkom. Vandaag oefenen we formulieren invullen en downloads terugvinden — op uw telefoon of tablet.”
+**Zegt u:** “Vandaag vooral formulieren op uw telefoon. Op het oefenformulier mag u verzenden — er wordt niets bewaard. Daarna kort: één veilige download terugvinden.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam + Android of iPhone. Heeft u wel eens iets gedownload?
+Voornaam + Android of iPhone.
 
-### 12:25–12:45 — Stap 1: Formulier openen (oefentaak 1)
+### 12:25–12:45 — Stap 1: Formulier openen + tekst/e-mail (oefentaak 1)
 
-Browser → `seniorease.nl` → contactpagina (of pagina die u aanwijst).
+Typ `seniorease.nl/oefenen/formulier`.  
+Naam `Jan`, e-mail `test@voorbeeld.nl`, bericht.
 
-### 12:45–13:05 — Stap 2: Velden invullen (oefentaak 2)
+### 12:45–13:00 — Stap 2: Keuzelijst + vinkvakje (oefentaak 2)
 
-Oefengegevens: voornaam **Jan**, e-mail **test@voorbeeld.nl**, kort bericht **Dit is een oefening**. **Niet op Verzenden tikken.**
+Dropdown en checkbox. (Keuzerondjes als ze op het formulier staan.)
 
-### 13:05–13:10 — Pauze
+### 13:00–13:05 — Pauze
 
-### 13:10–13:30 — Stap 3: Downloaden (oefentaak 3)
+### 13:05–13:22 — Stap 3: Verplicht, foutmelding, controleren, verzenden (oefentaak 3)
 
-Veilige link van u. PDF openen of downloaden.
+Veld leeg → Verzenden → fout zien → corrigeren → controleren → optioneel verzenden.
 
-### 13:30–13:40 — Stap 4: Terugvinden (oefentaak 4)
+### 13:22–13:35 — Stap 4: Eenvoudig downloaden (oefentaak 4)
 
-App **Bestanden** / **Downloads**. Bestand opnieuw openen.
+Veilige PDF → downloaden → app **Bestanden** → **Downloads** → opnieuw openen.  
+**iPhone/iPad:** Downloads kan onder **iCloud Drive** of **Op mijn iPhone/iPad** staan — helper helpt als de map afwijkt.
 
-### 13:40–13:45 — Afronding
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
 
-Nazorg. **Laatste les** pakket F (telefoon/tablet). Overheid/DigiD = pakket E.
+Formulier zelf oefenen; kort download terugvinden als er tijd is.
+
+### 13:42–13:45 — Afronding
+
+Nazorg. **Pakket F-telefoon compleet.** Computer? Pakket F-computer. DigiD? Pakket E.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4 als download al in de browser zichtbaar is. **Niet schrappen:** formulier invullen + één download.
+**Niet schrappen:** formulier-veldtypen + foutmelding + eindopdracht. Download inkorten tot “in browser geopend”.

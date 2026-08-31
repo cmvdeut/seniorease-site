@@ -4,51 +4,53 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import BLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-B1-Muis-Toetsenbord-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF("SeniorEase  |  B1 Muis & toetsenbord  |  Pakket B  |  v1.0",
-        package_label="Pakket B - Computer & laptop")
+    pdf = BLessonPDF(
+        f"SeniorEase  |  B1 Muis & toetsenbord  |  Pakket B  |  {LESSON_VERSION}",
+        package_label="Pakket B - Computer & laptop",
+    )
     pdf.alias_nb_pages()
 
     pdf.cover(
         "B1 - Muis, toetsenbord en bureaublad",
         "Lesmiddag 90 minuten",
-        "Op de computer: muis bewegen en klikken, bureaublad herkennen, Start openen, "
-        "kort typen in Kladblok. Geen presentatie verplicht - voordoen op een scherm.",
+        "Muis en klikken, bureaublad en Start, typen en corrigeren, Shift en Caps Lock, "
+        "rechtermuisknop kort, verkeerd venster sluiten. Voordoen op een scherm. "
+        "Geen presentatie verplicht.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op de computer)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
+            "Versie 1.1 - augustus 2026",
             "Primair Windows; Mac: helper 1-op-1",
             "Pakket B (4 lessen): EUR 19,95",
         ],
     )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(0, 5, "Kijken, doen, controleren, pauzeren. Extra muizen meenemen helpt.")
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
     pdf.rollen_docent_helper()
-    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Computer/laptop  |  Geen presentatie verplicht")
+    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Computer/laptop")
 
     pdf.h2("Wat deelnemers na afloop kunnen")
     for i, t in enumerate(
         [
             "Muis bewegen, klikken en dubbelklikken",
-            "Bureaublad en taakbalk herkennen",
-            "Start-menu openen (Windows)",
-            "Kort typen in Kladblok",
+            "Bureaublad en Start-menu openen",
+            "Een zin typen en een fout corrigeren",
+            "Shift en Caps Lock voor hoofdletters; Caps Lock herkennen",
+            "Rechtermuisknop kort herkennen (extra menu)",
+            "Verkeerd venster sluiten met kruisje",
+            "Zelfstandig: Start - Kladblok - typen - corrigeren - sluiten",
         ],
         1,
     ):
@@ -59,31 +61,31 @@ def build() -> Path:
     pdf.bullet("Geen bestanden organiseren (B3)")
     pdf.bullet("Geen PowerPoint verplicht")
 
-    pdf.h2("Voorbereiding")
-    pdf.bullet("Pc's aan; extra USB-muizen")
-    pdf.bullet("Kladblok bereikbaar via Start")
-    pdf.bullet("Helper: touchpad en Mac")
-
     pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Welkom. Muis, toetsenbord, bureaublad. Rustig tempo.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam. Windows of Apple? Muis of touchpad?")
-    pdf.h3("12:25-12:45 - Stap 1: muis (oefentaak 1)")
-    pdf.body("Bewegen, linksklik, dubbelklik, kruisje om te sluiten.")
-    pdf.h3("12:45-13:05 - Stap 2: bureaublad en Start (oefentaak 2)")
-    pdf.body("Iconen, taakbalk, Windows-logo / Start openen en sluiten.")
-    pdf.h3("13:05-13:10 - Pauze")
-    pdf.h3("13:10-13:30 - Stap 3: typen (oefentaak 3)")
-    pdf.body("Start - typ kladblok - openen - typ Hallo - spatie en Backspace.")
-    pdf.h3("13:30-13:40 - Stap 4: scrollen (oefentaak 4)")
-    pdf.body("Muiswiel of twee vingers op touchpad.")
-    pdf.h3("13:40-13:45 - Afronding")
-    pdf.body("Nazorg. Volgende: B2.")
+    pdf.tijdlijn_item("12:00-12:15 - Inloop", "Welkom. Muis, toetsenbord, bureaublad.")
+    pdf.tijdlijn_item("12:15-12:25 - Kennismaking", "Voornaam. Windows of Apple? Muis of touchpad?")
+    pdf.tijdlijn_item("12:25-12:40 - Stap 1: muis (oefentaak 1)", "Bewegen, linksklik, dubbelklik, kruisje.")
+    pdf.tijdlijn_item(
+        "12:40-12:50 - Stap 2: bureaublad en Start (oefentaak 2)",
+        "Iconen, taakbalk, Start openen en sluiten.",
+    )
+    pdf.tijdlijn_item("12:50-13:05 - Stap 3: typen (oefentaak 3)", "Kladblok - zin - Backspace - spatie.")
+    pdf.tijdlijn_item("13:05-13:10 - Pauze", "")
+    pdf.tijdlijn_item(
+        "13:10-13:22 - Stap 4: Shift, Caps Lock, rechts (oefentaak 4)",
+        "Hoofdletters. Caps Lock uit als alles HOOFD is. Rechts klikken = menu.",
+    )
+    pdf.tijdlijn_item("13:22-13:28 - Stap 5: scrollen (oefentaak 5)", "Muiswiel of touchpad.")
+    pdf.tijdlijn_item("13:28-13:33 - Stap 6: verkeerd venster (oefentaak 6)", "Kruisje - opnieuw openen.")
+    pdf.tijdlijn_item(
+        "13:33-13:40 - Eindopdracht (oefentaak 7)",
+        "Start - Kladblok - zin - corrigeren - sluiten.",
+    )
+    pdf.tijdlijn_item("13:40-13:45 - Afronding", "Nazorg. Volgende: B2.")
 
     pdf.h2("Als de tijd krap is")
-    pdf.bullet("Schrap oefentaak 4")
-    pdf.bullet("Niet schrappen: klikken, Start, kort typen")
+    pdf.bullet("Schrap scrollen of verkort oefentaak 6")
+    pdf.bullet("Niet schrappen: klikken, Start, typen + Shift, eindopdracht")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -96,81 +98,68 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket B  -  computer of laptop")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket B  -  computer  -  {LESSON_VERSION}")
     pdf.ln(2)
 
     pdf.h2("Wat u vandaag oefent")
-    pdf.numbered(1, "Muis: bewegen, klikken, dubbelklikken")
+    pdf.numbered(1, "Muis: bewegen, klikken")
     pdf.numbered(2, "Bureaublad en Start")
-    pdf.numbered(3, "Kort typen")
-    pdf.numbered(4, "Scrollen")
+    pdf.numbered(3, "Zin typen en corrigeren")
+    pdf.numbered(4, "Shift, Caps Lock, rechtermuisknop")
+    pdf.numbered(5, "Verkeerd venster sluiten")
+    pdf.numbered(6, "Zelfstandig: Start - Kladblok - sluiten")
 
-    pdf.h2("Muis")
-    pdf.bullet("Pijltje op het scherm volgt de muis")
-    pdf.bullet("Linkermuisknop: een keer = selecteren; twee keer snel = openen")
-    pdf.bullet("Kruisje rechtsboven = venster sluiten")
-
-    pdf.h2("Toetsenbord")
-    pdf.bullet("Spatiebalk = spatie tussen woorden")
-    pdf.bullet("Backspace = letter wissen")
-    pdf.bullet("Enter = vaak bevestigen of nieuwe regel")
-
-    pdf.box("Onthoud", ["Bureaublad = iconen. Start = Windows-logo. Kladblok = typen oefenen."])
+    pdf.h2("Toetsenbord - kort")
+    pdf.bullet("Shift + letter = hoofdletter")
+    pdf.bullet("Caps Lock = alles hoofdletter (lampje?)")
+    pdf.bullet("Backspace = wissen")
+    pdf.bullet("Rechts klikken = extra menu")
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.muted("Op de computer of laptop.")
+    pdf.muted(f"Op de computer. Versie {LESSON_VERSION.lstrip('v')}.")
 
     pdf.h2("Oefentaak 1 - Muis")
-    pdf.numbered(1, "Beweeg de muis - volg het pijltje.")
-    pdf.numbered(2, "Een keer linksklikken op een icoon.")
-    pdf.numbered(3, "Dubbelklik op een icoon (bijv. Prullenbak).")
-    pdf.numbered(4, "Sluit met het kruisje rechtsboven.")
-    pdf.body("Klaar als: u kunt klikken en sluiten.")
+    pdf.body("Bewegen - linksklik - dubbelklik - kruisje. Klaar als: klikken en sluiten.")
 
     pdf.h2("Oefentaak 2 - Bureaublad en Start")
-    pdf.numbered(1, "Herken het bureaublad (iconen).")
-    pdf.numbered(2, "Klik op Start (Windows-logo).")
-    pdf.numbered(3, "Sluit Start weer (klik buiten of Esc).")
-    pdf.body("Klaar als: Start open en dicht is geweest.")
+    pdf.body("Start openen en sluiten. Klaar als: Start open en dicht geweest.")
 
-    pdf.h2("Oefentaak 3 - Typen")
-    pdf.numbered(1, "Start - typ: kladblok - open Kladblok.")
-    pdf.numbered(2, "Typ: Hallo")
-    pdf.numbered(3, "Probeer spatiebalk en Backspace.")
-    pdf.body("Klaar als: Hallo op het scherm staat. Opslaan niet nodig.")
+    pdf.h2("Oefentaak 3 - Zin typen")
+    pdf.body("Kladblok - Hallo, dit is mijn oefening. - foutje - Backspace.")
 
-    pdf.h2("Oefentaak 4 - Scrollen")
-    pdf.numbered(1, "Open Start of een lang menu.")
-    pdf.numbered(2, "Muiswiel of twee vingers op de touchpad.")
-    pdf.body("Klaar als: u een keer heeft gescrolld.")
+    pdf.h2("Oefentaak 4 - Shift, Caps Lock, rechts")
+    pdf.body("Shift voor hoofdletter. Caps Lock herkennen. Rechts klikken = menu zien.")
+
+    pdf.h2("Oefentaak 5 - Scrollen")
+    pdf.body("Muiswiel of touchpad. Klaar als: een keer gescrolld.")
+
+    pdf.h2("Oefentaak 6 - Verkeerd venster")
+    pdf.body("Per ongeluk openen - kruisje - opnieuw Kladblok.")
+
+    pdf.h2("Oefentaak 7 - Zelfstandig")
+    pdf.body("Start - Kladblok - zin - corrigeren - sluiten.")
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
-        "Geen presentatie verplicht",
-        "Pc's/laptops aan en werkend",
-        "Extra USB-muizen",
-        "Kladblok bereikbaar",
+        "Pc's/laptops aan; extra USB-muizen",
+        "Kladblok bereikbaar via Start",
         "8-10x deelnemerskaart en oefentaken",
         "8-10x nazorgkaart",
         "Helper voor touchpad/Mac",
     ]:
         pdf.check(t)
 
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Muis: bewegen, linksklik, dubbelklik. Kruisje = sluiten.",
+            "Verkeerd venster? Kruisje = sluiten.",
+            "Caps Lock uit als alles HOOFD is. Shift = een hoofdletter.",
             "Start = Windows-logo. Kladblok = typen oefenen.",
             "seniorease.nl",
             "Volgende les: B2 Vensters, tabbladen en programma's.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

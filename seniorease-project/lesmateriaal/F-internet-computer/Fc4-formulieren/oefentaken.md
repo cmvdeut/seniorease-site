@@ -2,58 +2,67 @@
 
 Voor de deelnemer. Op een **computer of laptop**.
 
-**Belangrijk:** verstuur het formulier vandaag **niet**.
+**Oefenpagina:** `seniorease.nl/oefenen/formulier`  
+Gebruik oefengegevens. Op die pagina mag u verzenden — SeniorEase bewaart geen persoonsgegevens.
+
+**Fallback:** Contact-pagina — dan **niet** op Verzenden klikken.
 
 ---
 
-## Oefentaak 1 — Formulier openen
+## Oefentaak 1 — Openen + tekst en e-mail
 
-**Doel:** een pagina met invulvelden vinden.
+1. Open de browser. Typ: `seniorease.nl/oefenen/formulier`  
+2. Klik in het **tekstveld** Naam. Typ: `Jan`  
+3. Klik in het **e-mailveld**. Typ: `test@voorbeeld.nl`  
+4. Vul het **bericht** in: `Dit is een oefening`
 
-1. Open de **browser**.  
-2. Ga naar `seniorease.nl`.  
-3. Open **Contact**.  
-4. U ziet velden: Naam, E-mail, Bericht.
-
-**Klaar als:** u het contactformulier ziet.
+**Klaar als:** naam, e-mail en bericht zijn ingevuld.
 
 ---
 
-## Oefentaak 2 — Velden invullen
+## Oefentaak 2 — Keuzelijst, vinkvakje, keuzerondje
 
-**Doel:** typen in een formulier.
+1. **Keuzelijst** (dropdown): klik het pijltje → kies één optie.  
+2. **Vinkvakje**: klik zodat er een vinkje komt (of weer weg).  
+3. **Keuzerondje**: kies één rondje (maar één tegelijk).
 
-1. Klik in **Naam**. Typ: `Jan`  
-2. Klik in **E-mail**. Typ: `test@voorbeeld.nl`  
-3. Klik in **Bericht**. Typ: `Dit is een oefening`  
-4. **Klik niet op Verzenden.**
-
-**Klaar als:** drie velden zijn ingevuld.
+**Klaar als:** u alle drie de soorten heeft gebruikt.
 
 ---
 
-## Oefentaak 3 — Scrollen en controleren
+## Oefentaak 3 — Verplicht, foutmelding, corrigeren
 
-**Doel:** alles nakijken voordat u ooit verzendt.
+1. Maak **één verplicht veld** leeg (bijv. Naam wissen).  
+2. Klik **Verzenden** (op het oefenformulier).  
+3. Ziet u een **foutmelding**? Lees die.  
+4. Vul het veld opnieuw in. Scroll en **controleer alles**.
 
-1. Scroll met het **muiswiel** of de **schuifbalk** door het formulier.  
-2. Lees wat u heeft getypt.  
-3. Stel u voor: zou u dit echt willen versturen?  
-4. Wis eventueel een fout (Backspace) en typ opnieuw.
+**Geen oefenformulier?** Stel u voor: rode tekst bij een leeg veld — dat is een foutmelding. Vul bij en controleer.
 
-**Klaar als:** u uw invoer heeft gecontroleerd.
+**Klaar als:** u een foutmelding heeft herkend en gecorrigeerd (of het patroon kent).
 
 ---
 
-## Oefentaak 4 — Wanneer wel verzenden?
+## Oefentaak 4 — Verzenden (oefenformulier)
 
-**Doel:** weten wat anders is dan vandaag.
+1. Controleer nog één keer alle velden.  
+2. Klik **Verzenden** op het oefenformulier.  
+3. U ziet een bevestiging — uw gegevens worden **niet** opgeslagen.
 
-1. Vandaag: **oefenen** — niet verzenden.  
-2. Thuis: alleen verzenden als u **zeker** bent en de site **vertrouwt**.  
-3. Gemeente, Belastingdienst, DigiD: pakket **E — DigiD & overheid**.
+**Alleen Contact-pagina?** Wijs **Verzenden** aan — klik er **niet** op vandaag.
 
-**Klaar als:** u het verschil kunt noemen.
+**Klaar als:** u heeft verzonden (oefenformulier) of Verzenden heeft herkend (demo).
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open het oefenformulier zelf.  
+2. Vul **tekst**, **e-mail**, **keuzelijst**, **vinkvakje** en **keuzerondje** in.  
+3. Controleer alles.  
+4. Verzend (oefenformulier) of stop vóór Verzenden (Contact).
+
+**Klaar als:** u een formulier zelfstandig heeft geoefend.
 
 ---
 
@@ -61,9 +70,11 @@ Voor de deelnemer. Op een **computer of laptop**.
 
 | Situatie | Tip |
 |----------|-----|
-| Verkeerd veld | Klik opnieuw in het veld |
-| Tab-toets | Springt naar volgend veld (optioneel tonen) |
-| Mac | Zelfde; helper 1-op-1 |
+| Verkeerd veld | Opnieuw in het veld klikken |
+| Tab-toets | Springt naar volgend veld |
+| Mac | Zelfde stappen; helper 1-op-1 |
+| Overheid/DigiD | Pakket E |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

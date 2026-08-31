@@ -1,12 +1,14 @@
 # Draaiboek — Ft2: Browser gebruiken
 
-**Pakket F — Internet (telefoon/tablet)** · Versie 1.0  
+**Pakket F — Internet (telefoon/tablet)** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die Ft1 aankunnen (zoeken) of al iets op internet hebben gezocht  
+**Doelgroep:** Mensen die Ft1 aankunnen of al wel eens hebben gezocht  
 **Gids:** https://www.seniorease.nl  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** eigen telefoon of tablet + wifi  
 **Zaal:** geen bord/beamer — wifi op A4
+
+**Kern:** verschil **Google zoeken** vs **webadres typen**. Tabbladen verschillen per browser (Chrome ≠ Safari).
 
 ---
 
@@ -14,34 +16,31 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
-
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+| **Begeleider (docent)** | Voorbeeld op eigen toestel |
+| **Helper (vrijwilliger)** | 1-op-1: Chrome vs Safari tabbladen |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. Een **website** openen door het adres te typen  
-2. **Terug** en **vooruit** gebruiken  
-3. Een **nieuw tabblad** openen en ertussen wisselen  
-4. Een **tabblad sluiten** (niet de hele browser)  
+1. Uitleggen: **Google zoeken** vs **webadres typen**  
+2. In de **adresbalk** zien op welke website zij zijn  
+3. **Terug** (en eventueel vooruit) gebruiken  
+4. **Nieuw tabblad**, tweede site, **wisselen**, tabblad **sluiten** (zoals op *hun* toestel)  
+5. **Zelfstandig:** typen → link → terug → tabblad → tweede site → wisselen → sluiten  
 
 ## Wat u níet doet
 
-- Geen QR-codes (Ft3)  
-- Geen downloads of formulieren (Ft4)  
-- Geen instellingen of wachtwoorden wijzigen  
-- Geen computer (pakket F-computer)  
+- Geen QR (Ft3)  
+- Geen downloads/formulieren (Ft4)  
+- Geen computer (F-computer)  
+- Niet doen alsof elk toestel hetzelfde kruisje heeft  
 
 ## Voorbereiding
 
-- [ ] Wifi-wachtwoord op A4  
-- [ ] Eigen telefoon/tablet klaar om voor te doen  
-- [ ] Deelnemerskaarten + oefentaken  
+- [ ] Wifi op A4  
+- [ ] Eigen toestel klaar  
+- [ ] Helper: weet waar tabbladen zitten op Chrome én Safari  
 
 ## Didactiek
 
@@ -53,34 +52,43 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-Wifi helpen. **Zegt u:** “Welkom. Vandaag leren we de browser beter kennen: terug, vooruit, tabbladen. Op uw eigen telefoon.”
+**Zegt u:** “Vandaag: websites openen met een adres, terug, en tabbladen. Chrome en Safari zien er iets anders uit — dat is normaal.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam + Android of iPhone. Heeft u Ft1 gedaan of zoekt u al wel eens?
+Voornaam + Android of iPhone. Ft1 gedaan?
 
-### 12:25–12:45 — Stap 1: Website typen (oefentaak 1)
+### 12:25–12:42 — Stap 1: Zoeken vs adres typen (oefentaak 1)
 
-Browser openen. In de adresbalk typen: `seniorease.nl`. Enter.
+**Kijken:** Google = zoeken. Adresbalk = site die u kent (`seniorease.nl`).  
+**Doen:** typ adres. **Controleer adresbalk:** op welke site bent u?
 
-### 12:45–13:05 — Stap 2: Terug en vooruit (oefentaak 2)
+### 12:42–13:00 — Stap 2: Link + terug (oefentaak 2)
 
-Op seniorease.nl: tik op een link. Pijl **terug**. Pijl **vooruit** (als die er is).
+Tik op een link → pijl terug. Eventueel vooruit. Adresbalk checken.
 
-### 13:05–13:10 — Pauze
+### 13:00–13:05 — Pauze
 
-### 13:10–13:30 — Stap 3: Tabbladen (oefentaak 3)
+### 13:05–13:25 — Stap 3: Tabbladen (oefentaak 3)
 
-Nieuw tabblad (+). Typ `weer.nl` of `nos.nl`. Wissel tussen tabbladen.
+**Helper 1-op-1** bij icoon:  
+- **Chrome:** vaak vierkantje met cijfer, + voor nieuw  
+- **Safari:** vaak twee vierkantjes; + in overzicht; sluiten soms **veeg** of kruisje  
 
-### 13:30–13:40 — Stap 4: Tabblad sluiten (oefentaak 4)
+Nieuw tabblad → `weer.nl` of `nos.nl` → wisselen.
 
-Sluit één tabblad met het kruisje op het tabblad. Browser blijft open.
+### 13:25–13:35 — Stap 4: Tabblad sluiten (oefentaak 4)
 
-### 13:40–13:45 — Afronding
+Eén tabblad weg — browser blijft open. Helper toont *op hun toestel*.
 
-Nazorg. Volgende: Ft3 QR-codes openen.
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
+
+Website typen → link → terug → nieuw tabblad → tweede site → wisselen → sluiten.
+
+### 13:42–13:45 — Afronding
+
+Nazorg. Volgende: Ft3 QR-codes.
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4 als tabblad sluiten al in oefentaak 3 zit. **Niet schrappen:** adres typen + terug + één tabblad.
+**Niet schrappen:** adres typen + terug + tabblad + eindopdracht.

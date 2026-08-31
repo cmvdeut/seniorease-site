@@ -47,7 +47,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Rustige doe-middagen op het eigen toestel: startscherm, apps, wifi en foto’s. Geen bord nodig — wel print en eigen telefoon.',
     lessons: [
-      { code: 'A1', title: 'Uw smartphone of tablet leren kennen' },
+      { code: 'A1', title: 'Ik ken mijn telefoon en durf hem te bedienen' },
       { code: 'A2', title: 'Apps installeren en verwijderen' },
       { code: 'A3', title: 'Wifi verbinden' },
       { code: 'A4', title: 'Foto’s maken en bekijken' },
@@ -137,12 +137,12 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Landmark,
     description:
-      'DigiD, MijnOverheid, gemeente en Belastingdienst. Geen DigiD aanvragen in de klas — wel herkennen en veilig oefenen.',
+      'Praktische kennismaking: DigiD, MijnOverheid, gemeente en Belastingdienst. Privacyvriendelijk — geen aanvragen in de klas. Veilig online: pakket D.',
     lessons: [
       { code: 'E1', title: 'DigiD' },
       { code: 'E2', title: 'MijnOverheid' },
       { code: 'E3', title: 'Gemeente & Belastingdienst' },
-      { code: 'E4', title: 'Veilig omgaan met DigiD-berichten' },
+      { code: 'E4', title: 'Berichtenbox en berichten van de overheid' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
     guideLinks: [{ href: '/uitleg/digid', label: 'DigiD uitleg' }],
@@ -157,15 +157,16 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Globe,
     description:
-      'Zoeken, browser, QR-codes en formulieren. Zelfde thema als F-computer, andere bediening (tikken).',
+      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
     lessons: [
-      { code: 'Ft1', title: 'Zoeken' },
+      { code: 'Ft1', title: 'Iets opzoeken op Google' },
       { code: 'Ft2', title: 'Browser gebruiken' },
       { code: 'Ft3', title: 'QR-codes openen' },
       { code: 'Ft4', title: 'Formulieren en downloads' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
-    relatedNote: 'Zelfde leerdoelen als pakket F-computer — kies de variant die past bij uw groep.',
+    relatedNote:
+      'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [
       { href: '/uitleg/google-maps', label: 'Google Maps' },
       { href: '/uitleg/qr-code', label: 'QR-code uitleg' },
@@ -181,15 +182,16 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Globe,
     description:
-      'Zoeken met Google, websites en tabbladen, downloaden en formulieren. Voor pc-lessen in bibliotheek of buurthuis.',
+      'Internetvaardigheden op de pc: zoeken, websites en tabbladen, veilig downloaden, formulieren. Pakket B = computer bedienen; dit pakket = internet gebruiken.',
     lessons: [
       { code: 'Fc1', title: 'Zoeken met Google' },
       { code: 'Fc2', title: 'Websites en tabbladen' },
-      { code: 'Fc3', title: 'Downloaden' },
-      { code: 'Fc4', title: 'Formulieren' },
+      { code: 'Fc3', title: 'Veilig downloaden en bestanden herkennen' },
+      { code: 'Fc4', title: 'Formulieren invullen' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
-    relatedNote: 'Zelfde leerdoelen als pakket F-telefoon — kies de variant die past bij uw groep.',
+    relatedNote:
+      'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [{ href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' }],
   },
   {
@@ -202,7 +204,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Sparkles,
     description:
-      'Wat is AI, chatten, goede vragen stellen en veilig gebruiken. Optioneel na pakket A–F. Inclusief beamer-slides (pilot).',
+      'Wat is AI, chatten met context, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel.',
     lessons: [
       { code: 'G1', title: 'Wat is AI?' },
       { code: 'G2', title: 'AI openen en gebruiken' },
@@ -215,7 +217,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       'Oefentaken',
       'Zaalchecklist',
       'Nazorgkaart',
-      'Beamer-PDF (optioneel)',
+      'Beamer-PDF (per les)',
     ],
     guideLinks: [
       { href: '/wat-is-ai', label: 'Wat is AI?' },

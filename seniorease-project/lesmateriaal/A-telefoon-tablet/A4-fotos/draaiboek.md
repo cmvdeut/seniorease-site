@@ -1,12 +1,12 @@
 # Draaiboek — A4: Foto’s maken, terugvinden en delen
 
-**Pakket A — Telefoon & tablet** · Versie 1.0  
+**Pakket A — Telefoon & tablet** · Versie 1.1  
 **Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die een foto willen maken, terugvinden en (optioneel) delen  
+**Doelgroep:** Mensen die zelfstandig een foto willen maken, terugvinden en delen  
 **Gidsen:** https://www.seniorease.nl/uitleg/fotos-maken · fotos-ordenen · whatsapp-basis  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** eigen telefoon of tablet (opgeladen)  
-**Zaal:** geen bord/beamer/presentatie — prints + telefoon van de begeleider
+**Zaal:** geen bord/beamer/presentatie — WhatsApp-nummer begeleider op A4 + telefoon van de begeleider
 
 ---
 
@@ -14,7 +14,7 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel of scherm, tempo bepalen, groep begeleiden |
+| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
 | **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
 
 **Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
@@ -25,28 +25,35 @@
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. De **camera** openen en een scherpe foto maken  
-2. De foto **terugvinden** in Galerij / Foto’s  
-3. Eén foto **delen** via WhatsApp (of stoppen na terugvinden)  
+1. De **camera** kennen: sluiterknop, voor-/achtercamera, kort verschil foto/video  
+2. **Zelfstandig** de camera gebruiken en een **duidelijke foto** maken  
+3. Verschillende **eenvoudige foto’s** maken (voorwerp dichtbij, iets verder weg; selfie optioneel)  
+4. In **Foto’s/Galerij** door foto’s **heen vegen** en **terug** naar het overzicht  
+5. Een **testfoto verwijderen** (alleen foto’s van vandaag — nooit een bestaande foto)  
+6. Een foto **delen via WhatsApp** en **controleren** vóór versturen (foto + ontvanger)  
+7. **Zelfstandig:** camera → testfoto → terugvinden → openen → overzicht → delen → testfoto weg  
 
 ## Wat u níet doet
 
-- Geen foto’s naar de computer overzetten  
-- Geen filters of bewerken  
+- Geen filters, uitgebreide bewerking, albums of cloudopslag  
+- Geen foto’s naar de computer  
 - Geen iCloud/Google Foto’s-accounts verplichten  
 - Geen computer, bord of presentatie  
+- **Nooit** een bestaande persoonlijke foto laten verwijderen — alleen testfoto’s van vandaag  
 
 ## Voorbereiding
 
 - [ ] Voldoende licht in de zaal (of bij het raam — niet tegen het licht in)  
 - [ ] Oplaadkabels / powerbank  
 - [ ] Eigen toestel klaar om voor te doen  
-- [ ] Optioneel: uw WhatsApp-nummer op A4 voor oefendelingen  
+- [ ] **WhatsApp-nummer begeleider op A4** (voor oefendelen)  
 - [ ] Deelnemerskaarten + oefentaken  
 
 ## Didactiek
 
 Kijken → Doen → Controleren → Pauzeren.
+
+**Privacy:** vraag altijd **toestemming** vóór u iemand fotografeert of een foto deelt.
 
 ---
 
@@ -55,32 +62,82 @@ Kijken → Doen → Controleren → Pauzeren.
 ### 12:00–12:15 — Inloop
 
 **Zegt u:**  
-“Welkom. Vandaag maakt u een foto, vindt u die terug, en deelt u er eventueel één via WhatsApp. Rustig tempo.”
+“Welkom. Vandaag leert u de camera kennen, maakt u foto’s, vindt u ze terug, deelt u er één via WhatsApp en gooit u een testfoto weg. Rustig tempo — u hoeft geen fotograaf te worden.”
 
 ### 12:15–12:25 — Kennismaking
 
-Voornaam + Android of iPhone. Afspraken: één stap tegelijk; geen vreemde mensen fotograferen zonder toestemming.
+Voornaam + Android of iPhone.  
+**Privacy:** “Vraag altijd toestemming vóór u iemand fotografeert of een foto deelt.”
 
-### 12:25–12:45 — Stap 1: Foto maken (oefentaak 1)
+### 12:25–12:38 — Stap 1: Camera leren kennen (oefentaak 1)
 
-Drie tips: **licht** op het onderwerp · **stilhouden** met twee handen · **tik** op het scherm om scherp te stellen.  
-**Doen:** 2 of 3 foto’s van iets in de zaal (tas, plant, stoel).
+**Kijken op eigen toestel:**
 
-### 12:45–13:05 — Stap 2: Terugvinden (oefentaak 2)
+- **Sluiterknop** (grote knop of cirkel) — maakt de foto  
+- **Wisselen** tussen voor- en achtercamera (pijltjes of camera-icoon)  
+- **Foto / video** — kort: foto = stilstaand beeld · video = bewegend beeld (vandaag alleen **foto**)
 
-Open Galerij / Foto’s. Zoek de foto’s van zojuist (vaak bovenaan). Open er één groot.
+**Controleren:** iedereen ziet de sluiterknop en kan wisselen.
 
-### 13:05–13:10 — Pauze
+### 12:38–13:00 — Stap 2: Foto’s maken (oefentaak 2)
 
-### 13:10–13:30 — Stap 3: Delen via WhatsApp (oefentaak 3)
+**Drie tips:** voldoende **licht** · telefoon **stilhouden** (twee handen) · **tikken** om scherp te stellen.
 
-Alleen als WhatsApp werkt. Anders: stop na oefentaak 2 — dat telt als geslaagd.  
-Foto → Delen → WhatsApp → oefencontact (begeleider of buur) → versturen.
+**In- en uitzoomen (kort):** spreid twee vingers op het scherm om in te zoomen · knijp samen om uit te zoomen.
 
-### 13:30–13:45 — Afronding
+**Doe-opdracht — zegt u:**  
+“Maak een foto van **iets in de zaal dat u mooi of grappig vindt**.”
 
-Herhaal: maken → vinden → delen. Nazorg. **Pakket A compleet.**
+Daarna:
+
+1. **Eén voorwerp dichtbij** (tas, bloem, kopje)  
+2. **Iets verder weg** (hoek van de zaal, raam, stoel)  
+3. **Selfie** — optioneel, alleen met toestemming van uzelf  
+
+**Controleren:** minstens twee nieuwe foto’s (testfoto’s voor later).
+
+### 13:00–13:05 — Pauze
+
+### 13:05–13:18 — Stap 3: Door foto’s heen vegen (oefentaak 3)
+
+Open **Galerij / Foto’s**.  
+**Doen:** veeg **links/rechts** door uw foto’s van vandaag. Ga **terug** naar het overzicht (pijl of Albums/Alle foto’s).  
+Belangrijker dan alleen de laatste foto zoeken: **rondkijken en terugnavigeren**.
+
+**Controleren:** iedereen heeft geveegd en het overzicht teruggevonden.
+
+### 13:18–13:28 — Stap 4: Testfoto verwijderen (oefentaak 4)
+
+**Alleen een testfoto van vandaag** — nooit een bestaande persoonlijke foto.
+
+Open een testfoto → **Verwijderen** / Prullenbak → bevestigen.
+
+**Leg kort uit:** een verwijderde foto komt vaak eerst in **Prullenbak** / **Recent verwijderd** — soms kunt u die nog **terughalen**.
+
+**Controleren:** één testfoto weg; persoonlijke foto’s intact.
+
+### 13:28–13:40 — Stap 5: Delen via WhatsApp (oefentaak 5)
+
+**Lesonderdeel voor iedereen met WhatsApp.** Geen WhatsApp? Deelnemer kijkt mee en stopt na stap 4 — dat telt als geslaagd.
+
+1. Open een foto van vandaag → **Delen** → **WhatsApp**  
+2. Kies de **begeleider** (nummer op A4)  
+3. **Controleer vóór versturen:** klopt de **foto**? Klopt de **ontvanger**?  
+4. Verstuur.
+
+**Privacy:** deelt u een foto met een persoon erop? Alleen met **toestemming**.
+
+### 13:40–13:43 — Eindopdracht zelfstandig (oefentaak 6)
+
+Iedereen **zonder voordoen** (helper loopt):
+
+Camera openen → testfoto maken → foto terugvinden → foto openen → terug naar overzicht → foto delen (of **aanwijzen** waar Delen staat) → testfoto verwijderen.
+
+### 13:43–13:45 — Afronding
+
+Herhaal: maken → vinden → vegen → delen (met controleren) → verwijderen. Nazorg. **Pakket A compleet.**
 
 ## Als de tijd krap is
 
-Schrap delen. **Niet schrappen:** camera + foto maken + galerij.
+Schrap eindopdracht (oefentaak 6) of selfie.  
+**Niet schrappen:** camera kennen + foto’s maken + galerij vegen + testfoto verwijderen + delen (voor wie WhatsApp heeft).

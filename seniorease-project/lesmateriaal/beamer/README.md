@@ -1,27 +1,29 @@
-# Beamer-slides (optioneel)
+# Beamer-slides
 
-De **print** blijft de basis: deelnemerskaart + oefentaken op tafel. Dat werkt in **elk** clubhuis.
-
-Sommige zalen hebben wél een beamer. Dan kunt u de oefentaken **groot op het scherm** tonen — deelnemers volgen de stappen terwijl ze op hun eigen toestel oefenen.
+De **print** blijft op tafel. Bij **Pakket G** hoort daarnaast een **beamerpresentatie per les** — bewust in het draaiboek: eerst kijken/tonen, daarna zelf doen.
 
 ## Twee zaaltypes
 
 | Zaal | Wat u doet |
 |------|------------|
-| **Zonder beamer** (standaard) | Print oefentaken (1 per deelnemer of 1 per tafel). Begeleider voordoet op eigen toestel. |
-| **Met beamer** (extra) | Open het **beamer-PDF** op laptop → beamer. 1 slide = 1 oefentaak. Page Down voor volgende stap. |
+| **Met beamer** (aanbevolen bij G) | Open het beamer-PDF. Eerst uitleg/demo, daarna oefentaken. Page Down voor volgende dia. |
+| **Zonder beamer** | Print oefentaken. Begeleider voordoet op eigen toestel. Zelfde didactiek. |
 
-**Regel:** neem **altijd print mee**, ook als er een beamer is. Storing, slecht leesbaar, of deelnemer ver van scherm — dan heeft iedereen papier.
+**Regel:** neem **altijd print mee**, ook als er een beamer is.
+
+## Didactiek
+
+**Kijken op de beamer → zelf doen → samen controleren → volgende stap.**
+
+De presentatie ondersteunt de les en vervangt het zelf doen niet.
 
 ## Waar staan de bestanden?
-
-Per les, naast het normale PDF:
 
 ```
 G-ai/G1-wat-is-ai/beamer/SeniorEase-G1-Beamer-v1.pdf
 ```
 
-Pakket **G** heeft beamer-PDF’s (pilot). Andere pakketten volgen.
+Pakket **G** heeft beamer-PDF’s per les (onderdeel van het pakket). Andere pakketten: print-first; beamer optioneel later.
 
 ## Bouwen
 
@@ -29,16 +31,8 @@ Pakket **G** heeft beamer-PDF’s (pilot). Andere pakketten volgen.
 python lesmateriaal/G-ai/build_beamer_all.py
 ```
 
-Of per les: `python lesmateriaal/G-ai/G1-wat-is-ai/build_beamer.py`
+## Tips
 
-## Tips voor de begeleider
-
-- **Eén oefentaak tegelijk** op het scherm — wacht tot de groep klaar is.  
-- **Niet voorlezen** wat er staat; deelnemers lezen mee (grote letters).  
-- **Geen presentatie** nodig: geen PowerPoint, geen wifi voor slides — offline PDF opent overal.  
-- Sluit aan bij didactiek: **Kijken** (beamer + demo) → **Doen** (eigen toestel) → **Controleren** → **Pauzeren**.
-
-## Later
-
-- Beamer-PDF’s voor pakketten A–F  
-- Optioneel: webpagina op seniorease.nl (zelfde tekst, voor tablet aan beamer)
+- Eén stap tegelijk — wacht tot de groep klaar is.  
+- Live demo op beamer (G2/G3): laat zien hoe één wijziging in een vraag het antwoord verandert.  
+- Offline PDF — geen PowerPoint nodig.

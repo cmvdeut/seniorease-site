@@ -4,73 +4,62 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import GLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-G2-AI-Gebruiken-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF(
-        "SeniorEase  |  G2 AI gebruiken  |  Pakket G  |  v1.1",
+    pdf = GLessonPDF(
+        f"SeniorEase  |  G2 AI gebruiken  |  Pakket G  |  {LESSON_VERSION}",
         package_label="Pakket G - AI voor dagelijks gebruik",
     )
     pdf.alias_nb_pages()
     pdf.cover(
         "G2 - AI openen en gebruiken",
         "Lesmiddag 90 minuten",
-        "AI-chat openen, vraag stellen, antwoord lezen, nieuw gesprek. "
-        "Na G1: nu zelf chatten. Geen persoonlijke gegevens. Inloggen niet verplicht.",
+        "Inclusief beamerpresentatie voor de begeleider. Deelnemers oefenen daarna "
+        "op hun eigen toestel. Vraag - antwoord - vervolgvraag - context in het gesprek. "
+        "Nieuw gesprek vs verder praten. Geen geheimen.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorg",
+            "Beamer-PDF in map beamer/",
         ],
         [
             "Versie 1.1 - augustus 2026",
-            "Pakket G (4 lessen): EUR 19,95",
-            "Volgende les: G3 Goede vragen stellen",
-            "Gids: seniorease.nl/wat-is-ai/chatgpt",
+            "Volgende: G3 Goede vragen stellen",
         ],
-    )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(
-        0,
-        5,
-        "Kijken, doen, controleren, pauzeren. Begeleider kiest: ChatGPT, Gemini of Copilot.",
     )
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
     pdf.rollen_docent_helper()
-    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Geen bord/beamer")
+    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Beamer eerst, daarna eigen toestel")
+    pdf.body("Didactiek: Kijken op de beamer - zelf doen - controleren - volgende stap.")
+
     pdf.h2("Wat deelnemers na afloop kunnen")
     for i, t in enumerate(
         [
-            "AI-chat openen (zelfde site als begeleider)",
-            "Vraag typen en versturen",
-            "Antwoord lezen",
-            "Nieuw gesprek starten",
+            "AI-chat openen; verstuurknop herkennen",
+            "Vraag - lezen - vervolgvraag - aanpassen",
+            "Context in hetzelfde gesprek ervaren",
+            "Verschil: verder praten vs nieuw gesprek",
+            "Zelfstandige eindopdracht",
         ],
         1,
     ):
         pdf.numbered(i, t)
-    pdf.h2("Wat u niet doet")
-    pdf.bullet("Geen BSN, wachtwoord, bank of medisch intypen")
-    pdf.bullet("Geen klassikale account-aanmelding")
-    pdf.bullet("Geen diepe prompts (G3)")
-    pdf.h2("Didactiek")
-    pdf.body("Kijken - doen - controleren - pauzeren.")
-    pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:25-12:45 - AI openen (oefentaak 1)")
-    pdf.h3("12:45-13:05 - Wifi-vraag (oefentaak 2)")
-    pdf.h3("13:10-13:30 - Eigen vraag, bijv. erwtensoep (oefentaak 3)")
-    pdf.h3("13:30-13:40 - Nieuw gesprek (oefentaak 4)")
-    pdf.h2("Als de tijd krap is")
-    pdf.bullet("Schrap oefentaak 4")
+
+    pdf.h2("Tijdlijn (beamer)")
+    pdf.tijdlijn_item("Openen", "")
+    pdf.tijdlijn_item("Beamerdemo erwtensoep / 2 personen / boodschappenlijst", "")
+    pdf.tijdlijn_item("Nieuw gesprek", "")
+    pdf.tijdlijn_item("Eigen chat", "")
+    pdf.tijdlijn_item("Eindopdracht", "")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -82,44 +71,52 @@ def build() -> Path:
     pdf.cell(0, 2, "", new_x="LMARGIN", new_y="NEXT", fill=True)
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket G  -  telefoon, tablet of computer")
+    pdf.set_font("DejaVu", "", 10)
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket G  -  {LESSON_VERSION}")
     pdf.ln(2)
-    pdf.set_text_color(*NAVY)
-    pdf.numbered(1, "AI-chat openen")
-    pdf.numbered(2, "Eerste vraag: wifi uitleg")
-    pdf.numbered(3, "Eigen vraag (recept, weer, ...)")
-    pdf.numbered(4, "Nieuw gesprek")
-    pdf.box("Niet typen", ["Geen wachtwoord, BSN, pincode of medische details."])
+    pdf.h2("Vandaag")
+    pdf.numbered(1, "Openen + versturen")
+    pdf.numbered(2, "Gesprek: recept - 2 personen - boodschappenlijst")
+    pdf.numbered(3, "Nieuw gesprek")
+    pdf.numbered(4, "Eigen vraag + vervolg")
+    pdf.numbered(5, "Zelfstandig")
+    pdf.box(
+        "Onthoud",
+        [
+            "In hetzelfde gesprek onthoudt AI de context.",
+            "Nieuw gesprek = schone lei.",
+            "Geen geheimen typen.",
+        ],
+    )
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.h2("Oefentaak 1 - AI-chat openen")
-    pdf.body("URL van A4. Chatvenster zichtbaar. Inloggen niet verplicht.")
-    pdf.h2("Oefentaak 2 - Eerste vraag")
-    pdf.body("Typ: Leg wifi uit in eenvoudige taal voor een beginner. Versturen. Lees antwoord.")
-    pdf.h2("Oefentaak 3 - Eigen vraag")
-    pdf.body(
-        "Bijv. Recept voor Hollandse erwtensoep voor 4 personen. "
-        "Of weer morgen in [plaats]. Geen persoonlijke gegevens."
-    )
-    pdf.h2("Oefentaak 4 - Nieuw gesprek")
-    pdf.body("Nieuw gesprek / + / New chat. Leeg typvak.")
+    for title, body in [
+        ("Oefentaak 1 - Openen", "URL - typvak - verstuurknop."),
+        (
+            "Oefentaak 2 - Gesprek",
+            "Erwtensoep - maak voor 2 - boodschappenlijstje. Zelfde gesprek.",
+        ),
+        ("Oefentaak 3 - Nieuw gesprek", "Nieuw gesprek / + . Leeg typvak."),
+        ("Oefentaak 4 - Eigen + vervolg", "Eigen vraag + vervolg. Bonus: spraak."),
+        ("Oefentaak 5 - Zelfstandig", "Openen - vraag - vervolg - nieuw gesprek."),
+    ]:
+        pdf.h2(title)
+        pdf.body(body)
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
-    for t in ["Wifi op A4", "Start-URL op A4", "Site getest op eigen toestel", "8-10x kaarten", "Helper"]:
+    pdf.h1("4. Zaalchecklist + nazorg")
+    for t in ["Beamer-PDF", "AI-URL op A4", "Wifi", "Print oefentaken", "Helper"]:
         pdf.check(t)
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Typ vraag. Versturen. Lees antwoord rustig.",
-            "Geen geheimen intypen.",
+            "Vraag - lezen - vervolgvraag in hetzelfde gesprek.",
+            "Nieuw gesprek = opnieuw beginnen.",
             "seniorease.nl/wat-is-ai/chatgpt",
             "Volgende: G3 Goede vragen stellen.",
         ]
     )
-    pdf.h2("Licentie")
-    pdf.body("Copyright SeniorEase.")
 
     pdf.output(str(OUT))
     print(f"PDF geschreven: {OUT}")

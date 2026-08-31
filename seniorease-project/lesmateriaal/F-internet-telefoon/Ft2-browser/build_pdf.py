@@ -1,104 +1,69 @@
 #!/usr/bin/env python3
-"""Ft2 Browser gebruiken - telefoon/tablet, WhatsApp-stijl."""
+"""Ft2 Browser gebruiken - telefoon/tablet."""
 import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import FtLessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-Ft2-Browser-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF(
-        "SeniorEase  |  Ft2 Browser gebruiken  |  Pakket F  |  v1.0",
+    pdf = FtLessonPDF(
+        f"SeniorEase  |  Ft2 Browser gebruiken  |  Pakket F  |  {LESSON_VERSION}",
         package_label="Pakket F - Internet (telefoon/tablet)",
     )
     pdf.alias_nb_pages()
-
     pdf.cover(
         "Ft2 - De browser leren gebruiken",
         "Lesmiddag 90 minuten",
-        "Rustige doe-middag op het eigen toestel: een adres typen, terug en vooruit, "
-        "tabbladen openen en sluiten. Geen bord, geen presentatie, geen computer.",
+        "Google zoeken vs webadres typen. Adresbalk controleren. "
+        "Terug, tabbladen (Chrome en Safari verschillen), wisselen en sluiten. "
+        "Geen bord, geen computer.",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op het toestel)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
-            "Pakket F-telefoon (4 lessen): EUR 19,95",
-            "Volgende les: Ft3 QR-codes openen",
+            "Versie 1.1 - augustus 2026",
+            "Volgende les: Ft3 QR-codes",
         ],
-    )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(
-        0,
-        5,
-        "Toon: volwassen, rustig. Kijken, doen, controleren, pauzeren. Wifi nodig.",
     )
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
     pdf.rollen_docent_helper()
-    pdf.muted(
-        "90 min (+ 15 inloop)  |  Max. 8-10  |  Telefoon of tablet + wifi  |  Geen bord/beamer"
-    )
+    pdf.muted("90 min (+ 15 inloop)  |  Max. 8-10  |  Telefoon of tablet + wifi")
 
     pdf.h2("Wat deelnemers na afloop kunnen")
     for i, t in enumerate(
         [
-            "Een website openen door het adres te typen",
-            "Terug en vooruit gebruiken",
-            "Een nieuw tabblad openen en ertussen wisselen",
-            "Een tabblad sluiten (niet de hele browser)",
+            "Verschil: Google zoeken vs webadres typen",
+            "Adresbalk: op welke site bent u?",
+            "Terug, nieuw tabblad, wisselen, sluiten (op hun toestel)",
+            "Zelfstandige eindopdracht",
         ],
         1,
     ):
         pdf.numbered(i, t)
 
     pdf.h2("Wat u niet doet")
-    pdf.bullet("Geen QR-codes (Ft3)")
-    pdf.bullet("Geen downloads of formulieren (Ft4)")
-    pdf.bullet("Geen instellingen of wachtwoorden wijzigen")
-    pdf.bullet("Geen computer (pakket F-computer)")
+    pdf.bullet("Niet doen alsof elk toestel hetzelfde kruisje heeft")
+    pdf.bullet("Geen QR (Ft3) / downloads (Ft4)")
 
-    pdf.h2("Didactiek")
-    pdf.numbered(1, "Kijken - u toont op uw toestel")
-    pdf.numbered(2, "Doen")
-    pdf.numbered(3, "Controleren - helper loopt rond")
-    pdf.numbered(4, "Pauzeren")
-
-    pdf.h2("Voorbereiding")
-    pdf.bullet("Wifi-wachtwoord op A4")
-    pdf.bullet("Eigen toestel klaar om voor te doen")
-    pdf.bullet("Helper: Android vs iPhone 1-op-1")
-
-    pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Welkom. Wifi. Vandaag: terug, vooruit, tabbladen - op uw eigen telefoon.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam + Android of iPhone. Ft1 gedaan of al wel eens gezocht?")
-    pdf.h3("12:25-12:45 - Stap 1: website typen (oefentaak 1)")
-    pdf.body("Adresbalk. Typ seniorease.nl. Enter.")
-    pdf.h3("12:45-13:05 - Stap 2: terug en vooruit (oefentaak 2)")
-    pdf.body("Tik op een link. Pijl terug. Eventueel pijl vooruit.")
-    pdf.h3("13:05-13:10 - Pauze")
-    pdf.h3("13:10-13:30 - Stap 3: tabbladen (oefentaak 3)")
-    pdf.body("Nieuw tabblad (+). Typ weer.nl of nos.nl. Wissel tussen tabbladen.")
-    pdf.h3("13:30-13:40 - Stap 4: tabblad sluiten (oefentaak 4)")
-    pdf.body("Kruisje op het tabblad - browser blijft open.")
-    pdf.h3("13:40-13:45 - Afronding")
-    pdf.body("Nazorg. Volgende: Ft3 QR-codes openen.")
+    pdf.h2("Tijdlijn")
+    pdf.tijdlijn_item("Zoeken vs adres", "")
+    pdf.tijdlijn_item("Link + terug", "")
+    pdf.tijdlijn_item("Tabbladen (Chrome/Safari)", "")
+    pdf.tijdlijn_item("Sluiten", "")
+    pdf.tijdlijn_item("Eindopdracht", "")
 
     pdf.h2("Als de tijd krap is")
-    pdf.bullet("Tabblad sluiten kan in oefentaak 3 mee")
-    pdf.bullet("Niet schrappen: adres typen + terug + een tabblad")
+    pdf.bullet("Niet schrappen: adres typen + terug + tabblad + eindopdracht")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -111,95 +76,53 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket F  -  telefoon of tablet  -  wifi nodig")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket F  -  telefoon/tablet  -  {LESSON_VERSION}")
     pdf.ln(2)
-
-    pdf.h2("Wat u vandaag oefent")
-    pdf.numbered(1, "Een webadres typen (seniorease.nl)")
-    pdf.numbered(2, "Terug en vooruit")
-    pdf.numbered(3, "Tabbladen openen en wisselen")
-    pdf.numbered(4, "Een tabblad sluiten")
-
-    pdf.h2("Handige woorden")
-    pdf.bullet("Adresbalk = balk bovenaan waar het webadres staat")
-    pdf.bullet("Tabblad = een open pagina; u kunt er meerdere tegelijk hebben")
-    pdf.bullet("Pijl terug = terug naar de vorige pagina")
-
-    pdf.h2("Tips")
-    pdf.bullet("Typ alleen seniorease.nl - geen https:// nodig")
-    pdf.bullet("Kruisje op tabblad is niet hetzelfde als de app sluiten")
-    pdf.bullet("Vast? Hand opsteken - de helper komt naar u toe")
-
+    pdf.h2("Vandaag oefenen")
+    pdf.numbered(1, "Adres typen + adresbalk checken")
+    pdf.numbered(2, "Link + terug")
+    pdf.numbered(3, "Nieuw tabblad + wisselen")
+    pdf.numbered(4, "Tabblad sluiten")
+    pdf.numbered(5, "Zelfstandig: hele route")
     pdf.box(
         "Onthoud",
         [
-            "Adres typen = direct naar die site. Tabblad = extra pagina ernaast. Pijl terug = een stap terug.",
+            "Google = zoeken. Adresbalk = site die u kent.",
+            "Chrome en Safari: tabbladen zien er anders uit - helper helpt.",
         ],
     )
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.muted("Op uw eigen telefoon of tablet. Wifi aan.")
-
-    pdf.h2("Oefentaak 1 - Een website openen")
-    pdf.numbered(1, "Open Chrome of Safari.")
-    pdf.numbered(2, "Tik in de adresbalk bovenaan.")
-    pdf.numbered(3, "Typ: seniorease.nl")
-    pdf.numbered(4, "Tik Enter of Ga.")
-    pdf.numbered(5, "Wacht tot de pagina laadt.")
-    pdf.body("Klaar als: u de SeniorEase-website ziet.")
-
-    pdf.h2("Oefentaak 2 - Terug en vooruit")
-    pdf.numbered(1, "Tik op een link op seniorease.nl.")
-    pdf.numbered(2, "Tik op de pijl terug (linksboven of linksonder).")
-    pdf.numbered(3, "Probeer eventueel de pijl vooruit.")
-    pdf.body("Klaar als: u terug bent gegaan met de pijl terug.")
-
-    pdf.h2("Oefentaak 3 - Tabbladen")
-    pdf.numbered(1, "Tik op + voor een nieuw tabblad.")
-    pdf.numbered(2, "Typ weer.nl of nos.nl en ga.")
-    pdf.numbered(3, "Wissel terug naar seniorease.nl.")
-    pdf.numbered(4, "Wissel nog een keer heen en weer.")
-    pdf.body("Klaar als: u twee tabbladen heeft en ertussen wisselt.")
-
-    pdf.h2("Oefentaak 4 - Tabblad sluiten")
-    pdf.numbered(1, "Open het tabblad-overzicht.")
-    pdf.numbered(2, "Sluit een tabblad met het kruisje op dat tabblad.")
-    pdf.numbered(3, "Laat minstens een tabblad open.")
-    pdf.body("Klaar als: een tabblad is gesloten en u zit nog in de browser.")
-
-    pdf.h2("Android / iPhone (helper)")
-    pdf.bullet("Android Chrome: tabblad-icoon met cijfer; + voor nieuw tabblad")
-    pdf.bullet("iPhone Safari: twee vierkantjes onderaan; + in overzicht")
-    pdf.bullet("Tabblad-kruisje vs app sluiten - even uitleggen")
-    pdf.bullet("Alleen helpen bij wie vastzit")
+    for title, body in [
+        ("Oefentaak 1 - Zoeken of adres", "Typ seniorease.nl. Controleer adresbalk."),
+        ("Oefentaak 2 - Link + terug", "Link openen - pijl terug."),
+        ("Oefentaak 3 - Tabbladen", "Nieuw tabblad - tweede site - wisselen. Helper bij icoon."),
+        ("Oefentaak 4 - Sluiten", "Kruisje of veeg (Safari) - browser blijft open."),
+        (
+            "Oefentaak 5 - Zelfstandig",
+            "Typen - link - terug - nieuw tabblad - tweede site - wisselen - sluiten.",
+        ),
+    ]:
+        pdf.h2(title)
+        pdf.body(body)
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
-        "Geen bord of beamer nodig",
-        "Wifi + wachtwoord op A4",
-        "Begeleider-toestel klaar om voor te doen",
-        "8-10x deelnemerskaart en oefentaken",
-        "8-10x nazorgkaart",
-        "Helper: Android en iPhone",
+        "Wifi op A4",
+        "Helper kent Chrome en Safari-tabbladen",
+        "8-10x kaarten",
     ]:
         pdf.check(t)
-
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Adresbalk: typ bijv. seniorease.nl - Enter.",
-            "Pijl terug = vorige pagina. + = nieuw tabblad.",
-            "Tabblad sluiten: kruisje op het tabblad, niet de hele app.",
+            "Adresbalk: typ site of controleer waar u bent. + = nieuw tabblad.",
+            "Chrome en Safari verschillen - vraag de helper op uw toestel.",
             "seniorease.nl",
-            "Volgende les: Ft3 QR-codes openen (camera of scanner).",
+            "Volgende: Ft3 QR-codes.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

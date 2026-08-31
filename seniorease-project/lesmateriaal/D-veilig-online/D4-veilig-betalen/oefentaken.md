@@ -2,68 +2,76 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
-**Belangrijk:** u hoeft niet in te loggen. Deel geen pincode of codes.
+**U hoeft niet in te loggen. Deel geen pincode of codes. Deel geen scherm.**
+
+**3-stappenregel:** STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.
 
 ---
 
-## Oefentaak 1 — Bank-app of bankadres
-
-**Doel:** veilig bij uw bank komen (zonder link uit een bericht).
+## Oefentaak 1 — Officiële bank-route
 
 **Keuze A — bank-app**
 
-1. Zoek de **officiële bank-app** (bijv. ING, Rabobank, ABN AMRO).  
-2. Tik erop zodat de app opent.  
-3. U hoeft **niet** in te loggen tenzij u dat wilt.
+1. Zoek de **officiële bank-app**.  
+2. Open de app. Inloggen is **niet** verplicht.
 
 **Keuze B — browser**
 
-1. Open **Chrome** of **Safari**.  
-2. Tik in de adresbalk.  
-3. Typ zelf het adres van **uw** bank, bijvoorbeeld: `ing.nl` of `rabobank.nl`.  
-4. Kijk of dat adres in de balk staat.
+1. Open Chrome of Safari.  
+2. Typ zelf het adres van **uw** bank (`ing.nl`, `rabobank.nl`, …).  
+3. Check de adresbalk.
 
-**Klaar als:** de bank-app open is, of u het bankadres zelf heeft getypt.
-
-**Lukt het niet?** Steek uw hand op. Helper helpt 1-op-1.
+**Klaar als:** de app open is, of u het adres zelf heeft getypt.
 
 ---
 
-## Oefentaak 2 — Nummer op de bankpas
+## Oefentaak 2 — iDEAL-voorbeeldkaart
 
-**Doel:** weten welk nummer u belt bij twijfel.
+Kijk naar de kaart van de begeleider. U betaalt vandaag **niet echt**.
 
-1. Pak uw **bankpas** (of een afbeelding/brief van de bank als u geen pas bij u heeft).  
-2. Zoek het **telefoonnummer** van de bank.  
-3. Wijs het aan (voor uzelf of de helper).  
-4. Onthoud: bij twijfel belt u **dit** nummer — niet een nummer uit een sms of WhatsApp.
+1. **Verwacht ik deze betaling?**  
+2. **Ben ik zelf met deze aankoop begonnen?**  
+3. Klopt het **bedrag**?  
+4. Past de **ontvanger/betaalcontext** bij wat u wilde betalen?  
+   (Er kan een andere handelsnaam of betaalprovider staan.)
 
-**Klaar als:** u het nummer op de pas heeft gevonden (of samen met de helper).
+Klopt iets niet? Zeg: **“Nee, dit bevestig ik niet.”**
 
----
-
-## Oefentaak 3 — iDEAL-voorbeeldkaart
-
-**Doel:** bedrag en ontvanger controleren vóór akkoord.
-
-1. Kijk naar de **iDEAL-kaart** die de begeleider toont.  
-2. Klopt het **bedrag** met wat u verwachtte?  
-3. Kent u de **ontvanger** / webshop?  
-4. Wat doet u als het niet klopt? (niet bevestigen / annuleren)
-
-**Klaar als:** u bedrag en ontvanger heeft nagekeken en weet wat u bij twijfel doet.
+**Klaar als:** u de vier vragen heeft beantwoord.
 
 ---
 
-## Oefentaak 4 — Nee zeggen
+## Oefentaak 3 — Onverwacht betaalverzoek of QR
 
-**Doel:** pincode niet delen.
+Stel: u krijgt opeens een verzoek of QR met een bekende naam of logo.
 
-1. Stel: iemand belt: “Ik ben van de bank. Geef uw pincode om fraude te stoppen.”  
-2. Zeg hardop of zacht: **“Nee. Ik geef geen pincode via de telefoon.”**  
-3. Wat doet u daarna? Ophangen → nummer op de pas bellen.
+1. Heeft u **zelf** deze betaling gestart?  
+2. Zo nee: **niet betalen** — ook niet omdat het logo vertrouwd lijkt.  
+3. Onthoud: een bank vraagt u **niet** om geld naar een “veilige rekening” over te boeken.
 
-**Klaar als:** u de zin een keer heeft gezegd of gelezen.
+**Klaar als:** u dit in eigen woorden kunt zeggen.
+
+---
+
+## Oefentaak 4 — Nooit doen
+
+Stel: iemand belt van “de bank” en vraagt pincode, code, of om uw scherm te delen.
+
+1. Zeg: **“Nee. Ik geef geen pincode of code via de telefoon.”**  
+2. **Ophangen.** Geen software, geen scherm delen.  
+3. Open **zelf** de bank-app of typ zelf de bank-site.
+
+**Klaar als:** u de zin heeft gezegd.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open de bank-app of typ zelf het bankadres.  
+2. Beoordeel de iDEAL-kaart met de vier vragen.  
+3. Zeg één “nooit doen”-zin (code of scherm delen).
+
+**Klaar als:** u alle drie stappen zelf heeft gedaan.
 
 ---
 
@@ -71,10 +79,10 @@ Voor de deelnemer. Op uw **eigen telefoon of tablet**.
 
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
-| Bank-app | Play Store-app van de bank | App Store-app van de bank |
-| Browser | Chrome | Safari |
-| Geen bank-app | Optie B: adres zelf typen | Idem |
-| Geen pas bij zich | Helper: nummer op A4 van veelvoorkomende banken (algemeen) of “thuis opzoeken” | Idem |
+| Bank-app | Play Store-app van de bank | App Store-app |
+| Geen app | Adres zelf typen | Idem |
+| Login | Nooit klassikaal forceren | Idem |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken. Twijfel is verstandig.

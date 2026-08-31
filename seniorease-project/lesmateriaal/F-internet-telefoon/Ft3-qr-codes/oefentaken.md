@@ -2,84 +2,74 @@
 
 Voor de deelnemer. Op uw **eigen telefoon of tablet**. Wifi aan.
 
-**Belangrijk:** scan vandaag alleen de **QR van de begeleider** (SeniorEase).
+**Scan vandaag alleen de QR van de begeleider.**
+
+**Regel:** scannen → bestemming controleren → pas daarna verder.
 
 ---
 
-## Oefentaak 1 — QR scannen met de camera
+## Oefentaak 1 — QR scannen
 
-**Doel:** de camera gebruiken om een QR-code te lezen.
+1. Open de **Camera-app**.  
+2. Richt op de **QR op de A4** van de begeleider (ongeveer 20–30 cm).  
+3. Wacht tot er een **melding** of link verschijnt.
 
-1. Open de **Camera-app** (niet de foto’s-galerij).  
-2. Richt de camera op de **QR op de A4** van de begeleider.  
-3. Houd uw telefoon rustig, ongeveer 20–30 cm ervan af.  
-4. Wacht tot er een **melding** of **link** op uw scherm verschijnt.
+**Klaar als:** u een melding ziet.
 
-**Klaar als:** u een melding ziet (bijv. “Open in Safari” of “seniorease.nl”).
-
-**Lukt het niet?** Meer licht, iets verder of dichterbij, of vraag de helper. Sommige telefoons hebben QR in de **Instellingen** of via **Google Lens** — de helper helpt 1-op-1.
+**Lukt het niet?** Meer licht, iets dichterbij/verder — of helper (soms Google Lens / Instellingen).
 
 ---
 
-## Oefentaak 2 — De link openen
+## Oefentaak 2 — Bestemming controleren (belangrijk)
 
-**Doel:** na het scannen de website bekijken.
+1. Scan de oefen-QR.  
+2. **Tik nog niet.** Lees de **URL** of tekst in de melding.  
+3. Ziet u iets als `seniorease.nl`? Dan mag u openen.  
+4. Stel u voor: vreemde naam zoals `digid-code.nu` → tik **Annuleren** / **Niet openen**.  
+5. Bij de veilige oefen-QR: open de link. Check de **adresbalk**.
 
-1. Tik op de **melding** of **link** die verscheen.  
-2. Uw **browser** opent (Chrome of Safari).  
-3. Wacht tot de pagina laadt.  
-4. Kijk kort: herkent u **seniorease.nl** in de adresbalk?
-
-**Klaar als:** de website is geopend.
-
----
-
-## Oefentaak 3 — Nog een keer scannen
-
-**Doel:** het nog eens zelf doen.
-
-1. Ga **terug** naar het startscherm of sluit de browser.  
-2. Open de **camera** opnieuw.  
-3. Scan de **zelfde QR** nog een keer.  
-4. Open de link weer.
-
-**Klaar als:** u het zonder hulp (of met weinig hulp) opnieuw heeft gedaan.
+**Klaar als:** u eerst heeft gecontroleerd en daarna (veilig) heeft geopend.
 
 ---
 
-## Oefentaak 4 — Wanneer wel en wanneer niet
+## Oefentaak 3 — Nog een keer
 
-**Doel:** weten wanneer scannen normaal is — en wanneer niet.
+1. Ga terug of sluit de browser.  
+2. Open de camera opnieuw.  
+3. Scannen → **controleren** → openen.
 
-1. Kijk naar de **A4-kaart** “Wanneer wel / wanneer niet” van de begeleider.  
-2. Lees de voorbeelden.  
-3. Onthoud één regel: **onbekend briefje of sticker → niet scannen.**
-
-**Klaar als:** u het verschil kunt noemen (bijv. menu in een café = oké; vreemd briefje op uw auto = niet).
-
-**Meer over verdachte QR?** Pakket D, les D2 (Veilig online).
+**Klaar als:** u de drie stappen opnieuw heeft gedaan.
 
 ---
 
-## Apparaatverschillen (helper)
+## Oefentaak 4 — Situaties: normaal / extra opletten / altijd controleren
+
+1. Kijk naar de **A4-kaart** van de begeleider.  
+2. Onthoud: ook op een vertrouwde plek kan een QR **vervangen** zijn — controleer altijd de bestemming.  
+3. Meer over verdachte QR en oplichting: **pakket D, les D2**.
+
+**Klaar als:** u de drie niveaus kort kunt noemen.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Scan de oefen-QR.  
+2. **Controleer het webadres** in de melding.  
+3. Open alleen als het klopt. Check de adresbalk.  
+4. Bij twijfel: annuleren.
+
+**Klaar als:** u scannen → controleren → verder zelf heeft gedaan.
+
+---
+
+## Helper
 
 | Situatie | Android | iPhone / iPad |
 |----------|---------|----------------|
-| QR scannen | Camera-app; soms Google Lens | Camera-app |
-| Melding | Banner bovenin of onderin | Melding midden op scherm |
-| Werkt niet | QR-scanner in Chrome; Lens | Instellingen → Camera → QR |
-| Oude telefoon | Helper 1-op-1; niet klassikaal forceren | Idem |
+| Scannen | Camera; soms Lens | Camera |
+| Werkt niet | Chrome-QR / Lens | Instellingen → Camera → QR |
 
 ---
 
-## Waar u QR in het dagelijks leven tegenkomt
-
-- Menu in een café of restaurant  
-- Ticket voor een voorstelling  
-- Informatie op een poster  
-- Parkeerapp (let op: alleen als u de app vertrouwt)
-
-Onbekend? Vraag om hulp of typ het adres zelf (zoals in Ft2).
----
-
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

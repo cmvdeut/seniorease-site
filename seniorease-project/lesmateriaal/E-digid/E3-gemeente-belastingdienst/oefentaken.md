@@ -1,67 +1,62 @@
-# Oefentaken — E3 Gemeente / Belastingdienst
+# Oefentaken — E3 Gemeente en Belastingdienst
 
 Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
-**Belangrijk:** geen aangifte of betaling afronden. Codes en bedragen niet hardop.
+**Geen aangifte, betaling, BSN of bedragen in de groep.** Alleen openbare informatie.
 
 ---
 
 ## Oefentaak 1 — belastingdienst.nl openen
 
-**Doel:** de echte Belastingdienst-site openen.
-
-### Op telefoon of tablet
-1. Open Chrome of Safari.  
+1. Open de browser.  
 2. Typ: `belastingdienst.nl`  
 3. Controleer de adresbalk.
 
-### Op de computer
-1. Open Edge of Chrome.  
-2. Typ: `belastingdienst.nl` — Enter.  
-3. Controleer de adresbalk.
-
-**Klaar als:** belastingdienst.nl open is.
+**Klaar als:** de site open is.
 
 ---
 
 ## Oefentaak 2 — Inloggen vinden (Belastingdienst)
 
-**Doel:** de weg naar DigiD zien — niet verplicht inloggen.
-
-1. Zoek op de site iets als **Inloggen**, **Mijn Belastingdienst** of DigiD.  
-2. Tik/klik tot u DigiD ziet of bijna ziet.  
-3. **Log niet verplicht in.** Stop hier of vraag de helper 1-op-1.
+1. Zoek **Inloggen**, **Mijn Belastingdienst** of **DigiD**.  
+2. Kijk waar het naartoe gaat.  
+3. **Log niet verplicht in.**
 
 **Klaar als:** u de inlog-route heeft gevonden.
 
 ---
 
-## Oefentaak 3 — Gemeente-site vinden
+## Oefentaak 3 — Officiële gemeentesite vinden
 
-**Doel:** de site van **uw** gemeente openen.
+1. Zoek met Google: `gemeente` + uw **plaatsnaam**.  
+2. Open de **officiële** site — geen advertentie.  
+3. **Controleer het webadres** in de balk (vaak eindigt op `.nl` met de gemeentenaam).  
+4. Twijfel? Vraag de helper.
 
-1. Open de browser.  
-2. Zoek met Google: `gemeente` en uw **plaatsnaam**  
-   (bijvoorbeeld: gemeente Utrecht).  
-3. Open de **officiële** gemeentesite (vaak herkenbaar aan de gemeentenaam).  
-4. Controleer de adresbalk — twijfel? Vraag de helper.
-
-**Of:** typ een adres dat u al kent (als u dat zeker weet).
-
-**Klaar als:** u op de site van uw gemeente bent.
+**Klaar als:** u op de echte gemeentesite bent.
 
 ---
 
-## Oefentaak 4 — Op de gemeentesite kijken
+## Oefentaak 4 — DigiD-knop + openbare taak
 
-**Doel:** DigiD of “Mijn …” vinden zonder zaken af te ronden.
+1. Zoek op de gemeentesite: **DigiD**, **Inloggen** of **Mijn gemeente**.  
+2. Kies **één openbare taak**, bijvoorbeeld:  
+   - **Openingstijden** van het stadhuis/gemeentehuis, **of**  
+   - Informatie over **paspoort** of **rijbewijs** (alleen lezen).  
+3. Rond **geen** aanvraag, betaling of inlogactie af.
 
-1. Zoek op de gemeentesite: **DigiD**, **Inloggen**, **Mijn gemeente**, **Afspraak**.  
-2. Tik/klik om te kijken waar het naartoe gaat.  
-3. Rond **geen** aanvraag of betaling af in de les.  
-4. Ga terug naar het startscherm als u klaar bent.
+**Klaar als:** u DigiD/Inloggen heeft gezien én één openbare pagina heeft gevonden.
 
-**Klaar als:** u zo’n knop heeft gevonden (of samen met de helper).
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+1. Open **belastingdienst.nl** zelf.  
+2. Vind **Inloggen**.  
+3. Open uw **officiële gemeentesite** (check URL).  
+4. Zoek **één openbare pagina** (openingstijden of paspoort/rijbewijs).
+
+**Klaar als:** u beide sites en één openbare pagina zelf heeft gevonden.
 
 ---
 
@@ -69,10 +64,10 @@ Voor de deelnemer. Op **telefoon/tablet** of **computer**.
 
 | Situatie | Tip |
 |----------|-----|
-| Verkeerde Google-hit | Advertentie overslaan; officiële gemeente-URL |
+| Verkeerde Google-hit | Advertentie overslaan; officiële URL |
+| Wil aangifte doen | IDO / thuis met helper |
 | Meerdere gemeenten | Plaatsnaam checken |
-| Iemand wil aangifte doen | Doorverwijzen naar IDO / Digisterker / thuis met helper |
-| Pop-up / chatwidget | Negeren als afleidend |
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+**Vast?** Hand opsteken.

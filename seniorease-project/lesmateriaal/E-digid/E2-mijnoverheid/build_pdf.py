@@ -4,38 +4,37 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from _pdf_base import GOLD, NAVY, MUTED, WHITE, LessonPDF  # noqa: E402
+from _pdf_base import ELessonPDF, GOLD, LESSON_VERSION, MUTED, NAVY, WHITE  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "pdf" / "SeniorEase-E2-MijnOverheid-v1.pdf"
 
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    pdf = LessonPDF("SeniorEase  |  E2 MijnOverheid  |  Pakket E  |  v1.0",
-        package_label="Pakket E - DigiD & digitale overheid")
+    pdf = ELessonPDF(
+        f"SeniorEase  |  E2 MijnOverheid  |  Pakket E  |  {LESSON_VERSION}",
+        package_label="Pakket E - DigiD & digitale overheid",
+    )
     pdf.alias_nb_pages()
 
     pdf.cover(
         "E2 - MijnOverheid",
         "Lesmiddag 90 minuten",
-        "mijnoverheid.nl zelf openen, Inloggen met DigiD vinden, optioneel veilig "
-        "inloggen (1-op-1). Telefoon/tablet of computer. Geen bord. Privacy eerst.",
+        "mijnoverheid.nl openen, Inloggen vinden, Berichtenbox herkennen, "
+        "teruggaan en uitloggen. Privacy eerst - geen inhoud klassikaal bespreken. "
+        "Inloggen optioneel (1-op-1).",
         [
             "1. Draaiboek voor de begeleider",
             "2. Deelnemerskaart",
             "3. Oefentaken (op het toestel)",
-            "4. Zaalchecklist",
-            "5. Nazorgkaart",
+            "4. Zaalchecklist + nazorgkaart",
         ],
         [
-            "Versie 1.0 - augustus 2026",
-            "Inloggen optioneel - codes niet hardop",
+            "Versie 1.1 - augustus 2026",
+            "Privacy eerst - inloggen optioneel",
             "Pakket E (4 lessen): EUR 19,95",
         ],
     )
-    pdf.set_font("DejaVu", "I", 9)
-    pdf.set_text_color(*MUTED)
-    pdf.multi_cell(0, 5, "Tot aan DigiD-scherm is genoeg als iemand niet wil inloggen.")
 
     pdf.add_page()
     pdf.h1("1. Draaiboek - begeleider")
@@ -46,9 +45,10 @@ def build() -> Path:
     for i, t in enumerate(
         [
             "mijnoverheid.nl zelf openen",
-            "Uitleggen wat MijnOverheid ongeveer is",
-            "Inloggen met DigiD vinden",
-            "Optioneel veilig inloggen en uitloggen",
+            "Inloggen vinden",
+            "Berichtenbox herkennen (optioneel ingelogd)",
+            "Weten waar berichten en gegevens staan - zonder inhoud te delen",
+            "Teruggaan, uitloggen + eindopdracht",
         ],
         1,
     ):
@@ -56,27 +56,18 @@ def build() -> Path:
 
     pdf.h2("Wat u niet doet")
     pdf.bullet("Geen berichten hardop voorlezen")
+    pdf.bullet("Geen persoonlijke inhoud klassikaal tonen")
     pdf.bullet("Geen codes hardop")
-    pdf.bullet("Geen aangifte vandaag (E3)")
 
-    pdf.h2("Tijdlijn (start 12:00)")
-    pdf.h3("12:00-12:15 - Inloop")
-    pdf.body("Welkom. Digitale brievenbus. Inloggen mag, hoeft niet.")
-    pdf.h3("12:15-12:25 - Kennismaking")
-    pdf.body("Voornaam + apparaat. Al MijnOverheid gebruikt?")
-    pdf.h3("12:25-12:45 - Stap 1: site openen (oefentaak 1)")
-    pdf.body("Typ mijnoverheid.nl. Check adresbalk.")
-    pdf.h3("12:45-13:05 - Stap 2: Inloggen vinden (oefentaak 2)")
-    pdf.body("Kort wat het is. Knop Inloggen / DigiD.")
-    pdf.h3("13:05-13:10 - Pauze")
-    pdf.h3("13:10-13:35 - Stap 3: DigiD optioneel (oefentaak 3)")
-    pdf.body("1-op-1 login. Scherm van de groep weg. Berichten alleen voor zichzelf.")
-    pdf.h3("13:35-13:45 - Stap 4: uitloggen + afronding (oefentaak 4)")
-    pdf.body("Uitloggen. Nazorg. Volgende: E3.")
+    pdf.h2("Tijdlijn")
+    pdf.tijdlijn_item("Site openen", "")
+    pdf.tijdlijn_item("Inloggen", "")
+    pdf.tijdlijn_item("Berichtenbox (optioneel)", "")
+    pdf.tijdlijn_item("Terug + uitloggen", "")
+    pdf.tijdlijn_item("Eindopdracht", "")
 
     pdf.h2("Als de tijd krap is")
-    pdf.bullet("Geen echte login")
-    pdf.bullet("Niet schrappen: site typen + Inloggen-knop")
+    pdf.bullet("Geen login - wel: site + Inloggen + Berichtenbox als concept")
 
     pdf.add_page()
     pdf.h1("2. Deelnemerskaart")
@@ -89,75 +80,52 @@ def build() -> Path:
     pdf.ln(4)
     pdf.set_text_color(*MUTED)
     pdf.set_font("DejaVu", "", 10)
-    pdf.multi_cell(0, 5, "SeniorEase  -  Pakket E  -  telefoon/tablet of computer")
+    pdf.multi_cell(0, 5, f"SeniorEase  -  Pakket E  -  {LESSON_VERSION}")
     pdf.ln(2)
 
     pdf.h2("Wat is MijnOverheid?")
-    pdf.body(
-        "Een persoonlijke pagina waar de overheid berichten en gegevens kan tonen. "
-        "U logt in met DigiD."
-    )
+    pdf.body("Digitale post van de overheid. Inloggen met DigiD.")
 
-    pdf.h2("Wat u vandaag oefent")
+    pdf.h2("Vandaag oefenen")
     pdf.numbered(1, "mijnoverheid.nl typen")
-    pdf.numbered(2, "Inloggen-knop vinden")
-    pdf.numbered(3, "Optioneel: inloggen en uitloggen")
+    pdf.numbered(2, "Inloggen vinden")
+    pdf.numbered(3, "Berichtenbox + gegevens (privé)")
+    pdf.numbered(4, "Terug + uitloggen")
+    pdf.numbered(5, "Zelfstandig")
 
-    pdf.h2("Veilig")
-    pdf.bullet("Typ mijnoverheid.nl zelf")
-    pdf.bullet("Codes niet hardop; scherm bij inloggen priv")
-    pdf.bullet("Berichten niet hardop voorlezen in de zaal")
-
-    pdf.box("Echte adressen", ["mijnoverheid.nl", "digid.nl"])
+    pdf.box("Adressen", ["mijnoverheid.nl", "digid.nl"])
 
     pdf.add_page()
     pdf.h1("3. Oefentaken")
-    pdf.muted("Inloggen optioneel. Privacy eerst.")
-
-    pdf.h2("Oefentaak 1 - Site openen")
-    pdf.body("Telefoon/tablet of computer: typ mijnoverheid.nl")
-    pdf.body("Klaar als: juiste adres in de balk.")
-
-    pdf.h2("Oefentaak 2 - Inloggen vinden")
-    pdf.numbered(1, "Zoek Inloggen / DigiD.")
-    pdf.numbered(2, "Tik/klik - stop als u niet wilt inloggen.")
-    pdf.body("Klaar als: u de knop heeft gevonden.")
-
-    pdf.h2("Oefentaak 3 - Optioneel inloggen")
-    pdf.numbered(1, "Helper 1-op-1.")
-    pdf.numbered(2, "Log in - codes stil.")
-    pdf.numbered(3, "Kijk alleen voor uzelf naar de startpagina.")
-    pdf.body("Klaar als: ingelogd of bewust overgeslagen.")
-
-    pdf.h2("Oefentaak 4 - Uitloggen")
-    pdf.body("Zoek Uitloggen / Afmelden. Of startscherm als u niet was ingelogd.")
-    pdf.body("Klaar als: netjes afgesloten.")
+    pdf.muted("Privacy eerst. Inloggen optioneel.")
+    for title, body in [
+        ("Oefentaak 1 - Site openen", "Typ mijnoverheid.nl - check adresbalk."),
+        ("Oefentaak 2 - Inloggen", "Knop Inloggen / DigiD vinden."),
+        ("Oefentaak 3 - Berichtenbox", "Optioneel ingelogd: Berichtenbox + waar gegevens staan."),
+        ("Oefentaak 4 - Terug + uit", "Terug uit bericht - uitloggen."),
+        ("Oefentaak 5 - Zelfstandig", "Hele route zelf."),
+    ]:
+        pdf.h2(title)
+        pdf.body(body)
 
     pdf.add_page()
-    pdf.h1("4. Zaalchecklist")
+    pdf.h1("4. Zaalchecklist + nazorgkaart")
     for t in [
         "Wifi op A4",
         "mijnoverheid.nl bereikbaar",
-        "Helper vrij voor 1-op-1 login",
+        "Helper voor 1-op-1 login",
         "Geen hardop voorlezen van berichten",
         "8-10x deelnemerskaart en oefentaken",
-        "8-10x nazorgkaart",
     ]:
         pdf.check(t)
-
-    pdf.h1("5. Nazorgkaart")
+    pdf.ln(4)
     pdf.nazorg_card(
         [
-            "Typ mijnoverheid.nl zelf. Inloggen met DigiD. Daarna uitloggen.",
-            "Berichten zijn prive. Hulp: IDO / Digisterker.",
+            "Typ mijnoverheid.nl zelf. Berichtenbox na inloggen. Daarna uitloggen.",
+            "Berichten zijn privé. Hulp: IDO.",
             "seniorease.nl",
-            "Volgende les: E3 Gemeente / Belastingdienst.",
+            "Volgende les: E3 Gemeente en Belastingdienst.",
         ]
-    )
-    pdf.h2("Licentie")
-    pdf.body(
-        "Copyright SeniorEase. Printen voor uzelf of een lesgroep mag. "
-        "Niet doorverkopen zonder toestemming."
     )
 
     pdf.output(str(OUT))

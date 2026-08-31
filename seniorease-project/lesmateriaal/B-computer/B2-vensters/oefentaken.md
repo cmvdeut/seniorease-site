@@ -8,59 +8,74 @@ Voor de deelnemer. Op een **computer of laptop**.
 
 **Doel:** de drie knoppen rechtsboven kennen.
 
-1. Open **Start**.  
-2. Open **Kladblok** (typ `kladblok`) of uw browser.  
-3. Zoek rechtsboven de drie knoppen:
-   - **Streepje** = minimaliseren (venster weg, icoon blijft op de taakbalk)  
-   - **Vierkantje** = maximaliseren / verkleinen  
-   - **Kruisje** = sluiten  
-4. Probeer streepje, daarna klik op het icoon op de **taakbalk** om terug te komen.  
-5. Probeer het vierkantje.  
-6. Sluit **niet** meteen — ga door naar oefening 2.
+1. Open **Start** → **Kladblok**.  
+2. Zoek rechtsboven:
+   - **Streepje** = minimaliseren (venster weg, icoon op taakbalk)  
+   - **Vierkantje** = groter / kleiner  
+   - **Kruisje** = programma sluiten  
+3. Probeer het **vierkantje** één keer.
 
-**Klaar als:** u streepje en vierkantje heeft geprobeerd.
+**Klaar als:** u weet waar streepje, vierkantje en kruisje staan.
 
 ---
 
-## Oefentaak 2 — Twee programma’s wisselen
+## Oefentaak 2 — Waar is mijn programma gebleven?
 
-**Doel:** tussen twee open programma’s klikken.
+**Doel:** een geminimaliseerd programma terugvinden via de taakbalk.
 
-1. Laat Kladblok open (of open opnieuw).  
-2. Open ook de **browser** (Edge of Chrome) via Start of taakbalk.  
-3. Klik onderaan op de taakbalk: wissel tussen Kladblok en browser.  
-4. Kijk welk venster “bovenop” ligt.
+1. Zorg dat **Kladblok** open is.  
+2. Klik op het **streepje** — het venster verdwijnt van het scherm.  
+3. Kijk onderaan op de **taakbalk**: ziet u het Kladblok-icoon?  
+4. Klik op dat icoon — Kladblok komt terug.  
+5. Herhaal met de **browser** (open → streepje → terug via taakbalk).
 
-**Klaar als:** u heen en weer kunt wisselen via de taakbalk.
+**Klaar als:** u een programma kunt minimaliseren en terugvinden.
 
----
-
-## Oefentaak 3 — Tabblad in de browser
-
-**Doel:** een nieuw tabblad openen en sluiten.
-
-1. Zorg dat de **browser** open is.  
-2. Klik op het **plusje** (+) voor een nieuw tabblad.  
-3. Typ in de adresbalk: `seniorease.nl` en druk op Enter.  
-4. Sluit **alleen dat tabblad** met het kleine kruisje op het tabblad.  
-5. Laat de browser zelf open (of sluit hem bewust met het grote kruisje als u klaar bent).
-
-**Klaar als:** u een tabblad heeft geopend en weer gesloten.
-
-**Geen wifi?** Open een nieuw tabblad en sluit het weer — typen kan later.
+**Alles weg?** Kijk op de taakbalk — het programma staat daar meestal nog.
 
 ---
 
-## Oefentaak 4 — Venster verslepen
+## Oefentaak 3 — Twee tabbladen openen, wisselen en sluiten
 
-**Doel:** een venster verplaatsen.
+**Doel:** tabbladen in de browser — niet het hele programma sluiten.
 
-1. Zet het venster niet op volledig scherm (vierkantje zodat het “los” staat).  
-2. Zet de muis op de **bovenste balk** (titelbalk) van het venster.  
-3. Houd de **linkermuisknop** ingedrukt en sleep een stukje.  
-4. Laat los. Maximaliseer weer met het vierkantje als u wilt.
+**Onthoud:** een **tabblad** is één pagina **in** de browser. Het **grote kruisje** sluit de hele browser; het **kleine kruisje op het tabblad** sluit alleen dat tabblad.
 
-**Klaar als:** het venster is verplaatst.
+1. Open de **browser**.  
+2. Typ in de adresbalk: `seniorease.nl` → Enter.  
+3. Klik op het **plusje (+)** voor een **tweede tabblad**.  
+4. **Wissel** tussen tabblad 1 en tabblad 2 (klik op het tabblad bovenaan).  
+5. Sluit **één tabblad** met het **kleine kruisje** op dat tabblad.  
+6. De browser zelf blijft open.
+
+**Geen wifi?** Open twee tabbladen en sluit er één — typen kan later.
+
+**Klaar als:** u twee tabbladen heeft gehad, gewisseld heeft en er één heeft gesloten.
+
+---
+
+## Oefentaak 4 — Twee programma’s wisselen
+
+**Doel:** tussen Kladblok en browser wisselen.
+
+1. Laat **Kladblok** open (of open opnieuw).  
+2. Open ook de **browser**.  
+3. Klik op de **taakbalk** heen en weer tussen Kladblok en browser.  
+4. Merk op: elk programma heeft een **eigen icoon** op de taakbalk.
+
+**Klaar als:** u kunt wisselen via de taakbalk.
+
+---
+
+## Oefentaak 5 — Zelfstandig (eindopdracht)
+
+**Doel:** de belangrijkste stappen zelf doen.
+
+1. Open **Kladblok** → **minimaliseer** (streepje) → **terugvinden** via taakbalk.  
+2. Open de **browser** → open een **nieuw tabblad** (+) → **sluit** dat tabblad weer.  
+3. **Wissel** tussen Kladblok en browser via de taakbalk.
+
+**Klaar als:** u alle stappen zelf heeft gedaan.
 
 ---
 
@@ -68,9 +83,10 @@ Voor de deelnemer. Op een **computer of laptop**.
 
 | Situatie | Tip |
 |----------|-----|
-| Verkeerd kruisje | Tabblad-kruisje vs venster-kruisje uitleggen |
-| Alles weg | Taakbalk: browser-icoon opnieuw |
+| Verkeerd kruisje | Tabblad-kruisje vs venster-kruisje |
+| Programma kwijt | Taakbalk: icoon opnieuw aanklikken |
 | Mac | Rode/gele/groene knoppen links; helper 1-op-1 |
+
 ---
 
 **Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.

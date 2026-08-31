@@ -6,6 +6,7 @@
 **Gids:** https://www.seniorease.nl/wat-is-ai  
 **Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
 **Apparaat:** telefoon, tablet of computer + wifi  
+**Zaal:** **Inclusief beamerpresentatie voor de begeleider.** Deelnemers oefenen daarna op hun eigen toestel. Print altijd meenemen.  
 **Laatste les** pakket G
 
 ---
@@ -14,35 +15,34 @@
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Regels bespreken, twijfel oefenen, koppeling pakket D/E |
-| **Helper (vrijwilliger)** | 1-op-1 bij AI-chat in oefentaak 2 |
-
-Zie [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
+| **Begeleider (docent)** | Beamerregels, demo “hoe controleren”, upload-waarschuwing |
+| **Helper (vrijwilliger)** | 1-op-1 bij AI-chat en browser |
 
 ---
 
 ## Wat deelnemers na 90 minuten kunnen
 
-1. **Drie regels** noemen (geen geheimen, controleren, niet alles aan AI)  
-2. Een **twijfelachtig** AI-antwoord herkennen  
-3. Weten wanneer ze **mensen** of **officiële sites** vragen i.p.v. AI  
+1. **Drie veiligheidsregels** noemen  
+2. AI vragen **hoe te controleren** — en daarna **één feit echt** bij een betrouwbare bron checken  
+3. Weten: geen paspoort, bankafschrift, belastingbrief of medisch document zomaar **uploaden**  
 4. Verwijzing naar **pakket D** (fraude) en **E** (overheid)  
+5. **Zelfstandig** regels + controle-route  
 
 ## Wat u níet doet
 
-- Geen echte fraude-oefening met klikken (pakket D)  
-- Geen bank of DigiD openen  
-- Geen angst zaaien — wel duidelijke grenzen  
+- Geen “AI noemt een bron = gecontroleerd”  
+- Geen echte fraude-links (D)  
+- Geen DigiD/bank openen  
 
 ## Voorbereiding
 
-- [ ] **A4-kaart** “AI veilig” uit PDF printen  
-- [ ] AI-URL op A4 (zelfde als G2)  
-- [ ] Wifi op A4  
+- [ ] Beamer-PDF G4  
+- [ ] A4-kaart AI veilig  
+- [ ] AI-URL + wifi + print  
 
 ## Didactiek
 
-Kijken → Doen → Controleren → Pauzeren.
+**Kijken op de beamer → zelf doen → samen controleren → volgende stap.**
 
 ---
 
@@ -50,41 +50,49 @@ Kijken → Doen → Controleren → Pauzeren.
 
 ### 12:00–12:15 — Inloop
 
-**Zegt u:** “Laatste les pakket G. Vandaag: **veilig** met AI. Drie regels. En oefenen met twijfel — AI is handig, maar niet altijd waar.”
+**Zegt u:** “Laatste les. Drie regels. En: controleren betekent zelf opzoeken — niet alleen AI om een bron vragen.”
 
 ### 12:15–12:25 — Kennismaking
 
-Wat onthoudt u van G1–G3? Mag AI alles? (Nee.)
+Wat onthoudt u van G1–G3?
 
-### 12:25–12:45 — Stap 1: Drie regels (oefentaak 1)
+### 12:25–12:45 — Beamer: drie regels (oefentaak 1)
 
-Kaart **AI veilig** bespreken. Hardop:
+1. **Deel geen geheimen of gevoelige persoonlijke gegevens.**  
+2. **Controleer belangrijke informatie — AI kan fouten maken.**  
+3. **Bij belangrijke beslissingen over gezondheid, geld, recht of overheid: controleer bij een deskundige of officiële bron.**
 
-1. Geen geheimen intypen  
-2. Altijd controleren  
-3. Medisch / geld / juridisch: mens of officiële site  
+AI mag helpen iets **begrijpelijk** uit te leggen — maar is **niet** de enige bron of eindbeslisser.
 
-### 12:45–13:05 — Stap 2: Kritisch lezen (oefentaak 2)
+### 12:45–13:05 — Stap 2: Echt controleren (oefentaak 2)
 
-**Doen:** `Noem drie bekende Nederlandse schilders.` — antwoord lezen.  
-**Doen:** `Weet u dat zeker? Noem de bron.`  
-**Bespreken:** vertrouwt u dit blind? AI kan **verzinnen** (hallucineren).
+**Beamerdemo:**  
+1. Vraag AI iets feitelijks (bijv. drie Nederlandse schilders).  
+2. Typ: `Hoe kan ik controleren of dit klopt?`  
+3. Open daarna **zelf** een betrouwbare bron (bijv. Wikipedia of een bekende encyclopedie/site) en check **één** naam.
+
+**Zegt u:** “AI kan ook een bron **verzinnen**. Daarom zoekt u zelf.”
 
 ### 13:05–13:10 — Pauze
 
-### 13:10–13:30 — Stap 3: Wanneer géén AI (oefentaak 3)
+### 13:10–13:25 — Stap 3: Wanneer deskundige / officiële bron (oefentaak 3)
 
-Voorbeelden: pijn → huisarts; geld → bank; verdachte mail → pakket **D**; Belasting/DigiD → pakket **E**.  
-Deelnemer noemt **één** eigen situatie.
+Gezondheid, geld, recht, overheid. Pakket D/E.  
+Deelnemer noemt één situatie.
 
-### 13:30–13:40 — Stap 4: Thuis verder (oefentaak 4)
+### 13:25–13:35 — Stap 4: Uploaden / documenten (oefentaak 4)
 
-`seniorease.nl/wat-is-ai` — fraude = pakket D. Pakket G afgerond.
+**Beamer:** zet **geen** paspoort, bankafschrift, belastingbrief of medisch document in een AI-chat.  
+Hardop: “Zou ik mijn wachtwoord typen?” — **Nee.**
 
-### 13:40–13:45 — Afronding
+### 13:35–13:42 — Eindopdracht zelfstandig (oefentaak 5)
 
-Nazorgkaart. Bedank de groep. Optioneel: woordenlijst binnenkort.
+Drie regels noemen + één feit controleren-route (of herhalen).
+
+### 13:42–13:45 — Afronding
+
+Nazorg. **Pakket G compleet.**
 
 ## Als de tijd krap is
 
-Schrap oefentaak 4. **Niet schrappen:** drie regels + twijfel-oefening (oefentaak 2).
+**Niet schrappen:** drie regels + echt controleren + upload-waarschuwing + eindopdracht.

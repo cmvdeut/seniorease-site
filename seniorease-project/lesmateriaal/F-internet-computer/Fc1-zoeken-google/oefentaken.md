@@ -6,61 +6,66 @@ Voor de deelnemer. Op een **computer of laptop**.
 
 ## Oefentaak 1 — Browser openen
 
-**Doel:** Edge of Chrome open hebben.
-
-1. Klik op **Edge** (blauw e) of **Chrome** (kleurrijk bolletje) op de taakbalk of via **Start**.  
-2. U ziet een **adresbalk** bovenaan en vaak een **zoekvak**.
+1. Open **Edge** of **Chrome** (taakbalk of Start).  
+2. U ziet een **adresbalk** bovenaan.
 
 **Klaar als:** de browser open is.
 
 ---
 
-## Oefentaak 2 — Iets opzoeken
+## Oefentaak 2 — Specifieker zoeken
 
-**Doel:** een zoekvraag typen.
+1. Zoek eerst breed: typ `pannenkoeken` — Enter.  
+2. Kijk naar de resultaten.  
+3. Zoek opnieuw, maar **specifieker**, bijvoorbeeld: `recept pannenkoeken oven` of `weer morgen Amsterdam`.  
+4. Vergelijk: welke zoekvraag geeft nuttiger resultaten?
 
-1. Klik in het **zoekvak** (midden) of typ in de **adresbalk** bovenaan.  
-2. Typ (kies één): `recept pannenkoeken` of `weer morgen`  
-3. Druk op **Enter**.  
-4. Kijk of u resultaten ziet.
+**Tip:** meerdere woorden helpen Google beter te begrijpen wat u wilt.
 
-**Klaar als:** u een lijst met zoekresultaten ziet.
-
-**Tip:** meerdere woorden geven betere antwoorden.
+**Klaar als:** u een bredere én een specifiekere zoekvraag heeft gedaan.
 
 ---
 
-## Oefentaak 3 — Een resultaat openen
+## Oefentaak 3 — Resultaten rustig beoordelen
 
-**Doel:** één pagina bekijken en teruggaan.
+1. Kijk naar **één resultaat**: titel, korte tekst eronder, en het **webadres**.  
+2. Ziet u **Gesponsord**? Dat betekent: **advertentie**. Controleer of dit echt de site is die u zoekt.  
+3. Kies een resultaat dat past — klik erop.  
+4. Klik op de **pijl terug** (linksboven).
 
-1. **Klik** op één resultaat (geen **Gesponsord** als u dat ziet).  
-2. Lees kort wat er staat.  
-3. Klik op de **pijl terug** (linksboven in de browser).
-
-**Klaar als:** u terug bent bij de zoekresultaten.
+**Klaar als:** u een resultaat heeft beoordeeld, geopend en bent teruggegaan.
 
 ---
 
-## Oefentaak 4 — Zelf een vraag bedenken
+## Oefentaak 4 — Eigen zoekvraag
 
-**Doel:** zelf iets opzoeken.
-
-1. Bedenk iets praktisch: `kapper`, `postkantoor`, `apotheek` (eventueel met woonplaats).  
-2. Typ het in het zoekvak. Enter.  
-3. Kijk of u een nuttig resultaat ziet.
+1. Bedenk iets praktisch: `kapper` + uw plaats, `postkantoor`, of `apotheek openingstijden`.  
+2. Typ met **meerdere woorden**. Enter.  
+3. Beoordeel rustig welk resultaat past.
 
 **Klaar als:** u uw eigen zoekvraag heeft gedaan.
 
 ---
 
-## Helper
+## Oefentaak 5 — Zelfstandig (eindopdracht)
 
-| Situatie | Windows | Mac |
-|----------|---------|-----|
-| Browser | Edge of Chrome | Safari of Chrome; helper 1-op-1 |
-| Zoeken | Enter | Enter |
-| Terug | Pijl linksboven | Pijl linksboven |
+1. Open de browser zelf.  
+2. Typ een **eigen, specifieke** zoekvraag.  
+3. Beoordeel de resultaten (Gesponsord = advertentie — check of de site klopt).  
+4. Open **één** resultaat. Ga **terug**.
+
+**Klaar als:** u de hele zoekroute zelf heeft gedaan.
+
 ---
 
-**Vast?** Hand opsteken — de helper komt naar u toe. Geen schaamte: iedereen leert in zijn eigen tempo.
+## Helper
+
+| Situatie | Tip |
+|----------|-----|
+| Mac | Safari of Chrome; helper 1-op-1 |
+| Alleen advertenties | Scroll verder — of typ het bekende webadres in Fc2 |
+| Verkeerde site | Adresbalk controleren; terug |
+
+---
+
+**Vast?** Hand opsteken.

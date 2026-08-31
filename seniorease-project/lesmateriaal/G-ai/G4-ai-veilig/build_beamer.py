@@ -8,57 +8,68 @@ from _pdf_base import BeamerPDF  # noqa: E402
 
 OUT = Path(__file__).resolve().parent / "beamer" / "SeniorEase-G4-Beamer-v1.pdf"
 
-SLIDES = [
-    (
-        "Drie regels onthouden",
-        "veilig omgaan met AI",
-        [
-            "Lees de A4-kaart van de begeleider",
-            "Geen geheimen — altijd controleren",
-            "Dokter, bank, juridisch: mens of officiële site",
-        ],
-        "u de drie regels kunt noemen (hardop tegen buur)",
-    ),
-    (
-        "Kritisch lezen",
-        "twijfel oefenen — AI klinkt zeker, maar is dat zo?",
-        [
-            "Typ: Noem drie bekende Nederlandse schilders",
-            "Typ: Weet u dat zeker? Noem de bron",
-            "Bespreek met buur: vertrouwt u dit blind?",
-        ],
-        "u heeft geoefend met even twijfelen",
-    ),
-    (
-        "Wanneer géén AI",
-        "weten wanneer u iemand anders vraagt",
-        [
-            "Noem één situatie waarin u géén AI gebruikt",
-            "Bijv. pijn → huisarts, geld → bank",
-            "Verdacht bericht → pakket D, overheid → pakket E",
-        ],
-        "u één situatie kunt noemen",
-    ),
-    (
-        "Thuis verder leren",
-        "nazorg — pakket G afronden",
-        [
-            "Open seniorease.nl/wat-is-ai",
-            "Fraude → pakket D. Overheid → pakket E",
-            "Pakket G is klaar — thuis herhalen mag",
-        ],
-        "u weet waar u hulp vindt",
-    ),
-]
-
 
 def build() -> Path:
     OUT.parent.mkdir(parents=True, exist_ok=True)
     pdf = BeamerPDF("G4", "AI veilig gebruiken")
     pdf.title_slide()
-    for i, slide in enumerate(SLIDES, 1):
-        note = slide[4] if len(slide) > 4 else None
-        pdf.oefentaak_slide(i, slide[0], slide[1], slide[2], slide[3], note)
+
+    pdf.concept_slide(
+        "Drie regels",
+        [
+            "1. Geen geheimen of gevoelige persoonsgegevens",
+            "2. Belangrijke informatie controleren — AI kan fouten maken",
+            "3. Gezondheid, geld, recht, overheid:",
+            "   deskundige of officiële bron",
+        ],
+    )
+    pdf.concept_slide(
+        "Controleren ≠ AI om een bron vragen",
+        [
+            "Vraag: Hoe kan ik controleren of dit klopt?",
+            "Zoek daarna zelf één feit op",
+            "bij een betrouwbare bron.",
+            "AI kan ook bronnen verzinnen.",
+        ],
+        label="Demo",
+    )
+    pdf.concept_slide(
+        "Niet uploaden",
+        [
+            "Geen paspoort",
+            "Geen bankafschrift",
+            "Geen belastingbrief",
+            "Geen medisch document",
+        ],
+        note="Zeg hardop: Nee, ik typ geen wachtwoord in AI.",
+    )
+
+    pdf.oefentaak_slide(
+        1,
+        "Drie regels",
+        "regels hardop kunnen noemen",
+        ["Lees de regels op de beamer of A4", "Noem ze tegen uw buur"],
+        "u de drie regels kunt noemen",
+    )
+    pdf.oefentaak_slide(
+        2,
+        "Echt controleren",
+        "zelf één feit nakijken",
+        [
+            "Vraag AI om drie schilders",
+            "Vraag: Hoe kan ik controleren of dit klopt?",
+            "Check één naam zelf op een betrouwbare site",
+        ],
+        "u één feit zelf heeft nagekeken",
+    )
+    pdf.oefentaak_slide(
+        5,
+        "Zelfstandig",
+        "regels + controle-route",
+        ["Noem de drie regels", "Herhaal: AI vragen hoe - zelf checken"],
+        "u regels + controle-route kent",
+    )
+
     pdf.output(str(OUT))
     print(f"Beamer-PDF geschreven: {OUT}")
     return OUT
