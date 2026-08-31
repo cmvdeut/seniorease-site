@@ -71,10 +71,11 @@ const TIERS: PricingTier[] = [
 ];
 
 const TRUST_ITEMS = [
+  'Prijzen incl. BTW',
   'Direct download per e-mail',
   'iDEAL en creditcard',
   'Geen abonnement — eenmalig',
-  'Print zelf op locatie',
+  'Factuur op aanvraag',
 ];
 
 export function LesmateriaalPricing() {
@@ -94,9 +95,17 @@ export function LesmateriaalPricing() {
       >
         Kies wat bij u past.
       </h2>
-      <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-10">
+      <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-3">
         Losse les, heel thema of alles voor uw organisatie. Eenmalige betaling — geen
         abonnement.
+      </p>
+      <p className="text-navy/55 text-senior-xs leading-relaxed max-w-2xl mb-10">
+        Alle prijzen zijn inclusief BTW. Wilt u een officiële factuur op naam van uw
+        organisatie?{' '}
+        <Link href="/contact" className="text-gold underline hover:text-gold-light">
+          Neem contact op
+        </Link>{' '}
+        — online betalen via Stripe kan ook.
       </p>
 
       <ul className="grid lg:grid-cols-3 gap-5 lg:gap-6 items-stretch list-none p-0 m-0">
@@ -186,7 +195,7 @@ export function LesmateriaalPricing() {
 export function LesmateriaalPrijsBadge() {
   return (
     <p className="inline-flex items-center gap-2 rounded-full bg-gold/15 text-gold font-semibold text-senior-sm px-4 py-2">
-      Vanaf {formatPrijs(LOSSE_LES_PRIJS)} · geen abonnement
+      Vanaf {formatPrijs(LOSSE_LES_PRIJS)} · incl. BTW · geen abonnement
     </p>
   );
 }

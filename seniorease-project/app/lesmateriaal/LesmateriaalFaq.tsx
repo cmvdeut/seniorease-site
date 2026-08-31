@@ -41,9 +41,14 @@ export const LESMATERIAAL_FAQ = [
       'Ja. Het compleet organisatiepakket bevat alle thema\'s A t/m G, inclusief AI voor dagelijks gebruik, plus beamer-PDF\'s waar die klaar zijn.',
   },
   {
-    question: 'Kan ik betalen via factuur in plaats van online?',
+    question: 'Zijn de prijzen inclusief BTW?',
     answer:
-      'Ja. Neem contact op — voor bibliotheken en stichtingen regelen we graag een factuur of offerte naast online betalen via iDEAL of creditcard.',
+      'Ja. Alle genoemde bedragen (losse les, themapakket en organisatiepakket) zijn inclusief BTW. Bij online betaling via Stripe ontvangt u een betalingsbewijs per e-mail.',
+  },
+  {
+    question: 'Kan ik een factuur krijgen?',
+    answer:
+      'Ja. Voor bibliotheken, buurthuizen en stichtingen maken we graag een officiële factuur op — vóór of na betaling. Neem contact op met naam en gegevens van uw organisatie. Online betalen via iDEAL of creditcard kan ook; het Stripe-bewijs is geen formele factuur.',
   },
 ] as const;
 
