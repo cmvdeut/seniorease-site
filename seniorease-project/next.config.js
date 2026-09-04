@@ -32,6 +32,26 @@ const nextConfig = {
           { key: 'Cache-Control', value: 'public, max-age=0, must-revalidate' },
         ],
       },
+      {
+        source: '/oefenen/b4/SeniorEase-oefenbestand.pdf',
+        headers: [
+          { key: 'Content-Type', value: 'application/pdf' },
+          {
+            key: 'Content-Disposition',
+            value: 'attachment; filename="SeniorEase-oefenbestand.pdf"',
+          },
+        ],
+      },
+      {
+        source: '/oefenen/b4/SeniorEase-eindmissie.pdf',
+        headers: [
+          { key: 'Content-Type', value: 'application/pdf' },
+          {
+            key: 'Content-Disposition',
+            value: 'attachment; filename="SeniorEase-eindmissie.pdf"',
+          },
+        ],
+      },
     ];
   },
   // Note: WebSocket errors in console are harmless - they're from Next.js dev mode
