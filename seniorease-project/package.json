@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev -H 0.0.0.0 -p 3001",
+    "prebuild": "node scripts/sync-lesmateriaal-downloads.js",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -12,21 +13,25 @@
     "vercel:deployments": "node scripts/vercel-helper.js deployments",
     "vercel:domains": "node scripts/vercel-helper.js domains",
     "tiktok:screenshots": "node scripts/make-tiktok-screenshots.js",
-    "sync:chatgpt-youtube": "node scripts/sync-chatgpt-youtube-id.js"
+    "sync:chatgpt-youtube": "node scripts/sync-chatgpt-youtube-id.js",
+    "sync:lesmateriaal-downloads": "node scripts/sync-lesmateriaal-downloads.js"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
+    "archiver": "^8.0.0",
     "jspdf": "^3.0.4",
     "lucide-react": "^1.8.0",
     "next": "16.0.10",
     "node-fetch": "^2.7.0",
     "qrcode.react": "^4.2.0",
     "react": "19.2.1",
-    "react-dom": "19.2.1"
+    "react-dom": "19.2.1",
+    "stripe": "^22.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
+    "@types/archiver": "^8.0.0",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",

@@ -45,14 +45,14 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Smartphone,
     description:
-      'Rustige doe-middagen op het eigen toestel: startscherm, apps, wifi en foto’s. Geen bord nodig — wel print en eigen telefoon.',
+      'Rustige doe-middagen op het eigen toestel: startscherm, apps, wifi en foto’s. Print op tafel; beamer optioneel.',
     lessons: [
       { code: 'A1', title: 'Ik ken mijn telefoon en durf hem te bedienen' },
-      { code: 'A2', title: 'Apps installeren en verwijderen' },
-      { code: 'A3', title: 'Wifi verbinden' },
-      { code: 'A4', title: 'Foto’s maken en bekijken' },
+      { code: 'A2', title: 'Een app zoeken en installeren' },
+      { code: 'A3', title: 'Verbinding maken met internet' },
+      { code: 'A4', title: 'Foto’s maken, terugvinden en delen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     guideLinks: [
       { href: '/uitleg/wifi', label: 'Wifi uitleg' },
       { href: '/uitleg/fotos-maken', label: 'Foto’s maken' },
@@ -70,12 +70,12 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Muis, toetsenbord, vensters, bestanden en downloaden. Voor buurthuizen met pc’s of deelnemers met laptop.',
     lessons: [
-      { code: 'B1', title: 'Muis, toetsenbord en bureaublad' },
-      { code: 'B2', title: 'Vensters en tabbladen' },
-      { code: 'B3', title: 'Bestanden en mappen' },
-      { code: 'B4', title: 'Downloaden en printen' },
+      { code: 'B1', title: 'De computer leren bedienen' },
+      { code: 'B2', title: 'Werken met vensters en tabbladen' },
+      { code: 'B3', title: 'Bestanden opslaan en terugvinden' },
+      { code: 'B4', title: 'Downloaden, openen en printen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['START HIER', 'Draaiboek', 'Deelnemerskaart', 'Hulp bij vastlopen', 'Zaalchecklist', 'Beamer-PDF (optioneel)'],
     guideLinks: [
       { href: '/uitleg/bestanden-vinden', label: 'Bestanden vinden' },
       { href: '/digitale-hulp/computer', label: 'Computer hulp' },
@@ -98,7 +98,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       { code: 'C3', title: 'Bellen en groepen' },
       { code: 'C4', title: 'Privacy en fraude' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     guideLinks: [
       { href: '/uitleg/whatsapp-basis', label: 'WhatsApp basis' },
       { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp voor beginners' },
@@ -121,7 +121,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       { code: 'D3', title: 'WhatsApp- en SMS-fraude' },
       { code: 'D4', title: 'Veilig betalen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     guideLinks: [
       { href: '/uitleg/veiligheid', label: 'Veiligheid gids' },
       { href: '/digitale-hulp/phishing-herkennen', label: 'Phishing herkennen' },
@@ -144,7 +144,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       { code: 'E3', title: 'Gemeente & Belastingdienst' },
       { code: 'E4', title: 'Berichtenbox en berichten van de overheid' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     guideLinks: [{ href: '/uitleg/digid', label: 'DigiD uitleg' }],
   },
   {
@@ -164,7 +164,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       { code: 'Ft3', title: 'QR-codes openen' },
       { code: 'Ft4', title: 'Formulieren en downloads' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:
       'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [
@@ -189,7 +189,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
       { code: 'Fc3', title: 'Veilig downloaden en bestanden herkennen' },
       { code: 'Fc4', title: 'Formulieren invullen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart'],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:
       'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [{ href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' }],
@@ -204,7 +204,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Sparkles,
     description:
-      'Wat is AI, chatten met context, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel.',
+            'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
     lessons: [
       { code: 'G1', title: 'Wat is AI?' },
       { code: 'G2', title: 'AI openen en gebruiken' },

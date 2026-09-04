@@ -9,8 +9,10 @@
  * Legacy fallback pakket:
  *   NEXT_PUBLIC_STRIPE_LESMATERIAAL_DEFAULT=...
  *
- * Success URL in Stripe: https://seniorease.nl/lesmateriaal/bedankt
- * client_reference_id: pakket|pakket-g|email · los|g1|email · compleet|org|email
+ * Success URL in Stripe: …/lesmateriaal/bedankt?session_id={CHECKOUT_SESSION_ID}
+ * client_reference_id (alleen [A-Za-z0-9_-]; Stripe dropt anders stil):
+ *   pakket_pakket-g · los_g1 · compleet_org
+ * E-mail komt uit Stripe customer_details (prefilled_email).
  */
 
 export type LesmateriaalProductType = 'pakket' | 'los' | 'compleet';
@@ -77,18 +79,20 @@ export function buildLesmateriaalCheckoutUrl(params: {
   const trimmed = email.trim();
   if (!trimmed) return null;
 
+  // Stripe Payment Links accepteren alleen [A-Za-z0-9_-] (max 200).
+  // | @ . worden stil genegeerd → fulfillment zou anders kapot gaan.
   let referenceId: string;
   switch (productType) {
     case 'pakket':
       if (!slug) return null;
-      referenceId = `pakket|${slug}|${trimmed}`;
+      referenceId = `pakket_${slug}`;
       break;
     case 'los':
       if (!lessonCode) return null;
-      referenceId = `los|${lessonCode.toLowerCase()}|${trimmed}`;
+      referenceId = `los_${lessonCode.toLowerCase()}`;
       break;
     case 'compleet':
-      referenceId = `compleet|org|${trimmed}`;
+      referenceId = 'compleet_org';
       break;
   }
 

@@ -5,7 +5,7 @@ import BedanktClient from './BedanktClient';
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal/bedankt',
   title: 'Bedankt voor uw bestelling',
-  description: 'Uw lesmateriaal-bestelling is ontvangen. U krijgt de PDF per e-mail.',
+  description: 'Uw lesmateriaal-bestelling is ontvangen. Download via e-mail of deze pagina.',
   noIndex: true,
 });
 
