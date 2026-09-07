@@ -4,6 +4,9 @@
  * voor beveiligde fulfillment.
  *
  * Usage: node scripts/sync-lesmateriaal-downloads.js
+ *
+ * Versiebeleid: catalogus is v2. Bestaat v2 niet, val terug op v1 (tijdelijk).
+ * Bestaat beide: altijd v2.
  */
 const fs = require('fs');
 const path = require('path');
@@ -12,7 +15,7 @@ const ROOT = path.join(__dirname, '..');
 const LM = path.join(ROOT, 'lesmateriaal');
 const DEST = path.join(ROOT, 'private', 'lesmateriaal-downloads');
 
-/** Mirrors lib/lesmateriaal-fulfillment PACKAGE_SOURCE (keep in sync). */
+/** Mirrors lib/lesmateriaal-fulfillment PACKAGE_SOURCE (keep in sync). Alle bestandsnamen = v2. */
 const PACKAGE_SOURCE = {
   'pakket-a': {
     folder: 'A-telefoon-tablet',
@@ -35,66 +38,89 @@ const PACKAGE_SOURCE = {
   'pakket-c': {
     folder: 'C-whatsapp',
     lessons: [
-      ['C1', 'C1-berichten', 'SeniorEase-C1-Berichten-v1.pdf', 'SeniorEase-C1-Beamer-v1.pdf'],
-      ['C2', 'C2-fotos-documenten', 'SeniorEase-C2-Fotos-Documenten-v1.pdf', 'SeniorEase-C2-Beamer-v1.pdf'],
-      ['C3', 'C3-bellen-groepen', 'SeniorEase-C3-Bellen-Groepen-v1.pdf', 'SeniorEase-C3-Beamer-v1.pdf'],
-      ['C4', 'C4-privacy-fraude', 'SeniorEase-C4-Privacy-Fraude-v1.pdf', 'SeniorEase-C4-Beamer-v1.pdf'],
+      ['C1', 'C1-berichten', 'SeniorEase-C1-Berichten-v2.pdf', 'SeniorEase-C1-Beamer-v2.pdf'],
+      ['C2', 'C2-fotos-documenten', 'SeniorEase-C2-Fotos-Documenten-v2.pdf', 'SeniorEase-C2-Beamer-v2.pdf'],
+      ['C3', 'C3-bellen-groepen', 'SeniorEase-C3-Bellen-Videobellen-v2.pdf', 'SeniorEase-C3-Beamer-v2.pdf'],
+      ['C4', 'C4-privacy-fraude', 'SeniorEase-C4-Veilig-Prive-v2.pdf', 'SeniorEase-C4-Beamer-v2.pdf'],
     ],
   },
   'pakket-d': {
     folder: 'D-veilig-online',
     lessons: [
-      ['D1', 'D1-nepberichten', 'SeniorEase-D1-Nepberichten-v1.pdf', 'SeniorEase-D1-Beamer-v1.pdf'],
-      ['D2', 'D2-phishing-links-qr', 'SeniorEase-D2-Phishing-Links-QR-v1.pdf', 'SeniorEase-D2-Beamer-v1.pdf'],
-      ['D3', 'D3-whatsapp-sms-fraude', 'SeniorEase-D3-WhatsApp-SMS-Fraude-v1.pdf', 'SeniorEase-D3-Beamer-v1.pdf'],
-      ['D4', 'D4-veilig-betalen', 'SeniorEase-D4-Veilig-Betalen-v1.pdf', 'SeniorEase-D4-Beamer-v1.pdf'],
+      ['D1', 'D1-nepberichten', 'SeniorEase-D1-Nepberichten-v2.pdf', 'SeniorEase-D1-Beamer-v2.pdf'],
+      ['D2', 'D2-phishing-links-qr', 'SeniorEase-D2-Phishing-Links-QR-v2.pdf', 'SeniorEase-D2-Beamer-v2.pdf'],
+      ['D3', 'D3-whatsapp-sms-fraude', 'SeniorEase-D3-WhatsApp-SMS-Fraude-v2.pdf', 'SeniorEase-D3-Beamer-v2.pdf'],
+      ['D4', 'D4-veilig-betalen', 'SeniorEase-D4-Veilig-Betalen-v2.pdf', 'SeniorEase-D4-Beamer-v2.pdf'],
     ],
   },
   'pakket-e': {
     folder: 'E-digid',
     lessons: [
-      ['E1', 'E1-digid', 'SeniorEase-E1-DigiD-v1.pdf', 'SeniorEase-E1-Beamer-v1.pdf'],
-      ['E2', 'E2-mijnoverheid', 'SeniorEase-E2-MijnOverheid-v1.pdf', 'SeniorEase-E2-Beamer-v1.pdf'],
-      ['E3', 'E3-gemeente-belastingdienst', 'SeniorEase-E3-Gemeente-Belastingdienst-v1.pdf', 'SeniorEase-E3-Beamer-v1.pdf'],
-      ['E4', 'E4-veilig-digid-berichten', 'SeniorEase-E4-Berichtenbox-Overheid-v1.pdf', 'SeniorEase-E4-Beamer-v1.pdf'],
+      ['E1', 'E1-digid', 'SeniorEase-E1-DigiD-v2.pdf', 'SeniorEase-E1-Beamer-v2.pdf'],
+      ['E2', 'E2-mijnoverheid', 'SeniorEase-E2-MijnOverheid-v2.pdf', 'SeniorEase-E2-Beamer-v2.pdf'],
+      ['E3', 'E3-gemeente-belastingdienst', 'SeniorEase-E3-Gemeente-Belastingdienst-v2.pdf', 'SeniorEase-E3-Beamer-v2.pdf'],
+      ['E4', 'E4-veilig-digid-berichten', 'SeniorEase-E4-Berichtenbox-Overheid-v2.pdf', 'SeniorEase-E4-Beamer-v2.pdf'],
     ],
   },
   'pakket-f-telefoon': {
     folder: 'F-internet-telefoon',
     lessons: [
-      ['Ft1', 'Ft1-zoeken', 'SeniorEase-Ft1-Zoeken-v1.pdf', 'SeniorEase-Ft1-Beamer-v1.pdf'],
-      ['Ft2', 'Ft2-browser', 'SeniorEase-Ft2-Browser-v1.pdf', 'SeniorEase-Ft2-Beamer-v1.pdf'],
-      ['Ft3', 'Ft3-qr-codes', 'SeniorEase-Ft3-QR-v1.pdf', 'SeniorEase-Ft3-Beamer-v1.pdf'],
-      ['Ft4', 'Ft4-formulieren-downloads', 'SeniorEase-Ft4-Formulieren-Downloads-v1.pdf', 'SeniorEase-Ft4-Beamer-v1.pdf'],
+      ['Ft1', 'Ft1-zoeken', 'SeniorEase-Ft1-Zoeken-v2.pdf', 'SeniorEase-Ft1-Beamer-v2.pdf'],
+      ['Ft2', 'Ft2-browser', 'SeniorEase-Ft2-Browser-v2.pdf', 'SeniorEase-Ft2-Beamer-v2.pdf'],
+      ['Ft3', 'Ft3-qr-codes', 'SeniorEase-Ft3-QR-v2.pdf', 'SeniorEase-Ft3-Beamer-v2.pdf'],
+      ['Ft4', 'Ft4-formulieren-downloads', 'SeniorEase-Ft4-Formulieren-Downloads-v2.pdf', 'SeniorEase-Ft4-Beamer-v2.pdf'],
     ],
   },
   'pakket-f-computer': {
     folder: 'F-internet-computer',
     lessons: [
-      ['Fc1', 'Fc1-zoeken-google', 'SeniorEase-Fc1-Zoeken-Google-v1.pdf', 'SeniorEase-Fc1-Beamer-v1.pdf'],
-      ['Fc2', 'Fc2-websites-tabbladen', 'SeniorEase-Fc2-Websites-Tabbladen-v1.pdf', 'SeniorEase-Fc2-Beamer-v1.pdf'],
-      ['Fc3', 'Fc3-downloaden', 'SeniorEase-Fc3-Veilig-Downloaden-v1.pdf', 'SeniorEase-Fc3-Beamer-v1.pdf'],
-      ['Fc4', 'Fc4-formulieren', 'SeniorEase-Fc4-Formulieren-v1.pdf', 'SeniorEase-Fc4-Beamer-v1.pdf'],
+      ['Fc1', 'Fc1-zoeken-google', 'SeniorEase-Fc1-Zoeken-Google-v2.pdf', 'SeniorEase-Fc1-Beamer-v2.pdf'],
+      ['Fc2', 'Fc2-websites-tabbladen', 'SeniorEase-Fc2-Websites-Tabbladen-v2.pdf', 'SeniorEase-Fc2-Beamer-v2.pdf'],
+      ['Fc3', 'Fc3-downloaden', 'SeniorEase-Fc3-Veilig-Downloaden-v2.pdf', 'SeniorEase-Fc3-Beamer-v2.pdf'],
+      ['Fc4', 'Fc4-formulieren', 'SeniorEase-Fc4-Formulieren-v2.pdf', 'SeniorEase-Fc4-Beamer-v2.pdf'],
     ],
   },
   'pakket-g': {
     folder: 'G-ai',
     lessons: [
-      ['G1', 'G1-wat-is-ai', 'SeniorEase-G1-Wat-Is-AI-v1.pdf', 'SeniorEase-G1-Beamer-v1.pdf'],
-      ['G2', 'G2-ai-gebruiken', 'SeniorEase-G2-AI-Gebruiken-v1.pdf', 'SeniorEase-G2-Beamer-v1.pdf'],
-      ['G3', 'G3-goede-vragen', 'SeniorEase-G3-Goede-Vragen-v1.pdf', 'SeniorEase-G3-Beamer-v1.pdf'],
-      ['G4', 'G4-ai-veilig', 'SeniorEase-G4-AI-Veilig-v1.pdf', 'SeniorEase-G4-Beamer-v1.pdf'],
+      ['G1', 'G1-wat-is-ai', 'SeniorEase-G1-Wat-Is-AI-v2.pdf', 'SeniorEase-G1-Beamer-v2.pdf'],
+      ['G2', 'G2-ai-gebruiken', 'SeniorEase-G2-AI-Gebruiken-v2.pdf', 'SeniorEase-G2-Beamer-v2.pdf'],
+      ['G3', 'G3-goede-vragen', 'SeniorEase-G3-Goede-Vragen-v2.pdf', 'SeniorEase-G3-Beamer-v2.pdf'],
+      ['G4', 'G4-ai-veilig', 'SeniorEase-G4-AI-Veilig-v2.pdf', 'SeniorEase-G4-Beamer-v2.pdf'],
     ],
   },
 };
 
+/**
+ * Prefer v2. Als v2 ontbreekt: tijdelijk v1 (tot die les is herbouwd).
+ * Nooit v1 kiezen als v2 bestaat.
+ */
+function resolveSource(src) {
+  if (fs.existsSync(src)) return { path: src, note: null };
+  if (/-v2\.pdf$/i.test(src)) {
+    const v1 = src.replace(/-v2\.pdf$/i, '-v1.pdf');
+    if (fs.existsSync(v1)) {
+      return { path: v1, note: `fallback-v1 ${path.relative(ROOT, v1)}` };
+    }
+  }
+  if (/-v1\.pdf$/i.test(src)) {
+    const v2 = src.replace(/-v1\.pdf$/i, '-v2.pdf');
+    if (fs.existsSync(v2)) {
+      return { path: v2, note: `prefer-v2 ${path.relative(ROOT, v2)}` };
+    }
+  }
+  return { path: null, note: null };
+}
+
 function copyOne(src, dest) {
   fs.mkdirSync(path.dirname(dest), { recursive: true });
-  if (!fs.existsSync(src)) {
+  const { path: resolved, note } = resolveSource(src);
+  if (!resolved) {
     console.warn('  MISS', path.relative(ROOT, src));
     return false;
   }
-  fs.copyFileSync(src, dest);
+  if (note) console.log(' ', note);
+  fs.copyFileSync(resolved, dest);
   console.log('  OK  ', path.relative(ROOT, dest));
   return true;
 }
@@ -123,7 +149,7 @@ function main() {
     return cfg.lessons.every(([, dir, printName, beamerName]) => {
       const printSrc = path.join(LM, cfg.folder, dir, 'pdf', printName);
       const beamerSrc = path.join(LM, cfg.folder, dir, 'beamer', beamerName);
-      return fs.existsSync(printSrc) && fs.existsSync(beamerSrc);
+      return resolveSource(printSrc).path && resolveSource(beamerSrc).path;
     });
   });
   if (!requiredOk) {

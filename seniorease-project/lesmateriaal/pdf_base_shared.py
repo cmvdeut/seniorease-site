@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Gedeelde PDF-helpers voor SeniorEase-lessen (v1.2 — print & leesbaarheid)."""
 
+import textwrap
 from pathlib import Path
 
 from fpdf import FPDF
@@ -111,7 +112,15 @@ class LessonPDF(FPDF):
         )
         self._left()
 
-    def cover(self, title: str, subtitle: str, intro: str, contents: list[str], meta: list[str]) -> None:
+    def cover(
+        self,
+        title: str,
+        subtitle: str,
+        intro: str,
+        contents: list[str],
+        meta: list[str],
+        contents_title: str = "In dit document",
+    ) -> None:
         self.add_page()
         self.set_fill_color(*NAVY)
         self.rect(0, 0, 210, 78, "F")
@@ -137,7 +146,7 @@ class LessonPDF(FPDF):
         self.set_font("DejaVu", "", 11)
         self.multi_cell(0, 5.5, intro)
         self.ln(3)
-        self.box("In dit document", contents)
+        self.box(contents_title, contents)
         for line in meta:
             self.muted(line)
         self.ln(2)
@@ -243,34 +252,37 @@ class LessonPDF(FPDF):
         self._left()
 
     def box(self, title: str, lines: list[str]) -> None:
+        """Informatieblok: eerst hoogte meten, dan 1× vullen, dan 1× tekst (geen dubbele tekstlaag)."""
         self.ln(1)
         self._left()
         start_y = self.get_y()
         x = self.l_margin
         w = self.epw
         pad = 4
-        self.set_xy(x + pad, start_y + pad)
+        usable = w - 2 * pad
+
         self.set_font("DejaVu", "B", 11)
-        self.set_text_color(*NAVY)
-        self.multi_cell(w - 2 * pad, 5.5, title)
+        title_lines = self.multi_cell(usable, 5.5, title, split_only=True)
+        h = len(title_lines) * 5.5
         self.set_font("DejaVu", "", 10)
         for line in lines:
-            self.set_x(x + pad)
-            self.multi_cell(w - 2 * pad, 5, line)
-        end_y = self.get_y() + pad
+            body_lines = self.multi_cell(usable, 5, line, split_only=True)
+            h += max(1, len(body_lines)) * 5
+        box_h = h + 2 * pad
+
         self.set_fill_color(*PAPER)
         self.set_draw_color(*GOLD)
-        self.rect(x, start_y, w, end_y - start_y, style="FD")
-        # Tekst opnieuw bovenop (fill bedekte inhoud)
+        self.rect(x, start_y, w, box_h, style="FD")
+
         self.set_xy(x + pad, start_y + pad)
         self.set_font("DejaVu", "B", 11)
         self.set_text_color(*NAVY)
-        self.multi_cell(w - 2 * pad, 5.5, title)
+        self.multi_cell(usable, 5.5, title)
         self.set_font("DejaVu", "", 10)
         for line in lines:
             self.set_x(x + pad)
-            self.multi_cell(w - 2 * pad, 5, line)
-        self.set_y(end_y + 3)
+            self.multi_cell(usable, 5, line)
+        self.set_y(start_y + box_h + 3)
         self._left()
 
     def example(self, letter: str, text: str) -> None:
@@ -285,15 +297,19 @@ class LessonPDF(FPDF):
         self.ln(2)
 
     def quote(self, text: str) -> None:
-        self.set_fill_color(*CREAM)
+        """Citaatblok: vulling eerst, tekst één keer (geen bedekte/dubbele laag)."""
+        self._left()
         y0 = self.get_y()
-        self.set_x(self.l_margin + 4)
+        usable = self.epw - 8
         self.set_font("DejaVu", "I", 10)
+        lines = self.multi_cell(usable, 5, text, split_only=True)
+        box_h = max(1, len(lines)) * 5 + 2
+        self.set_fill_color(*CREAM)
+        self.rect(self.l_margin, y0, self.epw, box_h, style="F")
+        self.set_xy(self.l_margin + 4, y0 + 1)
         self.set_text_color(*NAVY)
-        self.multi_cell(self.epw - 8, 5, text)
-        end_y = self.get_y() + 2
-        self.rect(self.l_margin, y0, self.epw, end_y - y0, style="F")
-        self.set_y(end_y + 2)
+        self.multi_cell(usable, 5, text)
+        self.set_y(y0 + box_h + 2)
         self._left()
 
     def deelnemerskaart_banner(self, title: str, subtitle: str = "") -> None:
@@ -402,6 +418,7 @@ class BeamerPDF(FPDF):
         super().__init__(orientation="L", format="A4", unit="mm")
         self._lesson_code = lesson_code
         self._lesson_title = lesson_title
+        self._slide_version = PDF_VERSION
         self.set_auto_page_break(auto=False)
         self.set_margins(22, 18, 22)
         self.add_font("DejaVu", "", str(FONT_DIR / "DejaVuSans.ttf"))
@@ -447,7 +464,7 @@ class BeamerPDF(FPDF):
         self.multi_cell(
             253,
             8,
-            "Kijken op de beamer → zelf doen → samen controleren → volgende stap.\n"
+            "Kijken op de beamer → begrijpen → zelf doen op eigen toestel → samen controleren.\n"
             "Geen beamer? Print op tafel + voordoen op eigen toestel.",
         )
         self.set_xy(22, 168)
@@ -469,24 +486,22 @@ class BeamerPDF(FPDF):
         self.set_xy(42, 7)
         self.set_font("DejaVu", "B", 13)
         self.set_text_color(*WHITE)
-        self.cell(120, 8, f"{self._lesson_code}  —  {label}")
-        self.set_font("DejaVu", "", 10)
-        self.set_text_color(*CREAM)
-        self.cell(0, 8, "Eerst kijken — daarna zelf doen", align="R")
+        header = f"{self._lesson_code}  —  {label}" if label.strip() else self._lesson_code
+        self.cell(0, 8, header)
 
         self.set_xy(22, 36)
-        self.set_font("DejaVu", "B", 28)
+        self.set_font("DejaVu", "B", 26)
         self.set_text_color(*NAVY)
-        self.multi_cell(253, 12, title)
+        self.multi_cell(253, 15, title)
 
-        y = 60
+        y = self.get_y() + 12
         self.set_text_color(*NAVY)
         for line in lines:
             self.set_xy(22, y)
             self.set_font("DejaVu", "", 20)
-            self.multi_cell(253, 10, line)
-            y = self.get_y() + 4
-            if y > 160:
+            self.multi_cell(253, 12, line)
+            y = self.get_y() + 8
+            if y > 170:
                 break
 
         if note:
@@ -498,7 +513,7 @@ class BeamerPDF(FPDF):
         self.set_y(198)
         self.set_font("DejaVu", "", 9)
         self.set_text_color(*MUTED)
-        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {PDF_VERSION}", align="C")
+        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {self._slide_version}", align="C")
 
     def oefentaak_slide(
         self,
@@ -561,4 +576,411 @@ class BeamerPDF(FPDF):
         self.set_y(198)
         self.set_font("DejaVu", "", 9)
         self.set_text_color(*MUTED)
-        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {PDF_VERSION}", align="C")
+        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {self._slide_version}", align="C")
+
+    def _bar(self, label: str, right: str = "") -> None:
+        """Bovenbalk. Geen vaste slogans rechts — labels (ZIEN/NADOEN/…) volstaan."""
+        self.add_page()
+        self.set_fill_color(*NAVY)
+        self.rect(0, 0, 297, 22, "F")
+        self._logo_mark(22, 4, 14)
+        self.set_xy(42, 7)
+        self.set_font("DejaVu", "B", 13)
+        self.set_text_color(*WHITE)
+        if right:
+            header = f"{self._lesson_code}  —  {label}" if label.strip() else self._lesson_code
+            self.cell(120, 8, header)
+            self.set_font("DejaVu", "", 10)
+            self.set_text_color(*CREAM)
+            self.cell(0, 8, right, align="R")
+        else:
+            header = f"{self._lesson_code}  —  {label}" if label.strip() else self._lesson_code
+            self.cell(0, 8, header)
+
+    def _foot(self) -> None:
+        self.set_y(198)
+        self.set_font("DejaVu", "", 9)
+        self.set_text_color(*MUTED)
+        self.cell(0, 4, f"SeniorEase  |  {self._lesson_title}  |  Beamer {self._slide_version}", align="C")
+
+    def _badge(self, x: float, y: float, n: int) -> None:
+        self.set_fill_color(*GOLD)
+        self.set_draw_color(*GOLD)
+        self.ellipse(x - 4.5, y - 4.5, 9, 9, "F")
+        self.set_font("DejaVu", "B", 11)
+        self.set_text_color(*WHITE)
+        self.set_xy(x - 4.5, y - 3.5)
+        self.cell(9, 7, str(n), align="C")
+
+    def zaal_shot_slide(
+        self,
+        title: str,
+        image: Path,
+        caption: str,
+        label: str = "ZIEN",
+        note: str | None = None,
+    ) -> None:
+        """Volledig telefoonscherm, zo groot mogelijk — niets afknippen.
+
+        Portretbeeld rechts/gecentreerd op maximale hoogte.
+        Korte caption links, zodat boven- en onderrand van het scherm zichtbaar blijven.
+        """
+        self._bar(label)
+        self.set_xy(22, 26)
+        self.set_font("DejaVu", "B", 18)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 7, title)
+
+        # Maximale beeldhoogte: onder titel tot boven footer
+        top = 36.0
+        bottom = 188.0
+        max_h = bottom - top
+
+        img_x = img_y = img_w = img_h = 0.0
+        if image.exists():
+            try:
+                from PIL import Image as _PILImage
+
+                with _PILImage.open(image) as _im:
+                    aspect = _im.height / max(_im.width, 1)
+            except Exception:
+                aspect = 2.0
+
+            img_h = max_h
+            img_w = img_h / aspect
+            # Cap breedte; schuif naar rechts zodat links ruimte blijft voor tekst
+            max_w = 95.0
+            if img_w > max_w:
+                img_w = max_w
+                img_h = img_w * aspect
+            img_x = 297 - 22 - img_w  # rechts uitlijnen met marge
+            img_y = top + (max_h - img_h) / 2
+            self.image(str(image), x=img_x, y=img_y, w=img_w, h=img_h)
+
+        # Caption links, groot
+        text_w = max(70.0, img_x - 30) if img_x else 100.0
+        self.set_xy(22, 55)
+        self.set_font("DejaVu", "B", 20)
+        self.set_text_color(*NAVY)
+        self.multi_cell(text_w, 9, caption)
+
+        if note:
+            self.set_xy(22, 175)
+            self.set_font("DejaVu", "I", 11)
+            self.set_text_color(*MUTED)
+            self.multi_cell(text_w, 5, note)
+        self._foot()
+
+    def mission_slide(
+        self,
+        title: str,
+        steps: list[str],
+        label: str = "ZELF DOEN",
+        start: int = 1,
+    ) -> None:
+        """Eindmissie: zo groot mogelijk, vanaf 3 meter leesbaar.
+
+        start: eerste stapnummer (bijv. 6 bij deel 2 van een lange missie).
+        Max. ca. 7 stappen per dia — daarna y-limiet.
+        """
+        self._bar(label)
+        self.set_xy(22, 30)
+        self.set_font("DejaVu", "B", 26)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 11, title)
+
+        y = 52
+        for i, step in enumerate(steps):
+            n = start + i
+            self.set_xy(28, y)
+            self.set_font("DejaVu", "B", 28)
+            self.set_text_color(*GOLD)
+            self.cell(22, 14, f"{n}")
+            self.set_font("DejaVu", "B", 22)
+            self.set_text_color(*NAVY)
+            # multi_cell zodat lange stappen niet afkappen
+            x_text = 52
+            self.set_xy(x_text, y)
+            before = self.get_y()
+            self.multi_cell(224, 10, step)
+            after = self.get_y()
+            y = max(before + 16, after + 4)
+            if y > 185:
+                break
+        self._foot()
+
+    def shot_slide(
+        self,
+        title: str,
+        image: Path,
+        points: list[str],
+        label: str = "UITLEG",
+        note: str | None = None,
+        badges: list[tuple[float, float, int]] | None = None,
+        big: bool = False,
+    ) -> None:
+        """Echte screenshot + korte aanwijzingen. Geen nagetekende interface.
+
+        big=True: uitsnede vult bijna de rechterhelft — voor typvak/versturen
+        achter in de zaal.
+        """
+        self._bar(label)
+        self.set_xy(22, 28)
+        self.set_font("DejaVu", "B", 22 if big else 24)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 9 if big else 10, title)
+
+        if big:
+            img_x, img_y, img_w = 95, 44, 178
+            text_w = 66
+            max_h = 138.0
+        else:
+            img_x, img_y, img_w = 128, 48, 147
+            text_w = 86
+            max_h = 130.0
+
+        if image.exists():
+            try:
+                from PIL import Image as _PILImage
+
+                with _PILImage.open(image) as _im:
+                    aspect = _im.height / max(_im.width, 1)
+                img_h = img_w * aspect
+                if img_h > max_h:
+                    img_h = max_h
+                    img_w = img_h / aspect
+                    img_x = 95 + (178 - img_w) / 2 if big else 128 + (147 - img_w) / 2
+            except Exception:
+                img_h = 0
+            if img_h:
+                self.image(str(image), x=img_x, y=img_y, w=img_w, h=img_h)
+            else:
+                self.image(str(image), x=img_x, y=img_y, w=img_w)
+            if badges:
+                for bx, by, n in badges:
+                    self._badge(img_x + bx, img_y + by, n)
+
+        y = 50 if big else 52
+        self.set_text_color(*NAVY)
+        for i, point in enumerate(points, 1):
+            self._badge(27, y + 4, i)
+            self.set_xy(36, y)
+            self.set_font("DejaVu", "", 15 if big else 16)
+            self.set_text_color(*NAVY)
+            self.multi_cell(text_w, 7, point)
+            y = self.get_y() + 8
+            if y > 170:
+                break
+
+        if note:
+            self.set_xy(22, 184)
+            self.set_font("DejaVu", "I", 11)
+            self.set_text_color(*MUTED)
+            self.multi_cell(70 if big else 100, 5, note)
+        self._foot()
+
+    def screenshot_needed_slide(
+        self,
+        title: str,
+        needed: list[str],
+        points: list[str] | None = None,
+        label: str = "DEMO",
+        note: str | None = None,
+    ) -> None:
+        """Tijdelijke dia zolang een echt screenshot ontbreekt. Geen nep-UI."""
+        self._bar(label)
+        self.set_xy(22, 28)
+        self.set_font("DejaVu", "B", 22)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 9, title)
+
+        box_x, box_y, box_w, box_h = 100, 48, 175, 120
+        self.set_fill_color(*SLATE)
+        self.set_draw_color(*GOLD)
+        self.set_line_width(0.6)
+        self.rect(box_x, box_y, box_w, box_h, "FD")
+        self.set_xy(box_x + 8, box_y + 10)
+        self.set_font("DejaVu", "B", 14)
+        self.set_text_color(*NAVY)
+        self.multi_cell(box_w - 16, 7, "[SCREENSHOT NODIG]")
+        self.set_xy(box_x + 8, self.get_y() + 4)
+        self.set_font("DejaVu", "", 13)
+        self.set_text_color(*NAVY)
+        for line in needed:
+            self.set_x(box_x + 8)
+            self.multi_cell(box_w - 16, 6, line)
+            if self.get_y() > box_y + box_h - 12:
+                break
+
+        y = 52
+        self.set_text_color(*NAVY)
+        for i, point in enumerate(points or [], 1):
+            self._badge(27, y + 4, i)
+            self.set_xy(36, y)
+            self.set_font("DejaVu", "", 15)
+            self.multi_cell(58, 7, point)
+            y = self.get_y() + 8
+            if y > 170:
+                break
+
+        self.set_xy(22, 184)
+        self.set_font("DejaVu", "I", 11)
+        self.set_text_color(*MUTED)
+        self.multi_cell(
+            253,
+            5,
+            note
+            or "Nog geen echt schermbeeld. Begeleider toont live op eigen toestel.",
+        )
+        self._foot()
+
+    def example_slide(
+        self,
+        app_name: str,
+        line: str,
+        extra: str | None = None,
+        image: Path | None = None,
+        label: str = "SAMEN DOEN",
+        note: str | None = None,
+    ) -> None:
+        """Eén herkenbaar voorbeeld per dia. Geen lijst van zes punten."""
+        self._bar(label)
+        self.set_xy(22, 30)
+        self.set_font("DejaVu", "", 14)
+        self.set_text_color(*GOLD)
+        self.cell(0, 7, "Herkenbaar voorbeeld")
+        self.set_xy(22, 40)
+        self.set_font("DejaVu", "B", 32)
+        self.set_text_color(*NAVY)
+        show_img = image is not None and image.exists()
+        self.multi_cell(110 if show_img else 253, 12, app_name)
+        self.set_xy(22, 62)
+        self.set_font("DejaVu", "", 18)
+        self.set_text_color(*NAVY)
+        self.multi_cell(110 if show_img else 253, 8, line)
+        if extra:
+            self.set_xy(22, self.get_y() + 6)
+            self.set_font("DejaVu", "", 16)
+            self.set_text_color(*MUTED)
+            self.multi_cell(110 if show_img else 253, 7, extra)
+        if show_img:
+            self.image(str(image), x=138, y=42, w=136)
+        if note:
+            self.set_xy(22, 184)
+            self.set_font("DejaVu", "I", 11)
+            self.set_text_color(*MUTED)
+            self.multi_cell(253, 5, note)
+        self._foot()
+
+    def scene_slide(
+        self,
+        scene: str,
+        label: str = "SAMEN DOEN",
+        follow: str | None = None,
+    ) -> None:
+        """Eerst de situatie, daarna de oefening. Geen vaste AI-tekst."""
+        self._bar(label)
+        self.set_xy(22, 48)
+        self.set_font("DejaVu", "", 16)
+        self.set_text_color(*GOLD)
+        self.cell(0, 8, "Stel…")
+        self.set_xy(22, 72)
+        self.set_font("DejaVu", "B", 28)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 13, scene)
+        self.set_xy(22, 168)
+        self.set_font("DejaVu", "I", 14)
+        self.set_text_color(*MUTED)
+        self.multi_cell(
+            253,
+            7,
+            follow or "Daarna oefent u dit zelf op uw eigen toestel.",
+        )
+        self._foot()
+
+    def chat_slide(
+        self,
+        title: str,
+        turns: list[tuple[str, str]],
+        label: str = "DEMO",
+        note: str | None = None,
+        scene: str | None = None,
+    ) -> None:
+        """Gewoon gesprek: U / AI. Geen nagetekende Gemini-interface."""
+        self._bar(label)
+        y = 28
+        if scene:
+            self.set_xy(22, y)
+            self.set_font("DejaVu", "I", 14)
+            self.set_text_color(*GOLD)
+            self.multi_cell(253, 6, scene)
+            y = self.get_y() + 2
+        self.set_xy(22, y)
+        self.set_font("DejaVu", "B", 22)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 9, title)
+        y = self.get_y() + 4
+
+        for who, text in turns:
+            is_user = who.lower() in {"u", "user"}
+            lines = textwrap.wrap(text, width=52) or [text]
+            h = 9 + len(lines) * 6.5
+            if y + h > 188:
+                break
+            if is_user:
+                x, bw = 88, 186
+                self.set_fill_color(*NAVY)
+                self.rect(x, y, bw, h, style="F")
+                self.set_text_color(*WHITE)
+            else:
+                x, bw = 22, 186
+                self.set_fill_color(*SLATE)
+                self.rect(x, y, bw, h, style="F")
+                self.set_text_color(*NAVY)
+            self.set_xy(x + 4, y + 1.5)
+            self.set_font("DejaVu", "B", 11)
+            self.cell(20, 5, "U" if is_user else "AI")
+            self.set_xy(x + 4, y + 7)
+            self.set_font("DejaVu", "", 13)
+            self.multi_cell(bw - 8, 6.5, text)
+            y += h + 3.5
+
+        if note:
+            self.set_xy(22, 186)
+            self.set_font("DejaVu", "I", 10)
+            self.set_text_color(*MUTED)
+            self.multi_cell(253, 5, note)
+        self._foot()
+
+    def devices_slide(
+        self,
+        title: str,
+        phone_image: Path,
+        desktop_image: Path,
+        label: str = "UITLEG",
+    ) -> None:
+        self._bar(label)
+        self.set_xy(22, 30)
+        self.set_font("DejaVu", "B", 24)
+        self.set_text_color(*NAVY)
+        self.multi_cell(253, 10, title)
+
+        self.set_xy(22, 48)
+        self.set_font("DejaVu", "", 16)
+        self.set_text_color(*NAVY)
+        self.multi_cell(
+            253,
+            7,
+            "iPhone/iPad: Safari     ·     Android: Chrome     ·     Computer: browser",
+        )
+        self.set_xy(22, 64)
+        self.set_font("DejaVu", "I", 13)
+        self.set_text_color(*MUTED)
+        self.multi_cell(253, 6, "Uw scherm kan er iets anders uitzien. De stappen blijven ongeveer hetzelfde.")
+
+        if phone_image.exists():
+            self.image(str(phone_image), x=36, y=78, h=108)
+        if desktop_image.exists():
+            self.image(str(desktop_image), x=118, y=88, w=156)
+        self._foot()
+

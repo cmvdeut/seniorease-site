@@ -9,6 +9,7 @@ assert _spec.loader is not None
 _spec.loader.exec_module(_mod)
 
 LessonPDF = _mod.LessonPDF
+BeamerPDF = _mod.BeamerPDF
 GOLD = _mod.GOLD
 NAVY = _mod.NAVY
 CREAM = _mod.CREAM
@@ -26,6 +27,12 @@ if str(_LM_DIR) not in sys.path:
 
 
 LESSON_VERSION = "v1.1"
+
+
+class CBeamerPDF(BeamerPDF):
+    def __init__(self, *args, **kwargs) -> None:
+        super().__init__(*args, **kwargs)
+        self._slide_version = LESSON_VERSION
 
 
 class CLessonPDF(LessonPDF):

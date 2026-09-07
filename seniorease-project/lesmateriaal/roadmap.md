@@ -21,11 +21,11 @@ Eigen pakket: bediening is echt anders dan op de computer.
 | Les | Onderwerp |
 |-----|-----------|
 | A1 | Uw smartphone of tablet leren kennen |
-| A2 | Apps installeren, verwijderen en bijwerken |
-| A3 | Wifi, mobiele data en verbinding maken |
+| A2 | Een app zoeken en installeren |
+| A3 | Verbinding maken met internet |
 | A4 | Foto’s maken, terugvinden en delen |
 
-**Status:** **A1–A4 klaar** — `A-telefoon-tablet/`. Oude map `04-fotos` = eerdere v1.
+**Status:** **A1–A4 klaar (v2.0)** — `A-telefoon-tablet/`. Oude map `04-fotos` = eerdere v1.
 
 ---
 
@@ -36,7 +36,7 @@ Eigen pakket.
 | Les | Onderwerp |
 |-----|-----------|
 | B1 | Muis, toetsenbord en bureaublad |
-| B2 | Vensters, tabbladen en programma’s |
+| B2 | Werken met vensters en tabbladen |
 | B3 | Bestanden en mappen bewaren en terugvinden |
 | B4 | Downloaden, printen en documenten openen |
 
@@ -50,12 +50,12 @@ Eigen pakket.
 
 | Les | Onderwerp |
 |-----|-----------|
-| C1 | Berichten sturen |
+| C1 | Een WhatsApp-bericht sturen |
 | C2 | Foto’s en documenten |
-| C3 | Bellen, videobellen en groepen |
-| C4 | Privacy en fraude |
+| C3 | Bellen en videobellen |
+| C4 | Veilig en privé WhatsApp gebruiken |
 
-**Status:** **C1–C4 klaar** — `C-whatsapp/`. Oude map `01-whatsapp` = eerdere v1. C4 kort; dieper = D.
+**Status:** **C1–C4 productie v2 GOEDGEKEURD** — `C-whatsapp/`. Oude map `01-whatsapp` = eerdere v1. Diepere fraude = Pakket D (buiten scope tot start).
 
 ---
 

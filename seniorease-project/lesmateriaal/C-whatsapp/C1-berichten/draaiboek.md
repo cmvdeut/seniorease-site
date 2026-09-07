@@ -1,116 +1,238 @@
-# Draaiboek — C1: Berichten sturen
+# Draaiboek — C1: Een WhatsApp-bericht sturen
 
-**Pakket C — WhatsApp** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die WhatsApp (bijna) geïnstalleerd hebben en een tekstbericht willen sturen  
-**Gids:** https://www.seniorease.nl/uitleg/whatsapp-basis  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet  
-**Zaal:** geen bord/beamer — wifi op A4; begeleider-nummer op A4
+**Pakket C — WhatsApp** · Versie 2.0  
+**Duur:** circa 90 minuten les *(inloop vóór de les, telt niet mee)*  
+**Doelgroep:** Mensen die rustig willen leren een WhatsApp-bericht te sturen en beantwoorden  
+**Begeleiding:** 1 begeleider + bij voorkeur 1 helper | **Max:** ongeveer 8–10  
+**Apparaat:** eigen telefoon of tablet met WhatsApp  
+**Methode:** ZIEN → NADOEN → BEGRIJPEN → ZELF DOEN  
+**Eerst lezen:** [start-hier.md](start-hier.md) · Vastlopen: [hulp-bij-vastlopen.md](hulp-bij-vastlopen.md)
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider** | Voorbeeld, tempo, groep; beamer of voordoen |
+| **Helper** | Alleen **1-op-1** bij vastlopers — geen tweede les voor de groep |
 
-**Bent u zelf ook senior?** Dat mag — en helpt vaak. U hoeft niet alles te weten. Twijfelt u? Vraag de andere begeleider. Meer tips: [begeleiders-en-vrijwilligers.md](../../begeleiders-en-vrijwilligers.md).
-
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · codes nooit hardop · we wachten op elkaar.
+**Afspraken:** hand opsteken · “Wat ziet u nu?” · geen telefoonnummers op beamer · toestel niet meteen overnemen.
 
 ---
 
-## Wat deelnemers na 90 minuten kunnen
+## Leerdoel
 
-1. WhatsApp **openen** en een gesprek **starten of openen**  
-2. Een **tekstbericht** sturen, een **typefout corrigeren** en een **emoji** toevoegen  
-3. **Vinkjes** begrijpen (inclusief: blauwe vinkjes hangen af van leesbewijzen)  
-4. Een **ontvangen bericht lezen en beantwoorden**  
-5. Een bericht **kort verwijderen** (eigen oefenbericht)  
-6. **Zelfstandig:** gesprek starten → bericht sturen → antwoord geven  
+Na C1 kan de deelnemer zelf een WhatsApp-gesprek openen, een bericht sturen en antwoorden.
+
+## Centrale situatie
+
+> “U wilt iemand even laten weten dat u later komt. Hoe stuurt u zelf een WhatsApp-bericht — en hoe ziet u of het is aangekomen?”
+
+## Gouden kapstokken
+
+> **KIEZEN → TYPEN → CONTROLEREN → VERSTUREN → ANTWOORDEN**  
+> **KIJK EERST NAAR DE NAAM → DAN VERSTUREN**
+
+## Apparaten
+
+iPhone én Android gelijkwaardig.  
+Alleen tonen waar bediening zichtbaar verschilt.  
+Vaste zin: “Uw scherm kan er iets anders uitzien. Dat is normaal.”
+
+## Oefencontact
+
+Begeleider of helper = veilig oefencontact. Eigen bekende mag ook.
+
+Bij het kiesmoment zegt u ongeveer:
+
+> Heeft u een eigen persoon naar wie u wilt oefenen? Kies die persoon. Anders gebruikt u het afgesproken oefencontact.
+
+Begeleider/helper antwoordt echt (bijv. `Prima, tot zo!`).
 
 ## Wat u níet doet
 
-- Geen foto’s sturen (C2)  
-- Geen groepen, status, videobellen (C3)  
-- Geen account nieuw aanmaken tenzij helper 1-op-1  
-- Geen computer, bord of presentatie  
+- Geen foto’s / documenten (C2)  
+- Geen bellen / videobellen / groepen (C3)  
+- Geen privacy / fraude / blokkeren (C4)  
+- Geen berichten verwijderen als lesdoel  
+- Geen WhatsApp installeren of accounts aanmaken als groepsles  
+- Geen WhatsApp Web / computer  
+- Geen eindmissie schrappen bij tijdgebrek  
 
-## Voorbereiding
-
-- [ ] Wifi-wachtwoord op A4  
-- [ ] Uw telefoonnummer op A4 (oefenbericht)  
-- [ ] Eigen telefoon met WhatsApp klaar  
-- [ ] Deelnemerskaarten + oefentaken  
-- [ ] Helper: Android vs iPhone; installeren 1-op-1  
-
-## Didactiek
-
-Kijken → Doen → Controleren → Pauzeren.
+## Voorbereiding — zie START HIER
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten les)
 
-### 12:00–12:15 — Inloop
+| Lesminuut | Blok |
+|-----------|------|
+| 0–5 | Welkom + centrale situatie |
+| 5–15 | WhatsApp openen (iPhone \| Android waar nodig) |
+| 15–25 | Gesprek/persoon kiezen + **naam controleren** |
+| 25–40 | Typen + bewuste typefout herstellen |
+| 40–50 | Emoji + controleren + versturen |
+| 50–55 | Pauze |
+| 55–65 | Vinkjes kort + antwoord ontvangen |
+| 65–75 | Zelf een kort antwoord sturen |
+| 75–82 | Herhalen / hulp bij vastlopen |
+| 82–90 | Eindmissie (zonder voordoen · altijd behouden) |
 
-Wifi, volume. Heeft u WhatsApp? Zo niet: helper installeert of kijkt mee.
+**Tijd krap:** verkort emoji of herhalen. **Niet schrappen:** naam controleren, versturen, antwoorden, eindmissie.
 
-**Zegt u:** “Welkom. Vandaag sturen we rustig WhatsApp-berichten. U werkt op uw eigen telefoon.”
+---
 
-### 12:15–12:25 — Kennismaking
+## Welkom + centrale situatie (0–5)
 
-Voornaam + Android of iPhone. Geen bankgegevens via WhatsApp.
+**Zegt u ongeveer:**  
+“U wilt iemand even laten weten dat u later komt. Hoe stuurt u dat zelf via WhatsApp? En hoe ziet u of het is aangekomen?”
 
-### 12:25–12:38 — Stap 1: WhatsApp openen (oefentaak 1)
+**Kapstokken kort tonen** (beamer):  
+KIEZEN → TYPEN → CONTROLEREN → VERSTUREN → ANTWOORDEN  
+KIJK EERST NAAR DE NAAM → DAN VERSTUREN
 
-Groene icoon. Chatlijst zichtbaar?
+Niet openen met alleen: “WhatsApp openen.”
 
-### 12:38–12:50 — Stap 2: Gesprek openen (oefentaak 2)
+---
 
-Bestaande chat of nieuw naar begeleider (A4). **Check de naam** bovenaan.
+## WhatsApp openen (5–15)
 
-### 12:50–13:05 — Stap 3: Bericht sturen + typefout (oefentaak 3)
+**Doel**  
+WhatsApp vinden en openen op het eigen toestel.
 
-Typ: `Hallo, dit is een oefening van de lesmiddag.` Maak een foutje → **wissen** → corrigeren → versturen.
+**Zegt u ongeveer**  
+“Zoek WhatsApp. Open de app. Uw scherm kan er iets anders uitzien. Dat is normaal.”
 
-### 13:05–13:10 — Pauze
+**Laat zien**  
+Beamer: WhatsApp openen — iPhone | Android alleen als het duidelijk verschilt.
 
-### 13:10–13:18 — Stap 4: Emoji (oefentaak 4)
+**Deelnemers**  
+Zoeken → openen.
 
-Smiley-icoon → kies één emoji → verstuur (mag achter uw zin).
+**Helper** · 1-op-1 icoon vinden.
 
-### 13:18–13:28 — Stap 5: Vinkjes (oefentaak 5)
+---
 
-**Leg uit:**
+## Gesprek kiezen + naam controleren (15–25)
 
-| Vinkjes | Betekenis |
-|---------|-----------|
-| **Één grijs** | Verzonden vanaf uw telefoon |
-| **Twee grijs** | Afgeleverd bij de ander |
-| **Twee blauw** | Gelezen — **alleen als leesbewijzen aan staan** bij u én de ander |
+**Doel**  
+Juiste persoon/oefencontact openen; naam bovenaan controleren.
 
-Blauw ziet u dus niet altijd — dat is normaal.
+**Zegt u ongeveer**  
+“Heeft u een eigen persoon naar wie u wilt oefenen? Kies die persoon. Anders gebruikt u het afgesproken oefencontact. Stop. Kijk eerst naar de naam bovenaan.”
 
-### 13:28–13:36 — Stap 6: Lezen en beantwoorden (oefentaak 6)
+**Deelnemers**  
+Kiezen → openen → **STOP** → naam controleren.
 
-Wacht op antwoord begeleider/buur. **Lees** het bericht. Typ een kort antwoord → verstuur.
+**Regel:** KIJK EERST NAAR DE NAAM → DAN VERSTUREN (hier al vóór typen).
 
-### 13:36–13:40 — Stap 7: Bericht verwijderen (oefentaak 7)
+---
 
-Houd uw **eigen oefenbericht** ingedrukt → **Verwijderen** / **Verwijder voor mij** (helper wijst aan). Alleen oefenbericht — geen belangrijke chat.
+## Typen + typefout herstellen (25–40)
 
-### 13:40–13:43 — Eindopdracht zelfstandig (oefentaak 8)
+**Doel**  
+Typvak vinden; typen; fout **vóór** verzenden herstellen.
 
-Zonder voordoen: gesprek starten → bericht sturen → antwoord geven.
+**Zegt u ongeveer**  
+“Typ eerst bewust met een fout: Ik kom 10 minnten later. Herstel het daarna zelf: Ik kom 10 minuten later.”
 
-### 13:43–13:45 — Afronding
+**Doorlopende oefening**
 
-Nazorg. Volgende: C2 Foto’s en documenten.
+| Stap | Tekst / handeling |
+|------|-------------------|
+| Typen (bewust fout) | `Ik kom 10 minnten later.` |
+| Herstellen | → `Ik kom 10 minuten later.` |
 
-## Als de tijd krap is
+**Deelnemers**  
+Typvak → typen → herstellen vóór verzenden.
 
-Schrap verwijderen of emoji. **Niet schrappen:** bericht sturen, vinkjes, lezen en beantwoorden, eindopdracht.
+**Niet:** verwijderen na verzenden.
+
+---
+
+## Emoji + controleren + versturen (40–50)
+
+**Doel**  
+Optioneel één emoji; nog één keer controleren; versturen.
+
+**Zegt u ongeveer**  
+“Wilt u een emoji? Bijvoorbeeld een lachend gezicht. Lees uw bericht nog één keer. Controleer de naam nog eens. Verstuur.”
+
+**Deelnemers**  
+Eventueel 😊 → controleren → naam → versturen.
+
+**Helper** · verzendknop iPhone | Android 1-op-1 als die verschilt.
+
+---
+
+## Pauze (50–55)
+
+Kort.
+
+---
+
+## Vinkjes + antwoord ontvangen (55–65)
+
+**Doel**  
+Vinkjes **praktisch** herkennen; antwoord lezen.
+
+**Zegt u ongeveer**  
+“Eén vinkje: verzonden. Twee grijze: afgeleverd. Twee blauwe: gelezen — als leesbewijzen worden gebruikt. Geen blauwe vinkjes? Dat betekent niet automatisch dat uw bericht niet is gelezen.”
+
+**Daarna:** begeleider/helper stuurt `Prima, tot zo!`  
+Deelnemer leest het antwoord.
+
+Kort houden. Geen instellingenles.
+
+---
+
+## Zelf een kort antwoord sturen (65–75)
+
+**Doel**  
+Zelf antwoorden met korte tekst.
+
+**Zegt u ongeveer**  
+“Stuur zelf een kort antwoord, bijvoorbeeld: Bedankt! Weer: klopt de naam? Dan versturen.”
+
+**Deelnemers**  
+Naam check → `Bedankt!` (of eigen kort antwoord) → versturen.
+
+---
+
+## Herhalen / hulp bij vastlopen (75–82)
+
+Geen nieuwe stof.  
+Zie [hulp-bij-vastlopen.md](hulp-bij-vastlopen.md).  
+Helper 1-op-1; begeleider houdt tempo.
+
+---
+
+## Eindmissie · zonder voordoen (82–90)
+
+**Altijd behouden.** Geen voordoen.
+
+**Beamer:** Kunt u dit zelf?
+
+1. Open WhatsApp.  
+2. Kies het afgesproken oefencontact (of uw eigen oefenpersoon).  
+3. Controleer de naam.  
+4. Typ: `Bedankt voor uw bericht.`  
+5. Voeg eventueel één emoji toe.  
+6. Controleer uw bericht.  
+7. Verstuur.  
+8. Wacht op een antwoord.  
+9. Lees het antwoord.  
+10. Stuur zelf een kort antwoord terug.
+
+**Afsluiting (exact):**
+
+> Gelukt? Dan kunt u zelf een WhatsApp-bericht sturen en beantwoorden.
+
+---
+
+## Afronding
+
+Deelnemerskaart mee naar huis.  
+Kort: thuis nog eens een kort bericht naar een bekende.  
+Volgende les (C2): foto’s en documenten.

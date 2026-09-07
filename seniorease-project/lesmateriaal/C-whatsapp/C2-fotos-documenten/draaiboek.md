@@ -1,91 +1,253 @@
-# Draaiboek — C2: Foto’s en documenten
+# Draaiboek — C2: Foto's en documenten via WhatsApp
 
-**Pakket C — WhatsApp** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die C1 aankunnen en een foto of document willen sturen  
-**Gids:** https://www.seniorease.nl/uitleg/whatsapp-basis · fotos-maken  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet  
-**Zaal:** geen bord/beamer — wifi op A4; begeleider-nummer op A4
+**Pakket C — WhatsApp** · Versie 2.0  
+**Duur:** circa 90 minuten les *(inloop vóór de les, telt niet mee)*  
+**Doelgroep:** Mensen die rustig willen leren foto's en documenten in WhatsApp te ontvangen, terugvinden en veilig te versturen  
+**Begeleiding:** 1 begeleider + bij voorkeur 1 helper | **Max:** ongeveer 8–10  
+**Apparaat:** eigen telefoon of tablet met WhatsApp  
+**Methode:** ZIEN → NADOEN → BEGRIJPEN → ZELF DOEN  
+**Eerst lezen:** [start-hier.md](start-hier.md) · Vastlopen: [hulp-bij-vastlopen.md](hulp-bij-vastlopen.md)
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers — geen les voor de hele groep |
+| **Begeleider** | Voorbeeld, tempo, groep; beamer of voordoen |
+| **Helper** | Alleen **1-op-1** bij vastlopers — geen tweede les voor de groep |
 
-**Afspraken:** max. 8–10 deelnemers · één stap tegelijk · hand opsteken · we wachten op elkaar.
+**Afspraken:** hand opsteken · “Wat ziet u nu?” · geen telefoonnummers op beamer · toestel niet meteen overnemen.
 
 ---
 
-## Wat deelnemers na 90 minuten kunnen
+## Leerdoel
 
-1. Een **foto uit de galerij** via WhatsApp sturen — **vóór versturen: foto én ontvanger controleren**  
-2. Een foto **groot openen**  
-3. Een **veilige oefen-PDF** via WhatsApp **ontvangen**, **openen**, **sluiten** en **opnieuw terugvinden**  
-4. **Zelfstandig:** foto sturen (met controle) → PDF ontvangen → openen → terugvinden  
+Na C2 kan de deelnemer een foto of document in WhatsApp openen en zelf een foto veilig naar de juiste persoon sturen.
+
+## Centrale situatie
+
+> “Iemand stuurt u via WhatsApp een foto en een document. Hoe bekijkt u die later opnieuw — en hoe stuurt u zelf de juiste foto naar de juiste persoon?”
+
+## Gouden kapstokken
+
+> **ONTVANGEN → OPENEN → TERUGVINDEN → KIEZEN → CONTROLEREN → VERSTUREN**  
+> **CONTROLEER DE FOTO ÉN DE PERSOON → DAN PAS VERSTUREN**  
+> **VERWACHT U DIT DOCUMENT? → DAN PAS OPENEN**
+
+## Apparaten
+
+iPhone én Android gelijkwaardig.  
+Alleen tonen waar bediening zichtbaar verschilt.  
+Vaste zin: “Uw scherm kan er iets anders uitzien. Dat is normaal.”
+
+## Oefencontact
+
+Begeleider of helper = veilig oefencontact. Eigen bekende mag ook.  
+Helper weet wanneer lesfoto / oefendocument / eindmissiemateriaal moet worden gestuurd.
+
+**Eindmissie — helper zet vooraf klaar:**  
+1. tweede oefenfoto (die de deelnemer stuurt)  
+2. neutrale retourfoto (die de helper terugstuurt)  
+3. `SeniorEase-eindmissie-C2.pdf`  
+
+Eindmissie = **18 stappen** (inclusief retourfoto-route). Beschermd ca. 10–12 min.
 
 ## Wat u níet doet
 
-- Geen nieuwe foto maken verplicht (galerij is hoofdroute)  
-- Geen status / verhalen  
-- Geen groepen of videobellen (C3)  
+- Geen volledige Camera-/Galerij-les (A4)  
+- Geen bellen / videobellen / groepen (C3)  
+- Geen privacy / fraude / blokkeren (C4)  
+- Geen Downloads-/Bestanden-les  
+- Geen “Een PDF is veilig.”  
+- Geen eindmissie schrappen bij tijdgebrek  
 
-## Voorbereiding
-
-- [ ] Wifi op A4; begeleider-nummer op A4  
-- [ ] **Veilige oefen-PDF** klaar om naar deelnemers te sturen (bijv. nazorgkaart)  
-- [ ] Deelnemers: minstens **één foto** in de galerij  
-- [ ] Helper: bijlage-knoppen Android vs iPhone  
-
-## Didactiek
-
-Kijken → Doen → Controleren → Pauzeren.
+## Voorbereiding — zie START HIER
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten les)
 
-### 12:00–12:15 — Inloop
+| Lesminuut | Blok |
+|-----------|------|
+| 0–5 | C1 terughalen |
+| 5–10 | Centrale situatie + kapstokken |
+| 10–20 | Foto ontvangen → openen |
+| 20–30 | Ontvangen foto opnieuw terugvinden *(kern)* |
+| 30–45 | Zelf bestaande foto kiezen |
+| 45–50 | FOTO + PERSOON → versturen |
+| 50–55 | Pauze |
+| 55–65 | Document ontvangen → verwachting → openen |
+| 65–72 | Document opnieuw terugvinden *(kern)* |
+| 72–78 | Herhalen / hulp bij vastlopen |
+| 78–90 | Eindmissie (zonder voordoen · altijd behouden) |
 
-**Zegt u:** “Vandaag sturen we een foto uit de galerij — en oefenen we met een PDF die u via WhatsApp ontvangt.”
+**Tijd krap:** verkort herhalen (72–78). **Niet schrappen:** eindmissie.
 
-### 12:15–12:25 — Kennismaking
+---
 
-Voornaam + Android/iPhone. Foto in galerij?
+## C1 terughalen (0–5)
 
-### 12:25–12:35 — Stap 1: Chat openen (oefentaak 1)
+**Zegt u ongeveer:**  
+“We beginnen kort met wat u al kunt.”
 
-Chat met begeleider of buur.
+**Deelnemers**
 
-### 12:35–12:55 — Stap 2: Foto uit galerij (oefentaak 2)
+1. Open WhatsApp.  
+2. Kies het afgesproken oefencontact.  
+3. Controleer de naam.  
+4. Stuur: `Ik ben klaar om te oefenen.`  
+5. Wacht op antwoord.
 
-Paperclip / + → **Galerij** → één foto.  
-**Vóór Versturen:** klopt de **foto**? Klopt de **naam** bovenaan?
+**Brug:**
 
-### 12:55–13:05 — Pauze
+> Vorige keer stuurde u een tekstbericht.  
+> Vandaag krijgt en verstuurt u ook een foto en een document.
 
-### 13:05–13:15 — Stap 3: Foto groot bekijken (oefentaak 3)
+Geen herhalingsles C1.
 
-Tik op foto → volledig scherm → terug.
+---
 
-### 13:15–13:30 — Stap 4: Oefen-PDF ontvangen (oefentaak 4)
+## Situatie + kapstokken (5–10)
 
-Begeleider stuurt **veilige oefen-PDF** naar iedereen.  
-**Doen:** tik op PDF → **openen** → bekijken → **sluiten** (terug naar chat).  
-**Doen:** scroll in chat → PDF **opnieuw** vinden → opnieuw openen.
+**Zegt u ongeveer:**  
+“Iemand stuurt u een foto en een document. Hoe bekijkt u die later opnieuw? En hoe stuurt u zelf de juiste foto naar de juiste persoon?”
 
-### 13:30–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+Kapstokken kort op beamer.
 
-Foto sturen (controle!) → PDF in chat vinden → openen → sluiten.
+---
 
-### 13:40–13:45 — Afronding
+## Foto ontvangen en openen (10–20)
 
-Nazorg. Volgende: C3 Bellen en groepen.
+**Doel**  
+Ontvangen foto herkennen en openen.
 
-## Als de tijd krap is
+**Zegt u ongeveer**  
+“U krijgt zo een oefenfoto. Open die foto. Kijk. Ga daarna terug naar het gesprek.”
 
-Schrap foto groot bekijken. **Niet schrappen:** foto sturen met controle + PDF ontvangen en terugvinden.
+**Helper** stuurt de lesfoto vanaf het oefencontact.
+
+**Deelnemers**  
+Zien → openen → bekijken → terug naar gesprek.
+
+---
+
+## Foto opnieuw terugvinden (20–30) — kern
+
+**Doel**  
+Dezelfde ontvangen foto later opnieuw in het gesprek vinden.
+
+**Zegt u ongeveer**  
+“Ga even verder in het gesprek of verander kort van scherm. Kunt u de foto nu zelf weer terugvinden?”
+
+**Deelnemers**  
+Weg van de foto → terugzoeken in hetzelfde gesprek → opnieuw openen.
+
+Niet: openen → klaar.
+
+---
+
+## Zelf foto kiezen (30–45)
+
+**Doel**  
+Vanuit WhatsApp een bestaande veilige oefenfoto kiezen.
+
+**Zegt u ongeveer**  
+“Tik op toevoegen of bijlage. Kies Foto's of Galerij. Kies de afgesproken oefenfoto. Nog niet versturen.”
+
+**Deelnemers**  
+Toevoegen → Foto's/Galerij → kiezen.  
+iPhone | Android alleen tonen waar knoppen verschillen.
+
+---
+
+## FOTO + PERSOON → versturen (45–50) — veiligheidskern
+
+**Doel**  
+Twee stopmomenten vóór versturen.
+
+**Zegt u ongeveer**  
+“Stop. Is dit de juiste foto? Stop. Klopt de naam van de persoon? Foto én persoon goed? Dan pas versturen.”
+
+**Deelnemers**  
+Foto check → naam check → versturen.
+
+---
+
+## Pauze (50–55)
+
+Kort.
+
+---
+
+## Document ontvangen → openen (55–65)
+
+**Doel**  
+Verwacht document herkennen; vóór openen controleren; openen.
+
+**Zegt u ongeveer**  
+“U krijgt zo een oefendocument. Stop vóór u opent. Verwachtte u dit document? Ja — dit is het afgesproken oefendocument. Dan mag u openen. Twijfel? Niet openen. Eerst controleren.”
+
+**Helper** stuurt `SeniorEase-oefendocument-C2.pdf`.
+
+**Niet:** “Een PDF is veilig.”
+
+---
+
+## Document opnieuw terugvinden (65–72) — kern
+
+**Doel**  
+Document later opnieuw in hetzelfde gesprek vinden.
+
+**Zegt u ongeveer**  
+“Ga terug naar WhatsApp. Verander kort van positie in het gesprek. Kunt u het document zelf weer terugvinden?”
+
+**Deelnemers**  
+Terug → zoeken → opnieuw herkennen/openen.  
+Geen Downloads-/mappenles.
+
+---
+
+## Herhalen / hulp (72–78)
+
+Geen nieuwe stof.  
+Zie [hulp-bij-vastlopen.md](hulp-bij-vastlopen.md).
+
+---
+
+## Eindmissie · zonder voordoen (78–90)
+
+**Altijd behouden.** Geen voordoen. **18 stappen** (definitief).  
+Helper heeft klaargezet: tweede oefenfoto · neutrale retourfoto · `SeniorEase-eindmissie-C2.pdf`.
+
+**Beamer:** Kunt u dit zelf?
+
+1. Open WhatsApp.  
+2. Kies het afgesproken oefencontact of uw eigen oefenpersoon.  
+3. Controleer de naam.  
+4. Kies vanuit WhatsApp de afgesproken **tweede** oefenfoto.  
+5. Controleer: is dit de juiste foto?  
+6. Controleer: is dit de juiste persoon?  
+7. Verstuur de foto.  
+8. Wacht tot het oefencontact een **neutrale foto** terugstuurt.  
+9. Open de ontvangen foto.  
+10. Ga terug naar het gesprek.  
+11. Verander kort van positie in het gesprek.  
+12. Zoek de ontvangen foto **zelfstandig opnieuw** terug en open hem.  
+13. Wacht tot het oefencontact **SeniorEase-eindmissie-C2.pdf** stuurt.  
+14. Stop vóór u het opent.  
+15. Controleer: verwachtte ik dit document?  
+16. Open het document.  
+17. Ga terug naar WhatsApp.  
+18. Zoek het document opnieuw terug in het gesprek.
+
+**Afsluiting (exact):**
+
+> Gelukt? Dan kunt u zelf een foto via WhatsApp versturen en een verwacht document openen en terugvinden.
+
+---
+
+## Afronding
+
+Deelnemerskaart mee naar huis.  
+Volgende les (C3): bellen en videobellen.

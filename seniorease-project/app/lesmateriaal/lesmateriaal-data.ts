@@ -91,14 +91,21 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: MessageCircle,
     description:
-      'Berichten, foto’s, bellen, groepen en veilig omgaan met WhatsApp. Sluit aan bij onze gratis WhatsApp-gidsen.',
+      'Berichten, foto’s, bellen/videobellen en veilig privé WhatsApp gebruiken. Print op tafel; beamer optioneel. Sluit aan bij onze gratis WhatsApp-gidsen.',
     lessons: [
-      { code: 'C1', title: 'Berichten sturen' },
+      { code: 'C1', title: 'Een WhatsApp-bericht sturen' },
       { code: 'C2', title: 'Foto’s en documenten' },
-      { code: 'C3', title: 'Bellen en groepen' },
-      { code: 'C4', title: 'Privacy en fraude' },
+      { code: 'C3', title: 'Bellen en videobellen' },
+      { code: 'C4', title: 'Veilig en privé WhatsApp gebruiken' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
+    includes: [
+      'START HIER',
+      'Draaiboek',
+      'Beamer-PDF',
+      'Hulp bij vastlopen',
+      'Deelnemerskaart',
+      'Zaalchecklist',
+    ],
     guideLinks: [
       { href: '/uitleg/whatsapp-basis', label: 'WhatsApp basis' },
       { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp voor beginners' },
