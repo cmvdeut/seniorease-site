@@ -1,96 +1,205 @@
-# Draaiboek — D2: Phishing, links en QR-codes
+# Draaiboek — D2: Veilig omgaan met links en QR-codes
 
-**Pakket D — Veilig online** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die op telefoon of tablet surfen en soms QR scannen  
-**Gids:** https://www.seniorease.nl/uitleg/veiligheid  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet  
+**Pakket D — Veilig online** · Versie 2.0  
+**Duur:** 90 minuten (inloop buiten de lestijd) · **Max:** ca. 8–10 · begeleider + helper  
+**Apparaat:** eigen telefoon of tablet · iPhone én Android gelijkwaardig  
+
+**Gidsen:**  
+https://www.seniorease.nl/uitleg/veiligheid  
+https://www.seniorease.nl/uitleg/qr-code
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen |
-| **Helper (vrijwilliger)** | 1-op-1 bij vastlopers |
-
-**Toon:** rustig. Twijfel is reden om te stoppen.
+| **Begeleider** | Tempo, groep, kijkkaarten, QR-1/QR-2 |
+| **Helper** | Alleen 1-op-1 · “Wat ziet u nu?” · groep niet stilleggen |
 
 ---
 
-## SeniorEase 3-stappenregel
+## Leerdoel
 
-**STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.**
+Zelf een webadres kiezen; op eenvoudige kaarten herkennen welke website het adres noemt; bij een QR eerst de bestemming bekijken.
 
----
+## Centrale situatie
 
-## Wat deelnemers na 90 minuten kunnen
+> “U krijgt een bericht met een link naar een website. Hoe weet u waar u terechtkomt — en wat doet u als u twijfelt?”
 
-1. Een webadres **zelf typen** en in de adresbalk controleren  
-2. De **echte domeinnaam** herkennen (niet de eerste woorden van een lange link)  
-3. Een link in een bericht **niet openen** bij twijfel  
-4. Een QR scannen: **eerst het adres/betaalscherm bekijken**, daarna pas verder  
-5. Weten: scannen betekent **niet** dat de bestemming betrouwbaar is  
-6. **Zelfstandig:** adres zelf typen → voorbeeld-domein beoordelen → QR-regel toepassen  
+## Gouden kapstokken
 
-## Wat u níet doet
+- STOP → NIET VERDERGAAN → ZELF CONTROLEREN  
+- SCANNEN → BESTEMMING BEKIJKEN → CONTROLEREN → PAS DAN VERDER  
+- NIET BETALEN · GEEN CODE DELEN · NIET OP EEN ONVERWACHTE LINK TIKKEN  
 
-- Geen verdachte links openen; geen werkende nep-links  
-- Geen **lang indrukken** als verplichte oefening (werkt niet overal hetzelfde; per ongeluk openen)  
-- Geen woorden als *secure*, *check* of *veilig-inloggen* als automatisch bewijs van nep  
-- Geen bank inloggen  
+**Zelf typen:** Ik typ zelf een webadres dat ik ken — niet via de link in het bericht.  
+**Domein:** Ik kijk eerst naar het deel vóór de eerste /, dan van rechts naar links — een bekende naam ervoor maakt de website niet automatisch officieel.  
+**QR:** Scan de QR. Kijk naar de melding die verschijnt. Bekijk welke website of bestemming wordt genoemd voordat u erop tikt.
 
-## Voorbereiding
+## Wat u niet doet
 
-- [ ] Wifi op A4  
-- [ ] Voorbeeldkaart **domeinnamen** (geen klikbare nep-links):  
-      `iets.digid.nl` → relevant is **digid.nl**  
-      `digid.nl.nepsite.com` → de echte site is **nepsite.com**  
-- [ ] **Eén veilige QR** naar seniorease.nl/uitleg/veiligheid  
+Geen D1 als hoofdles · geen D3/D4 · geen C4 · geen echte verdachte links/QR’s · geen login · geen long-press verplicht · geen technische URL-les.
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten — inloop telt niet mee)
 
-### 12:00–12:15 — Inloop
+| Tijd | Onderdeel |
+|------|-----------|
+| 0–5 | Brug D1 + centrale situatie |
+| 5–12 | Kapstokken · slotje is geen bewijs |
+| 12–25 | Adres zelf typen (digid.nl) |
+| 25–40 | Domein vergelijken (kaarten 1–2) |
+| 40–50 | Link in bericht — alleen kijken |
+| 50–55 | Pauze |
+| 55–70 | QR-1 begeleid |
+| 70–78 | Herhalen / hulp |
+| 78–90 | Eindmissie (12 min · zonder voordoen) |
 
-**Zegt u:** “Vandaag: zelf typen, de echte website herkennen, en bij QR eerst kijken waar u terechtkomt.”
+**Bij uitloop:** typed adres 2 inkorten. **Niet schrappen:** domein + QR-regel + eindmissie.
 
-### 12:15–12:25 — Kennismaking + 3-stappenregel
+---
 
-### 12:25–12:40 — Stap 1: Zelf typen (oefentaak 1)
+## Blokken
 
-Browser → zelf `digid.nl` → kijk in de adresbalk.
+### Inloop (buiten 90)
 
-### 12:40–13:00 — Stap 2: Echte domeinnaam (oefentaak 2)
+| | |
+|--|--|
+| **Zegt** | Welkom. Vandaag: zelf typen en bij QR eerst kijken waar u terechtkomt. Geen verdachte links openen. |
+| **Toont** | — |
+| **Voordoet** | — |
+| **Deelnemer** | Toestel aan |
+| **Controleert** | Iedereen heeft telefoon/tablet |
+| **Helper** | Wifi / volume |
+| **Doorgaan** | Groep ongeveer klaar |
+| **Inkorten** | — |
 
-Toon de voorbeeldkaart (alleen kijken, niets openen dat nep is).  
-**Zegt u:** “Kijk naar het **laatste deel** van de naam vóór .nl of .com. Bij `digid.nl.nepsite.com` bent u op **nepsite.com** — niet bij DigiD.”  
-Typ zelf `postnl.nl` en check de balk.
+### Brug + situatie (0–5)
 
-### 13:00–13:05 — Pauze
+| | |
+|--|--|
+| **Zegt** | Brug D1 in één zin. Situatie voorlezen. “Wat doet u?” — wacht. |
+| **Toont** | Beamer: beginsituatie |
+| **Voordoet** | — |
+| **Deelnemer** | Denkt mee |
+| **Controleert** | Groep bij de vraag |
+| **Helper** | — |
+| **Doorgaan** | Na 1–2 antwoorden |
+| **Inkorten** | — |
 
-### 13:05–13:20 — Stap 3: Link in bericht — niet openen (oefentaak 3)
+### Kapstok (5–12)
 
-Bij twijfel: **niet tikken**. Bericht wegleggen. Zelf een bekend adres typen.  
-Helper mag 1-op-1 tonen hoe een link eruitziet — **niet** de groep verplicht lang indrukken.
+| | |
+|--|--|
+| **Zegt** | STOP → NIET VERDERGAAN → ZELF CONTROLEREN. Daarna QR-kapstok. Slotje/HTTPS is geen bewijs. |
+| **Toont** | Kapstokken · risico’s (aparte dia’s) |
+| **Voordoet** | — |
+| **Deelnemer** | Leest mee |
+| **Controleert** | — |
+| **Helper** | — |
+| **Doorgaan** | Na kapstok |
+| **Inkorten** | Brug D1 weglaten |
 
-### 13:20–13:32 — Stap 4: QR (oefentaak 4)
+### Zelf typen (12–25)
 
-Scan **alleen** de QR van de begeleider.  
-**Regel:** scan → **kijk eerst** welk adres of betaalscherm verschijnt → **controleer** → pas daarna verder.  
-**Zegt u:** “Een QR op een rekening, parkeerautomaat of poster kan **vervangen** zijn. Scannen is niet automatisch veilig.”
+| | |
+|--|--|
+| **Zegt** | Open de browser. Typ zelf digid.nl. Kijk in de adresbalk. Niet inloggen. |
+| **Toont** | Adresbalk iPhone \| Android |
+| **Voordoet** | Browser · typen · adresbalk aanwijzen |
+| **Deelnemer** | Zelf typen · adresbalk bekijken |
+| **Controleert** | Zelf getypt · niet via een link |
+| **Helper** | “Wat ziet u nu?” · aanwijzen · niet overnemen |
+| **Doorgaan** | Meeste zien digid.nl in de balk |
+| **Inkorten** | Alleen voordoen + enkele deelnemers |
 
-### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+### Domein vergelijken (25–40)
 
-Zelf een bekend adres typen → op de voorbeeldkaart een domein aanwijzen → QR-regel in eigen woorden.
+| | |
+|--|--|
+| **Zegt** | Alleen kijken — niets openen. Eerst vóór de eerste /. Dan van rechts naar links. Bekende naam ervoor ≠ officieel. Kaart 1 en 2. |
+| **Toont** | Domeinkaarten 1 en 2 |
+| **Voordoet** | Wijst aan — zonder te openen |
+| **Deelnemer** | Wijst aan / zegt welke website |
+| **Controleert** | Geen nep-URL’s geopend |
+| **Helper** | 1-op-1 · “Wat ziet u nu?” |
+| **Doorgaan** | Meeste kunnen kaart 2 |
+| **Inkorten** | Alleen kaart 2 |
 
-### 13:40–13:45 — Afronding
+Optioneel bij tijd: zelf postnl.nl typen.
 
-Volgende: D3 WhatsApp- en sms-fraude.
+### Link in bericht (40–50)
 
-## Als de tijd krap is
+| | |
+|--|--|
+| **Zegt** | Fictief kijkvoorbeeld. Tik niet. Bij twijfel: wegleggen · zelf bekend adres typen. |
+| **Toont** | Fictief bericht (geen klikbare link) |
+| **Voordoet** | Kort: stop · zelf typen (geen long-press) |
+| **Deelnemer** | Alleen kijken · eventueel zelf typen |
+| **Controleert** | Niemand heeft op een verdachte link getikt |
+| **Helper** | Mag 1-op-1 tonen hoe een link eruitziet |
+| **Doorgaan** | Korte ronde |
+| **Inkorten** | Alleen benoemen |
 
-Schrap tweede typed adres. **Niet schrappen:** domeinnaam + QR-regel + eindopdracht.
+### Pauze (50–55)
+
+### QR-1 begeleid (55–70)
+
+| | |
+|--|--|
+| **Zegt** | Alleen QR van de begeleider. “Scan de QR. Kijk naar de melding die verschijnt. Bekijk welke website of bestemming wordt genoemd voordat u erop tikt.” QR op vertrouwde plek ≠ automatisch veilig. “Uw scherm kan er iets anders uitzien. Dat is normaal.” |
+| **Toont** | QR-1 |
+| **Voordoet** | Scannen · melding/bestemming tonen vóór tikken |
+| **Deelnemer** | Zelf scannen · bestemming bekijken · dan openen of stoppen |
+| **Controleert** | Bestemming bekeken · niet doortikken om beamer te volgen |
+| **Helper** | Camera · “Wat ziet u nu?” · melding mag per toestel anders |
+| **Doorgaan** | Meeste hebben bestemming gezien |
+| **Inkorten** | Voordoen + enkele deelnemers |
+
+### Herhalen / hulp (70–78)
+
+| | |
+|--|--|
+| **Zegt** | Waar liep het vast? |
+| **Toont** | Kapstok / domeinkaart indien nodig |
+| **Voordoet** | Alleen op verzoek |
+| **Deelnemer** | Extra oefening of rust |
+| **Controleert** | — |
+| **Helper** | Vastlopers |
+| **Doorgaan** | Op tijd voor 12 min eindmissie |
+| **Inkorten** | Zo kort mogelijk |
+
+### Eindmissie (78–90) — 12 min · zonder voordoen
+
+**Deelnemersbeamer:** open opdracht + kaart 3 + QR-2. Geen antwoorden. Geen stappenlijst.
+
+> U krijgt een link-voorbeeld en een QR.  
+> Wat doet u nu?  
+> Laat zien hoe u zelf typt, het echte domein aanwijst, en de QR-bestemming eerst bekijkt.
+
+**Observatiechecklist begeleider (niet op beamer):**
+
+1. Typt zelf een bekend adres.  
+2. Wijst op kaart 3: website = pakket-controle.example (postnl.nl staat ervoor, niet PostNL).  
+3. Scant QR-2.  
+4. Bekijkt melding/bestemming vóór tikken.  
+5. Gaat niet via verdachte link verder.  
+6. Benoemt: bij twijfel stop / zelf controleren.  
+7. Geen login · geen betalen · geen code.
+
+| | |
+|--|--|
+| **Zegt** | Dit doet u zelf. Geen antwoorden van tevoren. |
+| **Toont** | Open opdracht · kaart 3 · QR-2 |
+| **Voordoet** | Nee |
+| **Deelnemer** | Zelfstandig |
+| **Controleert** | Checklist |
+| **Helper** | Alleen “Wat ziet u nu?” |
+| **Doorgaan** | Afsluiting |
+| **Inkorten** | Nooit schrappen |
+
+**Afsluiting:**
+
+> Gelukt? Dan weet u hoe u zelf een webadres kiest, waar u naar de echte websitenaam kijkt, en hoe u bij een QR eerst de bestemming bekijkt vóór u verdergaat.

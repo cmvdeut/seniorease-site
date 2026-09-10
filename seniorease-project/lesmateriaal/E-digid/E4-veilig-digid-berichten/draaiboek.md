@@ -1,93 +1,116 @@
-# Draaiboek — E4: Berichtenbox en berichten van de overheid
+# Draaiboek — begeleider
 
-**Pakket E — DigiD & digitale overheid** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die MijnOverheid kennen en berichten praktisch willen lezen  
-**Site:** mijnoverheid.nl  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** telefoon/tablet of computer  
-**Zaal:** geen bord — A4’s + voordoen
+**E4 · Berichten van de overheid vinden en lezen** · Pakket E · Versie 2.0  
+Inloop valt **buiten** de 90 minuten.
 
-**Positionering:** praktisch berichten lezen — **niet** opnieuw fraude-oefeningen (daarvoor: **Pakket D**).
+**Route:** MELDING → ZELF MIJNOVERHEID OPENEN → BERICHTENBOX → BERICHT VINDEN → LEZEN → BIJLAGE HERKENNEN → TERUG → VEILIG AFSLUITEN
+
+**Methode (begeleidersdocs):** ZIEN → NADOEN → BEGRIJPEN → ZELF DOEN — niet op deelnemersbeamer.
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
-| Rol | Wat u doet |
-|-----|------------|
-| **Begeleider (docent)** | Stappen voorbeeld — geen persoonlijke inhoud klassikaal |
-| **Helper (vrijwilliger)** | 1-op-1 bij inloggen |
-
-**Afspraken:** privacy · codes niet hardop · e-mailmelding ≠ het echte bericht.
+| Rol | Doet |
+|-----|------|
+| **Begeleider** | Tempo, groep, MijnOverheid openen, demolaag-route, eindmissie |
+| **Helper** | 1-op-1 · “Wat ziet u nu?” · leest geen persoonlijke berichten · groep niet stilleggen |
 
 ---
 
-## Wat deelnemers na 90 minuten kunnen
+## Tijdlijn (~90 min)
 
-1. **MijnOverheid** openen → **Berichtenbox** vinden  
-2. **Afzender** en **onderwerp** bekijken  
-3. Een bericht **openen** → eventuele **PDF/bijlage** herkennen  
-4. **Teruggaan** en **uitloggen**  
-5. Weten: een **e-mailmelding** is niet het bericht zelf — bij twijfel zelf **mijnoverheid.nl** openen  
-6. **Zelfstandig:** volledige route zelf doen  
+| Tijd | Onderdeel |
+|------|-----------|
+| 0–5 | Retrieval / zelf openen (E3-brug) |
+| 5–10 | Centrale situatie |
+| 10–18 | Melding ≠ bericht |
+| 18–28 | Zelf MijnOverheid openen + brug demolaag |
+| 28–40 | Berichtenbox → oefenbericht A vinden |
+| 40–52 | Bericht A openen + lezen |
+| 52–57 | Bijlage herkennen |
+| 57–62 | Pauze |
+| 62–72 | Terug + veilig afsluiten |
+| 72–78 | Open herhaling |
+| 78–90 | Eindmissie (**12 min** · bericht B) |
 
-## Wat u níet doet
-
-- Geen uitgebreide fraude-oefeningen (→ **Pakket D: Veilig online**)  
-- Geen berichten hardop voorlezen  
-- Geen phishing-links openen  
-
-## Voorbereiding
-
-- [ ] Wifi op A4  
-- [ ] mijnoverheid.nl bereikbaar  
-- [ ] Helper voor 1-op-1 login  
-- [ ] Deelnemerskaarten + oefentaken  
-
-## Didactiek
-
-Kijken → Doen → Controleren → Pauzeren.
+**Bij uitloop:** leesdiepte / herhaling inkorten.  
+**Niet schrappen:** melding ≠ bericht · zelf openen · bericht vinden/openen · lezen · bijlage · terug · afsluiten · eindmissie.
 
 ---
 
-## Tijdlijn (start 12:00)
+## Blokken (kort)
 
-### 12:00–12:15 — Inloop
+### 0. Inloop (buiten 90)
 
-**Zegt u:** “Vandaag oefenen we de Berichtenbox: berichten van de overheid rustig openen. Inhoud bespreken we niet in de groep. Kreeg u een e-mail? Dat is vaak alleen een melding — het echte bericht staat in MijnOverheid.”
+Welkom. Vandaag: berichten vinden en lezen in de SeniorEase-oefenomgeving. Persoonlijke berichten hoeft u aan niemand te laten zien.
 
-### 12:15–12:25 — Kennismaking
+### 1. Retrieval (0–5)
 
-Voornaam. Kreeg u weleens een mail over MijnOverheid? (ja/nee — geen inhoud delen)
+> “U wilt iets regelen bij de digitale overheid. Laat zien hoe u zelf bij een officiële route begint.”
 
-### 12:25–12:40 — Stap 1: MijnOverheid + Berichtenbox (oefentaak 1)
+Geen stappenlijst. Geen taak A/B uit E3. Brug: “Vandaag beginnen we zelf bij MijnOverheid.”
 
-Typ `mijnoverheid.nl`. Optioneel inloggen 1-op-1. **Berichtenbox** vinden.
+### 2. Centrale situatie (5–10)
 
-### 12:40–13:00 — Stap 2: Bericht openen (oefentaak 2)
+> “U krijgt een e-mail of melding dat er een bericht van de overheid voor u klaarstaat. Waar leest u het echte bericht?”
 
-**Afzender** en **onderwerp** bekijken. Eén bericht openen — alleen voor uzelf. **PDF/bijlage** herkennen (icoon, download).
+### 3. Melding ≠ bericht (10–18)
 
-### 13:00–13:05 — Pauze
+> “Een e-mail of melding kan u vertellen dat er iets klaarstaat. Het echte bericht leest u in MijnOverheid. Voor deze oefening openen we MijnOverheid zelf.”
 
-### 13:05–13:20 — Stap 3: Teruggaan + uitloggen (oefentaak 3)
+Geen phishingles. Geen “links zijn altijd onveilig.”
 
-Terug uit bericht. **Uitloggen**.
+### 4. Zelf MijnOverheid + demolaag (18–28)
 
-### 13:20–13:32 — Stap 4: E-mailmelding ≠ bericht + korte veiligheid (oefentaak 4)
+Typ mijnoverheid.nl. “Uw scherm kan er iets anders uitzien.” Inloggen met DigiD: KIJKEN / HERKENNEN — niet invullen.  
+Daarna: SeniorEase-oefenomgeving — geen echte account.
 
-Leg uit: mail/SMS “u heeft een bericht” → open zelf **mijnoverheid.nl**, klik niet op de link in de mail als u twijfelt.  
-**Kort:** geen DigiD-code via chat/beller. Meer oefenen? **Pakket D**.
+### 5. Bericht A vinden (28–40)
 
-### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+Berichtenbox-oefening. Zoek: Gemeente Oefenstad · openingstijden bibliotheek.
 
-Zelf: MijnOverheid → Berichtenbox → afzender/onderwerp → bericht openen → bijlage herkennen → terug → uitloggen.
+### 6. Openen + lezen (40–52)
 
-### 13:40–13:45 — Afronding
+Open het oefenbericht. Van wie? Onderwerp? Waarover in grote lijnen? Geen toets.
 
-Nazorg. **Pakket E compleet.** Pakket D noemen voor veilig online handelen.
+### 7. Bijlage (52–57)
 
-## Als de tijd krap is
+“Bij een bericht kan een bijlage horen. We herkennen hem — we downloaden niets.”
 
-**Niet schrappen:** Berichtenbox-route + e-mailmelding-uitleg + eindopdracht.
+### 8. Pauze (57–62)
+
+### 9. Terug + afsluiten (62–72)
+
+Terug naar Berichtenbox. Niet ingelogd → tabblad/app sluiten. Wel ingelogd → eerst uitloggen.
+
+### 10. Open herhaling (72–78)
+
+> “U krijgt een melding dat er een bericht voor u klaarstaat. Laat zien waar u zelf begint en hoe u het bericht vindt.”
+
+Geen stappenlijst. Geen voordoen.
+
+### 11. Eindmissie (78–90) — exact 12 min
+
+Bericht B · zonder voordoen · zonder antwoordroute. Zie START HIER / zaalchecklist.
+
+---
+
+## Observatie eindmissie (niet op beamer)
+
+1. Niet afhankelijk van meldinglink  
+2. MijnOverheid zelf openen  
+3. Berichtenbox (demolaag)  
+4. Nieuw bericht B vinden  
+5. Openen  
+6. Afzender/onderwerp/hoofdboodschap  
+7. Bijlage herkennen  
+8. Terug  
+9. Correct afsluiten  
+10. Geen persoonlijke gegevens  
+
+---
+
+## Afsluitzin (richting)
+
+> Gelukt? Dan weet u waar u een overheidsbericht zelf kunt vinden — en u hoeft uw persoonlijke berichten aan niemand te laten zien.

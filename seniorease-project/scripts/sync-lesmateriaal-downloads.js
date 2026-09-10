@@ -47,9 +47,9 @@ const PACKAGE_SOURCE = {
   'pakket-d': {
     folder: 'D-veilig-online',
     lessons: [
-      ['D1', 'D1-nepberichten', 'SeniorEase-D1-Nepberichten-v2.pdf', 'SeniorEase-D1-Beamer-v2.pdf'],
-      ['D2', 'D2-phishing-links-qr', 'SeniorEase-D2-Phishing-Links-QR-v2.pdf', 'SeniorEase-D2-Beamer-v2.pdf'],
-      ['D3', 'D3-whatsapp-sms-fraude', 'SeniorEase-D3-WhatsApp-SMS-Fraude-v2.pdf', 'SeniorEase-D3-Beamer-v2.pdf'],
+      ['D1', 'D1-nepberichten', 'SeniorEase-D1-Verdacht-Bericht-v2.pdf', 'SeniorEase-D1-Beamer-v2.pdf'],
+      ['D2', 'D2-phishing-links-qr', 'SeniorEase-D2-Links-QR-v2.pdf', 'SeniorEase-D2-Beamer-v2.pdf'],
+      ['D3', 'D3-whatsapp-sms-fraude', 'SeniorEase-D3-Telefoon-Helpdesk-v2.pdf', 'SeniorEase-D3-Beamer-v2.pdf'],
       ['D4', 'D4-veilig-betalen', 'SeniorEase-D4-Veilig-Betalen-v2.pdf', 'SeniorEase-D4-Beamer-v2.pdf'],
     ],
   },
@@ -58,7 +58,7 @@ const PACKAGE_SOURCE = {
     lessons: [
       ['E1', 'E1-digid', 'SeniorEase-E1-DigiD-v2.pdf', 'SeniorEase-E1-Beamer-v2.pdf'],
       ['E2', 'E2-mijnoverheid', 'SeniorEase-E2-MijnOverheid-v2.pdf', 'SeniorEase-E2-Beamer-v2.pdf'],
-      ['E3', 'E3-gemeente-belastingdienst', 'SeniorEase-E3-Gemeente-Belastingdienst-v2.pdf', 'SeniorEase-E3-Beamer-v2.pdf'],
+      ['E3', 'E3-gemeente-belastingdienst', 'SeniorEase-E3-Iets-Regelen-v2.pdf', 'SeniorEase-E3-Beamer-v2.pdf'],
       ['E4', 'E4-veilig-digid-berichten', 'SeniorEase-E4-Berichtenbox-Overheid-v2.pdf', 'SeniorEase-E4-Beamer-v2.pdf'],
     ],
   },

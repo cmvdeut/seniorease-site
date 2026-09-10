@@ -154,19 +154,19 @@ const PACKAGE_SOURCE: Record<
       {
         code: 'D1',
         dir: 'D1-nepberichten',
-        printName: 'SeniorEase-D1-Nepberichten-v2.pdf',
+        printName: 'SeniorEase-D1-Verdacht-Bericht-v2.pdf',
         beamerName: 'SeniorEase-D1-Beamer-v2.pdf',
       },
       {
         code: 'D2',
         dir: 'D2-phishing-links-qr',
-        printName: 'SeniorEase-D2-Phishing-Links-QR-v2.pdf',
+        printName: 'SeniorEase-D2-Links-QR-v2.pdf',
         beamerName: 'SeniorEase-D2-Beamer-v2.pdf',
       },
       {
         code: 'D3',
         dir: 'D3-whatsapp-sms-fraude',
-        printName: 'SeniorEase-D3-WhatsApp-SMS-Fraude-v2.pdf',
+        printName: 'SeniorEase-D3-Telefoon-Helpdesk-v2.pdf',
         beamerName: 'SeniorEase-D3-Beamer-v2.pdf',
       },
       {

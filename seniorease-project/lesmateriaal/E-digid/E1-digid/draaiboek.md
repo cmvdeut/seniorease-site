@@ -1,94 +1,196 @@
-# Draaiboek — E1: DigiD
+# Draaiboek — E1: DigiD begrijpen en openen
 
-**Pakket E — DigiD & digitale overheid** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die DigiD willen begrijpen en veilig openen  
-**Gids:** https://www.seniorease.nl · digid.nl  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** telefoon/tablet **of** computer  
-**Zaal:** geen bord/beamer — A4’s + voordoen op toestel
+**Pakket E — DigiD & digitale overheid** · Versie 2.0  
+**Duur:** 90 minuten (inloop buiten de lestijd) · **Max:** ca. 8–10 · begeleider + helper  
+**Apparaat:** telefoon/tablet of computer · iPhone én Android gelijkwaardig  
 
-**Positionering:** rustige kennismaking — geen vervanging van Digisterker/IDO. Bij aanvragen of vastlopers: IDO/bibliotheek.
+**Site:** https://www.digid.nl  
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen |
-| **Helper (vrijwilliger)** | 1-op-1 bij vastlopers |
-
-**Afspraken:** max. 8–10 · één stap tegelijk · **wachtwoorden en codes nooit hardop** · we wachten op elkaar.
+| **Begeleider** | Tempo, groep, digid.nl, Inloggen herkennen |
+| **Helper** | Alleen 1-op-1 · “Wat ziet u nu?” · groep niet stilleggen |
 
 ---
 
-## Wat deelnemers na 90 minuten kunnen
+## Leerdoel
 
-1. Uitleggen wat **DigiD** is: uw **persoonlijke digitale inlogmethode** voor overheidsorganisaties — en andere organisaties die DigiD gebruiken  
-2. **digid.nl** zelf openen (typen, geen link uit een mail)  
-3. **Inloggen** vinden en het inlogscherm herkennen  
-4. De **DigiD-app** op een geschikt mobiel apparaat herkennen (op de computer: digid.nl)  
-5. **Veilig afsluiten** (uitloggen of tabblad/app sluiten)  
-6. **Zelfstandig:** digid.nl → Inloggen → app herkennen → afsluiten  
+DigiD begrijpen, digid.nl zelf openen, Inloggen herkennen, veilig afsluiten — zonder verplichte login.
 
-## Wat u níet doet
+## Centrale situatie
 
-- Geen klassikale DigiD-**aanvragen** (paspoort/ID — helper 1-op-1 of IDO)  
-- **Echt inloggen** is optioneel — wie wil: 1-op-1 met helper, scherm privé  
-- Geen wachtwoorden of codes hardop  
-- Geen paniekzaaierij  
+> “U wilt online iets regelen bij de overheid. Er staat: Inloggen met DigiD. Wat is DigiD — en hoe weet u waar u moet beginnen?”
 
-## Voorbereiding
+## Gouden kapstok
 
-- [ ] Wifi op A4  
-- [ ] digid.nl bereikbaar op demo-toestel  
-- [ ] Deelnemerskaarten + oefentaken  
-- [ ] IDO/Digisterker-info paraat  
+ZELF OPENEN → INLOGGEN HERKENNEN → DIGID HERKENNEN → VEILIG AFSLUITEN
 
-## Didactiek
+## Wat u niet doet
 
-Kijken → Doen → Controleren → Pauzeren.
+Geen DigiD-aanvraag · geen verplichte login · geen codes hardop · geen eigen DigiD-account klassikaal · geen MijnOverheid (E2) · geen phishingles (D) · geen browserles (F)
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten — inloop telt niet mee)
 
-### 12:00–12:15 — Inloop
+| Tijd | Onderdeel |
+|------|-----------|
+| 0–5 | Brug + centrale situatie |
+| 5–20 | DigiD kort begrijpen (geen 15 min theorie) |
+| 20–40 | digid.nl zelf openen |
+| 40–55 | Inloggen herkennen (stop vóór persoonsgegevens) |
+| 55–60 | Pauze |
+| 60–72 | DigiD herkennen + hoofdroute herhalen |
+| 72–78 | Afsluiten + privacy |
+| 78–90 | Eindmissie (12 min · zonder voordoen) |
 
-**Zegt u:** “Welkom. DigiD is uw persoonlijke digitale inlog voor de overheid — en soms andere organisaties. We typen digid.nl zelf. Wachtwoorden zeggen we niet hardop.”
+**Bij uitloop:** app-herkenning inkorten. **Niet schrappen:** digid.nl openen + Inloggen herkennen + eindmissie.
 
-### 12:15–12:25 — Kennismaking
+---
 
-Voornaam + telefoon of computer. Al DigiD? (ja/nee)
+## Blokken
 
-### 12:25–12:40 — Stap 1: Wat is DigiD? + digid.nl (oefentaak 1)
+### Inloop (buiten 90)
 
-**Kort:** DigiD = persoonlijke digitale inlog — Belastingdienst, gemeente, MijnOverheid, zorg, soms ook andere partijen.  
-**Doen:** typ zelf `digid.nl`.
+| | |
+|--|--|
+| **Doel** | Toestellen klaar |
+| **Zegt** | Welkom. DigiD begrijpen en digid.nl zelf openen. U hoeft niet in te loggen. Codes zeggen we niet hardop. |
+| **Toont** | — |
+| **Voordoet** | — |
+| **Deelnemer** | Toestel aan · browser beschikbaar |
+| **Controleert** | Telefoon/tablet of computer aanwezig |
+| **Helper** | Wifi / volume |
+| **Doorgaan** | Groep ongeveer klaar |
+| **Inkorten** | — |
+| **Hulp** | Zie: welke browser / digid.nl opent niet |
 
-### 12:40–13:00 — Stap 2: Inloggen bekijken (oefentaak 2)
+### Brug + situatie (0–5)
 
-Knop **Inloggen**. Velden bekijken. **Niet verplicht** inloggen — optioneel 1-op-1.
+| | |
+|--|--|
+| **Doel** | Herkenning en behoefte |
+| **Zegt** | Situatie voorlezen. Kort wachten. Brug: vandaag DigiD — wat het is, waar u begint, niet verplicht inloggen. |
+| **Toont** | Beginsituatie |
+| **Voordoet** | — |
+| **Deelnemer** | Denkt mee |
+| **Controleert** | Groep bij de vraag |
+| **Helper** | — |
+| **Doorgaan** | Na 1–2 reacties |
+| **Inkorten** | — |
 
-### 13:00–13:05 — Pauze
+### DigiD kort begrijpen (5–20)
 
-### 13:05–13:22 — Stap 3: DigiD-app (oefentaak 3)
+| | |
+|--|--|
+| **Doel** | Korte uitleg, geen theorieles |
+| **Zegt** | DigiD is een persoonlijke digitale inlogmethode. Voor de overheid — en andere organisaties die DigiD gebruiken. Niet hetzelfde als MijnOverheid (E2). |
+| **Toont** | Definitiekaart |
+| **Voordoet** | — |
+| **Deelnemer** | Luistert / knikt mee |
+| **Controleert** | Geen toets |
+| **Helper** | Softjes |
+| **Doorgaan** | Na korte uitleg |
+| **Inkorten** | Alleen de vaste zinnen |
 
-Op **telefoon/tablet:** DigiD-app zoeken of openen. Op **computer:** app hoort op mobiel; u gebruikt digid.nl.
+### digid.nl zelf openen (20–40)
 
-### 13:22–13:32 — Stap 4: Veilig afsluiten + codes (oefentaak 4)
+| | |
+|--|--|
+| **Doel** | Zelf de officiële route openen |
+| **Zegt** | “We openen DigiD zelf. Typ digid.nl in de adresbalk.” Uw scherm kan anders uitzien. |
+| **Toont** | Waar typt u (telefoon of computer) |
+| **Voordoet** | Eén keer tot digid.nl open is |
+| **Deelnemer** | Opent digid.nl zelf |
+| **Controleert** | Zelf getypt · site open · geen login |
+| **Helper** | “Wat ziet u nu?” · iPhone \| Android \| computer |
+| **Doorgaan** | Meeste hebben digid.nl open |
+| **Inkorten** | Minder rondes · wel zelf openen |
+| **Hulp** | digid.nl opent niet · browser |
 
-Uitloggen of app/tabblad sluiten. Regel: niemand vraagt uw DigiD-code via WhatsApp of een vreemde beller.
+Geen uitleg over mails, phishing of domeinen.
 
-### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+### Inloggen herkenen (40–55)
 
-Zonder voordoen: digid.nl → Inloggen → DigiD-app herkennen (mobiel) → veilig afsluiten.
+| | |
+|--|--|
+| **Doel** | Inloggen vinden · alleen kijken |
+| **Zegt** | Zoek Inloggen of Mijn DigiD. We kijken alleen. We vullen niets in. |
+| **Toont** | Inloggen · DigiD-inlogomgeving · label KIJKEN / HERKENNEN |
+| **Voordoet** | Wijst Inloggen · tot herkenning · stopt |
+| **Deelnemer** | Vindt Inloggen · herkent omgeving · vult niets in |
+| **Controleert** | Geen wachtwoord/code · geen hardop |
+| **Helper** | Grijpt in vóór invullen · optioneel privé apart |
+| **Doorgaan** | Meeste herkennen Inloggen |
+| **Inkorten** | Minder rondes |
+| **Hulp** | Ik zie Inloggen niet · per ongeluk verder · code gevraagd |
 
-### 13:40–13:45 — Afronding
+Optioneel privé: OPTIONEEL · PRIVÉ · 1-OP-1 — groep wacht niet.
 
-Nazorg. Volgende: E2 MijnOverheid.
+### Pauze (55–60)
 
-## Als de tijd krap is
+### DigiD herkennen + hoofdroute herhalen (60–72)
 
-Schrap app-installatie. **Niet schrappen:** digid.nl typen + Inloggen + eindopdracht.
+| | |
+|--|--|
+| **Doel** | App kort herkennen (indien aanwezig) + iedereen herhaalt de route |
+| **Zegt** | Mobiel met app: kort herkennen · niet openen/activeren. Zonder app: prima. Computer: geen app nodig. Daarna iedereen: digid.nl → Inloggen → DigiD-omgeving → sluiten. |
+| **Toont** | DigiD-app-icoon (kort) · daarna herhaal-opdracht |
+| **Voordoet** | Alleen kort bij app · herhaling niet voordoen |
+| **Deelnemer** | App herkennen indien aanwezig · daarna zelfstandig herhalen |
+| **Controleert** | Geen installatie · herhaling gelukt · niets ingevuld |
+| **Helper** | 1-op-1 |
+| **Doorgaan** | Meeste hebben herhaald |
+| **Inkorten** | App-deel weglaten · herhaling behouden |
+| **Hulp** | Geen DigiD-app |
+
+### Afsluiten + privacy (72–78)
+
+| | |
+|--|--|
+| **Doel** | Correct afsluiten · privacy tonen |
+| **Zegt** | Niet ingelogd → sluiten. Wel → eerst uitloggen. Toont privacyzin · zegt hem één keer. Geen nazeggen. |
+| **Toont** | Afsluitregel + privacyzin |
+| **Voordoet** | Zin één keer · toont sluiten |
+| **Deelnemer** | Niet nazeggen · sluit tabblad/app · vult niets in |
+| **Controleert** | Geen “uitloggen” aan niet-ingelogden |
+| **Helper** | Wie optioneel was ingelogd: uitloggen |
+| **Doorgaan** | Meeste hebben gesloten |
+| **Inkorten** | Alleen tonen + één keer zeggen |
+| **Hulp** | Hoe sluit ik af? · Moet ik uitloggen? |
+
+### Eindmissie (78–90) — 12 min · zonder voordoen
+
+**Beamer:** alleen open opdracht. Geen antwoorden.
+
+> U wilt iets regelen bij de overheid en ziet DigiD.  
+> Wat doet u nu?  
+> Laat zien hoe u zelf begint bij DigiD — tot Inloggen herkennen — en hoe u veilig afsluit.  
+> U hoeft niet in te loggen.
+
+**Observatiechecklist (niet op beamer):**
+
+1. Browser zelfstandig openen  
+2. digid.nl zelf openen  
+3. Inloggen vinden  
+4. DigiD-/inlogomgeving herkennen  
+5. App indien aanwezig herkennen OF zonder app doorgaan (computer: geen app)  
+6. Niets persoonlijks invullen/noemen  
+7. Correct sluiten (of eerst uitloggen indien optioneel echt ingelogd)  
+
+| | |
+|--|--|
+| **Zegt** | Dit doet u zelf. Geen antwoorden van tevoren. |
+| **Toont** | Open opdracht |
+| **Voordoet** | Nee |
+| **Deelnemer** | Zelfstandig |
+| **Controleert** | Checklist |
+| **Helper** | Alleen “Wat ziet u nu?” |
+| **Doorgaan** | Afsluiting |
+| **Inkorten** | Nooit schrappen |
+
+**Afsluiting:** Gelukt? Dan weet u wat DigiD is, opent u digid.nl zelf, herkent u Inloggen — en weet u dat echte login privé is. Volgende keer: MijnOverheid.

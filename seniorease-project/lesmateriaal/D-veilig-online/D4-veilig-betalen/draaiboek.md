@@ -1,101 +1,219 @@
-# Draaiboek — D4: Veilig betalen en bankieren
+# Draaiboek — D4: Veilig online betalen
 
-**Pakket D — Veilig online** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die op telefoon of tablet bankieren of iDEAL gebruiken  
-**Gids:** https://www.seniorease.nl/uitleg/online-bankieren · veiligheid  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet  
+**Pakket D — Veilig online** · Versie 2.0  
+**Duur:** 90 minuten (inloop buiten de lestijd) · **Max:** ca. 8–10 · begeleider + helper  
+**Apparaat:** eigen telefoon of tablet · iPhone én Android gelijkwaardig  
+
+**Gidsen:**  
+https://www.seniorease.nl/uitleg/veiligheid  
+https://www.seniorease.nl/uitleg/online-bankieren
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen |
-| **Helper (vrijwilliger)** | 1-op-1 bij vastlopers |
-
-**Inloggen:** niet klassikaal. Wie wil, 1-op-1 met helper.
+| **Begeleider** | Tempo, groep, kaarten A–D, vier vragen |
+| **Helper** | Alleen 1-op-1 · “Wat ziet u nu?” · groep niet stilleggen |
 
 ---
 
-## SeniorEase 3-stappenregel
+## Leerdoel
 
-**STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.**
+Een betaalmoment controleren of de betaling past; bij afwijking of twijfel niet bevestigen.
 
----
+## Centrale situatie
 
-## Wat deelnemers na 90 minuten kunnen
+> “U wilt iets online kopen. U komt bij het betaalmoment. Hoe controleert u of u de juiste betaling gaat bevestigen?”
 
-1. De **officiële bank-app** openen of de bank-site **zelf typen** (geen login verplicht)  
-2. Bij iDEAL controleren: **verwacht ik deze betaling?** **Ben ik zelf begonnen?** bedrag en **betaalcontext**  
-3. Een **onverwacht** betaalverzoek of QR **niet** betalen omdat naam of logo vertrouwd lijkt  
-4. Nooit pincode, verificatiecode of beveiligingscode doorgeven  
-5. Weten: een bank vraagt u **niet** om geld naar een “veilige rekening” over te boeken  
-6. Nooit **scherm delen** of remote-help op verzoek van een onverwachte beller  
-7. **Zelfstandig:** bank-route openen → iDEAL-kaart beoordelen → “nee” oefenen  
+## Gouden kapstokken
 
-## Wat u níet doet
+- STOP → NIET VERDERGAAN → ZELF CONTROLEREN  
+- VERWACHT → CONTROLEER → PAS DAN BEVESTIGEN  
+- Bij twijfel: NIET BEVESTIGEN → ZELF CONTROLEREN  
+- “Nee, dit bevestig ik niet.”  
 
-- Geen echte banklogin in de groepsles  
-- Geen pincodes voorlezen  
-- Geen scherm delen  
-- Geen “nummer op de pas” als enige vaste methode (niet elke pas heeft een bruikbaar nummer)
+**Vier vragen:** verwacht? · zelf begonnen? · bedrag? · ontvanger/context?  
+**Nuance:** passen ≠ bewezen veilig · handelsnaam/provider ≠ automatisch fraude.
 
-## Voorbereiding
+## Wat u niet doet
 
-- [ ] Wifi op A4  
-- [ ] iDEAL-voorbeeldkaart (fictief bedrag en ontvanger)  
-- [ ] Deelnemerskaarten + oefentaken  
+Geen echte betaling · geen login verplicht · geen codes · geen schermdeling · geen bankreclame · geen D3-hoofdles · geen D1/D2 opnieuw.
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten — inloop telt niet mee)
 
-### 12:00–12:15 — Inloop
+| Tijd | Onderdeel |
+|------|-----------|
+| 0–5 | Brug D1–D3 + centrale situatie |
+| 5–14 | Kapstokken · vier vragen · nuance |
+| 14–28 | Officiële bankroute |
+| 28–45 | Betaalkaart A |
+| 45–50 | “Nee, dit bevestig ik niet.” |
+| 50–55 | Pauze |
+| 55–68 | Betaalkaart B (zelf beoordelen) |
+| 68–75 | Situatie C (kort) |
+| 75–78 | Herhalen / hulp |
+| 78–90 | Eindmissie (12 min · zonder voordoen) |
 
-**Zegt u:** “U hoeft niet in te loggen. We delen geen codes. Bij twijfel: niet betalen, zelf controleren.”
+**Bij uitloop:** C inkorten. **Niet schrappen:** bankroute + vier vragen + eindmissie.
 
-### 12:15–12:25 — Kennismaking + 3-stappenregel
+---
 
-### 12:25–12:45 — Stap 1: Officiële bank-route (oefentaak 1)
+## Blokken
 
-Bank-app openen **of** zelf `ing.nl` / `rabobank.nl` / `abnamro.nl` typen. Geen link uit SMS.
+### Inloop (buiten 90)
 
-### 12:45–13:05 — Stap 2: iDEAL-kaart (oefentaak 2)
+| | |
+|--|--|
+| **Zegt** | Welkom. Vandaag: bij een betaalmoment controleren of de betaling past. U hoeft niet in te loggen. Geen echte betaling. Geen codes delen. |
+| **Toont** | — |
+| **Voordoet** | — |
+| **Deelnemer** | Toestel aan |
+| **Controleert** | Iedereen heeft telefoon/tablet |
+| **Helper** | Wifi / volume |
+| **Doorgaan** | Groep ongeveer klaar |
+| **Inkorten** | — |
 
-Toon de voorbeeldkaart. Iedereen beantwoordt:
+### Brug + situatie (0–5)
 
-1. **Verwacht ik deze betaling?**  
-2. **Ben ik zelf met deze aankoop begonnen?**  
-3. Klopt het **bedrag**?  
-4. Past de **ontvanger/betaalcontext** bij wat u zojuist wilde betalen?  
-   (Soms staat een **betaalprovider** of andere handelsnaam — herkenning van één naam is geen garantie.)
+| | |
+|--|--|
+| **Zegt** | Brug D1–D3 in één zin. Situatie voorlezen. “Hoe controleert u?” — wacht. |
+| **Toont** | Beamer: beginsituatie |
+| **Voordoet** | — |
+| **Deelnemer** | Denkt mee |
+| **Controleert** | Groep bij de vraag |
+| **Helper** | — |
+| **Doorgaan** | Na 1–2 antwoorden |
+| **Inkorten** | — |
 
-Klopt iets niet? **“Nee, dit bevestig ik niet.”**
+### Kapstok + vier vragen (5–14)
 
-### 13:05–13:10 — Pauze
+| | |
+|--|--|
+| **Zegt** | STOP → … → ZELF CONTROLEREN. VERWACHT → CONTROLEER → PAS DAN BEVESTIGEN. Vier vragen. Handelsnaam/provider ≠ automatisch fraude. Passen ≠ bewezen veilig. |
+| **Toont** | Kapstok · vier vragen (aparte dia’s) |
+| **Voordoet** | — |
+| **Deelnemer** | Leest mee |
+| **Controleert** | — |
+| **Helper** | — |
+| **Doorgaan** | Na kapstok + vragen |
+| **Inkorten** | Brug weglaten |
 
-### 13:10–13:22 — Stap 3: Onverwacht verzoek (oefentaak 3)
+### Officiële bankroute (14–28)
 
-**Zegt u:** “Krijgt u onverwacht een betaalverzoek of QR? Niet betalen omdat de naam of het logo vertrouwd lijkt.”  
-**Zegt u:** “Een bank vraagt u niet om geld naar een ‘veilige rekening’ over te boeken.”
+| | |
+|--|--|
+| **Zegt** | Open zelf de route van uw eigen bank: app of zelf typen. Geen login verplicht. Niet via link/QR uit onverwacht bericht. Geen voorkeur. |
+| **Toont** | Generiek “uw bank” |
+| **Voordoet** | Kort tot startscherm |
+| **Deelnemer** | Op eigen toestel |
+| **Controleert** | Zelf geopend · geen login · geen betaling |
+| **Helper** | “Wat ziet u nu?” · iPhone \| Android |
+| **Doorgaan** | Meeste zien startscherm/bekende route |
+| **Inkorten** | Voordoen + enkele |
 
-### 13:22–13:32 — Stap 4: Nooit doen (oefentaak 4)
+### Betaalkaart A (28–45)
 
-Oefen: “Nee, ik geef geen pincode of code via de telefoon.”  
-Ophangen. Zelf de bank-app of officiële site.  
-**Nooit:** scherm delen / remote-help omdat een beller dat vraagt.
+| | |
+|--|--|
+| **Zegt** | Fictief. Niet betalen. Vier vragen. Nuance: passen betekent niet dat wij bewijzen dat een betaling veilig is. |
+| **Toont** | Kaart A |
+| **Voordoet** | Wijst de vier vragen |
+| **Deelnemer** | Beantwoordt mee |
+| **Controleert** | Geen echte betaling · begrijpt nuance |
+| **Helper** | 1-op-1 |
+| **Doorgaan** | Meeste kunnen vragen toepassen |
+| **Inkorten** | Minder voorbeelden |
 
-### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+### Zin bij twijfel (45–50)
 
-Bank-app of zelf getypt adres → iDEAL-kaart met de vier vragen → één “nooit doen”-zin.
+| | |
+|--|--|
+| **Zegt** | “Nee, dit bevestig ik niet.” Daarna zelf controleren. |
+| **Toont** | Zin groot |
+| **Voordoet** | Eén keer rustig |
+| **Deelnemer** | Zegt de zin hardop |
+| **Controleert** | Zin klopt |
+| **Helper** | Softjes meeluisteren |
+| **Doorgaan** | Meeste hebben de zin gezegd |
+| **Inkorten** | Alleen klassikaal |
 
-### 13:40–13:45 — Afronding
+### Pauze (50–55)
 
-**Pakket D compleet.** Twijfel is reden om te stoppen en zelf te controleren.
+### Betaalkaart B (55–68)
 
-## Als de tijd krap is
+Volgorde: tonen → “Wat doet u nu?” → wachten → vier vragen → pas daarna “Nee…” → zelf controleren.
 
-Schrap oefentaak 3 kort. **Niet schrappen:** bank-route + iDEAL-vragen + nooit codes/scherm + eindopdracht.
+| | |
+|--|--|
+| **Zegt** | Eerst alleen de kaart. “Wat doet u nu?” — wacht. Vier vragen. Pas daarna de zin. (U weet: bedrag én context wijken af — niet voorzeggen.) |
+| **Toont** | Kaart B zonder antwoord |
+| **Voordoet** | Pas na reacties: de zin |
+| **Deelnemer** | Beoordeelt zelf |
+| **Controleert** | Geen antwoord vooraf · geen betaling |
+| **Helper** | “Wat ziet u nu?” |
+| **Doorgaan** | Meeste niet bevestigen |
+| **Inkorten** | Wel vraag → wachten |
+
+### Situatie C (68–75)
+
+| | |
+|--|--|
+| **Zegt** | Onverwacht / veilige rekening: niet betalen. Kort: geen code, software of scherm. (Geen D3-herhaling.) |
+| **Toont** | Situatie C |
+| **Voordoet** | Stop · niet overmaken |
+| **Deelnemer** | Benoemt stop |
+| **Controleert** | Geen betaling |
+| **Helper** | 1-op-1 |
+| **Doorgaan** | Korte ronde |
+| **Inkorten** | Eerste inkortblok |
+
+### Herhalen / hulp (75–78)
+
+| | |
+|--|--|
+| **Zegt** | Waar liep het vast? |
+| **Toont** | Kapstok / vier vragen indien nodig |
+| **Voordoet** | Alleen op verzoek |
+| **Deelnemer** | Extra oefening of rust |
+| **Controleert** | — |
+| **Helper** | Vastlopers |
+| **Doorgaan** | Op tijd voor 12 min eindmissie |
+| **Inkorten** | Zo kort mogelijk |
+
+### Eindmissie (78–90) — 12 min · zonder voordoen
+
+**Beamer:** kaart D + open opdracht. Geen antwoorden. Geen checklist.
+
+> U komt bij een betaalmoment.  
+> Wat doet u nu?  
+> Laat zien hoe u controleert of de betaling past — en wat u doet bij twijfel.
+
+**Begeleidersinfo:** GiftPay ≠ fraude · beslissend is € 15 → € 75.
+
+**Observatiechecklist (niet op beamer):**
+
+1. Opent zelf bankroute (zonder login verplicht).  
+2. Bekijkt kaart D.  
+3. Past vier vragen toe of benoemt die.  
+4. Herkent dat het niet past — minstens via het bedrag.  
+5. “Nee, dit bevestig ik niet.”  
+6. Bevestigt/betaalt niet.  
+7. Geen code · geen scherm · geen klassikale login.
+
+| | |
+|--|--|
+| **Zegt** | Dit doet u zelf. Geen antwoorden van tevoren. |
+| **Toont** | Open opdracht · kaart D |
+| **Voordoet** | Nee |
+| **Deelnemer** | Zelfstandig |
+| **Controleert** | Checklist |
+| **Helper** | Alleen “Wat ziet u nu?” |
+| **Doorgaan** | Afsluiting |
+| **Inkorten** | Nooit schrappen |
+
+**Afsluiting:** Gelukt? Dan weet u hoe u bij een betaalmoment controleert of de betaling past — en dat u bij twijfel niet bevestigt. Pakket D is compleet.

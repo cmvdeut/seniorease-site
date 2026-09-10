@@ -1,114 +1,220 @@
-# Draaiboek — D1: Nepberichten herkennen
+# Draaiboek — D1: Een verdacht bericht veilig controleren
 
-**Pakket D — Veilig online** · Versie 1.1  
-**Duur:** 90 minuten (+ 15 min inloop)  
-**Doelgroep:** Mensen die berichten op telefoon of tablet krijgen (SMS / iMessage / WhatsApp)  
-**Gids:** https://www.seniorease.nl/uitleg/veiligheid  
-**Begeleiding:** 1 begeleider + 1 helper | **Max:** 8–10  
-**Apparaat:** eigen telefoon of tablet  
-**Zaal:** geen bord/beamer — prints + telefoon van de begeleider
+**Pakket D — Veilig online** · Versie 2.0  
+**Duur:** 90 minuten (inloop buiten de lestijd) · **Max:** ca. 8–10 · begeleider + helper  
+**Apparaat:** eigen telefoon of tablet · iPhone én Android gelijkwaardig  
+**Gids:** https://www.seniorease.nl/uitleg/veiligheid
 
 ---
 
-## Rollen: docent en helper
+## Rollen
 
 | Rol | Wat u doet |
 |-----|------------|
-| **Begeleider (docent)** | Voorbeeld op eigen toestel, tempo bepalen, groep begeleiden |
-| **Helper (vrijwilliger)** | Loopt rond, helpt **1-op-1** bij vastlopers |
+| **Begeleider** | Tempo, groep, fictieve kijkvoorbeelden, demoscherm |
+| **Helper** | Alleen 1-op-1 · “Wat ziet u nu?” · groep niet stilleggen |
 
-**Afspraken:** max. 8–10 · één stap tegelijk · hand opsteken · we wachten op elkaar.  
-**Toon:** rustig, geen schaamte, geen bangmakerij. Twijfel is reden om te stoppen.
-
----
-
-## SeniorEase 3-stappenregel (hele pakket D)
-
-**STOP → NIET KLIKKEN/BETALEN → ZELF CONTROLEREN via een officiële route.**
+Een afwijkend toestel mag de groep niet stilleggen. Helper handelt individueel.
 
 ---
 
-## Wat deelnemers na 90 minuten kunnen
+## Leerdoel
 
-1. Berichten openen en **alleen kijken** (geen links aanklikken)  
-2. Vijf **vragen** stellen bij een onverwacht bericht  
-3. Weten: een **bekende naam of logo bewijst niet** dat een bericht echt is  
-4. Bij twijfel: **zelf** de officiële app openen of een **bekend webadres zelf typen**  
-5. **Zelfstandig:** oefenbericht beoordelen → niets aanklikken → officiële route zelf openen  
+Stoppen bij een onverwacht bericht; niet via het bericht verdergaan; zelf de passende officiële route kiezen.
 
-## Hoofdregel
+## Centrale situatie
 
-**Onverwacht bericht over geld, gegevens of inloggen? Niet via het bericht handelen. Open zelf de officiële app of typ zelf het bekende webadres.**
+> “U krijgt een bericht dat er iets mis is met uw account. U moet snel op een link tikken. Wat doet u?”
 
-## Vijf vragen (niet: vijf kenmerken van nep)
+## Gouden kapstokken
 
-1. Verwachtte ik dit bericht?  
-2. Moet ik haast maken?  
-3. Wordt om geld, gegevens, codes of inloggen gevraagd?  
-4. Moet ik via een link, QR of telefoonnummer **in het bericht** handelen?  
-5. Kan ik dit zelf controleren via de officiële app, website of een contactgegeven dat ik **al had**?
+- STOP → NIET VERDERGAAN → ZELF CONTROLEREN  
+- NIET BETALEN · GEEN CODE DELEN · NIET OP EEN ONVERWACHTE LINK TIKKEN  
+- ONVERWACHT VERZOEK? → STOP → ZELF CONTROLEREN  
 
-**Signalen die u mag noemen:** haast, onverwacht verzoek, geld/codes, vreemde afzender.  
-**Niet als alarm:** spelfouten — fraudeberichten kunnen foutloos zijn.
+**Controleroute (exact):**
 
-## Wat u níet doet
+> Ik open zelf de officiële route van de dienst waarover het bericht gaat en controleer daar of er werkelijk iets aan de hand is.
 
-- Geen echte verdachte links aanklikken  
-- Geen bank-apps openen om in te loggen  
-- Geen computer, bord of presentatie  
+### Vijf vragen (begeleidershulpmiddel — geen toets)
 
-## Voorbereiding
+1. Verwachtte ik dit?  
+2. Wat wordt er gevraagd?  
+3. Moet het snel?  
+4. Via welke route moet ik handelen?  
+5. Hoe kan ik zelf controleren?  
 
-- [ ] Wifi op A4  
-- [ ] Veilig oefenbericht (zonder werkende nep-link) klaar  
-- [ ] Deelnemerskaarten + oefentaken  
+### A ≠ B
 
-### Veilig oefenbericht
+| A Navigatie | B Controle |
+|-------------|------------|
+| `seniorease.nl/uitleg/veiligheid` | Account → DigiD/dienst · pakket → PostNL/vervoerder |
+| Claim: controleroute **geoefend** | Claim: passende dienst geopend (geen login) |
 
-> Oefening SeniorEase. Dit is GEEN echte bank.  
-> Rekening binnen 1 uur geblokkeerd? Tik hier of bel 06-00000000.  
-> (Geen echte link in dit bericht.)
+## Wat u niet doet
+
+Geen C4 (blokkeren/privacy/nieuw nummer) · geen D2–D4-diepte · geen echte links/login/codes · geen oefen-sms versturen · geen privéberichten op beamer.
 
 ---
 
-## Tijdlijn (start 12:00)
+## Tijdlijn (90 minuten — inloop telt niet mee)
 
-### 12:00–12:15 — Inloop
+| Tijd | Onderdeel |
+|------|-----------|
+| 0–5 | Situatie |
+| 5–12 | Kapstok |
+| 12–25 | Bericht A kijken + vijf vragen |
+| 25–40 | Navigatieoefening A |
+| 40–50 | Controleroute B (account → dienst) |
+| 50–55 | Pauze |
+| 55–70 | Bericht B (pakket → vervoerder) |
+| 70–78 | Herhalen / hulp |
+| 78–90 | Eindmissie (12 min · zonder voordoen) |
 
-**Zegt u:** “Welkom. Vandaag oefenen we: twijfel is reden om te stoppen en zelf te controleren. We klikken nergens op verdachte links.”
+**Bij uitloop:** eerst blok 40–50 en/of 55–70 inkorten. **Eindmissie nooit schrappen.**
 
-### 12:15–12:25 — Kennismaking
+---
 
-Voornaam + Android of iPhone. 3-stappenregel voorlezen.
+## Blokken
 
-### 12:25–12:40 — Stap 1: Berichten openen (oefentaak 1)
+### Inloop (buiten 90)
 
-Berichten-app open. Lijst zichtbaar?
+| | |
+|--|--|
+| **Zegt** | Welkom. Vandaag: stoppen bij een vreemd bericht. Geen verdachte links. |
+| **Toont** | — |
+| **Voordoet** | — |
+| **Deelnemer** | Toestel aan |
+| **Controleert** | Iedereen heeft telefoon/tablet |
+| **Helper** | Wifi / volume |
+| **Doorgaan** | Groep ongeveer klaar |
+| **Inkorten** | — |
 
-### 12:40–13:00 — Stap 2: Alleen kijken + vijf vragen (oefentaak 2)
+### 0–5 Situatie
 
-Open oefenbericht. **Tik niet** op links. Loop de vijf vragen door.  
-**Zegt u:** “Een logo of bekende naam in het bericht bewijst niet dat het echt is.”
+| | |
+|--|--|
+| **Zegt** | Situatie voorlezen. “Wat doet u?” — wacht. |
+| **Toont** | Beamer: beginsituatie |
+| **Voordoet** | — |
+| **Deelnemer** | Denkt mee |
+| **Controleert** | Groep bij de vraag |
+| **Helper** | — |
+| **Doorgaan** | Na 1–2 antwoorden |
+| **Inkorten** | — |
 
-### 13:00–13:05 — Pauze
+### 5–12 Kapstok
 
-### 13:05–13:22 — Stap 3: Officiële route (oefentaak 3)
+| | |
+|--|--|
+| **Zegt** | STOP → NIET VERDERGAAN → ZELF CONTROLEREN. Daarna de drie risico’s. Brug C4 in één zin: in WhatsApp oefende u dit al; vandaag bij een gewoon account-/pakketbericht. |
+| **Toont** | Kapstok · risico’s (aparte dia’s) |
+| **Voordoet** | — |
+| **Deelnemer** | Leest mee |
+| **Controleert** | — |
+| **Helper** | — |
+| **Doorgaan** | Na kapstok |
+| **Inkorten** | Brug weglaten |
 
-Bericht **sluiten**. Open **zelf** een officiële app (DigiD, of een andere app die de deelnemer kent — bijv. bank of overheid). Of: browser → zelf `digid.nl` typen.  
-**Algemeen:** bericht sluiten → officiële app zelf openen. Dat is de oefening — niet via het bericht.
+### 12–25 Bericht A kijken
 
-### 13:22–13:32 — Stap 4: Tweede voorbeeld (oefentaak 4)
+| | |
+|--|--|
+| **Zegt** | Dit is een **kijkvoorbeeld op de beamer/kaart** — niet op uw telefoon. Tik nergens. Logo bewijst niets. |
+| **Toont** | Bericht A |
+| **Voordoet** | Wijst op kaart: haast · link — zonder tikken |
+| **Deelnemer** | Leest · begeleidersvragen |
+| **Controleert** | Geen oefen-sms gezocht · geen links |
+| **Helper** | “Wat ziet u nu?” |
+| **Doorgaan** | Iedereen gelezen zonder te tikken |
+| **Inkorten** | Minder vragen |
 
-Hetzelfde zonder DigiD: “Pakket klaar — klik hier.” Bericht sluiten → **PostNL-app** of zelf `postnl.nl` typen.
+### 25–40 Navigatieoefening A
 
-### 13:32–13:40 — Eindopdracht zelfstandig (oefentaak 5)
+| | |
+|--|--|
+| **Zegt** | Eerst veilig navigeren. We claimen niet dat het fictieve accountprobleem is gecontroleerd. |
+| **Toont** | Kapstok |
+| **Voordoet** | Op **veilig demoscherm**: terug · browser · typ `seniorease.nl/uitleg/veiligheid` |
+| **Deelnemer** | Vanuit **neutrale situatie** op eigen toestel: zelf typen naar die pagina |
+| **Controleert** | Via eigen navigatie · niet via verdachte link |
+| **Helper** | Aanwijzen · niet overnemen |
+| **Doorgaan** | Meeste zien de veiligheidspagina |
+| **Inkorten** | Alleen voordoen + enkele deelnemers |
 
-Oefenbericht beoordelen (vijf vragen) → niets aanklikken → officiële app of zelf getypt adres openen.
+**Afsluitzin:** Zo oefent u veilig navigeren. Straks: de officiële route van de dienst.
 
-### 13:40–13:45 — Afronding
+### 40–50 Controleroute B (account)
 
-3-stappenregel herhalen. Volgende: D2 Links en QR.
+| | |
+|--|--|
+| **Zegt** | Bij een accountbericht: zelf de officiële route van die dienst. Willekeurige app is niet genoeg. Geen login. Exact: “Ik open zelf de officiële route van de dienst waarover het bericht gaat en controleer daar of er werkelijk iets aan de hand is.” |
+| **Toont** | DigiD / dienst-voorbeeld |
+| **Voordoet** | DigiD-app of digid.nl tot startscherm · niet inloggen |
+| **Deelnemer** | Opent passende dienst · geen login |
+| **Controleert** | Passende dienst · zelf geopend |
+| **Helper** | “Wat ziet u nu?” |
+| **Doorgaan** | Korte ronde |
+| **Inkorten** | **Eerste inkortblok** — verschil A/B wel benoemen |
 
-## Als de tijd krap is
+### 50–55 Pauze
 
-Schrap tweede voorbeeld. **Niet schrappen:** vijf vragen + officiële route + eindopdracht.
+### 55–70 Bericht B → vervoerder
+
+| | |
+|--|--|
+| **Zegt** | Nieuw kijkvoorbeeld. Pakketbericht → zelf route van de vervoerder. |
+| **Toont** | Bericht B |
+| **Voordoet** | Kort: stop · PostNL/vervoerder · geen login |
+| **Deelnemer** | Benoemt stop · wijst/opent passende route |
+| **Controleert** | Geen willekeurige app als controle |
+| **Helper** | 1-op-1 |
+| **Doorgaan** | Meeste kunnen passende route |
+| **Inkorten** | **Tweede inkortblok** — alleen benoemen zonder iedereen te laten openen |
+
+### 70–78 Herhalen / hulp
+
+| | |
+|--|--|
+| **Zegt** | Waar liep het vast? |
+| **Toont** | Kapstok / A≠B indien nodig |
+| **Voordoet** | Alleen op verzoek |
+| **Deelnemer** | Extra oefening of rust |
+| **Controleert** | — |
+| **Helper** | Vastlopers |
+| **Doorgaan** | Op tijd voor 12 min eindmissie |
+| **Inkorten** | Zo kort mogelijk |
+
+### 78–90 Eindmissie (12 min · zonder voordoen)
+
+**Deelnemersbeamer alleen:** bericht C + open opdracht:
+
+> U krijgt dit onverwachte bericht. Wat doet u nu?  
+> Laat zien hoe u veilig stopt en zelf controleert.
+
+Geen antwoorden · geen stappenlijst op de beamer · geen voordoen.
+
+**Observatiechecklist begeleider (niet op beamer):**
+
+1. Leest het fictieve bericht.  
+2. Benoemt waarom hij/zij stopt.  
+3. Gaat niet via het bericht verder.  
+4. Legt het kijkvoorbeeld weg / stopt ermee.  
+5. Kiest de passende officiële route.  
+6. Legt uit wat daar gecontroleerd zou worden (zonder login).  
+7. Maakt duidelijk: niet via het bericht gehandeld.
+
+| | |
+|--|--|
+| **Zegt** | Dit doet u zelf. Geen antwoorden van tevoren. |
+| **Toont** | Alleen C + open opdracht |
+| **Voordoet** | Nee |
+| **Deelnemer** | Zelfstandig |
+| **Controleert** | Checklist · passende dienst |
+| **Helper** | Alleen “Wat ziet u nu?” |
+| **Doorgaan** | Afsluiting |
+| **Inkorten** | Nooit schrappen |
+
+**Afsluiting (exact):**
+
+> Gelukt? Dan weet u wat u veilig kunt doen als een bericht onverwacht om actie vraagt: stoppen, niet verdergaan via het bericht, en zelf de officiële route van de juiste dienst kiezen.

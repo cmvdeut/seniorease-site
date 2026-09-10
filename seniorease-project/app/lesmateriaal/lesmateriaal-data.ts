@@ -121,14 +121,15 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Shield,
     description:
-      'Nepberichten, phishing, WhatsApp/SMS-fraude en veilig betalen. Oefenen op het eigen toestel — geen verdachte links aanklikken in de les.',
+      'Verdachte berichten, links en QR-codes, onverwachte bellers, en veilig betalen. '
+      + 'Oefenen op het eigen toestel — geen verdachte links aanklikken in de les.',
     lessons: [
-      { code: 'D1', title: 'Nepberichten herkennen' },
-      { code: 'D2', title: 'Phishing, links en QR-codes' },
-      { code: 'D3', title: 'WhatsApp- en SMS-fraude' },
-      { code: 'D4', title: 'Veilig betalen' },
+      { code: 'D1', title: 'Een verdacht bericht veilig controleren' },
+      { code: 'D2', title: 'Veilig omgaan met links en QR-codes' },
+      { code: 'D3', title: 'Oplichters aan de telefoon en via berichten' },
+      { code: 'D4', title: 'Veilig online betalen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
+    includes: ['START HIER', 'Draaiboek', 'Beamer', 'Hulp bij vastlopen', 'Deelnemerskaart', 'Zaalchecklist'],
     guideLinks: [
       { href: '/uitleg/veiligheid', label: 'Veiligheid gids' },
       { href: '/digitale-hulp/phishing-herkennen', label: 'Phishing herkennen' },
@@ -144,14 +145,15 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Landmark,
     description:
-      'Praktische kennismaking: DigiD, MijnOverheid, gemeente en Belastingdienst. Privacyvriendelijk — geen aanvragen in de klas. Veilig online: pakket D.',
+      'Praktische kennismaking: DigiD, MijnOverheid, iets regelen bij de digitale overheid, en overheidsberichten vinden. '
+      + 'Privacyvriendelijk — geen echte login of aanvragen in de klas. Veilig online: pakket D.',
     lessons: [
-      { code: 'E1', title: 'DigiD' },
-      { code: 'E2', title: 'MijnOverheid' },
-      { code: 'E3', title: 'Gemeente & Belastingdienst' },
-      { code: 'E4', title: 'Berichtenbox en berichten van de overheid' },
+      { code: 'E1', title: 'DigiD begrijpen en openen' },
+      { code: 'E2', title: 'MijnOverheid gebruiken' },
+      { code: 'E3', title: 'Iets regelen bij de digitale overheid' },
+      { code: 'E4', title: 'Berichten van de overheid vinden en lezen' },
     ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
+    includes: ['START HIER', 'Draaiboek', 'Beamer', 'Hulp bij vastlopen', 'Deelnemerskaart', 'Zaalchecklist'],
     guideLinks: [{ href: '/uitleg/digid', label: 'DigiD uitleg' }],
   },
   {
