@@ -21,6 +21,33 @@ export const DOWNLOAD_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 dagen
 
 export type FulfillmentKind = 'pakket' | 'los' | 'compleet';
 
+/** Interne product-entitlements (ATOMIC A). Alleen MOBILE_G / AI_H zijn dual-mapped. */
+export type LesmateriaalEntitlement = 'MOBILE_G' | 'AI_H';
+
+/**
+ * Canonical package slug → bestaande storage/PACKAGE_SOURCE slug.
+ * Fysieke private paden blijven onder de storage-slug (geen copy/move).
+ * HARD: pakket-g blijft AI (storage = zichzelf), nooit MOBILE_G.
+ */
+const PACKAGE_STORAGE_ALIASES: Record<string, string> = {
+  'pakket-g-telefoon': 'pakket-f-telefoon',
+  'pakket-h-ai': 'pakket-g',
+};
+
+const ENTITLEMENT_BY_STORAGE_SLUG: Record<string, LesmateriaalEntitlement> = {
+  'pakket-f-telefoon': 'MOBILE_G',
+  'pakket-g': 'AI_H',
+};
+
+/** Resolves canonical of legacy package slug naar de authoritative PACKAGE_SOURCE-sleutel. */
+export function resolveStoragePackageSlug(slug: string): string {
+  return PACKAGE_STORAGE_ALIASES[slug] ?? slug;
+}
+
+export function entitlementForPackageSlug(slug: string): LesmateriaalEntitlement | null {
+  return ENTITLEMENT_BY_STORAGE_SLUG[resolveStoragePackageSlug(slug)] ?? null;
+}
+
 export type ParsedReference = {
   kind: FulfillmentKind;
   email: string;
@@ -328,10 +355,13 @@ export function listAllSourceSpecs(): SourceFileSpec[] {
 }
 
 export function assetsForSlug(slug: string): DownloadAsset[] {
-  const cfg = PACKAGE_SOURCE[slug];
+  // Canonical aliases (pakket-g-telefoon / pakket-h-ai) delen assets + private paths
+  // met de storage-slug (pakket-f-telefoon / pakket-g). Geen dubbele definities.
+  const storageSlug = resolveStoragePackageSlug(slug);
+  const cfg = PACKAGE_SOURCE[storageSlug];
   if (!cfg) return [];
   return cfg.lessons.flatMap((lesson) =>
-    lessonAssets(slug, lesson, cfg.folder).map((s) => ({
+    lessonAssets(storageSlug, lesson, cfg.folder).map((s) => ({
       fileId: s.fileId,
       relativePath: s.destRel.replace(/\\/g, '/'),
       label: s.label,
@@ -363,7 +393,8 @@ export function zipBundleLabel(fileId: string): string {
   if (fileId === 'zip-compleet') return 'Alles downloaden (ZIP) — compleet A–G';
   const m = /^zip-(pakket-[a-z0-9-]+)$/i.exec(fileId);
   if (m) {
-    const pakket = getPakketBySlug(m[1].toLowerCase());
+    const storageSlug = resolveStoragePackageSlug(m[1].toLowerCase());
+    const pakket = getPakketBySlug(storageSlug);
     if (pakket) return `Alles downloaden (ZIP) — pakket ${pakket.code}`;
   }
   return 'Alles downloaden (ZIP)';
@@ -388,7 +419,7 @@ export function zipBundleAvailable(fileId: string): boolean {
 
 /** Mapnaam in de ZIP: "A - Telefoon en tablet - basis" i.p.v. pakket-a */
 export function zipFolderNameForSlug(slug: string): string {
-  const pakket = getPakketBySlug(slug);
+  const pakket = getPakketBySlug(resolveStoragePackageSlug(slug));
   if (!pakket) return slug;
   const title = pakket.title
     .replace(/—/g, '-')
@@ -467,7 +498,9 @@ export function parseClientReferenceId(raw: string | null | undefined): ParsedRe
 
 export function resolveFulfillmentOrder(ref: ParsedReference): FulfillmentOrder | null {
   if (ref.kind === 'pakket' && ref.slug) {
-    const pakket = getPakketBySlug(ref.slug);
+    // Catalogus blijft legacy defaults; canonical slugs resolven via storage-alias.
+    const storageSlug = resolveStoragePackageSlug(ref.slug);
+    const pakket = getPakketBySlug(storageSlug);
     if (!pakket) return null;
     const assets = assetsForSlug(ref.slug);
     if (assets.length === 0) return null;
