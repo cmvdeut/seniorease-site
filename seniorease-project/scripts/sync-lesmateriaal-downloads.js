@@ -65,19 +65,19 @@ const PACKAGE_SOURCE = {
   'pakket-f-telefoon': {
     folder: 'F-internet-telefoon',
     lessons: [
-      ['Ft1', 'Ft1-zoeken', 'SeniorEase-Ft1-Zoeken-v2.pdf', 'SeniorEase-Ft1-Beamer-v2.pdf'],
-      ['Ft2', 'Ft2-browser', 'SeniorEase-Ft2-Browser-v2.pdf', 'SeniorEase-Ft2-Beamer-v2.pdf'],
-      ['Ft3', 'Ft3-qr-codes', 'SeniorEase-Ft3-QR-v2.pdf', 'SeniorEase-Ft3-Beamer-v2.pdf'],
-      ['Ft4', 'Ft4-formulieren-downloads', 'SeniorEase-Ft4-Formulieren-Downloads-v2.pdf', 'SeniorEase-Ft4-Beamer-v2.pdf'],
+      ['Ft1', 'Ft1-zoeken', 'SeniorEase-G1-Zoeken-internet-v2.pdf', 'SeniorEase-G1-Beamer-v2.pdf'],
+      ['Ft2', 'Ft2-browser', 'SeniorEase-G2-Websites-tabbladen-v2.pdf', 'SeniorEase-G2-Beamer-v2.pdf'],
+      ['Ft3', 'Ft3-qr-codes', 'SeniorEase-G3-QR-website-v2.pdf', 'SeniorEase-G3-Beamer-v2.pdf'],
+      ['Ft4', 'Ft4-formulieren-downloads', 'SeniorEase-G4-Online-formulieren-v2.pdf', 'SeniorEase-G4-Beamer-v2.pdf'],
     ],
   },
   'pakket-f-computer': {
     folder: 'F-internet-computer',
     lessons: [
-      ['Fc1', 'Fc1-zoeken-google', 'SeniorEase-Fc1-Zoeken-Google-v2.pdf', 'SeniorEase-Fc1-Beamer-v2.pdf'],
-      ['Fc2', 'Fc2-websites-tabbladen', 'SeniorEase-Fc2-Websites-Tabbladen-v2.pdf', 'SeniorEase-Fc2-Beamer-v2.pdf'],
-      ['Fc3', 'Fc3-downloaden', 'SeniorEase-Fc3-Veilig-Downloaden-v2.pdf', 'SeniorEase-Fc3-Beamer-v2.pdf'],
-      ['Fc4', 'Fc4-formulieren', 'SeniorEase-Fc4-Formulieren-v2.pdf', 'SeniorEase-Fc4-Beamer-v2.pdf'],
+      ['Fc1', 'Fc1-zoeken-google', 'SeniorEase-F1-Zoeken-internet-v2.pdf', 'SeniorEase-F1-Beamer-v2.pdf'],
+      ['Fc2', 'Fc2-websites-tabbladen', 'SeniorEase-F2-Websites-tabbladen-v2.pdf', 'SeniorEase-F2-Beamer-v2.pdf'],
+      ['Fc3', 'Fc3-downloaden', 'SeniorEase-F3-Downloaden-internet-v2.pdf', 'SeniorEase-F3-Beamer-v2.pdf'],
+      ['Fc4', 'Fc4-formulieren', 'SeniorEase-F4-Online-formulieren-v2.pdf', 'SeniorEase-F4-Beamer-v2.pdf'],
     ],
   },
   'pakket-g': {

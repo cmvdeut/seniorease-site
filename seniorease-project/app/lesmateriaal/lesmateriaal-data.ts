@@ -191,11 +191,11 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Globe,
     description:
-      'Internetvaardigheden op de pc: zoeken, websites en tabbladen, veilig downloaden, formulieren. Pakket B = computer bedienen; dit pakket = internet gebruiken.',
+      'Internetvaardigheden op de pc: zoeken, websites en tabbladen, downloaden vanaf internet, formulieren. Pakket B = computer bedienen; dit pakket = internet gebruiken.',
     lessons: [
-      { code: 'Fc1', title: 'Zoeken met Google' },
-      { code: 'Fc2', title: 'Websites en tabbladen' },
-      { code: 'Fc3', title: 'Veilig downloaden en bestanden herkennen' },
+      { code: 'Fc1', title: 'Zoeken op internet' },
+      { code: 'Fc2', title: 'Websites en tabbladen gebruiken' },
+      { code: 'Fc3', title: 'Downloaden vanaf internet begrijpen' },
       { code: 'Fc4', title: 'Formulieren invullen' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
