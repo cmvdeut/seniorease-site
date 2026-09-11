@@ -15,6 +15,17 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/terms', destination: '/voorwaarden', permanent: true },
+      // Pakket G cutover: legacy shop URLs → canonical (geen loops; /pakket-g ≠ /pakket-g-telefoon)
+      {
+        source: '/lesmateriaal/pakket-f-telefoon',
+        destination: '/lesmateriaal/pakket-g-telefoon',
+        permanent: true,
+      },
+      {
+        source: '/lesmateriaal/pakket-g',
+        destination: '/lesmateriaal/pakket-h-ai',
+        permanent: true,
+      },
     ];
   },
   async headers() {

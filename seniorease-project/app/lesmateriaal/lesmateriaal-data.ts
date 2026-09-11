@@ -165,8 +165,8 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     guideLinks: [{ href: '/uitleg/digid', label: 'DigiD uitleg' }],
   },
   {
-    slug: 'pakket-f-telefoon',
-    code: 'F-t',
+    slug: 'pakket-g-telefoon',
+    code: 'G',
     title: 'Internet — telefoon/tablet',
     subtitle: '4 lessen · telefoon/tablet',
     device: 'Telefoon of tablet',
@@ -176,14 +176,14 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
     lessons: [
-      { code: 'Ft1', title: 'Iets opzoeken op Google' },
-      { code: 'Ft2', title: 'Browser gebruiken' },
-      { code: 'Ft3', title: 'QR-codes openen' },
-      { code: 'Ft4', title: 'Formulieren en downloads' },
+      { code: 'Ft1', displayCode: 'G1', title: 'Iets opzoeken op Google' },
+      { code: 'Ft2', displayCode: 'G2', title: 'Browser gebruiken' },
+      { code: 'Ft3', displayCode: 'G3', title: 'QR-codes openen' },
+      { code: 'Ft4', displayCode: 'G4', title: 'Formulieren en downloads' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:
-      'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
+      'F-computer = muis/toetsenbord. Dit pakket = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [
       { href: '/uitleg/google-maps', label: 'Google Maps' },
       { href: '/uitleg/qr-code', label: 'QR-code uitleg' },
@@ -208,72 +208,8 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:
-      'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
+      'F-computer = muis/toetsenbord. Pakket G (telefoon/tablet) = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
     guideLinks: [{ href: '/digitale-hulp/googelen-google-zoeken', label: 'Googelen voor beginners' }],
-  },
-  {
-    slug: 'pakket-g',
-    code: 'G',
-    title: 'AI voor dagelijks gebruik',
-    subtitle: '4 lessen · tik/klik · add-on',
-    device: 'Telefoon, tablet of computer',
-    price: PAKKET_PRIJS,
-    status: 'klaar',
-    Icon: Sparkles,
-    description:
-            'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
-    lessons: [
-      { code: 'G1', title: 'Wat is AI?' },
-      { code: 'G2', title: 'AI openen en gebruiken' },
-      { code: 'G3', title: 'Goede vragen stellen' },
-      { code: 'G4', title: 'AI veilig gebruiken' },
-    ],
-    includes: [
-      'Draaiboek',
-      'Deelnemerskaart',
-      'Oefentaken',
-      'Zaalchecklist',
-      'Nazorgkaart',
-      'Beamer-PDF (per les)',
-    ],
-    guideLinks: [
-      { href: '/wat-is-ai', label: 'Wat is AI?' },
-      { href: '/wat-is-ai/chatgpt', label: 'ChatGPT uitleg' },
-      { href: '/wat-is-ai/prompts', label: 'Goede vragen (prompts)' },
-    ],
-  },
-];
-
-/**
- * Canonical shop-identiteiten (ATOMIC B).
- * NIET in LESMATERIAAL_PAKKETTEN: voorkomt dubbele kaarten in overzicht
- * en dubbele assets in compleet_org.
- */
-const CANONICAL_PAKKETTEN: LesmateriaalPakket[] = [
-  {
-    slug: 'pakket-g-telefoon',
-    code: 'G',
-    title: 'Internet — telefoon/tablet',
-    subtitle: '4 lessen · telefoon/tablet',
-    device: 'Telefoon of tablet',
-    price: PAKKET_PRIJS,
-    status: 'klaar',
-    Icon: Globe,
-    description:
-      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
-    lessons: [
-      { code: 'Ft1', displayCode: 'G1', title: 'Iets opzoeken op Google' },
-      { code: 'Ft2', displayCode: 'G2', title: 'Browser gebruiken' },
-      { code: 'Ft3', displayCode: 'G3', title: 'QR-codes openen' },
-      { code: 'Ft4', displayCode: 'G4', title: 'Formulieren en downloads' },
-    ],
-    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
-    relatedNote:
-      'F-computer = muis/toetsenbord. Dit pakket = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
-    guideLinks: [
-      { href: '/uitleg/google-maps', label: 'Google Maps' },
-      { href: '/uitleg/qr-code', label: 'QR-code uitleg' },
-    ],
   },
   {
     slug: 'pakket-h-ai',
@@ -309,14 +245,77 @@ const CANONICAL_PAKKETTEN: LesmateriaalPakket[] = [
   },
 ];
 
-/** Zichtbare shopkaarten — legacy defaults, geen canonical duplicaten. */
+/**
+ * Legacy package-identiteiten na cutover.
+ * Niet in shopoverzicht; wel resolveerbaar voor fulfillment / labels / redirects-doel.
+ */
+const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
+  {
+    slug: 'pakket-f-telefoon',
+    code: 'F-t',
+    title: 'Internet — telefoon/tablet',
+    subtitle: '4 lessen · telefoon/tablet',
+    device: 'Telefoon of tablet',
+    price: PAKKET_PRIJS,
+    status: 'klaar',
+    Icon: Globe,
+    description:
+      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
+    lessons: [
+      { code: 'Ft1', title: 'Iets opzoeken op Google' },
+      { code: 'Ft2', title: 'Browser gebruiken' },
+      { code: 'Ft3', title: 'QR-codes openen' },
+      { code: 'Ft4', title: 'Formulieren en downloads' },
+    ],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
+    relatedNote:
+      'F-computer = muis/toetsenbord. F-telefoon = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
+    guideLinks: [
+      { href: '/uitleg/google-maps', label: 'Google Maps' },
+      { href: '/uitleg/qr-code', label: 'QR-code uitleg' },
+    ],
+  },
+  {
+    slug: 'pakket-g',
+    code: 'G',
+    title: 'AI voor dagelijks gebruik',
+    subtitle: '4 lessen · tik/klik · add-on',
+    device: 'Telefoon, tablet of computer',
+    price: PAKKET_PRIJS,
+    status: 'klaar',
+    Icon: Sparkles,
+    description:
+      'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
+    lessons: [
+      { code: 'G1', title: 'Wat is AI?' },
+      { code: 'G2', title: 'AI openen en gebruiken' },
+      { code: 'G3', title: 'Goede vragen stellen' },
+      { code: 'G4', title: 'AI veilig gebruiken' },
+    ],
+    includes: [
+      'Draaiboek',
+      'Deelnemerskaart',
+      'Oefentaken',
+      'Zaalchecklist',
+      'Nazorgkaart',
+      'Beamer-PDF (per les)',
+    ],
+    guideLinks: [
+      { href: '/wat-is-ai', label: 'Wat is AI?' },
+      { href: '/wat-is-ai/chatgpt', label: 'ChatGPT uitleg' },
+      { href: '/wat-is-ai/prompts', label: 'Goede vragen (prompts)' },
+    ],
+  },
+];
+
+/** Zichtbare shopkaarten — na cutover: canonical MOBILE_G + AI_H (geen legacy-duplicaten). */
 export function listShopPakketten(): LesmateriaalPakket[] {
   return LESMATERIAAL_PAKKETTEN;
 }
 
-/** Alle routeerbare pakketten (legacy + canonical), voor [slug]-pagina’s. */
+/** Alle resolveerbare pakketten (shop + legacy compat). */
 export function listRoutablePakketten(): LesmateriaalPakket[] {
-  return [...LESMATERIAAL_PAKKETTEN, ...CANONICAL_PAKKETTEN];
+  return [...LESMATERIAAL_PAKKETTEN, ...LEGACY_COMPAT_PAKKETTEN];
 }
 
 export function getPakketBySlug(slug: string): LesmateriaalPakket | undefined {

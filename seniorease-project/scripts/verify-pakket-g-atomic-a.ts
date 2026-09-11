@@ -219,19 +219,30 @@ assert(
   resolveStoragePackageSlug('pakket-g') === 'pakket-g',
 );
 
-// --- Shop catalog: visible list remains legacy-only (ATOMIC B may add routable aliases) ---
+// --- Shop catalog after cutover: canonical visible; legacy still resolveable ---
+// (was: shop legacy-only pre-cutover; updated for goedgekeurde cutover-expectatie)
 assert(
-  'shop heeft geen pakket-g-telefoon',
-  !listShopPakketten().some((p) => p.slug === 'pakket-g-telefoon') &&
-    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-g-telefoon'),
+  'shop heeft pakket-g-telefoon',
+  listShopPakketten().some((p) => p.slug === 'pakket-g-telefoon') &&
+    LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-g-telefoon'),
 );
 assert(
-  'shop heeft geen pakket-h-ai',
-  !listShopPakketten().some((p) => p.slug === 'pakket-h-ai') &&
-    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-h-ai'),
+  'shop heeft pakket-h-ai',
+  listShopPakketten().some((p) => p.slug === 'pakket-h-ai') &&
+    LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-h-ai'),
 );
-assert('shop heeft nog pakket-f-telefoon', !!getPakketBySlug('pakket-f-telefoon'));
-assert('shop heeft nog pakket-g (AI)', !!getPakketBySlug('pakket-g'));
+assert(
+  'shop heeft geen legacy pakket-f-telefoon',
+  !listShopPakketten().some((p) => p.slug === 'pakket-f-telefoon') &&
+    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-f-telefoon'),
+);
+assert(
+  'shop heeft geen legacy pakket-g',
+  !listShopPakketten().some((p) => p.slug === 'pakket-g') &&
+    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-g'),
+);
+assert('legacy pakket-f-telefoon nog resolveerbaar', !!getPakketBySlug('pakket-f-telefoon'));
+assert('legacy pakket-g nog resolveerbaar', !!getPakketBySlug('pakket-g'));
 
 // --- findAssetByFileId ---
 assert('findAsset ft1-print', findAssetByFileId('ft1-print')?.relativePath === 'pakket-f-telefoon/ft1-print.pdf');

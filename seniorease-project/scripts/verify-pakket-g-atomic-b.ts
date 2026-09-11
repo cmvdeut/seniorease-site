@@ -107,19 +107,28 @@ assert(
   assert('B13c compleet has 8 g*', g.length === 8);
 }
 
-// Shop no duplicates
+// Shop after cutover: canonical only (no legacy+canonical duplicates)
+// (was: shop legacy-only pre-cutover; updated for goedgekeurde cutover-expectatie)
 assert(
-  'shop list excludes canonical mobile',
-  !listShopPakketten().some((p) => p.slug === 'pakket-g-telefoon'),
+  'shop list has canonical mobile',
+  listShopPakketten().some((p) => p.slug === 'pakket-g-telefoon'),
 );
 assert(
-  'shop list excludes canonical AI',
-  !listShopPakketten().some((p) => p.slug === 'pakket-h-ai'),
+  'shop list has canonical AI',
+  listShopPakketten().some((p) => p.slug === 'pakket-h-ai'),
 );
 assert(
-  'shop list still has legacy mobile + AI',
-  listShopPakketten().some((p) => p.slug === 'pakket-f-telefoon') &&
-    listShopPakketten().some((p) => p.slug === 'pakket-g'),
+  'shop list excludes legacy mobile',
+  !listShopPakketten().some((p) => p.slug === 'pakket-f-telefoon'),
+);
+assert(
+  'shop list excludes legacy AI',
+  !listShopPakketten().some((p) => p.slug === 'pakket-g'),
+);
+assert(
+  'shop exactly one mobile + one AI card',
+  listShopPakketten().filter((p) => p.slug === 'pakket-g-telefoon').length === 1 &&
+    listShopPakketten().filter((p) => p.slug === 'pakket-h-ai').length === 1,
 );
 assert(
   'LESMATERIAAL_PAKKETTEN === shop list length',
