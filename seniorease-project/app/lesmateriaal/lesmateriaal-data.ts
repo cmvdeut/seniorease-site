@@ -10,8 +10,11 @@ import {
 } from 'lucide-react';
 
 export type LesmateriaalLes = {
+  /** Technische fulfillment-/checkoutcode (bijv. Ft1, G1) — gebruikt voor los_* */
   code: string;
   title: string;
+  /** Optionele klantzichtbare lescode (bijv. G1 terwijl code Ft1 blijft) */
+  displayCode?: string;
 };
 
 export type LesmateriaalPakket = {
@@ -29,6 +32,11 @@ export type LesmateriaalPakket = {
   guideLinks?: { href: string; label: string }[];
   relatedNote?: string;
 };
+
+/** Klantzichtbare lescode; valt terug op technische `code`. */
+export function lessonDisplayCode(les: LesmateriaalLes): string {
+  return les.displayCode ?? les.code;
+}
 
 export const PAKKET_PRIJS = 19.95;
 export const LOSSE_LES_PRIJS = 6.95;
@@ -236,8 +244,83 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
   },
 ];
 
+/**
+ * Canonical shop-identiteiten (ATOMIC B).
+ * NIET in LESMATERIAAL_PAKKETTEN: voorkomt dubbele kaarten in overzicht
+ * en dubbele assets in compleet_org.
+ */
+const CANONICAL_PAKKETTEN: LesmateriaalPakket[] = [
+  {
+    slug: 'pakket-g-telefoon',
+    code: 'G',
+    title: 'Internet — telefoon/tablet',
+    subtitle: '4 lessen · telefoon/tablet',
+    device: 'Telefoon of tablet',
+    price: PAKKET_PRIJS,
+    status: 'klaar',
+    Icon: Globe,
+    description:
+      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
+    lessons: [
+      { code: 'Ft1', displayCode: 'G1', title: 'Iets opzoeken op Google' },
+      { code: 'Ft2', displayCode: 'G2', title: 'Browser gebruiken' },
+      { code: 'Ft3', displayCode: 'G3', title: 'QR-codes openen' },
+      { code: 'Ft4', displayCode: 'G4', title: 'Formulieren en downloads' },
+    ],
+    includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
+    relatedNote:
+      'F-computer = muis/toetsenbord. Dit pakket = aanraken, QR en mobiele formulieren — kies wat bij uw groep past.',
+    guideLinks: [
+      { href: '/uitleg/google-maps', label: 'Google Maps' },
+      { href: '/uitleg/qr-code', label: 'QR-code uitleg' },
+    ],
+  },
+  {
+    slug: 'pakket-h-ai',
+    // Technische H-identity; lessen blijven G1–G4 (geen H1–H4 zolang PDF’s G tonen).
+    code: 'H',
+    title: 'AI voor dagelijks gebruik',
+    subtitle: '4 lessen · tik/klik · add-on',
+    device: 'Telefoon, tablet of computer',
+    price: PAKKET_PRIJS,
+    status: 'klaar',
+    Icon: Sparkles,
+    description:
+      'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
+    lessons: [
+      { code: 'G1', title: 'Wat is AI?' },
+      { code: 'G2', title: 'AI openen en gebruiken' },
+      { code: 'G3', title: 'Goede vragen stellen' },
+      { code: 'G4', title: 'AI veilig gebruiken' },
+    ],
+    includes: [
+      'Draaiboek',
+      'Deelnemerskaart',
+      'Oefentaken',
+      'Zaalchecklist',
+      'Nazorgkaart',
+      'Beamer-PDF (per les)',
+    ],
+    guideLinks: [
+      { href: '/wat-is-ai', label: 'Wat is AI?' },
+      { href: '/wat-is-ai/chatgpt', label: 'ChatGPT uitleg' },
+      { href: '/wat-is-ai/prompts', label: 'Goede vragen (prompts)' },
+    ],
+  },
+];
+
+/** Zichtbare shopkaarten — legacy defaults, geen canonical duplicaten. */
+export function listShopPakketten(): LesmateriaalPakket[] {
+  return LESMATERIAAL_PAKKETTEN;
+}
+
+/** Alle routeerbare pakketten (legacy + canonical), voor [slug]-pagina’s. */
+export function listRoutablePakketten(): LesmateriaalPakket[] {
+  return [...LESMATERIAAL_PAKKETTEN, ...CANONICAL_PAKKETTEN];
+}
+
 export function getPakketBySlug(slug: string): LesmateriaalPakket | undefined {
-  return LESMATERIAAL_PAKKETTEN.find((p) => p.slug === slug);
+  return listRoutablePakketten().find((p) => p.slug === slug);
 }
 
 export function formatPrijs(amount: number): string {

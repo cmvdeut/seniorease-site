@@ -13,7 +13,7 @@ import {
   type DownloadAsset,
 } from '../lib/lesmateriaal-fulfillment';
 import { buildLesmateriaalCheckoutUrl as buildCheckout } from '../lib/lesmateriaal-checkout';
-import { LESMATERIAAL_PAKKETTEN, getPakketBySlug } from '../app/lesmateriaal/lesmateriaal-data';
+import { LESMATERIAAL_PAKKETTEN, getPakketBySlug, listShopPakketten } from '../app/lesmateriaal/lesmateriaal-data';
 
 let passed = 0;
 let failed = 0;
@@ -219,16 +219,16 @@ assert(
   resolveStoragePackageSlug('pakket-g') === 'pakket-g',
 );
 
-// --- Shop catalog unchanged (no canonical entries) ---
+// --- Shop catalog: visible list remains legacy-only (ATOMIC B may add routable aliases) ---
 assert(
   'shop heeft geen pakket-g-telefoon',
-  !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-g-telefoon') &&
-    getPakketBySlug('pakket-g-telefoon') === undefined,
+  !listShopPakketten().some((p) => p.slug === 'pakket-g-telefoon') &&
+    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-g-telefoon'),
 );
 assert(
   'shop heeft geen pakket-h-ai',
-  !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-h-ai') &&
-    getPakketBySlug('pakket-h-ai') === undefined,
+  !listShopPakketten().some((p) => p.slug === 'pakket-h-ai') &&
+    !LESMATERIAAL_PAKKETTEN.some((p) => p.slug === 'pakket-h-ai'),
 );
 assert('shop heeft nog pakket-f-telefoon', !!getPakketBySlug('pakket-f-telefoon'));
 assert('shop heeft nog pakket-g (AI)', !!getPakketBySlug('pakket-g'));

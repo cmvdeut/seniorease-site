@@ -5,9 +5,10 @@ import LesmateriaalPakketBestelPanel from '@/app/components/LesmateriaalPakketBe
 import { LesmateriaalLicentieBlok } from '../LesmateriaalLicentieBlok';
 import { buildPageMetadata, SITE_URL } from '@/lib/seo';
 import {
-  LESMATERIAAL_PAKKETTEN,
   formatPrijs,
   getPakketBySlug,
+  lessonDisplayCode,
+  listRoutablePakketten,
   LOSSE_LES_PRIJS,
 } from '../lesmateriaal-data';
 import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
@@ -19,7 +20,7 @@ type Props = { params: Promise<{ slug: string }> };
 export const dynamic = 'force-dynamic';
 
 export async function generateStaticParams() {
-  return LESMATERIAAL_PAKKETTEN.map((p) => ({ slug: p.slug }));
+  return listRoutablePakketten().map((p) => ({ slug: p.slug }));
 }
 
 export async function generateMetadata({ params }: Props) {
@@ -119,7 +120,7 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
                   key={les.code}
                   className="flex gap-3 text-navy text-senior-sm sm:text-senior-base"
                 >
-                  <span className="font-bold text-gold shrink-0">{les.code}</span>
+                  <span className="font-bold text-gold shrink-0">{lessonDisplayCode(les)}</span>
                   <span>{les.title}</span>
                 </li>
               ))}

@@ -10,6 +10,7 @@ import {
 } from '@/lib/lesmateriaal-checkout';
 import {
   formatPrijs,
+  lessonDisplayCode,
   LOSSE_LES_PRIJS,
   type LesmateriaalLes,
 } from '@/app/lesmateriaal/lesmateriaal-data';
@@ -103,7 +104,9 @@ export default function LesmateriaalPakketBestelPanel({
       email: trimmed,
       productType: 'los',
       lessonCode,
-      label: les ? `Losse les ${les.code}: ${les.title}` : `Losse les ${lessonCode}`,
+      label: les
+        ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
+        : `Losse les ${lessonCode}`,
       price: LOSSE_LES_PRIJS,
     });
     window.location.href = url;
@@ -182,7 +185,7 @@ export default function LesmateriaalPakketBestelPanel({
                 >
                   {lessons.map((les) => (
                     <option key={les.code} value={les.code}>
-                      {les.code} — {les.title}
+                      {lessonDisplayCode(les)} — {les.title}
                     </option>
                   ))}
                 </select>

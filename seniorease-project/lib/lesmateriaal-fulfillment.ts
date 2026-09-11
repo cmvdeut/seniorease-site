@@ -382,7 +382,15 @@ export function isZipBundleFileId(fileId: string): boolean {
 
 export function assetsForZipBundle(fileId: string): DownloadAsset[] {
   if (fileId === 'zip-compleet') {
-    return LESMATERIAAL_PAKKETTEN.flatMap((p) => assetsForSlug(p.slug));
+    const seenStorage = new Set<string>();
+    const assets: DownloadAsset[] = [];
+    for (const p of LESMATERIAAL_PAKKETTEN) {
+      const storage = resolveStoragePackageSlug(p.slug);
+      if (seenStorage.has(storage)) continue;
+      seenStorage.add(storage);
+      assets.push(...assetsForSlug(p.slug));
+    }
+    return assets;
   }
   const m = /^zip-(pakket-[a-z0-9-]+)$/i.exec(fileId);
   if (m) return assetsForSlug(m[1].toLowerCase());
@@ -498,9 +506,10 @@ export function parseClientReferenceId(raw: string | null | undefined): ParsedRe
 
 export function resolveFulfillmentOrder(ref: ParsedReference): FulfillmentOrder | null {
   if (ref.kind === 'pakket' && ref.slug) {
-    // Catalogus blijft legacy defaults; canonical slugs resolven via storage-alias.
+    // Label bij voorkeur van de gevraagde slug (canonical of legacy);
+    // assets via ATOMIC A storage-alias.
     const storageSlug = resolveStoragePackageSlug(ref.slug);
-    const pakket = getPakketBySlug(storageSlug);
+    const pakket = getPakketBySlug(ref.slug) ?? getPakketBySlug(storageSlug);
     if (!pakket) return null;
     const assets = assetsForSlug(ref.slug);
     if (assets.length === 0) return null;
@@ -537,7 +546,16 @@ export function resolveFulfillmentOrder(ref: ParsedReference): FulfillmentOrder 
   }
 
   if (ref.kind === 'compleet') {
-    const assets = LESMATERIAAL_PAKKETTEN.flatMap((p) => assetsForSlug(p.slug));
+    // Dedup op storage-slug: canonical shop-entries mogen nooit dubbele assets geven
+    // als ze ooit in LESMATERIAAL_PAKKETTEN zouden belanden.
+    const seenStorage = new Set<string>();
+    const assets: DownloadAsset[] = [];
+    for (const p of LESMATERIAAL_PAKKETTEN) {
+      const storage = resolveStoragePackageSlug(p.slug);
+      if (seenStorage.has(storage)) continue;
+      seenStorage.add(storage);
+      assets.push(...assetsForSlug(p.slug));
+    }
     return {
       kind: 'compleet',
       email: ref.email,
