@@ -170,14 +170,23 @@ Pre-existing dirty worktree (Agent/Facebook/A–G/e.d.): **niet** gecommit.
 
 | | |
 |--|--|
-| Commit SHA | *(zie na commit hieronder / `git rev-parse HEAD`)* |
-| Parent | baseline `4a9ea542…` |
-| Expected files | fulfillment · sync · lesmateriaal-data · verify-scripts · dit rapport |
-| Private PDFs in commit | **NEE** (gitignore) |
+| Commit SHA | `45ff320180fe1357e039ea0c3f7d158bcb0c7f54` |
+| Parent | baseline `4a9ea5426808378c5d8f6caf04c24bb9ece0c8a1` |
+| Files count | **7** |
+| Private PDFs in commit | **NEE** (gitignore; lokaal gesync’t) |
 | Unrelated files committed | **0** |
+| Remaining dirty tree | **553** porcelain lines (pre-existing unrelated) |
 | Push | **NEE** |
 
-Exacte committed file list wordt na cutover-commit vastgelegd in de review-samenvatting.
+Exact committed file list:
+
+1. `app/lesmateriaal/lesmateriaal-data.ts`
+2. `docs/superpowers/specs/2026-09-13-pakket-h-distributie-cutover-v1.md`
+3. `lib/lesmateriaal-fulfillment.ts`
+4. `scripts/sync-lesmateriaal-downloads.js`
+5. `scripts/verify-h1-distributie-cutover.ts`
+6. `scripts/verify-pakket-g-cutover.ts`
+7. `scripts/verify-pakket-h-distributie-cutover.ts`
 
 ---
 
