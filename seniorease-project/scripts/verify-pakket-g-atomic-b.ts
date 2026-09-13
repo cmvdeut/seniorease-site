@@ -72,13 +72,17 @@ assert('B8 canonical AI checkout', checkoutRef('pakket-h-ai') === 'pakket_pakket
   );
 }
 
-// B10 AI los g1
+// B10 AI los g1 · klantgericht H1
 {
   const p = getPakketBySlug('pakket-h-ai')!;
   const first = p.lessons[0];
   assert(
     'B10 canonical AI first lesson → los_g1',
     first?.code === 'G1' && losRef('G1') === 'los_g1',
+  );
+  assert(
+    'B10b display H1 + titel',
+    lessonDisplayCode(first!) === 'H1' && first!.title === 'Wat kan AI voor mij doen?',
   );
 }
 
@@ -163,12 +167,16 @@ assert(
   );
 }
 
-// AI no H1-H4 lesson codes
+// AI technical codes G1-G4 · display H1 toegestaan voor eerste les
 {
   const p = getPakketBySlug('pakket-h-ai')!;
   assert(
-    'AI lessons remain G1-G4 (no H*)',
+    'AI technical codes remain G1-G4 (no tech H*)',
     p.lessons.every((l) => l.code.startsWith('G') && !l.code.startsWith('H')),
+  );
+  assert(
+    'AI first lesson display H1',
+    lessonDisplayCode(p.lessons[0]!) === 'H1',
   );
 }
 

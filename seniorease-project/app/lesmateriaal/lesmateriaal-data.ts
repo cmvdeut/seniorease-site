@@ -213,7 +213,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
   },
   {
     slug: 'pakket-h-ai',
-    // Technische H-identity; lessen blijven G1–G4 (geen H1–H4 zolang PDF’s G tonen).
+    // Technische codes G1–G4 / fileIds g* · klantgericht: H1 display voor eerste les
     code: 'H',
     title: 'AI voor dagelijks gebruik',
     subtitle: '4 lessen · tik/klik · add-on',
@@ -224,7 +224,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
     lessons: [
-      { code: 'G1', title: 'Wat is AI?' },
+      { code: 'G1', displayCode: 'H1', title: 'Wat kan AI voor mij doen?' },
       { code: 'G2', title: 'AI openen en gebruiken' },
       { code: 'G3', title: 'Goede vragen stellen' },
       { code: 'G4', title: 'AI veilig gebruiken' },
@@ -287,7 +287,7 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
     lessons: [
-      { code: 'G1', title: 'Wat is AI?' },
+      { code: 'G1', displayCode: 'H1', title: 'Wat kan AI voor mij doen?' },
       { code: 'G2', title: 'AI openen en gebruiken' },
       { code: 'G3', title: 'Goede vragen stellen' },
       { code: 'G4', title: 'AI veilig gebruiken' },

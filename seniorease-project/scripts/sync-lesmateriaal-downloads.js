@@ -83,7 +83,9 @@ const PACKAGE_SOURCE = {
   'pakket-g': {
     folder: 'G-ai',
     lessons: [
-      ['G1', 'G1-wat-is-ai', 'SeniorEase-G1-Wat-Is-AI-v2.pdf', 'SeniorEase-G1-Beamer-v2.pdf'],
+      // G1 actieve distributie = goedgekeurde H1 (fileIds blijven g1-*)
+      // Optioneel 5e element = bronfolder t.o.v. lesmateriaal/ (overschrijft package-folder)
+      ['G1', 'H1-wat-kan-ai-voor-mij-doen', 'SeniorEase-H1-Wat-kan-AI-voor-mij-doen-v2.pdf', 'SeniorEase-H1-Beamer-v2.pdf', 'H-ai'],
       ['G2', 'G2-ai-gebruiken', 'SeniorEase-G2-AI-Gebruiken-v2.pdf', 'SeniorEase-G2-Beamer-v2.pdf'],
       ['G3', 'G3-goede-vragen', 'SeniorEase-G3-Goede-Vragen-v2.pdf', 'SeniorEase-G3-Beamer-v2.pdf'],
       ['G4', 'G4-ai-veilig', 'SeniorEase-G4-AI-Veilig-v2.pdf', 'SeniorEase-G4-Beamer-v2.pdf'],
@@ -130,10 +132,12 @@ function main() {
   let ok = 0;
   let miss = 0;
   for (const [slug, cfg] of Object.entries(PACKAGE_SOURCE)) {
-    for (const [code, dir, printName, beamerName] of cfg.lessons) {
+    for (const lesson of cfg.lessons) {
+      const [code, dir, printName, beamerName, folderOverride] = lesson;
       const id = code.toLowerCase();
-      const printSrc = path.join(LM, cfg.folder, dir, 'pdf', printName);
-      const beamerSrc = path.join(LM, cfg.folder, dir, 'beamer', beamerName);
+      const sourceFolder = folderOverride || cfg.folder;
+      const printSrc = path.join(LM, sourceFolder, dir, 'pdf', printName);
+      const beamerSrc = path.join(LM, sourceFolder, dir, 'beamer', beamerName);
       const printDest = path.join(DEST, slug, `${id}-print.pdf`);
       const beamerDest = path.join(DEST, slug, `${id}-beamer.pdf`);
       if (copyOne(printSrc, printDest)) ok += 1;
@@ -146,9 +150,11 @@ function main() {
   // A+B moeten altijd compleet zijn (live betaalde pakketten). Overige missers: waarschuwing.
   const requiredOk = ['pakket-a', 'pakket-b'].every((slug) => {
     const cfg = PACKAGE_SOURCE[slug];
-    return cfg.lessons.every(([, dir, printName, beamerName]) => {
-      const printSrc = path.join(LM, cfg.folder, dir, 'pdf', printName);
-      const beamerSrc = path.join(LM, cfg.folder, dir, 'beamer', beamerName);
+    return cfg.lessons.every((lesson) => {
+      const [, dir, printName, beamerName, folderOverride] = lesson;
+      const sourceFolder = folderOverride || cfg.folder;
+      const printSrc = path.join(LM, sourceFolder, dir, 'pdf', printName);
+      const beamerSrc = path.join(LM, sourceFolder, dir, 'beamer', beamerName);
       return resolveSource(printSrc).path && resolveSource(beamerSrc).path;
     });
   });

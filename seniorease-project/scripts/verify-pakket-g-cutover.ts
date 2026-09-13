@@ -196,9 +196,16 @@ async function main() {
   }
   {
     const p = getPakketBySlug('pakket-h-ai')!;
+    const first = p.lessons[0];
     assert(
       'C14 AI loose first → los_g1',
-      p.lessons[0]?.code === 'G1' && losRef('G1') === 'los_g1',
+      first?.code === 'G1' && losRef('G1') === 'los_g1',
+    );
+    assert(
+      'C14b AI first display H1 + titel',
+      !!first &&
+        lessonDisplayCode(first) === 'H1' &&
+        first.title === 'Wat kan AI voor mij doen?',
     );
   }
   assert(

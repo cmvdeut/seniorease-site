@@ -87,7 +87,17 @@ export type SourceFileSpec = {
 
 const PACKAGE_SOURCE: Record<
   string,
-  { folder: string; lessons: { code: string; dir: string; printName: string; beamerName: string }[] }
+  {
+    folder: string;
+    lessons: {
+      code: string;
+      dir: string;
+      printName: string;
+      beamerName: string;
+      /** Optionele bronmap t.o.v. lesmateriaal/ (overschrijft package-folder). */
+      folder?: string;
+    }[];
+  }
 > = {
   'pakket-a': {
     folder: 'A-telefoon-tablet',
@@ -297,9 +307,11 @@ const PACKAGE_SOURCE: Record<
     lessons: [
       {
         code: 'G1',
-        dir: 'G1-wat-is-ai',
-        printName: 'SeniorEase-G1-Wat-Is-AI-v2.pdf',
-        beamerName: 'SeniorEase-G1-Beamer-v2.pdf',
+        // Actieve distributie: goedgekeurde H1 (klantgericht) · fileIds blijven g1-*
+        folder: 'H-ai',
+        dir: 'H1-wat-kan-ai-voor-mij-doen',
+        printName: 'SeniorEase-H1-Wat-kan-AI-voor-mij-doen-v2.pdf',
+        beamerName: 'SeniorEase-H1-Beamer-v2.pdf',
       },
       {
         code: 'G2',
@@ -344,22 +356,29 @@ function customerFacingLessonCode(techCode: string, packageSlug: string): string
 
 function lessonAssets(
   slug: string,
-  lesson: { code: string; dir: string; printName: string; beamerName: string },
+  lesson: {
+    code: string;
+    dir: string;
+    printName: string;
+    beamerName: string;
+    folder?: string;
+  },
   pkgFolder: string,
   labelPackageSlug?: string,
 ): SourceFileSpec[] {
   const idBase = lesson.code.toLowerCase();
   const displayCode = customerFacingLessonCode(lesson.code, labelPackageSlug ?? slug);
+  const sourceFolder = lesson.folder ?? pkgFolder;
   return [
     {
       fileId: `${idBase}-print`,
-      sourceRel: path.join(pkgFolder, lesson.dir, 'pdf', lesson.printName),
+      sourceRel: path.join(sourceFolder, lesson.dir, 'pdf', lesson.printName),
       destRel: path.join(slug, `${idBase}-print.pdf`),
       label: `${displayCode} — lesmateriaal (print)`,
     },
     {
       fileId: `${idBase}-beamer`,
-      sourceRel: path.join(pkgFolder, lesson.dir, 'beamer', lesson.beamerName),
+      sourceRel: path.join(sourceFolder, lesson.dir, 'beamer', lesson.beamerName),
       destRel: path.join(slug, `${idBase}-beamer.pdf`),
       label: `${displayCode} — beamer (optioneel)`,
     },
