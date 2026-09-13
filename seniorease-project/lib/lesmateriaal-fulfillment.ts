@@ -11,6 +11,7 @@ import path from 'path';
 import {
   getPakketBySlug,
   LESMATERIAAL_PAKKETTEN,
+  lessonDisplayCode,
   LOSSE_LES_PRIJS,
   ORG_COMPLEET_PRIJS,
   PAKKET_PRIJS,
@@ -322,24 +323,45 @@ const PACKAGE_SOURCE: Record<
   },
 };
 
+/**
+ * Klantgerichte pakket-slug voor labels (shop-canonical), los van storage-slug.
+ * MOBILE_G → pakket-g-telefoon (Pakket G) · AI_H → pakket-h-ai (Pakket H).
+ */
+function customerFacingPackageSlug(slug: string): string {
+  const storage = resolveStoragePackageSlug(slug);
+  if (storage === 'pakket-f-telefoon') return 'pakket-g-telefoon';
+  if (storage === 'pakket-g') return 'pakket-h-ai';
+  return slug;
+}
+
+/** Klantgerichte lescode (bijv. Ft1 → G1); fileIds blijven technisch ft*. */
+function customerFacingLessonCode(techCode: string, packageSlug: string): string {
+  const pakket = getPakketBySlug(customerFacingPackageSlug(packageSlug));
+  const les = pakket?.lessons.find((l) => l.code.toLowerCase() === techCode.toLowerCase());
+  if (les) return lessonDisplayCode(les);
+  return techCode;
+}
+
 function lessonAssets(
   slug: string,
   lesson: { code: string; dir: string; printName: string; beamerName: string },
   pkgFolder: string,
+  labelPackageSlug?: string,
 ): SourceFileSpec[] {
   const idBase = lesson.code.toLowerCase();
+  const displayCode = customerFacingLessonCode(lesson.code, labelPackageSlug ?? slug);
   return [
     {
       fileId: `${idBase}-print`,
       sourceRel: path.join(pkgFolder, lesson.dir, 'pdf', lesson.printName),
       destRel: path.join(slug, `${idBase}-print.pdf`),
-      label: `${lesson.code} — lesmateriaal (print)`,
+      label: `${displayCode} — lesmateriaal (print)`,
     },
     {
       fileId: `${idBase}-beamer`,
       sourceRel: path.join(pkgFolder, lesson.dir, 'beamer', lesson.beamerName),
       destRel: path.join(slug, `${idBase}-beamer.pdf`),
-      label: `${lesson.code} — beamer (optioneel)`,
+      label: `${displayCode} — beamer (optioneel)`,
     },
   ];
 }
@@ -361,7 +383,7 @@ export function assetsForSlug(slug: string): DownloadAsset[] {
   const cfg = PACKAGE_SOURCE[storageSlug];
   if (!cfg) return [];
   return cfg.lessons.flatMap((lesson) =>
-    lessonAssets(storageSlug, lesson, cfg.folder).map((s) => ({
+    lessonAssets(storageSlug, lesson, cfg.folder, slug).map((s) => ({
       fileId: s.fileId,
       relativePath: s.destRel.replace(/\\/g, '/'),
       label: s.label,
@@ -401,8 +423,8 @@ export function zipBundleLabel(fileId: string): string {
   if (fileId === 'zip-compleet') return 'Alles downloaden (ZIP) — compleet A–G';
   const m = /^zip-(pakket-[a-z0-9-]+)$/i.exec(fileId);
   if (m) {
-    const storageSlug = resolveStoragePackageSlug(m[1].toLowerCase());
-    const pakket = getPakketBySlug(storageSlug);
+    const slug = m[1].toLowerCase();
+    const pakket = getPakketBySlug(customerFacingPackageSlug(slug));
     if (pakket) return `Alles downloaden (ZIP) — pakket ${pakket.code}`;
   }
   return 'Alles downloaden (ZIP)';
@@ -427,7 +449,7 @@ export function zipBundleAvailable(fileId: string): boolean {
 
 /** Mapnaam in de ZIP: "A - Telefoon en tablet - basis" i.p.v. pakket-a */
 export function zipFolderNameForSlug(slug: string): string {
-  const pakket = getPakketBySlug(resolveStoragePackageSlug(slug));
+  const pakket = getPakketBySlug(customerFacingPackageSlug(slug));
   if (!pakket) return slug;
   const title = pakket.title
     .replace(/—/g, '-')
@@ -445,7 +467,9 @@ export function zipEntryPathForAsset(asset: DownloadAsset): string {
   const folder = zipFolderNameForSlug(slug);
   const base = asset.fileId.replace(/[^a-z0-9-]/gi, '') || 'bestand';
   const kind = base.endsWith('-beamer') ? 'Beamer' : 'Lesmateriaal';
-  const code = base.replace(/-beamer$/i, '').replace(/-print$/i, '').toUpperCase();
+  let code = base.replace(/-beamer$/i, '').replace(/-print$/i, '');
+  const ft = /^ft([1-4])$/i.exec(code);
+  code = ft ? `G${ft[1]}` : code.toUpperCase();
   return `${folder}/SeniorEase-${code}-${kind}.pdf`;
 }
 
