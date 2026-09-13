@@ -23,8 +23,13 @@ export function LesmateriaalPakketten() {
             <li key={pakket.slug}>
               <Link
                 href={`/lesmateriaal/${pakket.slug}`}
-                className="group flex flex-col h-full rounded-xl bg-paper border border-navy/8 hover:border-gold px-5 py-5 transition-all hover:shadow-[0_4px_20px_rgba(46,36,28,0.06)]"
+                className="group relative flex flex-col h-full rounded-xl bg-paper border border-navy/8 hover:border-gold px-5 py-5 transition-all hover:shadow-[0_4px_20px_rgba(46,36,28,0.06)]"
               >
+                {pakket.popular && (
+                  <span className="absolute top-3 right-3 rounded-full bg-gold px-2.5 py-0.5 text-[0.7rem] font-bold uppercase tracking-wide text-white">
+                    Populair
+                  </span>
+                )}
                 <div className="flex items-center gap-3 mb-3">
                   <span className="shrink-0 w-11 h-11 rounded-lg bg-gold/12 text-gold flex items-center justify-center">
                     <Icon size={22} strokeWidth={2} aria-hidden />

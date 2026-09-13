@@ -31,6 +31,8 @@ export type LesmateriaalPakket = {
   includes: string[];
   guideLinks?: { href: string; label: string }[];
   relatedNote?: string;
+  /** Klantzichtbaar label op shopkaart / pakketpagina */
+  popular?: boolean;
 };
 
 /** Klantzichtbare lescode; valt terug op technische `code`. */
@@ -191,7 +193,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
   },
   {
     slug: 'pakket-f-computer',
-    code: 'F-c',
+    code: 'F',
     title: 'Internet — computer',
     subtitle: '4 lessen · computer',
     device: 'Computer of laptop',
@@ -221,6 +223,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     price: PAKKET_PRIJS,
     status: 'klaar',
     Icon: Sparkles,
+    popular: true,
     description:
       'Leer AI gebruiken, betere vragen stellen en antwoorden verstandig beoordelen. '
       + 'Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',

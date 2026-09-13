@@ -92,6 +92,11 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
         </p>
 
         <div className="flex flex-wrap gap-3 mb-10">
+          {pakket.popular && (
+            <span className="rounded-full bg-gold text-white text-senior-sm font-semibold px-4 py-2">
+              Populair
+            </span>
+          )}
           <span className="rounded-full bg-navy text-white text-senior-sm font-semibold px-4 py-2">
             {formatPrijs(pakket.price)} · 4 lessen
           </span>
