@@ -213,29 +213,30 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
   },
   {
     slug: 'pakket-h-ai',
-    // Technische codes G1–G4 / fileIds g* · klantgericht: H1 display voor eerste les
+    // Technische codes G1–G4 / fileIds g* · klantgericht: H1–H4 display
     code: 'H',
-    title: 'AI voor dagelijks gebruik',
+    title: 'Pakket H — AI in het dagelijks leven',
     subtitle: '4 lessen · tik/klik · add-on',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',
     Icon: Sparkles,
     description:
-      'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
+      'Leer AI gebruiken, betere vragen stellen en antwoorden verstandig beoordelen. '
+      + 'Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
     lessons: [
       { code: 'G1', displayCode: 'H1', title: 'Wat kan AI voor mij doen?' },
-      { code: 'G2', title: 'AI openen en gebruiken' },
-      { code: 'G3', title: 'Goede vragen stellen' },
-      { code: 'G4', title: 'AI veilig gebruiken' },
+      { code: 'G2', displayCode: 'H2', title: 'Een AI-assistent gebruiken' },
+      { code: 'G3', displayCode: 'H3', title: 'Betere vragen stellen aan AI' },
+      { code: 'G4', displayCode: 'H4', title: 'AI-antwoorden controleren en veilig gebruiken' },
     ],
     includes: [
+      'START HIER',
       'Draaiboek',
+      'Beamer-PDF',
+      'Hulp bij vastlopen',
       'Deelnemerskaart',
-      'Oefentaken',
       'Zaalchecklist',
-      'Nazorgkaart',
-      'Beamer-PDF (per les)',
     ],
     guideLinks: [
       { href: '/wat-is-ai', label: 'Wat is AI?' },
@@ -277,28 +278,30 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
   },
   {
     slug: 'pakket-g',
+    // Legacy slug · customer-facing aligned met Pakket H · storage/entitlement ongewijzigd
     code: 'G',
-    title: 'AI voor dagelijks gebruik',
+    title: 'Pakket H — AI in het dagelijks leven',
     subtitle: '4 lessen · tik/klik · add-on',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',
     Icon: Sparkles,
     description:
-      'Wat is AI, Gemini als voorbeeld in de browser, goede vragen stellen en veilig gebruiken. Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
+      'Leer AI gebruiken, betere vragen stellen en antwoorden verstandig beoordelen. '
+      + 'Inclusief beamerpresentatie per les — eerst kijken, daarna oefenen op eigen toestel (telefoon, tablet of computer).',
     lessons: [
       { code: 'G1', displayCode: 'H1', title: 'Wat kan AI voor mij doen?' },
-      { code: 'G2', title: 'AI openen en gebruiken' },
-      { code: 'G3', title: 'Goede vragen stellen' },
-      { code: 'G4', title: 'AI veilig gebruiken' },
+      { code: 'G2', displayCode: 'H2', title: 'Een AI-assistent gebruiken' },
+      { code: 'G3', displayCode: 'H3', title: 'Betere vragen stellen aan AI' },
+      { code: 'G4', displayCode: 'H4', title: 'AI-antwoorden controleren en veilig gebruiken' },
     ],
     includes: [
+      'START HIER',
       'Draaiboek',
+      'Beamer-PDF',
+      'Hulp bij vastlopen',
       'Deelnemerskaart',
-      'Oefentaken',
       'Zaalchecklist',
-      'Nazorgkaart',
-      'Beamer-PDF (per les)',
     ],
     guideLinks: [
       { href: '/wat-is-ai', label: 'Wat is AI?' },

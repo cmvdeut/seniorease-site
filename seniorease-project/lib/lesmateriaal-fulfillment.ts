@@ -315,21 +315,27 @@ const PACKAGE_SOURCE: Record<
       },
       {
         code: 'G2',
-        dir: 'G2-ai-gebruiken',
-        printName: 'SeniorEase-G2-AI-Gebruiken-v2.pdf',
-        beamerName: 'SeniorEase-G2-Beamer-v2.pdf',
+        // Actieve distributie: goedgekeurde H2 · fileIds blijven g2-*
+        folder: 'H-ai',
+        dir: 'H2-een-ai-assistent-gebruiken',
+        printName: 'SeniorEase-H2-Een-AI-assistent-gebruiken-v2.pdf',
+        beamerName: 'SeniorEase-H2-Beamer-v2.pdf',
       },
       {
         code: 'G3',
-        dir: 'G3-goede-vragen',
-        printName: 'SeniorEase-G3-Goede-Vragen-v2.pdf',
-        beamerName: 'SeniorEase-G3-Beamer-v2.pdf',
+        // Actieve distributie: goedgekeurde H3 · fileIds blijven g3-*
+        folder: 'H-ai',
+        dir: 'H3-betere-vragen-stellen-aan-ai',
+        printName: 'SeniorEase-H3-Betere-vragen-stellen-aan-AI-v2.pdf',
+        beamerName: 'SeniorEase-H3-Beamer-v2.pdf',
       },
       {
         code: 'G4',
-        dir: 'G4-ai-veilig',
-        printName: 'SeniorEase-G4-AI-Veilig-v2.pdf',
-        beamerName: 'SeniorEase-G4-Beamer-v2.pdf',
+        // Actieve distributie: goedgekeurde H4 · fileIds blijven g4-*
+        folder: 'H-ai',
+        dir: 'H4-ai-antwoorden-controleren-en-veilig-gebruiken',
+        printName: 'SeniorEase-H4-AI-antwoorden-controleren-en-veilig-gebruiken-v2.pdf',
+        beamerName: 'SeniorEase-H4-Beamer-v2.pdf',
       },
     ],
   },

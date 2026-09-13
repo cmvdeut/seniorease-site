@@ -101,7 +101,7 @@ async function main() {
     'C2 shop AI card → pakket-h-ai',
     !!aiCard &&
       aiCard.code === 'H' &&
-      aiCard.title === 'AI voor dagelijks gebruik' &&
+      aiCard.title === 'Pakket H — AI in het dagelijks leven' &&
       aiCard.lessons.map((l) => l.code).join(',') === 'G1,G2,G3,G4',
   );
 

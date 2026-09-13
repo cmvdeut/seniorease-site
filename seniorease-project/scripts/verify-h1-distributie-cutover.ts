@@ -189,18 +189,18 @@ assert(
   );
 }
 
-// --- G2–G4 ongewijzigd (hashes van private, vastgelegd in 4C) ---
+// --- G2–G4 = frozen H2–H4 na Pakket-H cutover (3B) ---
 const G24_EXPECTED: Record<string, string> = {
-  'g2-print': '091ca37ad2a98ccc7ef1eb87bb49b0f9c334d0024c8b1e8b8f691bb14a026760',
-  'g2-beamer': '522bf077bfcaaaec7d744c09a50dcc0f3bc9563d82cd9c325b4fb7b5713c65ef',
-  'g3-print': 'd40dcebffe4f201ab92159e4910bad916891b38293017551de0156618224b8fc',
-  'g3-beamer': '0eb5ffb86ced6aba39a57e98d4a626a0e9411b148efaf5ef333053715ff00fa4',
-  'g4-print': 'bf3d5f963134824a1c07bc46663e6b33dc1031622fcdc0d62a8047afffc7fb7a',
-  'g4-beamer': '5af7827115bf4058035c670e036ca35ac9cd933c92f4170293000495ee92fc77',
+  'g2-print': 'f87db31cd768e2dcb49528a2e2e8e40b3ac1a3312a9dd21745f6c04fd6a15b2c',
+  'g2-beamer': '216903cd1f4219c26075a1ea4eb24e214aae7f48c4c36d9415f2e2f2dd720c4f',
+  'g3-print': '0ee16c7d67f9509986946221d1797bbda11ca25c62ef8f35cff8ebd88c9f8744',
+  'g3-beamer': '919d426ce35aeedee453b2c6d2d2619c0d3fc9291709fac48aa0f6f9dba344f6',
+  'g4-print': 'afcf65e2c1acd9ddbc07bfc8812a1a2d63b21e01b1de8abe22d0b76390400782',
+  'g4-beamer': 'fc634a8f2f3918216bb30cd1c07c69e102c59fe59a3d59571e0c8cefa3092066',
 };
 for (const [fileId, expected] of Object.entries(G24_EXPECTED)) {
   const abs = resolveAssetAbsolutePath(findAssetByFileId(fileId)!);
-  assert(`30 ${fileId} ongewijzigd`, !!abs && sha256File(abs) === expected);
+  assert(`30 ${fileId} = frozen H`, !!abs && sha256File(abs) === expected);
 }
 
 // --- Labels canonical ---

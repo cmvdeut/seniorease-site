@@ -83,12 +83,12 @@ const PACKAGE_SOURCE = {
   'pakket-g': {
     folder: 'G-ai',
     lessons: [
-      // G1 actieve distributie = goedgekeurde H1 (fileIds blijven g1-*)
+      // G1–G4 actieve distributie = goedgekeurde H1–H4 (fileIds blijven g*-)
       // Optioneel 5e element = bronfolder t.o.v. lesmateriaal/ (overschrijft package-folder)
       ['G1', 'H1-wat-kan-ai-voor-mij-doen', 'SeniorEase-H1-Wat-kan-AI-voor-mij-doen-v2.pdf', 'SeniorEase-H1-Beamer-v2.pdf', 'H-ai'],
-      ['G2', 'G2-ai-gebruiken', 'SeniorEase-G2-AI-Gebruiken-v2.pdf', 'SeniorEase-G2-Beamer-v2.pdf'],
-      ['G3', 'G3-goede-vragen', 'SeniorEase-G3-Goede-Vragen-v2.pdf', 'SeniorEase-G3-Beamer-v2.pdf'],
-      ['G4', 'G4-ai-veilig', 'SeniorEase-G4-AI-Veilig-v2.pdf', 'SeniorEase-G4-Beamer-v2.pdf'],
+      ['G2', 'H2-een-ai-assistent-gebruiken', 'SeniorEase-H2-Een-AI-assistent-gebruiken-v2.pdf', 'SeniorEase-H2-Beamer-v2.pdf', 'H-ai'],
+      ['G3', 'H3-betere-vragen-stellen-aan-ai', 'SeniorEase-H3-Betere-vragen-stellen-aan-AI-v2.pdf', 'SeniorEase-H3-Beamer-v2.pdf', 'H-ai'],
+      ['G4', 'H4-ai-antwoorden-controleren-en-veilig-gebruiken', 'SeniorEase-H4-AI-antwoorden-controleren-en-veilig-gebruiken-v2.pdf', 'SeniorEase-H4-Beamer-v2.pdf', 'H-ai'],
     ],
   },
 };
