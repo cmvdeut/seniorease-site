@@ -370,5 +370,30 @@ for (const [fileId, expected] of Object.entries(PRIVATE_EXPECTED)) {
   }
 }
 
+// --- P customer-facing copy residuals (3D) ---
+{
+  const faq = readFileSync(path.join(ROOT, 'app/lesmateriaal/LesmateriaalFaq.tsx'), 'utf8');
+  const bestel = readFileSync(
+    path.join(ROOT, 'app/components/LesmateriaalPakketBestelPanel.tsx'),
+    'utf8',
+  );
+  assert(
+    'P1 geen oude FAQ-naam AI voor dagelijks gebruik (pakket H)',
+    !faq.includes('AI voor dagelijks gebruik (pakket H)'),
+  );
+  assert(
+    'P2 FAQ heeft AI in het dagelijks leven (pakket H)',
+    faq.includes('AI in het dagelijks leven (pakket H)'),
+  );
+  assert(
+    'P3 geen oude oefentaken-CTA',
+    !bestel.includes('Draaiboek + oefentaken voor één lesmiddag'),
+  );
+  assert(
+    'P4 generieke losse-les CTA',
+    bestel.includes('Compleet lesmateriaal voor één lesmiddag'),
+  );
+}
+
 console.log(`\n${passed} passed, ${failed} failed, ${skipped} skipped`);
 if (failed > 0) process.exit(1);

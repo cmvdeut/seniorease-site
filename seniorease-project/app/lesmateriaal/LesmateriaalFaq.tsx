@@ -38,7 +38,7 @@ export const LESMATERIAAL_FAQ = [
   {
     question: 'Zit pakket H (AI) in het organisatiepakket?',
     answer:
-      'Ja. Het compleet organisatiepakket bevat alle themapakketten A–H, inclusief AI voor dagelijks gebruik (pakket H) en internet op telefoon/tablet (pakket G), plus beamer-PDF\'s per les (print blijft de basis).',
+      'Ja. Het compleet organisatiepakket bevat alle themapakketten A–H, inclusief AI in het dagelijks leven (pakket H) en internet op telefoon/tablet (pakket G), plus beamer-PDF\'s per les (print blijft de basis).',
   },
   {
     question: 'Is dit een online cursus?',

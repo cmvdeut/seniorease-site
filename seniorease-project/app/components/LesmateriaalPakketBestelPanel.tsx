@@ -172,7 +172,7 @@ export default function LesmateriaalPakketBestelPanel({
                   Eén losse les
                 </h3>
                 <p className="text-navy/65 text-senior-sm mb-3">
-                  Draaiboek + oefentaken voor één lesmiddag.
+                  Compleet lesmateriaal voor één lesmiddag.
                 </p>
                 <label htmlFor="lesmateriaal-les" className="sr-only">
                   Kies les
