@@ -121,7 +121,7 @@ export default function LesmateriaalPage() {
             Organisatiepakket bestellen
           </h2>
           <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8">
-            Compleet digitaal lesmateriaal A–G met <strong>locatie-licentie</strong>: één vestiging,
+            Compleet digitaal lesmateriaal A–H met <strong>locatie-licentie</strong>: één vestiging,
             meerdere lesgroepen. Inclusief printrechten en begeleidersgids.
           </p>
           <LesmateriaalOrganisatieBestel

@@ -2,7 +2,7 @@
 
 
 
-Online bestellen werkt via **3 Stripe Payment Links** (niet per pakket A–G apart).
+Online bestellen werkt via **3 Stripe Payment Links** (niet per pakket A–H apart).
 
 Na betaling: **webhook** → **Brevo-mail met beveiligde downloadlinks** + download op de bedanktpagina.
 
@@ -16,7 +16,7 @@ Na betaling: **webhook** → **Brevo-mail met beveiligde downloadlinks** + downl
 
 | Losse les | €6,95 | `NEXT_PUBLIC_STRIPE_LESMATERIAAL_LOS` |
 
-| Compleet organisatie (A–G) | €149 | `NEXT_PUBLIC_STRIPE_LESMATERIAAL_COMPLEET` |
+| Compleet organisatie (A–H) | €149 | `NEXT_PUBLIC_STRIPE_LESMATERIAAL_COMPLEET` |
 
 
 
@@ -52,7 +52,7 @@ Legacy fallback pakket: `NEXT_PUBLIC_STRIPE_LESMATERIAAL_DEFAULT` (zelfde als PA
 
 ### Link 3 — Organisatie compleet €149
 
-- Naam: `SeniorEase lesmateriaal — organisatie compleet A–G`
+- Naam: `SeniorEase lesmateriaal — organisatie compleet A–H` (Stripe-product mag nog A–G heten tot hernoemd)
 
 - Prijs: **€149,00**
 

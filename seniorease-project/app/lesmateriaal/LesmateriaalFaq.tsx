@@ -10,7 +10,7 @@ import {
 export const LESMATERIAAL_FAQ = [
   {
     question: 'Wat krijg ik na betaling?',
-    answer: `U ontvangt per e-mail een downloadlink naar PDF-bestanden. Bij een losse les: draaiboek, deelnemerskaart, oefentaken, zaalchecklist en nazorgkaart voor die ene lesmiddag. Bij een themapakket: dat vier keer (4 lessen). Bij het organisatiepakket: alle thema's A–G, inclusief begeleidersgids.`,
+    answer: `Na betaling ontvangt u automatisch per e-mail beveiligde downloadlinks naar de PDF-bestanden (geldig ongeveer 7 dagen — sla ze op). Op de bedanktpagina kunt u vaak ook direct downloaden. Bij een losse les: één lesmiddag. Bij een themapakket: vier lessen. Bij het organisatiepakket: alle themapakketten A–H, inclusief begeleidersgids.`,
   },
   {
     question: 'Wat is het verschil tussen losse les, themapakket en organisatiepakket?',
@@ -24,7 +24,7 @@ export const LESMATERIAAL_FAQ = [
   {
     question: 'Hoe snel krijg ik de PDF\'s?',
     answer:
-      'Meestal binnen enkele minuten per e-mail. Lukt dat niet? Controleer uw map ongewenste e-mail of neem contact op — u hoort binnen één werkdag van ons.',
+      'Automatisch na betaling: meestal binnen enkele minuten per e-mail, plus downloadknoppen op de bedanktpagina als uw sessie bekend is. Geen mail? Controleer ongewenste e-mail of neem contact op — wij helpen binnen één werkdag.',
   },
   {
     question: 'Moet ik een beamer of PowerPoint hebben?',
@@ -36,9 +36,9 @@ export const LESMATERIAAL_FAQ = [
     answer: `Bij losse les of themapakket: voor eigen gebruik of kleine groepen. Voor structureel lesgeven op locatie: kies het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) — daarmee krijgt u printrechten voor georganiseerde activiteiten binnen uw organisatie.`,
   },
   {
-    question: 'Zit pakket G (AI) in het organisatiepakket?',
+    question: 'Zit pakket H (AI) in het organisatiepakket?',
     answer:
-      'Ja. Het compleet organisatiepakket bevat alle thema\'s A t/m G, inclusief AI voor dagelijks gebruik, plus beamer-PDF\'s waar die klaar zijn.',
+      'Ja. Het compleet organisatiepakket bevat alle themapakketten A–H, inclusief AI voor dagelijks gebruik (pakket H) en internet op telefoon/tablet (pakket G), plus beamer-PDF\'s per les (print blijft de basis).',
   },
   {
     question: 'Is dit een online cursus?',

@@ -6,16 +6,16 @@ export function LesmateriaalPakketten() {
   return (
     <div id="themapakketten" className="scroll-mt-24">
       <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3">
-        Kies uw thema (A–G)
+        Kies uw thema (A–H)
       </h2>
       <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
         Elk thema is een digitaal lesboek (PDF): 4 lessen à 90 minuten voor {formatPrijs(PAKKET_PRIJS)}.
-        Pakket F heeft twee varianten (telefoon of computer).
+        Internet: telefoon/tablet (G) of computer (F).
       </p>
 
       <ul
         className="grid sm:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-5 list-none p-0 m-0"
-        aria-label="Themapakketten A tot G"
+        aria-label="Themapakketten A tot H"
       >
         {LESMATERIAAL_PAKKETTEN.map((pakket) => {
           const Icon = pakket.Icon;

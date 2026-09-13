@@ -43,7 +43,7 @@ export default function LesmateriaalOrganisatieBestel({
     saveLesmateriaalCheckoutSession({
       email: trimmed,
       productType: 'compleet',
-      label: 'Compleet organisatiepakket (A–G)',
+      label: 'Compleet organisatiepakket (A–H)',
       price: ORG_COMPLEET_PRIJS,
     });
     window.location.href = url;

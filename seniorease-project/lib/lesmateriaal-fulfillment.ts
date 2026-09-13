@@ -420,7 +420,7 @@ export function assetsForZipBundle(fileId: string): DownloadAsset[] {
 }
 
 export function zipBundleLabel(fileId: string): string {
-  if (fileId === 'zip-compleet') return 'Alles downloaden (ZIP) — compleet A–G';
+  if (fileId === 'zip-compleet') return 'Alles downloaden (ZIP) — compleet A–H';
   const m = /^zip-(pakket-[a-z0-9-]+)$/i.exec(fileId);
   if (m) {
     const slug = m[1].toLowerCase();
@@ -431,7 +431,7 @@ export function zipBundleLabel(fileId: string): string {
 }
 
 export function zipDownloadFilename(fileId: string): string {
-  if (fileId === 'zip-compleet') return 'SeniorEase-lesmateriaal-compleet-A-G.zip';
+  if (fileId === 'zip-compleet') return 'SeniorEase-lesmateriaal-compleet-A-H.zip';
   const m = /^zip-(pakket-[a-z0-9-]+)$/i.exec(fileId);
   if (m) {
     const slug = m[1].toLowerCase();
@@ -583,7 +583,7 @@ export function resolveFulfillmentOrder(ref: ParsedReference): FulfillmentOrder 
     return {
       kind: 'compleet',
       email: ref.email,
-      label: 'Compleet organisatiepakket (A–G)',
+      label: 'Compleet organisatiepakket (A–H)',
       price: ORG_COMPLEET_PRIJS,
       assets,
     };

@@ -61,7 +61,7 @@ const TIERS: PricingTier[] = [
     priceNote: 'eenmalig',
     tagline: 'Bibliotheek, buurthuis of stichting.',
     features: [
-      'Alle themapakketten A–G',
+      'Alle themapakketten A–H',
       'Locatie-licentie: één vestiging',
       'Printrechten voor meerdere lesgroepen',
       'Begeleidersgids inbegrepen',

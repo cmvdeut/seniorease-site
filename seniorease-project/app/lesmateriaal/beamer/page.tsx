@@ -55,14 +55,15 @@ export default function BeamerPage() {
         <div className="bg-slate rounded-senior border border-navy/8 p-7 max-w-2xl">
           <h2 className="font-serif text-navy font-semibold text-senior-base mb-3">Beschikbaar</h2>
           <p className="text-navy/70 text-senior-sm leading-relaxed mb-4">
-            Pilot: beamer-PDF’s bij <strong>pakket G (AI)</strong>. Andere pakketten volgen. Geen
-            PowerPoint nodig — gewoon PDF op laptop aangesloten op beamer.
+            Beamer-PDF’s bij <strong>alle themapakketten A–H</strong> (waar opgenomen in de
+            download). Print blijft de basis. Geen PowerPoint nodig — PDF op laptop aangesloten op
+            de beamer. Eerst kijken, daarna zelf doen op het eigen toestel.
           </p>
           <Link
-            href="/lesmateriaal/pakket-g"
+            href="/lesmateriaal"
             className="text-gold font-semibold text-senior-sm hover:text-gold-light"
           >
-            Pakket G — AI →
+            Alle lespakketten →
           </Link>
         </div>
       </div>

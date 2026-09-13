@@ -64,7 +64,7 @@ export default function BedanktClient() {
     if (!localSession) return '';
     switch (localSession.productType) {
       case 'compleet':
-        return ' voor het compleet organisatiepakket (A–G)';
+        return ' voor het compleet organisatiepakket (A–H)';
       case 'los':
         return localSession.label ? ` voor ${localSession.label}` : ' voor uw losse les';
       case 'pakket':
@@ -196,7 +196,7 @@ export default function BedanktClient() {
         <ul className="space-y-2 text-navy/80 text-senior-sm list-disc pl-5">
           {localSession?.productType === 'compleet' || order?.kind === 'compleet' ? (
             <>
-              <li>Alle themapakketten A–G (draaiboeken + oefentaken)</li>
+              <li>Alle themapakketten A–H (draaiboeken + oefentaken)</li>
               <li>Begeleidersgids en printrechten voor uw organisatie</li>
               <li>Beamer-PDF waar beschikbaar</li>
             </>
