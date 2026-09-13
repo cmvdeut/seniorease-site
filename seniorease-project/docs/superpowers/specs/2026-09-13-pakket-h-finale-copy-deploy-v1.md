@@ -49,9 +49,9 @@ Fulfillment/sync diff: **geen**.
 
 | | |
 |--|--|
-| Commit SHA | *(na commit)* |
+| Commit SHA | `e57e6905f00a25ceb1c4b60ffe21aa4865a0fb5d` |
 | Message | `fix: align pakket h customer-facing copy` |
-| Exact files | LesmateriaalFaq · LesmateriaalPakketBestelPanel · verify-pakket-h (+ dit rapport) |
+| Exact files | `LesmateriaalFaq.tsx` · `LesmateriaalPakketBestelPanel.tsx` · `verify-pakket-h-distributie-cutover.ts` · dit rapport |
 | Unrelated committed | **0** |
 
 ---
@@ -60,22 +60,25 @@ Fulfillment/sync diff: **geen**.
 
 | | |
 |--|--|
-| Status | *(na deploy)* |
-| Deployment id | *(na deploy)* |
-| Productie smoke | *(na smoke)* |
+| Status | **● Ready** |
+| Deployment id | `dpl_4bxZEdmpWSXgmhEowhTpVNeUpn3d` |
+| URL | https://seniorease-site-4uqu0edqo-cmvdeut-gmailcoms-projects.vercel.app |
+| Alias | https://www.seniorease.nl |
+| Productie smoke | **13 PASS / 0 FAIL** (copy + H-kaart + prijzen + mobile titel) |
 
 ---
 
-## REGRESSIE (verwacht / na smoke)
+## REGRESSIE
 
 | | |
 |--|--|
-| Canonical H 200 | |
-| Legacy AI 308 → pakket-h-ai | |
-| Canonical mobile 200 | |
-| Legacy mobile 308 → pakket-g-telefoon | |
+| Canonical H 200 | **JA** |
+| Legacy AI 308 → pakket-h-ai | **JA** |
+| Canonical mobile 200 | **JA** |
+| Legacy mobile 308 → pakket-g-telefoon | **JA** |
+| Collision pakket-g → mobiel | **NEE** |
 | Entitlement ongewijzigd | **JA** (geen codewijziging) |
-| Prijzen 19,95 / 6,95 / 149 | |
+| Prijzen 19,95 / 6,95 / 149 | **JA** |
 | Stripe / Brevo / redirects | **NEE** gewijzigd |
 
 ---
