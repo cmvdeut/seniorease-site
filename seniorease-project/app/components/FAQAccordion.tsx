@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type ReactNode } from 'react';
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 import { ChevronDown } from 'lucide-react';
 
@@ -19,8 +19,18 @@ const DEFAULT_FAQ: FAQItem[] = [
   },
   {
     question: 'Is het gratis?',
-    answer:
-      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis uitproberen. Dat staat daar duidelijk vermeld.',
+    answer: (
+      <>
+        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn
+        Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel
+        gratis uitproberen. Daarnaast is er betaald downloadbaar PDF-lesmateriaal voor
+        bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen voor
+        senioren willen geven.{' '}
+        <Link href="/lesmateriaal" className={linkClass}>
+          Bekijk het lesmateriaal
+        </Link>
+      </>
+    ),
   },
   {
     question: 'Zijn er ook uitlegfilmpjes?',
@@ -53,12 +63,16 @@ type FAQAccordionProps = {
   embedded?: boolean;
 };
 
+/**
+ * Native &lt;details&gt;/&lt;summary&gt;: antwoorden blijven in de DOM (ook dicht),
+ * keyboard + screenreader via browser-semantiek. `name` = exclusief openen waar ondersteund.
+ */
 export default function FAQAccordion({
   items = DEFAULT_FAQ,
   title = 'Veelgestelde vragen',
   embedded = false,
 }: FAQAccordionProps) {
-  const [openIndex, setOpenIndex] = useState(-1);
+  const groupName = embedded ? 'seniorease-faq-embedded' : 'seniorease-faq';
 
   return (
     <section className={embedded ? 'py-4 md:py-6' : 'bg-cream py-20 md:py-24'}>
@@ -67,40 +81,29 @@ export default function FAQAccordion({
           {title}
         </h2>
         <div className="space-y-4">
-          {items.map((item, i) => {
-            const isOpen = openIndex === i;
-            return (
-              <div
-                key={item.question}
-                className={`overflow-hidden ${
-                  isOpen ? 'rounded-senior shadow-sm' : 'rounded-senior'
-                }`}
+          {items.map((item) => (
+            <details
+              key={item.question}
+              name={groupName}
+              className="group rounded-senior overflow-hidden open:shadow-sm"
+            >
+              <summary
+                className="flex w-full cursor-pointer list-none items-center justify-between gap-4 min-h-touch px-6 py-4 font-semibold text-senior-sm text-left text-white transition-colors hover:opacity-90 rounded-senior group-open:rounded-t-senior group-open:rounded-b-none [&::-webkit-details-marker]:hidden"
+                style={{ backgroundColor: '#A07654' }}
               >
-                <button
-                  type="button"
-                  onClick={() => setOpenIndex(isOpen ? -1 : i)}
-                  className={`w-full flex items-center justify-between gap-4 min-h-touch px-6 py-4 font-semibold text-senior-sm text-left text-white transition-colors hover:opacity-90 ${
-                    isOpen ? 'rounded-t-senior' : 'rounded-senior'
-                  }`}
-                  style={{ backgroundColor: '#A07654' }}
-                  aria-expanded={isOpen}
-                >
-                  <span>{item.question}</span>
-                  <ChevronDown
-                    size={22}
-                    strokeWidth={2.5}
-                    className={`shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
-                    aria-hidden
-                  />
-                </button>
-                {isOpen && (
-                  <div className="px-6 py-5 bg-paper text-navy/85 text-senior-sm leading-relaxed rounded-b-senior border border-t-0 border-navy/10">
-                    {item.answer}
-                  </div>
-                )}
+                <span>{item.question}</span>
+                <ChevronDown
+                  size={22}
+                  strokeWidth={2.5}
+                  className="shrink-0 transition-transform group-open:rotate-180"
+                  aria-hidden
+                />
+              </summary>
+              <div className="px-6 py-5 bg-paper text-navy/85 text-senior-sm leading-relaxed rounded-b-senior border border-t-0 border-navy/10">
+                {item.answer}
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </div>
     </section>

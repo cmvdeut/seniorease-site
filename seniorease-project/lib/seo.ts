@@ -6,6 +6,10 @@ export const SITE_NAME = 'SeniorEase';
 export const DEFAULT_DESCRIPTION =
   'SeniorEase helpt senioren met technologie — gratis tools én rustige stap-voor-stap uitleg over smartphone, computer en internet. In gewone taal, in uw eigen tempo.';
 
+/** Organization JSON-LD only — niet gebruiken als page meta (los van DEFAULT_DESCRIPTION). */
+export const ORGANIZATION_DESCRIPTION =
+  'SeniorEase biedt digitale hulp voor senioren: gratis praktische uitleg en hulpmiddelen, én downloadbaar PDF-lesmateriaal voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen aan senioren geven.';
+
 export const DEFAULT_OG_IMAGE = {
   url: '/opengraph-image',
   width: 1200,
@@ -313,7 +317,7 @@ export const organizationSchema = {
   name: SITE_NAME,
   url: SITE_URL,
   logo: absoluteUrl('/heart-logo.png'),
-  description: DEFAULT_DESCRIPTION,
+  description: ORGANIZATION_DESCRIPTION,
   email: 'info@seniorease.nl',
   foundingDate: '2024',
   founder: {
@@ -377,7 +381,7 @@ export const DIGITALE_HULP_FAQ = [
   {
     question: 'Is SeniorEase gratis te gebruiken?',
     answer:
-      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis uitproberen via de Play Store of de website.',
+      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis uitproberen via de Play Store of de website. Daarnaast is er betaald downloadbaar PDF-lesmateriaal voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen voor senioren willen geven.',
   },
   {
     question: 'Waar vind ik uitleg over WhatsApp of DigiD?',

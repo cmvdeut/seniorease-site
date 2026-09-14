@@ -13,6 +13,7 @@ import { artikelen } from './artikelen';
 import { DigitaleHulpZoek } from './DigitaleHulpZoek';
 import { DigitaleHulpCategorieen } from './DigitaleHulpCategorieen';
 
+
 export const metadata = buildPageMetadata({
   path: '/digitale-hulp',
   title: 'Digitale hulp voor senioren',
@@ -50,21 +51,22 @@ const POPULAIR = [
   },
 ] as const;
 
+/** Zichtbare FAQ = `DIGITALE_HULP_FAQ`; gratis-vraag krijgt alleen een interne link erbij. */
 const DIGITALE_HULP_FAQ_ITEMS = DIGITALE_HULP_FAQ.map((item) => {
-  if (item.question !== 'Is SeniorEase gratis te gebruiken?') return item;
+  if (item.question !== 'Is SeniorEase gratis te gebruiken?') {
+    return { question: item.question, answer: item.answer };
+  }
   return {
     question: item.question,
     answer: (
       <>
-        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app{' '}
+        {item.answer}{' '}
         <Link
-          href="/bibliotheek"
-          className="font-semibold text-gold underline hover:text-gold-light"
+          href="/lesmateriaal"
+          className="font-semibold text-gold underline underline-offset-2 hover:text-gold-light"
         >
-          Mijn Bibliotheek
-        </Link>{' '}
-        is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis
-        uitproberen.
+          Bekijk het lesmateriaal
+        </Link>
       </>
     ),
   };
