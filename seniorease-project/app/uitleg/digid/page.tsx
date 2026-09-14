@@ -18,7 +18,7 @@ export const metadata = buildPageMetadata({
   ],
 });
 
-type Stap = { stap: string; uitleg: ReactNode; tip?: string };
+type Stap = { stap: string; uitleg: ReactNode; tip?: ReactNode };
 
 function StappenLijst({ stappen }: { stappen: Stap[] }) {
   return (
@@ -52,7 +52,20 @@ export default function DigidPage() {
           Typ zelf in uw browser: <strong>digid.nl</strong> — niet via een link in een e-mail. Klik op <strong>DigiD aanvragen</strong>. U heeft uw <strong>BSN</strong> (burgerservicenummer) nodig, dat staat op uw paspoort of ID-kaart.
         </>
       ),
-      tip: 'Heeft u hulp nodig bij het aanvragen? Bel DigiD op werkdagen: 088 - 123 65 55 (gratis nummer van de overheid).',
+      tip: (
+        <>
+          Heeft u hulp nodig bij het aanvragen? Bel DigiD: 088 - 123 65 55 (lokaal tarief). Actuele tijden en andere contactmogelijkheden:{' '}
+          <a
+            href="https://www.digid.nl/contact"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-gold hover:text-gold-light"
+          >
+            Contact op digid.nl
+          </a>
+          .
+        </>
+      ),
     },
     {
       stap: 'Identiteit bevestigen',
@@ -141,8 +154,8 @@ export default function DigidPage() {
               <li>❌ Vragen om uw DigiD-code via telefoon, WhatsApp of e-mail</li>
               <li>❌ Zeggen dat uw DigiD &quot;verloopt&quot; en u moet betalen</li>
               <li>❌ U doorverbinden naar iemand die uw pincode wil horen</li>
-              <li>✅ Alleen inloggen op websites die eindigen op <strong>.nl</strong> van bekende instanties</li>
-              <li>✅ Bij twijfel: ophangen en zelf <strong>digid.nl</strong> bellen</li>
+              <li>✅ Alleen inloggen op de echte officiële website. Typ zelf het adres, bijvoorbeeld <strong>digid.nl</strong> of <strong>mijnoverheid.nl</strong>. Klik niet op een link in een e-mail of sms als u niet zeker weet of die echt is.</li>
+              <li>✅ Bij twijfel: ophangen en zelf contact opnemen via de gegevens op <strong>digid.nl</strong></li>
             </ul>
             <p className="text-senior-sm md:text-senior-base text-navy/80 mt-4">
               Meer alarmsignalen:{' '}
@@ -172,6 +185,50 @@ export default function DigidPage() {
                 Pakket E — DigiD &amp; digitale overheid
               </Link>
               .
+            </p>
+          </section>
+
+          <section className="bg-slate rounded-senior border border-navy/8 p-8" aria-labelledby="digid-bronnen">
+            <h2 id="digid-bronnen" className="font-serif text-senior-lg font-semibold text-navy mb-2">
+              Bronnen en verder lezen
+            </h2>
+            <p className="text-senior-sm text-navy/70 mb-5 leading-relaxed">
+              Officiële informatie van de overheid — handig om zelf na te kijken.
+            </p>
+            <ul className="space-y-3 text-senior-base">
+              <li>
+                <a
+                  href="https://www.digid.nl/aanvragen-en-activeren/digid-aanvragen"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  DigiD — DigiD aanvragen
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.digid.nl/inlogmethodes/digid-app"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  DigiD — DigiD app
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://mijn.overheid.nl/herken-oplichting/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  MijnOverheid — Herken oplichting
+                </a>
+              </li>
+            </ul>
+            <p className="text-senior-xs text-navy/55 mt-6 border-t border-navy/10 pt-4">
+              Laatst inhoudelijk gecontroleerd: 14 september 2026
             </p>
           </section>
 

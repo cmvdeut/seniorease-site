@@ -32,7 +32,7 @@ const alarmsignalen = [
     num: 3,
     icon: "✍️",
     titel: "Spelfouten of vreemde zinnen",
-    uitleg: "\"Uw account heeft problemen ondervonden. Klik hier om te verifiëren.\" Echte berichten van banken en overheid zijn foutloos geschreven.",
+    uitleg: "\"Uw account heeft problemen ondervonden. Klik hier om te verifiëren.\" Taalfouten kunnen een waarschuwing zijn. Maar een foutloos bericht is niet automatisch echt — berichten zien er soms precies uit als van de bank of de overheid.",
     kleur: "bg-amber-50 border-amber-200",
     titelkleur: "text-amber-800",
   },
@@ -74,7 +74,7 @@ export default function VeiligheidPage() {
               Oplichting herkennen — bescherm uzelf
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              1 op de 5 senioren krijgt ermee te maken. Maar wie de signalen kent, trapt er niet in.
+              Online oplichting komt vaak voor. Wie de signalen herkent, kan sneller stoppen en controleren.
             </p>
             <p className="text-senior-sm text-navy/80 mt-3 max-w-2xl">
               Hier leest u wat phishing en oplichting zijn, hoe u nepberichten herkent en wat u moet doen als u twijfelt.
@@ -202,7 +202,7 @@ export default function VeiligheidPage() {
               Voorbeeld 2 — Hulpvraagfraude via WhatsApp
             </h2>
             <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
-              Dit is de meest gebruikte truc bij senioren. U krijgt een WhatsApp-bericht van een onbekend nummer:
+              Dit is een veel voorkomende truc. U krijgt een WhatsApp-bericht van een onbekend nummer:
             </p>
             {/* Nep WhatsApp */}
             <div className="bg-gray-100 rounded-2xl p-6 mb-6 max-w-sm">
@@ -269,8 +269,8 @@ export default function VeiligheidPage() {
             <ol className="space-y-5 mb-8">
               {[
                 { stap: "Niet klikken, niet betalen, niet terugbellen via het opgegeven nummer.", icon: "🛑" },
-                { stap: "Zoek zelf het telefoonnummer van uw bank op (op de achterkant van uw bankpas of via google.nl) en bel zelf.", icon: "📞" },
-                { stap: "Twijfelt u aan een SMS of e-mail? Stuur hem door naar het Fraudehelpdesk: 088 - 786 7372.", icon: "🆘" },
+                { stap: "Beëindig zelf het gesprek of negeer het bericht. Neem daarna zelf contact op met uw bank via de officiële bankapp, website of het nummer dat u zelf van uw bank kent — niet via een nummer dat de beller geeft.", icon: "📞" },
+                { stap: "Twijfelt u aan een SMS of e-mail? Neem contact op met de Fraudehelpdesk: 088 - 786 7372.", icon: "🆘" },
                 { stap: "Gevallen voor oplichting? Schaam u niet — het overkomt de slimste mensen. Meld het bij de politie (0900-8844) en uw bank.", icon: "🚨" },
               ].map((item, i) => (
                 <li key={i} className="flex gap-5 items-start">
@@ -286,7 +286,7 @@ export default function VeiligheidPage() {
             </ol>
             <div className="bg-gold/10 border-2 border-navy/8/30 rounded-xl p-5">
               <p className="text-senior-lg font-bold text-gold mb-1">Bij twijfel: nooit klikken!</p>
-              <p className="text-senior-base text-navy/80">Een echte bank of instantie belt u terug als er echt iets aan de hand is. U hoeft nooit zelf ergens op te klikken om iets te bevestigen.</p>
+              <p className="text-senior-base text-navy/80">Krijgt u onverwacht een verzoek om via een link iets te bevestigen? Klik dan niet meteen. Ga zelf naar de officiële app of website, of neem contact op via gegevens die u zelf kent.</p>
             </div>
           </section>
 
@@ -299,8 +299,6 @@ export default function VeiligheidPage() {
               {[
                 { naam: "Fraudehelpdesk", num: "088 - 786 7372", omschr: "Meld verdachte berichten" },
                 { naam: "Politie (niet-spoed)", num: "0900 - 8844", omschr: "Aangifte van oplichting" },
-                { naam: "Uw bank (ING)", num: "020 - 22 88 888", omschr: "Blokkeer uw rekening bij misbruik" },
-                { naam: "Uw bank (Rabobank)", num: "0900 - 0900", omschr: "Blokkeer uw rekening bij misbruik" },
               ].map((item, i) => (
                 <div key={i} className="bg-cream border-2 border-navy/10 rounded-xl p-5">
                   <p className="text-senior-base font-bold text-navy">{item.naam}</p>
@@ -309,7 +307,9 @@ export default function VeiligheidPage() {
                 </div>
               ))}
             </div>
-            <p className="text-senior-xs text-navy/55 mt-4">Tip: schrijf uw eigen banknummer op (staat op de achterkant van uw bankpas) en bewaar het ergens veilig.</p>
+            <p className="text-senior-sm text-navy/80 mt-5 leading-relaxed">
+              Contact met uw bank? Gebruik de officiële bankapp, website of het nummer dat u zelf van uw bank kent (bijvoorbeeld op de achterkant van uw bankpas). Gebruik geen nummer uit een verdacht bericht of telefoontje.
+            </p>
           </section>
 
           {/* Samenvatting */}
@@ -389,6 +389,50 @@ export default function VeiligheidPage() {
                 ← Terug naar home
               </Link>
             </div>
+          </section>
+
+          <section className="bg-slate rounded-senior border border-navy/8 p-8" aria-labelledby="veiligheid-bronnen">
+            <h2 id="veiligheid-bronnen" className="font-serif text-senior-lg font-semibold text-navy mb-2">
+              Bronnen en verder lezen
+            </h2>
+            <p className="text-senior-sm text-navy/70 mb-5 leading-relaxed">
+              Officiële informatie om zelf verder te lezen of een melding te doen.
+            </p>
+            <ul className="space-y-3 text-senior-base">
+              <li>
+                <a
+                  href="https://www.fraudehelpdesk.nl"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  Fraudehelpdesk
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.rijksoverheid.nl/vraag-en-antwoord/cybercrime-en-cybersecurity/phishing"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  Rijksoverheid — Wat kan ik doen tegen phishing?
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://mijn.overheid.nl/herken-oplichting/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-semibold text-gold hover:text-gold-light"
+                >
+                  MijnOverheid — Herken oplichting
+                </a>
+              </li>
+            </ul>
+            <p className="text-senior-xs text-navy/55 mt-6 border-t border-navy/10 pt-4">
+              Laatst inhoudelijk gecontroleerd: 14 september 2026
+            </p>
           </section>
 
         </div>

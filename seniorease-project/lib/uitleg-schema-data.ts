@@ -74,8 +74,8 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
       description: 'Stappenplan bij verdachte berichten of telefoontjes.',
       steps: [
         { name: 'Niet klikken, niet betalen, niet terugbellen', text: 'Niet klikken, niet betalen, niet terugbellen via het opgegeven nummer.' },
-        { name: 'Bel zelf uw bank', text: 'Zoek zelf het telefoonnummer van uw bank op en bel zelf.' },
-        { name: 'Meld verdachte berichten', text: 'Stuur verdachte SMS of e-mail door naar Fraudehelpdesk: 088 - 786 7372.' },
+        { name: 'Bel zelf uw bank', text: 'Beëindig zelf het gesprek. Neem contact op via de officiële bankapp, website of het nummer dat u zelf van uw bank kent.' },
+        { name: 'Meld verdachte berichten', text: 'Neem contact op met de Fraudehelpdesk: 088 - 786 7372.' },
         { name: 'Meld oplichting', text: 'Meld het bij de politie (0900-8844) en uw bank.' },
       ],
     },
