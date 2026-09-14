@@ -69,13 +69,29 @@ const faqSchema = {
         "text": "Berichten zijn versleuteld, maar stuur nooit wachtwoorden of bankgegevens via WhatsApp. Klik niet op vreemde links. Twijfelt u? Bel de persoon via een nummer dat u kent.",
       },
     },
+    {
+      "@type": "Question",
+      "name": "Is er een WhatsApp-handleiding als PDF?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Op deze pagina vindt u een printbare handleiding. Open die, kies Afdrukken en kies Opslaan als PDF als u een bestand wilt bewaren. Dat is gratis.",
+      },
+    },
+    {
+      "@type": "Question",
+      "name": "Is deze uitleg geschikt als ik net met WhatsApp begin?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Ja. Hier staan de eerste stappen: WhatsApp openen, een bericht sturen, foto's versturen en ontvangen. Neem gerust uw tijd.",
+      },
+    },
   ],
 };
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/whatsapp-basis',
-  title: "WhatsApp uitleg voor senioren – eerste stappen stap voor stap",
-  description: "Leer WhatsApp gebruiken: berichten sturen, foto's versturen en veilig appen. Rustige uitleg voor senioren, stap voor stap.",
+  title: "WhatsApp-handleiding: eerste stappen (uitleg + PDF)",
+  description: "Gratis WhatsApp-handleiding met de eerste stappen: een bericht sturen en foto's versturen. Rustige uitleg stap voor stap, met printbare PDF.",
 });
 
 export default function WhatsAppBasisPage() {
@@ -97,7 +113,8 @@ export default function WhatsAppBasisPage() {
               WhatsApp – Eerste stappen
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
-              Kort overzicht: WhatsApp openen, berichten sturen, foto&apos;s versturen en ontvangen, en een duimpje als antwoord.
+              Uitleg voor wie net begint: WhatsApp openen, berichten sturen, foto&apos;s versturen en ontvangen.
+              Ook te gebruiken als printbare handleiding (PDF).
             </p>
           </div>
         </div>
@@ -111,17 +128,29 @@ export default function WhatsAppBasisPage() {
               Met WhatsApp kunt u gratis berichten en foto&apos;s sturen naar familie en vrienden.
               Hieronder vindt u de basis in korte stappen. Neem gerust uw tijd en oefen op uw eigen tempo.
             </p>
-            <p className="mt-4 text-senior-base text-navy/80">
-              <strong>Printbare handleiding:</strong>{' '}
-              <a href="/handleiding-whatsapp.html" target="_blank" rel="noopener noreferrer" className="text-gold font-bold underline hover:no-underline">
-                Open de handleiding
-              </a>
-              {' '}(alle delen in één document). U kunt die pagina printen of als PDF opslaan (Afdrukken → Opslaan als PDF).
-            </p>
             <div className="mt-6 p-4 rounded-xl bg-paper border border-navy/10">
               <p className="text-senior-base font-bold text-navy">Veiligheid in het kort</p>
               <p className="text-senior-base text-navy/80 mt-1">Stuur nooit wachtwoorden of bankgegevens via WhatsApp. Klik niet op vreemde links. Als iemand om geld vraagt, bel die persoon eerst even op een nummer dat u kent om te controleren of het echt is. Meer over veiligheid staat in <strong>Deel 3</strong>.</p>
             </div>
+          </div>
+
+          {/* PDF / print — duidelijker zichtbaar */}
+          <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">
+              Handleiding downloaden of printen
+            </h2>
+            <p className="text-senior-base text-navy/80 leading-relaxed mb-4">
+              SeniorEase heeft een gratis, printbare WhatsApp-handleiding. U opent die in een nieuw tabblad.
+              Wilt u een PDF? Kies op die pagina Afdrukken en daarna &quot;Opslaan als PDF&quot;.
+            </p>
+            <a
+              href="/handleiding-whatsapp.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-gold text-white font-bold text-senior-base rounded-xl hover:bg-gold-light min-h-[48px]"
+            >
+              Open de handleiding
+            </a>
           </div>
 
           {/* Eerste stappen */}
@@ -279,13 +308,68 @@ export default function WhatsAppBasisPage() {
             </ul>
           </div>
 
+          {/* Zichtbare FAQ — synchroon met faqSchema */}
+          <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
+              Veelgestelde vragen
+            </h2>
+            <div className="space-y-5">
+              {[
+                {
+                  vraag: 'Kost WhatsApp geld?',
+                  antwoord:
+                    'WhatsApp zelf is gratis. Via wifi betaalt u geen sms-kosten. Met mobiele data telt het gebruik mee voor uw databundel.',
+                },
+                {
+                  vraag: 'Hoe open ik WhatsApp?',
+                  antwoord:
+                    'Tik op het groene icoon met het witte telefoontje op uw telefoonscherm. Staat het er niet? Zoek in de App Store of Play Store op WhatsApp en installeer de app.',
+                },
+                {
+                  vraag: 'Hoe stuur ik een bericht?',
+                  antwoord:
+                    'Open een gesprek, tik in het witte vak onderaan, typ uw tekst en tik op het blauwe verzend-icoon.',
+                },
+                {
+                  vraag: 'Hoe stuur ik een foto?',
+                  antwoord:
+                    'In een gesprek tikt u op het paperclip- of camera-icoon naast het typvak, kiest u een foto en tikt u op versturen.',
+                },
+                {
+                  vraag: 'Is WhatsApp veilig?',
+                  antwoord:
+                    'Berichten zijn versleuteld, maar stuur nooit wachtwoorden of bankgegevens via WhatsApp. Klik niet op vreemde links. Twijfelt u? Bel de persoon via een nummer dat u kent.',
+                },
+                {
+                  vraag: 'Is er een WhatsApp-handleiding als PDF?',
+                  antwoord:
+                    'Ja. Op deze pagina vindt u een printbare handleiding. Open die, kies Afdrukken en kies Opslaan als PDF als u een bestand wilt bewaren. Dat is gratis.',
+                },
+                {
+                  vraag: 'Is deze uitleg geschikt als ik net met WhatsApp begin?',
+                  antwoord:
+                    'Ja. Hier staan de eerste stappen: WhatsApp openen, een bericht sturen, foto\'s versturen en ontvangen. Neem gerust uw tijd.',
+                },
+              ].map((item) => (
+                <div key={item.vraag} className="border-2 border-navy/10 rounded-xl overflow-hidden">
+                  <div className="bg-gold/10 px-6 py-4 border-b border-navy/10">
+                    <p className="text-senior-base font-bold text-gold">❓ {item.vraag}</p>
+                  </div>
+                  <div className="px-6 py-4">
+                    <p className="text-senior-base text-navy/80 leading-relaxed">{item.antwoord}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
           {/* Gerelateerde uitleg */}
           <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Gerelateerde uitleg</h2>
             <ul className="space-y-2 mb-6">
               <li>
                 <Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
-                  WhatsApp foto&apos;s opslaan
+                  Foto uit WhatsApp opslaan in galerij
                 </Link>
               </li>
               <li>
@@ -306,6 +390,11 @@ export default function WhatsAppBasisPage() {
               <li>
                 <Link href="/uitleg/wifi" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
                   WiFi instellen
+                </Link>
+              </li>
+              <li>
+                <Link href="/lesmateriaal/pakket-c" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                  Lesmateriaal WhatsApp voor begeleiders
                 </Link>
               </li>
             </ul>

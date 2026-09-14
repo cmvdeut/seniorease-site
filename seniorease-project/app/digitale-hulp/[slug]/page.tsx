@@ -29,6 +29,15 @@ export async function generateMetadata({
   const { slug } = await params;
   const artikel = getArtikelBySlug(slug);
   if (!artikel) return {};
+  // CTR-sprint 1: exacte title zonder lange suffix — alleen deze SEO-winnaar
+  if (artikel.slug === 'whatsapp-fotos-opslaan') {
+    return buildPageMetadata({
+      path: `/digitale-hulp/${artikel.slug}`,
+      title: 'WhatsApp-foto opslaan in galerij (Android & iPhone)',
+      description: artikel.description,
+      keywords: artikel.keywords,
+    });
+  }
   return buildPageMetadata({
     path: `/digitale-hulp/${artikel.slug}`,
     title: `${artikel.title} – stap voor stap voor senioren`,
@@ -808,17 +817,27 @@ export default async function DigitaleHulpArtikelPage({
         {
           question: 'Werkt dit op Android én iPhone?',
           answer:
-            'Ja. Open de foto, tik op downloaden of opslaan, en zoek hem daarna in Galerij of Foto’s.',
+            'Ja. Open de foto, bewaar hem via downloaden of opslaan, en zoek hem daarna in Galerij of Foto’s. De knoppen kunnen per telefoon iets anders heten.',
         },
         {
           question: 'Ik zie geen knop om op te slaan — wat nu?',
           answer:
-            'Tik eerst op de foto zodat die groot opent. De downloadknop zit meestal rechtsboven. Soms via de drie puntjes → Opslaan.',
+            'Tik eerst op de foto zodat die groot opent. Zoek daarna naar downloaden of opslaan — soms via de drie puntjes. Uw scherm kan er iets anders uitzien.',
         },
         {
           question: 'Kan ik meerdere foto’s tegelijk bewaren?',
           answer:
             'Ja. Houd één foto ingedrukt, tik op andere foto’s, en kies Opslaan of Downloaden.',
+        },
+        {
+          question: 'Hoe zet ik een foto van WhatsApp in mijn galerij?',
+          answer:
+            'Open de foto in het gesprek, bewaar hem op uw telefoon (downloaden of opslaan) en open daarna Foto’s of Galerij. Daar staat hij meestal bij Recente of in een map WhatsApp.',
+        },
+        {
+          question: 'Hoe download ik een afbeelding uit WhatsApp?',
+          answer:
+            'Dat is hetzelfde als opslaan: open de afbeelding in WhatsApp en kies downloaden of opslaan. Daarna vindt u hem terug in uw galerij.',
         },
       ]),
     );

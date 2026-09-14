@@ -8,6 +8,7 @@ import { WhatsAppBadge } from '@/app/components/GuideTopicBadge';
 import { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
 
 const TOC = [
+  { id: 'kort-antwoord', label: 'Kort antwoord' },
   { id: 'stap-1', label: 'Foto openen' },
   { id: 'stap-2', label: 'Foto opslaan' },
   { id: 'stap-3', label: 'Terugvinden in Galerij' },
@@ -15,7 +16,8 @@ const TOC = [
 ] as const;
 
 const RELATED = [
-  { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp basis' },
+  { href: '/uitleg/whatsapp-basis', label: 'WhatsApp – eerste stappen' },
+  { href: '/digitale-hulp/whatsapp-uitleg-beginners', label: 'WhatsApp beginners' },
   { href: '/uitleg/fotos-maken', label: "Foto's maken" },
   { href: '/uitleg/wifi', label: 'Wifi instellen' },
   { href: '/uitleg/qr-code', label: 'QR-code scannen' },
@@ -38,17 +40,27 @@ const FAQ = [
   {
     vraag: 'Werkt dit op Android én iPhone?',
     antwoord:
-      'Ja. Open de foto in WhatsApp, tik op downloaden of opslaan, en zoek hem daarna in Galerij of Foto’s. De knoppen zien er iets anders uit, de stappen zijn hetzelfde.',
+      'Ja. Open de foto in WhatsApp, bewaar hem via downloaden of opslaan, en zoek hem daarna in Galerij of Foto’s. De knoppen zien er iets anders uit; de stappen zijn hetzelfde.',
   },
   {
     vraag: 'Ik zie geen knop om op te slaan — wat nu?',
     antwoord:
-      'Tik eerst op de foto zodat die groot opent. De downloadknop zit meestal rechtsboven (pijl naar beneden of schijf). Op sommige telefoons: tik op de drie puntjes en kies Opslaan.',
+      'Tik eerst op de foto zodat die groot opent. Zoek daarna naar downloaden of opslaan — soms via de drie puntjes. Uw scherm kan er iets anders uitzien.',
   },
   {
     vraag: 'Kan ik meerdere foto’s tegelijk bewaren?',
     antwoord:
       'Ja. Houd één foto in de chat even ingedrukt, tik daarna op andere foto’s, en kies Opslaan of Downloaden.',
+  },
+  {
+    vraag: 'Hoe zet ik een foto van WhatsApp in mijn galerij?',
+    antwoord:
+      'Open de foto in het gesprek, bewaar hem op uw telefoon (downloaden of opslaan) en open daarna Foto’s of Galerij. Daar staat hij meestal bij Recente of in een map WhatsApp.',
+  },
+  {
+    vraag: 'Hoe download ik een afbeelding uit WhatsApp?',
+    antwoord:
+      'Dat is hetzelfde als opslaan: open de afbeelding in WhatsApp en kies downloaden of opslaan. Daarna vindt u hem terug in uw galerij.',
   },
 ] as const;
 
@@ -56,9 +68,8 @@ export default function WhatsAppFotosGuide() {
   return (
     <GuideLayout
       title="WhatsApp-foto opslaan in galerij"
-      subtitle="Foto uit WhatsApp bewaren? Open de foto, tik op downloaden of opslaan, en vind hem terug in Galerij — op Android en iPhone."
+      subtitle="Foto uit WhatsApp bewaren in uw galerij — op Android en iPhone, stap voor stap."
       badge={<WhatsAppBadge size="md" />}
-      learnBox={<GuideLearnBox items={[...LEARN_ITEMS]} />}
       sidebar={<GuideSidebar toc={[...TOC]} related={[...RELATED]} />}
       stepNav={
         <GuideStepNav
@@ -69,6 +80,21 @@ export default function WhatsAppFotosGuide() {
         />
       }
     >
+      <section
+        id="kort-antwoord"
+        className="scroll-mt-24 rounded-xl border border-navy/10 bg-white px-5 py-4 md:px-6 md:py-5"
+      >
+        <p className="text-senior-sm font-bold text-navy mb-2">Kort antwoord</p>
+        <p className="text-senior-base text-navy/80 leading-relaxed">
+          Een foto die u via WhatsApp ontvangt, kunt u bewaren op uw telefoon. Open de foto in het
+          gesprek, kies downloaden of opslaan, en vind hem daarna terug in Foto&apos;s of Galerij.
+          De exacte knop of benaming kan per telefoon verschillen — uw scherm kan er iets anders
+          uitzien.
+        </p>
+      </section>
+
+      <GuideLearnBox items={[...LEARN_ITEMS]} />
+
       <GuideStep
         id="stap-1"
         number={1}
@@ -93,7 +119,8 @@ export default function WhatsAppFotosGuide() {
         deviceImage
       >
         <p>
-          Zoek het icoontje voor download of opslaan — vaak een pijl naar beneden of een schijf. Tik erop.
+          Zoek het icoontje of het menu voor downloaden of opslaan. Tik erop. Op Android en iPhone
+          kan die knop er iets anders uitzien.
         </p>
         <p>U krijgt soms een melding &quot;Opgeslagen&quot;. Dan staat de foto op uw telefoon, klaar voor de galerij.</p>
       </GuideStep>

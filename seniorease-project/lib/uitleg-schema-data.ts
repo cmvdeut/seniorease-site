@@ -8,7 +8,7 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
       description: 'Zo ziet u waar u bent, zoekt u een adres en vraagt u de route — met Google Maps op uw telefoon.',
       steps: [
         { name: 'Open Google Maps', text: 'Tik op het Maps-icoontje op uw telefoon. U ziet een kaart van uw omgeving.' },
-        { name: 'Tik op mijn locatie', text: 'Tik rechtsonder op het blauwe locatie-icoontje. De blauwe stip toont waar u nu bent.' },
+        { name: 'Tik op mijn locatie', text: 'Tik op het locatie-icoon (vaak onderaan de kaart). De blauwe stip toont waar u nu bent.' },
         { name: 'Tik op de zoekbalk bovenaan', text: "Bovenaan het scherm staat een balk met 'Zoeken in Maps'. Tik daarop. Uw toetsenbord verschijnt." },
         { name: 'Typ het adres', text: "Typ de straatnaam, het huisnummer en de plaatsnaam. Bijvoorbeeld: 'Kerkstraat 12 Utrecht'. De app geeft suggesties zodra u begint." },
         { name: 'Tik op het adres in de lijst', text: 'Onder de zoekbalk verschijnen adressen die overeenkomen met wat u typt. Tik op het juiste adres.' },
@@ -17,9 +17,14 @@ export const UITLEG_SCHEMA_DATA: Record<string, UitlegSchemaEntry> = {
     },
     faq: [
       {
-        question: 'Hoe zie ik waar ik nu ben op Google Maps?',
+        question: 'Waar ben ik nu op de kaart?',
         answer:
-          'Open Google Maps en tik op het blauwe locatie-icoontje rechtsonder. De kaart springt naar uw plek: de blauwe stip bent u. Tik op de stip voor de straatnaam.',
+          'Open Google Maps en tik op het locatie-icoon. De blauwe stip bent u. Het icoon zit meestal onderaan de kaart; op Android en iPhone kan de plek iets verschillen.',
+      },
+      {
+        question: 'Hoe zie ik in welke straat ik nu ben?',
+        answer:
+          'Tik op de blauwe stip. Vaak ziet u dan de straatnaam of meer informatie over uw plek. Locatie moet wel aanstaan op uw telefoon.',
       },
       { question: 'Kost Google Maps geld?', answer: 'Nee, Google Maps is helemaal gratis. U heeft wel een internetverbinding nodig via wifi of mobiele data.' },
       { question: 'Werkt het ook zonder internet?', answer: 'Deels. U kunt een kaartgebied downloaden voor offline gebruik. Voor live routes heeft u wel internet nodig.' },

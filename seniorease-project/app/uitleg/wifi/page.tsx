@@ -4,11 +4,12 @@ import YoutubeWatchCta, { tipsPlaylistHref } from '@/app/components/YoutubeWatch
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wifi',
-  title: 'Wifi instellen op uw telefoon — wachtwoord invullen',
+  title: 'Wifi aanzetten en instellen op uw telefoon',
   description:
-    'Wifi thuis verbinden: Instellingen openen, netwerk kiezen, wachtwoord typen. Ook als verbinden niet lukt. Duidelijke stappen voor smartphone en tablet.',
+    'Wifi aanzetten, een netwerk kiezen en verbinding maken op Android of iPhone. Stap voor stap, ook als verbinden niet meteen lukt.',
   keywords: [
     'wifi instellen',
+    'wifi aanzetten',
     'wifi wachtwoord invullen',
     'wifi verbinden telefoon',
     'wifi instellen smartphone',
@@ -22,7 +23,7 @@ const breadcrumbSchema = {
   "itemListElement": [
     { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.seniorease.nl" },
     { "@type": "ListItem", "position": 2, "name": "Uitleg", "item": "https://www.seniorease.nl/uitleg/wifi" },
-    { "@type": "ListItem", "position": 3, "name": "WiFi instellen", "item": "https://www.seniorease.nl/uitleg/wifi" },
+    { "@type": "ListItem", "position": 3, "name": "Wifi aanzetten en instellen", "item": "https://www.seniorease.nl/uitleg/wifi" },
   ],
 };
 
@@ -47,10 +48,26 @@ const faqSchema = {
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Hoe zet ik wifi aan?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Open Instellingen op uw telefoon en tik op WiFi (of Netwerk). Zet de schakelaar aan. Op veel telefoons kan het ook via het snelle menu bovenaan: veeg omlaag en tik op het wifi-icoon."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Hoe meld ik mijn telefoon aan op wifi?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Zet wifi aan, kies de netwerknaam in de lijst en vul indien gevraagd het wachtwoord in. Het wachtwoord staat vaak op de router of is door de beheerder van het wifi-netwerk gegeven."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Waar vind ik het wifi-wachtwoord?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Meestal op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Bel uw internetprovider."
+        "text": "Vaak op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Vraag de beheerder of bel uw internetprovider."
       }
     },
     {
@@ -102,11 +119,19 @@ export default function WifiPage() {
               ← Terug naar home
             </Link>
             <h1 className="font-serif text-[1.85rem] sm:text-[2.35rem] font-semibold text-navy leading-tight">
-              Wifi instellen op uw telefoon
+              Wifi aanzetten en instellen op uw telefoon
             </h1>
             <p className="text-senior-base text-navy/70 mt-2">
               Netwerk kiezen, wachtwoord invullen, verbinden — ook als het niet lukt.
             </p>
+            <div className="mt-5 max-w-2xl rounded-xl border border-navy/10 bg-white px-5 py-4">
+              <p className="text-senior-sm font-bold text-navy mb-1">Kort antwoord</p>
+              <p className="text-senior-base text-navy/80 leading-relaxed">
+                Zet wifi aan in Instellingen (of via het wifi-icoon bovenaan). Kies daarna uw netwerk
+                in de lijst. Is er een wachtwoord nodig? Vul dat in — het staat vaak op de router of
+                is door de beheerder van het wifi-netwerk gegeven.
+              </p>
+            </div>
             <p className="text-senior-sm text-navy/80 mt-3 max-w-2xl">
               Geen internet op uw telefoon of tablet? Hier leest u hoe u verbinding maakt met wifi thuis en wat u doet als verbinden misgaat.
             </p>
@@ -174,7 +199,7 @@ export default function WifiPage() {
                 {
                   icon: "🔑",
                   titel: "Het WiFi-wachtwoord",
-                  uitleg: "Dit staat vaak op een sticker op de onderkant of achterkant van uw router. Het heet soms 'Wachtwoord', 'Password', 'WPA key' of 'WiFi-sleutel'.",
+                  uitleg: "Dit staat vaak op een sticker op de onderkant of achterkant van uw router, of is door de beheerder van het wifi-netwerk gegeven. Het heet soms 'Wachtwoord', 'Password', 'WPA key' of 'WiFi-sleutel'.",
                 },
               ].map((item, i) => (
                 <div key={i} className="flex gap-4 items-start bg-cream border-2 border-navy/8/20 rounded-xl px-5 py-4">
@@ -190,6 +215,27 @@ export default function WifiPage() {
               <p className="text-senior-base font-bold text-amber-800 mb-1">Wachtwoord kwijt?</p>
               <p className="text-senior-base text-navy/80">Kijk op de sticker op uw router. Staat het er niet op? Bel uw internetprovider — zij kunnen het wachtwoord opnieuw instellen.</p>
             </div>
+          </section>
+
+          {/* Wifi aanzetten — kort, vóór Android/iPhone-stappen */}
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
+              Wifi aanzetten
+            </h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
+              Zonder wifi aan te zetten ziet u geen netwerken en kunt u niet verbinden.
+            </p>
+            <ul className="space-y-3 text-senior-base text-navy/80 leading-relaxed list-disc pl-6">
+              <li>
+                <strong>Via Instellingen:</strong> open Instellingen → tik op WiFi (of Netwerk en internet) → zet de schakelaar aan.
+              </li>
+              <li>
+                <strong>Via het snelle menu:</strong> veeg op veel telefoons vanaf de bovenkant omlaag en tik op het wifi-icoon (een soort waaier).
+              </li>
+              <li>
+                Op Android en iPhone heten de menu&apos;s iets anders; zoek naar &quot;WiFi&quot; of &quot;Wi-Fi&quot;.
+              </li>
+            </ul>
           </section>
 
           {/* Stap voor stap Android */}
@@ -333,6 +379,13 @@ export default function WifiPage() {
                 </div>
               ))}
             </div>
+            <p className="mt-6 text-senior-base text-navy/80 leading-relaxed">
+              Meer hulp bij een hardnekkig probleem? Lees ook:{' '}
+              <Link href="/digitale-hulp/wifi-werkt-niet-oplossen" className="font-semibold text-gold hover:text-gold-light underline">
+                Wifi werkt niet – oplossen
+              </Link>
+              .
+            </p>
           </section>
 
           {/* Veelgestelde vragen */}
@@ -343,8 +396,16 @@ export default function WifiPage() {
             <div className="space-y-5">
               {[
                 {
+                  vraag: "Hoe zet ik wifi aan?",
+                  antwoord: "Open Instellingen op uw telefoon en tik op WiFi (of Netwerk). Zet de schakelaar aan. Op veel telefoons kan het ook via het snelle menu bovenaan: veeg omlaag en tik op het wifi-icoon.",
+                },
+                {
+                  vraag: "Hoe meld ik mijn telefoon aan op wifi?",
+                  antwoord: "Zet wifi aan, kies de netwerknaam in de lijst en vul indien gevraagd het wachtwoord in. Het wachtwoord staat vaak op de router of is door de beheerder van het wifi-netwerk gegeven.",
+                },
+                {
                   vraag: "Waar vind ik het wifi-wachtwoord?",
-                  antwoord: "Meestal op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Bel uw internetprovider — zij helpen u verder.",
+                  antwoord: "Vaak op een sticker op de onderkant of achterkant van uw router. Het heet soms Wachtwoord, Password, WPA key of WiFi-sleutel. Staat het er niet? Vraag de beheerder of bel uw internetprovider — zij helpen u verder.",
                 },
                 {
                   vraag: "Moet ik elke keer opnieuw het wachtwoord invoeren?",

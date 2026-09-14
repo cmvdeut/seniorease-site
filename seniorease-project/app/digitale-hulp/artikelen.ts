@@ -22,7 +22,7 @@ export const artikelen: Artikel[] = [
     slug: "whatsapp-fotos-opslaan",
     title: "WhatsApp-foto opslaan in galerij",
     description:
-      "Foto uit WhatsApp bewaren in uw galerij? Tik op de foto en kies downloaden of opslaan. Werkt op Android en iPhone — rustig, stap voor stap.",
+      "Een foto uit WhatsApp bewaren in uw galerij? Bekijk stap voor stap hoe u een WhatsApp-foto opslaat op Android en iPhone en waar u de foto terugvindt.",
     keywords: [
       "whatsapp foto opslaan",
       "foto whatsapp naar galerij",

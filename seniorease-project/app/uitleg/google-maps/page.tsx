@@ -9,7 +9,7 @@ export const metadata = buildPageMetadata({
   path: '/uitleg/google-maps',
   title: 'Waar ben ik nu? Locatie en route met Google Maps',
   description:
-    'Zie waar u bent op de kaart, zoek een adres en vraag de route. Stap voor stap met Google Maps op uw telefoon — rustig uitgelegd.',
+    'Zie in Google Maps waar u nu bent en herken uw locatie op de kaart. Daarna leert u stap voor stap een adres zoeken en een route starten.',
   keywords: [
     'waar ben ik nu google maps',
     'google maps locatie',
@@ -37,6 +37,14 @@ export default function GoogleMapsPage() {
             <p className="text-senior-base text-navy/70 mt-2">
               Zie waar u bent op de kaart, zoek een adres en vraag de route — rustig uitgelegd.
             </p>
+            <div className="mt-5 max-w-2xl rounded-xl border border-navy/10 bg-white px-5 py-4">
+              <p className="text-senior-sm font-bold text-navy mb-1">Kort antwoord</p>
+              <p className="text-senior-base text-navy/80 leading-relaxed">
+                Open Google Maps en tik op het locatie-icoon. De blauwe stip op de kaart laat zien waar u bent.
+                Vaak kunt u zo ook zien welke straat of plek bij uw huidige locatie hoort. Het icoon zit meestal
+                onderaan de kaart; uw scherm kan er iets anders uitzien.
+              </p>
+            </div>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="Smartphone navigatie">
               <span className="text-senior-sm text-navy/55 font-semibold mr-1">📱 Smartphone:</span>
               <Link href="/uitleg/whatsapp-basis" className="text-senior-sm font-bold text-gold hover:text-gold-light hover:underline">WhatsApp basis</Link>
@@ -50,6 +58,59 @@ export default function GoogleMapsPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
+
+          {/* App openen — vroeg in de leesvolgorde */}
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
+              De app openen
+            </h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
+              Google Maps staat op bijna elke telefoon al voorgeïnstalleerd. Zoek op uw telefoon naar het icoontje met een gekleurde kaartspeld.
+            </p>
+            <div className="grid sm:grid-cols-2 gap-5">
+              <div className="bg-green-50 border-2 border-green-300 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-navy mb-2">🤖 Android-telefoon</p>
+                <p className="text-senior-base text-navy/80 leading-relaxed">Het Google Maps-icoontje staat op uw beginscherm of in de lijst met apps. Het ziet eruit als een rode kaartspeld op een gekleurde kaart.</p>
+              </div>
+              <div className="bg-paper border-2 border-navy/8 rounded-xl p-5">
+                <p className="text-senior-base font-bold text-navy mb-2">🍎 iPhone</p>
+                <p className="text-senior-base text-navy/80 leading-relaxed">Zoek op uw beginscherm naar &apos;Maps&apos; (Apple&apos;s eigen kaarten-app) of download Google Maps gratis via de App Store. Beide apps werken goed.</p>
+              </div>
+            </div>
+            <div className="mt-5 bg-paper border border-navy/10 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-amber-800 mb-1">App niet gevonden?</p>
+              <p className="text-senior-base text-navy/80">Zoek in de App Store (iPhone) of Play Store (Android) naar &apos;Google Maps&apos; en tik op Installeren. Het is gratis.</p>
+            </div>
+          </section>
+
+          {/* Waar ben ik nu — direct na openen */}
+          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
+            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
+              Waar ben ik nu? (blauwe stip)
+            </h2>
+            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
+              Bent u ergens en weet u niet precies waar? Google Maps kan u dat direct vertellen.
+            </p>
+            <ol className="space-y-4">
+              {[
+                "Open Google Maps",
+                "Tik op het locatie-icoon (vaak onderaan de kaart; op uw scherm kan de plek iets anders zijn)",
+                "De kaart centreert op waar u nu bent. U ziet een blauwe stip — dat bent u!",
+                "Tik op de blauwe stip voor meer informatie, zoals de straatnaam",
+              ].map((stap, i) => (
+                <li key={i} className="flex gap-4 items-start">
+                  <div className="flex-shrink-0 w-9 h-9 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">
+                    {i + 1}
+                  </div>
+                  <p className="text-senior-base text-navy/80 leading-relaxed pt-1">{stap}</p>
+                </li>
+              ))}
+            </ol>
+            <div className="mt-6 bg-paper border border-navy/8 rounded-xl p-5">
+              <p className="text-senior-base font-bold text-navy/75 mb-1">ℹ️ Locatie moet aanstaan</p>
+              <p className="text-senior-base text-navy/80">Voor &apos;Waar ben ik?&apos; moet uw locatie aanstaan. De app vraagt daar toestemming voor. Tik op &apos;Toestaan&apos; als dat nog niet is gebeurd.</p>
+            </div>
+          </section>
 
           {/* Video */}
           <section className="my-8 mx-4 sm:mx-0">
@@ -94,16 +155,16 @@ export default function GoogleMapsPage() {
               Wat is Google Maps?
             </h2>
             <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-4">
-              Google Maps is een gratis app op uw telefoon waarmee u overal een route kunt berekenen. U typt een adres in en de app vertelt u stap voor stap hoe u er komt — lopend, met de auto of met het openbaar vervoer.
+              Google Maps is een gratis app van Google. SeniorEase legt hem in gewone taal uit. U kunt zien waar u bent, een adres zoeken en een route berekenen — lopend, met de auto of met het openbaar vervoer.
             </p>
             <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
               Het werkt als een navigatiesysteem in uw auto, maar dan op uw telefoon. En het is altijd bijgewerkt met de nieuwste wegen en adressen.
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
+                { icon: "📍", label: "Zien waar u bent" },
                 { icon: "🗺️", label: "Adres zoeken en vinden" },
                 { icon: "🚗", label: "Route berekenen" },
-                { icon: "📍", label: "Zien waar u bent" },
               ].map((item, i) => (
                 <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
                   <div className="text-3xl mb-2">{item.icon}</div>
@@ -114,30 +175,6 @@ export default function GoogleMapsPage() {
           </section>
 
           <MapsAppGuide />
-
-          {/* App openen */}
-          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
-            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
-              De app openen
-            </h2>
-            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
-              Google Maps staat op bijna elke telefoon al voorgeïnstalleerd. Zoek op uw telefoon naar het icoontje met een gekleurde kaartspeld.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-5">
-              <div className="bg-green-50 border-2 border-green-300 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-navy mb-2">🤖 Android-telefoon</p>
-                <p className="text-senior-base text-navy/80 leading-relaxed">Het Google Maps-icoontje staat op uw beginscherm of in de lijst met apps. Het ziet eruit als een rode kaartspeld op een gekleurde kaart.</p>
-              </div>
-              <div className="bg-paper border-2 border-navy/8 rounded-xl p-5">
-                <p className="text-senior-base font-bold text-navy mb-2">🍎 iPhone</p>
-                <p className="text-senior-base text-navy/80 leading-relaxed">Zoek op uw beginscherm naar &apos;Maps&apos; (Apple&apos;s eigen kaarten-app) of download Google Maps gratis via de App Store. Beide apps werken goed.</p>
-              </div>
-            </div>
-            <div className="mt-5 bg-paper border border-navy/10 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-amber-800 mb-1">App niet gevonden?</p>
-              <p className="text-senior-base text-navy/80">Zoek in de App Store (iPhone) of Play Store (Android) naar &apos;Google Maps&apos; en tik op Installeren. Het is gratis.</p>
-            </div>
-          </section>
 
           {/* Een adres zoeken */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
@@ -253,34 +290,7 @@ export default function GoogleMapsPage() {
             </div>
           </section>
 
-          {/* Waar ben ik */}
-          <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
-            <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
-              📌 Waar ben ik?
-            </h2>
-            <p className="text-senior-sm md:text-senior-base text-navy/80 leading-relaxed mb-6">
-              Bent u ergens en weet u niet precies waar? Google Maps kan u dat direct vertellen.
-            </p>
-            <ol className="space-y-4">
-              {[
-                "Open Google Maps",
-                "Tik op het blauwe cirkeltje-icoontje rechtsonder op het scherm (het &apos;mijn locatie&apos;-icoontje)",
-                "De kaart centreert op waar u nu bent. U ziet een blauwe stip — dat bent u!",
-                "Tik op de blauwe stip voor meer informatie, zoals de straatnaam",
-              ].map((stap, i) => (
-                <li key={i} className="flex gap-4 items-start">
-                  <div className="flex-shrink-0 w-9 h-9 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-base">
-                    {i + 1}
-                  </div>
-                  <p className="text-senior-base text-navy/80 leading-relaxed pt-1" dangerouslySetInnerHTML={{ __html: stap }} />
-                </li>
-              ))}
-            </ol>
-            <div className="mt-6 bg-paper border border-navy/8 rounded-xl p-5">
-              <p className="text-senior-base font-bold text-navy/75 mb-1">ℹ️ Locatie moet aanstaan</p>
-              <p className="text-senior-base text-navy/80">Voor &apos;Waar ben ik?&apos; moet uw locatie aanstaan. De app vraagt daar toestemming voor. Tik op &apos;Toestaan&apos; als dat nog niet is gebeurd.</p>
-            </div>
-          </section>
+          {/* Waar ben ik — verplaatst naar bovenaan (na app openen) */}
 
           {/* Favorieten opslaan */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
@@ -330,8 +340,12 @@ export default function GoogleMapsPage() {
             <div className="space-y-5">
               {[
                 {
-                  vraag: "Hoe zie ik waar ik nu ben?",
-                  antwoord: "Open Google Maps en tik op het blauwe locatie-icoontje rechtsonder. De kaart springt naar uw plek: de blauwe stip bent u. Tik op de stip voor meer info, zoals de straatnaam. Locatie moet wel aanstaan op uw telefoon.",
+                  vraag: "Waar ben ik nu op de kaart?",
+                  antwoord: "Open Google Maps en tik op het locatie-icoon. De blauwe stip bent u. Het icoon zit meestal onderaan de kaart; op Android en iPhone kan de plek iets verschillen.",
+                },
+                {
+                  vraag: "Hoe zie ik in welke straat ik nu ben?",
+                  antwoord: "Tik op de blauwe stip. Vaak ziet u dan de straatnaam of meer informatie over uw plek. Locatie moet wel aanstaan op uw telefoon.",
                 },
                 {
                   vraag: "Kost Google Maps geld?",
