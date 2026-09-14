@@ -9,8 +9,32 @@ import {
 
 export const LESMATERIAAL_FAQ = [
   {
-    question: 'Wat krijg ik na betaling?',
-    answer: `Na betaling ontvangt u automatisch per e-mail beveiligde downloadlinks naar de PDF-bestanden (geldig ongeveer 7 dagen — sla ze op). Op de bedanktpagina kunt u vaak ook direct downloaden. Bij een losse les: één lesmiddag. Bij een themapakket: vier lessen. Bij het organisatiepakket: alle themapakketten A–H, inclusief begeleidersgids.`,
+    question: 'Voor welke organisaties is het lesmateriaal bedoeld?',
+    answer:
+      'Voor bibliotheken, buurthuizen, clubhuizen en andere organisaties die zelf digitale lessen willen geven aan senioren — met een eigen begeleider of vrijwilliger. U koopt digitaal lesmateriaal (PDF) om te downloaden en te printen; geen online cursusplatform.',
+  },
+  {
+    question: 'Kan een vrijwilliger de lessen geven?',
+    answer:
+      'Ja. Het materiaal is gemaakt voor begeleiders en vrijwilligers die geen IT-docent zijn. U volgt het draaiboek: kijken → doen → controleren. Deelnemers oefenen op hun eigen toestel; u helpt waar nodig.',
+  },
+  {
+    question: 'Moet de begeleider technisch deskundig zijn?',
+    answer:
+      'Nee. U hoeft geen IT-docent te zijn. Het draaiboek en de oefentaken leiden u door de les. Ziet een scherm er anders uit? Dat kan — vraag dan een helper of doe rustig verder met de volgende stap.',
+  },
+  {
+    question: 'Wat zit er in een SeniorEase-lespakket?',
+    answer: `Een themapakket (${formatPrijs(PAKKET_PRIJS)}) bevat vier aansluitende lessen van 90 minuten over één thema, als digitaal lesboek (PDF). Vaak vindt u onder meer een draaiboek, oefentaken of deelnemerskaart, zaalchecklist en soms beamer-PDF — de precieze onderdelen verschillen per pakket. Bekijk daarom altijd de pakketpagina. Een losse les (${formatPrijs(LOSSE_LES_PRIJS)}) is één lesmiddag; het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) bevat alle themapakketten A–H plus begeleidersgids.`,
+  },
+  {
+    question: 'Mag ik het lesmateriaal printen voor deelnemers?',
+    answer: `Ja, binnen de gebruikslicentie. Bij een losse les of themapakket: voor eigen gebruik of kleine groepen. Voor structureel lesgeven op locatie: kies het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) — daarmee krijgt u printrechten voor georganiseerde activiteiten binnen uw organisatie.`,
+  },
+  {
+    question: 'Hoe ontvang ik het lesmateriaal na aankoop?',
+    answer:
+      'Na betaling ontvangt u automatisch per e-mail beveiligde downloadlinks naar de PDF-bestanden (geldig ongeveer 7 dagen — sla ze op). Op de bedanktpagina kunt u vaak ook direct downloaden. Geen mail? Controleer ongewenste e-mail of neem contact op — wij helpen binnen één werkdag.',
   },
   {
     question: 'Wat is het verschil tussen losse les, themapakket en organisatiepakket?',
@@ -22,18 +46,9 @@ export const LESMATERIAAL_FAQ = [
       'Nee. Alles is een eenmalige betaling. Geen abonnement, geen verborgen kosten per les of per deelnemer.',
   },
   {
-    question: 'Hoe snel krijg ik de PDF\'s?',
-    answer:
-      'Automatisch na betaling: meestal binnen enkele minuten per e-mail, plus downloadknoppen op de bedanktpagina als uw sessie bekend is. Geen mail? Controleer ongewenste e-mail of neem contact op — wij helpen binnen één werkdag.',
-  },
-  {
     question: 'Moet ik een beamer of PowerPoint hebben?',
     answer:
       'Nee. Print op tafel is de basis — deelnemers oefenen op hun eigen telefoon, tablet of computer. Heeft uw zaal een beamer? Dan kunt u optioneel een beamer-PDF gebruiken (inbegrepen bij aankoop, waar beschikbaar).',
-  },
-  {
-    question: 'Mag ik printen voor mijn bibliotheek of buurthuis?',
-    answer: `Bij losse les of themapakket: voor eigen gebruik of kleine groepen. Voor structureel lesgeven op locatie: kies het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) — daarmee krijgt u printrechten voor georganiseerde activiteiten binnen uw organisatie.`,
   },
   {
     question: 'Zit pakket H (AI) in het organisatiepakket?',

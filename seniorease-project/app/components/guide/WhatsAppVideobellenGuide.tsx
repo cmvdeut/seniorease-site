@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import GuideLayout from './GuideLayout';
 import GuideLearnBox from './GuideLearnBox';
 import GuideStep from './GuideStep';
@@ -89,6 +90,15 @@ export default function WhatsAppVideobellenGuide() {
           Valt het gesprek weg? Controleer of wifi of mobiele data aanstaat.
         </p>
       </GuideStep>
+
+      <p className="text-navy/70 text-senior-sm leading-relaxed mt-6 border-t border-navy/10 pt-6">
+        Organiseert u een WhatsApp-workshop voor senioren? Bekijk het complete SeniorEase-lesmateriaal
+        over berichten, foto&apos;s, bellen en veilig gebruik:{' '}
+        <Link href="/lesmateriaal/pakket-c" className="text-gold hover:text-gold-light font-semibold">
+          Pakket C — WhatsApp
+        </Link>
+        .
+      </p>
     </GuideLayout>
   );
 }

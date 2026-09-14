@@ -370,6 +370,14 @@ export default function VeiligheidPage() {
                 </Link>
               </li>
             </ul>
+            <p className="text-navy/70 text-senior-sm leading-relaxed mb-6 border-t border-navy/10 pt-6">
+              Geeft u zelf les over veilig internetten? Bekijk het complete SeniorEase-lesmateriaal
+              over veilig online handelen:{' '}
+              <Link href="/lesmateriaal/pakket-d" className="text-senior-base font-semibold text-gold hover:text-gold-light underline">
+                Pakket D — Veilig online
+              </Link>
+              .
+            </p>
             <div className="mb-10">
               <KijkEnHelpCta />
             </div>

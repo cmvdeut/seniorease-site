@@ -274,6 +274,14 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="font-semibold text-primary hover:underline">Veilig wachtwoord maken</Link></li>
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
           </ul>
+          <p className="text-senior-sm text-gray-700 leading-relaxed mt-6 border-t border-gray-200 pt-6">
+            Geeft u zelf les aan een groep over phishing en veilig online? Bekijk het complete
+            SeniorEase-lesmateriaal:{' '}
+            <Link href="/lesmateriaal/pakket-d" className="font-semibold text-primary hover:underline">
+              Pakket D — Veilig online
+            </Link>
+            .
+          </p>
         </>
       );
     case 'phishing-mail-herkennen':
@@ -522,9 +530,16 @@ function ArtikelContent({ slug }: { slug: string }) {
           <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-4">
             Het is geen mens maar een programma dat patronen uit veel teksten heeft geleerd. Daardoor kan het nuttige antwoorden geven, maar het kan ook fouten maken. Gebruik het als handige helper, niet als enige bron voor belangrijke beslissingen.
           </p>
-          <p className="text-senior-base text-gray-700 leading-relaxed">
+          <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
             Wij leggen uitgebreid uit wat AI is, hoe u het veilig gebruikt en waar u het kunt proberen. Ga naar{' '}
             <Link href="/wat-is-ai" className="font-bold text-primary hover:underline">Wat is AI? Simpele uitleg voor senioren</Link>.
+          </p>
+          <p className="text-senior-sm text-gray-700 leading-relaxed border-t border-gray-200 pt-6">
+            Organiseert u een AI-workshop voor senioren? Bekijk het complete SeniorEase-lesmateriaal:{' '}
+            <Link href="/lesmateriaal/pakket-h-ai" className="font-semibold text-primary hover:underline">
+              Pakket H — AI in het dagelijks leven
+            </Link>
+            .
           </p>
         </>
       );

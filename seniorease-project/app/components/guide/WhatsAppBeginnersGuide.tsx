@@ -106,6 +106,14 @@ export default function WhatsAppBeginnersGuide() {
         </Link>
         .
       </p>
+
+      <p className="text-navy/70 text-senior-sm leading-relaxed mt-6 border-t border-navy/10 pt-6">
+        Geeft u zelf les aan een groep? Bekijk het complete SeniorEase-lesmateriaal over WhatsApp:{' '}
+        <Link href="/lesmateriaal/pakket-c" className="text-gold hover:text-gold-light font-semibold">
+          Pakket C — WhatsApp
+        </Link>
+        .
+      </p>
     </GuideLayout>
   );
 }

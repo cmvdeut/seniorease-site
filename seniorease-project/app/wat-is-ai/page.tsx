@@ -283,6 +283,15 @@ export default function WatIsAIPage() {
             </div>
           </section>
 
+          <p className="text-senior-sm md:text-senior-base text-gray-700 leading-relaxed mb-8 border-t-2 border-neutral-stone pt-8">
+            Geeft u zelf een AI-les of -workshop aan een groep senioren? Bekijk het complete
+            SeniorEase-lesmateriaal over AI in het dagelijks leven:{' '}
+            <Link href="/lesmateriaal/pakket-h-ai" className="font-semibold text-primary hover:underline">
+              Pakket H — AI in het dagelijks leven
+            </Link>
+            .
+          </p>
+
           {/* FAQ */}
           <section className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-10">
             <h2 className="text-senior-xl font-bold text-primary mb-6">

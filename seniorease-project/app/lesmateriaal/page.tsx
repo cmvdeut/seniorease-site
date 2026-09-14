@@ -18,17 +18,18 @@ export const dynamic = 'force-dynamic';
 
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal',
-  title: 'Digitaal lesmateriaal voor bibliotheken en begeleiders',
+  title: 'Lesmateriaal digitale vaardigheden voor senioren',
   description:
-    'Digitaal lesboek (PDF) voor rustige doe-middagen met senioren: draaiboek, oefentaken en beamer-slides. Geen online cursus — download en print zelf. Vanaf €6,95 per les.',
+    'Lesmateriaal digitale vaardigheden voor senioren — voor bibliotheken, buurthuizen en organisaties die zelf les willen geven. Digitaal lesboek (PDF): downloaden, printen, praktisch oefenen. Geen online cursusplatform. Themapakketten en losse lessen.',
   keywords: [
+    'lesmateriaal digitale vaardigheden',
     'lesmateriaal senioren',
-    'digitaal lesboek',
-    'digitaal vaardigheden',
+    'digitale vaardigheden senioren',
     'bibliotheek',
     'buurthuis',
-    'begeleider',
+    'zelf lesgeven',
     'PDF',
+    'printbaar lesmateriaal',
     'WhatsApp les',
     'DigiD les',
   ],
@@ -45,8 +46,8 @@ const hubItems = [
 ];
 
 const collectionSchema = buildCollectionPageSchema(
-  'SeniorEase digitaal lesmateriaal',
-  'Digitaal lesboek (PDF) voor rustige doe-middagen met senioren — voor begeleiders in bibliotheek en buurthuis.',
+  'Lesmateriaal digitale vaardigheden voor senioren',
+  'Digitaal lesmateriaal (PDF) voor organisaties die zelf digitale lessen aan senioren geven — bibliotheek, buurthuis en begeleiders.',
   '/lesmateriaal',
   hubItems,
 );
@@ -72,17 +73,22 @@ export default function LesmateriaalPage() {
             <LesmateriaalPrijsBadge />
           </div>
 
-          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-5 max-w-3xl">
-            Digitaal lesmateriaal voor rustige doe-middagen.
+          <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-3 max-w-3xl">
+            Lesmateriaal digitale vaardigheden voor senioren
           </h1>
+          <p className="text-navy/80 text-senior-base leading-relaxed max-w-2xl mb-5">
+            Voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen
+            willen geven.
+          </p>
           <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-4">
-            Een <strong>digitaal lesboek (PDF)</strong> per thema: draaiboek voor u, oefentaken
-            voor deelnemers, zaalchecklist en nazorgkaart. Geen online cursus — u downloadt,
-            print en geeft les in uw eigen tempo.
+            Een <strong>digitaal lesboek (PDF)</strong> per thema: draaiboek voor uw begeleider
+            of vrijwilliger, oefentaken voor deelnemers, zaalchecklist en nazorgkaart. Geen
+            online cursusplatform — u downloadt, print en geeft les in uw eigen tempo.
+            Themapakketten en losse lessen beschikbaar.
           </p>
           <p className="text-navy/60 text-senior-sm leading-relaxed max-w-2xl mb-10">
-            Elke les 90 minuten. Deelnemers oefenen op hun <strong>eigen</strong> telefoon,
-            tablet of computer.
+            Elke les 90 minuten. Deelnemers oefenen praktisch op hun <strong>eigen</strong>{' '}
+            telefoon, tablet of computer.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">

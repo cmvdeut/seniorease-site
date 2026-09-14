@@ -12,6 +12,7 @@ import {
   listRoutablePakketten,
   LOSSE_LES_PRIJS,
 } from '../lesmateriaal-data';
+import { getLesmateriaalSeoOverride } from '../lesmateriaal-seo-overrides';
 import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
 import { Check } from 'lucide-react';
 
@@ -28,10 +29,13 @@ export async function generateMetadata({ params }: Props) {
   const { slug } = await params;
   const pakket = getPakketBySlug(slug);
   if (!pakket) return {};
+  const seo = getLesmateriaalSeoOverride(slug);
   return buildPageMetadata({
     path: `/lesmateriaal/${slug}`,
-    title: `Pakket ${pakket.code}: ${pakket.title}`,
-    description: `${pakket.description} Digitaal lesboek: vier lessen à 90 minuten. ${formatPrijs(pakket.price)} per pakket.`,
+    title: seo?.title ?? `Pakket ${pakket.code}: ${pakket.title}`,
+    description:
+      seo?.description ??
+      `${pakket.description} Digitaal lesboek: vier lessen à 90 minuten. ${formatPrijs(pakket.price)} per pakket.`,
     keywords: ['lesmateriaal', pakket.title, 'senioren', 'PDF', pakket.code],
   });
 }
@@ -46,6 +50,7 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
   const pakketCheckoutEnabled = pakketPaymentLinkBase !== null;
   const losCheckoutEnabled = losPaymentLinkBase !== null;
   const Icon = pakket.Icon;
+  const seo = getLesmateriaalSeoOverride(slug);
 
   const productSchema = {
     '@context': 'https://schema.org',
@@ -88,9 +93,10 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
           </div>
         </div>
 
-        <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8">
-          {pakket.description}
-        </p>
+        <div className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8 space-y-3">
+          {seo?.openingLead ? <p>{seo.openingLead}</p> : null}
+          <p>{pakket.description}</p>
+        </div>
 
         <div className="flex flex-wrap gap-3 mb-10">
           {pakket.popular && (

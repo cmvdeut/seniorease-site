@@ -165,6 +165,14 @@ export default function DigidPage() {
               <li><Link href="/uitleg/wachtwoorden" className="text-senior-base font-semibold text-gold hover:text-gold-light">Wachtwoorden beheren →</Link></li>
               <li><Link href="/digitale-hulp/apps-installeren" className="text-senior-base font-semibold text-gold hover:text-gold-light">DigiD app installeren (telefoon) →</Link></li>
             </ul>
+            <p className="text-navy/70 text-senior-sm leading-relaxed mt-6 border-t border-navy/10 pt-6">
+              Geeft u zelf een DigiD-les of workshop over digitale overheid? Bekijk het complete
+              SeniorEase-lesmateriaal:{' '}
+              <Link href="/lesmateriaal/pakket-e" className="text-senior-base font-semibold text-gold hover:text-gold-light">
+                Pakket E — DigiD &amp; digitale overheid
+              </Link>
+              .
+            </p>
           </section>
 
         </div>
