@@ -1,15 +1,18 @@
 # SEO/AEO Lesmateriaal — Build Sprint 2
 
-**Status:** DEPLOYED & FROZEN 🔒  
+**Status:** **DEPLOYED & FROZEN** 🔒  
 **Datum:** 14 september 2026  
 **Bron-audit:** `contentplan/gsc/seo-aeo-lesmateriaal-audit-v1.md` (GOEDGEKEURD)  
 **Baseline:** 14 september 2026
 
 | Release | Waarde |
 |---------|--------|
-| **Commit hash** | _(na commit)_ |
-| **Deployment ID** | _(na deploy)_ |
-| **Deployment status** | _(na deploy)_ |
+| **Commit hash** | `af340a0585a6f55673f358e32f65b45123acd0c9` |
+| **Commit message** | Improve SEO/AEO for lesmateriaal hub and packages C/D/E/H. |
+| **Deployment ID** | `dpl_ACwTnTZ1sYc1uhukf8193j9Sd6FJ` |
+| **Deployment URL** | https://seniorease-site-hnm7218za-cmvdeut-gmailcoms-projects.vercel.app |
+| **Deployment status** | ● **Ready** (Production) |
+| **Aliases** | `https://www.seniorease.nl`, `https://seniorease.nl`, … |
 | **Productie-URL** | https://www.seniorease.nl |
 
 ---
@@ -22,7 +25,8 @@
 
 - Geen “vendor-onafhankelijk”
 - Gemini = voorbeeld, niet het product
-- Geen ChatGPT-cursus-suggestie
+- Geen ChatGPT-cursus-suggestie  
+**Productie-smoke:** meta aanwezig en correct.
 
 ---
 
@@ -32,129 +36,112 @@
 |-------|-----------|
 | routes gewijzigd | **NEE** |
 | redirects gewijzigd | **NEE** |
-| canonicals gewijzigd | **NEE** (self-canonical via bestaande `buildPageMetadata`) |
+| canonicals gewijzigd | **NEE** |
 | prijzen gewijzigd | **NEE** (€6,95 / €19,95 / €149) |
-| checkout gewijzigd | **NEE** |
-| Stripe gewijzigd | **NEE** |
-| Brevo gewijzigd | **NEE** |
-| fulfillment gewijzigd | **NEE** |
-| PDF/lesinhoud gewijzigd | **NEE** |
-| `lesmateriaal-data.ts` | **NEE** |
+| checkout / Stripe / Brevo / fulfillment | **NEE** |
+| PDF/lesinhoud / `lesmateriaal-data.ts` | **NEE** |
 | CTR Sprint 1 onverwacht gewijzigd | **NEE** |
-| GEO-sprint | **NEE** |
-| nieuwe landingspagina’s / routes | **NEE** |
 | QAPage | **NEE** |
+| TypeScript | **PASS** (`tsc --noEmit`) |
 
 ---
 
-## Per gewijzigde URL
+## Changed-files (commit)
 
-### 1. `/lesmateriaal`
+```
+seniorease-project/app/components/guide/WhatsAppBeginnersGuide.tsx
+seniorease-project/app/components/guide/WhatsAppVideobellenGuide.tsx
+seniorease-project/app/digitale-hulp/[slug]/page.tsx
+seniorease-project/app/lesmateriaal/LesmateriaalFaq.tsx
+seniorease-project/app/lesmateriaal/[slug]/page.tsx
+seniorease-project/app/lesmateriaal/lesmateriaal-seo-overrides.ts
+seniorease-project/app/lesmateriaal/page.tsx
+seniorease-project/app/uitleg/digid/page.tsx
+seniorease-project/app/uitleg/veiligheid/page.tsx
+seniorease-project/app/wat-is-ai/page.tsx
+seniorease-project/contentplan/gsc/seo-aeo-lesmateriaal-sprint-2-deploy.md
+```
 
-| Veld | BEFORE | AFTER |
-|------|--------|-------|
-| **Title** | Digitaal lesmateriaal voor bibliotheken en begeleiders | Lesmateriaal digitale vaardigheden voor senioren |
-| **Meta** | Digitaal lesboek (PDF) voor rustige doe-middagen… | Lesmateriaal digitale vaardigheden voor senioren — voor bibliotheken, buurthuizen en organisaties die zelf les willen geven. Digitaal lesboek (PDF): downloaden, printen, praktisch oefenen. Geen online cursusplatform. Themapakketten en losse lessen. |
-| **H1** | Digitaal lesmateriaal voor rustige doe-middagen. | Lesmateriaal digitale vaardigheden voor senioren |
-| **Openingscopy** | Ja | Ja — org-zin onder H1 + productbelofte |
-| **FAQ** | Ja | Ja — 6 AEO-vragen vooraan; zichtbaar ↔ FAQPage synchroon |
-| **Schema** | CollectionPage + FAQPage | CollectionPage aangescherpt; FAQPage bijgewerkt |
-| **Bestanden** | `page.tsx`, `LesmateriaalFaq.tsx` | |
+`git diff --stat` (commit):
 
-### 2. `/lesmateriaal/pakket-c`
-
-| Veld | BEFORE | AFTER |
-|------|--------|-------|
-| **Title** | Pakket C: WhatsApp | WhatsApp-lesmateriaal — zelf een cursus voor senioren geven |
-| **Meta** | description + Digitaal lesboek… €19,95 | Kant-en-klaar WhatsApp-lesmateriaal… zelf cursus/workshop… €19,95. |
-| **H1** | WhatsApp | WhatsApp *(ongewijzigd)* |
-| **Openingscopy** | description | lead + description |
-| **Schema** | Product + Offer | **intact** (description/prijs uit data) |
-
-### 3. `/lesmateriaal/pakket-d`
-
-| Veld | BEFORE | AFTER |
-|------|--------|-------|
-| **Title** | Pakket D: Veilig online | Veilig online — lesmateriaal voor organisaties |
-| **Meta** | description + Digitaal lesboek… | Lesmateriaal veilig internetten… zelf lessen… €19,95. |
-| **H1** | Veilig online | Veilig online *(ongewijzigd)* |
-| **Openingscopy** | description | lead + description |
-| **Schema** | Product + Offer | **intact** |
-
-### 4. `/lesmateriaal/pakket-e`
-
-| Veld | BEFORE | AFTER |
-|------|--------|-------|
-| **Title** | Pakket E: DigiD & digitale overheid | DigiD-lesmateriaal — zelf een workshop voor senioren geven |
-| **Meta** | description + Digitaal lesboek… | DigiD-lesmateriaal… zonder echte login in de klas… €19,95. |
-| **H1** | DigiD & digitale overheid | DigiD & digitale overheid *(ongewijzigd)* |
-| **Openingscopy** | description (geen echte login) | lead + description |
-| **Schema** | Product + Offer | **intact** |
-
-### 5. `/lesmateriaal/pakket-h-ai`
-
-| Veld | BEFORE | AFTER |
-|------|--------|-------|
-| **Title** | Pakket H: Pakket H — AI in het dagelijks leven | Pakket H — AI in het dagelijks leven — lesmateriaal voor organisaties |
-| **Meta** | Leer AI gebruiken… | **Finale:** AI-lesmateriaal waarmee uw organisatie zelf een praktische AI-workshop voor senioren kan geven. Gemini is voorbeeld; ook bij andere AI-assistenten. Vier lessen, €19,95. |
-| **H1** | Pakket H — AI in het dagelijks leven | *(ongewijzigd; lessen H1–H4 in data ongewijzigd)* |
-| **Openingscopy** | description | lead + description |
-| **Schema** | Product + Offer | **intact** |
+```
+11 files changed, 323 insertions(+), 31 deletions(-)
+```
 
 ---
 
-## B2C → B2B bruggen
+## Per gewijzigde URL (samenvatting)
 
-| Bronpagina | Doel | Bestand |
-|------------|------|---------|
-| `/digitale-hulp/whatsapp-uitleg-beginners` | Pakket C | `WhatsAppBeginnersGuide.tsx` |
-| `/digitale-hulp/whatsapp-videobellen-uitleg` | Pakket C | `WhatsAppVideobellenGuide.tsx` |
-| `/uitleg/veiligheid` | Pakket D | `uitleg/veiligheid/page.tsx` |
-| `/digitale-hulp/phishing-herkennen` | Pakket D | `digitale-hulp/[slug]/page.tsx` |
-| `/uitleg/digid` | Pakket E | `uitleg/digid/page.tsx` |
-| `/wat-is-ai` | Pakket H | `wat-is-ai/page.tsx` |
-| `/digitale-hulp/wat-is-ai-simpel-uitgelegd` | Pakket H | `digitale-hulp/[slug]/page.tsx` |
+| URL | Title (final) | H1 | Opening | Schema |
+|-----|---------------|----|---------|--------|
+| `/lesmateriaal` | Lesmateriaal digitale vaardigheden voor senioren \| SeniorEase | Lesmateriaal digitale vaardigheden voor senioren | org-zin + PDF-belofte | CollectionPage + FAQPage |
+| `/lesmateriaal/pakket-c` | WhatsApp-lesmateriaal — zelf een cursus… | WhatsApp | lead + description | Product+Offer intact |
+| `/lesmateriaal/pakket-d` | Veilig online — lesmateriaal voor organisaties | Veilig online | lead + description | Product+Offer intact |
+| `/lesmateriaal/pakket-e` | DigiD-lesmateriaal — zelf een workshop… | DigiD & digitale overheid | lead + description (geen echte login) | Product+Offer intact |
+| `/lesmateriaal/pakket-h-ai` | Pakket H — AI… — lesmateriaal voor organisaties | Pakket H — AI in het dagelijks leven | lead + description | Product+Offer intact |
+
+---
+
+## Productie-smoke (14 sep 2026, post-deploy)
+
+| URL | HTTP | Title | Meta | H1 | Opening | Canonical | Extra |
+|-----|------|-------|------|----|---------|-----------|-------|
+| `/lesmateriaal` | **200** | OK | OK | OK | OK | self | 6 AEO-FAQ zichtbaar · FAQPage · geen QAPage |
+| `/lesmateriaal/pakket-c` | **200** | OK | OK | OK | OK | self | Product/Offer · €19,95 · lessen intact |
+| `/lesmateriaal/pakket-d` | **200** | OK | OK | OK | OK | self | Product/Offer · €19,95 |
+| `/lesmateriaal/pakket-e` | **200** | OK | OK | OK | OK | self | Product/Offer · €19,95 · geen echte login |
+| `/lesmateriaal/pakket-h-ai` | **200** | OK | OK (Gemini-voorbeeld, geen vendor-woord) | OK | OK | self | Product/Offer · €19,95 |
+
+**Afwijkingen:** geen (smoke-script H1-check voor E faalde eerst op HTML-entity `&amp;` vs `&`; zichtbare H1 correct).
+
+---
+
+## Bruglink-smoke
+
+| Bron → doel | Resultaat |
+|-------------|-----------|
+| whatsapp-uitleg-beginners → pakket-c | **PASS** (200→200, link aanwezig) |
+| whatsapp-videobellen-uitleg → pakket-c | **PASS** |
+| /uitleg/veiligheid → pakket-d | **PASS** |
+| phishing-herkennen → pakket-d | **PASS** |
+| /uitleg/digid → pakket-e | **PASS** |
+| /wat-is-ai → pakket-h-ai | **PASS** |
+| wat-is-ai-simpel-uitgelegd → pakket-h-ai | **PASS** |
 
 ---
 
 ## CTR Sprint 1 — FREEZE GATE
 
-Geen inhoudelijke wijziging aan:
+Geen inhoudelijke wijziging in deze sprint aan:
 
 - `/uitleg/google-maps`
 - `/digitale-hulp/whatsapp-fotos-opslaan`
 - `/uitleg/wifi`
 - `/uitleg/whatsapp-basis`
 
+Alle vier bereikbaar **200** na deploy.
+
 **CTR SPRINT 1 — BASELINE LOCKED & BEVROREN 🔒**  
 GSC-check: 12 oktober 2026.
 
 ---
 
-## Commit / deploy / smoke
+## B2C → B2B bruggen (bestanden)
 
-_(Wordt hieronder ingevuld na commit + productie-smoke.)_
+| Bron | Doel | Bestand |
+|------|------|---------|
+| WhatsApp beginners | C | `WhatsAppBeginnersGuide.tsx` |
+| WhatsApp videobellen | C | `WhatsAppVideobellenGuide.tsx` |
+| Veiligheid | D | `uitleg/veiligheid/page.tsx` |
+| Phishing herkennen | D | `digitale-hulp/[slug]/page.tsx` |
+| DigiD | E | `uitleg/digid/page.tsx` |
+| Wat is AI | H | `wat-is-ai/page.tsx` |
+| AI simpel uitgelegd | H | `digitale-hulp/[slug]/page.tsx` |
 
-### Changed-files
+---
 
-```
-(pending)
-```
+SEO/AEO LESMATERIAAL — SPRINT 2 DEPLOYED & FROZEN 🔒
 
-### git diff --stat
+Baseline: 14 september 2026
 
-```
-(pending)
-```
-
-### Productie-smoke
-
-_(pending)_
-
-### Bruglink-smoke
-
-_(pending)_
-
-### Afwijkingen
-
-geen (na afronding)
+CTR Sprint 1-pagina's blijven afzonderlijk bevroren tot GSC-check 12 oktober 2026.
