@@ -36,7 +36,7 @@ export const LESMATERIAAL_SEO_OVERRIDES: Record<string, LesmateriaalSeoOverride>
   'pakket-h-ai': {
     title: 'Pakket H — AI in het dagelijks leven — lesmateriaal voor organisaties',
     description:
-      'AI-lesmateriaal waarmee uw organisatie zelf een praktische AI-workshop voor senioren kan geven. Gemini is voorbeeld; ook bij andere AI-assistenten. Vier lessen, €19,95.',
+      'AI-lesmateriaal waarmee uw organisatie zelf een praktische AI-workshop voor senioren kan geven. Met Gemini als praktisch voorbeeld; ook toepasbaar bij andere AI-assistenten. Vier lessen, €19,95.',
     openingLead:
       'Kant-en-klaar lesmateriaal waarmee uw organisatie zelf een praktische AI-les of -workshop voor senioren kan geven.',
   },

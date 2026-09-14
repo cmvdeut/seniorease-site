@@ -16,12 +16,12 @@ export const LESMATERIAAL_FAQ = [
   {
     question: 'Kan een vrijwilliger de lessen geven?',
     answer:
-      'Ja. Het materiaal is gemaakt voor begeleiders en vrijwilligers die geen IT-docent zijn. U volgt het draaiboek: kijken → doen → controleren. Deelnemers oefenen op hun eigen toestel; u helpt waar nodig.',
+      'Ja. Het materiaal is gemaakt voor begeleiders en vrijwilligers die geen IT-docent zijn. U volgt het draaiboek stap voor stap. Daarin staat wat u laat zien, wat deelnemers zelf doen en wanneer u verdergaat.',
   },
   {
     question: 'Moet de begeleider technisch deskundig zijn?',
     answer:
-      'Nee. U hoeft geen IT-docent te zijn. Het draaiboek en de oefentaken leiden u door de les. Ziet een scherm er anders uit? Dat kan — vraag dan een helper of doe rustig verder met de volgende stap.',
+      'Nee. U hoeft geen IT-docent te zijn. Het draaiboek leidt u stap voor stap door de les. Ziet een scherm er anders uit? Dat is normaal. Waar beschikbaar is er ook extra hulp bij vastlopen.',
   },
   {
     question: 'Wat zit er in een SeniorEase-lespakket?',
@@ -29,7 +29,7 @@ export const LESMATERIAAL_FAQ = [
   },
   {
     question: 'Mag ik het lesmateriaal printen voor deelnemers?',
-    answer: `Ja, binnen de gebruikslicentie. Bij een losse les of themapakket: voor eigen gebruik of kleine groepen. Voor structureel lesgeven op locatie: kies het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) — daarmee krijgt u printrechten voor georganiseerde activiteiten binnen uw organisatie.`,
+    answer: `Ja, binnen de gebruikslicentie. Bij een themapakket of losse les: voor eigen gebruik of één lesgroep (bijv. met familie, vrienden of een kleine groep op locatie). Bij het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}): gebruik op één locatie voor meerdere lesgroepen; printen voor deelnemers op die locatie is toegestaan.`,
   },
   {
     question: 'Hoe ontvang ik het lesmateriaal na aankoop?',
