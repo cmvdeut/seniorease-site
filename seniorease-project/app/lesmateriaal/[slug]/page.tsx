@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import JsonLd from '@/app/components/JsonLd';
 import LesmateriaalPakketBestelPanel from '@/app/components/LesmateriaalPakketBestelPanel';
+import { LesmateriaalFeedback } from '../LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from '../LesmateriaalLicentieBlok';
 import { buildPageMetadata, SITE_URL } from '@/lib/seo';
 import {
@@ -194,6 +195,14 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
             <LesmateriaalLicentieBlok variant="compact" />
           </div>
         </div>
+
+        <LesmateriaalFeedback
+          variant="pakket"
+          pakketSlug={slug}
+          pakketCode={pakket.code}
+          pakketTitle={pakket.title}
+          className="mt-10 md:mt-12 max-w-xl"
+        />
       </div>
     </main>
   );

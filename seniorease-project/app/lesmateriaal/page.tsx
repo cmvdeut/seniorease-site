@@ -7,6 +7,7 @@ import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
 import { LesmateriaalPakketten } from './LesmateriaalPakketten';
 import { LesmateriaalPricing, LesmateriaalPrijsBadge } from './LesmateriaalPricing';
 import { LesmateriaalFaq } from './LesmateriaalFaq';
+import { LesmateriaalFeedback } from './LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
 import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
 import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal-data';
@@ -105,13 +106,15 @@ export default function LesmateriaalPage() {
 
           <LesmateriaalVerwachting />
 
+          <LesmateriaalPakketten />
+
+          <LesmateriaalFeedback variant="hub" className="mt-14 md:mt-16 mb-14 md:mb-16" />
+
           <LesmateriaalFaq />
 
           <div className="mb-16 md:mb-20">
             <LesmateriaalLicentieBlok />
           </div>
-
-          <LesmateriaalPakketten />
         </div>
       </section>
 
