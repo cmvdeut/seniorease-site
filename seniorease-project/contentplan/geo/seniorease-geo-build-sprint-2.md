@@ -1,10 +1,27 @@
 # SeniorEase — GEO Build Sprint 2
 
 **Trust & citability — DigiD + Veiligheid**  
-**Status:** FINAL COPY TER REVIEW  
-**Datum:** 14 september 2026  
-**Commit:** nee  
-**Deploy:** nee
+**Status:** **DEPLOYED & FROZEN** 🔒  
+**Datum / baseline:** 14 september 2026  
+
+| Release | Waarde |
+|---------|--------|
+| **Code-commit** | `31fa433566b3f04de7e07fe37715dbc59455b0ee` |
+| **Commit message** | Harden DigiD and safety pages for GEO trust and citability. |
+| **Committed files** | `app/uitleg/digid/page.tsx`, `app/uitleg/veiligheid/page.tsx`, `lib/uitleg-schema-data.ts`, `contentplan/geo/seniorease-geo-build-sprint-2.md` |
+| **git diff --stat (code-commit)** | 4 files, +444/−15 |
+| **Unrelated dirty niet meegenomen** | o.a. `app/sitemap.ts`, Agent/, lesmateriaal-PDF’s |
+| **Deployment ID** | `dpl_E3k4FDE2zJFu85CaYVVYLbAe6zFx` |
+| **Deployment status** | ● **Ready** (Production) |
+| **Deployment URL** | https://seniorease-site-60jb4ypac-cmvdeut-gmailcoms-projects.vercel.app |
+| **Aliases** | `https://www.seniorease.nl`, `https://seniorease.nl`, … |
+| **Productie-URL** | https://www.seniorease.nl |
+
+### Definitieve gouden tip (Veiligheid)
+
+```
+Krijgt u onverwacht een verzoek om via een link iets te bevestigen? Klik dan niet meteen. Ga zelf naar de officiële app of website, of neem contact op via gegevens die u zelf kent.
+```
 
 ---
 
@@ -326,3 +343,90 @@ Laatst inhoudelijk gecontroleerd: 14 september 2026
 ```
 
 DigiD-schema: geen wijziging.
+
+---
+
+## 9. Deploy & live smoke (14 september 2026)
+
+### Commit
+
+| Veld | Waarde |
+|------|--------|
+| Hash | `31fa433566b3f04de7e07fe37715dbc59455b0ee` |
+| Message | Harden DigiD and safety pages for GEO trust and citability. |
+| Files | digid/page.tsx, veiligheid/page.tsx, uitleg-schema-data.ts, seniorease-geo-build-sprint-2.md |
+| diff --stat | 4 files changed, 444 insertions(+), 15 deletions(-) |
+| Unrelated dirty | **niet** meegenomen (`app/sitemap.ts` e.d. bleven unstaged) |
+
+### Deploy
+
+| Veld | Waarde |
+|------|--------|
+| ID | `dpl_E3k4FDE2zJFu85CaYVVYLbAe6zFx` |
+| Status | Ready (Production) |
+| Productie | https://www.seniorease.nl |
+| Alias | www.seniorease.nl ✓ |
+
+### Live DigiD smoke (`/uitleg/digid`)
+
+| Check | Resultaat |
+|-------|-----------|
+| HTTP 200 | PASS |
+| title ongewijzigd | PASS (`DigiD: wat is het, aanvragen en veilig inloggen \| SeniorEase`) |
+| meta ongewijzigd | PASS |
+| H1 ongewijzigd | PASS |
+| “Alleen inloggen op de echte officiële website.” | PASS |
+| oude “.nl = veilig” | afwezig PASS |
+| DigiD-contact / 088 - 123 65 55 / lokaal tarief / contactlink | PASS |
+| fraudekader + bronnenblok (3 links) + controledatum | PASS |
+
+### Live Veiligheid smoke (`/uitleg/veiligheid`)
+
+| Check | Resultaat |
+|-------|-----------|
+| HTTP 200 | PASS |
+| title/meta/H1 ongewijzigd | PASS |
+| “1 op de 5 senioren” / “meest gebruikte truc” / ING·Rabo-nummers | afwezig PASS |
+| foutloos-nuance + bankcontactadvies | PASS |
+| definitieve gouden tip exact | PASS |
+| Fraudehelpdesk 088 - 786 7372 / politie 0900 - 8844 | PASS |
+| bronnenblok + controledatum | PASS |
+
+### Live schema-check
+
+| Check | Resultaat |
+|-------|-----------|
+| Veiligheid HowTo “Bel zelf uw bank” → bankapp/website/eigen nummer | PASS |
+| Veiligheid HowTo “Meld verdachte berichten” → Fraudehelpdesk 088 - 786 7372 | PASS |
+| geen oude banknummer-instructie / geen oude doorstuurtekst | PASS |
+| geen Article / datePublished / dateModified | PASS |
+| DigiD-schema intact | PASS |
+
+### Externe bronlink-check
+
+Alle 6 primaire bronnen HTTP **200** (DigiD aanvragen, DigiD app, DigiD contact, MijnOverheid herken oplichting, Fraudehelpdesk, Rijksoverheid phishing).
+
+### Freeze / regressie live
+
+| Freeze | Resultaat |
+|--------|-----------|
+| CTR Sprint 1 (4 URLs) | 200 + titles intact PASS |
+| Lesmateriaal Sprint 2 (hub + C/D/E/H) | 200 + titles intact PASS |
+| GEO Sprint 1 (PDF-lesmateriaal FAQ, details, Org-description) | PASS |
+
+### Afwijkingen
+
+Geen inhoudelijke afwijkingen. HTML-titeltekens kunnen en-dash als hyphen tonen (`–` → `-`); inhoud ongewijzigd.
+
+---
+
+SENIOREASE — GEO BUILD SPRINT 2 DEPLOYED & FROZEN 🔒
+
+Baseline: 14 september 2026
+
+Scope:
+Trust & Citability — DigiD + Veiligheid
+
+GEO Build Sprint 1 blijft afzonderlijk bevroren.
+CTR Sprint 1 blijft afzonderlijk bevroren tot GSC-check 12 oktober 2026.
+SEO/AEO Lesmateriaal Sprint 2 blijft afzonderlijk bevroren.
