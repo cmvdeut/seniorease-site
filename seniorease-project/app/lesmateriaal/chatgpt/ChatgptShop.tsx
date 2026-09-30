@@ -12,13 +12,13 @@ import {
   CHATGPT_LESSONS,
   CHATGPT_ORG_PRIJS,
   CHATGPT_ORG_REFERENCE,
+  getChatgptCheckoutMeta,
+  type ChatgptReferenceId,
 } from '@/app/lesmateriaal/chatgpt/chatgpt-data';
 import {
   buildChatgptCheckoutUrl,
   saveChatgptCheckoutSession,
 } from '@/lib/chatgpt-checkout';
-import type { ChatgptReferenceId } from '@/lib/chatgpt-fulfillment';
-import { getChatgptSku } from '@/lib/chatgpt-fulfillment';
 
 type CheckoutBases = {
   een: string | null;
@@ -191,12 +191,12 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
       return;
     }
 
-    const sku = getChatgptSku(referenceId);
+    const sku = getChatgptCheckoutMeta(referenceId);
     saveChatgptCheckoutSession({
       email: trimmed,
       referenceId,
-      label: sku?.label ?? referenceId,
-      price: sku?.price ?? 0,
+      label: sku.label,
+      price: sku.price,
     });
     window.location.href = url;
   }

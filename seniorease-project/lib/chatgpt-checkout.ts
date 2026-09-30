@@ -8,15 +8,36 @@
  *   NEXT_PUBLIC_STRIPE_CHATGPT_ORG
  *
  * Success URL (Stripe Dashboard): …/lesmateriaal/bedankt?session_id={CHECKOUT_SESSION_ID}
+ *
+ * Client-safe: geen Node-modules / fulfillment-imports.
  */
 
 import {
-  getChatgptSku,
-  isChatgptReferenceId,
+  CHATGPT_COMPLEET_REFERENCE,
+  CHATGPT_ORG_REFERENCE,
   type ChatgptReferenceId,
-} from '@/lib/chatgpt-fulfillment';
+} from '@/app/lesmateriaal/chatgpt/chatgpt-data';
+
+export type { ChatgptReferenceId };
 
 export type ChatgptPaymentLinkKind = 'een' | 'compleet' | 'organisatie';
+
+const VALID_REFS = new Set<string>([
+  'chatgpt_a1',
+  'chatgpt_a2',
+  'chatgpt_a3',
+  'chatgpt_a4',
+  'chatgpt_a5',
+  'chatgpt_a6',
+  'chatgpt_a7',
+  'chatgpt_a8',
+  'chatgpt_b_compleet',
+  'chatgpt_c_organisatie',
+]);
+
+function isValidChatgptReference(value: string): value is ChatgptReferenceId {
+  return VALID_REFS.has(value);
+}
 
 const ENV_BY_KIND: Record<ChatgptPaymentLinkKind, string> = {
   een: 'NEXT_PUBLIC_STRIPE_CHATGPT_EEN',
@@ -33,8 +54,8 @@ function normalizePaymentLink(value: string | undefined): string | null {
 export function chatgptLinkKindForReference(
   referenceId: ChatgptReferenceId,
 ): ChatgptPaymentLinkKind {
-  if (referenceId === 'chatgpt_b_compleet') return 'compleet';
-  if (referenceId === 'chatgpt_c_organisatie') return 'organisatie';
+  if (referenceId === CHATGPT_COMPLEET_REFERENCE) return 'compleet';
+  if (referenceId === CHATGPT_ORG_REFERENCE) return 'organisatie';
   return 'een';
 }
 
@@ -53,7 +74,7 @@ export function buildChatgptCheckoutUrl(params: {
   paymentLinkBase?: string | null;
 }): string | null {
   const { email, paymentLinkBase } = params;
-  if (!isChatgptReferenceId(params.referenceId)) return null;
+  if (!isValidChatgptReference(params.referenceId)) return null;
   const referenceId = params.referenceId;
 
   const kind = chatgptLinkKindForReference(referenceId);
@@ -65,10 +86,6 @@ export function buildChatgptCheckoutUrl(params: {
 
   const trimmed = email.trim();
   if (!trimmed || !trimmed.includes('@')) return null;
-
-  // Stripe Payment Links: alleen [A-Za-z0-9_-] in client_reference_id
-  const sku = getChatgptSku(referenceId);
-  if (!sku) return null;
 
   const url = new URL(base);
   url.searchParams.set('prefilled_email', trimmed);

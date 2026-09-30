@@ -93,6 +93,32 @@ export const CHATGPT_LESSONS: ChatgptLessonSku[] = [
 export const CHATGPT_COMPLEET_REFERENCE: ChatgptReferenceId = 'chatgpt_b_compleet';
 export const CHATGPT_ORG_REFERENCE: ChatgptReferenceId = 'chatgpt_c_organisatie';
 
+/** Labels/prijzen voor checkout-session (client-safe, zonder fulfillment/fs). */
+export function getChatgptCheckoutMeta(referenceId: ChatgptReferenceId): {
+  label: string;
+  price: number;
+} {
+  if (referenceId === CHATGPT_COMPLEET_REFERENCE) {
+    return {
+      label: 'Praktisch werken met ChatGPT — Compleet uitlegpakket',
+      price: CHATGPT_COMPLEET_PRIJS,
+    };
+  }
+  if (referenceId === CHATGPT_ORG_REFERENCE) {
+    return {
+      label: 'Praktisch werken met ChatGPT — Organisatiepakket · één locatie',
+      price: CHATGPT_ORG_PRIJS,
+    };
+  }
+  const les = CHATGPT_LESSONS.find((l) => l.referenceId === referenceId);
+  return {
+    label: les
+      ? `Praktisch werken met ChatGPT — ${les.title}`
+      : `Praktisch werken met ChatGPT — ${referenceId}`,
+    price: CHATGPT_EEN_PRIJS,
+  };
+}
+
 export const CHATGPT_FAQ = [
   {
     question: 'Heb ik ervaring met ChatGPT nodig?',

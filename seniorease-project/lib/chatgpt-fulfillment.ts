@@ -2,10 +2,11 @@
  * SeniorEase ChatGPT fulfillment — APART van A–H / LESMATERIAAL_PAKKETTEN / PACKAGE_SOURCE.
  *
  * client_reference_id → één frozen ZIP onder private/lesmateriaal-downloads/chatgpt/
+ *
+ * Geen Node fs/path hier: deze module kan via checkout-helpers in de client-bundel
+ * meegenomen worden. Bestandsbestaan checkt resolveAssetAbsolutePath (server-only).
  */
 
-import { existsSync } from 'fs';
-import path from 'path';
 import type { DownloadAsset, FulfillmentOrder } from '@/lib/lesmateriaal-fulfillment';
 import {
   CHATGPT_COMPLEET_PRIJS,
@@ -162,14 +163,6 @@ export function resolveChatgptFulfillmentOrder(
     price: sku.price,
     assets: [chatgptAssetForSku(sku)],
   };
-}
-
-export function chatgptZipAbsolutePath(sku: ChatgptSku, downloadsRoot: string): string | null {
-  const abs = path.resolve(downloadsRoot, CHATGPT_PRIVATE_DIR, sku.zipFilename);
-  const root = path.resolve(downloadsRoot);
-  if (!abs.startsWith(root)) return null;
-  if (!existsSync(abs)) return null;
-  return abs;
 }
 
 export function listChatgptSourceZipSpecs(): {

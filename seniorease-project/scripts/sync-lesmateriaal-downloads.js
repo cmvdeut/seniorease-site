@@ -148,15 +148,8 @@ function main() {
   }
   console.log(`\nKlaar: ${ok} gekopieerd, ${miss} ontbrekend.`);
 
-  // ChatGPT frozen ZIPs (apart van A–H PACKAGE_SOURCE)
-  const chatgptSrcDir = path.join(
-    ROOT,
-    'contentplan',
-    'producten',
-    'chatgpt',
-    'productie',
-    'definitieve-klant-zips',
-  );
+  // ChatGPT frozen ZIPs — bron buiten contentplan (die map staat in .vercelignore)
+  const chatgptSrcDir = path.join(ROOT, 'private', 'chatgpt-klant-zips');
   const chatgptDestDir = path.join(DEST, 'chatgpt');
   const chatgptZips = [
     'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-1.zip',
@@ -186,6 +179,12 @@ function main() {
     chatgptOk += 1;
   }
   console.log(`ChatGPT ZIPs: ${chatgptOk} gekopieerd, ${chatgptMiss} ontbrekend.`);
+  if (chatgptMiss > 0) {
+    console.error(
+      'VEREIST: ChatGPT frozen ZIPs ontbreken in private/chatgpt-klant-zips/ (niet contentplan — die is .vercelignore).',
+    );
+    process.exitCode = 1;
+  }
 
   // A+B moeten altijd compleet zijn (live betaalde pakketten). Overige missers: waarschuwing.
   const requiredOk = ['pakket-a', 'pakket-b'].every((slug) => {
