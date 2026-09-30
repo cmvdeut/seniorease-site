@@ -22,6 +22,23 @@ export type { ChatgptReferenceId };
 
 export type ChatgptPaymentLinkKind = 'een' | 'compleet' | 'organisatie';
 
+/**
+ * Zelfde lichte check als A–H (`trim` + `@`), plus minimale structuur:
+ * lokaal deel én domein met een punt (keurt test@ / @test.nl af).
+ */
+export function isChatgptCheckoutEmail(value: string): boolean {
+  const trimmed = value.trim();
+  if (!trimmed) return false;
+  const at = trimmed.indexOf('@');
+  if (at <= 0) return false;
+  const local = trimmed.slice(0, at);
+  const domain = trimmed.slice(at + 1);
+  if (!local || !domain) return false;
+  if (domain.startsWith('.') || domain.endsWith('.')) return false;
+  if (!domain.includes('.')) return false;
+  return true;
+}
+
 const VALID_REFS = new Set<string>([
   'chatgpt_a1',
   'chatgpt_a2',
@@ -85,7 +102,7 @@ export function buildChatgptCheckoutUrl(params: {
   if (!base) return null;
 
   const trimmed = email.trim();
-  if (!trimmed || !trimmed.includes('@')) return null;
+  if (!isChatgptCheckoutEmail(trimmed)) return null;
 
   const url = new URL(base);
   url.searchParams.set('prefilled_email', trimmed);

@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useRef, useState } from 'react';
 import Link from 'next/link';
 import { Check, CreditCard, Mail } from 'lucide-react';
 import { formatPrijs } from '@/app/lesmateriaal/lesmateriaal-data';
@@ -17,6 +17,7 @@ import {
 } from '@/app/lesmateriaal/chatgpt/chatgpt-data';
 import {
   buildChatgptCheckoutUrl,
+  isChatgptCheckoutEmail,
   saveChatgptCheckoutSession,
 } from '@/lib/chatgpt-checkout';
 
@@ -108,6 +109,10 @@ function EmailBar() {
     );
   }
 
+  function syncEmailFromEvent(value: string) {
+    setEmail(value);
+  }
+
   return (
     <div className="mb-8 max-w-xl space-y-3">
       <label htmlFor="chatgpt-email" className="block font-semibold text-navy text-senior-sm">
@@ -121,10 +126,14 @@ function EmailBar() {
         />
         <input
           id="chatgpt-email"
+          name="email"
           type="email"
           autoComplete="email"
+          inputMode="email"
           value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          onChange={(e) => syncEmailFromEvent(e.target.value)}
+          onInput={(e) => syncEmailFromEvent((e.target as HTMLInputElement).value)}
+          onBlur={(e) => syncEmailFromEvent(e.target.value)}
           placeholder="naam@voorbeeld.nl"
           className="w-full min-h-[48px] rounded-xl border-2 border-navy/15 bg-white pl-10 pr-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none"
         />
@@ -137,7 +146,10 @@ function EmailBar() {
         </Link>
       </p>
       {error ? (
-        <p className="text-red-800 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-senior-sm m-0">
+        <p
+          role="alert"
+          className="text-red-800 bg-red-50 border border-red-200 rounded-xl px-4 py-3 text-senior-sm m-0"
+        >
           {error}
         </p>
       ) : null}
@@ -164,11 +176,30 @@ function CheckList({ items }: { items: string[] }) {
 export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const emailRef = useRef('');
+
+  function updateEmail(value: string) {
+    emailRef.current = value;
+    setEmail(value);
+  }
+
+  /** Lees e-mail uit ref én DOM (autofill vuurt soms geen React onChange). */
+  function resolveEmail(): string {
+    if (typeof document !== 'undefined') {
+      const el = document.getElementById('chatgpt-email') as HTMLInputElement | null;
+      const fromDom = el?.value?.trim() ?? '';
+      if (fromDom) {
+        if (fromDom !== emailRef.current) updateEmail(fromDom);
+        return fromDom;
+      }
+    }
+    return emailRef.current.trim() || email.trim();
+  }
 
   function buy(referenceId: ChatgptReferenceId) {
     setError('');
-    const trimmed = email.trim();
-    if (!trimmed || !trimmed.includes('@')) {
+    const trimmed = resolveEmail();
+    if (!isChatgptCheckoutEmail(trimmed)) {
       setError('Vul een geldig e-mailadres in — daar sturen we de download naartoe.');
       document.getElementById('chatgpt-email')?.focus();
       return;
@@ -202,7 +233,9 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
   }
 
   return (
-    <ChatgptCheckoutCtx.Provider value={{ email, setEmail, bases, error, setError, buy }}>
+    <ChatgptCheckoutCtx.Provider
+      value={{ email, setEmail: updateEmail, bases, error, setError, buy }}
+    >
       {/* 2. DRIE PRODUCTKEUZES */}
       <section
         id="mogelijkheden"

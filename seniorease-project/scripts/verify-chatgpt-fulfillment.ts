@@ -11,7 +11,7 @@ import {
   parseChatgptClientReferenceId,
   resolveChatgptFulfillmentOrder,
 } from '../lib/chatgpt-fulfillment';
-import { buildChatgptCheckoutUrl } from '../lib/chatgpt-checkout';
+import { buildChatgptCheckoutUrl, isChatgptCheckoutEmail } from '../lib/chatgpt-checkout';
 import { resolveOrderFromClientReferenceId } from '../lib/lesmateriaal-order-resolve';
 import {
   createDownloadToken,
@@ -119,6 +119,25 @@ for (const sku of CHATGPT_SKUS) {
 
   // No A–H collision: chatgpt refs must not parse as A–H
   assert(`${ref} not A-H parse`, parseClientReferenceId(ref) === null);
+}
+
+console.log('\n=== E-mailvalidatie checkout ===');
+for (const ok of ['cmvdeut@gmail.com', 'test@example.com', 'naam+test@example.nl']) {
+  assert(`email geldig ${ok}`, isChatgptCheckoutEmail(ok));
+  const url = buildChatgptCheckoutUrl({
+    referenceId: 'chatgpt_a1',
+    email: ok,
+    paymentLinkBase: 'https://buy.stripe.com/test_chatgpt_een',
+  });
+  assert(`checkout url ${ok}`, Boolean(url));
+  if (url) {
+    const u = new URL(url);
+    assert(`prefilled_email ${ok}`, u.searchParams.get('prefilled_email') === ok);
+    assert(`client_reference_id ${ok}`, u.searchParams.get('client_reference_id') === 'chatgpt_a1');
+  }
+}
+for (const bad of ['', 'test', 'test@', '@test.nl', '   ']) {
+  assert(`email ongeldig ${bad || '(empty)'}`, !isChatgptCheckoutEmail(bad));
 }
 
 console.log('\n=== Fail-closed ===');
