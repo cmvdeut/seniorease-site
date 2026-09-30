@@ -4,6 +4,13 @@ const path = require('path');
 const nextConfig = {
   // Voorkom dat Next de parent-monorepo als workspace-root kiest (Vercel seniorease-project vs seniorease-site).
   outputFileTracingRoot: path.join(__dirname),
+  // Bron-ZIPs (vóór sync) niet in serverless functions; gesyncte copies zitten in lesmateriaal-downloads/.
+  outputFileTracingExcludes: {
+    '*': [
+      './private/chatgpt-klant-zips/**',
+      './contentplan/**',
+    ],
+  },
   poweredByHeader: false,
   images: {
     formats: ['image/webp'],

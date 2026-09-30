@@ -184,6 +184,14 @@ function main() {
       'VEREIST: ChatGPT frozen ZIPs ontbreken in private/chatgpt-klant-zips/ (niet contentplan — die is .vercelignore).',
     );
     process.exitCode = 1;
+  } else if (process.env.VERCEL) {
+    // Bron-ZIPs zijn na sync niet meer nodig in de serverless bundle (limiet 250MB).
+    try {
+      fs.rmSync(chatgptSrcDir, { recursive: true, force: true });
+      console.log('  Vercel: bronmap private/chatgpt-klant-zips/ verwijderd na sync (bundle-grootte).');
+    } catch (err) {
+      console.warn('  Vercel: kon chatgpt-klant-zips niet opruimen:', err && err.message);
+    }
   }
 
   // A+B moeten altijd compleet zijn (live betaalde pakketten). Overige missers: waarschuwing.
