@@ -10,6 +10,7 @@ import { LesmateriaalFaq } from './LesmateriaalFaq';
 import { LesmateriaalFeedback } from './LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
 import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
+import { LesmateriaalChatgptHub } from './LesmateriaalChatgptHub';
 import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal-data';
 import { ClipboardList, Users, Projector, Mail } from 'lucide-react';
 
@@ -40,6 +41,10 @@ const hubItems = [
     name: `Pakket ${p.code}: ${p.title}`,
     path: `/lesmateriaal/${p.slug}`,
   })),
+  {
+    name: 'Praktisch werken met ChatGPT',
+    path: '/lesmateriaal/chatgpt',
+  },
   { name: 'Voor begeleiders', path: '/lesmateriaal/begeleiders' },
   { name: 'Woordenlijst', path: '/lesmateriaal/woordenlijst' },
   { name: 'Beamer (optioneel)', path: '/lesmateriaal/beamer' },
@@ -111,6 +116,8 @@ export default function LesmateriaalPage() {
           <LesmateriaalPricing />
 
           <LesmateriaalVerwachting />
+
+          <LesmateriaalChatgptHub />
 
           <LesmateriaalPakketten />
 

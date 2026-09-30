@@ -51,6 +51,7 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     });
   }
 
+  const chatgptPrimary = order.kind === 'chatgpt' && !zipId;
   for (const asset of order.assets) {
     const token = createDownloadToken({
       fileId: asset.fileId,
@@ -58,8 +59,9 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
       email: order.email,
     });
     links.push({
-      label: asset.label,
+      label: chatgptPrimary ? 'Download ZIP' : asset.label,
       url: buildDownloadUrl(baseUrl, token),
+      primary: chatgptPrimary,
     });
   }
 
@@ -67,8 +69,11 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
   const rest = links.filter((l) => !l.primary);
 
   const primaryHtml = primary
-    ? `<p style="margin:0 0 16px;"><a href="${escapeHtml(primary.url)}" style="display:inline-block;background:#c49a4a;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:999px;">${escapeHtml(primary.label)}</a></p>
-    <p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">Liever losse PDF’s? Die staan hieronder.</p>`
+    ? `<p style="margin:0 0 16px;"><a href="${escapeHtml(primary.url)}" style="display:inline-block;background:#c49a4a;color:#fff;text-decoration:none;font-weight:700;padding:12px 18px;border-radius:999px;">${escapeHtml(primary.label)}</a></p>${
+        rest.length > 0
+          ? `<p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">Liever losse PDF’s? Die staan hieronder.</p>`
+          : ''
+      }`
     : '';
 
   const linkHtml = rest

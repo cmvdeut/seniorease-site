@@ -20,7 +20,7 @@ import {
 
 export const DOWNLOAD_TTL_SECONDS = 60 * 60 * 24 * 7; // 7 dagen
 
-export type FulfillmentKind = 'pakket' | 'los' | 'compleet';
+export type FulfillmentKind = 'pakket' | 'los' | 'compleet' | 'chatgpt';
 
 /** Interne product-entitlements (ATOMIC A). Alleen MOBILE_G / AI_H zijn dual-mapped. */
 export type LesmateriaalEntitlement = 'MOBILE_G' | 'AI_H';

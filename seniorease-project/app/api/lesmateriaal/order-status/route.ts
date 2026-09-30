@@ -4,13 +4,12 @@ import {
   buildDownloadUrl,
   createDownloadToken,
   getSiteBaseUrl,
-  parseClientReferenceId,
   resolveAssetAbsolutePath,
-  resolveFulfillmentOrder,
   zipBundleAvailable,
   zipBundleLabel,
   zipFileIdForOrder,
 } from '@/lib/lesmateriaal-fulfillment';
+import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -55,15 +54,10 @@ export async function GET(request: NextRequest) {
     session.customer_email?.trim()?.toLowerCase() ||
     undefined;
 
-  let parsed = parseClientReferenceId(session.client_reference_id);
-  if (parsed && email) {
-    parsed = { ...parsed, email };
-  }
-
-  if (!parsed || !email) {
+  if (!email) {
     return NextResponse.json({
       status: 'paid',
-      email: email ?? null,
+      email: null,
       label: 'Uw bestelling',
       message:
         'Betaling ontvangen. De downloadlinks staan in uw e-mail. Controleer ook ongewenste e-mail.',
@@ -71,11 +65,11 @@ export async function GET(request: NextRequest) {
     });
   }
 
-  const order = resolveFulfillmentOrder(parsed);
+  const order = resolveOrderFromClientReferenceId(session.client_reference_id, email);
   if (!order) {
     return NextResponse.json({
       status: 'paid',
-      email: parsed.email,
+      email,
       label: 'Uw bestelling',
       message: 'Betaling ontvangen. Neem contact op als u geen e-mail heeft gekregen.',
       downloads: [],
@@ -106,6 +100,7 @@ export async function GET(request: NextRequest) {
       });
     }
 
+    const chatgptPrimary = order.kind === 'chatgpt';
     downloads.push(
       ...order.assets.map((asset) => {
         const token = createDownloadToken({
@@ -114,9 +109,10 @@ export async function GET(request: NextRequest) {
           email: order.email,
         });
         return {
-          label: asset.label,
+          label: chatgptPrimary ? 'Download ZIP' : asset.label,
           url: buildDownloadUrl(baseUrl, token),
           available: resolveAssetAbsolutePath(asset) !== null,
+          primary: chatgptPrimary,
         };
       }),
     );

@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { isLesmateriaalCheckoutEnabled } from '@/lib/lesmateriaal-checkout';
+import { isChatgptCheckoutEnabled } from '@/lib/chatgpt-checkout';
 
 export const dynamic = 'force-dynamic';
 
@@ -9,5 +10,8 @@ export async function GET() {
     pakket: isLesmateriaalCheckoutEnabled('pakket'),
     los: isLesmateriaalCheckoutEnabled('los'),
     compleet: isLesmateriaalCheckoutEnabled('compleet'),
+    chatgptEen: isChatgptCheckoutEnabled('een'),
+    chatgptCompleet: isChatgptCheckoutEnabled('compleet'),
+    chatgptOrg: isChatgptCheckoutEnabled('organisatie'),
   });
 }

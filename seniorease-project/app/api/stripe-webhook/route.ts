@@ -1,9 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
-import {
-  parseClientReferenceId,
-  resolveFulfillmentOrder,
-} from '@/lib/lesmateriaal-fulfillment';
+import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
 import { sendLesmateriaalFulfillmentEmail } from '@/lib/lesmateriaal-fulfillment-email';
 
 export const dynamic = 'force-dynamic';
@@ -54,22 +51,26 @@ export async function POST(request: NextRequest) {
     session.customer_email?.trim() ||
     undefined;
 
-  let parsed = parseClientReferenceId(session.client_reference_id);
-  if (!parsed || !email) {
-    console.error('Lesmateriaal fulfillment: geen geldige client_reference_id of e-mail', {
+  if (!email) {
+    console.error('Lesmateriaal fulfillment: geen e-mail', {
+      orderId,
+      client_reference_id: session.client_reference_id,
+    });
+    return NextResponse.json({ received: true, skipped: 'bad_reference' });
+  }
+
+  const order = resolveOrderFromClientReferenceId(
+    session.client_reference_id,
+    email.toLowerCase(),
+  );
+  if (!order) {
+    console.error('Lesmateriaal fulfillment: geen geldige client_reference_id of mapping', {
       orderId,
       client_reference_id: session.client_reference_id,
       email,
     });
     // 200 zodat Stripe niet eindeloos retry’t op ongeldige handmatige tests
     return NextResponse.json({ received: true, skipped: 'bad_reference' });
-  }
-  parsed = { ...parsed, email: email.toLowerCase() };
-
-  const order = resolveFulfillmentOrder(parsed);
-  if (!order) {
-    console.error('Lesmateriaal fulfillment: geen catalogus-mapping', parsed);
-    return NextResponse.json({ received: true, skipped: 'no_assets' });
   }
 
   try {

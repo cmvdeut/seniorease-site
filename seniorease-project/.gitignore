@@ -27,6 +27,10 @@ yarn-error.log*
 .env*.local
 .env
 
+# Synced fulfillment copies (rebuilt via npm run sync:lesmateriaal-downloads / prebuild)
+private/lesmateriaal-downloads/**/*.pdf
+private/lesmateriaal-downloads/**/*.zip
+
 # MCP config with tokens
 mcp-config.json
 

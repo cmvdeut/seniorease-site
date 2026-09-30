@@ -18,7 +18,15 @@ Na betaling: **webhook** → **Brevo-mail met beveiligde downloadlinks** + downl
 
 | Compleet organisatie (A–H) | €149 | `NEXT_PUBLIC_STRIPE_LESMATERIAAL_COMPLEET` |
 
+### Apart: Praktisch werken met ChatGPT
 
+| Product | Prijs | Env-variabele |
+|---------|-------|---------------|
+| Eén praktische uitleg (A1–A8, zelfde link) | €9,95 | `NEXT_PUBLIC_STRIPE_CHATGPT_EEN` |
+| Compleet uitlegpakket | €49,95 | `NEXT_PUBLIC_STRIPE_CHATGPT_COMPLEET` |
+| Organisatiepakket · één locatie | €149 | `NEXT_PUBLIC_STRIPE_CHATGPT_ORG` |
+
+`client_reference_id`: `chatgpt_a1`…`chatgpt_a8` · `chatgpt_b_compleet` · `chatgpt_c_organisatie`
 
 Legacy fallback pakket: `NEXT_PUBLIC_STRIPE_LESMATERIAAL_DEFAULT` (zelfde als PAKKET).
 
@@ -94,7 +102,10 @@ NEXT_PUBLIC_STRIPE_LESMATERIAAL_LOS=https://buy.stripe.com/...
 
 NEXT_PUBLIC_STRIPE_LESMATERIAAL_COMPLEET=https://buy.stripe.com/...
 
-
+# ChatGPT (apart van A–H)
+NEXT_PUBLIC_STRIPE_CHATGPT_EEN=https://buy.stripe.com/...
+NEXT_PUBLIC_STRIPE_CHATGPT_COMPLEET=https://buy.stripe.com/...
+NEXT_PUBLIC_STRIPE_CHATGPT_ORG=https://buy.stripe.com/...
 
 STRIPE_SECRET_KEY=sk_test_...          # of sk_live_...
 

@@ -147,6 +147,46 @@ function main() {
     }
   }
   console.log(`\nKlaar: ${ok} gekopieerd, ${miss} ontbrekend.`);
+
+  // ChatGPT frozen ZIPs (apart van A–H PACKAGE_SOURCE)
+  const chatgptSrcDir = path.join(
+    ROOT,
+    'contentplan',
+    'producten',
+    'chatgpt',
+    'productie',
+    'definitieve-klant-zips',
+  );
+  const chatgptDestDir = path.join(DEST, 'chatgpt');
+  const chatgptZips = [
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-1.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-2.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-3.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-4.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-5.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-6.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-7.zip',
+    'SeniorEase-ChatGPT-Een-praktische-uitleg-Les-8.zip',
+    'SeniorEase-ChatGPT-Compleet-uitlegpakket.zip',
+    'SeniorEase-ChatGPT-Organisatiepakket-een-locatie.zip',
+  ];
+  let chatgptOk = 0;
+  let chatgptMiss = 0;
+  fs.mkdirSync(chatgptDestDir, { recursive: true });
+  for (const name of chatgptZips) {
+    const src = path.join(chatgptSrcDir, name);
+    const dest = path.join(chatgptDestDir, name);
+    if (!fs.existsSync(src)) {
+      console.warn('  MISS chatgpt', name);
+      chatgptMiss += 1;
+      continue;
+    }
+    fs.copyFileSync(src, dest);
+    console.log('  OK   chatgpt/', name);
+    chatgptOk += 1;
+  }
+  console.log(`ChatGPT ZIPs: ${chatgptOk} gekopieerd, ${chatgptMiss} ontbrekend.`);
+
   // A+B moeten altijd compleet zijn (live betaalde pakketten). Overige missers: waarschuwing.
   const requiredOk = ['pakket-a', 'pakket-b'].every((slug) => {
     const cfg = PACKAGE_SOURCE[slug];
