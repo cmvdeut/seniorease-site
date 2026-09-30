@@ -288,9 +288,6 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
                   <h3 className="font-serif text-navy text-[1.15rem] sm:text-[1.2rem] font-semibold mb-0.5">
                     Compleet uitlegpakket
                   </h3>
-                  <p className="font-serif text-navy text-[1.9rem] font-semibold leading-none mb-2">
-                    {formatPrijs(CHATGPT_COMPLEET_PRIJS)}
-                  </p>
                   <p className="text-navy/60 text-[0.9rem] leading-snug mb-3">
                     Alle 8 onderwerpen. Het complete pakket om alle acht bijeenkomsten te geven
                     aan één groep.
@@ -318,9 +315,6 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
                   <h3 className="font-serif text-navy text-[1.1rem] font-semibold mb-0.5">
                     Organisatiepakket · één locatie
                   </h3>
-                  <p className="font-serif text-navy text-[1.75rem] font-semibold leading-none mb-2">
-                    {formatPrijs(CHATGPT_ORG_PRIJS)}
-                  </p>
                   <p className="text-navy/60 text-[0.9rem] leading-snug mb-2">
                     Voor organisaties die het materiaal op één fysieke locatie met meerdere
                     groepen en begeleiders willen gebruiken.
@@ -372,9 +366,6 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
                   </h3>
                   <p className="text-navy/60 text-[1.05rem] leading-relaxed flex-1 mb-4">
                     {les.description}
-                  </p>
-                  <p className="font-semibold text-navy text-senior-sm mb-3">
-                    {formatPrijs(CHATGPT_EEN_PRIJS)}
                   </p>
                   <BuyButton
                     referenceId={les.referenceId}
@@ -444,7 +435,7 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
             Liever alle acht onderwerpen?
           </h2>
           <p className="font-serif text-navy text-[1.25rem] font-semibold mb-3">
-            Compleet uitlegpakket — {formatPrijs(CHATGPT_COMPLEET_PRIJS)}
+            Compleet uitlegpakket
           </p>
           <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-2">
             8 × 90 minuten praktische uitleg.
@@ -503,7 +494,7 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
             Werkt u bij een bibliotheek, buurthuis of organisatie?
           </h2>
           <p className="font-serif text-navy text-[1.25rem] font-semibold mb-3">
-            Organisatiepakket · één locatie — {formatPrijs(CHATGPT_ORG_PRIJS)}
+            Organisatiepakket · één locatie
           </p>
           <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-4">
             Voor onder andere bibliotheken, buurthuizen, wijkcentra, welzijnsorganisaties,
