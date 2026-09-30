@@ -97,7 +97,7 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     <p style="margin:0 0 16px;line-height:1.5;">Downloadlinks werken ongeveer <strong>7 dagen</strong>. Sla de bestanden op uw computer op.</p>
     ${primaryHtml}
     ${rest.length > 0 ? `<ul style="padding-left:18px;margin:0 0 20px;">${linkHtml}</ul>` : ''}
-    <p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">Komt een link niet open? Controleer uw map ongewenste e-mail, of mail <a href="mailto:info@seniorease.nl">info@seniorease.nl</a>.</p>
+    <p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">Komt een link niet open? Controleer uw map ongewenste e-mail, of mail <a href="mailto:support@seniorease.nl">support@seniorease.nl</a>.</p>
     <p style="margin:0;font-size:14px;color:#5a6570;">Heeft u een <strong>officiële factuur</strong> nodig op naam van uw organisatie? Laat het ons weten — het Stripe-betalingsbewijs is geen formele factuur.</p>
   </div>
 </body>
@@ -111,7 +111,7 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     'Downloadlinks (geldig ±7 dagen):',
     ...links.map((l) => `- ${l.label}: ${l.url}`),
     '',
-    'Vragen of factuur nodig? info@seniorease.nl',
+    'Vragen of factuur nodig? support@seniorease.nl',
   ];
 
   const payload = {

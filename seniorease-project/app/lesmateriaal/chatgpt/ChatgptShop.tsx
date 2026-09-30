@@ -104,7 +104,7 @@ function EmailBar() {
     return (
       <div className="rounded-xl bg-amber-50 border border-amber-200 px-5 py-4 text-senior-sm text-navy/80 leading-relaxed mb-8 max-w-2xl">
         Online bestellen wordt hier geactiveerd zodra de betaalomgeving is aangesloten. Tot die
-        tijd kunt u contact opnemen via info@seniorease.nl.
+        tijd kunt u contact opnemen via support@seniorease.nl.
       </div>
     );
   }

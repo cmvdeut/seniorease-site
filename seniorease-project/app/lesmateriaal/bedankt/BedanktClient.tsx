@@ -194,7 +194,7 @@ export default function BedanktClient() {
           {unavailable.length > 0 ? (
             <p className="text-navy/60 text-senior-sm mt-4 leading-relaxed">
               Sommige bestanden volgen per e-mail of zijn nog in voorbereiding. Mail ons bij
-              vragen: info@seniorease.nl
+              vragen: support@seniorease.nl
             </p>
           ) : null}
         </div>

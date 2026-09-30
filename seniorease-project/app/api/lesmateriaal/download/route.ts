@@ -81,7 +81,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          'Deze downloadlink is ongeldig of verlopen. Controleer uw e-mail of neem contact op via info@seniorease.nl.',
+          'Deze downloadlink is ongeldig of verlopen. Controleer uw e-mail of neem contact op via support@seniorease.nl.',
       },
       { status: 403 },
     );
@@ -93,7 +93,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json(
         {
           error:
-            'Dit ZIP-bestand is nog niet beschikbaar. Neem contact op via info@seniorease.nl.',
+            'Dit ZIP-bestand is nog niet beschikbaar. Neem contact op via support@seniorease.nl.',
         },
         { status: 404 },
       );
@@ -112,7 +112,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json(
       {
         error:
-          'Dit bestand is nog niet beschikbaar. Neem contact op via info@seniorease.nl — we helpen u zo snel mogelijk.',
+          'Dit bestand is nog niet beschikbaar. Neem contact op via support@seniorease.nl — we helpen u zo snel mogelijk.',
       },
       { status: 404 },
     );
