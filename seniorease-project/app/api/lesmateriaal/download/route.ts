@@ -11,10 +11,6 @@ import {
   zipDownloadFilename,
   zipEntryPathForAsset,
 } from '@/lib/lesmateriaal-fulfillment';
-import {
-  chatgptDownloadFilename,
-  findChatgptAssetByFileId,
-} from '@/lib/chatgpt-fulfillment';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -105,7 +101,7 @@ export async function GET(request: NextRequest) {
     return zipResponse;
   }
 
-  const asset = findAssetByFileId(verified.fileId) ?? findChatgptAssetByFileId(verified.fileId);
+  const asset = findAssetByFileId(verified.fileId);
   if (!asset) {
     return NextResponse.json({ error: 'Bestand onbekend' }, { status: 404 });
   }
@@ -122,12 +118,6 @@ export async function GET(request: NextRequest) {
     );
   }
 
-  const isZip = asset.relativePath.toLowerCase().endsWith('.zip');
-  const chatgptName = chatgptDownloadFilename(asset.fileId);
-  const downloadName = isZip
-    ? chatgptName || asset.relativePath.split('/').pop() || 'SeniorEase-download.zip'
-    : filenameForAsset(asset.fileId);
-
   const stat = statSync(abs);
   const stream = createReadStream(abs);
   const webStream = Readable.toWeb(stream) as unknown as ReadableStream;
@@ -135,9 +125,9 @@ export async function GET(request: NextRequest) {
   return new NextResponse(webStream, {
     status: 200,
     headers: {
-      'Content-Type': isZip ? 'application/zip' : 'application/pdf',
+      'Content-Type': 'application/pdf',
       'Content-Length': String(stat.size),
-      'Content-Disposition': `attachment; filename="${downloadName}"`,
+      'Content-Disposition': `attachment; filename="${filenameForAsset(asset.fileId)}"`,
       'Cache-Control': 'no-store',
     },
   });

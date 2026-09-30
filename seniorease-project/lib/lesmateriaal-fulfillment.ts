@@ -690,10 +690,18 @@ export function verifyDownloadToken(token: string): VerifiedToken | null {
   }
 }
 
-export function buildDownloadUrl(baseUrl: string, token: string): string {
-  const url = new URL('/api/lesmateriaal/download', baseUrl);
+export function buildDownloadUrl(
+  baseUrl: string,
+  token: string,
+  apiPath: string = '/api/lesmateriaal/download',
+): string {
+  const url = new URL(apiPath, baseUrl);
   url.searchParams.set('token', token);
   return url.toString();
+}
+
+export function buildChatgptDownloadUrl(baseUrl: string, token: string): string {
+  return buildDownloadUrl(baseUrl, token, '/api/lesmateriaal/chatgpt-download');
 }
 
 export function getSiteBaseUrl(): string {

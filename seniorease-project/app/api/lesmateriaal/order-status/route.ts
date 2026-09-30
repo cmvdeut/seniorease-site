@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import {
+  buildChatgptDownloadUrl,
   buildDownloadUrl,
   createDownloadToken,
   getSiteBaseUrl,
@@ -110,7 +111,9 @@ export async function GET(request: NextRequest) {
         });
         return {
           label: chatgptPrimary ? 'Download ZIP' : asset.label,
-          url: buildDownloadUrl(baseUrl, token),
+          url: chatgptPrimary
+            ? buildChatgptDownloadUrl(baseUrl, token)
+            : buildDownloadUrl(baseUrl, token),
           available: resolveAssetAbsolutePath(asset) !== null,
           primary: chatgptPrimary,
         };

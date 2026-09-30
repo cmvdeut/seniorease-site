@@ -1,5 +1,6 @@
 import { getBrevoApiKeyCandidates } from '@/lib/brevo';
 import {
+  buildChatgptDownloadUrl,
   buildDownloadUrl,
   createDownloadToken,
   getSiteBaseUrl,
@@ -60,7 +61,9 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     });
     links.push({
       label: chatgptPrimary ? 'Download ZIP' : asset.label,
-      url: buildDownloadUrl(baseUrl, token),
+      url: chatgptPrimary
+        ? buildChatgptDownloadUrl(baseUrl, token)
+        : buildDownloadUrl(baseUrl, token),
       primary: chatgptPrimary,
     });
   }
