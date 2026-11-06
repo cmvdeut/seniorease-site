@@ -53,16 +53,14 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
   const checkoutMode = getLesmateriaalCheckoutMode();
   const pakketPaymentLinkBase = getLesmateriaalPaymentLinkBase('pakket', slug);
   const losPaymentLinkBase = getLesmateriaalPaymentLinkBase('los');
-  const pakketCheckoutEnabled =
-    checkoutMode === 'sessions'
-      ? isSessionsCheckoutReady() &&
-        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_PAKKET')
-      : pakketPaymentLinkBase !== null;
-  const losCheckoutEnabled =
-    checkoutMode === 'sessions'
-      ? isSessionsCheckoutReady() &&
-        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_LOS')
-      : losPaymentLinkBase !== null;
+  const sessionsReady = checkoutMode === 'sessions' && isSessionsCheckoutReady();
+  const pakketUsesSessions =
+    sessionsReady && isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_PAKKET');
+  const losUsesSessions =
+    sessionsReady && isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_LOS');
+  /** Sessions als geconfigureerd; anders Payment Link (cutover-veilig). */
+  const pakketCheckoutEnabled = pakketUsesSessions || pakketPaymentLinkBase !== null;
+  const losCheckoutEnabled = losUsesSessions || losPaymentLinkBase !== null;
   const Icon = pakket.Icon;
   const seo = getLesmateriaalSeoOverride(slug);
 
@@ -210,7 +208,8 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
             losCheckoutEnabled={losCheckoutEnabled}
             pakketPaymentLinkBase={pakketPaymentLinkBase}
             losPaymentLinkBase={losPaymentLinkBase}
-            checkoutMode={checkoutMode}
+            pakketUsesSessions={pakketUsesSessions}
+            losUsesSessions={losUsesSessions}
           />
           <div className="mt-6">
             <LesmateriaalLicentieBlok variant="compact" />

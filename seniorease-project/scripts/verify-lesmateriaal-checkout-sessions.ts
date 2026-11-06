@@ -23,7 +23,10 @@ import {
   isLesmateriaalMailAllowed,
   isPreviewMailGuardActive,
 } from '../lib/lesmateriaal-preview-mail-guard';
-import { LESMATERIAAL_PAKKETTEN } from '../app/lesmateriaal/lesmateriaal-data';
+import {
+  LESMATERIAAL_PAKKETTEN,
+  listRoutablePakketten,
+} from '../app/lesmateriaal/lesmateriaal-data';
 import { CHATGPT_LESSONS } from '../app/lesmateriaal/chatgpt/chatgpt-data';
 
 let passed = 0;
@@ -106,8 +109,17 @@ check('allowlist: all A–H pakketten resolve', () => {
   }
 });
 
+check('allowlist: all routable pakketten (incl. legacy) resolve', () => {
+  for (const p of listRoutablePakketten()) {
+    const e = resolveCheckoutCatalogEntry(`pakket_${p.slug}`);
+    assert.ok(e, `missing pakket_${p.slug}`);
+    assert.equal(e!.amountEur, 19.95);
+    assert.ok(p.lessons.length >= 1, `geen lessen op ${p.slug}`);
+  }
+});
+
 check('allowlist: all losse lessen resolve', () => {
-  for (const p of LESMATERIAAL_PAKKETTEN) {
+  for (const p of listRoutablePakketten()) {
     for (const les of p.lessons) {
       const e = resolveCheckoutCatalogEntry(`los_${les.code.toLowerCase()}`);
       assert.ok(e, `missing los_${les.code}`);

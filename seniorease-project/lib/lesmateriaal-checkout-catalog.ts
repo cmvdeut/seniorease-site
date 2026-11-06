@@ -4,7 +4,10 @@
  */
 
 import { CHATGPT_LESSONS } from '@/app/lesmateriaal/chatgpt/chatgpt-data';
-import { LESMATERIAAL_PAKKETTEN } from '@/app/lesmateriaal/lesmateriaal-data';
+import {
+  lessonDisplayCode,
+  listRoutablePakketten,
+} from '@/app/lesmateriaal/lesmateriaal-data';
 
 export type CatalogBuyerType = 'consumer' | 'organization';
 
@@ -18,22 +21,25 @@ export type CheckoutCatalogEntry = {
   kind: 'ah_pakket' | 'ah_los' | 'ah_compleet' | 'chatgpt_een' | 'chatgpt_compleet' | 'chatgpt_org';
 };
 
-const AH_SLUGS = new Set(LESMATERIAAL_PAKKETTEN.map((p) => p.slug));
+/** Shop + legacy-compat slugs (zelfde bestelpanel op /lesmateriaal/[slug]). */
+const ALL_PAKKETTEN = listRoutablePakketten();
+
+const AH_SLUGS = new Set(ALL_PAKKETTEN.map((p) => p.slug));
 
 /** Bekende losse-les codes uit catalogus (lowercase). */
 const AH_LESSON_CODES = new Set(
-  LESMATERIAAL_PAKKETTEN.flatMap((p) => p.lessons.map((l) => l.code.toLowerCase())),
+  ALL_PAKKETTEN.flatMap((p) => p.lessons.map((l) => l.code.toLowerCase())),
 );
 
 function pakketLabel(slug: string): string {
-  const p = LESMATERIAAL_PAKKETTEN.find((x) => x.slug === slug);
+  const p = ALL_PAKKETTEN.find((x) => x.slug === slug);
   return p ? `Pakket ${p.code}: ${p.title}` : `Pakket ${slug}`;
 }
 
 function losLabel(code: string): string {
-  for (const p of LESMATERIAAL_PAKKETTEN) {
+  for (const p of ALL_PAKKETTEN) {
     const les = p.lessons.find((l) => l.code.toLowerCase() === code);
-    if (les) return `Losse les ${les.code}: ${les.title}`;
+    if (les) return `Losse les ${lessonDisplayCode(les)}: ${les.title}`;
   }
   return `Losse les ${code}`;
 }
