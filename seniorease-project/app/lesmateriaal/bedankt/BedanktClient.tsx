@@ -233,8 +233,10 @@ export default function BedanktClient() {
       </div>
 
       <p className="text-navy/60 text-senior-sm leading-relaxed mb-8">
-        Officiële factuur op naam van uw organisatie? Neem contact op — het Stripe-bewijs is geen
-        formele factuur.
+        Officiële factuur op naam van uw organisatie? Neem contact op via support@seniorease.nl —
+        het Stripe-bewijs is geen formele factuur. Facturen op verzoek, en standaard waar wettelijk
+        verplicht. In uw bevestigingsmail staat ook de bevestiging van digitale levering /
+        herroepingsrecht.
       </p>
 
       <div className="flex flex-col sm:flex-row gap-4 justify-center">

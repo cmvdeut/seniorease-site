@@ -63,7 +63,7 @@ export default function Footer() {
             <p className="mt-6 text-white/45 text-senior-xs leading-relaxed">
               © 2026 SeniorEase
               <br />
-              SeniorEase is een product van EaseWorks · KvK 42201315
+              SeniorEase is een product van EaseWorks · KvK 42201315 · Leimuiden
             </p>
           </div>
 

@@ -4,10 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { CreditCard, Mail } from 'lucide-react';
 import SeniorButton from './SeniorButton';
+import DigitalDeliveryConsent from './DigitalDeliveryConsent';
 import {
   buildLesmateriaalCheckoutUrl,
   saveLesmateriaalCheckoutSession,
 } from '@/lib/lesmateriaal-checkout';
+import { registerDigitalConsent } from '@/lib/register-digital-consent';
 import {
   formatPrijs,
   lessonDisplayCode,
@@ -41,6 +43,8 @@ export default function LesmateriaalPakketBestelPanel({
   const [email, setEmail] = useState('');
   const [lessonCode, setLessonCode] = useState(lessons[0]?.code ?? '');
   const [error, setError] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   const anyCheckoutEnabled = pakketCheckoutEnabled || losCheckoutEnabled;
 
@@ -51,10 +55,14 @@ export default function LesmateriaalPakketBestelPanel({
       setError('Vul een geldig e-mailadres in — daar sturen we de download naartoe.');
       return null;
     }
+    if (!consent) {
+      setError('Bevestig de toestemming voor directe digitale levering om verder te gaan.');
+      return null;
+    }
     return trimmed;
   }
 
-  function handlePakketBestellen() {
+  async function handlePakketBestellen() {
     const trimmed = validateEmail();
     if (!trimmed) return;
 
@@ -69,17 +77,31 @@ export default function LesmateriaalPakketBestelPanel({
       return;
     }
 
+    const label = `Pakket ${pakketCode}: ${pakketTitle}`;
+    setBusy(true);
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId: `pakket_${slug}`,
+      productLabel: label,
+      buyerType: 'consumer',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
+      return;
+    }
+
     saveLesmateriaalCheckoutSession({
       email: trimmed,
       productType: 'pakket',
       slug,
-      label: `Pakket ${pakketCode}: ${pakketTitle}`,
+      label,
       price,
     });
     window.location.href = url;
   }
 
-  function handleLosBestellen() {
+  async function handleLosBestellen() {
     const trimmed = validateEmail();
     if (!trimmed) return;
 
@@ -100,13 +122,27 @@ export default function LesmateriaalPakketBestelPanel({
       return;
     }
 
+    const label = les
+      ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
+      : `Losse les ${lessonCode}`;
+    setBusy(true);
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId: `los_${lessonCode.toLowerCase()}`,
+      productLabel: label,
+      buyerType: 'consumer',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
+      return;
+    }
+
     saveLesmateriaalCheckoutSession({
       email: trimmed,
       productType: 'los',
       lessonCode,
-      label: les
-        ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
-        : `Losse les ${lessonCode}`,
+      label,
       price: LOSSE_LES_PRIJS,
     });
     window.location.href = url;
@@ -138,6 +174,12 @@ export default function LesmateriaalPakketBestelPanel({
             </p>
           </div>
 
+          <DigitalDeliveryConsent
+            checked={consent}
+            onChange={setConsent}
+            id="pakket-digital-consent"
+          />
+
           {error && (
             <p className="text-red-800 bg-red-50 border border-red-200 rounded-senior px-4 py-3 text-senior-sm">
               {error}
@@ -156,11 +198,12 @@ export default function LesmateriaalPakketBestelPanel({
               </div>
               <button
                 type="button"
-                onClick={handlePakketBestellen}
-                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation"
+                onClick={() => void handlePakketBestellen()}
+                disabled={busy}
+                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation disabled:opacity-60"
               >
                 <CreditCard size={20} aria-hidden />
-                Bestellen — {formatPrijs(price)}
+                {busy ? 'Even geduld…' : `Bestellen — ${formatPrijs(price)}`}
               </button>
             </div>
           )}
@@ -192,11 +235,12 @@ export default function LesmateriaalPakketBestelPanel({
               </div>
               <button
                 type="button"
-                onClick={handleLosBestellen}
-                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-navy text-senior-sm bg-paper hover:bg-slate rounded-full border-2 border-navy/20 transition-colors touch-manipulation"
+                onClick={() => void handleLosBestellen()}
+                disabled={busy}
+                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-navy text-senior-sm bg-paper hover:bg-slate rounded-full border-2 border-navy/20 transition-colors touch-manipulation disabled:opacity-60"
               >
                 <CreditCard size={20} aria-hidden />
-                Losse les — {formatPrijs(LOSSE_LES_PRIJS)}
+                {busy ? 'Even geduld…' : `Losse les — ${formatPrijs(LOSSE_LES_PRIJS)}`}
               </button>
             </div>
           )}

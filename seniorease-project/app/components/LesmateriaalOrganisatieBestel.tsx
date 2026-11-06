@@ -4,10 +4,12 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { CreditCard, Mail } from 'lucide-react';
 import SeniorButton from './SeniorButton';
+import DigitalDeliveryConsent from './DigitalDeliveryConsent';
 import {
   buildLesmateriaalCheckoutUrl,
   saveLesmateriaalCheckoutSession,
 } from '@/lib/lesmateriaal-checkout';
+import { registerDigitalConsent } from '@/lib/register-digital-consent';
 import { formatPrijs, ORG_COMPLEET_PRIJS } from '@/app/lesmateriaal/lesmateriaal-data';
 
 type Props = {
@@ -21,12 +23,18 @@ export default function LesmateriaalOrganisatieBestel({
 }: Props) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
 
-  function handleBestellen() {
+  async function handleBestellen() {
     setError('');
     const trimmed = email.trim();
     if (!trimmed || !trimmed.includes('@')) {
       setError('Vul een geldig e-mailadres in — daar sturen we de download naartoe.');
+      return;
+    }
+    if (!consent) {
+      setError('Bevestig de toestemming voor directe digitale levering om verder te gaan.');
       return;
     }
 
@@ -37,6 +45,19 @@ export default function LesmateriaalOrganisatieBestel({
     });
     if (!url) {
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
+      return;
+    }
+
+    setBusy(true);
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId: 'compleet_org',
+      productLabel: 'Compleet organisatiepakket (A–H)',
+      buyerType: 'organization',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
       return;
     }
 
@@ -71,6 +92,13 @@ export default function LesmateriaalOrganisatieBestel({
             />
           </div>
 
+          <DigitalDeliveryConsent
+            checked={consent}
+            onChange={setConsent}
+            id="org-digital-consent"
+            showOrganizationNote
+          />
+
           {error && (
             <p className="text-red-800 bg-red-50 border border-red-200 rounded-senior px-4 py-3 text-senior-sm">
               {error}
@@ -79,11 +107,12 @@ export default function LesmateriaalOrganisatieBestel({
 
           <button
             type="button"
-            onClick={handleBestellen}
-            className="inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation"
+            onClick={() => void handleBestellen()}
+            disabled={busy}
+            className="inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation disabled:opacity-60"
           >
             <CreditCard size={20} aria-hidden />
-            Direct bestellen — {formatPrijs(ORG_COMPLEET_PRIJS)}
+            {busy ? 'Even geduld…' : `Direct bestellen — ${formatPrijs(ORG_COMPLEET_PRIJS)}`}
           </button>
 
           <p className="text-navy/50 text-senior-xs leading-relaxed">

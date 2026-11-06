@@ -21,11 +21,10 @@ const DEFAULT_FAQ: FAQItem[] = [
     question: 'Is het gratis?',
     answer: (
       <>
-        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn
-        Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel
-        gratis uitproberen. Daarnaast is er betaald downloadbaar PDF-lesmateriaal voor
-        bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen voor
-        senioren willen geven.{' '}
+        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis
+        in de browser; de Android-app is gratis te downloaden via Google Play (eenmalige
+        in-app-aankoop voor onbeperkt aantal items). Daarnaast is er betaald digitaal
+        lesmateriaal voor bibliotheken, buurthuizen en andere organisaties.{' '}
         <Link href="/lesmateriaal" className={linkClass}>
           Bekijk het lesmateriaal
         </Link>
