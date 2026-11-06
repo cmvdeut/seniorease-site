@@ -10,6 +10,8 @@ import {
   saveLesmateriaalCheckoutSession,
 } from '@/lib/lesmateriaal-checkout';
 import { registerDigitalConsent } from '@/lib/register-digital-consent';
+import { createLesmateriaalCheckoutSession } from '@/lib/create-lesmateriaal-checkout';
+import type { LesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 import {
   formatPrijs,
   lessonDisplayCode,
@@ -27,6 +29,7 @@ type Props = {
   losCheckoutEnabled: boolean;
   pakketPaymentLinkBase: string | null;
   losPaymentLinkBase: string | null;
+  checkoutMode?: LesmateriaalCheckoutMode;
 };
 
 export default function LesmateriaalPakketBestelPanel({
@@ -39,12 +42,14 @@ export default function LesmateriaalPakketBestelPanel({
   losCheckoutEnabled,
   pakketPaymentLinkBase,
   losPaymentLinkBase,
+  checkoutMode = 'links',
 }: Props) {
   const [email, setEmail] = useState('');
   const [lessonCode, setLessonCode] = useState(lessons[0]?.code ?? '');
   const [error, setError] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
+  const sessions = checkoutMode === 'sessions';
 
   const anyCheckoutEnabled = pakketCheckoutEnabled || losCheckoutEnabled;
 
@@ -66,6 +71,32 @@ export default function LesmateriaalPakketBestelPanel({
     const trimmed = validateEmail();
     if (!trimmed) return;
 
+    const label = `Pakket ${pakketCode}: ${pakketTitle}`;
+    const referenceId = `pakket_${slug}`;
+    setBusy(true);
+
+    if (sessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveLesmateriaalCheckoutSession({
+        email: trimmed,
+        productType: 'pakket',
+        slug,
+        label,
+        price,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const url = buildLesmateriaalCheckoutUrl({
       productType: 'pakket',
       slug,
@@ -73,15 +104,14 @@ export default function LesmateriaalPakketBestelPanel({
       paymentLinkBase: pakketPaymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
       return;
     }
 
-    const label = `Pakket ${pakketCode}: ${pakketTitle}`;
-    setBusy(true);
     const registered = await registerDigitalConsent({
       email: trimmed,
-      referenceId: `pakket_${slug}`,
+      referenceId,
       productLabel: label,
       buyerType: 'consumer',
     });
@@ -111,6 +141,34 @@ export default function LesmateriaalPakketBestelPanel({
     }
 
     const les = lessons.find((l) => l.code === lessonCode);
+    const label = les
+      ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
+      : `Losse les ${lessonCode}`;
+    const referenceId = `los_${lessonCode.toLowerCase()}`;
+    setBusy(true);
+
+    if (sessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveLesmateriaalCheckoutSession({
+        email: trimmed,
+        productType: 'los',
+        lessonCode,
+        label,
+        price: LOSSE_LES_PRIJS,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const url = buildLesmateriaalCheckoutUrl({
       productType: 'los',
       lessonCode,
@@ -118,17 +176,14 @@ export default function LesmateriaalPakketBestelPanel({
       paymentLinkBase: losPaymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
       return;
     }
 
-    const label = les
-      ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
-      : `Losse les ${lessonCode}`;
-    setBusy(true);
     const registered = await registerDigitalConsent({
       email: trimmed,
-      referenceId: `los_${lessonCode.toLowerCase()}`,
+      referenceId,
       productLabel: label,
       buyerType: 'consumer',
     });

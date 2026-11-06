@@ -21,6 +21,8 @@ import {
   saveChatgptCheckoutSession,
 } from '@/lib/chatgpt-checkout';
 import { registerDigitalConsent } from '@/lib/register-digital-consent';
+import { createLesmateriaalCheckoutSession } from '@/lib/create-lesmateriaal-checkout';
+import type { LesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 import DigitalDeliveryConsent from '@/app/components/DigitalDeliveryConsent';
 
 type CheckoutBases = {
@@ -185,12 +187,19 @@ function CheckList({ items }: { items: string[] }) {
   );
 }
 
-export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
+export function ChatgptShop({
+  bases,
+  checkoutMode = 'links',
+}: {
+  bases: CheckoutBases;
+  checkoutMode?: LesmateriaalCheckoutMode;
+}) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
   const emailRef = useRef('');
+  const sessions = checkoutMode === 'sessions';
 
   function updateEmail(value: string) {
     emailRef.current = value;
@@ -230,6 +239,30 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
         : referenceId === CHATGPT_ORG_REFERENCE
           ? 'organisatie'
           : 'een';
+    const sku = getChatgptCheckoutMeta(referenceId);
+    setBusy(true);
+
+    if (sessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveChatgptCheckoutSession({
+        email: trimmed,
+        referenceId,
+        label: sku.label,
+        price: sku.price,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const paymentLinkBase = bases[kind];
     const url = buildChatgptCheckoutUrl({
       referenceId,
@@ -237,12 +270,11 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
       paymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
       return;
     }
 
-    const sku = getChatgptCheckoutMeta(referenceId);
-    setBusy(true);
     const registered = await registerDigitalConsent({
       email: trimmed,
       referenceId,

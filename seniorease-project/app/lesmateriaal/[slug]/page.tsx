@@ -14,6 +14,11 @@ import {
 } from '../lesmateriaal-data';
 import { getLesmateriaalSeoOverride } from '../lesmateriaal-seo-overrides';
 import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
+import {
+  isSessionsCheckoutReady,
+  isStripePriceConfigured,
+} from '@/lib/lesmateriaal-checkout-catalog';
+import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 import { Check } from 'lucide-react';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -45,10 +50,19 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
   const pakket = getPakketBySlug(slug);
   if (!pakket) notFound();
 
+  const checkoutMode = getLesmateriaalCheckoutMode();
   const pakketPaymentLinkBase = getLesmateriaalPaymentLinkBase('pakket', slug);
   const losPaymentLinkBase = getLesmateriaalPaymentLinkBase('los');
-  const pakketCheckoutEnabled = pakketPaymentLinkBase !== null;
-  const losCheckoutEnabled = losPaymentLinkBase !== null;
+  const pakketCheckoutEnabled =
+    checkoutMode === 'sessions'
+      ? isSessionsCheckoutReady() &&
+        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_PAKKET')
+      : pakketPaymentLinkBase !== null;
+  const losCheckoutEnabled =
+    checkoutMode === 'sessions'
+      ? isSessionsCheckoutReady() &&
+        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_LOS')
+      : losPaymentLinkBase !== null;
   const Icon = pakket.Icon;
   const seo = getLesmateriaalSeoOverride(slug);
 
@@ -196,6 +210,7 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
             losCheckoutEnabled={losCheckoutEnabled}
             pakketPaymentLinkBase={pakketPaymentLinkBase}
             losPaymentLinkBase={losPaymentLinkBase}
+            checkoutMode={checkoutMode}
           />
           <div className="mt-6">
             <LesmateriaalLicentieBlok variant="compact" />

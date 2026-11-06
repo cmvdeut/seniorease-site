@@ -7,6 +7,11 @@ import {
 } from './chatgpt-data';
 import { ChatgptShop } from './ChatgptShop';
 import { getChatgptPaymentLinkBase } from '@/lib/chatgpt-checkout';
+import {
+  isSessionsCheckoutReady,
+  isStripePriceConfigured,
+} from '@/lib/lesmateriaal-checkout-catalog';
+import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal/chatgpt',
@@ -46,10 +51,28 @@ function CheckList({ items }: { items: string[] }) {
 }
 
 export default function LesmateriaalChatgptPage() {
+  const checkoutMode = getLesmateriaalCheckoutMode();
+  const sessions = checkoutMode === 'sessions';
+  const sessionsReady = sessions && isSessionsCheckoutReady();
+
+  /** In sessions-modus: sentinel zodat knoppen aan gaan zonder Payment Link. */
+  const sessionsMarker = 'sessions';
   const checkoutBases = {
-    een: getChatgptPaymentLinkBase('een'),
-    compleet: getChatgptPaymentLinkBase('compleet'),
-    organisatie: getChatgptPaymentLinkBase('organisatie'),
+    een: sessions
+      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_EEN')
+        ? sessionsMarker
+        : null
+      : getChatgptPaymentLinkBase('een'),
+    compleet: sessions
+      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_COMPLEET')
+        ? sessionsMarker
+        : null
+      : getChatgptPaymentLinkBase('compleet'),
+    organisatie: sessions
+      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_ORG')
+        ? sessionsMarker
+        : null
+      : getChatgptPaymentLinkBase('organisatie'),
   };
 
   return (
@@ -93,7 +116,7 @@ export default function LesmateriaalChatgptPage() {
         </div>
       </section>
 
-      <ChatgptShop bases={checkoutBases} />
+      <ChatgptShop bases={checkoutBases} checkoutMode={checkoutMode} />
 
       {/* 7. ZO WERKT HET */}
       <section aria-labelledby="chatgpt-stappen-heading" className="bg-slate py-14 md:py-16">

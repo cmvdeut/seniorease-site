@@ -9,22 +9,27 @@ import {
   buildLesmateriaalCheckoutUrl,
   saveLesmateriaalCheckoutSession,
 } from '@/lib/lesmateriaal-checkout';
+import { createLesmateriaalCheckoutSession } from '@/lib/create-lesmateriaal-checkout';
 import { registerDigitalConsent } from '@/lib/register-digital-consent';
+import type { LesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 import { formatPrijs, ORG_COMPLEET_PRIJS } from '@/app/lesmateriaal/lesmateriaal-data';
 
 type Props = {
   checkoutEnabled: boolean;
   paymentLinkBase: string | null;
+  checkoutMode?: LesmateriaalCheckoutMode;
 };
 
 export default function LesmateriaalOrganisatieBestel({
   checkoutEnabled,
   paymentLinkBase,
+  checkoutMode = 'links',
 }: Props) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
+  const sessions = checkoutMode === 'sessions';
 
   async function handleBestellen() {
     setError('');
@@ -38,17 +43,40 @@ export default function LesmateriaalOrganisatieBestel({
       return;
     }
 
+    setBusy(true);
+
+    if (sessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId: 'compleet_org',
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveLesmateriaalCheckoutSession({
+        email: trimmed,
+        productType: 'compleet',
+        label: 'Compleet organisatiepakket (A–H)',
+        price: ORG_COMPLEET_PRIJS,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const url = buildLesmateriaalCheckoutUrl({
       productType: 'compleet',
       email: trimmed,
       paymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
       return;
     }
 
-    setBusy(true);
     const registered = await registerDigitalConsent({
       email: trimmed,
       referenceId: 'compleet_org',

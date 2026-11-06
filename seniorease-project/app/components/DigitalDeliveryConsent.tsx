@@ -4,7 +4,7 @@ import Link from 'next/link';
 import {
   DIGITAL_CONSENT_CHECKBOX_LABEL,
   DIGITAL_CONSENT_ORG_NOTE,
-} from '@/lib/digital-delivery-consent';
+} from '@/lib/digital-delivery-consent-text';
 
 type Props = {
   checked: boolean;
