@@ -189,6 +189,18 @@ export default function ContactPage() {
           </div>
         </div>
 
+        {/* Bedrijfsgegevens */}
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-6 mb-6">
+          <h2 className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.2rem' }}>
+            Bedrijfsgegevens
+          </h2>
+          <p className="text-gray-700 leading-relaxed" style={{ fontSize: '1.05rem' }}>
+            SeniorEase is een product van EaseWorks.
+            <br />
+            KvK-nummer: 42201315
+          </p>
+        </div>
+
         {/* Info */}
         <div className="rounded-xl p-6 border border-amber-200" style={{ background: '#FFFBF0' }}>
           <p className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.1rem' }}>Wanneer reageren wij?</p>

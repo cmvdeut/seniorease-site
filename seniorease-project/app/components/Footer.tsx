@@ -60,7 +60,11 @@ export default function Footer() {
             <p className="text-white/80 text-senior-xs leading-relaxed max-w-xs">
               SeniorEase maakt technologie begrijpelijk — vertrouwd en in uw eigen tempo, voor senioren.
             </p>
-            <p className="mt-6 text-white/45 text-senior-xs">© 2026 SeniorEase</p>
+            <p className="mt-6 text-white/45 text-senior-xs leading-relaxed">
+              © 2026 SeniorEase
+              <br />
+              SeniorEase is een product van EaseWorks · KvK 42201315
+            </p>
           </div>
 
           <div>

@@ -26,6 +26,9 @@ export default function VoorwaardenPage() {
           Hier leest u de voorwaarden voor de website SeniorEase en voor de app Mijn Bibliotheek.
           Ons privacybeleid staat apart op de privacy-pagina.
         </p>
+        <p className="text-navy/70 mb-8 text-senior-sm leading-relaxed max-w-2xl">
+          SeniorEase is een product van EaseWorks (KvK 42201315).
+        </p>
 
         <div className="bg-paper rounded-senior border border-navy/10 p-6 sm:p-8 md:p-10 space-y-12">
           <p className="text-navy/55 text-senior-xs m-0">Laatste wijziging: {lastUpdate}</p>
@@ -259,6 +262,11 @@ export default function VoorwaardenPage() {
             >
               3. Contact
             </h2>
+            <p className="text-navy/85 text-senior-sm leading-relaxed mb-4">
+              SeniorEase is een product van EaseWorks.
+              <br />
+              KvK-nummer: 42201315
+            </p>
             <p className="text-navy/85 text-senior-sm leading-relaxed m-0">
               Heeft u vragen over deze voorwaarden? Neem contact op via{' '}
               <a

@@ -115,6 +115,12 @@ export default function OverOnsPage() {
           </ul>
         </div>
 
+        <div className="rounded-xl p-6 border border-neutral-stone/40 mb-6 bg-white">
+          <p className="text-gray-700 leading-relaxed m-0" style={{ fontSize: '1.05rem' }}>
+            SeniorEase is een product van EaseWorks (KvK 42201315).
+          </p>
+        </div>
+
         {/* Contact */}
         <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-8">
           <h2 className="font-bold text-gray-900 mb-3" style={{ fontSize: '1.5rem' }}>

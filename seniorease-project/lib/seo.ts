@@ -315,11 +315,18 @@ export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE_NAME,
+  legalName: 'EaseWorks',
+  alternateName: 'EaseWorks',
   url: SITE_URL,
   logo: absoluteUrl('/heart-logo.png'),
   description: ORGANIZATION_DESCRIPTION,
   email: 'info@seniorease.nl',
   foundingDate: '2024',
+  identifier: {
+    '@type': 'PropertyValue',
+    name: 'KvK',
+    value: '42201315',
+  },
   founder: {
     '@type': 'Person',
     name: 'Oprichter van SeniorEase',
