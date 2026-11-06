@@ -9,10 +9,12 @@ import {
   markConsentPaid,
   markFulfillmentMailFailed,
   markFulfillmentMailSent,
+  markFulfillmentMailSkipped,
   verifyConsentForOrder,
 } from '@/lib/lesmateriaal-consent-store';
 import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
 import { sendLesmateriaalFulfillmentEmail } from '@/lib/lesmateriaal-fulfillment-email';
+import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
 import { COMPANY } from '@/lib/company';
 import { getBrevoApiKeyCandidates } from '@/lib/brevo';
 
@@ -33,6 +35,16 @@ async function alertSupportMissingConsent(params: {
   email: string;
   referenceId: string | null;
 }): Promise<void> {
+  const allow = evaluateLesmateriaalMailAllowlist(COMPANY.emailSupport);
+  if (!allow.allowed) {
+    console.warn('Lesmateriaal consent-mismatch alert skipped (preview guard):', {
+      sessionId: params.sessionId,
+      delivery: 'skipped_preview_guard',
+      reason: allow.reason,
+    });
+    return;
+  }
+
   const apiKeys = getBrevoApiKeyCandidates();
   if (apiKeys.length === 0) return;
   const text = [
@@ -64,9 +76,19 @@ async function alertSupportMissingConsent(params: {
           textContent: text,
         }),
       });
-      if (response.ok) return;
+      if (response.ok) {
+        console.log('Lesmateriaal consent-mismatch alert sent:', {
+          sessionId: params.sessionId,
+          delivery: 'sent',
+        });
+        return;
+      }
     } catch (err) {
-      console.error('consent-mismatch alert failed:', err);
+      console.error('consent-mismatch alert failed:', {
+        sessionId: params.sessionId,
+        delivery: 'failed',
+        error: err,
+      });
     }
   }
 }
@@ -191,7 +213,11 @@ export async function POST(request: NextRequest) {
       includeConsentConfirmation: sessionsMode ? consentVerified : false,
     });
     if (!result.ok) {
-      console.error('Lesmateriaal fulfillment mail error:', result.error);
+      console.error('Lesmateriaal fulfillment mail error:', {
+        orderId,
+        delivery: 'failed',
+        error: result.error,
+      });
       if (sessionsMode) {
         await markFulfillmentMailFailed(orderId, result.error || 'mail_failed');
       }
@@ -199,6 +225,29 @@ export async function POST(request: NextRequest) {
         { error: 'Mail verzenden mislukt', detail: result.error },
         { status: 500 },
       );
+    }
+
+    if (result.delivery === 'skipped_preview_guard') {
+      if (sessionsMode) {
+        await markFulfillmentMailSkipped(
+          orderId,
+          result.skipReason || 'skipped_preview_guard',
+        );
+      }
+      processedSessions.add(orderId);
+      console.warn('Lesmateriaal fulfillment mail skipped (preview guard):', {
+        orderId,
+        delivery: 'skipped_preview_guard',
+        skipReason: result.skipReason,
+        kind: order.kind,
+        mode: sessionsMode ? 'sessions' : 'links',
+      });
+      return NextResponse.json({
+        received: true,
+        fulfilled: true,
+        mailDelivery: 'skipped_preview_guard',
+        consentVerified: sessionsMode ? consentVerified : undefined,
+      });
     }
 
     if (sessionsMode) {
@@ -215,7 +264,7 @@ export async function POST(request: NextRequest) {
     processedSessions.add(orderId);
     console.log('Lesmateriaal fulfillment OK:', {
       orderId,
-      email: order.email,
+      delivery: 'sent',
       kind: order.kind,
       files: order.assets.length,
       consentVerified: sessionsMode ? consentVerified : null,
@@ -224,6 +273,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({
       received: true,
       fulfilled: true,
+      mailDelivery: 'sent',
       consentVerified: sessionsMode ? consentVerified : undefined,
     });
   } catch (err) {

@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS lesmateriaal_fulfillments (
   reference_id TEXT NOT NULL,
   email TEXT NOT NULL,
   status TEXT NOT NULL DEFAULT 'pending'
-    CHECK (status IN ('pending', 'mail_sent', 'mail_failed', 'completed')),
+    CHECK (status IN ('pending', 'mail_sent', 'mail_failed', 'mail_skipped', 'completed')),
   consent_verified BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT now(),

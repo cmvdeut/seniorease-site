@@ -7,7 +7,12 @@ import {
 import type { CatalogBuyerType } from '@/lib/lesmateriaal-checkout-catalog';
 
 export type ConsentStatus = 'pending' | 'bound' | 'paid' | 'orphan';
-export type FulfillmentStatus = 'pending' | 'mail_sent' | 'mail_failed' | 'completed';
+export type FulfillmentStatus =
+  | 'pending'
+  | 'mail_sent'
+  | 'mail_failed'
+  | 'mail_skipped'
+  | 'completed';
 
 export type ConsentRow = {
   consentId: string;
@@ -151,10 +156,18 @@ export function verifyConsentForOrder(params: {
   return true;
 }
 
+function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
+  return (
+    status === 'completed' ||
+    status === 'mail_sent' ||
+    status === 'mail_skipped'
+  );
+}
+
 /**
  * Claim fulfillment row for processing. Idempotent:
  * - new session → insert pending, return { action: 'process' }
- * - completed → { action: 'skip' }
+ * - completed / mail_sent / mail_skipped → { action: 'skip' }
  * - mail_failed / pending → { action: 'retry' }
  */
 export async function claimFulfillment(params: {
@@ -175,7 +188,7 @@ export async function claimFulfillment(params: {
 
   if (existing[0]) {
     const row = mapFulfillment(existing[0] as Record<string, unknown>);
-    if (row.status === 'completed' || row.status === 'mail_sent') {
+    if (isFulfillmentTerminal(row.status)) {
       return { action: 'skip', row };
     }
     await sql`
@@ -218,7 +231,7 @@ export async function claimFulfillment(params: {
     LIMIT 1
   `;
   const row = mapFulfillment(again[0] as Record<string, unknown>);
-  if (row.status === 'completed' || row.status === 'mail_sent') {
+  if (isFulfillmentTerminal(row.status)) {
     return { action: 'skip', row };
   }
   return { action: 'retry', row };
@@ -233,6 +246,21 @@ export async function markFulfillmentMailSent(
     SET status = 'completed',
         updated_at = now(),
         last_error = NULL
+    WHERE stripe_session_id = ${stripeSessionId}
+  `;
+}
+
+/** Preview allowlist: mail bewust niet verzonden — geen 'completed'/verzonden. */
+export async function markFulfillmentMailSkipped(
+  stripeSessionId: string,
+  reason: string,
+): Promise<void> {
+  const sql = getNeonSql();
+  await sql`
+    UPDATE lesmateriaal_fulfillments
+    SET status = 'mail_skipped',
+        updated_at = now(),
+        last_error = ${reason.slice(0, 500)}
     WHERE stripe_session_id = ${stripeSessionId}
   `;
 }

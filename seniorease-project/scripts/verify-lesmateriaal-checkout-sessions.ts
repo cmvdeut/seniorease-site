@@ -18,6 +18,11 @@ import {
   DIGITAL_CONSENT_VERSION,
 } from '../lib/digital-delivery-consent';
 import { getLesmateriaalCheckoutMode } from '../lib/lesmateriaal-checkout-mode';
+import {
+  evaluateLesmateriaalMailAllowlist,
+  isLesmateriaalMailAllowed,
+  isPreviewMailGuardActive,
+} from '../lib/lesmateriaal-preview-mail-guard';
 import { LESMATERIAAL_PAKKETTEN } from '../app/lesmateriaal/lesmateriaal-data';
 import { CHATGPT_LESSONS } from '../app/lesmateriaal/chatgpt/chatgpt-data';
 
@@ -232,6 +237,8 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.match(src, /includeConsentConfirmation: sessionsMode \? consentVerified : false/);
   assert.match(src, /markFulfillmentMailFailed/);
   assert.match(src, /markFulfillmentMailSent/);
+  assert.match(src, /markFulfillmentMailSkipped/);
+  assert.match(src, /skipped_preview_guard/);
 });
 
 check('Neon migration has unique session + fulfillment statuses', async () => {
@@ -244,8 +251,71 @@ check('Neon migration has unique session + fulfillment statuses', async () => {
   assert.match(sql, /stripe_session_id TEXT UNIQUE/);
   assert.match(sql, /lesmateriaal_fulfillments/);
   assert.match(sql, /mail_failed/);
+  assert.match(sql, /mail_skipped/);
   assert.match(sql, /consent_verified/);
   assert.doesNotMatch(sql, /redis|kv|blob/i);
+});
+
+check('migration 002 adds mail_skipped status', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const sql = fs.readFileSync(
+    path.join(process.cwd(), 'db/migrations/002_lesmateriaal_fulfillment_mail_skipped.sql'),
+    'utf8',
+  );
+  assert.match(sql, /mail_skipped/);
+});
+
+check('preview mail guard inactive in production', () => {
+  const env = {
+    VERCEL_ENV: 'production',
+    LESMATERIAAL_TEST_EMAIL: 'test@seniorease.nl',
+  };
+  assert.equal(isPreviewMailGuardActive(env), false);
+  assert.equal(isLesmateriaalMailAllowed('klant@example.nl', env), true);
+  assert.equal(evaluateLesmateriaalMailAllowlist('klant@example.nl', env).reason, 'guard_inactive');
+});
+
+check('preview mail guard inactive when VERCEL_ENV unset', () => {
+  const env = {
+    LESMATERIAAL_TEST_EMAIL: 'test@seniorease.nl',
+  };
+  assert.equal(isPreviewMailGuardActive(env), false);
+  assert.equal(isLesmateriaalMailAllowed('andere@example.nl', env), true);
+});
+
+check('preview allowlist allows exact test email', () => {
+  const env = {
+    VERCEL_ENV: 'preview',
+    LESMATERIAAL_TEST_EMAIL: 'Test@Seniorease.nl',
+  };
+  assert.equal(isPreviewMailGuardActive(env), true);
+  assert.equal(isLesmateriaalMailAllowed('test@seniorease.nl', env), true);
+  assert.equal(
+    evaluateLesmateriaalMailAllowlist('test@seniorease.nl', env).reason,
+    'allowlist_match',
+  );
+});
+
+check('preview allowlist blocks other recipients', () => {
+  const env = {
+    VERCEL_ENV: 'preview',
+    LESMATERIAAL_TEST_EMAIL: 'test@seniorease.nl',
+  };
+  assert.equal(isLesmateriaalMailAllowed('klant@example.nl', env), false);
+  assert.equal(
+    evaluateLesmateriaalMailAllowlist('klant@example.nl', env).reason,
+    'preview_recipient_not_allowlisted',
+  );
+});
+
+check('preview blocks all mail when LESMATERIAAL_TEST_EMAIL missing', () => {
+  const env = { VERCEL_ENV: 'preview' };
+  assert.equal(isLesmateriaalMailAllowed('test@seniorease.nl', env), false);
+  assert.equal(
+    evaluateLesmateriaalMailAllowlist('test@seniorease.nl', env).reason,
+    'preview_missing_test_email',
+  );
 });
 
 console.log(`\n=== Resultaat: ${passed} pass, ${failed} fail ===`);

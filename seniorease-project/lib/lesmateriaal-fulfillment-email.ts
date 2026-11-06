@@ -9,6 +9,21 @@ import {
   zipFileIdForOrder,
   type FulfillmentOrder,
 } from '@/lib/lesmateriaal-fulfillment';
+import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
+
+export type FulfillmentMailDelivery = 'sent' | 'skipped_preview_guard' | 'failed';
+
+export type FulfillmentMailResult =
+  | {
+      ok: true;
+      delivery: 'sent' | 'skipped_preview_guard';
+      skipReason?: string;
+    }
+  | {
+      ok: false;
+      delivery: 'failed';
+      error: string;
+    };
 
 function escapeHtml(value: string): string {
   return value
@@ -34,11 +49,29 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
    * Geen aanname / geen standaard-true.
    */
   includeConsentConfirmation?: boolean;
-}): Promise<{ ok: boolean; error?: string }> {
+}): Promise<FulfillmentMailResult> {
   const { order, orderId, includeConsentConfirmation = false } = params;
+
+  const allow = evaluateLesmateriaalMailAllowlist(order.email);
+  if (!allow.allowed) {
+    console.warn('Lesmateriaal fulfillment mail skipped (preview guard):', {
+      orderId,
+      delivery: 'skipped_preview_guard',
+      reason: allow.reason,
+      recipientDomain: order.email.includes('@')
+        ? order.email.split('@')[1]
+        : null,
+    });
+    return {
+      ok: true,
+      delivery: 'skipped_preview_guard',
+      skipReason: allow.reason,
+    };
+  }
+
   const apiKeys = getBrevoApiKeyCandidates();
   if (apiKeys.length === 0) {
-    return { ok: false, error: 'BREVO_API_KEY ontbreekt' };
+    return { ok: false, delivery: 'failed', error: 'BREVO_API_KEY ontbreekt' };
   }
 
   const baseUrl = getSiteBaseUrl();
@@ -147,11 +180,26 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
       },
       body: JSON.stringify(payload),
     });
-    if (response.ok) return { ok: true };
+    if (response.ok) {
+      console.log('Lesmateriaal fulfillment mail sent:', {
+        orderId,
+        delivery: 'sent',
+        kind: order.kind,
+      });
+      return { ok: true, delivery: 'sent' };
+    }
     const body = await response.text().catch(() => '');
     lastError = `Brevo ${response.status}: ${body.slice(0, 200)}`;
-    console.error('Lesmateriaal fulfillment mail failed:', lastError);
+    console.error('Lesmateriaal fulfillment mail failed:', {
+      orderId,
+      delivery: 'failed',
+      error: lastError,
+    });
   }
 
-  return { ok: false, error: lastError || 'Brevo verzenden mislukt' };
+  return {
+    ok: false,
+    delivery: 'failed',
+    error: lastError || 'Brevo verzenden mislukt',
+  };
 }
