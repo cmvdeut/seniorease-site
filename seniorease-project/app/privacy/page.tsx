@@ -218,10 +218,6 @@ export default function PrivacyPage() {
                       <span className="font-bold">Support:</span>
                       <a href="mailto:support@seniorease.nl" className="text-primary hover:underline">support@seniorease.nl</a>
                     </li>
-                    <li>
-                      <span className="font-bold">Verantwoordelijke:</span>{' '}
-                      EaseWorks (KvK 42201315). SeniorEase is een product van EaseWorks.
-                    </li>
                   </ul>
                 </div>
               </section>
