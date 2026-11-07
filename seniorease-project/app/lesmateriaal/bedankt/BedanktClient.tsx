@@ -4,6 +4,10 @@ import { useEffect, useState } from 'react';
 import SeniorButton from '@/app/components/SeniorButton';
 import { readLesmateriaalCheckoutSession } from '@/lib/lesmateriaal-checkout';
 import { readChatgptCheckoutSession } from '@/lib/chatgpt-checkout';
+import {
+  bedanktContentsBullets,
+  resolveBedanktContentsKind,
+} from '@/lib/lesmateriaal-bedankt-contents';
 import { getPakketBySlug } from '../lesmateriaal-data';
 import { Mail, CheckCircle2, Download, Loader2 } from 'lucide-react';
 
@@ -64,9 +68,13 @@ export default function BedanktClient() {
   }, []);
 
   const pakket = localSession?.slug ? getPakketBySlug(localSession.slug) : undefined;
-  const isChatgpt = order
-    ? order.kind === 'chatgpt'
-    : Boolean(chatgptSession && !localSession);
+  const contentsKind = resolveBedanktContentsKind({
+    orderKind: order?.kind,
+    orderStatus: order?.status,
+    localProductType: localSession?.productType,
+    hasChatgptLocalSession: Boolean(chatgptSession && !localSession),
+  });
+  const isChatgpt = contentsKind === 'chatgpt';
 
   function localOrderDescription(): string {
     if (chatgptSession?.label) return ` voor ${chatgptSession.label}`;
@@ -77,15 +85,19 @@ export default function BedanktClient() {
       case 'los':
         return localSession.label ? ` voor ${localSession.label}` : ' voor uw losse les';
       case 'pakket':
-      default:
         if (pakket) return ` voor pakket ${pakket.code}: ${pakket.title}`;
         if (localSession.label) return ` voor ${localSession.label}`;
         return '';
+      default:
+        return localSession.label ? ` voor ${localSession.label}` : '';
     }
   }
 
   const email = order?.email || localSession?.email || chatgptSession?.email;
-  const label = order?.label || chatgptSession?.label;
+  const label = order?.label || localSession?.label || chatgptSession?.label;
+  const contentBullets = bedanktContentsBullets(contentsKind, {
+    lessonLabel: contentsKind === 'los' ? label : null,
+  });
   const downloads = order?.downloads?.filter((d) => d.available) ?? [];
   const primaryDownloads = downloads.filter((d) => d.primary);
   const otherDownloads = downloads.filter((d) => !d.primary);
@@ -203,32 +215,9 @@ export default function BedanktClient() {
       <div className="bg-paper rounded-senior border border-navy/8 p-6 text-left mb-8">
         <h2 className="font-serif text-navy font-semibold text-senior-base mb-3">Wat zit erin?</h2>
         <ul className="space-y-2 text-navy/80 text-senior-sm list-disc pl-5">
-          {isChatgpt ? (
-            <>
-              <li>Een ZIP-bestand met het gekozen ChatGPT-lesmateriaal</li>
-              <li>Draaiboek, beamer en deelnemersmateriaal waar van toepassing</li>
-              <li>START_HIER-instructies en gebruikslicentie</li>
-            </>
-          ) : localSession?.productType === 'compleet' || order?.kind === 'compleet' ? (
-            <>
-              <li>Alle themapakketten A–H (draaiboeken + oefentaken)</li>
-              <li>Begeleidersgids en printrechten voor uw organisatie</li>
-              <li>Beamer-PDF waar beschikbaar</li>
-            </>
-          ) : localSession?.productType === 'los' || order?.kind === 'los' ? (
-            <>
-              <li>Draaiboek voor één lesmiddag</li>
-              <li>Deelnemerskaart en oefentaken voor die les</li>
-              <li>Zaalchecklist en nazorgkaart</li>
-            </>
-          ) : (
-            <>
-              <li>Draaiboek voor de begeleider</li>
-              <li>Deelnemerskaart en oefentaken (4 lessen)</li>
-              <li>Zaalchecklist en nazorgkaart</li>
-              <li>Beamer-PDF waar beschikbaar</li>
-            </>
-          )}
+          {contentBullets.map((bullet) => (
+            <li key={bullet}>{bullet}</li>
+          ))}
         </ul>
       </div>
 

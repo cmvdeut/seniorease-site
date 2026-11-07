@@ -29,6 +29,11 @@ import {
   LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS,
   LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES,
 } from '../lib/lesmateriaal-checkout-payment-methods';
+import { getSiteBaseUrl } from '../lib/lesmateriaal-fulfillment';
+import {
+  bedanktContentsBullets,
+  resolveBedanktContentsKind,
+} from '../lib/lesmateriaal-bedankt-contents';
 import {
   LESMATERIAAL_PAKKETTEN,
   listRoutablePakketten,
@@ -279,6 +284,87 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.match(src, /markFulfillmentMailSent/);
   assert.match(src, /markFulfillmentMailSkipped/);
   assert.match(src, /skipped_preview_guard/);
+  const skipResponse = src.match(
+    /if \(result\.delivery === 'skipped_preview_guard'\) \{[\s\S]*?return NextResponse\.json\(\{([\s\S]*?)\}\);/,
+  );
+  assert.ok(skipResponse, 'missing skipped_preview_guard response block');
+  assert.match(skipResponse[1], /fulfilled:\s*false/);
+  assert.doesNotMatch(skipResponse[1], /fulfilled:\s*true/);
+});
+
+check('preview site base URL uses VERCEL_URL, not production host', () => {
+  assert.equal(
+    getSiteBaseUrl({
+      VERCEL_ENV: 'preview',
+      VERCEL_URL: 'seniorease-site-git-legal-eas.vercel.app',
+      NEXT_PUBLIC_SITE_URL: 'https://www.seniorease.nl',
+    }),
+    'https://seniorease-site-git-legal-eas.vercel.app',
+  );
+  assert.equal(
+    getSiteBaseUrl({
+      VERCEL_ENV: 'preview',
+      VERCEL_URL: 'https://branch.vercel.app/',
+    }),
+    'https://branch.vercel.app',
+  );
+});
+
+check('production site base URL keeps configured/fallback host', () => {
+  assert.equal(
+    getSiteBaseUrl({
+      VERCEL_ENV: 'production',
+      VERCEL_URL: 'should-not-use.vercel.app',
+      NEXT_PUBLIC_SITE_URL: 'https://www.seniorease.nl',
+    }),
+    'https://www.seniorease.nl',
+  );
+  assert.equal(
+    getSiteBaseUrl({
+      SITE_URL: 'https://www.seniorease.nl/',
+    }),
+    'https://www.seniorease.nl',
+  );
+  assert.equal(getSiteBaseUrl({}), 'https://www.seniorease.nl');
+});
+
+check('bedankt contents: missing order does not default to pakket', () => {
+  assert.equal(
+    resolveBedanktContentsKind({
+      orderStatus: 'error',
+      orderKind: null,
+      localProductType: null,
+    }),
+    'unknown',
+  );
+  const unknownBullets = bedanktContentsBullets('unknown');
+  assert.equal(unknownBullets.some((b) => /4 lessen/i.test(b)), false);
+});
+
+check('bedankt contents: losse les uses lesson label only', () => {
+  assert.equal(
+    resolveBedanktContentsKind({
+      orderKind: 'los',
+      localProductType: 'pakket',
+    }),
+    'los',
+  );
+  assert.equal(
+    resolveBedanktContentsKind({
+      orderStatus: 'error',
+      localProductType: 'los',
+    }),
+    'los',
+  );
+  const bullets = bedanktContentsBullets('los', {
+    lessonLabel: 'Losse les A1: Ik ken mijn telefoon',
+  });
+  assert.equal(bullets.some((b) => /4 lessen/i.test(b)), false);
+  assert.equal(
+    bullets.some((b) => /Losse les A1: Ik ken mijn telefoon/.test(b)),
+    true,
+  );
+  assert.equal(bullets.some((b) => /één lesmiddag/.test(b)), true);
 });
 
 check('Neon migration has unique session + fulfillment statuses', async () => {

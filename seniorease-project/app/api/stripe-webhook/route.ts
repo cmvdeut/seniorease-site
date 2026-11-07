@@ -242,9 +242,10 @@ export async function POST(request: NextRequest) {
         kind: order.kind,
         mode: sessionsMode ? 'sessions' : 'links',
       });
+      // Geen fulfilled:true — mail is bewust niet verzonden (preview-guard), geen succesvolle levering.
       return NextResponse.json({
         received: true,
-        fulfilled: true,
+        fulfilled: false,
         mailDelivery: 'skipped_preview_guard',
         consentVerified: sessionsMode ? consentVerified : undefined,
       });

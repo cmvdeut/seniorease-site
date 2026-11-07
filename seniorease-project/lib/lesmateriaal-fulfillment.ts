@@ -704,12 +704,27 @@ export function buildChatgptDownloadUrl(baseUrl: string, token: string): string 
   return buildDownloadUrl(baseUrl, token, '/api/lesmateriaal/chatgpt-download');
 }
 
-export function getSiteBaseUrl(): string {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.SITE_URL?.trim() ||
-    'https://www.seniorease.nl'
-  );
+export type SiteBaseUrlEnv = Record<string, string | undefined>;
+
+/**
+ * Basis-URL voor success/cancel/download-links.
+ * Preview: altijd https://$VERCEL_URL (niet Production).
+ * Production/local: bestaande NEXT_PUBLIC_SITE_URL / SITE_URL / fallback.
+ */
+export function getSiteBaseUrl(env: SiteBaseUrlEnv = process.env): string {
+  if (env.VERCEL_ENV === 'preview') {
+    const vercelUrl = env.VERCEL_URL?.trim();
+    if (vercelUrl) {
+      const host = vercelUrl.replace(/^https?:\/\//i, '').replace(/\/$/, '');
+      if (host) return `https://${host}`;
+    }
+  }
+
+  const configured =
+    env.NEXT_PUBLIC_SITE_URL?.trim() ||
+    env.SITE_URL?.trim() ||
+    'https://www.seniorease.nl';
+  return configured.replace(/\/$/, '') || 'https://www.seniorease.nl';
 }
 
 export function pakketLabel(pakket: LesmateriaalPakket): string {
