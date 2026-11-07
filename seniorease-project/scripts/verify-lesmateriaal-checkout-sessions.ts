@@ -24,6 +24,11 @@ import {
   isPreviewMailGuardActive,
 } from '../lib/lesmateriaal-preview-mail-guard';
 import {
+  getLesmateriaalCheckoutPaymentMethodTypes,
+  LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS,
+  LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES,
+} from '../lib/lesmateriaal-checkout-payment-methods';
+import {
   LESMATERIAAL_PAKKETTEN,
   listRoutablePakketten,
 } from '../app/lesmateriaal/lesmateriaal-data';
@@ -235,7 +240,25 @@ check('create-checkout route exists and gates on sessions mode', async () => {
   assert.match(src, /insertConsentRecord/);
   assert.match(src, /automatic_tax|Geen automatic_tax/);
   assert.match(src, /bindConsentToStripeSession/);
+  assert.match(src, /payment_method_types:\s*getLesmateriaalCheckoutPaymentMethodTypes\(\)/);
   assert.doesNotMatch(src, /productLabel.*data\.productLabel/);
+});
+
+check('checkout payment methods allowlist is explicit and excludes blocked', () => {
+  const allowed = getLesmateriaalCheckoutPaymentMethodTypes();
+  assert.deepEqual(allowed, [...LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES]);
+  assert.ok(allowed.includes('card'));
+  assert.ok(allowed.includes('ideal'));
+  assert.ok(allowed.includes('wero'));
+  assert.ok(allowed.includes('bancontact'));
+  assert.ok(allowed.includes('paypal'));
+  for (const blocked of LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS) {
+    assert.equal(
+      allowed.includes(blocked as (typeof allowed)[number]),
+      false,
+      `blocked method leaked into allowlist: ${blocked}`,
+    );
+  }
 });
 
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
