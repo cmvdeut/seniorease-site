@@ -1,9 +1,9 @@
 /**
  * Toegestane Stripe Checkout Sessions betaalmethoden (lesmateriaal).
  *
- * - Expliciete allowlist i.p.v. Dashboard-dynamic methods, zodat Klarna/Link/P24/e.d. niet verschijnen.
- * - Link hoort NIET in deze lijst: `excluded_payment_method_types` accepteert `link` niet;
- *   alleen weglaten uit `payment_method_types` schakelt Link uit.
+ * - Expliciete allowlist i.p.v. Dashboard-dynamic methods, zodat Klarna/P24/e.d. niet verschijnen.
+ * - Link is géén gewone payment_method_type in de kaartflow: weglaten uit `payment_method_types`
+ *   volstaat niet. Zet `wallet_options.link.display = 'never'` (zie helper hieronder).
  * - Apple Pay / Google Pay verschijnen automatisch via `card` waar beschikbaar (wallets).
  */
 
@@ -34,4 +34,11 @@ export function getLesmateriaalCheckoutPaymentMethodTypes(): Array<
   Stripe.Checkout.SessionCreateParams.PaymentMethodType
 > {
   return [...LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES];
+}
+
+/** Link-wallet (autosave / “betaal met Link”) uit Checkout Sessions. */
+export function getLesmateriaalCheckoutWalletOptions(): Stripe.Checkout.SessionCreateParams.WalletOptions {
+  return {
+    link: { display: 'never' },
+  };
 }

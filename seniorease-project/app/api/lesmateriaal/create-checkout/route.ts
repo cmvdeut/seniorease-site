@@ -13,7 +13,10 @@ import {
 import {
   DIGITAL_CONSENT_VERSION,
 } from '@/lib/digital-delivery-consent';
-import { getLesmateriaalCheckoutPaymentMethodTypes } from '@/lib/lesmateriaal-checkout-payment-methods';
+import {
+  getLesmateriaalCheckoutPaymentMethodTypes,
+  getLesmateriaalCheckoutWalletOptions,
+} from '@/lib/lesmateriaal-checkout-payment-methods';
 import { getSiteBaseUrl } from '@/lib/lesmateriaal-fulfillment';
 
 export const dynamic = 'force-dynamic';
@@ -134,10 +137,11 @@ export async function POST(request: NextRequest) {
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: successUrl,
       cancel_url: cancelUrl,
-      // Expliciete allowlist: voorkomt Klarna/Link/P24/Amazon Pay/EPS via Dashboard-dynamic methods.
-      // Link kan niet via excluded_payment_method_types; weglaten uit deze lijst schakelt Link uit.
+      // Expliciete allowlist: voorkomt Klarna/P24/Amazon Pay/EPS via Dashboard-dynamic methods.
+      // Link zit als wallet in de kaartflow → wallet_options.link.display = never.
       // Apple Pay / Google Pay via `card` wallets waar beschikbaar.
       payment_method_types: getLesmateriaalCheckoutPaymentMethodTypes(),
+      wallet_options: getLesmateriaalCheckoutWalletOptions(),
       // Geen automatic_tax / Stripe Tax
       metadata: {
         consent_id: consent.consentId,

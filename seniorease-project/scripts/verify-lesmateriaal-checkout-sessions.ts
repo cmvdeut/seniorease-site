@@ -25,6 +25,7 @@ import {
 } from '../lib/lesmateriaal-preview-mail-guard';
 import {
   getLesmateriaalCheckoutPaymentMethodTypes,
+  getLesmateriaalCheckoutWalletOptions,
   LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS,
   LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES,
 } from '../lib/lesmateriaal-checkout-payment-methods';
@@ -241,6 +242,7 @@ check('create-checkout route exists and gates on sessions mode', async () => {
   assert.match(src, /automatic_tax|Geen automatic_tax/);
   assert.match(src, /bindConsentToStripeSession/);
   assert.match(src, /payment_method_types:\s*getLesmateriaalCheckoutPaymentMethodTypes\(\)/);
+  assert.match(src, /wallet_options:\s*getLesmateriaalCheckoutWalletOptions\(\)/);
   assert.doesNotMatch(src, /productLabel.*data\.productLabel/);
 });
 
@@ -259,6 +261,9 @@ check('checkout payment methods allowlist is explicit and excludes blocked', () 
       `blocked method leaked into allowlist: ${blocked}`,
     );
   }
+  assert.deepEqual(getLesmateriaalCheckoutWalletOptions(), {
+    link: { display: 'never' },
+  });
 });
 
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
