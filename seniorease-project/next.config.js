@@ -4,15 +4,18 @@ const path = require('path');
 const nextConfig = {
   // Voorkom dat Next de parent-monorepo als workspace-root kiest (Vercel seniorease-project vs seniorease-site).
   outputFileTracingRoot: path.join(__dirname),
-  // Bron-ZIPs (vóór sync) niet in serverless functions; ChatGPT-downloads
-  // zitten in een aparte route zodat A–H onder de 250MB-limiet blijft.
+  // Hobby Function Storage: houd PDF/ZIP’s uit álle functions behalve de download-routes.
   outputFileTracingExcludes: {
     '*': [
-      './private/chatgpt-klant-zips/**',
+      './private/**',
       './contentplan/**',
+      './lesmateriaal/**',
+      './Agent/**',
+      './hyperframes-prototype/**',
     ],
-    '/api/lesmateriaal/download': ['./private/lesmateriaal-downloads/chatgpt/**'],
-    '/api/lesmateriaal/chatgpt-download': [
+  },
+  outputFileTracingIncludes: {
+    '/api/lesmateriaal/download': [
       './private/lesmateriaal-downloads/pakket-a/**',
       './private/lesmateriaal-downloads/pakket-b/**',
       './private/lesmateriaal-downloads/pakket-c/**',
@@ -22,9 +25,9 @@ const nextConfig = {
       './private/lesmateriaal-downloads/pakket-f-telefoon/**',
       './private/lesmateriaal-downloads/pakket-g/**',
     ],
-  },
-  outputFileTracingIncludes: {
-    '/api/lesmateriaal/chatgpt-download': ['./private/lesmateriaal-downloads/chatgpt/**'],
+    '/api/lesmateriaal/chatgpt-download': [
+      './private/lesmateriaal-downloads/chatgpt/**',
+    ],
   },
   poweredByHeader: false,
   images: {

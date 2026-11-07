@@ -17,7 +17,7 @@ import {
   getLesmateriaalCheckoutPaymentMethodTypes,
   getLesmateriaalCheckoutWalletOptions,
 } from '@/lib/lesmateriaal-checkout-payment-methods';
-import { getSiteBaseUrl } from '@/lib/lesmateriaal-fulfillment';
+import { getSiteBaseUrl } from '@/lib/site-base-url';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';

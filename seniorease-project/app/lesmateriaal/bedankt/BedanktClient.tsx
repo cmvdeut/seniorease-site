@@ -8,7 +8,6 @@ import {
   bedanktContentsBullets,
   resolveBedanktContentsKind,
 } from '@/lib/lesmateriaal-bedankt-contents';
-import { getPakketBySlug } from '../lesmateriaal-data';
 import { Mail, CheckCircle2, Download, Loader2 } from 'lucide-react';
 
 type OrderStatus = {
@@ -29,14 +28,12 @@ export default function BedanktClient() {
   >(null);
   const [order, setOrder] = useState<OrderStatus | null>(null);
   const [loading, setLoading] = useState(true);
-  const [sessionId, setSessionId] = useState<string | null>(null);
 
   useEffect(() => {
     setLocalSession(readLesmateriaalCheckoutSession());
     setChatgptSession(readChatgptCheckoutSession());
     const params = new URLSearchParams(window.location.search);
     const sid = params.get('session_id')?.trim() || null;
-    setSessionId(sid);
 
     if (!sid) {
       setLoading(false);
@@ -67,7 +64,6 @@ export default function BedanktClient() {
       .finally(() => setLoading(false));
   }, []);
 
-  const pakket = localSession?.slug ? getPakketBySlug(localSession.slug) : undefined;
   const contentsKind = resolveBedanktContentsKind({
     orderKind: order?.kind,
     orderStatus: order?.status,
@@ -75,23 +71,6 @@ export default function BedanktClient() {
     hasChatgptLocalSession: Boolean(chatgptSession && !localSession),
   });
   const isChatgpt = contentsKind === 'chatgpt';
-
-  function localOrderDescription(): string {
-    if (chatgptSession?.label) return ` voor ${chatgptSession.label}`;
-    if (!localSession) return '';
-    switch (localSession.productType) {
-      case 'compleet':
-        return ' voor het compleet organisatiepakket (A–H)';
-      case 'los':
-        return localSession.label ? ` voor ${localSession.label}` : ' voor uw losse les';
-      case 'pakket':
-        if (pakket) return ` voor pakket ${pakket.code}: ${pakket.title}`;
-        if (localSession.label) return ` voor ${localSession.label}`;
-        return '';
-      default:
-        return localSession.label ? ` voor ${localSession.label}` : '';
-    }
-  }
 
   const email = order?.email || localSession?.email || chatgptSession?.email;
   const label = order?.label || localSession?.label || chatgptSession?.label;
@@ -117,25 +96,28 @@ export default function BedanktClient() {
           <Loader2 className="animate-spin" size={20} aria-hidden />
           Bestelling controleren…
         </p>
+      ) : order?.status === 'error' || order?.status === 'pending' ? (
+        <p className="text-navy/70 text-senior-base leading-relaxed mb-8">
+          {order.message ||
+            (order.status === 'pending'
+              ? 'Betaling is nog niet afgerond.'
+              : 'We konden de bestelling niet ophalen. Controleer uw e-mail voor de downloadlinks.')}
+        </p>
       ) : (
         <>
           <p className="text-navy/70 text-senior-base leading-relaxed mb-2">
-            {order?.status === 'paid' || order?.status === 'pending'
-              ? order.message || 'We hebben uw betaling ontvangen.'
-              : sessionId
-                ? order?.message || 'We hebben uw bestelling ontvangen.'
-                : `We hebben uw betaling ontvangen${localOrderDescription()}.`}
+            Uw betaling is gelukt. U kunt hieronder uw lesmateriaal downloaden.
           </p>
           {email ? (
             <p className="text-navy/70 text-senior-base leading-relaxed mb-8">
-              Downloadlinks gaan ook naar{' '}
-              <strong className="text-navy">{email}</strong>. Controleer eventueel uw map
-              ongewenste e-mail. Links zijn ongeveer 7 dagen geldig — sla de bestanden op.
+              De downloadlinks zijn ook verstuurd naar{' '}
+              <strong className="text-navy">{email}</strong>. Ze zijn ongeveer 7 dagen
+              geldig. Sla de bestanden op en controleer eventueel uw spammap.
             </p>
           ) : (
             <p className="text-navy/70 text-senior-base leading-relaxed mb-8">
-              Als uw betaling is gelukt, ontvangt u de download per e-mail. Controleer ook uw
-              map ongewenste e-mail.
+              De downloadlinks zijn ook per e-mail verstuurd. Ze zijn ongeveer 7 dagen
+              geldig. Sla de bestanden op en controleer eventueel uw spammap.
             </p>
           )}
         </>

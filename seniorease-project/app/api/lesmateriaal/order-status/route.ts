@@ -4,13 +4,11 @@ import {
   buildChatgptDownloadUrl,
   buildDownloadUrl,
   createDownloadToken,
-  getSiteBaseUrl,
-  resolveAssetAbsolutePath,
-  zipBundleAvailable,
   zipBundleLabel,
   zipFileIdForOrder,
 } from '@/lib/lesmateriaal-fulfillment';
 import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
+import { getSiteBaseUrl } from '@/lib/site-base-url';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -96,7 +94,8 @@ export async function GET(request: NextRequest) {
       downloads.push({
         label: zipBundleLabel(zipId),
         url: buildDownloadUrl(baseUrl, token),
-        available: zipBundleAvailable(zipId),
+        // Geen fs-check hier: voorkomt dat ~100MB PDF’s in deze function bundelen.
+        available: true,
         primary: true,
       });
     }
@@ -114,7 +113,7 @@ export async function GET(request: NextRequest) {
           url: chatgptPrimary
             ? buildChatgptDownloadUrl(baseUrl, token)
             : buildDownloadUrl(baseUrl, token),
-          available: resolveAssetAbsolutePath(asset) !== null,
+          available: true,
           primary: chatgptPrimary,
         };
       }),

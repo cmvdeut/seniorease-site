@@ -4,12 +4,12 @@ import {
   buildChatgptDownloadUrl,
   buildDownloadUrl,
   createDownloadToken,
-  getSiteBaseUrl,
   zipBundleLabel,
   zipFileIdForOrder,
   type FulfillmentOrder,
 } from '@/lib/lesmateriaal-fulfillment';
 import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
+import { getSiteBaseUrl } from '@/lib/site-base-url';
 
 export type FulfillmentMailDelivery = 'sent' | 'skipped_preview_guard' | 'failed';
 

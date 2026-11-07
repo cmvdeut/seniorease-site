@@ -29,7 +29,7 @@ import {
   LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS,
   LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES,
 } from '../lib/lesmateriaal-checkout-payment-methods';
-import { getSiteBaseUrl } from '../lib/lesmateriaal-fulfillment';
+import { getSiteBaseUrl } from '../lib/site-base-url';
 import {
   bedanktContentsBullets,
   resolveBedanktContentsKind,
@@ -290,6 +290,17 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.ok(skipResponse, 'missing skipped_preview_guard response block');
   assert.match(skipResponse[1], /fulfilled:\s*false/);
   assert.doesNotMatch(skipResponse[1], /fulfilled:\s*true/);
+});
+
+check('next.config keeps private downloads out of default function tracing', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const src = fs.readFileSync(path.join(process.cwd(), 'next.config.js'), 'utf8');
+  assert.match(src, /outputFileTracingExcludes/);
+  assert.match(src, /\.\/private\/\*\*/);
+  assert.match(src, /outputFileTracingIncludes/);
+  assert.match(src, /\/api\/lesmateriaal\/download/);
+  assert.match(src, /\/api\/lesmateriaal\/chatgpt-download/);
 });
 
 check('preview site base URL uses VERCEL_URL, not production host', () => {
