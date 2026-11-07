@@ -36,7 +36,7 @@ export default function DigitalDeliveryConsent({
         <span className="text-navy/85 text-senior-sm leading-relaxed">
           {DIGITAL_CONSENT_CHECKBOX_LABEL}{' '}
           <Link href="/voorwaarden" className="text-gold underline hover:text-gold-light">
-            Meer in de voorwaarden
+            Lees de algemene voorwaarden
           </Link>
           .
         </span>
