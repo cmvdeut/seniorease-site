@@ -156,7 +156,7 @@ export function verifyConsentForOrder(params: {
   return true;
 }
 
-function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
+export function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
   return (
     status === 'completed' ||
     status === 'mail_sent' ||
@@ -164,12 +164,152 @@ function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
   );
 }
 
+export async function getFulfillmentByStripeSessionId(
+  stripeSessionId: string,
+): Promise<FulfillmentRow | null> {
+  const sql = getNeonSql();
+  const rows = await sql`
+    SELECT * FROM lesmateriaal_fulfillments
+    WHERE stripe_session_id = ${stripeSessionId}
+    LIMIT 1
+  `;
+  const row = rows[0];
+  return row ? mapFulfillment(row as Record<string, unknown>) : null;
+}
+
+/**
+ * Webhook-gate: terminal Neon-rijen altijd respecteren (ook in links-modus).
+ * Nieuwe inserts alleen via sessions_claim.
+ *
+ * links_passthrough = geen bestaande rij → Payment Links-gedrag (geen Neon-write).
+ * links_retry = pending/mail_failed na Sessions → veilig opnieuw mailen.
+ * links_lookup_failed = Neon-fout in links-modus → doorlaten; idempotency niet gegarandeerd.
+ */
+export type WebhookFulfillmentGate =
+  | { action: 'skip'; status: FulfillmentStatus }
+  | { action: 'sessions_claim' }
+  | { action: 'links_retry' }
+  | { action: 'links_passthrough' }
+  | { action: 'links_lookup_failed' };
+
+export function decideWebhookFulfillmentGate(params: {
+  checkoutMode: 'links' | 'sessions';
+  neonConfigured: boolean;
+  existing: FulfillmentRow | null;
+  lookupFailed?: boolean;
+}): WebhookFulfillmentGate {
+  const { checkoutMode, neonConfigured, existing, lookupFailed = false } = params;
+
+  if (!neonConfigured) {
+    return { action: 'links_passthrough' };
+  }
+
+  if (lookupFailed) {
+    // Sessions-modus: caller moet claim/500-pad houden. Links: bestaand Payment Links-pad.
+    return checkoutMode === 'sessions'
+      ? { action: 'sessions_claim' }
+      : { action: 'links_lookup_failed' };
+  }
+
+  if (existing && isFulfillmentTerminal(existing.status)) {
+    return { action: 'skip', status: existing.status };
+  }
+
+  if (checkoutMode === 'sessions') {
+    return { action: 'sessions_claim' };
+  }
+
+  if (existing && (existing.status === 'pending' || existing.status === 'mail_failed')) {
+    return { action: 'links_retry' };
+  }
+
+  return { action: 'links_passthrough' };
+}
+
+/**
+ * Merge consent flags for claim/retry: bestaande true mag nooit false worden
+ * wanneer een latere poging geen nieuwe verificatie heeft.
+ */
+export function resolveConsentVerifiedForClaim(params: {
+  newlyVerified: boolean;
+  existingVerified?: boolean | null;
+}): boolean {
+  return Boolean(params.existingVerified) || params.newlyVerified;
+}
+
 /**
  * Claim fulfillment row for processing. Idempotent:
  * - new session → insert pending, return { action: 'process' }
  * - completed / mail_sent / mail_skipped → { action: 'skip' }
  * - mail_failed / pending → { action: 'retry' }
+ *
+ * Bij retry: consent_verified wordt OR-gewijs gemerged (true blijft true).
  */
+/**
+ * Atomisch opnieuw claimen: alleen pending/mail_failed → pending.
+ * Voorkomt rewind van completed/mail_sent/mail_skipped tussen SELECT en UPDATE.
+ */
+async function claimNonTerminalFulfillmentRow(params: {
+  stripeSessionId: string;
+  consentId: string | null;
+  consentVerified: boolean;
+  existing: FulfillmentRow;
+}): Promise<{ action: 'retry' | 'skip'; row: FulfillmentRow }> {
+  const sql = getNeonSql();
+  if (isFulfillmentTerminal(params.existing.status)) {
+    return { action: 'skip', row: params.existing };
+  }
+
+  const mergedVerified = resolveConsentVerifiedForClaim({
+    newlyVerified: params.consentVerified,
+    existingVerified: params.existing.consentVerified,
+  });
+
+  const updated = await sql`
+    UPDATE lesmateriaal_fulfillments
+    SET status = 'pending',
+        updated_at = now(),
+        last_error = NULL,
+        consent_verified = ${mergedVerified},
+        consent_id = COALESCE(${params.consentId}, consent_id)
+    WHERE stripe_session_id = ${params.stripeSessionId}
+      AND status IN ('pending', 'mail_failed')
+    RETURNING *
+  `;
+
+  if (updated[0]) {
+    return {
+      action: 'retry',
+      row: mapFulfillment(updated[0] as Record<string, unknown>),
+    };
+  }
+
+  // Peer markeerde terminal (of rij weg) tussen check en update.
+  const latest = await sql`
+    SELECT * FROM lesmateriaal_fulfillments
+    WHERE stripe_session_id = ${params.stripeSessionId}
+    LIMIT 1
+  `;
+  if (!latest[0]) {
+    throw new Error('Fulfillment claim: rij ontbreekt na mislukte non-terminal update');
+  }
+  const row = mapFulfillment(latest[0] as Record<string, unknown>);
+  if (isFulfillmentTerminal(row.status)) {
+    return { action: 'skip', row };
+  }
+  // Nog steeds non-terminal maar update matchte niet — geef gemergede flag voor mail zonder rewind.
+  return {
+    action: 'retry',
+    row: {
+      ...row,
+      consentVerified: resolveConsentVerifiedForClaim({
+        newlyVerified: params.consentVerified,
+        existingVerified: row.consentVerified,
+      }),
+    },
+  };
+}
+
 export async function claimFulfillment(params: {
   stripeSessionId: string;
   consentId: string | null;
@@ -187,23 +327,12 @@ export async function claimFulfillment(params: {
   `;
 
   if (existing[0]) {
-    const row = mapFulfillment(existing[0] as Record<string, unknown>);
-    if (isFulfillmentTerminal(row.status)) {
-      return { action: 'skip', row };
-    }
-    await sql`
-      UPDATE lesmateriaal_fulfillments
-      SET status = 'pending',
-          updated_at = now(),
-          last_error = NULL,
-          consent_verified = ${params.consentVerified},
-          consent_id = COALESCE(${params.consentId}, consent_id)
-      WHERE stripe_session_id = ${params.stripeSessionId}
-    `;
-    return {
-      action: 'retry',
-      row: { ...row, status: 'pending', consentVerified: params.consentVerified },
-    };
+    return claimNonTerminalFulfillmentRow({
+      stripeSessionId: params.stripeSessionId,
+      consentId: params.consentId,
+      consentVerified: params.consentVerified,
+      existing: mapFulfillment(existing[0] as Record<string, unknown>),
+    });
   }
 
   const inserted = await sql`
@@ -224,17 +353,21 @@ export async function claimFulfillment(params: {
     };
   }
 
-  // Race: other worker inserted
+  // Race: other worker inserted — OR-merge + alleen non-terminal updaten.
   const again = await sql`
     SELECT * FROM lesmateriaal_fulfillments
     WHERE stripe_session_id = ${params.stripeSessionId}
     LIMIT 1
   `;
-  const row = mapFulfillment(again[0] as Record<string, unknown>);
-  if (isFulfillmentTerminal(row.status)) {
-    return { action: 'skip', row };
+  if (!again[0]) {
+    throw new Error('Fulfillment claim race: rij ontbreekt na conflict');
   }
-  return { action: 'retry', row };
+  return claimNonTerminalFulfillmentRow({
+    stripeSessionId: params.stripeSessionId,
+    consentId: params.consentId,
+    consentVerified: params.consentVerified,
+    existing: mapFulfillment(again[0] as Record<string, unknown>),
+  });
 }
 
 export async function markFulfillmentMailSent(

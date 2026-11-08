@@ -9,9 +9,13 @@ import {
   type CheckoutCatalogEntry,
 } from '../lib/lesmateriaal-checkout-catalog';
 import {
+  decideWebhookFulfillmentGate,
   hashConsentText,
+  isFulfillmentTerminal,
+  resolveConsentVerifiedForClaim,
   verifyConsentForOrder,
   type ConsentRow,
+  type FulfillmentRow,
 } from '../lib/lesmateriaal-consent-store';
 import {
   DIGITAL_CONSENT_CHECKBOX_LABEL,
@@ -271,6 +275,238 @@ check('checkout payment methods allowlist is explicit and excludes blocked', () 
   });
 });
 
+function makeFulfillment(status: FulfillmentRow['status']): FulfillmentRow {
+  return {
+    stripeSessionId: 'cs_test_idempotency',
+    consentId: null,
+    referenceId: 'pakket_pakket-g',
+    email: 'koper@example.nl',
+    status,
+    consentVerified: true,
+    lastError: null,
+  };
+}
+
+check('fulfillment terminal statuses include completed/mail_sent/mail_skipped', () => {
+  assert.equal(isFulfillmentTerminal('completed'), true);
+  assert.equal(isFulfillmentTerminal('mail_sent'), true);
+  assert.equal(isFulfillmentTerminal('mail_skipped'), true);
+  assert.equal(isFulfillmentTerminal('pending'), false);
+  assert.equal(isFulfillmentTerminal('mail_failed'), false);
+});
+
+check('gate: links + no Neon row → passthrough (Payment Links niet geblokkeerd)', () => {
+  const gate = decideWebhookFulfillmentGate({
+    checkoutMode: 'links',
+    neonConfigured: true,
+    existing: null,
+  });
+  assert.equal(gate.action, 'links_passthrough');
+});
+
+check('gate: links + terminal row → skip (idempotency na rollback)', () => {
+  for (const status of ['completed', 'mail_sent', 'mail_skipped'] as const) {
+    const gate = decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: makeFulfillment(status),
+    });
+    assert.equal(gate.action, 'skip');
+    if (gate.action === 'skip') assert.equal(gate.status, status);
+  }
+});
+
+check('gate: links + pending/mail_failed → retry', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: makeFulfillment('pending'),
+    }).action,
+    'links_retry',
+  );
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: makeFulfillment('mail_failed'),
+    }).action,
+    'links_retry',
+  );
+});
+
+check('gate: sessions + no row → sessions_claim (nieuwe Neon-rij toegestaan)', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'sessions',
+      neonConfigured: true,
+      existing: null,
+    }).action,
+    'sessions_claim',
+  );
+});
+
+check('gate: sessions + terminal → skip', () => {
+  const gate = decideWebhookFulfillmentGate({
+    checkoutMode: 'sessions',
+    neonConfigured: true,
+    existing: makeFulfillment('completed'),
+  });
+  assert.equal(gate.action, 'skip');
+});
+
+check('gate: sessions + mail_failed → sessions_claim (retry via claim)', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'sessions',
+      neonConfigured: true,
+      existing: makeFulfillment('mail_failed'),
+    }).action,
+    'sessions_claim',
+  );
+});
+
+check('gate: Neon lookup failed in links → passthrough + documenteer risico', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: null,
+      lookupFailed: true,
+    }).action,
+    'links_lookup_failed',
+  );
+});
+
+check('gate: Neon lookup failed in sessions → sessions_claim (bestaande 500-pad)', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'sessions',
+      neonConfigured: true,
+      existing: null,
+      lookupFailed: true,
+    }).action,
+    'sessions_claim',
+  );
+});
+
+check('gate: Neon niet geconfigureerd → passthrough', () => {
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'sessions',
+      neonConfigured: false,
+      existing: null,
+    }).action,
+    'links_passthrough',
+  );
+});
+
+check('consent merge: links_retry preserves existing true over new false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    true,
+  );
+});
+
+check('consent merge: links_retry keeps false when both false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: false }),
+    false,
+  );
+});
+
+check('consent merge: new true upgrades existing false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: true, existingVerified: false }),
+    true,
+  );
+});
+
+check('consent merge: never downgrades true to false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    true,
+  );
+  assert.notEqual(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    false,
+  );
+});
+
+check('gate links_retry + existing true → same verified flag for DB and mail', () => {
+  const existing = makeFulfillment('mail_failed');
+  existing.consentVerified = true;
+  const gate = decideWebhookFulfillmentGate({
+    checkoutMode: 'links',
+    neonConfigured: true,
+    existing,
+  });
+  assert.equal(gate.action, 'links_retry');
+  const forClaimAndMail = resolveConsentVerifiedForClaim({
+    newlyVerified: false,
+    existingVerified: existing.consentVerified,
+  });
+  assert.equal(forClaimAndMail, true);
+});
+
+check('gate links_retry + existing false → mail without consent confirmation', () => {
+  const existing = makeFulfillment('pending');
+  existing.consentVerified = false;
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing,
+    }).action,
+    'links_retry',
+  );
+  assert.equal(
+    resolveConsentVerifiedForClaim({
+      newlyVerified: false,
+      existingVerified: existing.consentVerified,
+    }),
+    false,
+  );
+});
+
+check('race retry: worker true + concurrent insert false → mail/DB keep true', () => {
+  // Simuleert claim race: andere worker insertte false; deze worker had true.
+  const afterRaceRow = resolveConsentVerifiedForClaim({
+    newlyVerified: true,
+    existingVerified: false,
+  });
+  assert.equal(afterRaceRow, true);
+  const forMail = resolveConsentVerifiedForClaim({
+    newlyVerified: true, // consentVerifiedBeforeClaim
+    existingVerified: afterRaceRow,
+  });
+  assert.equal(forMail, true);
+});
+
+check('claim update must not rewind terminal statuses (source)', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const store = fs.readFileSync(
+    path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
+    'utf8',
+  );
+  assert.match(store, /AND status IN \('pending', 'mail_failed'\)/);
+  assert.match(store, /RETURNING \*/);
+  // Geen UPDATE naar pending zonder status-predicate in claim-pad
+  const updates = store.match(
+    /UPDATE lesmateriaal_fulfillments[\s\S]*?WHERE stripe_session_id[\s\S]*?;/g,
+  );
+  assert.ok(updates && updates.length >= 1);
+  for (const block of updates) {
+    if (!block.includes("status = 'pending'")) continue;
+    assert.match(
+      block,
+      /status IN \('pending', 'mail_failed'\)/,
+      'pending-rewrite without non-terminal predicate',
+    );
+  }
+});
+
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
@@ -279,11 +515,33 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
     'utf8',
   );
   assert.match(src, /claimFulfillment/);
-  assert.match(src, /includeConsentConfirmation: sessionsMode \? consentVerified : false/);
+  assert.match(src, /decideWebhookFulfillmentGate/);
+  assert.match(src, /getFulfillmentByStripeSessionId/);
+  assert.match(src, /resolveConsentVerifiedForClaim/);
+  assert.match(
+    src,
+    /includeConsentConfirmation\s*=\s*[\s\S]*sessionsMode \|\| gate\.action === 'links_retry' \? consentVerified : false/,
+  );
+  assert.match(src, /consentVerifiedBeforeClaim/);
+  assert.match(src, /newlyVerified: consentVerifiedBeforeClaim/);
   assert.match(src, /markFulfillmentMailFailed/);
   assert.match(src, /markFulfillmentMailSent/);
   assert.match(src, /markFulfillmentMailSkipped/);
   assert.match(src, /skipped_preview_guard/);
+  assert.match(src, /Idempotency niet gegarandeerd tijdens Neon-storing in links-modus/);
+  // Terminal skip must not be gated only on sessionsMode
+  assert.match(src, /gate\.action === 'skip'/);
+  assert.match(src, /gate\.action === 'sessions_claim' \|\| gate\.action === 'links_retry'/);
+  const store = fs.readFileSync(
+    path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
+    'utf8',
+  );
+  assert.match(store, /claimNonTerminalFulfillmentRow/);
+  assert.match(store, /status IN \('pending', 'mail_failed'\)/);
+  assert.match(store, /Race: other worker inserted/);
+  assert.match(store, /resolveConsentVerifiedForClaim/);
+  // Terminal rows must not be rewritten to pending
+  assert.match(store, /Voorkomt rewind van completed/);
   const skipResponse = src.match(
     /if \(result\.delivery === 'skipped_preview_guard'\) \{[\s\S]*?return NextResponse\.json\(\{([\s\S]*?)\}\);/,
   );
