@@ -189,6 +189,51 @@ export default function ContactPage() {
           </div>
         </div>
 
+        {/* Bedrijfsgegevens */}
+        <div className="bg-white rounded-xl shadow-sm border border-neutral-stone/40 p-6 mb-6">
+          <h2 className="font-bold text-gray-900 mb-3" style={{ fontSize: '1.2rem' }}>
+            Bedrijfsgegevens
+          </h2>
+          <dl className="space-y-2 text-gray-700" style={{ fontSize: '1.05rem' }}>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Juridische onderneming: </dt>
+              <dd className="inline m-0">EaseWorks</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Merk: </dt>
+              <dd className="inline m-0">SeniorEase</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">KvK: </dt>
+              <dd className="inline m-0">42201315</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Vestigingsplaats: </dt>
+              <dd className="inline m-0">Leimuiden</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Btw-id: </dt>
+              <dd className="inline m-0">NL05581413B67</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Algemeen: </dt>
+              <dd className="inline m-0">
+                <a href="mailto:info@seniorease.nl" className="text-primary hover:underline">
+                  info@seniorease.nl
+                </a>
+              </dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-900 inline">Bestellingen &amp; downloads: </dt>
+              <dd className="inline m-0">
+                <a href="mailto:support@seniorease.nl" className="text-primary hover:underline">
+                  support@seniorease.nl
+                </a>
+              </dd>
+            </div>
+          </dl>
+        </div>
+
         {/* Info */}
         <div className="rounded-xl p-6 border border-amber-200" style={{ background: '#FFFBF0' }}>
           <p className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.1rem' }}>Wanneer reageren wij?</p>

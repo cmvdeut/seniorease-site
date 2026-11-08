@@ -20,6 +20,10 @@ import {
   isChatgptCheckoutEmail,
   saveChatgptCheckoutSession,
 } from '@/lib/chatgpt-checkout';
+import { registerDigitalConsent } from '@/lib/register-digital-consent';
+import { createLesmateriaalCheckoutSession } from '@/lib/create-lesmateriaal-checkout';
+import type { LesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
+import DigitalDeliveryConsent from '@/app/components/DigitalDeliveryConsent';
 
 type CheckoutBases = {
   een: string | null;
@@ -34,6 +38,9 @@ type Ctx = {
   error: string;
   setError: (v: string) => void;
   buy: (referenceId: ChatgptReferenceId) => void;
+  consent: boolean;
+  setConsent: (v: boolean) => void;
+  busy: boolean;
 };
 
 const ChatgptCheckoutCtx = createContext<Ctx | null>(null);
@@ -53,7 +60,7 @@ function BuyButton({
   label: string;
   featured?: boolean;
 }) {
-  const { bases, buy } = useChatgptCheckout();
+  const { bases, buy, busy } = useChatgptCheckout();
   const kind =
     referenceId === CHATGPT_COMPLEET_REFERENCE
       ? 'compleet'
@@ -85,20 +92,21 @@ function BuyButton({
     <button
       type="button"
       onClick={() => buy(referenceId)}
-      className={`inline-flex w-full items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 font-semibold text-[0.9rem] rounded-full border-2 transition-colors touch-manipulation ${
+      disabled={busy}
+      className={`inline-flex w-full items-center justify-center gap-2 min-h-[44px] px-4 py-2.5 font-semibold text-[0.9rem] rounded-full border-2 transition-colors touch-manipulation disabled:opacity-60 ${
         featured
           ? 'bg-gold hover:bg-gold-light text-white border-navy/25 shadow-[0_2px_0_0_rgba(46,36,28,0.18)]'
           : 'bg-cream hover:bg-slate text-navy border-navy/15'
       }`}
     >
       <CreditCard size={16} aria-hidden />
-      {label}
+      {busy ? 'Even geduld…' : label}
     </button>
   );
 }
 
 function EmailBar() {
-  const { email, setEmail, error, bases } = useChatgptCheckout();
+  const { email, setEmail, error, bases, consent, setConsent } = useChatgptCheckout();
   const anyEnabled = Boolean(bases.een || bases.compleet || bases.organisatie);
   if (!anyEnabled) {
     return (
@@ -138,6 +146,12 @@ function EmailBar() {
           className="w-full min-h-[48px] rounded-xl border-2 border-navy/15 bg-white pl-10 pr-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none"
         />
       </div>
+      <DigitalDeliveryConsent
+        checked={consent}
+        onChange={setConsent}
+        id="chatgpt-digital-consent"
+        showOrganizationNote
+      />
       <p className="text-navy/50 text-senior-xs leading-relaxed m-0">
         Vul dit één keer in. Daarna kunt u hieronder een onderwerp of pakket bestellen. Veilig
         betalen via Stripe ·{' '}
@@ -173,10 +187,19 @@ function CheckList({ items }: { items: string[] }) {
   );
 }
 
-export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
+export function ChatgptShop({
+  bases,
+  checkoutMode = 'links',
+}: {
+  bases: CheckoutBases;
+  checkoutMode?: LesmateriaalCheckoutMode;
+}) {
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
   const emailRef = useRef('');
+  const sessions = checkoutMode === 'sessions';
 
   function updateEmail(value: string) {
     emailRef.current = value;
@@ -196,12 +219,17 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
     return emailRef.current.trim() || email.trim();
   }
 
-  function buy(referenceId: ChatgptReferenceId) {
+  async function buy(referenceId: ChatgptReferenceId) {
     setError('');
     const trimmed = resolveEmail();
     if (!isChatgptCheckoutEmail(trimmed)) {
       setError('Vul een geldig e-mailadres in — daar sturen we de download naartoe.');
       document.getElementById('chatgpt-email')?.focus();
+      return;
+    }
+    if (!consent) {
+      setError('Bevestig de toestemming voor directe digitale levering om verder te gaan.');
+      document.getElementById('chatgpt-digital-consent')?.focus();
       return;
     }
 
@@ -211,6 +239,30 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
         : referenceId === CHATGPT_ORG_REFERENCE
           ? 'organisatie'
           : 'een';
+    const sku = getChatgptCheckoutMeta(referenceId);
+    setBusy(true);
+
+    if (sessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveChatgptCheckoutSession({
+        email: trimmed,
+        referenceId,
+        label: sku.label,
+        price: sku.price,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const paymentLinkBase = bases[kind];
     const url = buildChatgptCheckoutUrl({
       referenceId,
@@ -218,11 +270,23 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
       paymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
       return;
     }
 
-    const sku = getChatgptCheckoutMeta(referenceId);
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId,
+      productLabel: sku.label,
+      buyerType: referenceId === CHATGPT_ORG_REFERENCE ? 'organization' : 'consumer',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
+      return;
+    }
+
     saveChatgptCheckoutSession({
       email: trimmed,
       referenceId,
@@ -234,7 +298,17 @@ export function ChatgptShop({ bases }: { bases: CheckoutBases }) {
 
   return (
     <ChatgptCheckoutCtx.Provider
-      value={{ email, setEmail: updateEmail, bases, error, setError, buy }}
+      value={{
+        email,
+        setEmail: updateEmail,
+        bases,
+        error,
+        setError,
+        buy: (id) => void buy(id),
+        consent,
+        setConsent,
+        busy,
+      }}
     >
       {/* 2. DRIE PRODUCTKEUZES */}
       <section

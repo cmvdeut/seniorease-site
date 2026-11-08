@@ -1,18 +1,96 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
+import { isNeonConfigured } from '@/lib/db/neon';
+import { isCheckoutSessionsMode } from '@/lib/lesmateriaal-checkout-mode';
+import {
+  claimFulfillment,
+  getConsentById,
+  getConsentByStripeSessionId,
+  markConsentPaid,
+  markFulfillmentMailFailed,
+  markFulfillmentMailSent,
+  markFulfillmentMailSkipped,
+  verifyConsentForOrder,
+} from '@/lib/lesmateriaal-consent-store';
 import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
 import { sendLesmateriaalFulfillmentEmail } from '@/lib/lesmateriaal-fulfillment-email';
+import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
+import { COMPANY } from '@/lib/company';
+import { getBrevoApiKeyCandidates } from '@/lib/brevo';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
-/** Best-effort dedupe binnen één serverless instance */
+/** Best-effort dedupe binnen één serverless instance (aanvulling op DB) */
 const processedSessions = new Set<string>();
 
 function getStripe(): Stripe {
   const key = process.env.STRIPE_SECRET_KEY?.trim();
   if (!key) throw new Error('STRIPE_SECRET_KEY ontbreekt');
   return new Stripe(key);
+}
+
+async function alertSupportMissingConsent(params: {
+  sessionId: string;
+  email: string;
+  referenceId: string | null;
+}): Promise<void> {
+  const allow = evaluateLesmateriaalMailAllowlist(COMPANY.emailSupport);
+  if (!allow.allowed) {
+    console.warn('Lesmateriaal consent-mismatch alert skipped (preview guard):', {
+      sessionId: params.sessionId,
+      delivery: 'skipped_preview_guard',
+      reason: allow.reason,
+    });
+    return;
+  }
+
+  const apiKeys = getBrevoApiKeyCandidates();
+  if (apiKeys.length === 0) return;
+  const text = [
+    'SeniorEase — betaling zonder geverifieerde digitale toestemming',
+    '',
+    `sessionId=${params.sessionId}`,
+    `email=${params.email}`,
+    `referenceId=${params.referenceId ?? ''}`,
+    '',
+    'Download is wél geleverd. Geen toestemmingsbevestiging in de klantmail.',
+  ].join('\n');
+
+  for (const apiKey of apiKeys) {
+    try {
+      const response = await fetch('https://api.brevo.com/v3/smtp/email', {
+        method: 'POST',
+        headers: {
+          accept: 'application/json',
+          'content-type': 'application/json',
+          'api-key': apiKey,
+        },
+        body: JSON.stringify({
+          sender: {
+            email: process.env.BREVO_SENDER_EMAIL?.trim() || COMPANY.emailGeneral,
+            name: process.env.BREVO_SENDER_NAME?.trim() || COMPANY.brandName,
+          },
+          to: [{ email: COMPANY.emailSupport }],
+          subject: '[SeniorEase] Betaling zonder geverifieerde consent',
+          textContent: text,
+        }),
+      });
+      if (response.ok) {
+        console.log('Lesmateriaal consent-mismatch alert sent:', {
+          sessionId: params.sessionId,
+          delivery: 'sent',
+        });
+        return;
+      }
+    } catch (err) {
+      console.error('consent-mismatch alert failed:', {
+        sessionId: params.sessionId,
+        delivery: 'failed',
+        error: err,
+      });
+    }
+  }
 }
 
 export async function POST(request: NextRequest) {
@@ -42,6 +120,10 @@ export async function POST(request: NextRequest) {
   const session = event.data.object as Stripe.Checkout.Session;
   const orderId = session.id;
 
+  if (session.payment_status !== 'paid' && session.status !== 'complete') {
+    return NextResponse.json({ received: true, skipped: 'not_paid' });
+  }
+
   if (processedSessions.has(orderId)) {
     return NextResponse.json({ received: true, duplicate: true });
   }
@@ -69,29 +151,144 @@ export async function POST(request: NextRequest) {
       client_reference_id: session.client_reference_id,
       email,
     });
-    // 200 zodat Stripe niet eindeloos retry’t op ongeldige handmatige tests
     return NextResponse.json({ received: true, skipped: 'bad_reference' });
   }
 
+  const referenceId = session.client_reference_id || '';
+  let consentVerified = false;
+  let consentId: string | null = session.metadata?.consent_id?.trim() || null;
+
+  const sessionsMode = isCheckoutSessionsMode() && isNeonConfigured();
+
+  if (sessionsMode) {
+    try {
+      let consent = consentId ? await getConsentById(consentId) : null;
+      if (!consent) {
+        consent = await getConsentByStripeSessionId(orderId);
+        if (consent) consentId = consent.consentId;
+      }
+      if (consent) {
+        consentVerified = verifyConsentForOrder({
+          consent,
+          email,
+          referenceId,
+          stripeSessionId: orderId,
+        });
+        if (consentVerified) {
+          await markConsentPaid(consent.consentId);
+        }
+      }
+    } catch (err) {
+      console.error('Lesmateriaal consent lookup failed:', err);
+      consentVerified = false;
+    }
+
+    try {
+      const claim = await claimFulfillment({
+        stripeSessionId: orderId,
+        consentId,
+        referenceId,
+        email,
+        consentVerified,
+      });
+
+      if (claim.action === 'skip') {
+        processedSessions.add(orderId);
+        return NextResponse.json({
+          received: true,
+          duplicate: true,
+          status: claim.row.status,
+        });
+      }
+    } catch (err) {
+      console.error('Lesmateriaal fulfillment claim failed:', err);
+      return NextResponse.json({ error: 'Fulfillment claim failed' }, { status: 500 });
+    }
+  }
+
   try {
-    const result = await sendLesmateriaalFulfillmentEmail({ order, orderId });
+    const result = await sendLesmateriaalFulfillmentEmail({
+      order,
+      orderId,
+      includeConsentConfirmation: sessionsMode ? consentVerified : false,
+    });
     if (!result.ok) {
-      console.error('Lesmateriaal fulfillment mail error:', result.error);
+      console.error('Lesmateriaal fulfillment mail error:', {
+        orderId,
+        delivery: 'failed',
+        error: result.error,
+      });
+      if (sessionsMode) {
+        await markFulfillmentMailFailed(orderId, result.error || 'mail_failed');
+      }
       return NextResponse.json(
         { error: 'Mail verzenden mislukt', detail: result.error },
         { status: 500 },
       );
     }
+
+    if (result.delivery === 'skipped_preview_guard') {
+      if (sessionsMode) {
+        await markFulfillmentMailSkipped(
+          orderId,
+          result.skipReason || 'skipped_preview_guard',
+        );
+      }
+      processedSessions.add(orderId);
+      console.warn('Lesmateriaal fulfillment mail skipped (preview guard):', {
+        orderId,
+        delivery: 'skipped_preview_guard',
+        skipReason: result.skipReason,
+        kind: order.kind,
+        mode: sessionsMode ? 'sessions' : 'links',
+      });
+      // Geen fulfilled:true — mail is bewust niet verzonden (preview-guard), geen succesvolle levering.
+      return NextResponse.json({
+        received: true,
+        fulfilled: false,
+        mailDelivery: 'skipped_preview_guard',
+        consentVerified: sessionsMode ? consentVerified : undefined,
+      });
+    }
+
+    if (sessionsMode) {
+      await markFulfillmentMailSent(orderId);
+      if (!consentVerified) {
+        await alertSupportMissingConsent({
+          sessionId: orderId,
+          email,
+          referenceId: session.client_reference_id,
+        });
+      }
+    }
+
     processedSessions.add(orderId);
     console.log('Lesmateriaal fulfillment OK:', {
       orderId,
-      email: order.email,
+      delivery: 'sent',
       kind: order.kind,
       files: order.assets.length,
+      consentVerified: sessionsMode ? consentVerified : null,
+      mode: sessionsMode ? 'sessions' : 'links',
     });
-    return NextResponse.json({ received: true, fulfilled: true });
+    return NextResponse.json({
+      received: true,
+      fulfilled: true,
+      mailDelivery: 'sent',
+      consentVerified: sessionsMode ? consentVerified : undefined,
+    });
   } catch (err) {
     console.error('Lesmateriaal fulfillment exception:', err);
+    if (sessionsMode) {
+      try {
+        await markFulfillmentMailFailed(
+          orderId,
+          err instanceof Error ? err.message : 'exception',
+        );
+      } catch {
+        /* ignore */
+      }
+    }
     return NextResponse.json({ error: 'Fulfillment failed' }, { status: 500 });
   }
 }

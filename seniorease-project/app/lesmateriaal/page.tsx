@@ -4,6 +4,11 @@ import LesmateriaalOrganisatieBestel from '@/app/components/LesmateriaalOrganisa
 import SeniorButton from '@/app/components/SeniorButton';
 import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
 import { getLesmateriaalPaymentLinkBase } from '@/lib/lesmateriaal-checkout';
+import {
+  isSessionsCheckoutReady,
+  isStripePriceConfigured,
+} from '@/lib/lesmateriaal-checkout-catalog';
+import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
 import { LesmateriaalPakketten } from './LesmateriaalPakketten';
 import { LesmateriaalPricing, LesmateriaalPrijsBadge } from './LesmateriaalPricing';
 import { LesmateriaalFaq } from './LesmateriaalFaq';
@@ -58,8 +63,13 @@ const collectionSchema = buildCollectionPageSchema(
 );
 
 export default function LesmateriaalPage() {
+  const checkoutMode = getLesmateriaalCheckoutMode();
   const compleetPaymentLinkBase = getLesmateriaalPaymentLinkBase('compleet');
-  const compleetCheckoutEnabled = compleetPaymentLinkBase !== null;
+  const compleetCheckoutEnabled =
+    checkoutMode === 'sessions'
+      ? isSessionsCheckoutReady() &&
+        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_COMPLEET')
+      : compleetPaymentLinkBase !== null;
 
   return (
     <main className="min-h-screen bg-cream">
@@ -143,6 +153,7 @@ export default function LesmateriaalPage() {
           <LesmateriaalOrganisatieBestel
             checkoutEnabled={compleetCheckoutEnabled}
             paymentLinkBase={compleetPaymentLinkBase}
+            checkoutMode={checkoutMode}
           />
           <div className="flex flex-wrap gap-4 mt-8">
             <SeniorButton href="/lesmateriaal/begeleiders" icon={Users}>

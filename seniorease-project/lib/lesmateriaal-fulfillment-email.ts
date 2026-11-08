@@ -1,13 +1,29 @@
 import { getBrevoApiKeyCandidates } from '@/lib/brevo';
+import { DIGITAL_CONSENT_EMAIL_CONFIRMATION } from '@/lib/digital-delivery-consent-text';
 import {
   buildChatgptDownloadUrl,
   buildDownloadUrl,
   createDownloadToken,
-  getSiteBaseUrl,
   zipBundleLabel,
   zipFileIdForOrder,
   type FulfillmentOrder,
 } from '@/lib/lesmateriaal-fulfillment';
+import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
+import { getSiteBaseUrl } from '@/lib/site-base-url';
+
+export type FulfillmentMailDelivery = 'sent' | 'skipped_preview_guard' | 'failed';
+
+export type FulfillmentMailResult =
+  | {
+      ok: true;
+      delivery: 'sent' | 'skipped_preview_guard';
+      skipReason?: string;
+    }
+  | {
+      ok: false;
+      delivery: 'failed';
+      error: string;
+    };
 
 function escapeHtml(value: string): string {
   return value
@@ -28,11 +44,34 @@ function getSender() {
 export async function sendLesmateriaalFulfillmentEmail(params: {
   order: FulfillmentOrder;
   orderId: string;
-}): Promise<{ ok: boolean; error?: string }> {
-  const { order, orderId } = params;
+  /**
+   * Alleen true als consent voor déze Stripe-sessie server-side is geverifieerd.
+   * Geen aanname / geen standaard-true.
+   */
+  includeConsentConfirmation?: boolean;
+}): Promise<FulfillmentMailResult> {
+  const { order, orderId, includeConsentConfirmation = false } = params;
+
+  const allow = evaluateLesmateriaalMailAllowlist(order.email);
+  if (!allow.allowed) {
+    console.warn('Lesmateriaal fulfillment mail skipped (preview guard):', {
+      orderId,
+      delivery: 'skipped_preview_guard',
+      reason: allow.reason,
+      recipientDomain: order.email.includes('@')
+        ? order.email.split('@')[1]
+        : null,
+    });
+    return {
+      ok: true,
+      delivery: 'skipped_preview_guard',
+      skipReason: allow.reason,
+    };
+  }
+
   const apiKeys = getBrevoApiKeyCandidates();
   if (apiKeys.length === 0) {
-    return { ok: false, error: 'BREVO_API_KEY ontbreekt' };
+    return { ok: false, delivery: 'failed', error: 'BREVO_API_KEY ontbreekt' };
   }
 
   const baseUrl = getSiteBaseUrl();
@@ -97,8 +136,13 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     <p style="margin:0 0 16px;line-height:1.5;">Downloadlinks werken ongeveer <strong>7 dagen</strong>. Sla de bestanden op uw computer op.</p>
     ${primaryHtml}
     ${rest.length > 0 ? `<ul style="padding-left:18px;margin:0 0 20px;">${linkHtml}</ul>` : ''}
+    ${
+      includeConsentConfirmation
+        ? `<p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">${escapeHtml(DIGITAL_CONSENT_EMAIL_CONFIRMATION)}</p>`
+        : ''
+    }
     <p style="margin:0 0 12px;line-height:1.5;font-size:14px;color:#5a6570;">Komt een link niet open? Controleer uw map ongewenste e-mail, of mail <a href="mailto:support@seniorease.nl">support@seniorease.nl</a>.</p>
-    <p style="margin:0;font-size:14px;color:#5a6570;">Heeft u een <strong>officiële factuur</strong> nodig op naam van uw organisatie? Laat het ons weten — het Stripe-betalingsbewijs is geen formele factuur.</p>
+    <p style="margin:0;font-size:14px;color:#5a6570;">Heeft u een <strong>officiële factuur</strong> nodig op naam van uw organisatie? Laat het ons weten — het Stripe-betalingsbewijs is geen formele factuur. Facturen op verzoek, en standaard waar wettelijk verplicht.</p>
   </div>
 </body>
 </html>`.trim();
@@ -111,6 +155,9 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
     'Downloadlinks (geldig ±7 dagen):',
     ...links.map((l) => `- ${l.label}: ${l.url}`),
     '',
+    ...(includeConsentConfirmation
+      ? [DIGITAL_CONSENT_EMAIL_CONFIRMATION, '']
+      : []),
     'Vragen of factuur nodig? support@seniorease.nl',
   ];
 
@@ -133,11 +180,26 @@ export async function sendLesmateriaalFulfillmentEmail(params: {
       },
       body: JSON.stringify(payload),
     });
-    if (response.ok) return { ok: true };
+    if (response.ok) {
+      console.log('Lesmateriaal fulfillment mail sent:', {
+        orderId,
+        delivery: 'sent',
+        kind: order.kind,
+      });
+      return { ok: true, delivery: 'sent' };
+    }
     const body = await response.text().catch(() => '');
     lastError = `Brevo ${response.status}: ${body.slice(0, 200)}`;
-    console.error('Lesmateriaal fulfillment mail failed:', lastError);
+    console.error('Lesmateriaal fulfillment mail failed:', {
+      orderId,
+      delivery: 'failed',
+      error: lastError,
+    });
   }
 
-  return { ok: false, error: lastError || 'Brevo verzenden mislukt' };
+  return {
+    ok: false,
+    delivery: 'failed',
+    error: lastError || 'Brevo verzenden mislukt',
+  };
 }

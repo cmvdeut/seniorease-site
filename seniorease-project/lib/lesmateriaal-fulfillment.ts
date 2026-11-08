@@ -704,13 +704,8 @@ export function buildChatgptDownloadUrl(baseUrl: string, token: string): string 
   return buildDownloadUrl(baseUrl, token, '/api/lesmateriaal/chatgpt-download');
 }
 
-export function getSiteBaseUrl(): string {
-  return (
-    process.env.NEXT_PUBLIC_SITE_URL?.trim() ||
-    process.env.SITE_URL?.trim() ||
-    'https://www.seniorease.nl'
-  );
-}
+export type { SiteBaseUrlEnv } from '@/lib/site-base-url';
+export { getSiteBaseUrl } from '@/lib/site-base-url';
 
 export function pakketLabel(pakket: LesmateriaalPakket): string {
   return `Pakket ${pakket.code}: ${pakket.title}`;

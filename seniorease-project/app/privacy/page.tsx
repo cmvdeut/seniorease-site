@@ -1,15 +1,15 @@
 'use client';
 
 import Link from 'next/link';
+import { COMPANY } from '@/lib/company';
 
 export default function PrivacyPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
-      {/* Header */}
       <header className="bg-white border-b-2 border-neutral-stone py-6">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
-            <Link 
+            <Link
               href="/"
               className="inline-flex items-center gap-2 text-primary hover:text-primary-dark mb-4 text-senior-base"
             >
@@ -22,222 +22,216 @@ export default function PrivacyPage() {
         </div>
       </header>
 
-      {/* Content */}
       <section className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto">
           <div className="bg-white rounded-2xl shadow-xl border-4 border-primary p-8 md:p-12">
             <div className="prose max-w-none">
-              
               <div className="mb-8">
                 <p className="text-senior-base text-gray-700 mb-4">
-                  Laatst bijgewerkt: {new Date().toLocaleDateString('nl-NL', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  Laatst bijgewerkt:{' '}
+                  {new Date().toLocaleDateString('nl-NL', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                  })}
                 </p>
                 <p className="text-senior-base text-gray-700">
-                  Bij SeniorEase hechten wij grote waarde aan uw privacy. Dit privacybeleid legt uit welke gegevens wij verzamelen, hoe wij deze gebruiken en beschermen.
+                  {COMPANY.brandName} (merk van {COMPANY.legalName}) hecht aan uw privacy. Hieronder
+                  staat welke gegevens wij verwerken bij de website, Mijn Bibliotheek, digitale
+                  lesmaterialen en contact.
                 </p>
               </div>
 
-              {/* Gegevens die wij verzamelen */}
               <section className="mb-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-4">
                   1. Gegevens die wij verzamelen
                 </h2>
-                
                 <div className="space-y-4 text-senior-base text-gray-700">
                   <div>
                     <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      1.1 E-mailadres
+                      1.1 Contactformulier
                     </h3>
                     <p>
-                      Wij verzamelen uw e-mailadres bij aankoop van de mobiele app. Dit gebruiken wij om:
+                      Naam, e-mailadres, onderwerp en bericht — om uw vraag te beantwoorden.
                     </p>
-                    <ul className="list-disc list-inside ml-4 space-y-1 mt-2">
-                      <li>Uw licentie te activeren en bevestigen</li>
-                      <li>Belangrijke updates over de app te communiceren</li>
-                      <li>U te helpen bij vragen of problemen</li>
+                  </div>
+                  <div>
+                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
+                      1.2 Digitale lesmaterialen (A–H en ChatGPT)
+                    </h3>
+                    <p className="mb-2">Bij bestelling verwerken wij onder meer:</p>
+                    <ul className="list-disc list-inside ml-4 space-y-1">
+                      <li>E-mailadres (download en orderbevestiging)</li>
+                      <li>Bestelgegevens (product, bedrag, tijdstip) via Stripe</li>
+                      <li>
+                        Toestemming voor directe digitale levering (vastgelegd bij bestelling)
+                      </li>
+                      <li>Technische downloadtokens (tijdelijke, beveiligde links)</li>
                     </ul>
                   </div>
-
                   <div>
                     <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      1.2 Bibliotheek Data
+                      1.3 Mijn Bibliotheek
                     </h3>
+                    <p className="mb-2">
+                      <strong>Webversie:</strong> collectiegegevens blijven lokaal in uw browser.
+                      Wij hebben daar geen toegang toe.
+                    </p>
                     <p>
-                      Al uw bibliotheekgegevens (boeken, muziek, notities) worden <strong>alleen opgeslagen op uw eigen apparaat</strong> (in de browser localStorage). Wij hebben <strong>geen toegang</strong> tot uw collectie. U bent zelf verantwoordelijk voor het maken van backups via de "Backup maken" functie in de app.
+                      <strong>Android-app:</strong> e-mailadres voor licentie/communicatie waar van
+                      toepassing. In-app-betalingen via Google Play — wij zien geen
+                      betaalkaartgegevens.
                     </p>
                   </div>
-
                   <div>
                     <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      1.3 Betalingsgegevens
+                      1.4 Betalingen
                     </h3>
                     <p>
-                      Aankopen van de Mijn Bibliotheek-app verlopen via de Google Play Store.
-                      Betalingen worden door Google verwerkt. Wij zien <strong>nooit</strong> uw
-                      creditcardgegevens, bankgegevens of andere betalingsdetails.
+                      Lesmateriaal: Stripe verwerkt de betaling. Bibliotheek-app: Google Play
+                      verwerkt de in-app-aankoop. Wij ontvangen geen volledige
+                      creditcard- of bankgegevens.
                     </p>
                   </div>
                 </div>
               </section>
 
-              {/* Hoe wij gegevens gebruiken */}
               <section className="mb-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  2. Hoe wij uw gegevens gebruiken
+                  2. Doeleinden
                 </h2>
-                
+                <ul className="list-disc list-inside ml-4 space-y-2 text-senior-base text-gray-700">
+                  <li>Leveren van downloads en orderbevestigingen</li>
+                  <li>Klantenservice bij bestellingen en downloads</li>
+                  <li>Vastleggen van wettelijk vereiste toestemming bij digitale levering</li>
+                  <li>Beheren van app-licenties waar van toepassing</li>
+                  <li>Beantwoorden van contactberichten</li>
+                  <li>Verbeteren van de website via anonieme statistieken</li>
+                </ul>
+                <p className="mt-4 text-senior-base text-gray-700">
+                  Wij gebruiken uw gegevens niet voor marketing zonder uw toestemming.
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-senior-xl font-bold text-primary mb-4">
+                  3. Delen met verwerkers / derden
+                </h2>
                 <div className="space-y-4 text-senior-base text-gray-700">
+                  <p>Wij delen gegevens alleen voor zover nodig voor de dienst:</p>
                   <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li>Om uw licentie te activeren en te beheren</li>
-                    <li>Om u te helpen bij vragen via e-mail</li>
-                    <li>Om belangrijke updates over de app te communiceren</li>
-                    <li>Om technische ondersteuning te bieden</li>
+                    <li>
+                      <strong>Stripe</strong> — betalingen en ordergegevens lesmateriaal
+                    </li>
+                    <li>
+                      <strong>Brevo</strong> — verzenden van order- en downloadmails (en
+                      eventuele auditbevestiging van digitale toestemming)
+                    </li>
+                    <li>
+                      <strong>Google Play</strong> — in-app-aankoop Mijn Bibliotheek
+                    </li>
+                    <li>
+                      <strong>Vercel</strong> — hosting van de website
+                    </li>
+                    <li>
+                      <strong>Wettelijke verplichting</strong> — als de wet dat eist
+                    </li>
                   </ul>
-                  <p className="mt-4">
-                    Wij gebruiken uw gegevens <strong>niet</strong> voor marketingdoeleinden zonder uw toestemming.
-                  </p>
+                  <p className="mt-4">Wij verkopen uw gegevens niet.</p>
                 </div>
               </section>
 
-              {/* Gegevens opslag */}
               <section className="mb-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  3. Gegevens opslag en beveiliging
+                  4. Bewaartermijnen
                 </h2>
-                
-                <div className="space-y-4 text-senior-base text-gray-700">
-                  <div>
-                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      3.1 Lokale Opslag
-                    </h3>
-                    <p>
-                      Uw bibliotheekgegevens worden opgeslagen in de browser van uw apparaat (localStorage). Deze gegevens blijven op uw apparaat en worden niet naar onze servers verzonden. U kunt op elk moment alle data wissen via de "Alle data wissen" optie in de app.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      3.2 Server Opslag
-                    </h3>
-                    <p>
-                      Wij slaan alleen uw e-mailadres op in verband met uw licentie. Deze gegevens worden veilig bewaard en worden alleen gebruikt voor licentiebeheer en communicatie.
-                    </p>
-                  </div>
-
-                  <div>
-                    <h3 className="text-senior-lg font-bold text-gray-800 mb-2">
-                      3.3 Beveiliging
-                    </h3>
-                    <p>
-                      Wij nemen beveiliging serieus. Onze website gebruikt HTTPS-encryptie.
-                      App-aankopen worden verwerkt via de beveiligde systemen van Google Play.
-                    </p>
-                  </div>
+                <div className="space-y-3 text-senior-base text-gray-700">
+                  <ul className="list-disc list-inside ml-4 space-y-2">
+                    <li>
+                      Contactberichten: zolang nodig om uw vraag af te handelen, daarna niet langer
+                      dan nodig voor administratie of wettelijke plichten
+                    </li>
+                    <li>
+                      Order- en betalingsgegevens: volgens wettelijke bewaarplichten voor
+                      administratie/facturatie (doorgaans tot 7 jaar waar van toepassing)
+                    </li>
+                    <li>
+                      Downloadlinks: tijdelijk (beperkte geldigheid); bestanden bewaart u zelf
+                    </li>
+                    <li>
+                      Toestemmingsregistratie digitale levering: bewaard als bewijs bij de
+                      bestelling
+                    </li>
+                    <li>Lokale bibliotheekdata: blijft op uw apparaat tot u die wist</li>
+                  </ul>
                 </div>
               </section>
 
-              {/* Cookies en Tracking */}
               <section className="mb-8">
                 <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  4. Cookies en Tracking
+                  5. Cookies en statistieken
                 </h2>
-                
                 <div className="space-y-4 text-senior-base text-gray-700">
-                  <p>
-                    Wij gebruiken anonieme statistieken om de website te verbeteren:
-                  </p>
                   <ul className="list-disc pl-6 space-y-2">
-                    <li><strong>Google Analytics</strong> — bezoekersaantallen en populaire pagina&apos;s (anoniem)</li>
-                    <li><strong>Vercel Analytics</strong> — prestaties en gebruik van de website (privacyvriendelijk, geen cookies)</li>
-                  </ul>
-                  <p>
-                    Wij gebruiken geen advertentie-trackers. Technische cookies kunnen nodig zijn voor de werking van de website.
-                  </p>
-                </div>
-              </section>
-
-              {/* Delen met derden */}
-              <section className="mb-8">
-                <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  5. Delen met derden
-                </h2>
-                
-                <div className="space-y-4 text-senior-base text-gray-700">
-                  <p>
-                    Wij delen uw gegevens <strong>niet</strong> met derden, behalve:
-                  </p>
-                  <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li><strong>Google Play</strong>: voor betalingsverwerking van de Mijn Bibliotheek-app (geen bibliotheekdata)</li>
-                    <li><strong>Wettelijke verplichtingen</strong>: Als dit wettelijk vereist is</li>
-                  </ul>
-                  <p className="mt-4">
-                    Wij verkopen uw gegevens niet aan derden.
-                  </p>
-                </div>
-              </section>
-
-              {/* Uw rechten */}
-              <section className="mb-8">
-                <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  6. Uw rechten
-                </h2>
-                
-                <div className="space-y-4 text-senior-base text-gray-700">
-                  <p>U heeft de volgende rechten:</p>
-                  <ul className="list-disc list-inside ml-4 space-y-2">
-                    <li><strong>Inzage</strong>: Vraag op elk moment welke gegevens wij van u hebben</li>
-                    <li><strong>Verwijdering</strong>: Verwijder al uw bibliotheek data via de app ("Alle data wissen")</li>
-                    <li><strong>Correctie</strong>: Laat ons weten als gegevens onjuist zijn</li>
-                    <li><strong>Bezwaar</strong>: Maak bezwaar tegen het gebruik van uw gegevens</li>
-                  </ul>
-                  <p className="mt-4">
-                    Om uw rechten uit te oefenen, neem contact op via <a href="mailto:info@seniorease.nl" className="text-primary hover:underline font-bold">info@seniorease.nl</a> of <a href="mailto:support@seniorease.nl" className="text-primary hover:underline font-bold">support@seniorease.nl</a>.
-                  </p>
-                </div>
-              </section>
-
-              {/* Contact */}
-              <section className="mb-8">
-                <h2 className="text-senior-xl font-bold text-primary mb-4">
-                  7. Vragen over privacy
-                </h2>
-                
-                <div className="space-y-4 text-senior-base text-gray-700">
-                  <p>
-                    Heeft u vragen over dit privacybeleid of hoe wij met uw gegevens omgaan?
-                  </p>
-                  <p>
-                    Neem contact op via:
-                  </p>
-                  <ul className="list-none ml-4 space-y-2">
-                    <li className="flex items-center gap-2">
-                      <span className="font-bold">E-mail:</span>
-                      <a href="mailto:info@seniorease.nl" className="text-primary hover:underline">info@seniorease.nl</a>
+                    <li>
+                      <strong>Google Analytics</strong> — anonieme bezoekstatistieken
                     </li>
-                    <li className="flex items-center gap-2">
-                      <span className="font-bold">Support:</span>
-                      <a href="mailto:support@seniorease.nl" className="text-primary hover:underline">support@seniorease.nl</a>
+                    <li>
+                      <strong>Vercel Analytics</strong> — prestaties (privacyvriendelijk)
                     </li>
                   </ul>
+                  <p>Wij gebruiken geen advertentie-trackers.</p>
                 </div>
               </section>
 
-              {/* Wijzigingen */}
+              <section className="mb-8">
+                <h2 className="text-senior-xl font-bold text-primary mb-4">6. Uw rechten</h2>
+                <div className="space-y-4 text-senior-base text-gray-700">
+                  <ul className="list-disc list-inside ml-4 space-y-2">
+                    <li>Inzage, correctie, verwijdering (waar van toepassing)</li>
+                    <li>Bezwaar tegen verwerking</li>
+                    <li>Beperking van verwerking</li>
+                  </ul>
+                  <p className="mt-4">
+                    Mail{' '}
+                    <a
+                      href={`mailto:${COMPANY.emailGeneral}`}
+                      className="text-primary hover:underline font-bold"
+                    >
+                      {COMPANY.emailGeneral}
+                    </a>{' '}
+                    of{' '}
+                    <a
+                      href={`mailto:${COMPANY.emailSupport}`}
+                      className="text-primary hover:underline font-bold"
+                    >
+                      {COMPANY.emailSupport}
+                    </a>
+                    .
+                  </p>
+                </div>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-senior-xl font-bold text-primary mb-4">
+                  7. Verantwoordelijke
+                </h2>
+                <p className="text-senior-base text-gray-700">
+                  {COMPANY.legalName} (KvK {COMPANY.kvk}), vestigingsplaats {COMPANY.city}. Merk:{' '}
+                  {COMPANY.brandName}.
+                </p>
+              </section>
+
               <div className="mt-8 pt-6 border-t-2 border-gray-200">
                 <p className="text-senior-sm text-gray-500">
-                  Wij behouden ons het recht voor dit privacybeleid te wijzigen. Wijzigingen worden gepubliceerd op deze pagina met vermelding van de datum van laatste wijziging.
+                  Wij kunnen dit privacybeleid wijzigen. De actuele versie staat op deze pagina.
                 </p>
               </div>
-
             </div>
           </div>
 
-          {/* Terug Link */}
           <div className="mt-6 text-center">
-            <Link
-              href="/"
-              className="inline-block text-senior-base text-primary hover:underline"
-            >
+            <Link href="/" className="inline-block text-senior-base text-primary hover:underline">
               ← Terug naar home
             </Link>
           </div>
@@ -246,4 +240,3 @@ export default function PrivacyPage() {
     </main>
   );
 }
-

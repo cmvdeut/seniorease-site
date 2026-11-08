@@ -14,9 +14,11 @@
     "vercel:domains": "node scripts/vercel-helper.js domains",
     "tiktok:screenshots": "node scripts/make-tiktok-screenshots.js",
     "sync:chatgpt-youtube": "node scripts/sync-chatgpt-youtube-id.js",
-    "sync:lesmateriaal-downloads": "node scripts/sync-lesmateriaal-downloads.js"
+    "sync:lesmateriaal-downloads": "node scripts/sync-lesmateriaal-downloads.js",
+    "verify:checkout-sessions": "npx --yes tsx scripts/verify-lesmateriaal-checkout-sessions.ts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "^1.2.0",
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
     "archiver": "^8.0.0",

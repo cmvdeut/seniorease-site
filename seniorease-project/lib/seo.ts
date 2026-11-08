@@ -322,6 +322,12 @@ export const organizationSchema = {
   description: ORGANIZATION_DESCRIPTION,
   email: 'info@seniorease.nl',
   foundingDate: '2024',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Leimuiden',
+    addressCountry: 'NL',
+  },
+  vatID: 'NL05581413B67',
   identifier: {
     '@type': 'PropertyValue',
     name: 'KvK',
@@ -388,7 +394,7 @@ export const DIGITALE_HULP_FAQ = [
   {
     question: 'Is SeniorEase gratis te gebruiken?',
     answer:
-      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Alleen de app Mijn Bibliotheek is een apart product waarvoor kosten kunnen gelden — die kunt u wel gratis uitproberen via de Play Store of de website. Daarnaast is er betaald downloadbaar PDF-lesmateriaal voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen voor senioren willen geven.',
+      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis in de browser; de Android-app is gratis te downloaden via Google Play, met optionele eenmalige in-app-aankoop voor onbeperkt aantal items. Daarnaast is er betaald digitaal lesmateriaal (PDF/ZIP) via Stripe voor organisaties en begeleiders.',
   },
   {
     question: 'Waar vind ik uitleg over WhatsApp of DigiD?',
@@ -498,7 +504,7 @@ export const CLIENT_PAGE_METADATA = {
     path: '/voorwaarden',
     title: 'Algemene voorwaarden',
     description:
-      'Algemene voorwaarden voor de website SeniorEase en de app Mijn Bibliotheek.',
+      'Algemene voorwaarden voor SeniorEase: website, Mijn Bibliotheek (Google Play) en digitaal lesmateriaal (A–H en ChatGPT).',
   }),
   tools: buildPageMetadata({
     path: '/tools',
@@ -536,7 +542,7 @@ export const HULP_FAQ_SCHEMA = buildFAQSchema([
   {
     question: 'Moet ik betalen voor Mijn Bibliotheek?',
     answer:
-      'Mijn Bibliotheek is volledig gratis te gebruiken in uw browser op desktop, laptop, iPhone en iPad. De Android app staat in de Google Play Store voor €4,99 eenmalig. Geen abonnement.',
+      'Mijn Bibliotheek is gratis in de browser op desktop, laptop, iPhone en iPad. De Android-app is gratis te downloaden via Google Play; u kunt uitproberen in de app. Voor onbeperkt aantal items is een eenmalige in-app-aankoop via Google Play nodig. Geen abonnement. De actuele prijs ziet u in Google Play.',
   },
   {
     question: 'Hoe voeg ik een boek toe?',

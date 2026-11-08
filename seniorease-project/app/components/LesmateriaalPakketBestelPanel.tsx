@@ -4,10 +4,13 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { CreditCard, Mail } from 'lucide-react';
 import SeniorButton from './SeniorButton';
+import DigitalDeliveryConsent from './DigitalDeliveryConsent';
 import {
   buildLesmateriaalCheckoutUrl,
   saveLesmateriaalCheckoutSession,
 } from '@/lib/lesmateriaal-checkout';
+import { registerDigitalConsent } from '@/lib/register-digital-consent';
+import { createLesmateriaalCheckoutSession } from '@/lib/create-lesmateriaal-checkout';
 import {
   formatPrijs,
   lessonDisplayCode,
@@ -25,6 +28,9 @@ type Props = {
   losCheckoutEnabled: boolean;
   pakketPaymentLinkBase: string | null;
   losPaymentLinkBase: string | null;
+  /** true = Checkout Session; false = Payment Link */
+  pakketUsesSessions?: boolean;
+  losUsesSessions?: boolean;
 };
 
 export default function LesmateriaalPakketBestelPanel({
@@ -37,10 +43,14 @@ export default function LesmateriaalPakketBestelPanel({
   losCheckoutEnabled,
   pakketPaymentLinkBase,
   losPaymentLinkBase,
+  pakketUsesSessions = false,
+  losUsesSessions = false,
 }: Props) {
   const [email, setEmail] = useState('');
   const [lessonCode, setLessonCode] = useState(lessons[0]?.code ?? '');
   const [error, setError] = useState('');
+  const [consent, setConsent] = useState(false);
+  const [busy, setBusy] = useState(false);
 
   const anyCheckoutEnabled = pakketCheckoutEnabled || losCheckoutEnabled;
 
@@ -51,12 +61,42 @@ export default function LesmateriaalPakketBestelPanel({
       setError('Vul een geldig e-mailadres in — daar sturen we de download naartoe.');
       return null;
     }
+    if (!consent) {
+      setError('Bevestig de toestemming voor directe digitale levering om verder te gaan.');
+      return null;
+    }
     return trimmed;
   }
 
-  function handlePakketBestellen() {
+  async function handlePakketBestellen() {
     const trimmed = validateEmail();
     if (!trimmed) return;
+
+    const label = `Pakket ${pakketCode}: ${pakketTitle}`;
+    const referenceId = `pakket_${slug}`;
+    setBusy(true);
+
+    if (pakketUsesSessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveLesmateriaalCheckoutSession({
+        email: trimmed,
+        productType: 'pakket',
+        slug,
+        label,
+        price,
+      });
+      window.location.href = created.url;
+      return;
+    }
 
     const url = buildLesmateriaalCheckoutUrl({
       productType: 'pakket',
@@ -65,7 +105,20 @@ export default function LesmateriaalPakketBestelPanel({
       paymentLinkBase: pakketPaymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
+      return;
+    }
+
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId,
+      productLabel: label,
+      buyerType: 'consumer',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
       return;
     }
 
@@ -73,13 +126,13 @@ export default function LesmateriaalPakketBestelPanel({
       email: trimmed,
       productType: 'pakket',
       slug,
-      label: `Pakket ${pakketCode}: ${pakketTitle}`,
+      label,
       price,
     });
     window.location.href = url;
   }
 
-  function handleLosBestellen() {
+  async function handleLosBestellen() {
     const trimmed = validateEmail();
     if (!trimmed) return;
 
@@ -89,6 +142,34 @@ export default function LesmateriaalPakketBestelPanel({
     }
 
     const les = lessons.find((l) => l.code === lessonCode);
+    const label = les
+      ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
+      : `Losse les ${lessonCode}`;
+    const referenceId = `los_${lessonCode.toLowerCase()}`;
+    setBusy(true);
+
+    if (losUsesSessions) {
+      const created = await createLesmateriaalCheckoutSession({
+        email: trimmed,
+        referenceId,
+        consented: true,
+      });
+      if (!created.ok) {
+        setBusy(false);
+        setError(created.error);
+        return;
+      }
+      saveLesmateriaalCheckoutSession({
+        email: trimmed,
+        productType: 'los',
+        lessonCode,
+        label,
+        price: LOSSE_LES_PRIJS,
+      });
+      window.location.href = created.url;
+      return;
+    }
+
     const url = buildLesmateriaalCheckoutUrl({
       productType: 'los',
       lessonCode,
@@ -96,7 +177,20 @@ export default function LesmateriaalPakketBestelPanel({
       paymentLinkBase: losPaymentLinkBase,
     });
     if (!url) {
+      setBusy(false);
       setError('Online betalen is tijdelijk niet beschikbaar. Neem contact op.');
+      return;
+    }
+
+    const registered = await registerDigitalConsent({
+      email: trimmed,
+      referenceId,
+      productLabel: label,
+      buyerType: 'consumer',
+    });
+    if (!registered.ok) {
+      setBusy(false);
+      setError(registered.error);
       return;
     }
 
@@ -104,9 +198,7 @@ export default function LesmateriaalPakketBestelPanel({
       email: trimmed,
       productType: 'los',
       lessonCode,
-      label: les
-        ? `Losse les ${lessonDisplayCode(les)}: ${les.title}`
-        : `Losse les ${lessonCode}`,
+      label,
       price: LOSSE_LES_PRIJS,
     });
     window.location.href = url;
@@ -138,6 +230,12 @@ export default function LesmateriaalPakketBestelPanel({
             </p>
           </div>
 
+          <DigitalDeliveryConsent
+            checked={consent}
+            onChange={setConsent}
+            id="pakket-digital-consent"
+          />
+
           {error && (
             <p className="text-red-800 bg-red-50 border border-red-200 rounded-senior px-4 py-3 text-senior-sm">
               {error}
@@ -156,16 +254,17 @@ export default function LesmateriaalPakketBestelPanel({
               </div>
               <button
                 type="button"
-                onClick={handlePakketBestellen}
-                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation"
+                onClick={() => void handlePakketBestellen()}
+                disabled={busy}
+                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation disabled:opacity-60"
               >
                 <CreditCard size={20} aria-hidden />
-                Bestellen — {formatPrijs(price)}
+                {busy ? 'Even geduld…' : `Bestellen — ${formatPrijs(price)}`}
               </button>
             </div>
           )}
 
-          {losCheckoutEnabled && (
+          {lessons.length > 0 && (
             <div className="rounded-senior border border-navy/10 bg-white p-5 space-y-4">
               <div>
                 <h3 className="font-serif text-navy font-semibold text-senior-base mb-1">
@@ -174,14 +273,18 @@ export default function LesmateriaalPakketBestelPanel({
                 <p className="text-navy/65 text-senior-sm mb-3">
                   Compleet lesmateriaal voor één lesmiddag.
                 </p>
-                <label htmlFor="lesmateriaal-les" className="sr-only">
-                  Kies les
+                <label
+                  htmlFor="lesmateriaal-les"
+                  className="block font-semibold text-navy text-senior-sm mb-2"
+                >
+                  Kies welke les
                 </label>
                 <select
                   id="lesmateriaal-les"
                   value={lessonCode}
                   onChange={(e) => setLessonCode(e.target.value)}
-                  className="w-full min-h-touch rounded-senior border-2 border-navy/15 bg-white px-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none"
+                  disabled={!losCheckoutEnabled || busy}
+                  className="w-full min-h-touch rounded-senior border-2 border-navy/15 bg-white px-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none disabled:opacity-60"
                 >
                   {lessons.map((les) => (
                     <option key={les.code} value={les.code}>
@@ -190,14 +293,22 @@ export default function LesmateriaalPakketBestelPanel({
                   ))}
                 </select>
               </div>
-              <button
-                type="button"
-                onClick={handleLosBestellen}
-                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-navy text-senior-sm bg-paper hover:bg-slate rounded-full border-2 border-navy/20 transition-colors touch-manipulation"
-              >
-                <CreditCard size={20} aria-hidden />
-                Losse les — {formatPrijs(LOSSE_LES_PRIJS)}
-              </button>
+              {losCheckoutEnabled ? (
+                <button
+                  type="button"
+                  onClick={() => void handleLosBestellen()}
+                  disabled={busy}
+                  className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-navy text-senior-sm bg-paper hover:bg-slate rounded-full border-2 border-navy/20 transition-colors touch-manipulation disabled:opacity-60"
+                >
+                  <CreditCard size={20} aria-hidden />
+                  {busy ? 'Even geduld…' : `Losse les — ${formatPrijs(LOSSE_LES_PRIJS)}`}
+                </button>
+              ) : (
+                <p className="text-navy/65 text-senior-sm m-0 rounded-senior bg-amber-50 border border-amber-200 px-4 py-3">
+                  Losse lessen bestellen is hier tijdelijk niet beschikbaar. Neem contact op via
+                  support@seniorease.nl, of kies hierboven het hele pakket.
+                </p>
+              )}
             </div>
           )}
 
