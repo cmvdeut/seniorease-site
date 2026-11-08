@@ -1,11 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import Stripe from 'stripe';
 import { isNeonConfigured } from '@/lib/db/neon';
-import { isCheckoutSessionsMode } from '@/lib/lesmateriaal-checkout-mode';
+import {
+  getLesmateriaalCheckoutMode,
+  isCheckoutSessionsMode,
+} from '@/lib/lesmateriaal-checkout-mode';
 import {
   claimFulfillment,
+  decideWebhookFulfillmentGate,
   getConsentById,
   getConsentByStripeSessionId,
+  getFulfillmentByStripeSessionId,
   markConsentPaid,
   markFulfillmentMailFailed,
   markFulfillmentMailSent,
@@ -158,7 +163,56 @@ export async function POST(request: NextRequest) {
   let consentVerified = false;
   let consentId: string | null = session.metadata?.consent_id?.trim() || null;
 
-  const sessionsMode = isCheckoutSessionsMode() && isNeonConfigured();
+  const neonConfigured = isNeonConfigured();
+  const checkoutMode = getLesmateriaalCheckoutMode();
+  const sessionsMode = isCheckoutSessionsMode() && neonConfigured;
+
+  let existingFulfillment = null as Awaited<
+    ReturnType<typeof getFulfillmentByStripeSessionId>
+  >;
+  let lookupFailed = false;
+
+  if (neonConfigured) {
+    try {
+      existingFulfillment = await getFulfillmentByStripeSessionId(orderId);
+    } catch (err) {
+      lookupFailed = true;
+      console.error('Lesmateriaal fulfillment lookup failed:', {
+        orderId,
+        mode: checkoutMode,
+        error: err,
+        note:
+          checkoutMode === 'links'
+            ? 'Idempotency niet gegarandeerd tijdens Neon-storing in links-modus; Payment Links-flow blijft actief.'
+            : 'Sessions-modus: claim-pad volgt (500 bij claimfout).',
+      });
+    }
+  }
+
+  const gate = decideWebhookFulfillmentGate({
+    checkoutMode,
+    neonConfigured,
+    existing: existingFulfillment,
+    lookupFailed,
+  });
+
+  if (gate.action === 'skip') {
+    processedSessions.add(orderId);
+    return NextResponse.json({
+      received: true,
+      duplicate: true,
+      status: gate.status,
+    });
+  }
+
+  /** Neon-rij bijhouden (sessions claim of links retry van bestaande rij). */
+  let trackNeonFulfillment =
+    gate.action === 'sessions_claim' || gate.action === 'links_retry';
+
+  if (gate.action === 'links_lookup_failed') {
+    // Payment Links: geen blokkade. Idempotency tijdelijk niet gegarandeerd.
+    trackNeonFulfillment = false;
+  }
 
   if (sessionsMode) {
     try {
@@ -182,7 +236,9 @@ export async function POST(request: NextRequest) {
       console.error('Lesmateriaal consent lookup failed:', err);
       consentVerified = false;
     }
+  }
 
+  if (gate.action === 'sessions_claim' || gate.action === 'links_retry') {
     try {
       const claim = await claimFulfillment({
         stripeSessionId: orderId,
@@ -200,8 +256,11 @@ export async function POST(request: NextRequest) {
           status: claim.row.status,
         });
       }
+      trackNeonFulfillment = true;
     } catch (err) {
       console.error('Lesmateriaal fulfillment claim failed:', err);
+      // Sessions: bestaande foutafhandeling (500 + Stripe retry).
+      // Links-retry: ook 500 zodat Stripe opnieuw probeert (rij bestaat al).
       return NextResponse.json({ error: 'Fulfillment claim failed' }, { status: 500 });
     }
   }
@@ -218,7 +277,7 @@ export async function POST(request: NextRequest) {
         delivery: 'failed',
         error: result.error,
       });
-      if (sessionsMode) {
+      if (trackNeonFulfillment) {
         await markFulfillmentMailFailed(orderId, result.error || 'mail_failed');
       }
       return NextResponse.json(
@@ -228,7 +287,7 @@ export async function POST(request: NextRequest) {
     }
 
     if (result.delivery === 'skipped_preview_guard') {
-      if (sessionsMode) {
+      if (trackNeonFulfillment) {
         await markFulfillmentMailSkipped(
           orderId,
           result.skipReason || 'skipped_preview_guard',
@@ -251,15 +310,15 @@ export async function POST(request: NextRequest) {
       });
     }
 
-    if (sessionsMode) {
+    if (trackNeonFulfillment) {
       await markFulfillmentMailSent(orderId);
-      if (!consentVerified) {
-        await alertSupportMissingConsent({
-          sessionId: orderId,
-          email,
-          referenceId: session.client_reference_id,
-        });
-      }
+    }
+    if (sessionsMode && !consentVerified) {
+      await alertSupportMissingConsent({
+        sessionId: orderId,
+        email,
+        referenceId: session.client_reference_id,
+      });
     }
 
     processedSessions.add(orderId);
@@ -270,6 +329,7 @@ export async function POST(request: NextRequest) {
       files: order.assets.length,
       consentVerified: sessionsMode ? consentVerified : null,
       mode: sessionsMode ? 'sessions' : 'links',
+      gate: gate.action,
     });
     return NextResponse.json({
       received: true,
@@ -279,7 +339,7 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error('Lesmateriaal fulfillment exception:', err);
-    if (sessionsMode) {
+    if (trackNeonFulfillment) {
       try {
         await markFulfillmentMailFailed(
           orderId,

@@ -156,12 +156,74 @@ export function verifyConsentForOrder(params: {
   return true;
 }
 
-function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
+export function isFulfillmentTerminal(status: FulfillmentStatus): boolean {
   return (
     status === 'completed' ||
     status === 'mail_sent' ||
     status === 'mail_skipped'
   );
+}
+
+export async function getFulfillmentByStripeSessionId(
+  stripeSessionId: string,
+): Promise<FulfillmentRow | null> {
+  const sql = getNeonSql();
+  const rows = await sql`
+    SELECT * FROM lesmateriaal_fulfillments
+    WHERE stripe_session_id = ${stripeSessionId}
+    LIMIT 1
+  `;
+  const row = rows[0];
+  return row ? mapFulfillment(row as Record<string, unknown>) : null;
+}
+
+/**
+ * Webhook-gate: terminal Neon-rijen altijd respecteren (ook in links-modus).
+ * Nieuwe inserts alleen via sessions_claim.
+ *
+ * links_passthrough = geen bestaande rij → Payment Links-gedrag (geen Neon-write).
+ * links_retry = pending/mail_failed na Sessions → veilig opnieuw mailen.
+ * links_lookup_failed = Neon-fout in links-modus → doorlaten; idempotency niet gegarandeerd.
+ */
+export type WebhookFulfillmentGate =
+  | { action: 'skip'; status: FulfillmentStatus }
+  | { action: 'sessions_claim' }
+  | { action: 'links_retry' }
+  | { action: 'links_passthrough' }
+  | { action: 'links_lookup_failed' };
+
+export function decideWebhookFulfillmentGate(params: {
+  checkoutMode: 'links' | 'sessions';
+  neonConfigured: boolean;
+  existing: FulfillmentRow | null;
+  lookupFailed?: boolean;
+}): WebhookFulfillmentGate {
+  const { checkoutMode, neonConfigured, existing, lookupFailed = false } = params;
+
+  if (!neonConfigured) {
+    return { action: 'links_passthrough' };
+  }
+
+  if (lookupFailed) {
+    // Sessions-modus: caller moet claim/500-pad houden. Links: bestaand Payment Links-pad.
+    return checkoutMode === 'sessions'
+      ? { action: 'sessions_claim' }
+      : { action: 'links_lookup_failed' };
+  }
+
+  if (existing && isFulfillmentTerminal(existing.status)) {
+    return { action: 'skip', status: existing.status };
+  }
+
+  if (checkoutMode === 'sessions') {
+    return { action: 'sessions_claim' };
+  }
+
+  if (existing && (existing.status === 'pending' || existing.status === 'mail_failed')) {
+    return { action: 'links_retry' };
+  }
+
+  return { action: 'links_passthrough' };
 }
 
 /**
