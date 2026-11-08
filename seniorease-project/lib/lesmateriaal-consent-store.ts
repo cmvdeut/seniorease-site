@@ -7,6 +7,7 @@ import {
 import type { CatalogBuyerType } from '@/lib/lesmateriaal-checkout-catalog';
 
 export type ConsentStatus = 'pending' | 'bound' | 'paid' | 'orphan';
+export type ConsentCheckoutSource = 'sessions_live_test';
 export type FulfillmentStatus =
   | 'pending'
   | 'mail_sent'
@@ -26,6 +27,8 @@ export type ConsentRow = {
   consentTextHash: string;
   stripeSessionId: string | null;
   status: ConsentStatus;
+  /** Alleen gezet door afgeschermde live-test create; webhook-bewijs na secret-rotatie. */
+  checkoutSource: ConsentCheckoutSource | null;
 };
 
 export type FulfillmentRow = {
@@ -43,6 +46,7 @@ function hashConsentText(text: string, version: string): string {
 }
 
 function mapConsent(row: Record<string, unknown>): ConsentRow {
+  const sourceRaw = row.checkout_source ? String(row.checkout_source) : '';
   return {
     consentId: String(row.consent_id),
     createdAt: new Date(String(row.created_at)).toISOString(),
@@ -55,6 +59,7 @@ function mapConsent(row: Record<string, unknown>): ConsentRow {
     consentTextHash: String(row.consent_text_hash),
     stripeSessionId: row.stripe_session_id ? String(row.stripe_session_id) : null,
     status: String(row.status) as ConsentStatus,
+    checkoutSource: sourceRaw === 'sessions_live_test' ? 'sessions_live_test' : null,
   };
 }
 
@@ -63,6 +68,7 @@ export async function insertConsentRecord(params: {
   referenceId: string;
   productLabel: string;
   buyerType: CatalogBuyerType;
+  checkoutSource?: ConsentCheckoutSource | null;
 }): Promise<ConsentRow> {
   const sql = getNeonSql();
   const consentId = randomUUID();
@@ -70,14 +76,15 @@ export async function insertConsentRecord(params: {
   const consentVersion = DIGITAL_CONSENT_VERSION;
   const consentTextHash = hashConsentText(consentText, consentVersion);
   const email = params.email.trim().toLowerCase();
+  const checkoutSource = params.checkoutSource ?? null;
 
   const rows = await sql`
     INSERT INTO lesmateriaal_consents (
       consent_id, email, reference_id, product_label, buyer_type,
-      consent_version, consent_text, consent_text_hash, status
+      consent_version, consent_text, consent_text_hash, status, checkout_source
     ) VALUES (
       ${consentId}, ${email}, ${params.referenceId}, ${params.productLabel}, ${params.buyerType},
-      ${consentVersion}, ${consentText}, ${consentTextHash}, 'pending'
+      ${consentVersion}, ${consentText}, ${consentTextHash}, 'pending', ${checkoutSource}
     )
     RETURNING *
   `;

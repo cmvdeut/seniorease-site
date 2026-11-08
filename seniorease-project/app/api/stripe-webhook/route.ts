@@ -23,6 +23,11 @@ import { sendLesmateriaalFulfillmentEmail } from '@/lib/lesmateriaal-fulfillment
 import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-mail-guard';
 import { COMPANY } from '@/lib/company';
 import { getBrevoApiKeyCandidates } from '@/lib/brevo';
+import {
+  resolveLiveTestFromBoundConsent,
+  verifySessionsLiveTestStripeSession,
+  type LiveTestSessionRecognition,
+} from '@/lib/lesmateriaal-sessions-live-test';
 
 export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
@@ -167,31 +172,49 @@ export async function POST(request: NextRequest) {
   const neonConfigured = isNeonConfigured();
   const checkoutMode = getLesmateriaalCheckoutMode();
   const sessionsMode = isCheckoutSessionsMode() && neonConfigured;
+  /**
+   * Variant C: live-test Session → Neon consent/fulfillment terwijl mode=links.
+   * 1) HMAC zolang create-secret nog geldig is
+   * 2) anders Neon checkout_source + bound session (overleeft secret-rotatie/uit)
+   * Geen vertrouwen op alleen client-metadata.
+   */
+  let liveTest: LiveTestSessionRecognition =
+    verifySessionsLiveTestStripeSession(session);
 
   let existingFulfillment = null as Awaited<
     ReturnType<typeof getFulfillmentByStripeSessionId>
   >;
   let lookupFailed = false;
+  let boundLiveTestConsent = null as Awaited<
+    ReturnType<typeof getConsentByStripeSessionId>
+  >;
 
   if (neonConfigured) {
     try {
       existingFulfillment = await getFulfillmentByStripeSessionId(orderId);
+      if (!liveTest.ok) {
+        boundLiveTestConsent = await getConsentByStripeSessionId(orderId);
+        liveTest = resolveLiveTestFromBoundConsent(boundLiveTestConsent, session);
+      }
     } catch (err) {
       lookupFailed = true;
       console.error('Lesmateriaal fulfillment lookup failed:', {
         orderId,
         mode: checkoutMode,
+        liveTest: liveTest.ok,
         error: err,
         note:
-          checkoutMode === 'links'
+          checkoutMode === 'links' && !liveTest.ok
             ? 'Idempotency niet gegarandeerd tijdens Neon-storing in links-modus; Payment Links-flow blijft actief.'
-            : 'Sessions-modus: claim-pad volgt (500 bij claimfout).',
+            : 'Sessions/live-test: claim-pad volgt (500 bij claimfout).',
       });
     }
   }
 
+  const useSessionsNeonFlow = sessionsMode || (liveTest.ok && neonConfigured);
+
   const gate = decideWebhookFulfillmentGate({
-    checkoutMode,
+    checkoutMode: useSessionsNeonFlow ? 'sessions' : checkoutMode,
     neonConfigured,
     existing: existingFulfillment,
     lookupFailed,
@@ -215,9 +238,21 @@ export async function POST(request: NextRequest) {
     trackNeonFulfillment = false;
   }
 
-  if (sessionsMode) {
+  if (useSessionsNeonFlow) {
     try {
-      let consent = consentId ? await getConsentById(consentId) : null;
+      // Live-test: alleen server-erkende consent_id (HMAC of Neon checkout_source).
+      if (liveTest.ok) {
+        consentId = liveTest.consentId;
+      }
+      let consent =
+        boundLiveTestConsent &&
+        liveTest.ok &&
+        liveTest.via === 'neon' &&
+        boundLiveTestConsent.consentId === liveTest.consentId
+          ? boundLiveTestConsent
+          : consentId
+            ? await getConsentById(consentId)
+            : null;
       if (!consent) {
         consent = await getConsentByStripeSessionId(orderId);
         if (consent) consentId = consent.consentId;
@@ -229,6 +264,14 @@ export async function POST(request: NextRequest) {
           referenceId,
           stripeSessionId: orderId,
         });
+        // Extra live-testgrenzen: erkende consent + Stripe e-mail/reference.
+        if (liveTest.ok) {
+          consentVerified =
+            consentVerified &&
+            consent.consentId === liveTest.consentId &&
+            consent.email === liveTest.email &&
+            consent.referenceId === liveTest.referenceId;
+        }
         if (consentVerified) {
           await markConsentPaid(consent.consentId);
         }
@@ -283,9 +326,9 @@ export async function POST(request: NextRequest) {
     }
   }
 
-  /** Consentbevestiging in mail: Sessions-verificatie of behouden flag bij links_retry. */
+  /** Consentbevestiging in mail: Sessions/live-test-verificatie of behouden flag bij links_retry. */
   const includeConsentConfirmation =
-    sessionsMode || gate.action === 'links_retry' ? consentVerified : false;
+    useSessionsNeonFlow || gate.action === 'links_retry' ? consentVerified : false;
 
   try {
     const result = await sendLesmateriaalFulfillmentEmail({
@@ -321,7 +364,11 @@ export async function POST(request: NextRequest) {
         delivery: 'skipped_preview_guard',
         skipReason: result.skipReason,
         kind: order.kind,
-        mode: sessionsMode ? 'sessions' : 'links',
+        mode: useSessionsNeonFlow
+          ? sessionsMode
+            ? 'sessions'
+            : 'links_live_test'
+          : 'links',
       });
       // Geen fulfilled:true — mail is bewust niet verzonden (preview-guard), geen succesvolle levering.
       return NextResponse.json({
@@ -335,7 +382,7 @@ export async function POST(request: NextRequest) {
     if (trackNeonFulfillment) {
       await markFulfillmentMailSent(orderId);
     }
-    if (sessionsMode && !consentVerified) {
+    if (useSessionsNeonFlow && !consentVerified) {
       await alertSupportMissingConsent({
         sessionId: orderId,
         email,
@@ -350,8 +397,13 @@ export async function POST(request: NextRequest) {
       kind: order.kind,
       files: order.assets.length,
       consentVerified: includeConsentConfirmation ? consentVerified : null,
-      mode: sessionsMode ? 'sessions' : 'links',
+      mode: useSessionsNeonFlow
+        ? sessionsMode
+          ? 'sessions'
+          : 'links_live_test'
+        : 'links',
       gate: gate.action,
+      liveTest: liveTest.ok,
     });
     return NextResponse.json({
       received: true,

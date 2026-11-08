@@ -74,6 +74,7 @@ function makeConsent(overrides: Partial<ConsentRow> = {}): ConsentRow {
     consentTextHash: hashConsentText(consentText, consentVersion),
     stripeSessionId: 'cs_test_abc',
     status: 'bound',
+    checkoutSource: null,
     ...overrides,
   };
 }
@@ -520,7 +521,7 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.match(src, /resolveConsentVerifiedForClaim/);
   assert.match(
     src,
-    /includeConsentConfirmation\s*=\s*[\s\S]*sessionsMode \|\| gate\.action === 'links_retry' \? consentVerified : false/,
+    /includeConsentConfirmation\s*=\s*[\s\S]*useSessionsNeonFlow \|\| gate\.action === 'links_retry' \? consentVerified : false/,
   );
   assert.match(src, /consentVerifiedBeforeClaim/);
   assert.match(src, /newlyVerified: consentVerifiedBeforeClaim/);
@@ -649,6 +650,17 @@ check('Neon migration has unique session + fulfillment statuses', async () => {
   assert.match(sql, /mail_skipped/);
   assert.match(sql, /consent_verified/);
   assert.doesNotMatch(sql, /redis|kv|blob/i);
+});
+
+check('migration 003 adds consent checkout_source for live-test durability', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const sql = fs.readFileSync(
+    path.join(process.cwd(), 'db/migrations/003_lesmateriaal_consent_checkout_source.sql'),
+    'utf8',
+  );
+  assert.match(sql, /checkout_source/);
+  assert.match(sql, /sessions_live_test/);
 });
 
 check('migration 002 adds mail_skipped status', async () => {
