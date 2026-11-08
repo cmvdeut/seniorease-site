@@ -469,6 +469,20 @@ check('gate links_retry + existing false → mail without consent confirmation',
   );
 });
 
+check('race retry: worker true + concurrent insert false → mail/DB keep true', () => {
+  // Simuleert claim race: andere worker insertte false; deze worker had true.
+  const afterRaceRow = resolveConsentVerifiedForClaim({
+    newlyVerified: true,
+    existingVerified: false,
+  });
+  assert.equal(afterRaceRow, true);
+  const forMail = resolveConsentVerifiedForClaim({
+    newlyVerified: true, // consentVerifiedBeforeClaim
+    existingVerified: afterRaceRow,
+  });
+  assert.equal(forMail, true);
+});
+
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
@@ -484,7 +498,8 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
     src,
     /includeConsentConfirmation\s*=\s*[\s\S]*sessionsMode \|\| gate\.action === 'links_retry' \? consentVerified : false/,
   );
-  assert.match(src, /consentVerified = claim\.row\.consentVerified/);
+  assert.match(src, /consentVerifiedBeforeClaim/);
+  assert.match(src, /newlyVerified: consentVerifiedBeforeClaim/);
   assert.match(src, /markFulfillmentMailFailed/);
   assert.match(src, /markFulfillmentMailSent/);
   assert.match(src, /markFulfillmentMailSkipped/);
@@ -498,6 +513,8 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
     'utf8',
   );
   assert.match(store, /mergedVerified/);
+  assert.match(store, /raceMergedVerified/);
+  assert.match(store, /Race: other worker inserted/);
   assert.match(store, /resolveConsentVerifiedForClaim/);
   const skipResponse = src.match(
     /if \(result\.delivery === 'skipped_preview_guard'\) \{[\s\S]*?return NextResponse\.json\(\{([\s\S]*?)\}\);/,

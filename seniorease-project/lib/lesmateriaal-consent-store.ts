@@ -303,17 +303,37 @@ export async function claimFulfillment(params: {
     };
   }
 
-  // Race: other worker inserted
+  // Race: other worker inserted — zelfde OR-merge als bestaande-rij retry,
+  // anders kan claim.row.consentVerified false blijven terwijl deze worker true had.
   const again = await sql`
     SELECT * FROM lesmateriaal_fulfillments
     WHERE stripe_session_id = ${params.stripeSessionId}
     LIMIT 1
   `;
+  if (!again[0]) {
+    throw new Error('Fulfillment claim race: rij ontbreekt na conflict');
+  }
   const row = mapFulfillment(again[0] as Record<string, unknown>);
   if (isFulfillmentTerminal(row.status)) {
     return { action: 'skip', row };
   }
-  return { action: 'retry', row };
+  const raceMergedVerified = resolveConsentVerifiedForClaim({
+    newlyVerified: params.consentVerified,
+    existingVerified: row.consentVerified,
+  });
+  await sql`
+    UPDATE lesmateriaal_fulfillments
+    SET status = 'pending',
+        updated_at = now(),
+        last_error = NULL,
+        consent_verified = ${raceMergedVerified},
+        consent_id = COALESCE(${params.consentId}, consent_id)
+    WHERE stripe_session_id = ${params.stripeSessionId}
+  `;
+  return {
+    action: 'retry',
+    row: { ...row, status: 'pending', consentVerified: raceMergedVerified },
+  };
 }
 
 export async function markFulfillmentMailSent(

@@ -251,6 +251,7 @@ export async function POST(request: NextRequest) {
   }
 
   if (gate.action === 'sessions_claim' || gate.action === 'links_retry') {
+    const consentVerifiedBeforeClaim = consentVerified;
     try {
       const claim = await claimFulfillment({
         stripeSessionId: orderId,
@@ -268,8 +269,11 @@ export async function POST(request: NextRequest) {
           status: claim.row.status,
         });
       }
-      // DB en mail gebruiken dezelfde gemergede status (claim OR-t ook bij retry).
-      consentVerified = claim.row.consentVerified;
+      // DB en mail: OR van pre-claim + claim.row (dekt race waarbij andere insert false schreef).
+      consentVerified = resolveConsentVerifiedForClaim({
+        newlyVerified: consentVerifiedBeforeClaim,
+        existingVerified: claim.row.consentVerified,
+      });
       trackNeonFulfillment = true;
     } catch (err) {
       console.error('Lesmateriaal fulfillment claim failed:', err);
