@@ -670,15 +670,18 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.doesNotMatch(skipResponse[1], /fulfilled:\s*true/);
 });
 
-check('next.config keeps private downloads out of default function tracing', async () => {
+check('next.config includes private downloads for download routes without global private exclude', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
   const src = fs.readFileSync(path.join(process.cwd(), 'next.config.js'), 'utf8');
   assert.match(src, /outputFileTracingExcludes/);
-  assert.match(src, /\.\/private\/\*\*/);
+  // Next applies excludes AFTER includes — './private/**' on '*' wipes download PDFs.
+  assert.doesNotMatch(src, /outputFileTracingExcludes[\s\S]*?['"]\.\/private\/\*\*['"]/);
   assert.match(src, /outputFileTracingIncludes/);
   assert.match(src, /\/api\/lesmateriaal\/download/);
   assert.match(src, /\/api\/lesmateriaal\/chatgpt-download/);
+  assert.match(src, /private\/lesmateriaal-downloads\/pakket-g/);
+  assert.match(src, /private\/lesmateriaal-downloads\/chatgpt/);
 });
 
 check('preview site base URL uses VERCEL_URL, not production host', () => {
