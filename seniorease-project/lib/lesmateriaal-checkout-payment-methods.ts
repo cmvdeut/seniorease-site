@@ -5,9 +5,9 @@
  * - Link is géén gewone payment_method_type in de kaartflow: weglaten uit `payment_method_types`
  *   volstaat niet. Zet `wallet_options.link.display = 'never'` (zie helper hieronder).
  * - Apple Pay / Google Pay verschijnen automatisch via `card` waar beschikbaar (wallets).
- * - Wero = iDEAL-opvolger (public preview). Blijft in de allowlist; als Live het nog niet
- *   heeft geactiveerd, maakt createLesmateriaalCheckoutSession één fallback zonder wero
- *   (ideal blijft). Zodra Wero in het Dashboard aan staat, gaat het automatisch mee.
+ * - Wero = iDEAL-opvolger (public preview). Blijft in de allowlist.
+ * - Als Live een methode uit de allowlist nog niet heeft geactiveerd, strip createLesmateriaalCheckoutSession
+ *   die methode en probeert opnieuw (ideal/card blijven zo lang mogelijk).
  */
 
 import type Stripe from 'stripe';
@@ -19,6 +19,12 @@ export const LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES = [
   'wero',
   'bancontact',
   'paypal',
+] as const satisfies ReadonlyArray<Stripe.Checkout.SessionCreateParams.PaymentMethodType>;
+
+/** Minimale set die op de meeste NL LIVE-accounts werkt. */
+export const LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES_MINIMAL = [
+  'card',
+  'ideal',
 ] as const satisfies ReadonlyArray<Stripe.Checkout.SessionCreateParams.PaymentMethodType>;
 
 export type LesmateriaalCheckoutPaymentMethodType =
@@ -45,19 +51,37 @@ export function paymentMethodTypesWithoutWero(
   return types.filter((t) => t !== 'wero');
 }
 
-/** Stripe weigert `wero` zolang de methode op het account niet is geactiveerd. */
+const INVALID_PAYMENT_METHOD_TYPE_RE =
+  /payment method type provided:\s*([a-z0-9_]+)\s+is invalid/i;
+
+function stripeErrorMessage(err: unknown): string {
+  if (!err || typeof err !== 'object') return '';
+  const e = err as { message?: string; raw?: { message?: string } };
+  return String(e.message || e.raw?.message || '');
+}
+
+function stripeErrorParam(err: unknown): string {
+  if (!err || typeof err !== 'object') return '';
+  const e = err as { param?: string; raw?: { param?: string } };
+  return String(e.param || e.raw?.param || '');
+}
+
+/** Welke payment_method_type Stripe in de fout noemt (bijv. wero, paypal). */
+export function extractInvalidPaymentMethodType(err: unknown): string | null {
+  const msg = stripeErrorMessage(err);
+  const m = INVALID_PAYMENT_METHOD_TYPE_RE.exec(msg);
+  return m?.[1]?.toLowerCase() || null;
+}
+
+export function isPaymentMethodTypesStripeError(err: unknown): boolean {
+  if (stripeErrorParam(err) === 'payment_method_types') return true;
+  const msg = stripeErrorMessage(err);
+  return /payment method type provided:/i.test(msg);
+}
+
+/** @deprecated gebruik extractInvalidPaymentMethodType / isPaymentMethodTypesStripeError */
 export function isWeroNotActivatedStripeError(err: unknown): boolean {
-  if (!err || typeof err !== 'object') return false;
-  const e = err as {
-    message?: string;
-    param?: string;
-    raw?: { message?: string; param?: string };
-  };
-  const msg = String(e.message || e.raw?.message || '');
-  const param = e.param || e.raw?.param || '';
-  if (!/wero/i.test(msg)) return false;
-  if (param === 'payment_method_types') return true;
-  return /invalid/i.test(msg) && /activat|dashboard|preview/i.test(msg);
+  return extractInvalidPaymentMethodType(err) === 'wero';
 }
 
 /** Link-wallet (autosave / “betaal met Link”) uit Checkout Sessions. */
@@ -69,35 +93,64 @@ export function getLesmateriaalCheckoutWalletOptions(): Stripe.Checkout.SessionC
 
 /**
  * Maakt een Checkout Session met de lesmateriaal-allowlist.
- * Als Wero op het Stripe-account nog niet actief is: één retry zonder wero (ideal blijft).
+ * Niet-geactiveerde methoden (wero/paypal/…) worden één voor één weggelaten en opnieuw geprobeerd.
+ * Laatste redmiddel: card + ideal.
  */
 export async function createLesmateriaalCheckoutSession(
   stripe: Stripe,
   params: Stripe.Checkout.SessionCreateParams,
 ): Promise<Stripe.Checkout.Session> {
-  const preferred =
+  let types: Array<Stripe.Checkout.SessionCreateParams.PaymentMethodType> =
     params.payment_method_types && params.payment_method_types.length > 0
       ? [...params.payment_method_types]
       : getLesmateriaalCheckoutPaymentMethodTypes();
   const wallet_options = params.wallet_options ?? getLesmateriaalCheckoutWalletOptions();
 
-  try {
-    return await stripe.checkout.sessions.create({
-      ...params,
-      payment_method_types: preferred,
-      wallet_options,
-    });
-  } catch (err) {
-    if (!isWeroNotActivatedStripeError(err) || !preferred.includes('wero')) {
+  let lastErr: unknown;
+  let usedMinimalFallback = false;
+
+  for (let attempt = 0; attempt < 8; attempt++) {
+    try {
+      return await stripe.checkout.sessions.create({
+        ...params,
+        payment_method_types: types,
+        wallet_options,
+      });
+    } catch (err) {
+      lastErr = err;
+      if (!isPaymentMethodTypesStripeError(err)) {
+        throw err;
+      }
+
+      const invalid = extractInvalidPaymentMethodType(err);
+      if (invalid && types.includes(invalid as Stripe.Checkout.SessionCreateParams.PaymentMethodType)) {
+        console.warn(
+          `Stripe payment method "${invalid}" not activated; retrying Checkout Session without it.`,
+        );
+        types = types.filter((t) => t !== invalid);
+        if (types.length === 0) break;
+        continue;
+      }
+
+      if (!usedMinimalFallback) {
+        const minimal = [...LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES_MINIMAL];
+        const changed =
+          types.length !== minimal.length || types.some((t, i) => t !== minimal[i]);
+        if (changed) {
+          usedMinimalFallback = true;
+          console.warn(
+            'Stripe payment_method_types rejected; retrying Checkout Session with card+ideal only.',
+          );
+          types = minimal;
+          continue;
+        }
+      }
+
       throw err;
     }
-    console.warn(
-      'Stripe Wero not activated; Checkout Session without wero (ideal remains). Enable Wero in Live Dashboard payment methods to include it.',
-    );
-    return await stripe.checkout.sessions.create({
-      ...params,
-      payment_method_types: paymentMethodTypesWithoutWero(preferred),
-      wallet_options,
-    });
   }
+
+  throw lastErr instanceof Error
+    ? lastErr
+    : new Error('Stripe Checkout Session kon niet worden aangemaakt');
 }

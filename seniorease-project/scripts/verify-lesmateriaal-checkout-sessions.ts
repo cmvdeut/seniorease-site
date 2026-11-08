@@ -29,6 +29,7 @@ import {
 } from '../lib/lesmateriaal-preview-mail-guard';
 import {
   createLesmateriaalCheckoutSession,
+  extractInvalidPaymentMethodType,
   getLesmateriaalCheckoutPaymentMethodTypes,
   getLesmateriaalCheckoutWalletOptions,
   isWeroNotActivatedStripeError,
@@ -331,6 +332,50 @@ check('checkout session helper retries without wero when Stripe rejects wero', a
   assert.ok(calls[0]?.includes('wero'));
   assert.equal(calls[1]?.includes('wero'), false);
   assert.ok(calls[1]?.includes('ideal'));
+});
+
+check('checkout session helper strips multiple inactive methods then succeeds', async () => {
+  assert.equal(
+    extractInvalidPaymentMethodType({
+      message:
+        'The payment method type provided: paypal is invalid. Please ensure the provided type is activated in your dashboard',
+      param: 'payment_method_types',
+    }),
+    'paypal',
+  );
+
+  const calls: Array<string[] | undefined> = [];
+  const stripe = {
+    checkout: {
+      sessions: {
+        create: async (params: { payment_method_types?: string[] }) => {
+          const types = params.payment_method_types || [];
+          calls.push(types);
+          for (const bad of ['wero', 'paypal', 'bancontact']) {
+            if (types.includes(bad)) {
+              const err = new Error(
+                `The payment method type provided: ${bad} is invalid. Please ensure the provided type is activated in your dashboard`,
+              ) as Error & { param: string };
+              err.param = 'payment_method_types';
+              throw err;
+            }
+          }
+          return { id: 'cs_test_multi_fallback', url: 'https://checkout.stripe.com/c/pay/cs_test' };
+        },
+      },
+    },
+  };
+
+  const session = await createLesmateriaalCheckoutSession(stripe as never, {
+    mode: 'payment',
+    line_items: [{ price: 'price_test', quantity: 1 }],
+    success_url: 'https://www.seniorease.nl/ok',
+    cancel_url: 'https://www.seniorease.nl/cancel',
+  });
+
+  assert.equal(session.id, 'cs_test_multi_fallback');
+  assert.ok(calls.length >= 3);
+  assert.deepEqual(calls[calls.length - 1], ['card', 'ideal']);
 });
 
 function makeFulfillment(status: FulfillmentRow['status']): FulfillmentRow {
