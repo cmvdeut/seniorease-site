@@ -4,10 +4,11 @@ const path = require('path');
 const nextConfig = {
   // Voorkom dat Next de parent-monorepo als workspace-root kiest (Vercel seniorease-project vs seniorease-site).
   outputFileTracingRoot: path.join(__dirname),
-  // Hobby Function Storage: houd PDF/ZIP’s uit álle functions behalve de download-routes.
+  // Hobby Function Storage: zware bronmappen uit functions houden.
+  // Let op: './private/**' mag hier NIET in excludes — Next past excludes ná includes toe
+  // en wist dan de PDF/ZIP’s die outputFileTracingIncludes voor de download-routes toevoegt.
   outputFileTracingExcludes: {
     '*': [
-      './private/**',
       './contentplan/**',
       './lesmateriaal/**',
       './Agent/**',
