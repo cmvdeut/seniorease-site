@@ -10,12 +10,15 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { NextRequest } from 'next/server';
 import {
+  CONSENT_CHECKOUT_SOURCE_NEGATIVE_CACHE_TTL_MS,
   ConsentCheckoutSourceUnavailableError,
   decideWebhookFulfillmentGate,
   hashConsentText,
   insertConsentRecord,
+  isConsentCheckoutSourceColumnAvailable,
   resetConsentCheckoutSourceColumnCacheForTests,
   setConsentCheckoutSourceColumnAvailableForTests,
+  setConsentCheckoutSourceColumnCacheEntryForTests,
   type ConsentRow,
 } from '../lib/lesmateriaal-consent-store';
 import { isCheckoutSessionsMode } from '../lib/lesmateriaal-checkout-mode';
@@ -659,6 +662,23 @@ async function main() {
     assert.ok(start > 0 && end > start);
     const withoutSource = store.slice(start, end);
     assert.doesNotMatch(withoutSource, /checkout_source/);
+  });
+
+  await check('sticky false-cache verloopt; true blijft sticky', async () => {
+    resetConsentCheckoutSourceColumnCacheForTests();
+    setConsentCheckoutSourceColumnCacheEntryForTests({
+      value: false,
+      expiresAt: 1_000,
+    });
+    assert.equal(await isConsentCheckoutSourceColumnAvailable(500), false);
+    // Na TTL: opnieuw proberen mag herstellen (hier via test-override na expiry).
+    assert.equal(await isConsentCheckoutSourceColumnAvailable(1_000), false);
+    assert.ok(CONSENT_CHECKOUT_SOURCE_NEGATIVE_CACHE_TTL_MS >= 1_000);
+    setConsentCheckoutSourceColumnAvailableForTests(true);
+    assert.equal(await isConsentCheckoutSourceColumnAvailable(2_000), true);
+    // Sticky true overleeft “latere” clock.
+    assert.equal(await isConsentCheckoutSourceColumnAvailable(9_999_999), true);
+    resetConsentCheckoutSourceColumnCacheForTests();
   });
 
   await check('4) LIVE-test zonder migratie 003 → geen Checkout Session', async () => {

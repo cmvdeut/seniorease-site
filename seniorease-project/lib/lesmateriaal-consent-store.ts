@@ -63,18 +63,39 @@ function mapConsent(row: Record<string, unknown>): ConsentRow {
   };
 }
 
-/** Cached probe: migratie 003 aanwezig? null = nog niet geprobeerd. */
-let checkoutSourceColumnAvailable: boolean | null = null;
+/**
+ * Probe-cache voor migratie 003.
+ * - `true` mag sticky blijven (kolom verdwijnt niet in een running process).
+ * - `false` / probe-fouten krijgen een korte TTL, anders blijft live-test 503
+ *   na een tijdelijke Neon-fout of een probe vóór migratie.
+ */
+export const CONSENT_CHECKOUT_SOURCE_NEGATIVE_CACHE_TTL_MS = 30_000;
+
+type CheckoutSourceColumnCache = {
+  value: boolean;
+  /** null = niet verlopen (alleen voor sticky true of test-overrides). */
+  expiresAt: number | null;
+};
+
+let checkoutSourceColumnCache: CheckoutSourceColumnCache | null = null;
 
 export function resetConsentCheckoutSourceColumnCacheForTests(): void {
-  checkoutSourceColumnAvailable = null;
+  checkoutSourceColumnCache = null;
 }
 
-/** Test helper: forceer cache zonder Neon-query. */
+/** Test helper: forceer cache zonder Neon-query (sticky tot reset). */
 export function setConsentCheckoutSourceColumnAvailableForTests(
   value: boolean | null,
 ): void {
-  checkoutSourceColumnAvailable = value;
+  checkoutSourceColumnCache =
+    value === null ? null : { value, expiresAt: null };
+}
+
+/** Test helper: zet cache-entry inclusief TTL (productiegedrag nabootsen). */
+export function setConsentCheckoutSourceColumnCacheEntryForTests(
+  entry: CheckoutSourceColumnCache | null,
+): void {
+  checkoutSourceColumnCache = entry;
 }
 
 export class ConsentCheckoutSourceUnavailableError extends Error {
@@ -86,14 +107,28 @@ export class ConsentCheckoutSourceUnavailableError extends Error {
   }
 }
 
+function readCheckoutSourceColumnCache(nowMs: number): boolean | null {
+  if (!checkoutSourceColumnCache) return null;
+  if (
+    checkoutSourceColumnCache.expiresAt !== null &&
+    checkoutSourceColumnCache.expiresAt <= nowMs
+  ) {
+    checkoutSourceColumnCache = null;
+    return null;
+  }
+  return checkoutSourceColumnCache.value;
+}
+
 /**
  * Of lesmateriaal_consents.checkout_source bestaat (migratie 003).
- * Fail-closed bij probe-fout.
+ * Fail-closed per request bij probe-fout; negatieve uitkomst is niet sticky.
  */
-export async function isConsentCheckoutSourceColumnAvailable(): Promise<boolean> {
-  if (checkoutSourceColumnAvailable !== null) {
-    return checkoutSourceColumnAvailable;
-  }
+export async function isConsentCheckoutSourceColumnAvailable(
+  nowMs: number = Date.now(),
+): Promise<boolean> {
+  const cached = readCheckoutSourceColumnCache(nowMs);
+  if (cached !== null) return cached;
+
   try {
     const sql = getNeonSql();
     const rows = await sql`
@@ -104,11 +139,22 @@ export async function isConsentCheckoutSourceColumnAvailable(): Promise<boolean>
         AND column_name = 'checkout_source'
       LIMIT 1
     `;
-    checkoutSourceColumnAvailable = Boolean(rows[0]);
+    const available = Boolean(rows[0]);
+    checkoutSourceColumnCache = available
+      ? { value: true, expiresAt: null }
+      : {
+          value: false,
+          expiresAt: nowMs + CONSENT_CHECKOUT_SOURCE_NEGATIVE_CACHE_TTL_MS,
+        };
+    return available;
   } catch {
-    checkoutSourceColumnAvailable = false;
+    // Transient Neon/probe-fout: deze request fail-closed, cache niet permanent.
+    checkoutSourceColumnCache = {
+      value: false,
+      expiresAt: nowMs + CONSENT_CHECKOUT_SOURCE_NEGATIVE_CACHE_TTL_MS,
+    };
+    return false;
   }
-  return checkoutSourceColumnAvailable;
 }
 
 export async function insertConsentRecord(params: {
