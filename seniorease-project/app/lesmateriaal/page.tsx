@@ -8,7 +8,10 @@ import {
   isSessionsCheckoutReady,
   isStripePriceConfigured,
 } from '@/lib/lesmateriaal-checkout-catalog';
-import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
+import {
+  getLesmateriaalCheckoutMode,
+  resolveCheckoutChannelAvailability,
+} from '@/lib/lesmateriaal-checkout-mode';
 import { LesmateriaalPakketten } from './LesmateriaalPakketten';
 import { LesmateriaalPricing, LesmateriaalPrijsBadge } from './LesmateriaalPricing';
 import { LesmateriaalFaq } from './LesmateriaalFaq';
@@ -65,11 +68,13 @@ const collectionSchema = buildCollectionPageSchema(
 export default function LesmateriaalPage() {
   const checkoutMode = getLesmateriaalCheckoutMode();
   const compleetPaymentLinkBase = getLesmateriaalPaymentLinkBase('compleet');
-  const compleetCheckoutEnabled =
-    checkoutMode === 'sessions'
-      ? isSessionsCheckoutReady() &&
-        isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_COMPLEET')
-      : compleetPaymentLinkBase !== null;
+  const compleetChannel = resolveCheckoutChannelAvailability({
+    mode: checkoutMode,
+    sessionsInfrastructureReady: isSessionsCheckoutReady(),
+    priceConfigured: isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_COMPLEET'),
+    paymentLinkBase: compleetPaymentLinkBase,
+  });
+  const compleetCheckoutEnabled = compleetChannel.checkoutEnabled;
 
   return (
     <main className="min-h-screen bg-cream">
