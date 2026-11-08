@@ -15,6 +15,7 @@ import {
   markFulfillmentMailFailed,
   markFulfillmentMailSent,
   markFulfillmentMailSkipped,
+  resolveConsentVerifiedForClaim,
   verifyConsentForOrder,
 } from '@/lib/lesmateriaal-consent-store';
 import { resolveOrderFromClientReferenceId } from '@/lib/lesmateriaal-order-resolve';
@@ -238,6 +239,17 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  // links_retry: behoud eerder vastgelegde consent_verified (true mag niet false worden).
+  if (gate.action === 'links_retry' && existingFulfillment) {
+    consentVerified = resolveConsentVerifiedForClaim({
+      newlyVerified: consentVerified,
+      existingVerified: existingFulfillment.consentVerified,
+    });
+    if (!consentId && existingFulfillment.consentId) {
+      consentId = existingFulfillment.consentId;
+    }
+  }
+
   if (gate.action === 'sessions_claim' || gate.action === 'links_retry') {
     try {
       const claim = await claimFulfillment({
@@ -256,6 +268,8 @@ export async function POST(request: NextRequest) {
           status: claim.row.status,
         });
       }
+      // DB en mail gebruiken dezelfde gemergede status (claim OR-t ook bij retry).
+      consentVerified = claim.row.consentVerified;
       trackNeonFulfillment = true;
     } catch (err) {
       console.error('Lesmateriaal fulfillment claim failed:', err);
@@ -265,11 +279,15 @@ export async function POST(request: NextRequest) {
     }
   }
 
+  /** Consentbevestiging in mail: Sessions-verificatie of behouden flag bij links_retry. */
+  const includeConsentConfirmation =
+    sessionsMode || gate.action === 'links_retry' ? consentVerified : false;
+
   try {
     const result = await sendLesmateriaalFulfillmentEmail({
       order,
       orderId,
-      includeConsentConfirmation: sessionsMode ? consentVerified : false,
+      includeConsentConfirmation,
     });
     if (!result.ok) {
       console.error('Lesmateriaal fulfillment mail error:', {
@@ -306,7 +324,7 @@ export async function POST(request: NextRequest) {
         received: true,
         fulfilled: false,
         mailDelivery: 'skipped_preview_guard',
-        consentVerified: sessionsMode ? consentVerified : undefined,
+        consentVerified: includeConsentConfirmation ? consentVerified : undefined,
       });
     }
 
@@ -327,7 +345,7 @@ export async function POST(request: NextRequest) {
       delivery: 'sent',
       kind: order.kind,
       files: order.assets.length,
-      consentVerified: sessionsMode ? consentVerified : null,
+      consentVerified: includeConsentConfirmation ? consentVerified : null,
       mode: sessionsMode ? 'sessions' : 'links',
       gate: gate.action,
     });
@@ -335,7 +353,7 @@ export async function POST(request: NextRequest) {
       received: true,
       fulfilled: true,
       mailDelivery: 'sent',
-      consentVerified: sessionsMode ? consentVerified : undefined,
+      consentVerified: includeConsentConfirmation ? consentVerified : undefined,
     });
   } catch (err) {
     console.error('Lesmateriaal fulfillment exception:', err);

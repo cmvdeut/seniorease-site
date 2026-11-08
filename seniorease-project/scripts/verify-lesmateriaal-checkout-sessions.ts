@@ -12,6 +12,7 @@ import {
   decideWebhookFulfillmentGate,
   hashConsentText,
   isFulfillmentTerminal,
+  resolveConsentVerifiedForClaim,
   verifyConsentForOrder,
   type ConsentRow,
   type FulfillmentRow,
@@ -400,6 +401,74 @@ check('gate: Neon niet geconfigureerd → passthrough', () => {
   );
 });
 
+check('consent merge: links_retry preserves existing true over new false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    true,
+  );
+});
+
+check('consent merge: links_retry keeps false when both false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: false }),
+    false,
+  );
+});
+
+check('consent merge: new true upgrades existing false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: true, existingVerified: false }),
+    true,
+  );
+});
+
+check('consent merge: never downgrades true to false', () => {
+  assert.equal(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    true,
+  );
+  assert.notEqual(
+    resolveConsentVerifiedForClaim({ newlyVerified: false, existingVerified: true }),
+    false,
+  );
+});
+
+check('gate links_retry + existing true → same verified flag for DB and mail', () => {
+  const existing = makeFulfillment('mail_failed');
+  existing.consentVerified = true;
+  const gate = decideWebhookFulfillmentGate({
+    checkoutMode: 'links',
+    neonConfigured: true,
+    existing,
+  });
+  assert.equal(gate.action, 'links_retry');
+  const forClaimAndMail = resolveConsentVerifiedForClaim({
+    newlyVerified: false,
+    existingVerified: existing.consentVerified,
+  });
+  assert.equal(forClaimAndMail, true);
+});
+
+check('gate links_retry + existing false → mail without consent confirmation', () => {
+  const existing = makeFulfillment('pending');
+  existing.consentVerified = false;
+  assert.equal(
+    decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing,
+    }).action,
+    'links_retry',
+  );
+  assert.equal(
+    resolveConsentVerifiedForClaim({
+      newlyVerified: false,
+      existingVerified: existing.consentVerified,
+    }),
+    false,
+  );
+});
+
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
@@ -410,7 +479,12 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.match(src, /claimFulfillment/);
   assert.match(src, /decideWebhookFulfillmentGate/);
   assert.match(src, /getFulfillmentByStripeSessionId/);
-  assert.match(src, /includeConsentConfirmation: sessionsMode \? consentVerified : false/);
+  assert.match(src, /resolveConsentVerifiedForClaim/);
+  assert.match(
+    src,
+    /includeConsentConfirmation\s*=\s*[\s\S]*sessionsMode \|\| gate\.action === 'links_retry' \? consentVerified : false/,
+  );
+  assert.match(src, /consentVerified = claim\.row\.consentVerified/);
   assert.match(src, /markFulfillmentMailFailed/);
   assert.match(src, /markFulfillmentMailSent/);
   assert.match(src, /markFulfillmentMailSkipped/);
@@ -419,6 +493,12 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   // Terminal skip must not be gated only on sessionsMode
   assert.match(src, /gate\.action === 'skip'/);
   assert.match(src, /gate\.action === 'sessions_claim' \|\| gate\.action === 'links_retry'/);
+  const store = fs.readFileSync(
+    path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
+    'utf8',
+  );
+  assert.match(store, /mergedVerified/);
+  assert.match(store, /resolveConsentVerifiedForClaim/);
   const skipResponse = src.match(
     /if \(result\.delivery === 'skipped_preview_guard'\) \{[\s\S]*?return NextResponse\.json\(\{([\s\S]*?)\}\);/,
   );

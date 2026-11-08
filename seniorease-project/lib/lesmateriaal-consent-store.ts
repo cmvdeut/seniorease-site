@@ -227,10 +227,23 @@ export function decideWebhookFulfillmentGate(params: {
 }
 
 /**
+ * Merge consent flags for claim/retry: bestaande true mag nooit false worden
+ * wanneer een latere poging geen nieuwe verificatie heeft.
+ */
+export function resolveConsentVerifiedForClaim(params: {
+  newlyVerified: boolean;
+  existingVerified?: boolean | null;
+}): boolean {
+  return Boolean(params.existingVerified) || params.newlyVerified;
+}
+
+/**
  * Claim fulfillment row for processing. Idempotent:
  * - new session → insert pending, return { action: 'process' }
  * - completed / mail_sent / mail_skipped → { action: 'skip' }
  * - mail_failed / pending → { action: 'retry' }
+ *
+ * Bij retry: consent_verified wordt OR-gewijs gemerged (true blijft true).
  */
 export async function claimFulfillment(params: {
   stripeSessionId: string;
@@ -253,18 +266,22 @@ export async function claimFulfillment(params: {
     if (isFulfillmentTerminal(row.status)) {
       return { action: 'skip', row };
     }
+    const mergedVerified = resolveConsentVerifiedForClaim({
+      newlyVerified: params.consentVerified,
+      existingVerified: row.consentVerified,
+    });
     await sql`
       UPDATE lesmateriaal_fulfillments
       SET status = 'pending',
           updated_at = now(),
           last_error = NULL,
-          consent_verified = ${params.consentVerified},
+          consent_verified = ${mergedVerified},
           consent_id = COALESCE(${params.consentId}, consent_id)
       WHERE stripe_session_id = ${params.stripeSessionId}
     `;
     return {
       action: 'retry',
-      row: { ...row, status: 'pending', consentVerified: params.consentVerified },
+      row: { ...row, status: 'pending', consentVerified: mergedVerified },
     };
   }
 
