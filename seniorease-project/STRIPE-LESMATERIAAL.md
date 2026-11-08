@@ -237,4 +237,21 @@ Stripe-bewijs ≠ factuur.
 
 - [ ] Live links bij go-live
 
+## 8. Afgeschermde Sessions live-test (variant C)
+
+Tijdelijke voorziening om **één** LIVE Checkout Session (`los_g1`, €6,95) te testen terwijl Production `LESMATERIAAL_CHECKOUT_MODE=links` blijft. Publieke shop = Payment Links; publieke `/api/lesmateriaal/create-checkout` blijft 503 in links-modus.
+
+**Aan (alleen waar bewust getest wordt):**
+
+- `LESMATERIAAL_SESSIONS_TEST_SECRET` — sterk server-side secret (≥24 tekens; nooit `NEXT_PUBLIC_`, nooit in URL)
+- `LESMATERIAAL_SESSIONS_TEST_EMAIL` — één allowlist-e-mail
+- Optioneel: `LESMATERIAAL_SESSIONS_TEST_REFERENCE` (default `los_g1`)
+- LIVE Stripe price voor losse les + Neon + webhook zoals bij Sessions
+
+Pad: `/lesmateriaal/sessions-live-test` (404 zonder secret). Auth via httpOnly-cookie; webhook accepteert Neon consent/fulfillment alleen na HMAC-verificatie van de Session.
+
+**Uit (nieuwe bestellingen):** secret-env leegmaken of verwijderen → pagina/API 404. Reeds aangemaakte live-test Sessions blijven herkenbaar via Neon `checkout_source=sessions_live_test` + bound `stripe_session_id` (migration `003_…`), ook na secret-rotatie.
+
+**Verwijderen:** code onder `sessions-live-test` / `create-checkout-live-test` + lib. Regressie: `npm run verify:sessions-live-test-c`.
+
 

@@ -15,7 +15,8 @@
     "tiktok:screenshots": "node scripts/make-tiktok-screenshots.js",
     "sync:chatgpt-youtube": "node scripts/sync-chatgpt-youtube-id.js",
     "sync:lesmateriaal-downloads": "node scripts/sync-lesmateriaal-downloads.js",
-    "verify:checkout-sessions": "npx --yes tsx scripts/verify-lesmateriaal-checkout-sessions.ts"
+    "verify:checkout-sessions": "npx --yes tsx scripts/verify-lesmateriaal-checkout-sessions.ts",
+    "verify:sessions-live-test-c": "npx --yes tsx scripts/verify-sessions-live-test-c.ts"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.2.0",

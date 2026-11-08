@@ -74,6 +74,7 @@ function makeConsent(overrides: Partial<ConsentRow> = {}): ConsentRow {
     consentTextHash: hashConsentText(consentText, consentVersion),
     stripeSessionId: 'cs_test_abc',
     status: 'bound',
+    checkoutSource: null,
     ...overrides,
   };
 }
@@ -378,6 +379,19 @@ check('gate: Neon lookup failed in links → passthrough + documenteer risico', 
   );
 });
 
+check('gate: terminal fulfillment + lookupFailed → altijd skip (geen dubbele mail)', () => {
+  for (const status of ['completed', 'mail_sent', 'mail_skipped'] as const) {
+    const gate = decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: makeFulfillment(status),
+      lookupFailed: true,
+    });
+    assert.equal(gate.action, 'skip');
+    if (gate.action === 'skip') assert.equal(gate.status, status);
+  }
+});
+
 check('gate: Neon lookup failed in sessions → sessions_claim (bestaande 500-pad)', () => {
   assert.equal(
     decideWebhookFulfillmentGate({
@@ -520,7 +534,7 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   assert.match(src, /resolveConsentVerifiedForClaim/);
   assert.match(
     src,
-    /includeConsentConfirmation\s*=\s*[\s\S]*sessionsMode \|\| gate\.action === 'links_retry' \? consentVerified : false/,
+    /includeConsentConfirmation\s*=\s*[\s\S]*useSessionsNeonFlow \|\| gate\.action === 'links_retry' \? consentVerified : false/,
   );
   assert.match(src, /consentVerifiedBeforeClaim/);
   assert.match(src, /newlyVerified: consentVerifiedBeforeClaim/);
@@ -532,6 +546,10 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   // Terminal skip must not be gated only on sessionsMode
   assert.match(src, /gate\.action === 'skip'/);
   assert.match(src, /gate\.action === 'sessions_claim' \|\| gate\.action === 'links_retry'/);
+  assert.match(src, /shouldFailClosedOnLiveTestRecognitionError/);
+  assert.match(src, /liveTestRecognitionFailed/);
+  // Fulfillment- en live-test-lookup gescheiden (Bugbot medium).
+  assert.match(src, /Lesmateriaal live-test consent recognition failed/);
   const store = fs.readFileSync(
     path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
     'utf8',
@@ -649,6 +667,17 @@ check('Neon migration has unique session + fulfillment statuses', async () => {
   assert.match(sql, /mail_skipped/);
   assert.match(sql, /consent_verified/);
   assert.doesNotMatch(sql, /redis|kv|blob/i);
+});
+
+check('migration 003 adds consent checkout_source for live-test durability', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const sql = fs.readFileSync(
+    path.join(process.cwd(), 'db/migrations/003_lesmateriaal_consent_checkout_source.sql'),
+    'utf8',
+  );
+  assert.match(sql, /checkout_source/);
+  assert.match(sql, /sessions_live_test/);
 });
 
 check('migration 002 adds mail_skipped status', async () => {
