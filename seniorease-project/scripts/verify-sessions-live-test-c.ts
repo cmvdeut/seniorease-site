@@ -745,9 +745,10 @@ async function main() {
     const live = sourceOf('app/api/lesmateriaal/create-checkout-live-test/route.ts');
     assert.match(live, /isConsentCheckoutSourceColumnAvailable/);
     assert.match(live, /checkoutSource:\s*'sessions_live_test'/);
+    assert.match(live, /createLesmateriaalCheckoutSession/);
     // Consent vóór Stripe session create.
     const consentIdx = live.indexOf('insertConsentRecord');
-    const stripeIdx = live.indexOf('checkout.sessions.create');
+    const stripeIdx = live.indexOf('createLesmateriaalCheckoutSession');
     assert.ok(consentIdx > 0 && stripeIdx > consentIdx);
   });
 

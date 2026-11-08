@@ -28,8 +28,11 @@ import {
   isPreviewMailGuardActive,
 } from '../lib/lesmateriaal-preview-mail-guard';
 import {
+  createLesmateriaalCheckoutSession,
   getLesmateriaalCheckoutPaymentMethodTypes,
   getLesmateriaalCheckoutWalletOptions,
+  isWeroNotActivatedStripeError,
+  paymentMethodTypesWithoutWero,
   LESMATERIAAL_CHECKOUT_BLOCKED_PAYMENT_METHODS,
   LESMATERIAAL_CHECKOUT_PAYMENT_METHOD_TYPES,
 } from '../lib/lesmateriaal-checkout-payment-methods';
@@ -251,8 +254,7 @@ check('create-checkout route exists and gates on sessions mode', async () => {
   assert.match(src, /insertConsentRecord/);
   assert.match(src, /automatic_tax|Geen automatic_tax/);
   assert.match(src, /bindConsentToStripeSession/);
-  assert.match(src, /payment_method_types:\s*getLesmateriaalCheckoutPaymentMethodTypes\(\)/);
-  assert.match(src, /wallet_options:\s*getLesmateriaalCheckoutWalletOptions\(\)/);
+  assert.match(src, /createLesmateriaalCheckoutSession/);
   assert.doesNotMatch(src, /productLabel.*data\.productLabel/);
 });
 
@@ -274,6 +276,61 @@ check('checkout payment methods allowlist is explicit and excludes blocked', () 
   assert.deepEqual(getLesmateriaalCheckoutWalletOptions(), {
     link: { display: 'never' },
   });
+  assert.deepEqual(paymentMethodTypesWithoutWero(allowed), [
+    'card',
+    'ideal',
+    'bancontact',
+    'paypal',
+  ]);
+  assert.equal(
+    isWeroNotActivatedStripeError({
+      message:
+        'The payment method type provided: wero is invalid. Please ensure the provided type is activated in your dashboard',
+      param: 'payment_method_types',
+    }),
+    true,
+  );
+  assert.equal(
+    isWeroNotActivatedStripeError({
+      message: 'No such price',
+      param: 'line_items',
+    }),
+    false,
+  );
+});
+
+check('checkout session helper retries without wero when Stripe rejects wero', async () => {
+  const calls: Array<string[] | undefined> = [];
+  const stripe = {
+    checkout: {
+      sessions: {
+        create: async (params: { payment_method_types?: string[] }) => {
+          calls.push(params.payment_method_types);
+          if (params.payment_method_types?.includes('wero')) {
+            const err = new Error(
+              'The payment method type provided: wero is invalid. Please ensure the provided type is activated in your dashboard',
+            ) as Error & { param: string };
+            err.param = 'payment_method_types';
+            throw err;
+          }
+          return { id: 'cs_test_wero_fallback', url: 'https://checkout.stripe.com/c/pay/cs_test' };
+        },
+      },
+    },
+  };
+
+  const session = await createLesmateriaalCheckoutSession(stripe as never, {
+    mode: 'payment',
+    line_items: [{ price: 'price_test', quantity: 1 }],
+    success_url: 'https://www.seniorease.nl/ok',
+    cancel_url: 'https://www.seniorease.nl/cancel',
+  });
+
+  assert.equal(session.id, 'cs_test_wero_fallback');
+  assert.equal(calls.length, 2);
+  assert.ok(calls[0]?.includes('wero'));
+  assert.equal(calls[1]?.includes('wero'), false);
+  assert.ok(calls[1]?.includes('ideal'));
 });
 
 function makeFulfillment(status: FulfillmentRow['status']): FulfillmentRow {
