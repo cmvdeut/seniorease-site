@@ -1,16 +1,35 @@
 import Link from 'next/link';
-import { LESMATERIAAL_PAKKETTEN, formatPrijs, PAKKET_PRIJS } from './lesmateriaal-data';
+import {
+  LESMATERIAAL_PAKKETTEN,
+  formatPrijs,
+  LOSSE_LES_PRIJS,
+  PAKKET_PRIJS,
+} from './lesmateriaal-data';
 import { ArrowRight } from 'lucide-react';
 
-export function LesmateriaalPakketten() {
+export function LesmateriaalPakketten({
+  bestelLos = false,
+}: {
+  /** true = bezoeker komt via “Losse les” en kiest daarna één les op de themapagina */
+  bestelLos?: boolean;
+}) {
   return (
     <div id="themapakketten" className="scroll-mt-24">
       <h2 className="font-serif text-navy text-[1.5rem] sm:text-[1.75rem] font-semibold mb-3">
-        Kies uw thema (A–H)
+        {bestelLos ? 'Kies een thema voor uw losse les' : 'Kies uw thema (A–H)'}
       </h2>
       <p className="text-navy/65 text-senior-sm mb-8 max-w-xl">
-        Elk thema is een digitaal lesboek (PDF): 4 lessen à 90 minuten voor {formatPrijs(PAKKET_PRIJS)}.
-        Internet: telefoon/tablet (G) of computer (F).
+        {bestelLos ? (
+          <>
+            Kies het thema. Op de volgende pagina kiest u <strong>één</strong> van de vier lessen
+            voor {formatPrijs(LOSSE_LES_PRIJS)} — niet het hele pakket.
+          </>
+        ) : (
+          <>
+            Elk thema is een digitaal lesboek (PDF): 4 lessen à 90 minuten voor{' '}
+            {formatPrijs(PAKKET_PRIJS)}. Internet: telefoon/tablet (G) of computer (F).
+          </>
+        )}
       </p>
 
       <ul
@@ -19,10 +38,13 @@ export function LesmateriaalPakketten() {
       >
         {LESMATERIAAL_PAKKETTEN.map((pakket) => {
           const Icon = pakket.Icon;
+          const href = bestelLos
+            ? `/lesmateriaal/${pakket.slug}?bestel=los`
+            : `/lesmateriaal/${pakket.slug}`;
           return (
             <li key={pakket.slug}>
               <Link
-                href={`/lesmateriaal/${pakket.slug}`}
+                href={href}
                 className="group relative flex flex-col h-full rounded-xl bg-paper border border-navy/8 hover:border-gold px-5 py-5 transition-all hover:shadow-[0_4px_20px_rgba(46,36,28,0.06)]"
               >
                 {pakket.popular && (
@@ -49,9 +71,11 @@ export function LesmateriaalPakketten() {
                 </p>
 
                 <p className="flex items-center justify-between gap-2 text-senior-sm">
-                  <span className="text-navy/50">{pakket.device}</span>
+                  <span className="text-navy/50">
+                    {bestelLos ? `Losse les ${formatPrijs(LOSSE_LES_PRIJS)}` : pakket.device}
+                  </span>
                   <span className="inline-flex items-center gap-1 font-semibold text-gold group-hover:gap-2 transition-all">
-                    Bekijken
+                    {bestelLos ? 'Kies les' : 'Bekijken'}
                     <ArrowRight size={16} aria-hidden />
                   </span>
                 </p>

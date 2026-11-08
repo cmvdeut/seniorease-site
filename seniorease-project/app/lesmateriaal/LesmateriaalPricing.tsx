@@ -26,7 +26,7 @@ const TIERS: PricingTier[] = [
     name: 'Losse les',
     price: LOSSE_LES_PRIJS,
     priceNote: 'eenmalig',
-    tagline: 'Eén lesmiddag uitproberen.',
+    tagline: 'Eén lesmiddag. Eerst een thema kiezen, daarna één les.',
     features: [
       'Draaiboek voor de begeleider',
       'Deelnemerskaart en oefentaken',
@@ -35,7 +35,10 @@ const TIERS: PricingTier[] = [
       'Digitaal lesboek (PDF) — geen online cursus',
       'Direct per e-mail (download)',
     ],
-    cta: { label: 'Kies een les', href: '#themapakketten' },
+    cta: {
+      label: 'Kies een thema voor één les',
+      href: '/lesmateriaal?bestel=los#themapakketten',
+    },
   },
   {
     id: 'pakket',
