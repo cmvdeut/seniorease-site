@@ -9,10 +9,7 @@ import {
   isConsentCheckoutSourceColumnAvailable,
 } from '@/lib/lesmateriaal-consent-store';
 import { DIGITAL_CONSENT_VERSION } from '@/lib/digital-delivery-consent';
-import {
-  getLesmateriaalCheckoutPaymentMethodTypes,
-  getLesmateriaalCheckoutWalletOptions,
-} from '@/lib/lesmateriaal-checkout-payment-methods';
+import { createLesmateriaalCheckoutSession } from '@/lib/lesmateriaal-checkout-payment-methods';
 import { getSiteBaseUrl } from '@/lib/site-base-url';
 import {
   SESSIONS_LIVE_TEST_COOKIE,
@@ -185,15 +182,13 @@ export async function POST(request: NextRequest) {
   let session: Stripe.Checkout.Session;
   try {
     const stripe = getStripe();
-    session = await stripe.checkout.sessions.create({
+    session = await createLesmateriaalCheckoutSession(stripe, {
       mode: 'payment',
       customer_email: email,
       client_reference_id: catalog.referenceId,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: successUrl,
       cancel_url: cancelUrl,
-      payment_method_types: getLesmateriaalCheckoutPaymentMethodTypes(),
-      wallet_options: getLesmateriaalCheckoutWalletOptions(),
       metadata,
       payment_intent_data: {
         metadata: {

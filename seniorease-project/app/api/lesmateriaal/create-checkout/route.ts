@@ -13,10 +13,7 @@ import {
 import {
   DIGITAL_CONSENT_VERSION,
 } from '@/lib/digital-delivery-consent';
-import {
-  getLesmateriaalCheckoutPaymentMethodTypes,
-  getLesmateriaalCheckoutWalletOptions,
-} from '@/lib/lesmateriaal-checkout-payment-methods';
+import { createLesmateriaalCheckoutSession } from '@/lib/lesmateriaal-checkout-payment-methods';
 import { getSiteBaseUrl } from '@/lib/site-base-url';
 
 export const dynamic = 'force-dynamic';
@@ -130,18 +127,14 @@ export async function POST(request: NextRequest) {
   let session: Stripe.Checkout.Session;
   try {
     const stripe = getStripe();
-    session = await stripe.checkout.sessions.create({
+    // Allowlist + Wero-fallback zitten in createLesmateriaalCheckoutSession.
+    session = await createLesmateriaalCheckoutSession(stripe, {
       mode: 'payment',
       customer_email: email,
       client_reference_id: catalog.referenceId,
       line_items: [{ price: priceId, quantity: 1 }],
       success_url: successUrl,
       cancel_url: cancelUrl,
-      // Expliciete allowlist: voorkomt Klarna/P24/Amazon Pay/EPS via Dashboard-dynamic methods.
-      // Link zit als wallet in de kaartflow → wallet_options.link.display = never.
-      // Apple Pay / Google Pay via `card` wallets waar beschikbaar.
-      payment_method_types: getLesmateriaalCheckoutPaymentMethodTypes(),
-      wallet_options: getLesmateriaalCheckoutWalletOptions(),
       // Geen automatic_tax / Stripe Tax
       metadata: {
         consent_id: consent.consentId,
