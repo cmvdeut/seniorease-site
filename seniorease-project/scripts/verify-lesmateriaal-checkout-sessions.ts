@@ -483,6 +483,30 @@ check('race retry: worker true + concurrent insert false → mail/DB keep true',
   assert.equal(forMail, true);
 });
 
+check('claim update must not rewind terminal statuses (source)', async () => {
+  const fs = await import('node:fs');
+  const path = await import('node:path');
+  const store = fs.readFileSync(
+    path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
+    'utf8',
+  );
+  assert.match(store, /AND status IN \('pending', 'mail_failed'\)/);
+  assert.match(store, /RETURNING \*/);
+  // Geen UPDATE naar pending zonder status-predicate in claim-pad
+  const updates = store.match(
+    /UPDATE lesmateriaal_fulfillments[\s\S]*?WHERE stripe_session_id[\s\S]*?;/g,
+  );
+  assert.ok(updates && updates.length >= 1);
+  for (const block of updates) {
+    if (!block.includes("status = 'pending'")) continue;
+    assert.match(
+      block,
+      /status IN \('pending', 'mail_failed'\)/,
+      'pending-rewrite without non-terminal predicate',
+    );
+  }
+});
+
 check('webhook uses claimFulfillment + conditional consent mail', async () => {
   const fs = await import('node:fs');
   const path = await import('node:path');
@@ -512,10 +536,12 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
     path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
     'utf8',
   );
-  assert.match(store, /mergedVerified/);
-  assert.match(store, /raceMergedVerified/);
+  assert.match(store, /claimNonTerminalFulfillmentRow/);
+  assert.match(store, /status IN \('pending', 'mail_failed'\)/);
   assert.match(store, /Race: other worker inserted/);
   assert.match(store, /resolveConsentVerifiedForClaim/);
+  // Terminal rows must not be rewritten to pending
+  assert.match(store, /Voorkomt rewind van completed/);
   const skipResponse = src.match(
     /if \(result\.delivery === 'skipped_preview_guard'\) \{[\s\S]*?return NextResponse\.json\(\{([\s\S]*?)\}\);/,
   );
