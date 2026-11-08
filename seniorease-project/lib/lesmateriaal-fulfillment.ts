@@ -233,7 +233,7 @@ const PACKAGE_SOURCE: Record<
       {
         code: 'E3',
         dir: 'E3-gemeente-belastingdienst',
-        printName: 'SeniorEase-E3-Gemeente-Belastingdienst-v2.pdf',
+        printName: 'SeniorEase-E3-Iets-Regelen-v2.pdf',
         beamerName: 'SeniorEase-E3-Beamer-v2.pdf',
       },
       {
@@ -580,7 +580,8 @@ export function resolveFulfillmentOrder(ref: ParsedReference): FulfillmentOrder 
     for (const p of LESMATERIAAL_PAKKETTEN) {
       const les = p.lessons.find((l) => l.code.toLowerCase() === ref.lessonCode);
       if (les) {
-        title = `${les.code}: ${les.title}`;
+        // Klantgerichte lescode (H1 i.p.v. technische G1); fileIds blijven ongewijzigd.
+        title = `${lessonDisplayCode(les)}: ${les.title}`;
         break;
       }
     }

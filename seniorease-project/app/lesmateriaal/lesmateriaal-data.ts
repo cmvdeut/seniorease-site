@@ -57,7 +57,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Rustige doe-middagen op het eigen toestel: startscherm, apps, wifi en foto’s. Print op tafel; beamer optioneel.',
     lessons: [
-      { code: 'A1', title: 'Ik ken mijn telefoon en durf hem te bedienen' },
+      { code: 'A1', title: 'Weer thuis op mijn telefoon' },
       { code: 'A2', title: 'Een app zoeken en installeren' },
       { code: 'A3', title: 'Verbinding maken met internet' },
       { code: 'A4', title: 'Foto’s maken, terugvinden en delen' },
@@ -178,10 +178,10 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
     lessons: [
-      { code: 'Ft1', displayCode: 'G1', title: 'Iets opzoeken op Google' },
-      { code: 'Ft2', displayCode: 'G2', title: 'Browser gebruiken' },
-      { code: 'Ft3', displayCode: 'G3', title: 'QR-codes openen' },
-      { code: 'Ft4', displayCode: 'G4', title: 'Formulieren en downloads' },
+      { code: 'Ft1', displayCode: 'G1', title: 'Zoeken op internet' },
+      { code: 'Ft2', displayCode: 'G2', title: 'Websites en tabbladen gebruiken' },
+      { code: 'Ft3', displayCode: 'G3', title: 'Een website openen vanaf een QR-code' },
+      { code: 'Ft4', displayCode: 'G4', title: 'Online formulieren invullen' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:
@@ -266,10 +266,10 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
     description:
       'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
     lessons: [
-      { code: 'Ft1', title: 'Iets opzoeken op Google' },
-      { code: 'Ft2', title: 'Browser gebruiken' },
-      { code: 'Ft3', title: 'QR-codes openen' },
-      { code: 'Ft4', title: 'Formulieren en downloads' },
+      { code: 'Ft1', displayCode: 'G1', title: 'Zoeken op internet' },
+      { code: 'Ft2', displayCode: 'G2', title: 'Websites en tabbladen gebruiken' },
+      { code: 'Ft3', displayCode: 'G3', title: 'Een website openen vanaf een QR-code' },
+      { code: 'Ft4', displayCode: 'G4', title: 'Online formulieren invullen' },
     ],
     includes: ['Draaiboek', 'Deelnemerskaart', 'Oefentaken', 'Zaalchecklist', 'Nazorgkaart', 'Beamer-PDF (optioneel)'],
     relatedNote:

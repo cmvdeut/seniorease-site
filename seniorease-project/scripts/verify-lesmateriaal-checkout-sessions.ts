@@ -749,11 +749,11 @@ check('bedankt contents: losse les uses lesson label only', () => {
     'los',
   );
   const bullets = bedanktContentsBullets('los', {
-    lessonLabel: 'Losse les A1: Ik ken mijn telefoon',
+    lessonLabel: 'Losse les A1: Weer thuis op mijn telefoon',
   });
   assert.equal(bullets.some((b) => /4 lessen/i.test(b)), false);
   assert.equal(
-    bullets.some((b) => /Losse les A1: Ik ken mijn telefoon/.test(b)),
+    bullets.some((b) => /Losse les A1: Weer thuis op mijn telefoon/.test(b)),
     true,
   );
   assert.equal(bullets.some((b) => /één lesmiddag/.test(b)), true);
