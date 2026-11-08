@@ -21,7 +21,12 @@ import {
   DIGITAL_CONSENT_CHECKBOX_LABEL,
   DIGITAL_CONSENT_VERSION,
 } from '../lib/digital-delivery-consent';
-import { getLesmateriaalCheckoutMode } from '../lib/lesmateriaal-checkout-mode';
+import {
+  getLesmateriaalCheckoutMode,
+  resolveCheckoutChannelAvailability,
+} from '../lib/lesmateriaal-checkout-mode';
+import { readFileSync } from 'node:fs';
+import path from 'node:path';
 import {
   evaluateLesmateriaalMailAllowlist,
   isLesmateriaalMailAllowed,
@@ -95,6 +100,96 @@ check('sessions mode via LESMATERIAAL_CHECKOUT_MODE', () => {
   process.env.LESMATERIAAL_CHECKOUT_MODE = 'sessions';
   assert.equal(getLesmateriaalCheckoutMode(), 'sessions');
   delete process.env.LESMATERIAAL_CHECKOUT_MODE;
+});
+
+const SIX_CATEGORIES = [
+  'ah_pakket',
+  'ah_los',
+  'ah_compleet',
+  'chatgpt_een',
+  'chatgpt_compleet',
+  'chatgpt_org',
+] as const;
+
+check('sessions + geldige prijs → usesSessions, knop aan (alle 6 categorieën)', () => {
+  for (const _kind of SIX_CATEGORIES) {
+    const channel = resolveCheckoutChannelAvailability({
+      mode: 'sessions',
+      sessionsInfrastructureReady: true,
+      priceConfigured: true,
+      paymentLinkBase: 'https://buy.stripe.com/test_fallback',
+    });
+    assert.equal(channel.usesSessions, true);
+    assert.equal(channel.checkoutEnabled, true);
+  }
+});
+
+check('sessions + ontbrekende prijs → geen Payment Link-fallback (alle 6)', () => {
+  for (const _kind of SIX_CATEGORIES) {
+    const channel = resolveCheckoutChannelAvailability({
+      mode: 'sessions',
+      sessionsInfrastructureReady: true,
+      priceConfigured: false,
+      paymentLinkBase: 'https://buy.stripe.com/test_fallback',
+    });
+    assert.equal(channel.usesSessions, false);
+    assert.equal(channel.checkoutEnabled, false);
+  }
+});
+
+check('sessions + infra niet klaar → knop uit, ook met Payment Link aanwezig', () => {
+  const channel = resolveCheckoutChannelAvailability({
+    mode: 'sessions',
+    sessionsInfrastructureReady: false,
+    priceConfigured: true,
+    paymentLinkBase: 'https://buy.stripe.com/test_fallback',
+  });
+  assert.equal(channel.usesSessions, false);
+  assert.equal(channel.checkoutEnabled, false);
+});
+
+check('links → bestaande Payment Links (knop aan bij link, geen Sessions)', () => {
+  const withLink = resolveCheckoutChannelAvailability({
+    mode: 'links',
+    sessionsInfrastructureReady: true,
+    priceConfigured: true,
+    paymentLinkBase: 'https://buy.stripe.com/test_live',
+  });
+  assert.equal(withLink.usesSessions, false);
+  assert.equal(withLink.checkoutEnabled, true);
+
+  const withoutLink = resolveCheckoutChannelAvailability({
+    mode: 'links',
+    sessionsInfrastructureReady: true,
+    priceConfigured: true,
+    paymentLinkBase: null,
+  });
+  assert.equal(withoutLink.usesSessions, false);
+  assert.equal(withoutLink.checkoutEnabled, false);
+});
+
+check('slug-pagina: geen stille OR Payment Link-fallback meer in sessions', () => {
+  const src = readFileSync(
+    path.join(process.cwd(), 'app/lesmateriaal/[slug]/page.tsx'),
+    'utf8',
+  );
+  assert.match(src, /resolveCheckoutChannelAvailability/);
+  assert.doesNotMatch(
+    src,
+    /pakketUsesSessions\s*\|\|\s*pakketPaymentLinkBase/,
+  );
+  assert.doesNotMatch(src, /losUsesSessions\s*\|\|\s*losPaymentLinkBase/);
+  assert.doesNotMatch(src, /cutover-veilig/);
+});
+
+check('hub + chatgpt gebruiken hetzelfde modebeleid-helper', () => {
+  const hub = readFileSync(path.join(process.cwd(), 'app/lesmateriaal/page.tsx'), 'utf8');
+  const chatgpt = readFileSync(
+    path.join(process.cwd(), 'app/lesmateriaal/chatgpt/page.tsx'),
+    'utf8',
+  );
+  assert.match(hub, /resolveCheckoutChannelAvailability/);
+  assert.match(chatgpt, /resolveCheckoutChannelAvailability/);
 });
 
 check('allowlist: compleet_org is organization', () => {

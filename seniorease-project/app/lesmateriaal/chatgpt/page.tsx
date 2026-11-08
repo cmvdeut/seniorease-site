@@ -11,7 +11,10 @@ import {
   isSessionsCheckoutReady,
   isStripePriceConfigured,
 } from '@/lib/lesmateriaal-checkout-catalog';
-import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
+import {
+  getLesmateriaalCheckoutMode,
+  resolveCheckoutChannelAvailability,
+} from '@/lib/lesmateriaal-checkout-mode';
 
 export const metadata = buildPageMetadata({
   path: '/lesmateriaal/chatgpt',
@@ -53,26 +56,34 @@ function CheckList({ items }: { items: string[] }) {
 export default function LesmateriaalChatgptPage() {
   const checkoutMode = getLesmateriaalCheckoutMode();
   const sessions = checkoutMode === 'sessions';
-  const sessionsReady = sessions && isSessionsCheckoutReady();
+  const sessionsInfrastructureReady = isSessionsCheckoutReady();
 
   /** In sessions-modus: sentinel zodat knoppen aan gaan zonder Payment Link. */
   const sessionsMarker = 'sessions';
+  function chatgptBase(
+    priceEnvKey: string,
+    paymentLinkBase: string | null,
+  ): string | null {
+    const channel = resolveCheckoutChannelAvailability({
+      mode: checkoutMode,
+      sessionsInfrastructureReady,
+      priceConfigured: isStripePriceConfigured(priceEnvKey),
+      paymentLinkBase,
+    });
+    if (!channel.checkoutEnabled) return null;
+    return channel.usesSessions ? sessionsMarker : paymentLinkBase;
+  }
+
   const checkoutBases = {
-    een: sessions
-      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_EEN')
-        ? sessionsMarker
-        : null
-      : getChatgptPaymentLinkBase('een'),
-    compleet: sessions
-      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_COMPLEET')
-        ? sessionsMarker
-        : null
-      : getChatgptPaymentLinkBase('compleet'),
-    organisatie: sessions
-      ? sessionsReady && isStripePriceConfigured('STRIPE_PRICE_CHATGPT_ORG')
-        ? sessionsMarker
-        : null
-      : getChatgptPaymentLinkBase('organisatie'),
+    een: chatgptBase('STRIPE_PRICE_CHATGPT_EEN', getChatgptPaymentLinkBase('een')),
+    compleet: chatgptBase(
+      'STRIPE_PRICE_CHATGPT_COMPLEET',
+      getChatgptPaymentLinkBase('compleet'),
+    ),
+    organisatie: chatgptBase(
+      'STRIPE_PRICE_CHATGPT_ORG',
+      getChatgptPaymentLinkBase('organisatie'),
+    ),
   };
 
   return (

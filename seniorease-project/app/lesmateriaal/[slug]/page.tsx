@@ -18,7 +18,10 @@ import {
   isSessionsCheckoutReady,
   isStripePriceConfigured,
 } from '@/lib/lesmateriaal-checkout-catalog';
-import { getLesmateriaalCheckoutMode } from '@/lib/lesmateriaal-checkout-mode';
+import {
+  getLesmateriaalCheckoutMode,
+  resolveCheckoutChannelAvailability,
+} from '@/lib/lesmateriaal-checkout-mode';
 import { Check } from 'lucide-react';
 
 type Props = { params: Promise<{ slug: string }> };
@@ -53,14 +56,23 @@ export default async function LesmateriaalPakketPage({ params }: Props) {
   const checkoutMode = getLesmateriaalCheckoutMode();
   const pakketPaymentLinkBase = getLesmateriaalPaymentLinkBase('pakket', slug);
   const losPaymentLinkBase = getLesmateriaalPaymentLinkBase('los');
-  const sessionsReady = checkoutMode === 'sessions' && isSessionsCheckoutReady();
-  const pakketUsesSessions =
-    sessionsReady && isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_PAKKET');
-  const losUsesSessions =
-    sessionsReady && isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_LOS');
-  /** Sessions als geconfigureerd; anders Payment Link (cutover-veilig). */
-  const pakketCheckoutEnabled = pakketUsesSessions || pakketPaymentLinkBase !== null;
-  const losCheckoutEnabled = losUsesSessions || losPaymentLinkBase !== null;
+  const sessionsInfrastructureReady = isSessionsCheckoutReady();
+  const pakketChannel = resolveCheckoutChannelAvailability({
+    mode: checkoutMode,
+    sessionsInfrastructureReady,
+    priceConfigured: isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_PAKKET'),
+    paymentLinkBase: pakketPaymentLinkBase,
+  });
+  const losChannel = resolveCheckoutChannelAvailability({
+    mode: checkoutMode,
+    sessionsInfrastructureReady,
+    priceConfigured: isStripePriceConfigured('STRIPE_PRICE_LESMATERIAAL_LOS'),
+    paymentLinkBase: losPaymentLinkBase,
+  });
+  const pakketUsesSessions = pakketChannel.usesSessions;
+  const losUsesSessions = losChannel.usesSessions;
+  const pakketCheckoutEnabled = pakketChannel.checkoutEnabled;
+  const losCheckoutEnabled = losChannel.checkoutEnabled;
   const Icon = pakket.Icon;
   const seo = getLesmateriaalSeoOverride(slug);
 
