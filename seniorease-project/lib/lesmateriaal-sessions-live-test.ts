@@ -220,6 +220,22 @@ export function verifySessionsLiveTestStripeSession(
 }
 
 /**
+ * Fail-closed: Neon-fout bij live-test-herkenning mag niet stil naar Payment Links.
+ * `se_slt` metadata is alleen een hint (geen bewijs); bewijs blijft Neon/HMAC.
+ */
+export function shouldFailClosedOnLiveTestRecognitionError(params: {
+  liveTestOk: boolean;
+  liveTestRecognitionFailed: boolean;
+  metadataLiveTestFlag?: string | null;
+}): boolean {
+  return (
+    params.liveTestRecognitionFailed &&
+    !params.liveTestOk &&
+    params.metadataLiveTestFlag === '1'
+  );
+}
+
+/**
  * Duurzame herkenning na secret-rotatie/uitschakeling.
  * Bewijs = Neon-consent met checkout_source + stripe_session_id-binding,
  * gecontroleerd tegen Stripe Session e-mail/reference (geen client-metadata).

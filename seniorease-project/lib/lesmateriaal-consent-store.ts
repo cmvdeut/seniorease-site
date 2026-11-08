@@ -63,6 +63,54 @@ function mapConsent(row: Record<string, unknown>): ConsentRow {
   };
 }
 
+/** Cached probe: migratie 003 aanwezig? null = nog niet geprobeerd. */
+let checkoutSourceColumnAvailable: boolean | null = null;
+
+export function resetConsentCheckoutSourceColumnCacheForTests(): void {
+  checkoutSourceColumnAvailable = null;
+}
+
+/** Test helper: forceer cache zonder Neon-query. */
+export function setConsentCheckoutSourceColumnAvailableForTests(
+  value: boolean | null,
+): void {
+  checkoutSourceColumnAvailable = value;
+}
+
+export class ConsentCheckoutSourceUnavailableError extends Error {
+  readonly code = 'CHECKOUT_SOURCE_UNAVAILABLE';
+
+  constructor(message = 'checkout_source kolom ontbreekt (migratie 003)') {
+    super(message);
+    this.name = 'ConsentCheckoutSourceUnavailableError';
+  }
+}
+
+/**
+ * Of lesmateriaal_consents.checkout_source bestaat (migratie 003).
+ * Fail-closed bij probe-fout.
+ */
+export async function isConsentCheckoutSourceColumnAvailable(): Promise<boolean> {
+  if (checkoutSourceColumnAvailable !== null) {
+    return checkoutSourceColumnAvailable;
+  }
+  try {
+    const sql = getNeonSql();
+    const rows = await sql`
+      SELECT 1 AS ok
+      FROM information_schema.columns
+      WHERE table_schema = current_schema()
+        AND table_name = 'lesmateriaal_consents'
+        AND column_name = 'checkout_source'
+      LIMIT 1
+    `;
+    checkoutSourceColumnAvailable = Boolean(rows[0]);
+  } catch {
+    checkoutSourceColumnAvailable = false;
+  }
+  return checkoutSourceColumnAvailable;
+}
+
 export async function insertConsentRecord(params: {
   email: string;
   referenceId: string;
@@ -70,13 +118,36 @@ export async function insertConsentRecord(params: {
   buyerType: CatalogBuyerType;
   checkoutSource?: ConsentCheckoutSource | null;
 }): Promise<ConsentRow> {
-  const sql = getNeonSql();
   const consentId = randomUUID();
   const consentText = DIGITAL_CONSENT_CHECKBOX_LABEL;
   const consentVersion = DIGITAL_CONSENT_VERSION;
   const consentTextHash = hashConsentText(consentText, consentVersion);
   const email = params.email.trim().toLowerCase();
   const checkoutSource = params.checkoutSource ?? null;
+
+  // Live-test marker: kolom-check vóór Neon-connect (fail-closed zonder migratie 003).
+  if (checkoutSource && !(await isConsentCheckoutSourceColumnAvailable())) {
+    throw new ConsentCheckoutSourceUnavailableError();
+  }
+
+  const sql = getNeonSql();
+
+  // Zonder checkoutSource: geen nieuwe kolom in INSERT → werkt vóór én na migratie 003.
+  if (!checkoutSource) {
+    const rows = await sql`
+      INSERT INTO lesmateriaal_consents (
+        consent_id, email, reference_id, product_label, buyer_type,
+        consent_version, consent_text, consent_text_hash, status
+      ) VALUES (
+        ${consentId}, ${email}, ${params.referenceId}, ${params.productLabel}, ${params.buyerType},
+        ${consentVersion}, ${consentText}, ${consentTextHash}, 'pending'
+      )
+      RETURNING *
+    `;
+    const row = rows[0];
+    if (!row) throw new Error('Consent insert mislukt');
+    return mapConsent(row as Record<string, unknown>);
+  }
 
   const rows = await sql`
     INSERT INTO lesmateriaal_consents (
@@ -211,15 +282,16 @@ export function decideWebhookFulfillmentGate(params: {
     return { action: 'links_passthrough' };
   }
 
+  // Bekende terminal rij wint altijd — ook als een latere lookup faalde.
+  if (existing && isFulfillmentTerminal(existing.status)) {
+    return { action: 'skip', status: existing.status };
+  }
+
   if (lookupFailed) {
     // Sessions-modus: caller moet claim/500-pad houden. Links: bestaand Payment Links-pad.
     return checkoutMode === 'sessions'
       ? { action: 'sessions_claim' }
       : { action: 'links_lookup_failed' };
-  }
-
-  if (existing && isFulfillmentTerminal(existing.status)) {
-    return { action: 'skip', status: existing.status };
   }
 
   if (checkoutMode === 'sessions') {

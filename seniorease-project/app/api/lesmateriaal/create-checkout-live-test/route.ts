@@ -3,8 +3,10 @@ import Stripe from 'stripe';
 import { isNeonConfigured } from '@/lib/db/neon';
 import { getStripePriceIdForEntry } from '@/lib/lesmateriaal-checkout-catalog';
 import {
+  ConsentCheckoutSourceUnavailableError,
   bindConsentToStripeSession,
   insertConsentRecord,
+  isConsentCheckoutSourceColumnAvailable,
 } from '@/lib/lesmateriaal-consent-store';
 import { DIGITAL_CONSENT_VERSION } from '@/lib/digital-delivery-consent';
 import {
@@ -65,6 +67,18 @@ export async function POST(request: NextRequest) {
   if (!isNeonConfigured()) {
     return NextResponse.json(
       { ok: false, error: 'DATABASE_URL (Neon) ontbreekt' },
+      { status: 503 },
+    );
+  }
+
+  // Zonder migratie 003 geen betrouwbare live-test-marker → geen Checkout Session.
+  if (!(await isConsentCheckoutSourceColumnAvailable())) {
+    return NextResponse.json(
+      {
+        ok: false,
+        error:
+          'Database-migratie voor live-test ontbreekt (checkout_source). Geen Checkout Session gestart.',
+      },
       { status: 503 },
     );
   }
@@ -138,6 +152,16 @@ export async function POST(request: NextRequest) {
     });
   } catch (err) {
     console.error('create-checkout-live-test consent insert failed:', err);
+    if (err instanceof ConsentCheckoutSourceUnavailableError) {
+      return NextResponse.json(
+        {
+          ok: false,
+          error:
+            'Database-migratie voor live-test ontbreekt (checkout_source). Geen Checkout Session gestart.',
+        },
+        { status: 503 },
+      );
+    }
     return NextResponse.json(
       { ok: false, error: 'Toestemming kon niet worden vastgelegd. Probeer het later opnieuw.' },
       { status: 503 },

@@ -379,6 +379,19 @@ check('gate: Neon lookup failed in links → passthrough + documenteer risico', 
   );
 });
 
+check('gate: terminal fulfillment + lookupFailed → altijd skip (geen dubbele mail)', () => {
+  for (const status of ['completed', 'mail_sent', 'mail_skipped'] as const) {
+    const gate = decideWebhookFulfillmentGate({
+      checkoutMode: 'links',
+      neonConfigured: true,
+      existing: makeFulfillment(status),
+      lookupFailed: true,
+    });
+    assert.equal(gate.action, 'skip');
+    if (gate.action === 'skip') assert.equal(gate.status, status);
+  }
+});
+
 check('gate: Neon lookup failed in sessions → sessions_claim (bestaande 500-pad)', () => {
   assert.equal(
     decideWebhookFulfillmentGate({
@@ -533,6 +546,10 @@ check('webhook uses claimFulfillment + conditional consent mail', async () => {
   // Terminal skip must not be gated only on sessionsMode
   assert.match(src, /gate\.action === 'skip'/);
   assert.match(src, /gate\.action === 'sessions_claim' \|\| gate\.action === 'links_retry'/);
+  assert.match(src, /shouldFailClosedOnLiveTestRecognitionError/);
+  assert.match(src, /liveTestRecognitionFailed/);
+  // Fulfillment- en live-test-lookup gescheiden (Bugbot medium).
+  assert.match(src, /Lesmateriaal live-test consent recognition failed/);
   const store = fs.readFileSync(
     path.join(process.cwd(), 'lib/lesmateriaal-consent-store.ts'),
     'utf8',

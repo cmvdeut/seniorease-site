@@ -10,8 +10,12 @@ import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { NextRequest } from 'next/server';
 import {
+  ConsentCheckoutSourceUnavailableError,
   decideWebhookFulfillmentGate,
   hashConsentText,
+  insertConsentRecord,
+  resetConsentCheckoutSourceColumnCacheForTests,
+  setConsentCheckoutSourceColumnAvailableForTests,
   type ConsentRow,
 } from '../lib/lesmateriaal-consent-store';
 import { isCheckoutSessionsMode } from '../lib/lesmateriaal-checkout-mode';
@@ -38,6 +42,7 @@ import {
   resetSessionsLiveTestUnlockRateLimitForTests,
   resolveLiveTestFromBoundConsent,
   resolveSessionsLiveTestCatalog,
+  shouldFailClosedOnLiveTestRecognitionError,
   signSessionsLiveTestCheckout,
   verifySessionsLiveTestCheckoutSignature,
   verifySessionsLiveTestStripeSession,
@@ -594,6 +599,170 @@ async function main() {
       }).action,
       'skip',
     );
+  });
+
+  await check('1) terminal fulfillment + latere lookupfout → skip (geen dubbele mail)', () => {
+    for (const status of ['completed', 'mail_sent', 'mail_skipped'] as const) {
+      const gate = decideWebhookFulfillmentGate({
+        checkoutMode: 'links',
+        neonConfigured: true,
+        existing: {
+          stripeSessionId: 'cs_term',
+          consentId: 'c',
+          referenceId: 'los_g1',
+          email: TEST_EMAIL,
+          status,
+          consentVerified: true,
+          lastError: null,
+        },
+        lookupFailed: true,
+      });
+      assert.equal(gate.action, 'skip');
+    }
+  });
+
+  await check('2) Neon-lookupfout bij live-test Session → fail-closed (geen Payment Links)', () => {
+    assert.equal(
+      shouldFailClosedOnLiveTestRecognitionError({
+        liveTestOk: false,
+        liveTestRecognitionFailed: true,
+        metadataLiveTestFlag: '1',
+      }),
+      true,
+    );
+    assert.equal(
+      shouldFailClosedOnLiveTestRecognitionError({
+        liveTestOk: false,
+        liveTestRecognitionFailed: true,
+        metadataLiveTestFlag: undefined,
+      }),
+      false,
+    );
+    assert.equal(
+      shouldFailClosedOnLiveTestRecognitionError({
+        liveTestOk: true,
+        liveTestRecognitionFailed: true,
+        metadataLiveTestFlag: '1',
+      }),
+      false,
+    );
+  });
+
+  await check('3) Payment Links vóór migratie 003: consent insert zonder checkout_source-kolom', () => {
+    const store = sourceOf('lib/lesmateriaal-consent-store.ts');
+    assert.match(store, /if \(!checkoutSource\)/);
+    assert.match(store, /isConsentCheckoutSourceColumnAvailable/);
+    assert.match(store, /ConsentCheckoutSourceUnavailableError/);
+    // Standaard-pad: INSERT zonder checkout_source-kolom.
+    const start = store.indexOf('if (!checkoutSource)');
+    const end = store.indexOf('RETURNING *', start);
+    assert.ok(start > 0 && end > start);
+    const withoutSource = store.slice(start, end);
+    assert.doesNotMatch(withoutSource, /checkout_source/);
+  });
+
+  await check('4) LIVE-test zonder migratie 003 → geen Checkout Session', async () => {
+    enableLiveTestEnv();
+    process.env.DATABASE_URL = 'postgres://example.invalid/db';
+    setConsentCheckoutSourceColumnAvailableForTests(false);
+    const cookie = createSessionsLiveTestAuthCookieValue({
+      secret: TEST_SECRET,
+      email: TEST_EMAIL,
+    });
+    const { POST } = await import('../app/api/lesmateriaal/create-checkout-live-test/route');
+    const res = await POST(
+      new NextRequest('http://localhost/api/lesmateriaal/create-checkout-live-test', {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json',
+          cookie: `${SESSIONS_LIVE_TEST_COOKIE}=${cookie.value}`,
+        },
+        body: JSON.stringify({ consented: true }),
+      }),
+    );
+    assert.equal(res.status, 503);
+    const json = (await res.json()) as { error?: string };
+    assert.match(String(json.error || ''), /migratie|checkout_source/i);
+    resetConsentCheckoutSourceColumnCacheForTests();
+    delete process.env.DATABASE_URL;
+  });
+
+  await check('5) LIVE-test met migratie 003 → insert-pad met checkout_source vereist', async () => {
+    // Zonder kolom: fail-closed vóór Neon-connect.
+    setConsentCheckoutSourceColumnAvailableForTests(false);
+    await assert.rejects(
+      () =>
+        insertConsentRecord({
+          email: TEST_EMAIL,
+          referenceId: 'los_g1',
+          productLabel: 'Losse les',
+          buyerType: 'consumer',
+          checkoutSource: 'sessions_live_test',
+        }),
+      (err: unknown) => err instanceof ConsentCheckoutSourceUnavailableError,
+    );
+
+    // Met kolom-cache “aan”: UnavailableError niet meer; daarna Neon-URL vereist.
+    setConsentCheckoutSourceColumnAvailableForTests(true);
+    delete process.env.DATABASE_URL;
+    delete process.env.NEON_DATABASE_URL;
+    await assert.rejects(
+      () =>
+        insertConsentRecord({
+          email: TEST_EMAIL,
+          referenceId: 'los_g1',
+          productLabel: 'Losse les',
+          buyerType: 'consumer',
+          checkoutSource: 'sessions_live_test',
+        }),
+      (err: unknown) =>
+        err instanceof Error &&
+        !(err instanceof ConsentCheckoutSourceUnavailableError) &&
+        /DATABASE_URL/i.test(err.message),
+    );
+    resetConsentCheckoutSourceColumnCacheForTests();
+
+    const live = sourceOf('app/api/lesmateriaal/create-checkout-live-test/route.ts');
+    assert.match(live, /isConsentCheckoutSourceColumnAvailable/);
+    assert.match(live, /checkoutSource:\s*'sessions_live_test'/);
+    // Consent vóór Stripe session create.
+    const consentIdx = live.indexOf('insertConsentRecord');
+    const stripeIdx = live.indexOf('checkout.sessions.create');
+    assert.ok(consentIdx > 0 && stripeIdx > consentIdx);
+  });
+
+  await check('6) Webhook-retry na tijdelijke databasefout (sessions/live-test)', () => {
+    // Fulfillment lookup failed + live-test herkend → sessions_claim (Stripe mag retryen).
+    assert.equal(
+      decideWebhookFulfillmentGate({
+        checkoutMode: 'sessions',
+        neonConfigured: true,
+        existing: null,
+        lookupFailed: true,
+      }).action,
+      'sessions_claim',
+    );
+    // mail_failed blijft claim/retry-pad.
+    assert.equal(
+      decideWebhookFulfillmentGate({
+        checkoutMode: 'sessions',
+        neonConfigured: true,
+        existing: {
+          stripeSessionId: 'cs_tmp_fail',
+          consentId: 'c',
+          referenceId: 'los_g1',
+          email: TEST_EMAIL,
+          status: 'mail_failed',
+          consentVerified: true,
+          lastError: 'tmp',
+        },
+        lookupFailed: false,
+      }).action,
+      'sessions_claim',
+    );
+    const wh = sourceOf('app/api/stripe-webhook/route.ts');
+    assert.match(wh, /Live-test session recognition failed/);
+    assert.match(wh, /status: 500/);
   });
 
   await check('unlock rate-limit: blokkeert na max failures, clear bij succes', () => {

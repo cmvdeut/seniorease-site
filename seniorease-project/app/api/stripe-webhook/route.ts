@@ -24,7 +24,9 @@ import { evaluateLesmateriaalMailAllowlist } from '@/lib/lesmateriaal-preview-ma
 import { COMPANY } from '@/lib/company';
 import { getBrevoApiKeyCandidates } from '@/lib/brevo';
 import {
+  SESSIONS_LIVE_TEST_META,
   resolveLiveTestFromBoundConsent,
+  shouldFailClosedOnLiveTestRecognitionError,
   verifySessionsLiveTestStripeSession,
   type LiveTestSessionRecognition,
 } from '@/lib/lesmateriaal-sessions-live-test';
@@ -184,7 +186,9 @@ export async function POST(request: NextRequest) {
   let existingFulfillment = null as Awaited<
     ReturnType<typeof getFulfillmentByStripeSessionId>
   >;
+  /** Alleen fulfillment-lookupfout — niet consent/live-test. */
   let lookupFailed = false;
+  let liveTestRecognitionFailed = false;
   let boundLiveTestConsent = null as Awaited<
     ReturnType<typeof getConsentByStripeSessionId>
   >;
@@ -192,10 +196,6 @@ export async function POST(request: NextRequest) {
   if (neonConfigured) {
     try {
       existingFulfillment = await getFulfillmentByStripeSessionId(orderId);
-      if (!liveTest.ok) {
-        boundLiveTestConsent = await getConsentByStripeSessionId(orderId);
-        liveTest = resolveLiveTestFromBoundConsent(boundLiveTestConsent, session);
-      }
     } catch (err) {
       lookupFailed = true;
       console.error('Lesmateriaal fulfillment lookup failed:', {
@@ -208,6 +208,22 @@ export async function POST(request: NextRequest) {
             ? 'Idempotency niet gegarandeerd tijdens Neon-storing in links-modus; Payment Links-flow blijft actief.'
             : 'Sessions/live-test: claim-pad volgt (500 bij claimfout).',
       });
+    }
+
+    // Apart van fulfillment: Neon-herkenning na secret-rotatie mag niet
+    // een bekende terminal rij of fail-closed live-test maskeren.
+    if (!liveTest.ok) {
+      try {
+        boundLiveTestConsent = await getConsentByStripeSessionId(orderId);
+        liveTest = resolveLiveTestFromBoundConsent(boundLiveTestConsent, session);
+      } catch (err) {
+        liveTestRecognitionFailed = true;
+        console.error('Lesmateriaal live-test consent recognition failed:', {
+          orderId,
+          mode: checkoutMode,
+          error: err,
+        });
+      }
     }
   }
 
@@ -227,6 +243,24 @@ export async function POST(request: NextRequest) {
       duplicate: true,
       status: gate.status,
     });
+  }
+
+  // DB-fout bij live-test-herkenning: geen stille Payment Links-mailflow.
+  if (
+    shouldFailClosedOnLiveTestRecognitionError({
+      liveTestOk: liveTest.ok,
+      liveTestRecognitionFailed,
+      metadataLiveTestFlag: session.metadata?.[SESSIONS_LIVE_TEST_META.flag],
+    })
+  ) {
+    console.error('Lesmateriaal live-test recognition fail-closed (Stripe retry):', {
+      orderId,
+      mode: checkoutMode,
+    });
+    return NextResponse.json(
+      { error: 'Live-test session recognition failed' },
+      { status: 500 },
+    );
   }
 
   /** Neon-rij bijhouden (sessions claim of links retry van bestaande rij). */
