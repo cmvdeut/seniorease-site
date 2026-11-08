@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { CreditCard, Mail } from 'lucide-react';
 import SeniorButton from './SeniorButton';
@@ -31,6 +31,10 @@ type Props = {
   /** true = Checkout Session; false = Payment Link */
   pakketUsesSessions?: boolean;
   losUsesSessions?: boolean;
+  /** Bezoeker kwam via “losse les”: toon los-blok eerst */
+  preferLos?: boolean;
+  /** Vooraf gekozen lescode (bijv. via ?les=) */
+  initialLessonCode?: string;
 };
 
 export default function LesmateriaalPakketBestelPanel({
@@ -45,12 +49,25 @@ export default function LesmateriaalPakketBestelPanel({
   losPaymentLinkBase,
   pakketUsesSessions = false,
   losUsesSessions = false,
+  preferLos = false,
+  initialLessonCode,
 }: Props) {
+  const resolvedInitial =
+    initialLessonCode && lessons.some((l) => l.code === initialLessonCode)
+      ? initialLessonCode
+      : (lessons[0]?.code ?? '');
   const [email, setEmail] = useState('');
-  const [lessonCode, setLessonCode] = useState(lessons[0]?.code ?? '');
+  const [lessonCode, setLessonCode] = useState(resolvedInitial);
   const [error, setError] = useState('');
   const [consent, setConsent] = useState(false);
   const [busy, setBusy] = useState(false);
+
+  useEffect(() => {
+    if (!initialLessonCode) return;
+    if (lessons.some((l) => l.code === initialLessonCode)) {
+      setLessonCode(initialLessonCode);
+    }
+  }, [initialLessonCode, lessons]);
 
   const anyCheckoutEnabled = pakketCheckoutEnabled || losCheckoutEnabled;
 
@@ -242,75 +259,101 @@ export default function LesmateriaalPakketBestelPanel({
             </p>
           )}
 
-          {pakketCheckoutEnabled && (
-            <div className="rounded-senior border border-navy/10 bg-white p-5 space-y-4">
-              <div>
-                <h3 className="font-serif text-navy font-semibold text-senior-base mb-1">
-                  Heel pakket {pakketCode}
-                </h3>
-                <p className="text-navy/65 text-senior-sm">
-                  Alle 4 lessen + beamer-PDF (waar beschikbaar).
-                </p>
-              </div>
-              <button
-                type="button"
-                onClick={() => void handlePakketBestellen()}
-                disabled={busy}
-                className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation disabled:opacity-60"
+          {(() => {
+            const pakketBlock = pakketCheckoutEnabled ? (
+              <div
+                id="bestellen-pakket"
+                className="rounded-senior border border-navy/10 bg-white p-5 space-y-4 scroll-mt-24"
               >
-                <CreditCard size={20} aria-hidden />
-                {busy ? 'Even geduld…' : `Bestellen — ${formatPrijs(price)}`}
-              </button>
-            </div>
-          )}
-
-          {lessons.length > 0 && (
-            <div className="rounded-senior border border-navy/10 bg-white p-5 space-y-4">
-              <div>
-                <h3 className="font-serif text-navy font-semibold text-senior-base mb-1">
-                  Eén losse les
-                </h3>
-                <p className="text-navy/65 text-senior-sm mb-3">
-                  Compleet lesmateriaal voor één lesmiddag.
-                </p>
-                <label
-                  htmlFor="lesmateriaal-les"
-                  className="block font-semibold text-navy text-senior-sm mb-2"
-                >
-                  Kies welke les
-                </label>
-                <select
-                  id="lesmateriaal-les"
-                  value={lessonCode}
-                  onChange={(e) => setLessonCode(e.target.value)}
-                  disabled={!losCheckoutEnabled || busy}
-                  className="w-full min-h-touch rounded-senior border-2 border-navy/15 bg-white px-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none disabled:opacity-60"
-                >
-                  {lessons.map((les) => (
-                    <option key={les.code} value={les.code}>
-                      {lessonDisplayCode(les)} — {les.title}
-                    </option>
-                  ))}
-                </select>
-              </div>
-              {losCheckoutEnabled ? (
+                <div>
+                  <h3 className="font-serif text-navy font-semibold text-senior-base mb-1">
+                    Heel pakket {pakketCode}
+                  </h3>
+                  <p className="text-navy/65 text-senior-sm">
+                    Alle 4 lessen + beamer-PDF (waar beschikbaar).
+                  </p>
+                </div>
                 <button
                   type="button"
-                  onClick={() => void handleLosBestellen()}
+                  onClick={() => void handlePakketBestellen()}
                   disabled={busy}
-                  className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-navy text-senior-sm bg-paper hover:bg-slate rounded-full border-2 border-navy/20 transition-colors touch-manipulation disabled:opacity-60"
+                  className="w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-white text-senior-sm bg-gold hover:bg-gold-light rounded-full border-2 border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)] transition-colors touch-manipulation disabled:opacity-60"
                 >
                   <CreditCard size={20} aria-hidden />
-                  {busy ? 'Even geduld…' : `Losse les — ${formatPrijs(LOSSE_LES_PRIJS)}`}
+                  {busy ? 'Even geduld…' : `Bestellen — ${formatPrijs(price)}`}
                 </button>
-              ) : (
-                <p className="text-navy/65 text-senior-sm m-0 rounded-senior bg-amber-50 border border-amber-200 px-4 py-3">
-                  Losse lessen bestellen is hier tijdelijk niet beschikbaar. Neem contact op via
-                  support@seniorease.nl, of kies hierboven het hele pakket.
-                </p>
-              )}
-            </div>
-          )}
+              </div>
+            ) : null;
+
+            const losBlock =
+              lessons.length > 0 ? (
+                <div
+                  id="bestellen-los"
+                  className="rounded-senior border border-navy/10 bg-white p-5 space-y-4 scroll-mt-24"
+                >
+                  <div>
+                    <h3 className="font-serif text-navy font-semibold text-senior-base mb-1">
+                      Eén losse les
+                    </h3>
+                    <p className="text-navy/65 text-senior-sm mb-3">
+                      Compleet lesmateriaal voor één lesmiddag
+                      {preferLos ? ' — kies hieronder welke les.' : '.'}
+                    </p>
+                    <label
+                      htmlFor="lesmateriaal-les"
+                      className="block font-semibold text-navy text-senior-sm mb-2"
+                    >
+                      Kies welke les
+                    </label>
+                    <select
+                      id="lesmateriaal-les"
+                      value={lessonCode}
+                      onChange={(e) => setLessonCode(e.target.value)}
+                      disabled={!losCheckoutEnabled || busy}
+                      className="w-full min-h-touch rounded-senior border-2 border-navy/15 bg-white px-4 py-3 text-senior-base text-navy focus:border-gold focus:outline-none disabled:opacity-60"
+                    >
+                      {lessons.map((les) => (
+                        <option key={les.code} value={les.code}>
+                          {lessonDisplayCode(les)} — {les.title}
+                        </option>
+                      ))}
+                    </select>
+                  </div>
+                  {losCheckoutEnabled ? (
+                    <button
+                      type="button"
+                      onClick={() => void handleLosBestellen()}
+                      disabled={busy}
+                      className={`w-full inline-flex items-center justify-center gap-2 min-h-touch px-8 py-3.5 font-semibold text-senior-sm rounded-full border-2 transition-colors touch-manipulation disabled:opacity-60 ${
+                        preferLos
+                          ? 'text-white bg-gold hover:bg-gold-light border-navy/25 shadow-[0_3px_0_0_rgba(46,36,28,0.22)]'
+                          : 'text-navy bg-paper hover:bg-slate border-navy/20'
+                      }`}
+                    >
+                      <CreditCard size={20} aria-hidden />
+                      {busy ? 'Even geduld…' : `Losse les — ${formatPrijs(LOSSE_LES_PRIJS)}`}
+                    </button>
+                  ) : (
+                    <p className="text-navy/65 text-senior-sm m-0 rounded-senior bg-amber-50 border border-amber-200 px-4 py-3">
+                      Losse lessen bestellen is hier tijdelijk niet beschikbaar. Neem contact op via
+                      support@seniorease.nl, of kies het hele pakket.
+                    </p>
+                  )}
+                </div>
+              ) : null;
+
+            return preferLos ? (
+              <>
+                {losBlock}
+                {pakketBlock}
+              </>
+            ) : (
+              <>
+                {pakketBlock}
+                {losBlock}
+              </>
+            );
+          })()}
 
           <p className="text-navy/50 text-senior-xs text-center leading-relaxed">
             Veilig betalen via Stripe · iDEAL, creditcard en meer ·{' '}

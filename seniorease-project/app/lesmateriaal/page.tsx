@@ -65,7 +65,17 @@ const collectionSchema = buildCollectionPageSchema(
   hubItems,
 );
 
-export default function LesmateriaalPage() {
+type HubProps = {
+  searchParams?: Promise<Record<string, string | string[] | undefined>>;
+};
+
+export default async function LesmateriaalPage({ searchParams }: HubProps) {
+  const params = (await searchParams) ?? {};
+  const bestelRaw = params.bestel;
+  const bestel =
+    typeof bestelRaw === 'string' ? bestelRaw : Array.isArray(bestelRaw) ? bestelRaw[0] : '';
+  const bestelLos = bestel === 'los';
+
   const checkoutMode = getLesmateriaalCheckoutMode();
   const compleetPaymentLinkBase = getLesmateriaalPaymentLinkBase('compleet');
   const compleetChannel = resolveCheckoutChannelAvailability({
@@ -134,7 +144,7 @@ export default function LesmateriaalPage() {
 
           <LesmateriaalChatgptHub />
 
-          <LesmateriaalPakketten />
+          <LesmateriaalPakketten bestelLos={bestelLos} />
 
           <LesmateriaalFeedback variant="hub" className="mt-14 md:mt-16 mb-14 md:mb-16" />
 
