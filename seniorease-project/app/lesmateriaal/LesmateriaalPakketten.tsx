@@ -26,8 +26,9 @@ export function LesmateriaalPakketten({
           </>
         ) : (
           <>
-            Elk thema is een digitaal lesboek (PDF): 4 lessen à 90 minuten voor{' '}
-            {formatPrijs(PAKKET_PRIJS)}. Internet: telefoon/tablet (G) of computer (F).
+            Elk thema is kant-en-klaar activiteiten- en lesmateriaal (PDF): 4 lessen à 90
+            minuten voor {formatPrijs(PAKKET_PRIJS)}. Internet: telefoon/tablet (G) of computer
+            (F).
           </>
         )}
       </p>

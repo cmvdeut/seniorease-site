@@ -18,6 +18,8 @@ import { LesmateriaalFaq } from './LesmateriaalFaq';
 import { LesmateriaalFeedback } from './LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
 import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
+import { LesmateriaalDoeMiddag } from './LesmateriaalDoeMiddag';
+import { LesmateriaalDoeMiddagIdeeen } from './LesmateriaalDoeMiddagIdeeen';
 import { LesmateriaalChatgptHub } from './LesmateriaalChatgptHub';
 import { LESMATERIAAL_PAKKETTEN } from './lesmateriaal-data';
 import { ClipboardList, Users, Projector, Mail } from 'lucide-react';
@@ -29,11 +31,16 @@ export const metadata = buildPageMetadata({
   path: '/lesmateriaal',
   title: 'Lesmateriaal digitale vaardigheden voor senioren',
   description:
-    'Lesmateriaal digitale vaardigheden voor senioren — voor bibliotheken, buurthuizen en organisaties die zelf les willen geven. Digitaal lesboek (PDF): downloaden, printen, praktisch oefenen. Geen online cursusplatform. Themapakketten en losse lessen.',
+    'Kant-en-klaar activiteiten- en lesmateriaal voor digitale vaardigheden van senioren. Voor bibliotheken, buurthuizen en vrijwilligers: Doe-Middag of cursus. PDF downloaden, printen en praktisch oefenen — geen online cursusplatform.',
   keywords: [
     'lesmateriaal digitale vaardigheden',
     'lesmateriaal senioren',
     'digitale vaardigheden senioren',
+    'Doe-Middag voor ouderen',
+    'activiteiten voor senioren',
+    'activiteiten buurthuis',
+    'computerles senioren',
+    'lesmateriaal voor vrijwilligers',
     'bibliotheek',
     'buurthuis',
     'zelf lesgeven',
@@ -60,7 +67,7 @@ const hubItems = [
 
 const collectionSchema = buildCollectionPageSchema(
   'Lesmateriaal digitale vaardigheden voor senioren',
-  'Digitaal lesmateriaal (PDF) voor organisaties die zelf digitale lessen aan senioren geven — bibliotheek, buurthuis en begeleiders.',
+  'Kant-en-klaar activiteiten- en lesmateriaal (PDF) voor bibliotheken, buurthuizen en vrijwilligers: digitale lessen of een Doe-Middag voor senioren, met draaiboek en praktische oefeningen.',
   '/lesmateriaal',
   hubItems,
 );
@@ -106,19 +113,18 @@ export default async function LesmateriaalPage({ searchParams }: HubProps) {
           <h1 className="font-serif text-navy text-[1.85rem] sm:text-[2.35rem] font-semibold leading-tight mb-3 max-w-3xl">
             Lesmateriaal digitale vaardigheden voor senioren
           </h1>
-          <p className="text-navy/80 text-senior-base leading-relaxed max-w-2xl mb-5">
-            Voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen
-            willen geven.
+          <p className="text-navy/80 text-senior-base font-semibold leading-relaxed max-w-2xl mb-3">
+            Organiseer eenvoudig een gezellige en leerzame Doe-Middag voor senioren.
           </p>
           <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-4">
-            Een <strong>digitaal lesboek (PDF)</strong> per thema: draaiboek voor uw begeleider
-            of vrijwilliger, oefentaken voor deelnemers, zaalchecklist en nazorgkaart. Geen
-            online cursusplatform — u downloadt, print en geeft les in uw eigen tempo.
-            Themapakketten en losse lessen beschikbaar.
+            Met kant-en-klaar activiteiten- en lesmateriaal ontdekken senioren samen smartphone,
+            tablet en computer — en oefenen ze meteen mee, op hun eigen apparaat en in hun eigen
+            tempo.
           </p>
-          <p className="text-navy/60 text-senior-sm leading-relaxed max-w-2xl mb-10">
-            Elke les 90 minuten. Deelnemers oefenen praktisch op hun <strong>eigen</strong>{' '}
-            telefoon, tablet of computer.
+          <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-10">
+            Per thema een PDF met draaiboek, oefentaken en zaalchecklist. Geschikt voor
+            vrijwilligers. Ongeveer 90 minuten. Voor bibliotheken, buurthuizen en
+            seniorenverenigingen.
           </p>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-14">
@@ -139,6 +145,10 @@ export default async function LesmateriaalPage({ searchParams }: HubProps) {
           </div>
 
           <LesmateriaalPricing />
+
+          <LesmateriaalDoeMiddag />
+
+          <LesmateriaalDoeMiddagIdeeen />
 
           <LesmateriaalVerwachting />
 

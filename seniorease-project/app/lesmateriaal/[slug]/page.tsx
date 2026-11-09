@@ -138,6 +138,10 @@ export default async function LesmateriaalPakketPage({ params, searchParams }: P
         <div className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8 space-y-3">
           {seo?.openingLead ? <p>{seo.openingLead}</p> : null}
           <p>{pakket.description}</p>
+          <p className="text-navy/65 text-senior-sm">
+            Dit materiaal is ook geschikt voor een gezellige Doe-Middag waarbij deelnemers
+            samen oefenen en ontdekken.
+          </p>
         </div>
 
         {preferLos ? (

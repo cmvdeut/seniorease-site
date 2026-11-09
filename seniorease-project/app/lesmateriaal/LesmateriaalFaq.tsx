@@ -11,21 +11,35 @@ export const LESMATERIAAL_FAQ = [
   {
     question: 'Voor welke organisaties is het lesmateriaal bedoeld?',
     answer:
-      'Voor bibliotheken, buurthuizen, clubhuizen en andere organisaties die zelf digitale lessen willen geven aan senioren — met een eigen begeleider of vrijwilliger. U koopt digitaal lesmateriaal (PDF) om te downloaden en te printen; geen online cursusplatform.',
+      'Voor bibliotheken, buurthuizen, clubhuizen, seniorenverenigingen en andere organisaties die digitale lessen of een Doe-Middag voor senioren willen aanbieden — met een eigen begeleider of vrijwilliger. U koopt kant-en-klaar activiteiten- en lesmateriaal (PDF) om te downloaden en te printen; geen online cursusplatform.',
   },
   {
-    question: 'Kan een vrijwilliger de lessen geven?',
+    question: 'Wat is een Doe-Middag?',
+    answer:
+      'Een Doe-Middag is geen apart product en geen vast programma. Het is een flexibele manier om bestaand SeniorEase-materiaal in te zetten: een gezellige, laagdrempelige bijeenkomst waarin deelnemers samen ontdekken en praktisch oefenen. U kunt één Doe-Middag doen, meerdere middagen plannen, of hetzelfde materiaal als cursus gebruiken.',
+  },
+  {
+    question: 'Organiseert SeniorEase de Doe-Middagen of levert u begeleiders?',
+    answer:
+      'Nee. SeniorEase levert alleen het activiteiten- en lesmateriaal (PDF). Uw organisatie plant en begeleidt de bijeenkomst — met uw eigen vrijwilligers of begeleiders.',
+  },
+  {
+    question: 'Kan ik één middag doen, of moet het een hele cursus zijn?',
+    answer: `U kiest zelf. Een losse les (${formatPrijs(LOSSE_LES_PRIJS)}) is handig voor één Doe-Middag. Een themapakket (${formatPrijs(PAKKET_PRIJS)}) bevat vier aansluitende lessen — geschikt voor meerdere Doe-Middagen of een korte cursus. Het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) geeft alle thema's A–H voor uw locatie.`,
+  },
+  {
+    question: 'Kan een vrijwilliger de lessen of Doe-Middag geven?',
     answer:
       'Ja. Het materiaal is gemaakt voor begeleiders en vrijwilligers die geen IT-docent zijn. U volgt het draaiboek stap voor stap. Daarin staat wat u laat zien, wat deelnemers zelf doen en wanneer u verdergaat.',
   },
   {
     question: 'Moet de begeleider technisch deskundig zijn?',
     answer:
-      'Nee. U hoeft geen IT-docent te zijn. Het draaiboek leidt u stap voor stap door de les. Ziet een scherm er anders uit? Dat is normaal. Waar beschikbaar is er ook extra hulp bij vastlopen.',
+      'Nee. U hoeft geen IT-docent te zijn. Het draaiboek leidt u stap voor stap door de les of Doe-Middag. Ziet een scherm er anders uit? Dat is normaal. Waar beschikbaar is er ook extra hulp bij vastlopen.',
   },
   {
     question: 'Wat zit er in een SeniorEase-lespakket?',
-    answer: `Een themapakket (${formatPrijs(PAKKET_PRIJS)}) bevat vier aansluitende lessen van 90 minuten over één thema, als digitaal lesboek (PDF). Vaak vindt u onder meer een draaiboek, oefentaken of deelnemerskaart, zaalchecklist en soms beamer-PDF — de precieze onderdelen verschillen per pakket. Bekijk daarom altijd de pakketpagina. Een losse les (${formatPrijs(LOSSE_LES_PRIJS)}) is één lesmiddag; het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) bevat alle themapakketten A–H plus begeleidersgids.`,
+    answer: `Een themapakket (${formatPrijs(PAKKET_PRIJS)}) bevat vier aansluitende lessen van 90 minuten over één thema — kant-en-klaar activiteiten- en lesmateriaal als PDF. Vaak vindt u onder meer een draaiboek, oefentaken of deelnemerskaart, zaalchecklist en soms beamer-PDF — de precieze onderdelen verschillen per pakket. Bekijk daarom altijd de pakketpagina. Een losse les (${formatPrijs(LOSSE_LES_PRIJS)}) is één lesmiddag; het organisatiepakket (${formatPrijs(ORG_COMPLEET_PRIJS)}) bevat alle themapakketten A–H plus begeleidersgids.`,
   },
   {
     question: 'Mag ik het lesmateriaal printen voor deelnemers?',
@@ -58,7 +72,7 @@ export const LESMATERIAAL_FAQ = [
   {
     question: 'Is dit een online cursus?',
     answer:
-      'Nee. U koopt een digitaal lesboek (PDF) om te downloaden en te printen. Geen inlog op een leeromgeving, geen verplichte video\'s en geen abonnement. Gratis gidsen op seniorease.nl zijn apart en blijven gratis.',
+      'Nee. U koopt kant-en-klaar activiteiten- en lesmateriaal (PDF) om te downloaden en te printen. Geen inlog op een leeromgeving, geen verplichte video\'s en geen abonnement. Gratis gidsen op seniorease.nl zijn apart en blijven gratis.',
   },
   {
     question: 'Wat mag ik met het lesmateriaal doen?',

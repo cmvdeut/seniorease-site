@@ -26,14 +26,14 @@ const TIERS: PricingTier[] = [
     name: 'Losse les',
     price: LOSSE_LES_PRIJS,
     priceNote: 'eenmalig',
-    tagline: 'Eén lesmiddag. Eerst een thema kiezen, daarna één les.',
+    tagline: 'Eén Doe-Middag of lesmiddag. Eerst een thema kiezen, daarna één les.',
     features: [
-      'Draaiboek voor de begeleider',
+      'Draaiboek voor begeleider of vrijwilliger',
       'Deelnemerskaart en oefentaken',
       'Zaalchecklist en nazorgkaart',
-      '90 minuten — eigen telefoon of tablet',
-      'Digitaal lesboek (PDF) — geen online cursus',
-      'Direct per e-mail (download)',
+      '90 minuten — praktisch oefenen op eigen apparaat',
+      'PDF — direct downloaden en printen',
+      'Bruikbaar als les én als Doe-Middag',
     ],
     cta: {
       label: 'Kies een thema voor één les',
@@ -45,13 +45,14 @@ const TIERS: PricingTier[] = [
     name: 'Themapakket',
     price: PAKKET_PRIJS,
     priceNote: 'eenmalig',
-    tagline: 'Volledig thema, vier lesmiddagen.',
+    tagline: 'Volledig thema: cursus of meerdere Doe-Middagen.',
     featured: true,
     badge: 'Meest gekozen',
     features: [
       'Alles uit losse les, vier keer',
       '4 lessen à 90 minuten',
-      'Digitaal lesboek — download & print',
+      'Kant-en-klaar activiteiten- en lesmateriaal (PDF)',
+      'Geen specialistische technische voorkennis nodig',
       'Beamer-PDF inbegrepen (waar beschikbaar)',
       'Sluit aan bij gratis gidsen op de site',
     ],
@@ -66,7 +67,7 @@ const TIERS: PricingTier[] = [
     features: [
       'Alle themapakketten A–H',
       'Locatie-licentie: één vestiging',
-      'Printrechten voor meerdere lesgroepen',
+      'Printrechten voor meerdere lesgroepen of Doe-Middagen',
       'Begeleidersgids inbegrepen',
       'Beamer-PDF waar beschikbaar',
     ],
@@ -76,8 +77,9 @@ const TIERS: PricingTier[] = [
 
 const TRUST_ITEMS = [
   'Prijzen incl. BTW',
+  'Kant-en-klaar PDF-materiaal',
   'Direct download per e-mail',
-  'iDEAL en creditcard',
+  'Geschikt voor vrijwilligers',
   'Geen abonnement — eenmalig',
   'Factuur op aanvraag',
 ];
@@ -100,8 +102,8 @@ export function LesmateriaalPricing() {
         Kies wat bij u past.
       </h2>
       <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-2">
-        Losse les, heel thema of alles voor uw organisatie. Eenmalige betaling — geen
-        abonnement.
+        Losse les, heel thema of alles voor uw organisatie. Bruikbaar als cursus of als
+        Doe-Middag. Eenmalige betaling — geen abonnement.
       </p>
       <p className="text-navy/55 text-senior-xs leading-relaxed max-w-2xl mb-8">
         Alle prijzen zijn inclusief BTW. Wilt u een officiële factuur op naam van uw
