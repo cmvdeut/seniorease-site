@@ -113,9 +113,13 @@ export default function LesmateriaalChatgptPage() {
           <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-4">
             Van eerste vraag tot zelfstandig ChatGPT gebruiken in het dagelijks leven.
           </p>
-          <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-8">
+          <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-4">
             Acht praktische onderwerpen waarmee u stap voor stap leert werken met ChatGPT. Alles
             staat klaar voor de begeleider — ook zonder onderwijsachtergrond of ChatGPT-expertise.
+          </p>
+          <p className="text-navy/65 text-senior-sm leading-relaxed max-w-2xl mb-8">
+            Dit materiaal is ook geschikt voor een gezellige Doe-Middag waarbij deelnemers
+            samen oefenen en ontdekken.
           </p>
 
           <a

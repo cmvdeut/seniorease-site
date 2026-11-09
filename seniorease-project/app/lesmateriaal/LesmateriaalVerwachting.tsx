@@ -11,7 +11,7 @@ const EXPECTATIONS = [
   {
     Icon: Coffee,
     title: 'Rustig en sociaal',
-    text: '90 minuten doen-middag: max. 8–10 deelnemers, pauzes, lachen mag. Geen toets of tempo-druk.',
+    text: 'Ongeveer 90 minuten Doe-Middag of les: max. 8–10 deelnemers, pauzes, lachen mag. Geen toets of tempo-druk.',
   },
   {
     Icon: HandHeart,
@@ -21,7 +21,7 @@ const EXPECTATIONS = [
   {
     Icon: Sparkles,
     title: 'Herkenbare onderwerpen',
-    text: 'WhatsApp, wifi, DigiD, veilig online, AI — aansluitend bij vragen die bezoekers u al stellen.',
+    text: 'WhatsApp, wifi, DigiD, veilig online, AI — herkenbare thema’s voor les of Doe-Middag.',
   },
 ];
 
@@ -38,10 +38,10 @@ export function LesmateriaalVerwachting() {
         Wat kan ik verwachten?
       </h2>
       <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-8">
-        U hoeft geen IT-docent te zijn. SeniorEase lesmateriaal is gemaakt voor{' '}
-        <strong>vrijwilligers en begeleiders</strong> die een warme, laagdrempelige middag willen
-        organiseren — in het buurthuis, op de bibliotheek of bij een vereniging. Download, print,
-        nodig bezoekers uit en geef les wanneer het u uitkomt.
+        U hoeft geen IT-docent te zijn. SeniorEase levert kant-en-klaar activiteiten- en
+        lesmateriaal voor <strong>vrijwilligers en begeleiders</strong> — voor een lesreeks of
+        een Doe-Middag in het buurthuis, de bibliotheek of bij een vereniging. Download, print
+        en ga aan de slag wanneer het u uitkomt.
       </p>
 
       <ul className="grid sm:grid-cols-2 gap-4 mb-10 list-none p-0 m-0">

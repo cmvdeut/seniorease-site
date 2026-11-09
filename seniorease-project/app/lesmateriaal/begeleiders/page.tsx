@@ -26,7 +26,8 @@ export default function BegeleidersPage() {
           Voor begeleiders en vrijwilligers
         </h1>
         <p className="text-navy/70 text-senior-base leading-relaxed max-w-2xl mb-10">
-          Korte gids voordat u uw eerste les geeft. In elk draaiboek staat het belangrijkste
+          Korte gids voordat u uw eerste les of Doe-Middag begeleidt. Hetzelfde materiaal
+          werkt als cursus of als losse Doe-Middag. In elk draaiboek staat het belangrijkste
           ook samengevat.
         </p>
 
