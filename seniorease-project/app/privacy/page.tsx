@@ -172,15 +172,30 @@ export default function PrivacyPage() {
                   5. Cookies en statistieken
                 </h2>
                 <div className="space-y-4 text-senior-base text-gray-700">
+                  <p>
+                    Voor bezoekstatistieken gebruiken wij{" "}
+                    <strong>Vercel Web Analytics</strong> (en{" "}
+                    <strong>Vercel Speed Insights</strong> voor prestatiemeting). Dat werkt
+                    zonder trackingcookies en zonder Google Analytics. Bezoekers worden niet
+                    gevolgd over andere websites; de metingen zijn geaggregeerd (onder meer
+                    paginaweergaven).
+                  </p>
                   <ul className="list-disc pl-6 space-y-2">
                     <li>
-                      <strong>Google Analytics</strong> — anonieme bezoekstatistieken
+                      <strong>Vercel Web Analytics</strong> — anonieme bezoekstatistieken
+                      (zonder trackingcookies)
                     </li>
                     <li>
-                      <strong>Vercel Analytics</strong> — prestaties (privacyvriendelijk)
+                      <strong>Vercel Speed Insights</strong> — hoe snel pagina&apos;s laden
+                      (privacyvriendelijk)
                     </li>
                   </ul>
-                  <p>Wij gebruiken geen advertentie-trackers.</p>
+                  <p>
+                    Wij gebruiken geen Google Analytics en geen advertentie-trackers. Functionele
+                    cookies of lokale opslag kunnen voorkomen waar dat nodig is voor de dienst
+                    zelf (bijvoorbeeld tijdelijke sessie bij een afgeschermde testpagina, of
+                    gegevens die u zelf in de browser bewaart in Mijn Bibliotheek).
+                  </p>
                 </div>
               </section>
 

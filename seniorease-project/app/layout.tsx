@@ -1,6 +1,5 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
-import Script from "next/script";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Lora, Source_Sans_3 } from "next/font/google";
@@ -12,6 +11,10 @@ import {
   organizationSchema,
   websiteSchema,
 } from "@/lib/seo";
+import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import RegisterServiceWorker from "./components/RegisterServiceWorker";
 
 const lora = Lora({
   subsets: ["latin"],
@@ -26,12 +29,6 @@ const sourceSans = Source_Sans_3({
   display: "swap",
   variable: "--font-body",
 });
-
-const GA_ID = "G-N1TDJB81RW";
-import { LanguageProviderWrapper } from "./components/LanguageProviderWrapper";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import RegisterServiceWorker from "./components/RegisterServiceWorker";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -119,14 +116,7 @@ export default function RootLayout({
           {children}
           <Footer />
         </LanguageProviderWrapper>
-        {/* Google Analytics */}
-        <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
-        <Script id="google-analytics" strategy="afterInteractive" dangerouslySetInnerHTML={{ __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${GA_ID}');
-        `}} />
+        {/* Privacyvriendelijke metingen: Vercel Web Analytics + Speed Insights (geen GA4). */}
         <Analytics />
         <SpeedInsights />
       </body>
