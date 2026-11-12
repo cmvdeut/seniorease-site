@@ -36,9 +36,9 @@ export default function PrivacyPage() {
                   })}
                 </p>
                 <p className="text-senior-base text-gray-700">
-                  {COMPANY.brandName} (merk van {COMPANY.legalName}) hecht aan uw privacy. Hieronder
-                  staat welke gegevens wij verwerken bij de website, Mijn Bibliotheek, digitale
-                  lesmaterialen en contact.
+                  {COMPANY.brandName} is een merk van {COMPANY.legalName}. {COMPANY.brandName} hecht
+                  aan uw privacy. Hieronder staat welke gegevens wij verwerken bij de website, Mijn
+                  Bibliotheek, digitale lesmaterialen en contact.
                 </p>
               </div>
 
@@ -217,8 +217,8 @@ export default function PrivacyPage() {
                   7. Verantwoordelijke
                 </h2>
                 <p className="text-senior-base text-gray-700">
-                  {COMPANY.legalName} (KvK {COMPANY.kvk}), vestigingsplaats {COMPANY.city}. Merk:{' '}
-                  {COMPANY.brandName}.
+                  {COMPANY.legalName} (KvK {COMPANY.kvk}), vestigingsplaats {COMPANY.city}.{' '}
+                  {COMPANY.brandName} is een merk van {COMPANY.legalName}.
                 </p>
               </section>
 

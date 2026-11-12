@@ -1,9 +1,14 @@
 import Link from 'next/link';
 import JsonLd from '@/app/components/JsonLd';
-import { buildFAQSchema, buildPageMetadata } from '@/lib/seo';
+import { brandSellerSchema, buildFAQSchema, buildPageMetadata, SITE_URL } from '@/lib/seo';
 import { Users, ClipboardList, Check } from 'lucide-react';
 import {
+  CHATGPT_COMPLEET_PRIJS,
+  CHATGPT_COMPLEET_REFERENCE,
+  CHATGPT_EEN_PRIJS,
   CHATGPT_FAQ,
+  CHATGPT_ORG_PRIJS,
+  CHATGPT_ORG_REFERENCE,
 } from './chatgpt-data';
 import { ChatgptShop } from './ChatgptShop';
 import { getChatgptPaymentLinkBase } from '@/lib/chatgpt-checkout';
@@ -36,6 +41,62 @@ const faqSchema = buildFAQSchema(
     answer: item.answer,
   })),
 );
+
+const CHATGPT_PAGE_URL = `${SITE_URL}/lesmateriaal/chatgpt`;
+
+/** Drie zichtbare koopopties op de pagina — prijzen/namen uit bestaande data. */
+const chatgptProductSchemas = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Praktisch werken met ChatGPT — Eén praktische uitleg',
+    description:
+      'Wilt u eerst één onderwerp proberen? Kies één van de acht praktische onderwerpen.',
+    brand: { '@type': 'Brand', name: 'SeniorEase' },
+    offers: {
+      '@type': 'Offer',
+      price: CHATGPT_EEN_PRIJS.toFixed(2),
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: CHATGPT_PAGE_URL,
+      seller: brandSellerSchema,
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Praktisch werken met ChatGPT — Compleet uitlegpakket',
+    description:
+      'Alle 8 onderwerpen. Het complete pakket om alle acht bijeenkomsten te geven aan één groep.',
+    brand: { '@type': 'Brand', name: 'SeniorEase' },
+    sku: CHATGPT_COMPLEET_REFERENCE,
+    offers: {
+      '@type': 'Offer',
+      price: CHATGPT_COMPLEET_PRIJS.toFixed(2),
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: CHATGPT_PAGE_URL,
+      seller: brandSellerSchema,
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'Product',
+    name: 'Praktisch werken met ChatGPT — Organisatiepakket · één locatie',
+    description:
+      'Voor organisaties die het materiaal op één fysieke locatie met meerdere groepen en begeleiders willen gebruiken.',
+    brand: { '@type': 'Brand', name: 'SeniorEase' },
+    sku: CHATGPT_ORG_REFERENCE,
+    offers: {
+      '@type': 'Offer',
+      price: CHATGPT_ORG_PRIJS.toFixed(2),
+      priceCurrency: 'EUR',
+      availability: 'https://schema.org/InStock',
+      url: CHATGPT_PAGE_URL,
+      seller: brandSellerSchema,
+    },
+  },
+];
 
 function CheckList({ items }: { items: string[] }) {
   return (
@@ -88,7 +149,7 @@ export default function LesmateriaalChatgptPage() {
 
   return (
     <main className="min-h-screen bg-cream">
-      <JsonLd data={faqSchema} />
+      <JsonLd data={[faqSchema, ...chatgptProductSchemas]} />
 
       {/* 1. HERO */}
       <section className="bg-cream">

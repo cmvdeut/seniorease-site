@@ -8,7 +8,7 @@ export const DEFAULT_DESCRIPTION =
 
 /** Organization JSON-LD only — niet gebruiken als page meta (los van DEFAULT_DESCRIPTION). */
 export const ORGANIZATION_DESCRIPTION =
-  'SeniorEase biedt digitale hulp voor senioren: gratis praktische uitleg en hulpmiddelen, én downloadbaar PDF-lesmateriaal voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen aan senioren geven.';
+  'SeniorEase is een merk van EaseWorks. SeniorEase biedt digitale hulp voor senioren: gratis praktische uitleg en hulpmiddelen, én apart downloadbaar PDF-lesmateriaal (betaald) voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen aan senioren geven.';
 
 export const DEFAULT_OG_IMAGE = {
   url: '/opengraph-image',
@@ -209,7 +209,18 @@ export function buildCollectionPageSchema(
     description,
     url: absoluteUrl(path),
     isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
-    mainEntity: buildItemListSchema(name, items),
+    // ItemList zonder geneste @context (parent CollectionPage heeft al context)
+    mainEntity: {
+      '@type': 'ItemList',
+      name,
+      numberOfItems: items.length,
+      itemListElement: items.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: item.name,
+        url: absoluteUrl(item.path),
+      })),
+    },
   };
 }
 
@@ -311,12 +322,20 @@ export const founderPersonSchema = {
   ],
 };
 
+/** Seller-fragment voor Product/Offer — SeniorEase als merk van EaseWorks. */
+export const brandSellerSchema = {
+  '@type': 'Organization' as const,
+  name: SITE_NAME,
+  legalName: 'EaseWorks',
+  url: SITE_URL,
+  description: 'SeniorEase is een merk van EaseWorks.',
+};
+
 export const organizationSchema = {
   '@context': 'https://schema.org',
   '@type': 'Organization',
   name: SITE_NAME,
   legalName: 'EaseWorks',
-  alternateName: 'EaseWorks',
   url: SITE_URL,
   logo: absoluteUrl('/heart-logo.png'),
   description: ORGANIZATION_DESCRIPTION,
@@ -394,7 +413,7 @@ export const DIGITALE_HULP_FAQ = [
   {
     question: 'Is SeniorEase gratis te gebruiken?',
     answer:
-      'Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis in de browser; de Android-app is gratis te downloaden via Google Play, met optionele eenmalige in-app-aankoop voor onbeperkt aantal items. Daarnaast is er betaald digitaal lesmateriaal (PDF/ZIP) via Stripe voor organisaties en begeleiders.',
+      'De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis in de browser; de Android-app is gratis te downloaden via Google Play, met optionele eenmalige in-app-aankoop voor onbeperkt aantal items. Digitaal lesmateriaal (PDF/ZIP) voor organisaties en begeleiders is apart en betaald.',
   },
   {
     question: 'Waar vind ik uitleg over WhatsApp of DigiD?',
@@ -413,8 +432,9 @@ export const digitaleHulpFaqSchema = buildFAQSchema([...DIGITALE_HULP_FAQ]);
 export const webApplicationSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: SITE_NAME,
-  description: 'Digitale hulp voor senioren — simpel uitgelegd.',
+  name: 'SeniorEase — gratis uitleg en hulpmiddelen',
+  description:
+    'Gratis stap-voor-stap uitleg, gidsen en digitale hulpmiddelen voor senioren. Betaald digitaal lesmateriaal voor organisaties staat apart op /lesmateriaal.',
   url: SITE_URL,
   applicationCategory: 'UtilityApplication',
   operatingSystem: 'Web, Android, iOS',
@@ -422,7 +442,9 @@ export const webApplicationSchema = {
     '@type': 'Offer',
     price: '0',
     priceCurrency: 'EUR',
-    description: 'Gratis in de browser',
+    category: 'Gratis uitleg, gidsen en tools',
+    description:
+      'Gratis in de browser: uitleg, gidsen en tools. Digitaal lesmateriaal voor organisaties is een apart, betaald product.',
   },
   audience: {
     '@type': 'Audience',

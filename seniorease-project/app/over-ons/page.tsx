@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import JsonLd from '@/app/components/JsonLd';
+import { companyBrandLine } from '@/lib/company';
 import { buildPageMetadata, founderPersonSchema, SITE_URL, SITE_NAME } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
@@ -11,6 +12,8 @@ export const metadata = buildPageMetadata({
   keywords: ['over SeniorEase', 'digitale hulp senioren', 'oprichter'],
 });
 
+const { '@context': _personContext, ...founderEntity } = founderPersonSchema;
+
 const aboutPageSchema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
@@ -18,14 +21,14 @@ const aboutPageSchema = {
   description:
     'Wie zit er achter SeniorEase? Een senior die bijblijft met technologie en anderen helpt met stap-voor-stap uitleg.',
   url: `${SITE_URL}/over-ons`,
-  mainEntity: founderPersonSchema,
+  mainEntity: founderEntity,
   isPartOf: { '@type': 'WebSite', name: SITE_NAME, url: SITE_URL },
 };
 
 export default function OverOnsPage() {
   return (
     <main className="min-h-screen bg-neutral-cream">
-      <JsonLd data={[aboutPageSchema, founderPersonSchema]} />
+      <JsonLd data={aboutPageSchema} />
       <div className="max-w-3xl mx-auto px-6 py-10">
 
         <Link href="/" className="text-primary hover:underline font-medium mb-8 inline-block" style={{ minHeight: 'auto', fontSize: '1.1rem' }}>
@@ -75,6 +78,9 @@ export default function OverOnsPage() {
             Ik ben gewoon een senior — iemand die nieuwsgierig is naar nieuwe technieken
             en er alles aan doet om bij te blijven, maar ook weet hoe lastig dat soms is.
             Precies daarom is SeniorEase er: zodat u niet alleen staat.
+          </p>
+          <p className="text-gray-700 leading-relaxed mt-4" style={{ fontSize: '1.15rem' }}>
+            {companyBrandLine()}
           </p>
         </div>
 

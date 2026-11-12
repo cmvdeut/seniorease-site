@@ -174,6 +174,24 @@ export default function VoorwaardenPage() {
                 Gebruiksrechten staan op de productpagina en, waar meegeleverd, in de
                 gebruikslicentie bij de download. Wij nemen geen rechten aan die daar niet staan.
               </p>
+              <p>
+                <strong>Actuele prijzen</strong> staan op de productpagina’s — onder meer{' '}
+                <Link
+                  href="/lesmateriaal"
+                  className="text-gold hover:text-gold-light font-semibold underline underline-offset-2"
+                >
+                  themapakketten A–H
+                </Link>{' '}
+                en{' '}
+                <Link
+                  href="/lesmateriaal/chatgpt"
+                  className="text-gold hover:text-gold-light font-semibold underline underline-offset-2"
+                >
+                  Praktisch werken met ChatGPT
+                </Link>
+                . Deze voorwaarden bevatten geen aparte prijslijst; bij twijfel geldt de prijs op
+                de productpagina op het moment van aankoop.
+              </p>
             </div>
           </section>
 
@@ -338,8 +356,8 @@ export default function VoorwaardenPage() {
             </h2>
             <div className="space-y-4 text-navy/85 text-senior-sm leading-relaxed">
               <p className="m-0">
-                <strong>{COMPANY.brandName}</strong> is een product van{' '}
-                <strong>{COMPANY.legalName}</strong>
+                <strong>{COMPANY.brandName}</strong> is een merk van{' '}
+                <strong>{COMPANY.legalName}</strong>.
                 <br />
                 KvK: {COMPANY.kvk}
                 <br />

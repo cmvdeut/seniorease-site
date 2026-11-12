@@ -176,7 +176,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Globe,
     description:
-      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
+      'Internetvaardigheden op telefoon of tablet: zoeken, websites, QR-codes, formulieren en downloads. Voor wie met aanraken werkt; voor muis en toetsenbord kiest u pakket F (Internet — computer).',
     lessons: [
       { code: 'Ft1', displayCode: 'G1', title: 'Zoeken op internet' },
       { code: 'Ft2', displayCode: 'G2', title: 'Websites en tabbladen gebruiken' },
@@ -264,7 +264,7 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
     status: 'klaar',
     Icon: Globe,
     description:
-      'Internet met aanraken: zoeken, mobiele browser, QR-codes, formulieren en downloads. Apart van F-computer (muis/toetsenbord).',
+      'Internetvaardigheden op telefoon of tablet: zoeken, websites, QR-codes, formulieren en downloads. Voor wie met aanraken werkt; voor muis en toetsenbord kiest u pakket F (Internet — computer).',
     lessons: [
       { code: 'Ft1', displayCode: 'G1', title: 'Zoeken op internet' },
       { code: 'Ft2', displayCode: 'G2', title: 'Websites en tabbladen gebruiken' },

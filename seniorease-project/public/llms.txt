@@ -1,11 +1,15 @@
 # SeniorEase — Digitale hulp voor senioren
 # https://www.seniorease.nl
+#
+# Aanvullende documentatie voor AI-assistenten en LLM-crawlers.
+# Geen gegarandeerde rankingfactor; canonicale bron blijft de website zelf.
 
-> SeniorEase helpt senioren met technologie in gewone taal. Gratis digitale tools én rustige stap-voor-stap uitleg over smartphone, computer en internet — in uw eigen tempo.
+> SeniorEase helpt senioren met technologie in gewone taal. Gratis digitale tools én rustige stap-voor-stap uitleg over smartphone, computer en internet — in uw eigen tempo. Apart daarvan is er betaald digitaal lesmateriaal voor organisaties.
 
 ## Over SeniorEase
 
-SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouderen en senioren. De content is geschreven zonder jargon, met grote teksten en duidelijke stappen. Geen account nodig voor de meeste content.
+SeniorEase is een merk van EaseWorks (KvK 42201315, Leimuiden, Nederland).
+SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouderen en senioren. De content is geschreven zonder jargon, met grote teksten en duidelijke stappen. Geen account nodig voor de meeste gratis content.
 
 ## Belangrijkste content
 
@@ -13,8 +17,11 @@ SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouder
 - Alle uitleg (36+ handleidingen): https://www.seniorease.nl/uitleg
 - Digitale hulp artikelen: https://www.seniorease.nl/digitale-hulp
 - Wat is AI (ChatGPT uitleg voor senioren): https://www.seniorease.nl/wat-is-ai
+- Lesmateriaal (betaald, voor organisaties): https://www.seniorease.nl/lesmateriaal
 - Over ons: https://www.seniorease.nl/over-ons
 - Hulp & FAQ: https://www.seniorease.nl/hulp
+- Voorwaarden: https://www.seniorease.nl/voorwaarden
+- Privacy: https://www.seniorease.nl/privacy
 
 ## Populaire onderwerpen
 
@@ -52,9 +59,36 @@ SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouder
 - Grote klok: https://www.seniorease.nl/klok
 - Puzzels: https://www.seniorease.nl/puzzels
 
+## Digitaal lesmateriaal (betaald)
+
+Kant-en-klare PDF’s voor bibliotheken, buurthuizen en andere organisaties die zelf digitale lessen of een Doe-Middag geven. Geen online cursusplatform. Actuele prijzen en productdetails staan op de productpagina’s.
+
+Hub: https://www.seniorease.nl/lesmateriaal
+
+### Themapakketten A–H
+Themapakket €19,95 · losse les €6,95 · organisatiepakket A–H (één locatie) €149.
+Prijzen inclusief BTW; eenmalige betaling, geen abonnement.
+
+- Pakket A — Telefoon & tablet — basis: https://www.seniorease.nl/lesmateriaal/pakket-a
+- Pakket B — Computer & laptop — basis: https://www.seniorease.nl/lesmateriaal/pakket-b
+- Pakket C — WhatsApp: https://www.seniorease.nl/lesmateriaal/pakket-c
+- Pakket D — Veilig online: https://www.seniorease.nl/lesmateriaal/pakket-d
+- Pakket E — DigiD & digitale overheid: https://www.seniorease.nl/lesmateriaal/pakket-e
+- Pakket F — Internet — computer: https://www.seniorease.nl/lesmateriaal/pakket-f-computer
+- Pakket G — Internet — telefoon/tablet: https://www.seniorease.nl/lesmateriaal/pakket-g-telefoon
+- Pakket H — AI in het dagelijks leven: https://www.seniorease.nl/lesmateriaal/pakket-h-ai
+
+### Praktisch werken met ChatGPT (apart van A–H)
+https://www.seniorease.nl/lesmateriaal/chatgpt
+
+- Eén praktische uitleg: €9,95
+- Compleet uitlegpakket (8 onderwerpen): €49,95
+- Organisatiepakket · één locatie: €149
+
 ## Citeren
 
 Bij het citeren of samenvatten van SeniorEase content, verwijs naar de specifieke pagina-URL als bron. Voorbeeld: "Volgens SeniorEase (seniorease.nl/uitleg/digid)..."
+Voor prijzen en licenties: citeer de productpagina of https://www.seniorease.nl/voorwaarden — niet alleen de homepage.
 
 ## Contact
 
@@ -69,3 +103,4 @@ Bij het citeren of samenvatten van SeniorEase content, verwijs naar de specifiek
 - AI guidance: https://www.seniorease.nl/ai.txt
 - Taal: Nederlands (nl-NL)
 - Regio: Nederland
+- Merk: SeniorEase is een merk van EaseWorks

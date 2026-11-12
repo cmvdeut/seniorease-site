@@ -15,8 +15,13 @@ export const COMPANY = {
   siteUrl: 'https://www.seniorease.nl',
 } as const;
 
+/** Vaste merkformulering — overal dezelfde zin gebruiken. */
+export function companyBrandLine(): string {
+  return `${COMPANY.brandName} is een merk van ${COMPANY.legalName}.`;
+}
+
 export function companyFooterLine(): string {
-  return `${COMPANY.brandName} is een product van ${COMPANY.legalName} · KvK ${COMPANY.kvk} · ${COMPANY.city}`;
+  return `${COMPANY.brandName} is een merk van ${COMPANY.legalName} · KvK ${COMPANY.kvk} · ${COMPANY.city}`;
 }
 
 export function companyBtwLine(): string | null {

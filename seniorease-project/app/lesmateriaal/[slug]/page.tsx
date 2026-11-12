@@ -4,7 +4,7 @@ import JsonLd from '@/app/components/JsonLd';
 import LesmateriaalPakketBestelPanel from '@/app/components/LesmateriaalPakketBestelPanel';
 import { LesmateriaalFeedback } from '../LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from '../LesmateriaalLicentieBlok';
-import { buildPageMetadata, SITE_URL } from '@/lib/seo';
+import { brandSellerSchema, buildPageMetadata, SITE_URL } from '@/lib/seo';
 import {
   formatPrijs,
   getPakketBySlug,
@@ -98,12 +98,14 @@ export default async function LesmateriaalPakketPage({ params, searchParams }: P
     name: `SeniorEase digitaal lesboek pakket ${pakket.code}`,
     description: pakket.description,
     brand: { '@type': 'Brand', name: 'SeniorEase' },
+    sku: pakket.slug,
     offers: {
       '@type': 'Offer',
       price: pakket.price.toFixed(2),
       priceCurrency: 'EUR',
       availability: 'https://schema.org/InStock',
       url: `${SITE_URL}/lesmateriaal/${slug}`,
+      seller: brandSellerSchema,
     },
   };
 

@@ -21,10 +21,10 @@ const DEFAULT_FAQ: FAQItem[] = [
     question: 'Is het gratis?',
     answer: (
       <>
-        Ja. De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis
+        De uitleg, gidsen en tools op SeniorEase zijn gratis. Mijn Bibliotheek is gratis
         in de browser; de Android-app is gratis te downloaden via Google Play (eenmalige
-        in-app-aankoop voor onbeperkt aantal items). Daarnaast is er betaald digitaal
-        lesmateriaal voor bibliotheken, buurthuizen en andere organisaties.{' '}
+        in-app-aankoop voor onbeperkt aantal items). Digitaal lesmateriaal voor bibliotheken,
+        buurthuizen en andere organisaties is apart en betaald.{' '}
         <Link href="/lesmateriaal" className={linkClass}>
           Bekijk het lesmateriaal
         </Link>

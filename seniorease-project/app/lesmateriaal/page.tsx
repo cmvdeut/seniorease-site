@@ -51,7 +51,8 @@ export const metadata = buildPageMetadata({
   ],
 });
 
-const hubItems = [
+/** Alleen koopbare producten in CollectionPage ItemList (geen supportpagina’s). */
+const hubProductItems = [
   ...LESMATERIAAL_PAKKETTEN.map((p) => ({
     name: `Pakket ${p.code}: ${p.title}`,
     path: `/lesmateriaal/${p.slug}`,
@@ -60,16 +61,13 @@ const hubItems = [
     name: 'Praktisch werken met ChatGPT',
     path: '/lesmateriaal/chatgpt',
   },
-  { name: 'Voor begeleiders', path: '/lesmateriaal/begeleiders' },
-  { name: 'Woordenlijst', path: '/lesmateriaal/woordenlijst' },
-  { name: 'Beamer (optioneel)', path: '/lesmateriaal/beamer' },
 ];
 
 const collectionSchema = buildCollectionPageSchema(
   'Lesmateriaal digitale vaardigheden voor senioren',
   'Kant-en-klaar activiteiten- en lesmateriaal (PDF) voor bibliotheken, buurthuizen en vrijwilligers: digitale lessen of een Doe-Middag voor senioren, met draaiboek en praktische oefeningen.',
   '/lesmateriaal',
-  hubItems,
+  hubProductItems,
 );
 
 type HubProps = {

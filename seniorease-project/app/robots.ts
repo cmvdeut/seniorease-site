@@ -16,6 +16,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
       { userAgent: 'GPTBot', allow: '/' },
+      { userAgent: 'OAI-SearchBot', allow: '/' },
       { userAgent: 'ChatGPT-User', allow: '/' },
       { userAgent: 'Google-Extended', allow: '/' },
       { userAgent: 'anthropic-ai', allow: '/' },

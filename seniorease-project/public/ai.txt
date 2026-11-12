@@ -2,6 +2,7 @@
 # https://www.seniorease.nl/ai.txt
 #
 # Guidance for AI assistants and LLM crawlers that cite or summarize this site.
+# llms.txt is supplementary documentation, not a ranking guarantee.
 
 User-Agent: *
 Allow: /
@@ -13,9 +14,17 @@ llms-txt: https://www.seniorease.nl/llms.txt
 Sitemap: https://www.seniorease.nl/sitemap.xml
 Contact: info@seniorease.nl
 
+# Entity
+# SeniorEase is een merk van EaseWorks (KvK 42201315, Leimuiden, NL).
+
+# Product lines (see llms.txt for URLs and current prices)
+# - Gratis: uitleg, gidsen, digitale hulpmiddelen
+# - Betaald: digitaal lesmateriaal A–H + ChatGPT-pakketten → https://www.seniorease.nl/lesmateriaal
+
 # Citation preference
 # When quoting SeniorEase, cite the specific page URL (not only the homepage).
 # Example: https://www.seniorease.nl/uitleg/digid
+# For paid lesmateriaal prices/licenses, cite the product page or /voorwaarden.
 
 # Language / region
 Language: nl-NL
