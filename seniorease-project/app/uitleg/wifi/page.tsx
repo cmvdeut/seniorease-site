@@ -388,6 +388,30 @@ export default function WifiPage() {
             </p>
           </section>
 
+          <aside
+            aria-labelledby="lesmateriaal-wifi-heading"
+            className="scroll-mt-24 rounded-xl border border-gold/30 bg-gold/[0.07] px-5 py-5 md:px-6 md:py-6"
+          >
+            <h2
+              id="lesmateriaal-wifi-heading"
+              className="font-serif text-senior-base font-semibold text-navy mb-2"
+            >
+              Voor wie een groep begeleidt
+            </h2>
+            <p className="text-senior-sm text-navy/80 leading-relaxed mb-4">
+              Begeleidt u senioren in een bibliotheek, buurthuis of vereniging? Met Pakket A —
+              Telefoon &amp; tablet kunt u samen oefenen met de basis van smartphone- en
+              tabletgebruik, waaronder verbinding maken met wifi. De lessen bevatten een duidelijk
+              draaiboek en zijn geschikt voor vrijwilligers zonder technische voorkennis.
+            </p>
+            <Link
+              href="/lesmateriaal/pakket-a"
+              className="inline-flex items-center min-h-[44px] text-senior-sm font-semibold text-gold hover:text-gold-light underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm"
+            >
+              Bekijk Pakket A — Telefoon &amp; tablet
+            </Link>
+          </aside>
+
           {/* Veelgestelde vragen */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
