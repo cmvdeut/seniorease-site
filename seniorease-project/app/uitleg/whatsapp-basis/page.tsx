@@ -308,6 +308,30 @@ export default function WhatsAppBasisPage() {
             </ul>
           </div>
 
+          <aside
+            aria-labelledby="lesmateriaal-whatsapp-basis-heading"
+            className="scroll-mt-24 rounded-xl border border-gold/30 bg-gold/[0.07] px-5 py-5 md:px-6 md:py-6"
+          >
+            <h2
+              id="lesmateriaal-whatsapp-basis-heading"
+              className="font-serif text-senior-base font-semibold text-navy mb-2"
+            >
+              Voor wie een groep begeleidt
+            </h2>
+            <p className="text-senior-sm text-navy/80 leading-relaxed mb-4">
+              Werkt u in een bibliotheek, buurthuis, vereniging of als vrijwilliger met senioren?
+              Dan kunt u deze gratis basisuitleg gebruiken — en zo nodig verder met kant-en-klaar
+              lesmateriaal over WhatsApp: openen, berichten sturen, veilig gebruiken en meer.
+              Rustige lessen met draaiboek, zodat deelnemers het zelf op hun eigen toestel oefenen.
+            </p>
+            <Link
+              href="/lesmateriaal/pakket-c"
+              className="inline-flex items-center min-h-[44px] text-senior-sm font-semibold text-gold hover:text-gold-light underline underline-offset-2 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2 rounded-sm"
+            >
+              Bekijk Pakket C — WhatsApp
+            </Link>
+          </aside>
+
           {/* Zichtbare FAQ — synchroon met faqSchema */}
           <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
