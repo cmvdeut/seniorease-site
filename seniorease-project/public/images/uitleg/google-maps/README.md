@@ -1,11 +1,5 @@
-# Screenshots voor Google Maps-uitleg
+# Visuele uitleg: Google Maps herkennen en openen
 
-Plaats hier echte screenshots van uw telefoon (geen AI-afbeeldingen).
+De SVG-bestanden in deze map zijn vereenvoudigde schermvoorbeelden voor de uitlegpagina’s. Het zijn geen echte schermafbeeldingen. Op de pagina staat dit bij de afbeelding vermeld. De kaders tonen de handeling die bij de betreffende stap hoort; knoppen en namen kunnen per toestel of appversie verschillen.
 
-- `google-maps-icon.png` — beginscherm met het Maps-icoon
-- `google-maps-opens.png` — Maps geopend, zoekbalk bovenaan zichtbaar
-- `apple-maps-icon.png` — (optioneel) Apple Maps op iPhone
-
-Tip: maak een screenshot op de telefoon zelf. Geen persoonlijke adressen of namen in beeld.
-
-Zodra deze bestanden er staan, verschijnen ze automatisch op seniorease.nl/uitleg/google-maps.
+Gebruik de SVG-bestandsnamen zoals aangeroepen door de pagina. Controleer bij wijzigingen dat elk afbeeldingspad onder `public/` bestaat en dat de afbeelding op telefoon en computer volledig zichtbaar is. Bestaande PNG- en JPG-bestanden zijn ongewijzigd bewaard.
