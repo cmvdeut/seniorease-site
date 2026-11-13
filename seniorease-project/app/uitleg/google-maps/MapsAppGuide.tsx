@@ -5,13 +5,13 @@ import { useState } from 'react';
 
 const PHOTOS = {
   icon: {
-    src: '/images/uitleg/google-maps/google-maps-icon.png',
-    alt: 'Screenshot: Google Maps-icoon op het beginscherm',
+    src: '/images/uitleg/google-maps/google-maps-icon.svg',
+    alt: 'Vereenvoudigd voorbeeld: Google Maps-icoon op het beginscherm',
     label: 'Het icoon op uw telefoon',
   },
   open: {
-    src: '/images/uitleg/google-maps/google-maps-opens.png',
-    alt: 'Screenshot: Google Maps geopend met zoekbalk bovenaan',
+    src: '/images/uitleg/google-maps/google-maps-opens.svg',
+    alt: 'Vereenvoudigd voorbeeld: Google Maps geopend met zoekbalk bovenaan',
     label: 'Zo ziet de app eruit als u hem opent',
   },
 } as const;
@@ -23,7 +23,7 @@ function PhotoSlot({ src, alt, label }: { src: string; alt: string; label: strin
     return (
       <div className="bg-neutral-cream border-2 border-dashed border-neutral-stone rounded-xl p-6 text-center">
         <p className="text-senior-base font-bold text-gray-800 mb-2">{label}</p>
-        <p className="text-senior-sm text-gray-600">Screenshot volgt — voor nu: lees de omschrijving hieronder.</p>
+        <p className="text-senior-sm text-gray-600">De afbeelding kan niet worden geladen. Lees de omschrijving hieronder.</p>
       </div>
     );
   }
@@ -41,7 +41,7 @@ function PhotoSlot({ src, alt, label }: { src: string; alt: string; label: strin
           unoptimized
         />
       </div>
-      <figcaption className="mt-3 text-senior-sm text-gray-600 text-center">{label}</figcaption>
+      <figcaption className="mt-3 text-senior-sm text-gray-600 text-center">{label} — vereenvoudigd voorbeeld; uw scherm kan verschillen.</figcaption>
     </figure>
   );
 }

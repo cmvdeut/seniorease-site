@@ -5,11 +5,11 @@ import Image from 'next/image';
 import { useState } from 'react';
 
 const STEP_IMAGES: Record<number, string> = {
-  1: '/images/uitleg/whatsapp/deel3-berichten.jpg',
-  2: '/images/uitleg/whatsapp/deel3-organisatie.jpg',
-  3: '/images/uitleg/whatsapp/deel3-groepen.jpg',
-  4: '/images/uitleg/whatsapp/deel3-privacy.jpg',
-  5: '/images/uitleg/whatsapp/deel3-media-backup.jpg',
+  1: '/images/uitleg/whatsapp/deel3-berichten.svg',
+  2: '/images/uitleg/whatsapp/deel3-organisatie.svg',
+  3: '/images/uitleg/whatsapp/deel3-groepen.svg',
+  4: '/images/uitleg/whatsapp/deel3-privacy.svg',
+  5: '/images/uitleg/whatsapp/deel3-media-backup.svg',
 };
 
 function StepIllustration({ step, children }: { step: number; children: React.ReactNode }) {
@@ -18,18 +18,18 @@ function StepIllustration({ step, children }: { step: number; children: React.Re
 
   return (
     <div className="my-6">
-      <div className="relative inline-block">
+      <div className="relative w-full max-w-sm">
         <div className="absolute -top-2 -left-2 z-10 w-12 h-12 rounded-full bg-gold text-white flex items-center justify-center text-senior-lg font-bold  border-2 border-white">
           {step}
         </div>
-        <div className="w-40 h-52 md:w-48 md:h-64 bg-gray-100 rounded-2xl border border-navy/15 flex items-center justify-center p-3 shadow-inner overflow-hidden">
+        <div className="w-full max-w-sm aspect-[360/570] bg-gray-100 rounded-2xl border border-navy/15 flex items-center justify-center p-3 shadow-inner overflow-hidden">
           {src && !imgFailed ? (
             <Image
               src={src}
-              alt={`Stap ${step} illustratie`}
+              alt={`Vereenvoudigd WhatsApp-scherm bij stap ${step}`}
               width={192}
               height={256}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-contain rounded-xl"
               onError={() => setImgFailed(true)}
               unoptimized
             />
@@ -38,6 +38,7 @@ function StepIllustration({ step, children }: { step: number; children: React.Re
           )}
         </div>
       </div>
+      <p className="mt-2 text-senior-sm text-gray-600">Vereenvoudigd voorbeeld. Knoppen kunnen per telefoon verschillen.</p>
     </div>
   );
 }

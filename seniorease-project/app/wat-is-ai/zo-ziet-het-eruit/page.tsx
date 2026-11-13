@@ -1,38 +1,39 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
   path: '/wat-is-ai/zo-ziet-het-eruit',
   title: 'Zo ziet ChatGPT eruit',
   description:
-    'Screenshots en uitleg van de ChatGPT en Claude interface. Waar typt u uw vraag en waar verschijnt het antwoord?',
+    'Visuele voorbeelden en uitleg van de ChatGPT en Claude interface. Waar typt u uw vraag en waar verschijnt het antwoord?',
   keywords: ['ChatGPT interface', 'Claude', 'AI scherm'],
 });
 
-const placeholderSteps = [
+const exampleSteps = [
   {
     num: 1,
     title: "ChatGPT startscherm",
-    desc: "Lege chat met invoerveld onderaan. Hier typt u uw vraag.",
-    imagePlaceholder: "Plaats hier later een screenshot: lege chat, invoerveld onderaan.",
+    desc: "Op het startscherm staat een invoerveld. Hier typt u uw vraag.",
+    image: "/images/uitleg/ai/chatgpt-start.svg",
   },
   {
     num: 2,
     title: "Vraag en antwoord",
     desc: "Simpele vraag: \"Wat kan ik koken met pasta en tomaten?\" Uw vraag bovenaan, het antwoord van AI eronder.",
-    imagePlaceholder: "Plaats hier later een screenshot: vraag + antwoord in de chat.",
+    image: "/images/uitleg/ai/chatgpt-antwoord.svg",
   },
   {
     num: 3,
     title: "Nieuw gesprek starten",
-    desc: "Sidebar met \"New chat\" knop. Klik hier voor een nieuw gesprek.",
-    imagePlaceholder: "Plaats hier later een screenshot: sidebar met New chat.",
+    desc: "Zijbalk met de knop Nieuw gesprek (of New chat). Klik hier voor een nieuw gesprek.",
+    image: "/images/uitleg/ai/chatgpt-nieuw.svg",
   },
   {
     num: 4,
     title: "Claude.ai interface",
     desc: "Claude ziet er ongeveer hetzelfde uit: een veld om uw vraag te typen en antwoorden erboven.",
-    imagePlaceholder: "Plaats hier later een screenshot: Claude startscherm.",
+    image: "/images/uitleg/ai/claude-start.svg",
   },
 ];
 
@@ -52,7 +53,7 @@ export default function ZoZietHetEruitPage() {
               Zo ziet ChatGPT eruit
             </h1>
             <p className="text-senior-base text-gray-600 mt-2">
-              Nog nooit ChatGPT of Claude gebruikt? Geen zorgen! Hier ziet u precies hoe het eruitziet en waar u moet klikken.
+              Nog nooit ChatGPT of Claude gebruikt? Geen zorgen! Deze vereenvoudigde schermvoorbeelden laten zien waar u uw vraag typt en hoe u verdergaat.
             </p>
             <nav className="mt-6 flex flex-wrap gap-3" aria-label="AI Ontdekken subnavigatie">
               <Link href="/wat-is-ai" className="text-senior-sm font-bold text-primary hover:text-primary-dark hover:underline">Wat is AI?</Link>
@@ -94,7 +95,7 @@ export default function ZoZietHetEruitPage() {
             <div className="text-center mt-8 p-6 bg-primary/10 rounded-xl border-2 border-primary/30">
               <p className="text-senior-lg font-bold text-primary mb-4">Zelf proberen?</p>
               <a
-                href="https://chat.openai.com"
+                href="https://chatgpt.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-block bg-primary text-white px-6 py-4 rounded-xl text-senior-base font-bold hover:bg-primary-dark transition-colors"
@@ -104,7 +105,7 @@ export default function ZoZietHetEruitPage() {
             </div>
           </section>
 
-          {placeholderSteps.map((step) => (
+          {exampleSteps.map((step) => (
             <div
               key={step.num}
               className="bg-white rounded-2xl shadow-xl border-4 border-primary overflow-hidden"
@@ -120,14 +121,12 @@ export default function ZoZietHetEruitPage() {
                   {step.desc}
                 </p>
               </div>
-              <div className="bg-neutral-cream border-2 border-dashed border-neutral-stone m-6 p-12 rounded-xl text-center">
-                <p className="text-senior-base text-gray-500 italic">
-                  {step.imagePlaceholder}
-                </p>
-                <p className="text-senior-sm text-gray-400 mt-2">
-                  (Screenshot later toevoegen)
-                </p>
-              </div>
+              <figure className="m-6">
+                <Image src={step.image} alt={`Vereenvoudigd schermvoorbeeld: ${step.title}`} width={360} height={570} className="w-full max-w-sm mx-auto rounded-xl" unoptimized />
+                <figcaption className="mt-3 text-senior-sm text-gray-600 text-center">
+                  Vereenvoudigd voorbeeld, geen schermafbeelding. De plaats en naam van knoppen kunnen verschillen.
+                </figcaption>
+              </figure>
             </div>
           ))}
 
