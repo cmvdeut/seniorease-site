@@ -12,8 +12,8 @@ export const YOUTUBE_VIDEOS = {
   fotosMaken: 'iYQz-nr9StM',
   /** Videobellen via WhatsApp (HyperFrames + telefoonmockup; vervangt NotebookLM). */
   videobellen: 'dMB1Tc6PmZc',
-  /** Google Maps. */
-  googleMaps: 'QYKisb9t5gg',
+  /** Google Maps (HyperFrames + telefoonmockup; vervangt NotebookLM). */
+  googleMaps: 'WQ4Co-cF7kM',
   /**
    * WhatsApp-intro (eerste stappen).
    * Bron: contentplan — watch?v=DZBGAk_mlwE
@@ -75,10 +75,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/videobellen',
   },
   googleMaps: {
-    name: 'Waar ben ik nu? Google Maps locatie en route',
+    name: 'Google Maps — locatie, adres zoeken en route',
     description:
       'Zie waar u bent op de kaart, zoek een adres en vraag de route. Rustige uitleg voor senioren.',
-    uploadDate: '2026-07-06',
+    uploadDate: '2026-11-14',
     path: '/uitleg/google-maps',
   },
   whatsappIntro: {

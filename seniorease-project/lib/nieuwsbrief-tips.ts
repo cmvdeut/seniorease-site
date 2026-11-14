@@ -107,8 +107,8 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
     ctaUrl: 'https://www.seniorease.nl/uitleg/google-maps',
-    videoUrl: 'https://www.youtube.com/watch?v=QYKisb9t5gg',
-    videoLabel: 'Bekijk de uitlegvideo (±7 minuten)',
+    videoUrl: 'https://www.youtube.com/watch?v=WQ4Co-cF7kM',
+    videoLabel: 'Bekijk de uitlegvideo (±1,5 minuut)',
   },
   {
     slug: 'fotos-maken-telefoon',
