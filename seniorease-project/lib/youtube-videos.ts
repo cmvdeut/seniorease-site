@@ -10,8 +10,8 @@ export const YOUTUBE_VIDEOS = {
   oplichtingHerkennen: 'uprzSjDAeUg',
   /** Betere foto's maken (HyperFrames; vervangt NotebookLM 4yEKPemRm6U). */
   fotosMaken: 'iYQz-nr9StM',
-  /** Videobellen via WhatsApp. */
-  videobellen: 'hxIVYqSSflU',
+  /** Videobellen via WhatsApp (HyperFrames; vervangt NotebookLM hxIVYqSSflU). */
+  videobellen: 'Xsjo3lOllwI',
   /** Google Maps. */
   googleMaps: 'QYKisb9t5gg',
   /**
@@ -68,10 +68,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/fotos-maken',
   },
   videobellen: {
-    name: 'Videobellen via WhatsApp — uitleg voor senioren',
+    name: 'Videobellen via WhatsApp — stap voor stap',
     description:
       'Familie zien terwijl u belt: WhatsApp-videogesprek starten, stap voor stap.',
-    uploadDate: '2026-07-06',
+    uploadDate: '2026-11-14',
     path: '/uitleg/videobellen',
   },
   googleMaps: {

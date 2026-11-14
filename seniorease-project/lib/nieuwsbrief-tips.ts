@@ -141,8 +141,8 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
     ctaUrl: 'https://www.seniorease.nl/uitleg/videobellen',
-    videoUrl: 'https://www.youtube.com/watch?v=hxIVYqSSflU',
-    videoLabel: 'Bekijk de uitlegvideo op YouTube',
+    videoUrl: 'https://www.youtube.com/watch?v=Xsjo3lOllwI',
+    videoLabel: 'Bekijk de uitlegvideo (±1 minuut)',
   },
   {
     slug: 'veilig-wachtwoord-maken',

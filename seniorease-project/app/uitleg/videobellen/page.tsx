@@ -55,7 +55,7 @@ export default function VideoBellenPage() {
               />
             </div>
             <p className="text-center text-navy/70 mt-4 text-senior-base">
-              Bekijk de uitlegvideo (±9 minuten) of lees verder voor de stappen op deze pagina
+              Bekijk de uitlegvideo (±1 minuut) of lees verder voor de stappen op deze pagina
             </p>
             <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>
