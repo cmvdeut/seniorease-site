@@ -1,15 +1,15 @@
 /**
  * YouTube-video-ID's voor embeds op de website.
  * Alleen IDs die live via oEmbed bevestigd zijn — geen placeholders.
- * Ontbrekende onderwerpen (wifi, qr, …): géén Tips-playlist als “valse” video-CTA.
+ * Ontbrekende onderwerpen: géén Tips-playlist als “valse” video-CTA — liever kanaal of niets.
  */
 export const YOUTUBE_VIDEOS = {
   /** ChatGPT voor senioren. */
   chatgptSenioren: 'B4-2r7ks4mg',
   /** Oplichting herkennen — 5 waarschuwingstekens. */
   oplichtingHerkennen: 'uprzSjDAeUg',
-  /** Betere foto's maken. */
-  fotosMaken: '4yEKPemRm6U',
+  /** Betere foto's maken (HyperFrames; vervangt NotebookLM 4yEKPemRm6U). */
+  fotosMaken: 'iYQz-nr9StM',
   /** Videobellen via WhatsApp. */
   videobellen: 'hxIVYqSSflU',
   /** Google Maps. */
@@ -31,6 +31,14 @@ export const YOUTUBE_VIDEOS = {
   googelen: 'yaEL4vD5uo8',
   /** Foto Archief — wie staat waar op de foto? */
   fotoArchief: 'F2SAvnGs0uI',
+  /** Wifi werkt niet — router herstarten (tip). */
+  wifi: 'OWShwHTjnSg',
+  /** QR-code scannen in 3 stappen. */
+  qrCode: 'KC5Vp9YeeFk',
+  /** Wat is DigiD — kort uitgelegd. */
+  digid: 'F_PxpPAhO-E',
+  /** WhatsApp-foto opslaan in galerij. */
+  whatsappFotoOpslaan: 'vDfOnQBt8eE',
 } as const;
 
 /** Metadata voor VideoObject + YouTube Studio checklist. */
@@ -53,10 +61,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/veiligheid',
   },
   fotosMaken: {
-    name: "Betere foto's maken met uw smartphone — 5 tips",
+    name: "Mooie foto's maken met uw telefoon — 5 tips",
     description:
       "Mooiere foto's met licht, stilhouden en eenvoudige tips. Geen technische kennis nodig.",
-    uploadDate: '2026-07-06',
+    uploadDate: '2026-11-14',
     path: '/uitleg/fotos-maken',
   },
   videobellen: {
@@ -84,7 +92,7 @@ export const YOUTUBE_VIDEO_META: Record<
     name: "WhatsApp foto's versturen — stap voor stap",
     description: "Foto kiezen en versturen via WhatsApp, rustig uitgelegd.",
     uploadDate: '2026-06-20',
-    path: '/digitale-hulp/whatsapp-fotos-opslaan',
+    path: '/digitale-hulp/whatsapp-uitleg-beginners',
   },
   whatsappBerichten: {
     name: 'WhatsApp berichten versturen — stap voor stap',
@@ -115,6 +123,30 @@ export const YOUTUBE_VIDEO_META: Record<
     description: 'Namen op groepsfoto’s: kort wat Foto Archief doet, voor senioren.',
     uploadDate: '2026-08-01',
     path: '/foto-archief',
+  },
+  wifi: {
+    name: 'Wifi werkt niet? Probeer dit eerst',
+    description: 'Router uit, 30 seconden wachten, weer aan — eerste tip bij wifi-problemen.',
+    uploadDate: '2026-11-14',
+    path: '/uitleg/wifi',
+  },
+  qrCode: {
+    name: 'QR-code scannen in 3 stappen',
+    description: 'Camera openen, richten, tikken op de melding — meestal geen aparte app nodig.',
+    uploadDate: '2026-11-14',
+    path: '/uitleg/qr-code',
+  },
+  digid: {
+    name: 'Wat is DigiD? Kort uitgelegd',
+    description: 'DigiD als digitale sleutel voor de overheid, waar u het voor nodig heeft, en veilig goedkeuren.',
+    uploadDate: '2026-11-14',
+    path: '/uitleg/digid',
+  },
+  whatsappFotoOpslaan: {
+    name: 'WhatsApp-foto opslaan in uw galerij',
+    description: 'Foto openen, opslaan, terugvinden in Foto’s of Galerij.',
+    uploadDate: '2026-11-14',
+    path: '/digitale-hulp/whatsapp-fotos-opslaan',
   },
 };
 
@@ -167,11 +199,6 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
     id: 'whatsapp',
     label: 'Bekijk WhatsApp-video’s',
   },
-  '/digitale-hulp/whatsapp-fotos-opslaan': {
-    kind: 'video',
-    id: 'whatsappFotos',
-    label: "Bekijk de WhatsApp-foto's-video",
-  },
   '/digitale-hulp/whatsapp-videobellen-uitleg': {
     kind: 'video',
     id: 'videobellen',
@@ -217,8 +244,23 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
   },
   '/uitleg/digid': {
     kind: 'video',
-    id: 'oplichtingHerkennen',
-    label: 'Bekijk de video over oplichting',
+    id: 'digid',
+    label: 'Bekijk de DigiD-video',
+  },
+  '/uitleg/wifi': {
+    kind: 'video',
+    id: 'wifi',
+    label: 'Bekijk de wifi-video',
+  },
+  '/uitleg/qr-code': {
+    kind: 'video',
+    id: 'qrCode',
+    label: 'Bekijk de QR-code-video',
+  },
+  '/digitale-hulp/whatsapp-fotos-opslaan': {
+    kind: 'video',
+    id: 'whatsappFotoOpslaan',
+    label: 'Bekijk de video over foto opslaan',
   },
   '/foto-archief': {
     kind: 'video',

@@ -96,6 +96,12 @@ export default function WhatsAppFotosGuide() {
 
       <GuideLearnBox items={[...LEARN_ITEMS]} />
 
+      <GuideVideoCta
+        description="Korte video: foto openen, opslaan en terugvinden in uw galerij."
+        href={youtubeWatchUrl(YOUTUBE_VIDEOS.whatsappFotoOpslaan)}
+        linkLabel="Bekijk de video over foto opslaan"
+      />
+
       <GuideStep
         id="stap-1"
         number={1}
@@ -139,12 +145,6 @@ export default function WhatsAppFotosGuide() {
         </p>
         <p>Open alleen foto&apos;s van mensen die u kent, om veilig te blijven.</p>
       </GuideStep>
-
-      <GuideVideoCta
-        description="Liever meekijken? Korte video over foto’s versturen via WhatsApp — rustig tempo."
-        href={youtubeWatchUrl(YOUTUBE_VIDEOS.whatsappFotos)}
-        linkLabel="Bekijk de WhatsApp-foto's-video op YouTube"
-      />
 
       <aside
         aria-labelledby="lesmateriaal-whatsapp-heading"

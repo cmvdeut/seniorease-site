@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
+import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/hoofdtelefoon',
@@ -37,6 +38,7 @@ export default function HoofdtelefoonPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
+          <UitlegGeenOnderwerpVideoCta onderwerp="hoofdtelefoon" />
 
           {/* Intro */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">

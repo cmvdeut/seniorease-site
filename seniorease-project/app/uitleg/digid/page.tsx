@@ -165,11 +165,13 @@ export default function DigidPage() {
             </p>
           </section>
 
-          <YoutubeWatchCta
-            description="Er is nog geen aparte DigiD-video. Wel een korte video over oplichting herkennen — handig naast DigiD."
-            href={youtubeWatchUrl(YOUTUBE_VIDEOS.oplichtingHerkennen)}
-            linkLabel="Bekijk de video over oplichting"
-          />
+          <section id="uitleg-video" className="scroll-mt-24">
+            <YoutubeWatchCta
+              description="Wat DigiD is, waar u het voor nodig heeft, en wanneer u een melding mag goedkeuren — kort en rustig."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.digid)}
+              linkLabel="Bekijk de DigiD-video"
+            />
+          </section>
 
           <section className="bg-slate rounded-senior border border-navy/8 p-8">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg</h2>

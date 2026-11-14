@@ -1,4 +1,5 @@
 import JsonLd from '@/app/components/JsonLd';
+import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 import {
   UitlegPanel,
   UitlegRelated,
@@ -103,6 +104,7 @@ export default function BetalenOvPage() {
         title="Betalen in het OV"
         lead="In- en uitchecken met uw contactloze pinpas — zonder aparte OV-chipkaart voor gewone ritten."
       >
+        <UitlegGeenOnderwerpVideoCta onderwerp="OV betalen" />
         <UitlegPanel title="Pinpas of OV-chipkaart — wat is het verschil?">
           <p>
             In het openbaar vervoer checkt u in en uit door een pas tegen de kaartlezer te houden.

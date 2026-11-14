@@ -91,7 +91,7 @@ export default function GoogleZoekenGuide() {
           Tik op een regel om die pagina te openen. Gebruik meerdere woorden voor betere resultaten — &quot;buslijn Enschede&quot; is preciezer dan alleen &quot;bus&quot;.
         </p>
         <p>
-          Let op: bovenaan staan soms regels met het label &quot;Advertentie&quot;. Betrouwbare sites eindigen vaak op .nl of .gov.
+          Let op: bovenaan staan soms regels met het label &quot;Advertentie&quot;. Controleer het volledige webadres en wie de website beheert. Ook een website die eindigt op .nl kan onbetrouwbaar zijn.
         </p>
       </GuideStep>
 

@@ -10,7 +10,7 @@ Plaats hier afbeeldingen voor de pagina **WhatsApp – Eerste stappen**.
 - `stap4-paperclip.png` – Bijlage/paperclip (C2 `android/c2-toevoegen.png`)
 - `stap5-foto-versturen.png` – Menu Foto's en video's (C2 `android/c2-fotos-galerij.png`)
 - `stap6-foto-ontvangen.png` – Foto in chat (`WhatsApp conversatie met tuinfoto.png`)
-- `stap7-duimpje.png` – Duimpje (`screenshot 12 duimpje.png`) — alleen icoon, geen “lang indrukken”-UI
+- `stap7-duimpje.png` – Lang indrukken → reactiebalk met duimpje gemarkeerd (instructiebeeld)
 
 Niet gebruiken: `screenshot 7 paperclip.png` (zwart/leeg), `screenshot3 type.png` (lege template).
 

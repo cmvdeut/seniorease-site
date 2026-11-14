@@ -1,7 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
 import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
-import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube-videos';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wifi',
@@ -149,11 +149,13 @@ export default function WifiPage() {
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
-          <YoutubeWatchCta
-            description="Er is nog geen aparte wifi-video. Op ons YouTube-kanaal vindt u wel rustige uitleg over WhatsApp, veiligheid, foto’s en meer."
-            href={YOUTUBE_CHANNEL_URL}
-            linkLabel="Bekijk SeniorEase-video’s op YouTube"
-          />
+          <section id="uitleg-video" className="scroll-mt-24">
+            <YoutubeWatchCta
+              description="Korte tip: router uit, 30 seconden wachten, weer aan. Handig als uw wifi niet werkt."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.wifi)}
+              linkLabel="Bekijk de wifi-video"
+            />
+          </section>
 
           {/* Intro */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">

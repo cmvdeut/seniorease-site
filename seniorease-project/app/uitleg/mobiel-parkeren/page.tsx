@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 import { buildPageMetadata } from '@/lib/seo';
 
 export const metadata = buildPageMetadata({
@@ -121,6 +122,7 @@ export default function MobielParkerenPage() {
         </p>
 
         <div className="space-y-8 max-w-3xl">
+          <UitlegGeenOnderwerpVideoCta onderwerp="mobiel parkeren" />
           <section className="bg-slate rounded-senior border border-navy/8 p-7 sm:p-9">
             <h2 className="font-serif text-navy text-senior-lg font-semibold mb-3">
               Wat is mobiel parkeren?

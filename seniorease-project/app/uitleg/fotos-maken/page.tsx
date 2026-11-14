@@ -151,7 +151,7 @@ export default function FotosMakenPage() {
                 width="100%"
                 height="100%"
                 src={`https://www.youtube.com/embed/${YOUTUBE_VIDEOS.fotosMaken}`}
-                title="Betere foto's maken met uw telefoon – 5 tips voor senioren"
+                title="Mooie foto's maken met uw telefoon — 5 tips | SeniorEase"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen
@@ -159,7 +159,7 @@ export default function FotosMakenPage() {
               />
             </div>
             <p className="text-center text-navy/70 mt-4 text-senior-base">
-              Bekijk de uitlegvideo (±10 minuten) of lees verder voor de tips op deze pagina
+              Bekijk de uitlegvideo (±2 minuten) of lees verder voor de tips op deze pagina
             </p>
             <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>

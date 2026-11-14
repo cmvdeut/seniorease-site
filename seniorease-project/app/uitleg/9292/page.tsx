@@ -1,5 +1,6 @@
 import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
+import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -86,6 +87,7 @@ export default function OvAppPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
+          <UitlegGeenOnderwerpVideoCta onderwerp="9292" />
 
           {/* Wat is 9292 */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">

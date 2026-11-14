@@ -320,12 +320,17 @@ export default function WhatsAppBasisPage() {
             <StepIllustration step={7}>
               <svg viewBox="0 0 120 160" className="w-full h-full" aria-hidden>
                 <rect x="10" y="5" width="100" height="150" rx="12" fill="#E5E7EB" stroke="#9CA3AF" strokeWidth="2"/>
-                <rect x="20" y="55" width="55" height="30" rx="8" fill="#DCF8C6" stroke="#9CA3AF"/>
-                <text x="47" y="75" textAnchor="middle" fill="#333" fontSize="18">👍</text>
-                <rect x="45" y="95" width="55" height="25" rx="8" fill="white" stroke="#9CA3AF"/>
-                <text x="72" y="112" textAnchor="middle" fill="#333" fontSize="14">👍</text>
-                <path d="M95 122 L105 127 L95 132" fill="#3B82F6" stroke="#2563EB" strokeWidth="1"/>
-                <text x="60" y="155" textAnchor="middle" fill="#6B7280" fontSize="10">Tik op bericht → Duimpje</text>
+                <rect x="20" y="40" width="70" height="28" rx="8" fill="white" stroke="#9CA3AF"/>
+                <text x="55" y="58" textAnchor="middle" fill="#333" fontSize="8">Hallo!</text>
+                <rect x="18" y="22" width="84" height="16" rx="8" fill="white" stroke="#9CA3AF"/>
+                <text x="30" y="33" textAnchor="middle" fontSize="9">❤️</text>
+                <rect x="40" y="23" width="14" height="14" rx="3" fill="none" stroke="#EF4444" strokeWidth="2"/>
+                <text x="47" y="33" textAnchor="middle" fontSize="9">👍</text>
+                <text x="62" y="33" textAnchor="middle" fontSize="9">😂</text>
+                <text x="76" y="33" textAnchor="middle" fontSize="9">😮</text>
+                <path d="M55 52 L47 40" stroke="#EF4444" strokeWidth="2" fill="none"/>
+                <text x="60" y="100" textAnchor="middle" fill="#6B7280" fontSize="8">Lang indrukken</text>
+                <text x="60" y="112" textAnchor="middle" fill="#6B7280" fontSize="8">→ duimpje</text>
               </svg>
             </StepIllustration>
             <ol className="list-decimal list-outside pl-6 space-y-4 text-senior-sm md:text-senior-base text-navy leading-relaxed mt-6">

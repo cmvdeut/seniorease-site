@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
+import YoutubeWatchCta, { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
 
 const STEP_IMAGES: Record<number, string> = {
   1: '/images/uitleg/whatsapp/deel3-berichten.jpg',
@@ -66,6 +67,11 @@ export default function WhatsAppDeel3Page() {
 
       <section className="max-w-senior mx-auto px-5 sm:px-6 py-10">
         <div className="max-w-4xl mx-auto space-y-10">
+          <YoutubeWatchCta
+            description="Op YouTube staan rustige WhatsApp-video's — berichten, foto's, bellen en veilig gebruik."
+            href={whatsappPlaylistHref()}
+            linkLabel="Bekijk WhatsApp-video's op YouTube"
+          />
           {/* Intro */}
           <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <p className="text-senior-sm md:text-senior-base text-navy leading-relaxed">

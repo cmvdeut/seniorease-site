@@ -2,6 +2,7 @@ import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/bestanden-vinden',
@@ -107,6 +108,7 @@ export default function BestandenVindenPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
+          <UitlegGeenOnderwerpVideoCta onderwerp="bestanden vinden" />
 
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Drie plekken die u het meest nodig heeft</h2>

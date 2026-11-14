@@ -124,8 +124,8 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk alle 5 fototips',
     ctaUrl: 'https://www.seniorease.nl/uitleg/fotos-maken',
-    videoUrl: 'https://www.youtube.com/watch?v=4yEKPemRm6U',
-    videoLabel: 'Bekijk de uitlegvideo op YouTube',
+    videoUrl: 'https://www.youtube.com/watch?v=iYQz-nr9StM',
+    videoLabel: 'Bekijk de uitlegvideo (±2 minuten)',
   },
   {
     slug: 'videobellen-whatsapp',

@@ -27,14 +27,9 @@ const uitlegCollectionSchema = buildCollectionPageSchema(
 
 const POPULAIR = [
   {
-    title: 'Mobiel parkeren',
-    href: '/uitleg/mobiel-parkeren',
-    description: 'Parkeren betalen met een app — zonder muntjes.',
-  },
-  {
-    title: 'OV betalen met uw pinpas',
-    href: '/uitleg/betalen-ov',
-    description: 'Inchecken zonder OV-chipkaart: met contactloze pinpas.',
+    title: "Foto's maken met uw telefoon",
+    href: '/uitleg/fotos-maken',
+    description: "Vijf simpele tips voor betere foto's — geen cursus nodig.",
   },
   {
     title: 'WhatsApp – eerste stappen',
@@ -45,6 +40,11 @@ const POPULAIR = [
     title: 'DigiD — hoe werkt het?',
     href: '/uitleg/digid',
     description: 'Veilig inloggen bij de overheid.',
+  },
+  {
+    title: 'Mobiel parkeren',
+    href: '/uitleg/mobiel-parkeren',
+    description: 'Parkeren betalen met een app — zonder muntjes.',
   },
 ] as const;
 

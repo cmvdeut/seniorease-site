@@ -740,7 +740,7 @@ function ArtikelContent({ slug }: { slug: string }) {
           <ul className="space-y-3 text-senior-base text-gray-700 mb-6 list-disc list-inside">
             <li><strong>Gebruik meerdere woorden</strong> — &quot;buslijn Enschede&quot; is preciezer dan alleen &quot;bus&quot;.</li>
             <li><strong>Let op advertenties</strong> — bovenaan staan soms regels met het label &quot;Advertentie&quot;.</li>
-            <li><strong>Check het adres</strong> — betrouwbare sites eindigen vaak op .nl of .gov.</li>
+            <li><strong>Check het adres</strong> — controleer het volledige webadres en wie de website beheert. Ook een website die eindigt op .nl kan onbetrouwbaar zijn.</li>
             <li><strong>Inspreken kan ook</strong> — ziet u een microfoon-knop? Dan kunt u uw vraag hardop stellen.</li>
           </ul>
           <YoutubeWatchCta
