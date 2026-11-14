@@ -37,8 +37,8 @@ export const YOUTUBE_VIDEOS = {
   qrCode: 'KC5Vp9YeeFk',
   /** Wat is DigiD — kort uitgelegd. */
   digid: 'F_PxpPAhO-E',
-  /** WhatsApp-foto opslaan in galerij. */
-  whatsappFotoOpslaan: 'vDfOnQBt8eE',
+  /** WhatsApp-foto opslaan in galerij (HyperFrames + telefoonmockup). */
+  whatsappFotoOpslaan: 'y4VtLravg-s',
 } as const;
 
 /** Metadata voor VideoObject + YouTube Studio checklist. */

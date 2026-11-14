@@ -95,7 +95,7 @@ export default function TopicsSection() {
   return (
     <section className="bg-cream py-20 md:py-24">
       <div className="max-w-senior mx-auto px-5 sm:px-6 grid md:grid-cols-2 gap-8 lg:gap-10 items-stretch">
-        <Panel title="Meest bekeken gidsen" ctaHref="/uitleg">
+        <Panel title="Meest bekeken uitleg" ctaHref="/uitleg">
           {GUIDES.map((g) => (
             <TopicCard
               key={g.href}

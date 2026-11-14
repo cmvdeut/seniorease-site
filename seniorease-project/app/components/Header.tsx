@@ -9,7 +9,6 @@ import {
   Smartphone,
   BookOpen,
   ClipboardList,
-  PlayCircle,
   Wrench,
   Users,
   Mail,
@@ -18,14 +17,17 @@ import {
 import BrandLogo from './BrandLogo';
 import SeniorButton from './SeniorButton';
 
-const NAV_LINKS: { href: string; label: string; Icon: LucideIcon }[] = [
+const NAV_LINKS: { href: string; label: string; Icon: LucideIcon; accent?: 'lesmateriaal' }[] = [
   { href: '/digitale-hulp', label: 'Digitale hulp', Icon: Smartphone },
-  { href: '/uitleg', label: 'Gidsen', Icon: BookOpen },
-  { href: '/lesmateriaal', label: 'Lesmateriaal', Icon: ClipboardList },
-  { href: '/kijk-en-help', label: 'Kijk & Help', Icon: PlayCircle },
+  { href: '/uitleg', label: 'Uitleg', Icon: BookOpen },
+  { href: '/lesmateriaal', label: 'Lesmateriaal', Icon: ClipboardList, accent: 'lesmateriaal' },
   { href: '/tools', label: 'Tools', Icon: Wrench },
   { href: '/over-ons', label: 'Over ons', Icon: Users },
 ];
+
+function navLabelClass(accent?: 'lesmateriaal') {
+  return accent === 'lesmateriaal' ? 'italic text-gold' : '';
+}
 
 function isActivePath(pathname: string, href: string) {
   if (href === '/') return pathname === '/';
@@ -63,16 +65,17 @@ export default function Header() {
 
         {/* Vanaf lg: alle links naast elkaar. Tablet/telefoon: hamburger. */}
         <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Hoofdmenu">
-          {NAV_LINKS.map(({ href, label }) => {
+          {NAV_LINKS.map(({ href, label, accent }) => {
             const active = isActivePath(pathname, href);
+            const accentCls = navLabelClass(accent);
             return (
               <Link
                 key={href}
                 href={href}
                 className={
                   active
-                    ? 'px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-gold border-b-2 border-gold whitespace-nowrap'
-                    : 'px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-navy/90 hover:text-gold transition-colors whitespace-nowrap'
+                    ? `px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-gold border-b-2 border-gold whitespace-nowrap ${accentCls}`
+                    : `px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-navy/90 hover:text-gold transition-colors whitespace-nowrap ${accentCls}`
                 }
                 style={{ minHeight: '48px', display: 'inline-flex', alignItems: 'center' }}
                 aria-current={active ? 'page' : undefined}
@@ -109,16 +112,17 @@ export default function Header() {
           id="mobiel-hoofdmenu"
           className="lg:hidden bg-paper border-t border-navy/10 px-4 sm:px-6 pb-5 pt-2 space-y-1"
         >
-          {NAV_LINKS.map(({ href, label, Icon }) => {
+          {NAV_LINKS.map(({ href, label, Icon, accent }) => {
             const active = isActivePath(pathname, href);
+            const accentCls = navLabelClass(accent);
             return (
               <Link
                 key={href}
                 href={href}
                 className={
                   active
-                    ? 'flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-white bg-gold rounded-2xl'
-                    : 'flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-navy hover:bg-cream rounded-2xl transition-colors'
+                    ? `flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-white bg-gold rounded-2xl ${accent === 'lesmateriaal' ? 'italic' : ''}`
+                    : `flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-navy hover:bg-cream rounded-2xl transition-colors ${accentCls}`
                 }
                 style={{ minHeight: '56px' }}
                 aria-current={active ? 'page' : undefined}

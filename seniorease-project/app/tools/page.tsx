@@ -16,6 +16,11 @@ export const metadata = buildPageMetadata({
 
 const POPULAIR = [
   {
+    title: 'Kijk & Help',
+    href: '/kijk-en-help',
+    description: 'Foto van uw scherm — uitleg in gewone taal.',
+  },
+  {
     title: 'Rekenmachine',
     href: '/rekenmachine',
     description: 'Grote knoppen — ook valuta omrekenen.',
@@ -29,11 +34,6 @@ const POPULAIR = [
     title: 'Afvinken maar!',
     href: '/afvinken',
     description: 'Boodschappen en to-dolijstjes.',
-  },
-  {
-    title: 'Mijn Bibliotheek',
-    href: '/bibliotheek',
-    description: 'Boeken en muziek bijhouden.',
   },
 ] as const;
 

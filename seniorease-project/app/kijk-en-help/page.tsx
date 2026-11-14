@@ -113,6 +113,46 @@ export default function KijkEnHelpPage() {
           Open Kijk &amp; Help
           <ArrowRight size={22} strokeWidth={2} aria-hidden />
         </a>
+
+        <section className="mt-12 pt-10 border-t border-neutral-stone/50">
+          <h2 className="font-bold text-gray-900 mb-2" style={{ fontSize: '1.4rem' }}>
+            Ook handig
+          </h2>
+          <p className="text-gray-700 mb-6" style={{ fontSize: '1.1rem', lineHeight: 1.55 }}>
+            Liever eerst zelf een stap oefenen? Deze uitleg past erbij.
+          </p>
+          <ul className="space-y-3">
+            {[
+              {
+                href: '/uitleg/screenshot-pc',
+                label: 'Screenshot maken op de computer',
+              },
+              {
+                href: '/uitleg/veiligheid',
+                label: 'Veilig online — links en meldingen',
+              },
+              {
+                href: '/digitale-hulp',
+                label: 'Digitale hulp — alle onderwerpen',
+              },
+              {
+                href: '/tools',
+                label: 'Andere handige tools',
+              },
+            ].map((item) => (
+              <li key={item.href}>
+                <Link
+                  href={item.href}
+                  className="flex items-center justify-between gap-3 bg-white rounded-xl border border-neutral-stone/40 px-5 py-4 text-gray-800 font-medium hover:border-primary/40 hover:bg-primary-soft/40 transition-colors"
+                  style={{ fontSize: '1.15rem', minHeight: '56px' }}
+                >
+                  <span>{item.label}</span>
+                  <ArrowRight size={20} strokeWidth={2} className="shrink-0 text-primary" aria-hidden />
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
       </div>
     </main>
   );

@@ -20,10 +20,10 @@ function YoutubeIcon() {
 
 const navCol = [
   { href: '/digitale-hulp', label: 'Digitale hulp' },
-  { href: '/uitleg', label: 'Gidsen' },
-  { href: '/lesmateriaal', label: 'Lesmateriaal' },
-  { href: '/kijk-en-help', label: 'Kijk & Help' },
+  { href: '/uitleg', label: 'Uitleg' },
+  { href: '/lesmateriaal', label: 'Lesmateriaal', accent: 'lesmateriaal' as const },
   { href: '/tools', label: 'Tools' },
+  { href: '/kijk-en-help', label: 'Kijk & Help' },
   { href: '/over-ons', label: 'Over ons' },
 ];
 
@@ -75,7 +75,11 @@ export default function Footer() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="text-senior-xs text-gold/90 hover:text-gold-light transition-colors"
+                    className={
+                      item.accent === 'lesmateriaal'
+                        ? 'text-senior-xs italic text-gold hover:text-gold-light transition-colors'
+                        : 'text-senior-xs text-gold/90 hover:text-gold-light transition-colors'
+                    }
                   >
                     {item.label}
                   </Link>
