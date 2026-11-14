@@ -16,6 +16,14 @@ import GoogleZoekenGuide from '@/app/components/guide/GoogleZoekenGuide';
 import EmailOpenenGuide from '@/app/components/guide/EmailOpenenGuide';
 import WhatsAppFotosGuide from '@/app/components/guide/WhatsAppFotosGuide';
 import WhatsAppVideobellenGuide from '@/app/components/guide/WhatsAppVideobellenGuide';
+import YoutubeWatchCta, { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
+import {
+  YOUTUBE_CHANNEL_URL,
+  YOUTUBE_PLAYLISTS,
+  YOUTUBE_VIDEOS,
+  youtubePlaylistUrl,
+  youtubeWatchUrl,
+} from '@/lib/youtube-videos';
 
 export async function generateStaticParams() {
   return artikelen.map((a) => ({ slug: a.slug }));
@@ -84,26 +92,11 @@ function ArtikelContent({ slug }: { slug: string }) {
           <p className="text-senior-base text-gray-700 leading-relaxed mb-4">
             WhatsApp = gratis berichten en bellen via internet. Open de app, kies een contact, typ of stuur een foto. Bellen kan via het telefoon-icoon in het gesprek.
           </p>
-          <div className="rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40"
-               style={{ background: '#FFFBF0' }}>
-            <div className="text-4xl" aria-hidden="true">▶️</div>
-            <div>
-              <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
-              <p className="text-senior-base text-gray-600 mb-4">
-                We hebben 5 korte animatievideo&apos;s gemaakt — van installeren tot veilig gebruik. Stap voor stap, rustig tempo.
-              </p>
-              <a
-                href="https://www.youtube.com/playlist?list=PLw97JnScZym_83xf1Ypz_npeXj308wRN6"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm"
-                style={{ color: '#8B5E3C', borderColor: '#8B5E3C', background: '#FFFFFF', fontSize: '1.1rem' }}
-              >
-                Bekijk onze WhatsApp-video&apos;s op YouTube
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
+          <YoutubeWatchCta
+            description="We hebben 5 korte animatievideo’s gemaakt — van installeren tot veilig gebruik. Stap voor stap, rustig tempo."
+            href={whatsappPlaylistHref()}
+            linkLabel="Bekijk onze WhatsApp-video’s op YouTube"
+          />
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
             <li><Link href="/digitale-hulp/whatsapp-fotos-opslaan" className="font-semibold text-primary hover:underline">WhatsApp foto&apos;s opslaan</Link></li>
@@ -282,6 +275,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             </Link>
             .
           </p>
+          <div className="mt-8">
+            <YoutubeWatchCta
+              description="Korte video: vijf waarschuwingstekens van oplichting via telefoon en internet."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.oplichtingHerkennen)}
+              linkLabel="Bekijk de video over oplichting"
+            />
+          </div>
         </>
       );
     case 'phishing-mail-herkennen':
@@ -324,6 +324,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><Link href="/uitleg/wifi" className="font-semibold text-primary hover:underline">WiFi instellen</Link></li>
             <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
           </ul>
+          <div className="mt-8">
+            <YoutubeWatchCta
+              description="Korte video: vijf waarschuwingstekens van oplichting via telefoon en internet."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.oplichtingHerkennen)}
+              linkLabel="Bekijk de video over oplichting"
+            />
+          </div>
         </>
       );
     case 'e-mail-openen':
@@ -498,6 +505,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><Link href="/digitale-hulp/smartphone" className="font-semibold text-primary hover:underline">Smartphone hulp</Link></li>
             <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
           </ul>
+          <div className="mt-8">
+            <YoutubeWatchCta
+              description="Er is nog geen aparte wifi-storing-video. Op ons YouTube-kanaal vindt u wel rustige uitleg over WhatsApp, veiligheid en meer."
+              href={YOUTUBE_CHANNEL_URL}
+              linkLabel="Bekijk SeniorEase-video’s op YouTube"
+            />
+          </div>
         </>
       );
     case 'fotos-kwijt-telefoon':
@@ -519,6 +533,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             Als u een back-up gebruikt (bijv. Google Foto&apos;s of iCloud), log dan in op die dienst op de computer of in de app. Uw foto&apos;s kunnen daar staan. Meer over foto&apos;s bewaren en ordenen: onze{' '}
             <Link href="/uitleg/fotos-ordenen" className="font-bold text-primary hover:underline">Foto&apos;s ordenen</Link> en <Link href="/uitleg/fotos-maken" className="font-bold text-primary hover:underline">Foto&apos;s maken</Link> uitleg.
           </p>
+          <div className="mt-8">
+            <YoutubeWatchCta
+              description="Tips voor mooiere foto’s met uw telefoon — handig als u weer wilt fotograferen."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.fotosMaken)}
+              linkLabel="Bekijk de foto's-video op YouTube"
+            />
+          </div>
         </>
       );
     case 'wat-is-ai-simpel-uitgelegd':
@@ -541,6 +562,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             </Link>
             .
           </p>
+          <div className="mt-8">
+            <YoutubeWatchCta
+              description="Er staat nog geen aparte “Wat is AI?”-video klaar. Wel rustige video’s over ChatGPT in de AI-playlist."
+              href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.ai)}
+              linkLabel="Bekijk de AI-playlist op YouTube"
+            />
+          </div>
         </>
       );
     case 'veilig-wachtwoord-maken':
@@ -715,24 +743,11 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><strong>Check het adres</strong> — betrouwbare sites eindigen vaak op .nl of .gov.</li>
             <li><strong>Inspreken kan ook</strong> — ziet u een microfoon-knop? Dan kunt u uw vraag hardop stellen.</li>
           </ul>
-          <div className="rounded-2xl p-6 mb-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-neutral-cream">
-            <div className="text-4xl" aria-hidden="true">▶️</div>
-            <div>
-              <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
-              <p className="text-senior-base text-gray-600 mb-4">
-                Bekijk onze uitlegvideo over googelen op YouTube — rustig tempo, grote letters.
-              </p>
-              <a
-                href="https://www.youtube.com/playlist?list=PLw97JnScZym8Ae4tlW7j38EfvMKMRIBem"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-primary border-primary bg-paper"
-              >
-                Bekijk tips-video&apos;s op YouTube
-                <span aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
+          <YoutubeWatchCta
+            description="Bekijk onze uitlegvideo over googelen op YouTube — rustig tempo, grote letters."
+            href={youtubeWatchUrl(YOUTUBE_VIDEOS.googelen)}
+            linkLabel="Bekijk de Googelen-video op YouTube"
+          />
           <h2 className="text-senior-xl font-bold text-primary mt-8 mb-4">Gerelateerde uitleg</h2>
           <ul className="space-y-2">
             <li><Link href="/uitleg/inspreken" className="font-semibold text-primary hover:underline">Inspreken op uw telefoon (ook in Google)</Link></li>

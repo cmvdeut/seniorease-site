@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
-import YoutubeWatchCta, { tipsPlaylistHref } from '@/app/components/YoutubeWatchCta';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
+import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube-videos';
 import Link from 'next/link';
 
 export const metadata = buildPageMetadata({
@@ -105,9 +106,9 @@ export default function QRCodePage() {
         <div className="max-w-4xl mx-auto space-y-10">
 
           <YoutubeWatchCta
-            description="Op YouTube staan rustige Tips & Tricks-video’s over smartphone en internet. Handig naast deze QR-uitleg."
-            href={tipsPlaylistHref()}
-            linkLabel="Bekijk Tips & Tricks op YouTube"
+            description="Er is nog geen aparte QR-code-video. Op ons YouTube-kanaal vindt u wel rustige uitleg over WhatsApp, veiligheid, foto’s en meer."
+            href={YOUTUBE_CHANNEL_URL}
+            linkLabel="Bekijk SeniorEase-video’s op YouTube"
           />
 
           {/* Wat is een QR-code? */}

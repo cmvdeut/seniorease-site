@@ -52,29 +52,14 @@ export default function WatIsAIPage() {
       <div className="container mx-auto px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
 
-          {/* Video */}
+          {/* Video — geen aparte “Wat is AI?”-embed meer (ID offline); AI-playlist wel live */}
           <section className="my-8 mx-4 sm:mx-0">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">
-              <iframe
-                width="100%"
-                height="100%"
-                src="https://www.youtube.com/embed/oIpn7WSopy0"
-                title="Wat is AI? Simpele uitleg voor senioren"
-                frameBorder="0"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-                className="w-full h-full"
-              />
-            </div>
-            <p className="text-center text-gray-600 mt-4 text-senior-base">
-              🎬 Bekijk de video (1 minuut) of lees verder voor meer uitleg
-            </p>
-            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
+            <div className="max-w-3xl mx-auto rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-neutral-stone/40 bg-white">
               <div className="text-4xl" aria-hidden="true">▶️</div>
               <div>
-                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Alle AI-video&apos;s op YouTube</h3>
+                <h3 className="text-senior-lg font-bold text-gray-800 mb-1">Liever kijken dan lezen?</h3>
                 <p className="text-senior-base text-gray-600 mb-4">
-                  Rustige uitleg over AI en ChatGPT — stap voor stap, speciaal voor senioren.
+                  Er staat nog geen aparte &quot;Wat is AI?&quot;-video klaar. Wel rustige video&apos;s over ChatGPT in de AI-playlist.
                 </p>
                 <a
                   href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.ai)}

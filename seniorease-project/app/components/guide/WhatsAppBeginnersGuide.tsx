@@ -6,6 +6,7 @@ import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
 import GuideVideoCta from './GuideVideoCta';
 import { WhatsAppBadge } from '@/app/components/GuideTopicBadge';
+import { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
 
 const TOC = [
   { id: 'stap-1', label: 'WhatsApp openen' },
@@ -95,7 +96,7 @@ export default function WhatsAppBeginnersGuide() {
 
       <GuideVideoCta
         description="We hebben 5 korte animatievideo's gemaakt — van installeren tot veilig gebruik. Stap voor stap, rustig tempo."
-        href="https://www.youtube.com/playlist?list=PLw97JnScZym_83xf1Ypz_npeXj308wRN6"
+        href={whatsappPlaylistHref()}
         linkLabel="Bekijk onze WhatsApp-video's op YouTube"
       />
 

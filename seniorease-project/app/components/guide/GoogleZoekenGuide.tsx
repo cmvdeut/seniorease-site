@@ -6,6 +6,7 @@ import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
 import GuideVideoCta from './GuideVideoCta';
 import { GoogleBadge } from '@/app/components/GuideTopicBadge';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 const TOC = [
   { id: 'stap-1', label: 'Google openen' },
@@ -118,8 +119,8 @@ export default function GoogleZoekenGuide() {
 
       <GuideVideoCta
         description="Bekijk onze uitlegvideo over googelen op YouTube — rustig tempo, grote letters."
-        href="https://www.youtube.com/playlist?list=PLw97JnScZym8Ae4tlW7j38EfvMKMRIBem"
-        linkLabel="Bekijk tips-video's op YouTube"
+        href={youtubeWatchUrl(YOUTUBE_VIDEOS.googelen)}
+        linkLabel="Bekijk de Googelen-video op YouTube"
       />
 
       <p className="text-navy/70 text-senior-sm leading-relaxed">

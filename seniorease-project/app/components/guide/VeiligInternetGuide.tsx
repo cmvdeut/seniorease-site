@@ -4,7 +4,9 @@ import GuideLearnBox from './GuideLearnBox';
 import GuideStep from './GuideStep';
 import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
+import GuideVideoCta from './GuideVideoCta';
 import { ShieldBadge } from '@/app/components/GuideTopicBadge';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 const TOC = [
   { id: 'stap-1', label: 'Nepberichten herkennen' },
@@ -93,6 +95,12 @@ export default function VeiligInternetGuide() {
           Gebruik voor elk account een ander wachtwoord. Deel het nooit per e-mail of WhatsApp.
         </p>
       </GuideStep>
+
+      <GuideVideoCta
+        description="Korte video: vijf waarschuwingstekens van oplichting via telefoon en internet."
+        href={youtubeWatchUrl(YOUTUBE_VIDEOS.oplichtingHerkennen)}
+        linkLabel="Bekijk de video over oplichting"
+      />
 
       <p className="text-navy/70 text-senior-sm leading-relaxed">
         Heeft u per ongeluk gegevens ingevuld? Wijzig direct uw wachtwoord. Meer:{' '}

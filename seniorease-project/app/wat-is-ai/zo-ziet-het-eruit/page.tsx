@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { buildPageMetadata } from '@/lib/seo';
+import { YOUTUBE_VIDEOS } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
   path: '/wat-is-ai/zo-ziet-het-eruit',
@@ -80,8 +81,8 @@ export default function ZoZietHetEruitPage() {
               <iframe
                 width="100%"
                 height="100%"
-                src="https://www.youtube.com/embed/g_XX1jY6VkI"
-                title="ChatGPT gebruiken: zo vraag je om een recept"
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEOS.chatgptSenioren}`}
+                title="Wat is ChatGPT? Uitleg voor senioren"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                 allowFullScreen

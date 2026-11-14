@@ -6,7 +6,7 @@ import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
 import GuideVideoCta from './GuideVideoCta';
 import { WhatsAppBadge } from '@/app/components/GuideTopicBadge';
-import { whatsappPlaylistHref } from '@/app/components/YoutubeWatchCta';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 const TOC = [
   { id: 'kort-antwoord', label: 'Kort antwoord' },
@@ -141,9 +141,9 @@ export default function WhatsAppFotosGuide() {
       </GuideStep>
 
       <GuideVideoCta
-        description="Op YouTube staan rustige WhatsApp-video’s: berichten, foto’s en meer — in uw eigen tempo."
-        href={whatsappPlaylistHref()}
-        linkLabel="Bekijk WhatsApp-video’s op YouTube"
+        description="Liever meekijken? Korte video over foto’s versturen via WhatsApp — rustig tempo."
+        href={youtubeWatchUrl(YOUTUBE_VIDEOS.whatsappFotos)}
+        linkLabel="Bekijk de WhatsApp-foto's-video op YouTube"
       />
 
       <aside

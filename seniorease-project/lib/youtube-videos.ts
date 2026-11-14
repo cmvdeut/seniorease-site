@@ -1,17 +1,36 @@
-/** YouTube-video-ID's voor embeds op de website. Vul aan na publicatie via Blotato. */
+/**
+ * YouTube-video-ID's voor embeds op de website.
+ * Alleen IDs die live via oEmbed bevestigd zijn — geen placeholders.
+ * Ontbrekende onderwerpen (wifi, qr, …): géén Tips-playlist als “valse” video-CTA.
+ */
 export const YOUTUBE_VIDEOS = {
-  watIsAi: 'oIpn7WSopy0',
-  zoZietChatGptErUit: 'g_XX1jY6VkI',
-  /** ChatGPT voor senioren — live op YouTube (19 jun 2026). */
+  /** ChatGPT voor senioren. */
   chatgptSenioren: 'B4-2r7ks4mg',
-  /** Oplichting herkennen — 5 waarschuwingstekens (5 jul 2026). */
+  /** Oplichting herkennen — 5 waarschuwingstekens. */
   oplichtingHerkennen: 'uprzSjDAeUg',
-  /** Betere foto's maken — NotebookLM instructievideo (6 jul 2026). */
+  /** Betere foto's maken. */
   fotosMaken: '4yEKPemRm6U',
-  /** Videobellen via WhatsApp — NotebookLM instructievideo (6 jul 2026). */
+  /** Videobellen via WhatsApp. */
   videobellen: 'hxIVYqSSflU',
-  /** Google Maps — NotebookLM instructievideo (6 jul 2026). */
+  /** Google Maps. */
   googleMaps: 'QYKisb9t5gg',
+  /**
+   * WhatsApp-intro (eerste stappen).
+   * Bron: contentplan — watch?v=DZBGAk_mlwE
+   */
+  whatsappIntro: 'DZBGAk_mlwE',
+  /** WhatsApp foto's versturen (playlist WhatsApp). */
+  whatsappFotos: 'evL2RaD7I9c',
+  /** WhatsApp berichten versturen. */
+  whatsappBerichten: 'ATVtWbjFHrg',
+  /** WhatsApp bellen (audio). */
+  whatsappBellen: 'ENBI4mk3M-Y',
+  /** Veilig WhatsApp gebruiken. */
+  whatsappVeilig: '84zdE_gKUNg',
+  /** Googelen voor beginners. */
+  googelen: 'yaEL4vD5uo8',
+  /** Foto Archief — wie staat waar op de foto? */
+  fotoArchief: 'F2SAvnGs0uI',
 } as const;
 
 /** Metadata voor VideoObject + YouTube Studio checklist. */
@@ -19,19 +38,6 @@ export const YOUTUBE_VIDEO_META: Record<
   keyof typeof YOUTUBE_VIDEOS,
   { name: string; description: string; uploadDate: string; path: string }
 > = {
-  watIsAi: {
-    name: 'Wat is AI? Uitleg voor senioren',
-    description:
-      'Wat is kunstmatige intelligentie in gewone taal? Rustige uitleg voor beginners.',
-    uploadDate: '2026-06-01',
-    path: '/wat-is-ai',
-  },
-  zoZietChatGptErUit: {
-    name: 'Zo ziet ChatGPT eruit — korte rondleiding',
-    description: 'Hoe ziet het ChatGPT-scherm eruit? Kort en duidelijk voor senioren.',
-    uploadDate: '2026-06-10',
-    path: '/wat-is-ai/chatgpt',
-  },
   chatgptSenioren: {
     name: 'ChatGPT voor senioren — stap voor stap',
     description:
@@ -67,6 +73,49 @@ export const YOUTUBE_VIDEO_META: Record<
     uploadDate: '2026-07-06',
     path: '/uitleg/google-maps',
   },
+  whatsappIntro: {
+    name: 'WhatsApp uitleg voor beginners — eerste stappen',
+    description:
+      'WhatsApp openen en de eerste stappen. Rustige uitleg voor wie net begint.',
+    uploadDate: '2026-06-18',
+    path: '/uitleg/whatsapp-basis',
+  },
+  whatsappFotos: {
+    name: "WhatsApp foto's versturen — stap voor stap",
+    description: "Foto kiezen en versturen via WhatsApp, rustig uitgelegd.",
+    uploadDate: '2026-06-20',
+    path: '/digitale-hulp/whatsapp-fotos-opslaan',
+  },
+  whatsappBerichten: {
+    name: 'WhatsApp berichten versturen — stap voor stap',
+    description: 'Een tekstbericht typen en versturen in WhatsApp.',
+    uploadDate: '2026-06-20',
+    path: '/digitale-hulp/whatsapp-uitleg-beginners',
+  },
+  whatsappBellen: {
+    name: 'Bellen met WhatsApp — gratis bellen uitgelegd',
+    description: 'Gratis bellen via WhatsApp met wifi of data.',
+    uploadDate: '2026-06-21',
+    path: '/digitale-hulp/whatsapp-videobellen-uitleg',
+  },
+  whatsappVeilig: {
+    name: 'Veilig WhatsApp gebruiken — tips tegen oplichting',
+    description: 'Veilig blijven in WhatsApp: geen vreemde links, geen geld verzoeken.',
+    uploadDate: '2026-06-22',
+    path: '/digitale-hulp/veilig-internet',
+  },
+  googelen: {
+    name: 'Googelen voor beginners — zo zoekt u op Google',
+    description: 'Rustig zoeken op Google: trefwoorden, resultaten lezen, veilig klikken.',
+    uploadDate: '2026-07-01',
+    path: '/digitale-hulp/googelen-google-zoeken',
+  },
+  fotoArchief: {
+    name: 'Foto Archief — wie staat waar op de foto?',
+    description: 'Namen op groepsfoto’s: kort wat Foto Archief doet, voor senioren.',
+    uploadDate: '2026-08-01',
+    path: '/foto-archief',
+  },
 };
 
 /** YouTube-playlist-ID's voor links op de website. */
@@ -95,7 +144,10 @@ type YoutubeRef =
   | { kind: 'playlist'; id: keyof typeof YOUTUBE_PLAYLISTS; label?: string }
   | { kind: 'channel'; label?: string };
 
-/** Pagina-pad → YouTube (video, playlist of kanaal). */
+/**
+ * Pagina-pad → YouTube (video, playlist of kanaal).
+ * Alleen echte, passende content — geen Tips-playlist “omdat er iets moet”.
+ */
 const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
   '/uitleg/google-maps': { kind: 'video', id: 'googleMaps', label: 'Bekijk de Google Maps-video' },
   '/uitleg/videobellen': { kind: 'video', id: 'videobellen', label: 'Bekijk de videobellen-video' },
@@ -106,9 +158,9 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
     label: 'Bekijk de video over oplichting',
   },
   '/uitleg/whatsapp-basis': {
-    kind: 'playlist',
-    id: 'whatsapp',
-    label: 'Bekijk WhatsApp-video’s',
+    kind: 'video',
+    id: 'whatsappIntro',
+    label: 'Bekijk video',
   },
   '/digitale-hulp/whatsapp-uitleg-beginners': {
     kind: 'playlist',
@@ -116,37 +168,62 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
     label: 'Bekijk WhatsApp-video’s',
   },
   '/digitale-hulp/whatsapp-fotos-opslaan': {
-    kind: 'playlist',
-    id: 'whatsapp',
-    label: 'Bekijk WhatsApp-video’s',
+    kind: 'video',
+    id: 'whatsappFotos',
+    label: "Bekijk de WhatsApp-foto's-video",
+  },
+  '/digitale-hulp/whatsapp-videobellen-uitleg': {
+    kind: 'video',
+    id: 'videobellen',
+    label: 'Bekijk de videobellen-video',
   },
   '/digitale-hulp/googelen-google-zoeken': {
-    kind: 'playlist',
-    id: 'tips',
-    label: 'Bekijk Tips & Tricks-video’s',
+    kind: 'video',
+    id: 'googelen',
+    label: 'Bekijk de Googelen-video',
   },
   '/digitale-hulp/veilig-internet': {
     kind: 'video',
     id: 'oplichtingHerkennen',
     label: 'Bekijk de video over oplichting',
   },
+  '/digitale-hulp/phishing-herkennen': {
+    kind: 'video',
+    id: 'oplichtingHerkennen',
+    label: 'Bekijk de video over oplichting',
+  },
+  '/digitale-hulp/phishing-mail-herkennen': {
+    kind: 'video',
+    id: 'oplichtingHerkennen',
+    label: 'Bekijk de video over oplichting',
+  },
+  '/digitale-hulp/wat-is-ai-simpel-uitgelegd': {
+    kind: 'playlist',
+    id: 'ai',
+    label: 'Bekijk AI-video’s',
+  },
+  '/digitale-hulp/fotos-kwijt-telefoon': {
+    kind: 'video',
+    id: 'fotosMaken',
+    label: "Bekijk de foto's-video",
+  },
   '/digitale-hulp/ai': { kind: 'playlist', id: 'ai', label: 'Bekijk AI-video’s' },
   '/wat-is-ai': { kind: 'playlist', id: 'ai', label: 'Bekijk AI-video’s' },
-  '/wat-is-ai/chatgpt': { kind: 'video', id: 'chatgptSenioren', label: 'Bekijk de ChatGPT-video' },
-  '/uitleg/wifi': {
-    kind: 'playlist',
-    id: 'tips',
-    label: 'Bekijk Tips & Tricks-video’s',
-  },
-  '/uitleg/qr-code': {
-    kind: 'playlist',
-    id: 'tips',
-    label: 'Bekijk Tips & Tricks-video’s',
+  '/wat-is-ai/chatgpt': { kind: 'video', id: 'chatgptSenioren', label: 'Bekijk video' },
+  '/wat-is-ai/zo-ziet-het-eruit': {
+    kind: 'video',
+    id: 'chatgptSenioren',
+    label: 'Bekijk de ChatGPT-video',
   },
   '/uitleg/digid': {
-    kind: 'playlist',
-    id: 'tips',
-    label: 'Bekijk Tips & Tricks-video’s',
+    kind: 'video',
+    id: 'oplichtingHerkennen',
+    label: 'Bekijk de video over oplichting',
+  },
+  '/foto-archief': {
+    kind: 'video',
+    id: 'fotoArchief',
+    label: 'Bekijk de Foto Archief-video',
   },
   '/uitleg/youtube-tv': {
     kind: 'channel',
@@ -160,6 +237,25 @@ export type YoutubeLink = {
   href: string;
   label: string;
 };
+
+/** Onderwerp-specifieke video (embed). Playlist/kanaal tellen niet mee. */
+export function getTopicVideoId(path: string): keyof typeof YOUTUBE_VIDEOS | null {
+  const ref = YOUTUBE_BY_PATH[path];
+  if (!ref || ref.kind !== 'video') return null;
+  return ref.id;
+}
+
+/**
+ * Themaknop “Bekijk video” — alleen bij passende video op de onderwerppagina.
+ * Linkt naar #uitleg-video (geen lege knop, geen ongerelateerde tips-playlist).
+ */
+export function getTopicVideoThemeCta(path: string): YoutubeLink | null {
+  if (!getTopicVideoId(path)) return null;
+  return {
+    href: `${path}#uitleg-video`,
+    label: 'Bekijk video',
+  };
+}
 
 export function getYoutubeForPath(path: string): YoutubeLink | null {
   const ref = YOUTUBE_BY_PATH[path];

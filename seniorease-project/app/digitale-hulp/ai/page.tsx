@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import JsonLd from '@/app/components/JsonLd';
 import CategoryHub from '@/app/components/CategoryHub';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
 import { buildCollectionPageSchema, buildPageMetadata } from '@/lib/seo';
+import { YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
   path: '/digitale-hulp/ai',
@@ -57,6 +59,13 @@ export default function AICategoriePage() {
           </>
         }
       />
+      <div className="max-w-senior mx-auto px-5 sm:px-6 pb-14">
+        <YoutubeWatchCta
+          description="Rustige uitleg over AI en ChatGPT — stap voor stap, speciaal voor senioren."
+          href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.ai)}
+          linkLabel="Bekijk de AI-playlist op YouTube"
+        />
+      </div>
     </>
   );
 }

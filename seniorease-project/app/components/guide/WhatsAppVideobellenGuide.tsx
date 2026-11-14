@@ -4,7 +4,9 @@ import GuideLearnBox from './GuideLearnBox';
 import GuideStep from './GuideStep';
 import GuideSidebar from './GuideSidebar';
 import GuideStepNav from './GuideStepNav';
+import GuideVideoCta from './GuideVideoCta';
 import { WhatsAppBadge } from '@/app/components/GuideTopicBadge';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 const TOC = [
   { id: 'stap-1', label: 'Gesprek openen' },
@@ -90,6 +92,12 @@ export default function WhatsAppVideobellenGuide() {
           Valt het gesprek weg? Controleer of wifi of mobiele data aanstaat.
         </p>
       </GuideStep>
+
+      <GuideVideoCta
+        description="Liever meekijken? Stap-voor-stap video over videobellen via WhatsApp."
+        href={youtubeWatchUrl(YOUTUBE_VIDEOS.videobellen)}
+        linkLabel="Bekijk de videobellen-video op YouTube"
+      />
 
       <p className="text-navy/70 text-senior-sm leading-relaxed mt-6 border-t border-navy/10 pt-6">
         Organiseert u een WhatsApp-workshop voor senioren? Bekijk het complete SeniorEase-lesmateriaal

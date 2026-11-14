@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
-import YoutubeWatchCta, { tipsPlaylistHref } from '@/app/components/YoutubeWatchCta';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
+import { youtubeWatchUrl, YOUTUBE_VIDEOS } from '@/lib/youtube-videos';
 import Link from 'next/link';
 import type { ReactNode } from 'react';
 
@@ -165,9 +166,9 @@ export default function DigidPage() {
           </section>
 
           <YoutubeWatchCta
-            description="Liever meekijken? Op YouTube vindt u rustige Tips & Tricks over veilig internetten en oplichting herkennen."
-            href={tipsPlaylistHref()}
-            linkLabel="Bekijk Tips & Tricks op YouTube"
+            description="Er is nog geen aparte DigiD-video. Wel een korte video over oplichting herkennen — handig naast DigiD."
+            href={youtubeWatchUrl(YOUTUBE_VIDEOS.oplichtingHerkennen)}
+            linkLabel="Bekijk de video over oplichting"
           />
 
           <section className="bg-slate rounded-senior border border-navy/8 p-8">

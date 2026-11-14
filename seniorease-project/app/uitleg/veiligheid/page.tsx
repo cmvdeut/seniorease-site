@@ -92,8 +92,8 @@ export default function VeiligheidPage() {
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
-          <section className="my-8 mx-4 sm:mx-0">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden  aspect-video">
+          <section id="uitleg-video" className="my-8 mx-4 sm:mx-0 scroll-mt-24">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden aspect-video bg-navy/5">
               <iframe
                 width="100%"
                 height="100%"

@@ -3,14 +3,15 @@
 import Image from 'next/image';
 import { useState } from 'react';
 
+/** Bestanden in public/images/uitleg/whatsapp/ (bestaande screenshots → vaste namen). */
 const STEP_IMAGES: Record<number, string> = {
   1: '/images/uitleg/whatsapp/stap1-openen.jpg',
-  2: '/images/uitleg/whatsapp/stap2-gesprek.jpg',
-  3: '/images/uitleg/whatsapp/stap3-bericht.jpg',
-  4: '/images/uitleg/whatsapp/stap4-paperclip.jpg',
-  5: '/images/uitleg/whatsapp/stap5-foto-versturen.jpg',
-  6: '/images/uitleg/whatsapp/stap6-foto-ontvangen.jpg',
-  7: '/images/uitleg/whatsapp/stap7-duimpje.jpg',
+  2: '/images/uitleg/whatsapp/stap2-gesprek.png',
+  3: '/images/uitleg/whatsapp/stap3-bericht.png',
+  4: '/images/uitleg/whatsapp/stap4-paperclip.png',
+  5: '/images/uitleg/whatsapp/stap5-foto-versturen.png',
+  6: '/images/uitleg/whatsapp/stap6-foto-ontvangen.png',
+  7: '/images/uitleg/whatsapp/stap7-duimpje.png',
 };
 
 export function StepIllustration({ step, children }: { step: number; children: React.ReactNode }) {
@@ -30,7 +31,7 @@ export function StepIllustration({ step, children }: { step: number; children: R
               alt={`Stap ${step} illustratie`}
               width={192}
               height={256}
-              className="w-full h-full object-cover rounded-xl"
+              className="w-full h-full object-contain rounded-xl"
               onError={() => setImgFailed(true)}
               unoptimized
             />

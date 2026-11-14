@@ -1,6 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import YoutubeWatchCta, { tipsPlaylistHref } from '@/app/components/YoutubeWatchCta';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
+import { YOUTUBE_CHANNEL_URL } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wifi',
@@ -149,9 +150,9 @@ export default function WifiPage() {
         <div className="max-w-4xl mx-auto space-y-10">
 
           <YoutubeWatchCta
-            description="Op YouTube vindt u rustige Tips & Tricks-video’s over telefoon en internet. Handig als u liever meekijkt dan alleen leest."
-            href={tipsPlaylistHref()}
-            linkLabel="Bekijk Tips & Tricks op YouTube"
+            description="Er is nog geen aparte wifi-video. Op ons YouTube-kanaal vindt u wel rustige uitleg over WhatsApp, veiligheid, foto’s en meer."
+            href={YOUTUBE_CHANNEL_URL}
+            linkLabel="Bekijk SeniorEase-video’s op YouTube"
           />
 
           {/* Intro */}

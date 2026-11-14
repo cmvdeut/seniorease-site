@@ -123,7 +123,7 @@ export default function ChatGPTUitlegPage() {
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
-          <section className="my-8 mx-4 sm:mx-0">
+          <section id="uitleg-video" className="my-8 mx-4 sm:mx-0 scroll-mt-24">
             {YOUTUBE_VIDEOS.chatgptSenioren ? (
               <>
                 <div className="max-w-3xl mx-auto rounded-xl overflow-hidden shadow-lg aspect-video">

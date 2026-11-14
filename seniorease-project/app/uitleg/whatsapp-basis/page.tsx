@@ -1,5 +1,7 @@
 import { buildPageMetadata } from '@/lib/seo';
+import YoutubeVideoJsonLd from '@/app/components/YoutubeVideoJsonLd';
 import Link from 'next/link';
+import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 import { StepIllustration } from './StepIllustration';
 
 const breadcrumbSchema = {
@@ -100,6 +102,7 @@ export default function WhatsAppBasisPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
+      <YoutubeVideoJsonLd videoKey="whatsappIntro" />
       <header className="bg-cream border-b border-navy/10 py-6">
         <div className="max-w-senior mx-auto px-5 sm:px-6">
           <div className="max-w-4xl mx-auto">
@@ -122,6 +125,45 @@ export default function WhatsAppBasisPage() {
 
       <section className="max-w-senior mx-auto px-5 sm:px-6 py-10">
         <div className="max-w-4xl mx-auto space-y-10">
+          {/* Video — zelfde opzet als fotos-maken / veiligheid */}
+          <section id="uitleg-video" className="my-8 mx-4 sm:mx-0 scroll-mt-24">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden aspect-video bg-navy/5">
+              <iframe
+                width="100%"
+                height="100%"
+                src={`https://www.youtube.com/embed/${YOUTUBE_VIDEOS.whatsappIntro}`}
+                title="WhatsApp uitleg voor beginners — eerste stappen"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                className="w-full h-full"
+              />
+            </div>
+            <p className="text-center text-navy/70 mt-4 text-senior-base">
+              Bekijk de uitlegvideo of lees verder voor de stappen op deze pagina
+            </p>
+            <div className="max-w-3xl mx-auto mt-6 rounded-2xl p-6 flex flex-col sm:flex-row items-start sm:items-center gap-4 border border-navy/10 bg-white">
+              <div className="text-4xl" aria-hidden="true">
+                ▶️
+              </div>
+              <div>
+                <h3 className="text-senior-lg font-bold text-navy mb-1">Meer WhatsApp-video&apos;s</h3>
+                <p className="text-senior-base text-navy/70 mb-4">
+                  Berichten, foto&apos;s, bellen en veiligheid — rustig tempo op YouTube.
+                </p>
+                <a
+                  href={youtubePlaylistUrl(YOUTUBE_PLAYLISTS.whatsapp)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 font-semibold rounded-xl px-5 py-3 transition-all border-2 hover:shadow-sm text-gold border-navy/8 bg-cream min-h-[48px]"
+                >
+                  Bekijk de WhatsApp-playlist
+                  <span aria-hidden="true">→</span>
+                </a>
+              </div>
+            </div>
+          </section>
+
           {/* Intro */}
           <div className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <p className="text-senior-sm md:text-senior-base text-navy leading-relaxed">
