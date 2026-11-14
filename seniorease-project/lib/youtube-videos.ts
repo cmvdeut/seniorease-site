@@ -10,8 +10,8 @@ export const YOUTUBE_VIDEOS = {
   oplichtingHerkennen: 'uprzSjDAeUg',
   /** Betere foto's maken (HyperFrames; vervangt NotebookLM 4yEKPemRm6U). */
   fotosMaken: 'iYQz-nr9StM',
-  /** Videobellen via WhatsApp (HyperFrames; vervangt NotebookLM hxIVYqSSflU). */
-  videobellen: 'Xsjo3lOllwI',
+  /** Videobellen via WhatsApp (HyperFrames + telefoonmockup; vervangt NotebookLM). */
+  videobellen: 'dMB1Tc6PmZc',
   /** Google Maps. */
   googleMaps: 'QYKisb9t5gg',
   /**

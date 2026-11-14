@@ -141,7 +141,7 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
     ctaUrl: 'https://www.seniorease.nl/uitleg/videobellen',
-    videoUrl: 'https://www.youtube.com/watch?v=Xsjo3lOllwI',
+    videoUrl: 'https://www.youtube.com/watch?v=dMB1Tc6PmZc',
     videoLabel: 'Bekijk de uitlegvideo (±1 minuut)',
   },
   {
