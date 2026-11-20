@@ -13,6 +13,7 @@ export const metadata = buildPageMetadata({
 
 const artikelen = [
   { title: 'Wifi instellen', href: '/uitleg/wifi' },
+  { title: 'Googelen voor beginners', href: '/digitale-hulp/googelen-google-zoeken' },
   { title: 'E-mail uitleg', href: '/digitale-hulp/e-mail-openen' },
   { title: 'E-mail bijlage openen', href: '/uitleg/email-bijlage' },
   { title: 'Internet probleem oplossen', href: '/digitale-hulp/wifi-werkt-niet-oplossen' },

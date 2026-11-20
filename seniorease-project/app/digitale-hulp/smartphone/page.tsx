@@ -14,12 +14,17 @@ export const metadata = buildPageMetadata({
 const artikelen = [
   { title: 'WhatsApp uitleg voor beginners', href: '/digitale-hulp/whatsapp-uitleg-beginners' },
   { title: "WhatsApp foto's opslaan", href: '/digitale-hulp/whatsapp-fotos-opslaan' },
+  { title: 'WhatsApp videobellen', href: '/digitale-hulp/whatsapp-videobellen-uitleg' },
   { title: "Foto's van telefoon naar computer", href: '/uitleg/fotos-naar-computer' },
+  { title: "Foto's kwijt op telefoon", href: '/digitale-hulp/fotos-kwijt-telefoon' },
   { title: 'Letters groter maken op telefoon', href: '/digitale-hulp/letters-groter-maken-telefoon' },
-  { title: 'Letters groter maken op computer', href: '/uitleg/letters-groter-pc' },
   { title: 'Screenshot op telefoon', href: '/digitale-hulp/screenshot-en-schermopname-telefoon' },
   { title: 'QR-code scannen', href: '/uitleg/qr-code' },
-  { title: 'Telefoon langzaam oplossen', href: '/digitale-hulp/telefoon-langzaam-oplossen' },
+  { title: 'Apps installeren', href: '/digitale-hulp/apps-installeren' },
+  { title: 'Bluetooth verbinden', href: '/digitale-hulp/bluetooth-verbinden' },
+  { title: 'Trage telefoon oplossen', href: '/digitale-hulp/telefoon-langzaam-oplossen' },
+  { title: 'Telefoon sneller maken', href: '/digitale-hulp/telefoon-sneller-maken' },
+  { title: 'E-bike en fietsapps', href: '/digitale-hulp/e-bike-fietsapps' },
 ];
 
 const collectionSchema = buildCollectionPageSchema(

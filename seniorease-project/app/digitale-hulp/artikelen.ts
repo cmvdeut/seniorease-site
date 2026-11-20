@@ -42,7 +42,7 @@ export const artikelen: Artikel[] = [
   },
   {
     slug: "telefoon-langzaam-oplossen",
-    title: "Telefoon langzaam oplossen",
+    title: "Trage telefoon oplossen",
     description: "Uw telefoon is traag of reageert niet goed? Opslag vol, apps sluiten en opnieuw starten – stap voor stap.",
   },
   {

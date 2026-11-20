@@ -26,7 +26,7 @@ const NAV_LINKS: { href: string; label: string; Icon: LucideIcon; accent?: 'lesm
 ];
 
 function navLabelClass(accent?: 'lesmateriaal') {
-  return accent === 'lesmateriaal' ? 'italic text-gold' : '';
+  return accent === 'lesmateriaal' ? 'italic font-medium text-gold' : '';
 }
 
 function isActivePath(pathname: string, href: string) {
@@ -67,6 +67,8 @@ export default function Header() {
         <nav className="hidden lg:flex items-center gap-0.5 xl:gap-1" aria-label="Hoofdmenu">
           {NAV_LINKS.map(({ href, label, accent }) => {
             const active = isActivePath(pathname, href);
+            const isLesmateriaal = accent === 'lesmateriaal';
+            const weight = isLesmateriaal ? 'font-medium' : 'font-semibold';
             const accentCls = navLabelClass(accent);
             return (
               <Link
@@ -74,8 +76,10 @@ export default function Header() {
                 href={href}
                 className={
                   active
-                    ? `px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-gold border-b-2 border-gold whitespace-nowrap ${accentCls}`
-                    : `px-3 xl:px-3.5 py-2.5 text-senior-sm font-semibold text-navy/90 hover:text-gold transition-colors whitespace-nowrap ${accentCls}`
+                    ? `px-3 xl:px-3.5 py-2.5 text-senior-sm ${weight} text-gold border-b-2 border-gold whitespace-nowrap ${accentCls}`
+                    : isLesmateriaal
+                      ? `px-3 xl:px-3.5 py-2.5 text-senior-sm ${weight} italic text-gold hover:text-gold-light transition-colors whitespace-nowrap`
+                      : `px-3 xl:px-3.5 py-2.5 text-senior-sm ${weight} text-navy/90 hover:text-gold transition-colors whitespace-nowrap`
                 }
                 style={{ minHeight: '48px', display: 'inline-flex', alignItems: 'center' }}
                 aria-current={active ? 'page' : undefined}
@@ -114,6 +118,8 @@ export default function Header() {
         >
           {NAV_LINKS.map(({ href, label, Icon, accent }) => {
             const active = isActivePath(pathname, href);
+            const isLesmateriaal = accent === 'lesmateriaal';
+            const weight = isLesmateriaal ? 'font-medium' : 'font-semibold';
             const accentCls = navLabelClass(accent);
             return (
               <Link
@@ -121,8 +127,10 @@ export default function Header() {
                 href={href}
                 className={
                   active
-                    ? `flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-white bg-gold rounded-2xl ${accent === 'lesmateriaal' ? 'italic' : ''}`
-                    : `flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-navy hover:bg-cream rounded-2xl transition-colors ${accentCls}`
+                    ? `flex items-center gap-3 px-4 py-3.5 text-senior-sm font-semibold text-white bg-gold rounded-2xl ${isLesmateriaal ? 'italic' : ''}`
+                    : isLesmateriaal
+                      ? `flex items-center gap-3 px-4 py-3.5 text-senior-sm ${weight} italic text-gold hover:bg-cream rounded-2xl transition-colors`
+                      : `flex items-center gap-3 px-4 py-3.5 text-senior-sm ${weight} text-navy hover:bg-cream rounded-2xl transition-colors ${accentCls}`
                 }
                 style={{ minHeight: '56px' }}
                 aria-current={active ? 'page' : undefined}

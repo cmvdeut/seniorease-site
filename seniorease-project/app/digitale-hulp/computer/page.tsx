@@ -19,7 +19,6 @@ const artikelen = [
   { title: 'Letters groter maken op computer', href: '/uitleg/letters-groter-pc' },
   { title: 'Programma installeren op computer', href: '/uitleg/programma-installeren' },
   { title: "Foto's van telefoon naar computer", href: '/uitleg/fotos-naar-computer' },
-  { title: 'Googelen voor beginners', href: '/digitale-hulp/googelen-google-zoeken' },
   { title: 'E-mail openen', href: '/digitale-hulp/e-mail-openen' },
   { title: 'Wat is de cloud?', href: '/digitale-hulp/wat-is-de-cloud' },
 ];
