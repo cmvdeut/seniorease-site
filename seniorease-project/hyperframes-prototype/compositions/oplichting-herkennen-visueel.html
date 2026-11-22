@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <link rel="stylesheet" href="compositions/shared.css" />
+    <link rel="stylesheet" href="compositions/computer-steps.css" />
+    <script src="assets/vendor/gsap.min.js"></script>
+    <script src="compositions/shared-timeline.js"></script>
+  </head>
+  <body>
+    <div
+      id="root"
+      data-composition-id="oplichting-herkennen-visueel"
+      data-start="0"
+      data-duration="68"
+      data-fps="30"
+      data-width="1920"
+      data-height="1080"
+    >
+      <div class="clip intro" data-start="0" data-duration="4" data-track-index="0">
+        <img id="intro-logo" class="intro-logo" src="assets/heart-logo.png" alt="" />
+        <div id="intro-title-wrap" class="intro-title-wrap">
+          <div class="intro-brand">SeniorEase</div>
+          <div class="intro-subtitle">Oplichting herkennen</div>
+          <div class="intro-subtitle" style="font-size: 28px; opacity: 0.85; margin-top: 8px">
+            5 signalen · rustig, zonder angst
+          </div>
+        </div>
+      </div>
+
+      <div class="clip slide" data-start="4" data-duration="11" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">1 / 5</div>
+        <div class="slide-layout computer-slide">
+          <div class="computer-col-text">
+            <div class="step-header-row">
+              <div id="s1-num" class="step-num">1</div>
+              <div id="s1-title" class="slide-title full">U wordt onder druk gezet</div>
+            </div>
+            <div id="s1-instr" class="step-instruction point">
+              <div class="point-text full">
+                “Betaal <strong>nu</strong>, anders…” — banken en overheid zetten u nooit
+                onder tijdsdruk. Druk = verdacht.
+              </div>
+            </div>
+            <div id="s1-note" class="device-note">Voorbeeld — zo kan oplichting eruitzien</div>
+          </div>
+          <div class="computer-col-screen">
+            <div id="s1-media" class="media-frame">
+              <img src="assets/screens/oplichting/01-druk.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip slide" data-start="15" data-duration="11" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">2 / 5</div>
+        <div class="slide-layout computer-slide">
+          <div class="computer-col-text">
+            <div class="step-header-row">
+              <div id="s2-num" class="step-num">2</div>
+              <div id="s2-title" class="slide-title full">Onbekend nummer</div>
+            </div>
+            <div id="s2-instr" class="step-instruction point">
+              <div class="point-text full">
+                Uw bank stuurt geen sms van een vreemd nummer. Twijfelt u? Bel zelf
+                via het nummer op uw pas.
+              </div>
+            </div>
+            <div id="s2-note" class="device-note">Kijk goed wie de afzender is</div>
+          </div>
+          <div class="computer-col-screen">
+            <div id="s2-media" class="media-frame">
+              <img src="assets/screens/oplichting/02-nummer.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip slide" data-start="26" data-duration="11" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">3 / 5</div>
+        <div class="slide-layout computer-slide">
+          <div class="computer-col-text">
+            <div class="step-header-row">
+              <div id="s3-num" class="step-num">3</div>
+              <div id="s3-title" class="slide-title full">Vreemde link</div>
+            </div>
+            <div id="s3-instr" class="step-instruction point">
+              <div class="point-text full">
+                Een link als belasting-betalen-nu.com is <strong>niet</strong> de
+                Belastingdienst. Typ het echte adres zelf — klik niet zomaar.
+              </div>
+            </div>
+            <div id="s3-note" class="device-note">Ook bij spelfouten: lees rustig, haast is niet nodig</div>
+          </div>
+          <div class="computer-col-screen">
+            <div id="s3-laptop" class="laptop-frame">
+              <div class="laptop-bezel">
+                <img class="laptop-screen" src="assets/screens/oplichting/03-link.jpg" alt="" />
+              </div>
+              <div class="laptop-base"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip slide" data-start="37" data-duration="12" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">4 / 5</div>
+        <div class="slide-layout computer-slide">
+          <div class="computer-col-text">
+            <div class="step-header-row">
+              <div id="s4-num" class="step-num">4</div>
+              <div id="s4-title" class="slide-title full">Vraag om geld of gegevens</div>
+            </div>
+            <div id="s4-instr" class="step-instruction point">
+              <div class="point-text full">
+                Uw bank vraagt <strong>nooit</strong> om pincode via sms of om geld
+                naar een “veilige rekening”. Ook niet via WhatsApp — geen uitzondering.
+              </div>
+            </div>
+            <div id="s4-note" class="device-note">Nooit geld sturen naar een onbekende</div>
+          </div>
+          <div class="computer-col-screen">
+            <div id="s4-media" class="media-frame">
+              <img src="assets/screens/oplichting/04-geld.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip slide" data-start="49" data-duration="11" data-track-index="0">
+        <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
+        <div class="slide-counter">5 / 5</div>
+        <div class="slide-layout computer-slide">
+          <div class="computer-col-text">
+            <div class="step-header-row">
+              <div id="s5-num" class="step-num">5</div>
+              <div id="s5-title" class="slide-title full">Bij twijfel: hang op</div>
+            </div>
+            <div id="s5-instr" class="step-instruction point">
+              <div class="point-text full">
+                Hang op of negeer het bericht. Bel zelf terug via het officiële
+                nummer op uw pas. Vertel het aan familie of de politie.
+              </div>
+            </div>
+            <div id="s5-note" class="device-note">Digi-Hulplijn: 0800 1508</div>
+          </div>
+          <div class="computer-col-screen">
+            <div id="s5-media" class="media-frame">
+              <img src="assets/screens/oplichting/05-bellen.jpg" alt="" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="clip outro" data-start="60" data-duration="8" data-track-index="0">
+        <div id="outro-inner" class="outro-inner">
+          <img class="outro-logo" src="assets/heart-logo.png" alt="" />
+          <div class="outro-domain">Meer hulp?</div>
+          <div class="outro-tagline" style="max-width: 1100px; line-height: 1.35; font-size: 34px">
+            Druk · vreemd nummer · rare link · nooit geld of pincode
+          </div>
+          <div id="outro-buttons" class="outro-buttons">
+            <div class="outro-btn subscribe">seniorease.nl/uitleg/veiligheid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+
+      function hfAddStepNum(timeline, id, start) {
+        timeline.fromTo(
+          id,
+          { opacity: 0, scale: 0.7 },
+          { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.4)" },
+          start + 0.05,
+        );
+      }
+
+      function hfAddMedia(timeline, id, start) {
+        timeline.fromTo(
+          id,
+          { opacity: 0, scale: 0.94 },
+          { opacity: 1, scale: 1, duration: 0.55, ease: "none" },
+          start + 0.15,
+        );
+      }
+
+      hfAddIntro(tl, "#intro-logo", "#intro-title-wrap");
+
+      const steps = [
+        { start: 4, n: 1, media: "#s1-media" },
+        { start: 15, n: 2, media: "#s2-media" },
+        { start: 26, n: 3, media: "#s3-laptop" },
+        { start: 37, n: 4, media: "#s4-media" },
+        { start: 49, n: 5, media: "#s5-media" },
+      ];
+      steps.forEach(({ start, n, media }) => {
+        hfAddStepNum(tl, `#s${n}-num`, start);
+        hfAddTitle(tl, `#s${n}-title`, start);
+        hfAddPoint(tl, `#s${n}-instr`, start, 0);
+        tl.fromTo(
+          `#s${n}-note`,
+          { opacity: 0 },
+          { opacity: 1, duration: 0.4, ease: "none" },
+          start + 1.2,
+        );
+        hfAddMedia(tl, media, start);
+      });
+
+      hfAddOutro(tl, "#outro-inner", "#outro-buttons", 60);
+
+      window.__timelines["oplichting-herkennen-visueel"] = tl;
+    </script>
+  </body>
+</html>

@@ -6,8 +6,8 @@
 export const YOUTUBE_VIDEOS = {
   /** ChatGPT voor senioren. */
   chatgptSenioren: 'B4-2r7ks4mg',
-  /** Oplichting herkennen — 5 waarschuwingstekens. */
-  oplichtingHerkennen: 'uprzSjDAeUg',
+  /** Oplichting herkennen — 5 signalen (HyperFrames scherm-mockups). */
+  oplichtingHerkennen: 'heiMk4UCm2A',
   /** Betere foto's maken (HyperFrames; vervangt NotebookLM 4yEKPemRm6U). */
   fotosMaken: 'iYQz-nr9StM',
   /** Videobellen via WhatsApp (HyperFrames + telefoonmockup; vervangt NotebookLM). */
@@ -64,10 +64,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/wat-is-ai/chatgpt',
   },
   oplichtingHerkennen: {
-    name: 'Oplichting herkennen — 5 waarschuwingstekens',
+    name: 'Oplichting herkennen — 5 signalen',
     description:
-      'Vijf signalen van phishing en WhatsApp-oplichting. Rustige uitleg zodat u veilig blijft.',
-    uploadDate: '2026-07-05',
+      'Druk, onbekend nummer, vreemde link, vraag om geld of pincode — en wat u doet bij twijfel.',
+    uploadDate: '2026-11-22',
     path: '/uitleg/veiligheid',
   },
   fotosMaken: {
