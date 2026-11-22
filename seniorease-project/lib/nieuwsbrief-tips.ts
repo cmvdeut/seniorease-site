@@ -60,7 +60,7 @@ export const nieuwsbriefTips: NieuwsbriefTip[] = [
     ],
     ctaLabel: 'Bekijk de volledige uitleg',
     ctaUrl: 'https://www.seniorease.nl/uitleg/veiligheid',
-    videoUrl: 'https://www.youtube.com/watch?v=uprzSjDAeUg',
+    videoUrl: 'https://www.youtube.com/watch?v=heiMk4UCm2A',
     videoLabel: 'Bekijk de uitlegvideo (±1 minuut)',
   },
   {
