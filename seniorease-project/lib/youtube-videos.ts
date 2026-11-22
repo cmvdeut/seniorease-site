@@ -41,14 +41,14 @@ export const YOUTUBE_VIDEOS = {
   whatsappFotoOpslaan: 'y4VtLravg-s',
   /** Veilig online bankieren (HyperFrames computer-mockup; vervangt tekst-slides). */
   onlineBankieren: 'EWOwhJcKEPg',
-  /** Veilig wachtwoord maken. */
-  veiligWachtwoord: 'j1s0nvirA58',
-  /** E-mailbijlage openen. */
-  emailBijlage: 'uyoAqOIp29A',
-  /** Letters groter op telefoon. */
-  lettersGroterTelefoon: '4Mq2wXJDeHU',
-  /** App installeren. */
-  appsInstalleren: 'mhfPF9HFC2Y',
+  /** Veilig wachtwoord maken (HyperFrames computer-mockup). */
+  veiligWachtwoord: 'u9y_tdMiJIM',
+  /** E-mailbijlage openen (HyperFrames computer-mockup; inclusief Downloads). */
+  emailBijlage: '7aexSyho-u4',
+  /** Letters groter op telefoon (HyperFrames telefoon-mockup). */
+  lettersGroterTelefoon: 'qnHq_7mXlV0',
+  /** App installeren (HyperFrames; App Store / Play Store-iconen). */
+  appsInstalleren: '5MEvkeq0Ta8',
 } as const;
 
 /** Metadata voor VideoObject + YouTube Studio checklist. */
@@ -172,20 +172,21 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/wachtwoorden',
   },
   emailBijlage: {
-    name: 'E-mailbijlage openen — stap voor stap',
-    description: 'Bijlage herkennen, veilig openen, opslaan of juist niet klikken.',
+    name: 'E-mailbijlage openen — en waar wordt die opgeslagen?',
+    description:
+      'Bijlage herkennen, verdachte mail laten staan, opslaan, terugvinden in Downloads of een map die u zelf koos.',
     uploadDate: '2026-11-22',
     path: '/uitleg/email-bijlage',
   },
   lettersGroterTelefoon: {
     name: 'Letters groter maken op telefoon',
-    description: 'Tekstgrootte aanpassen op iPhone en Android.',
+    description: 'Tekstgrootte aanpassen op iPhone en Android in Instellingen.',
     uploadDate: '2026-11-22',
     path: '/digitale-hulp/letters-groter-maken-telefoon',
   },
   appsInstalleren: {
-    name: 'Een app installeren — stap voor stap',
-    description: 'App Store of Play Store: zoeken, installeren, openen.',
+    name: 'Een app installeren — App Store of Play Store',
+    description: 'Herken het winkel-icoon, zoek, installeer en open — alleen via App Store of Play Store.',
     uploadDate: '2026-11-22',
     path: '/digitale-hulp/apps-installeren',
   },

@@ -13,7 +13,7 @@
       id="root"
       data-composition-id="apps-installeren-visueel"
       data-start="0"
-      data-duration="48"
+      data-duration="52"
       data-fps="30"
       data-width="1920"
       data-height="1080"
@@ -24,62 +24,63 @@
           <div class="intro-brand">SeniorEase</div>
           <div class="intro-subtitle">Een app installeren</div>
           <div class="intro-subtitle" style="font-size: 28px; opacity: 0.85; margin-top: 8px">
-            Alleen App Store of Play Store
+            Alleen via App Store of Play Store
           </div>
         </div>
       </div>
 
-      <div class="clip slide" data-start="4" data-duration="13" data-track-index="0">
+      <div class="clip slide" data-start="4" data-duration="14" data-track-index="0">
         <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
         <div class="slide-counter">1 / 3</div>
         <div class="slide-layout computer-slide">
           <div class="computer-col-text">
             <div class="step-header-row">
               <div id="s1-num" class="step-num">1</div>
-              <div id="s1-title" class="slide-title full">Zoek de app</div>
+              <div id="s1-title" class="slide-title full">Open de juiste winkel</div>
             </div>
             <div id="s1-instr" class="step-instruction point">
               <div class="point-text full">
-                Open App Store (iPhone) of Play Store (Android). Tik op
-                <strong>Zoeken</strong> en typ de naam.
+                <strong>iPhone:</strong> blauw icoon App Store (A).<br />
+                <strong>Android:</strong> kleurrijk icoon Play Store.<br />
+                Alleen deze winkels — geen rare links.
               </div>
             </div>
-            <div id="s1-note" class="device-note">Alleen deze winkels — geen rare links</div>
+            <div id="s1-note" class="device-note">Onthoud hoe het icoon eruitziet op úw telefoon</div>
           </div>
           <div class="computer-col-screen">
             <div id="s1-media" class="media-frame">
-              <img src="assets/screens/apps/01-zoeken.jpg" alt="" />
+              <img src="assets/screens/apps/00-winkels.jpg" alt="" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="clip slide" data-start="17" data-duration="13" data-track-index="0">
+      <div class="clip slide" data-start="18" data-duration="14" data-track-index="0">
         <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
         <div class="slide-counter">2 / 3</div>
         <div class="slide-layout computer-slide">
           <div class="computer-col-text">
             <div class="step-header-row">
               <div id="s2-num" class="step-num">2</div>
-              <div id="s2-title" class="slide-title full">Tik op Installeren</div>
+              <div id="s2-title" class="slide-title full">Zoek en installeer</div>
             </div>
             <div id="s2-instr" class="step-instruction point">
               <div class="point-text full">
-                Kies de app van de <strong>bekende maker</strong>. Tik op
-                Installeren of Haal. Wacht tot de download klaar is.
+                Tik op <strong>Zoeken</strong>, typ de naam. Kies de app van de
+                bekende maker. Tik op <strong>Installeren</strong> of Haal.
               </div>
             </div>
             <div id="s2-note" class="device-note">Pincode of Face ID vragen is normaal</div>
           </div>
           <div class="computer-col-screen">
             <div id="s2-media" class="media-frame">
-              <img src="assets/screens/apps/02-installeren.jpg" alt="" />
+              <img src="assets/screens/apps/01-zoeken.jpg" alt="" />
             </div>
           </div>
         </div>
       </div>
 
-      <div class="clip slide" data-start="30" data-duration="9" data-track-index="0">
+      <div class="clip slide" data-start="32" data-duration="11" data-track-index="0">
         <img class="slide-watermark" src="assets/heart-logo.png" alt="" />
         <div class="slide-counter">3 / 3</div>
         <div class="slide-layout computer-slide">
@@ -90,11 +91,11 @@
             </div>
             <div id="s3-instr" class="step-instruction point">
               <div class="point-text full">
-                Tik op <strong>Openen</strong>, of zoek het icoon op het
+                Tik op <strong>Openen</strong>, of zoek het nieuwe icoon op het
                 startscherm. Niet gevonden? Veeg door de pagina’s.
               </div>
             </div>
-            <div id="s3-note" class="device-note">Lees eerst de reviews als u twijfelt</div>
+            <div id="s3-note" class="device-note">Lees de reviews als u twijfelt over een app</div>
           </div>
           <div class="computer-col-screen">
             <div id="s3-media" class="media-frame">
@@ -104,12 +105,12 @@
         </div>
       </div>
 
-      <div class="clip outro" data-start="39" data-duration="9" data-track-index="0">
+      <div class="clip outro" data-start="43" data-duration="9" data-track-index="0">
         <div id="outro-inner" class="outro-inner">
           <img class="outro-logo" src="assets/heart-logo.png" alt="" />
           <div class="outro-domain">Meer hulp?</div>
           <div class="outro-tagline" style="max-width: 1100px; line-height: 1.35; font-size: 34px">
-            Zoeken · installeren · openen
+            App Store · Play Store · zoeken · installeren
           </div>
           <div id="outro-buttons" class="outro-buttons">
             <div class="outro-btn subscribe">seniorease.nl/digitale-hulp/apps-installeren</div>
@@ -144,8 +145,8 @@
 
       const steps = [
         { start: 4, n: 1 },
-        { start: 17, n: 2 },
-        { start: 30, n: 3 },
+        { start: 18, n: 2 },
+        { start: 32, n: 3 },
       ];
       steps.forEach(({ start, n }) => {
         hfAddStepNum(tl, `#s${n}-num`, start);
@@ -160,7 +161,7 @@
         hfAddMedia(tl, `#s${n}-media`, start);
       });
 
-      hfAddOutro(tl, "#outro-inner", "#outro-buttons", 39);
+      hfAddOutro(tl, "#outro-inner", "#outro-buttons", 43);
 
       window.__timelines["apps-installeren-visueel"] = tl;
     </script>
