@@ -34,7 +34,7 @@ Review van Perplexity-onderzoek over `/lesmateriaal`, getoetst aan de echte cata
 | DigiD Machtigen + mantelzorger-kaart | Past bij **E** + korte familie-tip. |
 | Maandelijkse “Let op”-kaart (Fraudehelpdesk) | Content/marketing, geen nieuw lespakket. |
 | 2G/3G-checklist | Lage prioriteit t.o.v. “waarom nu” en bankieren-peiling. |
-| Campagnes (Week van Digitaal Meedoen e.d.) | Kalender later; geen bouw in deze ronde. |
+| Campagnes (kalender / meerdere momenten) | Eén hook Week van Digitaal Meedoen gedaan; bredere kalender later. |
 
 ## Oneens / te vroeg
 
@@ -47,9 +47,10 @@ Review van Perplexity-onderzoek over `/lesmateriaal`, getoetst aan de echte cata
 1. Blok **Waarom nu?** op `/lesmateriaal` (cijfers + bronnen voor coördinatoren).
 2. **Herkenbare vraag** per themakaart A–H.
 3. **Vertrouwensregel:** Digi-Hulplijn 0800 1508 + Informatiepunt Digitale Overheid (bibliotheek).
+4. **Campagne-hook** Week van Digitaal Meedoen (23–29 nov 2026) — zichtbaar 16 nov–6 dec 2026; CTA themapakketten + link digihulp.nl.
 
 ## Bewust niet in deze ronde
 
 - Nieuw lespakket bankieren of zorg (PDF’s).
 - H hernummeren of AI verplaatsen.
-- Maandelijkse contentmachine.
+- Maandelijkse contentmachine / volledige campagnekalender.
