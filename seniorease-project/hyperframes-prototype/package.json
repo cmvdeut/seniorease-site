@@ -14,11 +14,18 @@
     "preview:fotos-maken": "hyperframes preview",
     "build:uitleg-slides": "node scripts/build-uitleg-slides.mjs",
     "render:online-bankieren": "hyperframes render -c compositions/online-bankieren.html -o out/online-bankieren.mp4",
+    "render:online-bankieren-visueel": "hyperframes render -c compositions/online-bankieren-visueel.html -o out/online-bankieren-visueel.mp4",
+    "preview:online-bankieren-visueel": "hyperframes preview -c compositions/online-bankieren-visueel.html",
     "render:veilig-wachtwoord": "hyperframes render -c compositions/veilig-wachtwoord.html -o out/veilig-wachtwoord.mp4",
+    "render:veilig-wachtwoord-visueel": "hyperframes render -c compositions/veilig-wachtwoord-visueel.html -o out/veilig-wachtwoord-visueel.mp4",
     "render:email-bijlage": "hyperframes render -c compositions/email-bijlage.html -o out/email-bijlage.mp4",
+    "render:email-bijlage-visueel": "hyperframes render -c compositions/email-bijlage-visueel.html -o out/email-bijlage-visueel.mp4",
     "render:letters-groter": "hyperframes render -c compositions/letters-groter-telefoon.html -o out/letters-groter-telefoon.mp4",
+    "render:letters-groter-visueel": "hyperframes render -c compositions/letters-groter-visueel.html -o out/letters-groter-visueel.mp4",
     "render:apps-installeren": "hyperframes render -c compositions/apps-installeren.html -o out/apps-installeren.mp4",
+    "render:apps-installeren-visueel": "hyperframes render -c compositions/apps-installeren-visueel.html -o out/apps-installeren-visueel.mp4",
     "render:uitleg-5": "npm run render:online-bankieren && npm run render:veilig-wachtwoord && npm run render:email-bijlage && npm run render:letters-groter && npm run render:apps-installeren",
+    "render:uitleg-4-visueel": "npm run render:veilig-wachtwoord-visueel && npm run render:email-bijlage-visueel && npm run render:letters-groter-visueel && npm run render:apps-installeren-visueel",
     "render": "npm run render:whatsapp-fotos && npm run render:oplichting && npm run render:fotos-maken"
   },
   "devDependencies": {

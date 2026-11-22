@@ -45,7 +45,7 @@ export default function OnlineBankierenPage() {
           Ga naar uw bank via een adres dat u kent — bijv. <strong>ing.nl</strong>, <strong>rabobank.nl</strong>, <strong>abnamro.nl</strong>. Typ het zelf in de browser. Klik niet op links in e-mails of sms&apos;jes die zeggen dat u moet inloggen.
         </>
       ),
-      tip: 'Let op het webadres: moet eindigen op de echte banknaam, niet op iets als bank-beveiliging.com.',
+      tip: 'Controleer vóór u inlogt: hangslotje, https:// (klik zo nodig in de adresbalk) én de juiste banknaam. Alleen een slotje is niet genoeg.',
     },
     {
       stap: 'Inloggen met paslezer, app of code',
@@ -162,6 +162,28 @@ export default function OnlineBankierenPage() {
               <li><Link href="/digitale-hulp/veilig-wachtwoord-maken" className="text-senior-base font-semibold text-gold hover:text-gold-light">Veilig wachtwoord maken →</Link></li>
               <li><Link href="/digitale-hulp/phishing-mail-herkennen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Phishing mail herkennen →</Link></li>
             </ul>
+            <p className="text-navy/70 text-senior-sm leading-relaxed mt-6 border-t border-navy/10 pt-6">
+              Voor de officiële inlogpagina en tips van <strong>uw bank</strong>: typ zelf het adres
+              (bijv. ing.nl, rabobank.nl, abnamro.nl) of bel het nummer op uw pas. Meer over een
+              veilige banksite (https, slotje, webadres):{' '}
+              <a
+                href="https://www.veiligbankieren.nl/veiligheid-betaalproducten/veilige-website-bank/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-gold hover:text-gold-light"
+              >
+                Veilig Bankieren →
+              </a>
+              {' '}Uitgebreide uitleg:{' '}
+              <a
+                href="https://www.seniorweb.nl/artikel/zo-veilig-mogelijk-internetbankieren"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-semibold text-gold hover:text-gold-light"
+              >
+                SeniorWeb →
+              </a>
+            </p>
           </section>
 
         </div>

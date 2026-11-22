@@ -39,8 +39,8 @@ export const YOUTUBE_VIDEOS = {
   digid: 'F_PxpPAhO-E',
   /** WhatsApp-foto opslaan in galerij (HyperFrames + telefoonmockup). */
   whatsappFotoOpslaan: 'y4VtLravg-s',
-  /** Veilig online bankieren. */
-  onlineBankieren: '0jx-bMz5D8A',
+  /** Veilig online bankieren (HyperFrames computer-mockup; vervangt tekst-slides). */
+  onlineBankieren: 'EWOwhJcKEPg',
   /** Veilig wachtwoord maken. */
   veiligWachtwoord: 'j1s0nvirA58',
   /** E-mailbijlage openen. */
@@ -159,9 +159,9 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/digitale-hulp/whatsapp-fotos-opslaan',
   },
   onlineBankieren: {
-    name: 'Veilig online bankieren — stap voor stap',
+    name: 'Veilig online bankieren — check slotje, https én banknaam',
     description:
-      'Bankadres zelf typen, inloggen zoals u kent, afschrijvingen controleren.',
+      'Bankadres zelf typen; vóór inloggen hangslotje, https én banknaam controleren; afschrijvingen checken.',
     uploadDate: '2026-11-22',
     path: '/uitleg/online-bankieren',
   },
