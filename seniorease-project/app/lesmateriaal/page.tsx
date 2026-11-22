@@ -18,7 +18,10 @@ import { LesmateriaalFaq } from './LesmateriaalFaq';
 import { LesmateriaalFeedback } from './LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
 import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
-import { LesmateriaalCampagneHook } from './LesmateriaalCampagneHook';
+import {
+  LesmateriaalCampagneHook,
+  LesmateriaalCampagnePromo,
+} from './LesmateriaalCampagneHook';
 import { LesmateriaalWaaromNu } from './LesmateriaalWaaromNu';
 import { LesmateriaalDoeMiddag } from './LesmateriaalDoeMiddag';
 import { LesmateriaalDoeMiddagIdeeen } from './LesmateriaalDoeMiddagIdeeen';
@@ -101,10 +104,12 @@ export default async function LesmateriaalPage({ searchParams }: HubProps) {
         <div className="max-w-senior mx-auto px-5 sm:px-6 pt-14 md:pt-20 pb-10 md:pb-12">
           <Link
             href="/"
-            className="text-gold hover:text-gold-light font-semibold mb-8 inline-flex text-senior-sm min-h-[44px] items-center"
+            className="text-gold hover:text-gold-light font-semibold mb-6 inline-flex text-senior-sm min-h-[44px] items-center"
           >
             ← Terug naar home
           </Link>
+
+          <LesmateriaalCampagnePromo />
 
           <div className="flex flex-wrap items-center gap-3 mb-6">
             <LesmateriaalPrijsBadge />

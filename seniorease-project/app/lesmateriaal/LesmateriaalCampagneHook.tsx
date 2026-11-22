@@ -15,6 +15,36 @@ export function isWeekVanDigitaalMeedoenWindow(now = new Date()): boolean {
   return day >= WINDOW_START && day <= WINDOW_END;
 }
 
+/** Compacte blikvanger bovenaan de pagina — klikt door naar Waarom nu? */
+export function LesmateriaalCampagnePromo() {
+  if (!isWeekVanDigitaalMeedoenWindow()) {
+    return null;
+  }
+
+  return (
+    <a
+      href="#lesmateriaal-waarom-nu"
+      className="group mb-8 md:mb-10 flex items-center justify-between gap-4 rounded-senior border border-gold/35 bg-gold/10 px-4 py-3.5 sm:px-5 hover:bg-gold/15 hover:border-gold transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold"
+    >
+      <span className="min-w-0">
+        <span className="block text-gold font-bold text-senior-xs uppercase tracking-[0.12em] mb-0.5">
+          23–29 november 2026
+        </span>
+        <span className="block font-serif text-navy text-senior-sm sm:text-senior-base font-semibold leading-snug">
+          Week van Digitaal Meedoen — waarom dit lesmateriaal nu past
+        </span>
+      </span>
+      <span
+        className="shrink-0 text-gold font-semibold text-senior-sm group-hover:translate-x-0.5 transition-transform"
+        aria-hidden
+      >
+        →
+      </span>
+    </a>
+  );
+}
+
+/** Volledig blok boven Waarom nu / themapakketten */
 export function LesmateriaalCampagneHook() {
   if (!isWeekVanDigitaalMeedoenWindow()) {
     return null;

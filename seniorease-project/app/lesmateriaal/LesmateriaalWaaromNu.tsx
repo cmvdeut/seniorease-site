@@ -27,8 +27,9 @@ const STATS = [
 export function LesmateriaalWaaromNu() {
   return (
     <section
+      id="lesmateriaal-waarom-nu"
       aria-labelledby="lesmateriaal-waarom-nu-heading"
-      className="mb-14 md:mb-16"
+      className="mb-14 md:mb-16 scroll-mt-24"
     >
       <p className="text-gold font-bold text-senior-xs uppercase tracking-[0.12em] mb-3">
         Voor coördinatoren en bestuur
