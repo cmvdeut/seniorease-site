@@ -421,6 +421,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
             <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
           </ul>
+          <div className="mt-8" id="uitleg-video">
+            <YoutubeWatchCta
+              description="App Store of Play Store: zoeken, installeren en terugvinden op het startscherm."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.appsInstalleren)}
+              linkLabel="Bekijk de video over apps installeren"
+            />
+          </div>
         </>
       );
     case 'letters-groter-maken-telefoon':
@@ -464,6 +471,13 @@ function ArtikelContent({ slug }: { slug: string }) {
             <li><Link href="/uitleg/veiligheid" className="font-semibold text-primary hover:underline">Oplichting herkennen</Link></li>
             <li><Link href="/uitleg/qr-code" className="font-semibold text-primary hover:underline">QR-code scannen</Link></li>
           </ul>
+          <div className="mt-8" id="uitleg-video">
+            <YoutubeWatchCta
+              description="Tekst te klein? Zo maakt u letters groter op iPhone en Android."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.lettersGroterTelefoon)}
+              linkLabel="Bekijk de video over letters groter maken"
+            />
+          </div>
         </>
       );
     case 'wifi-werkt-niet-oplossen':

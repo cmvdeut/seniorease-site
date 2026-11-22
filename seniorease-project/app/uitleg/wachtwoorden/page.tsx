@@ -2,7 +2,8 @@ import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import Link from 'next/link';
 import Image from 'next/image';
-import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
+import YoutubeWatchCta from '@/app/components/YoutubeWatchCta';
+import { YOUTUBE_VIDEOS, youtubeWatchUrl } from '@/lib/youtube-videos';
 
 export const metadata = buildPageMetadata({
   path: '/uitleg/wachtwoorden',
@@ -115,7 +116,13 @@ export default function WachtwoordenPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
-          <UitlegGeenOnderwerpVideoCta onderwerp="wachtwoorden" />
+          <section id="uitleg-video" className="scroll-mt-24">
+            <YoutubeWatchCta
+              description="Een sterk wachtwoord maken en veilig houden — kort en rustig uitgelegd."
+              href={youtubeWatchUrl(YOUTUBE_VIDEOS.veiligWachtwoord)}
+              linkLabel="Bekijk de video over wachtwoorden"
+            />
+          </section>
 
           {/* Waarom belangrijk */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">

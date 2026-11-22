@@ -12,6 +12,13 @@
     "render:fotos-maken": "hyperframes render -c compositions/fotos-maken.html -o out/fotos-maken.mp4",
     "render:fotos-maken-uitleg": "hyperframes render -c compositions/fotos-maken-uitleg.html -o out/fotos-maken-uitleg.mp4",
     "preview:fotos-maken": "hyperframes preview",
+    "build:uitleg-slides": "node scripts/build-uitleg-slides.mjs",
+    "render:online-bankieren": "hyperframes render -c compositions/online-bankieren.html -o out/online-bankieren.mp4",
+    "render:veilig-wachtwoord": "hyperframes render -c compositions/veilig-wachtwoord.html -o out/veilig-wachtwoord.mp4",
+    "render:email-bijlage": "hyperframes render -c compositions/email-bijlage.html -o out/email-bijlage.mp4",
+    "render:letters-groter": "hyperframes render -c compositions/letters-groter-telefoon.html -o out/letters-groter-telefoon.mp4",
+    "render:apps-installeren": "hyperframes render -c compositions/apps-installeren.html -o out/apps-installeren.mp4",
+    "render:uitleg-5": "npm run render:online-bankieren && npm run render:veilig-wachtwoord && npm run render:email-bijlage && npm run render:letters-groter && npm run render:apps-installeren",
     "render": "npm run render:whatsapp-fotos && npm run render:oplichting && npm run render:fotos-maken"
   },
   "devDependencies": {

@@ -39,6 +39,16 @@ export const YOUTUBE_VIDEOS = {
   digid: 'F_PxpPAhO-E',
   /** WhatsApp-foto opslaan in galerij (HyperFrames + telefoonmockup). */
   whatsappFotoOpslaan: 'y4VtLravg-s',
+  /** Veilig online bankieren. */
+  onlineBankieren: '0jx-bMz5D8A',
+  /** Veilig wachtwoord maken. */
+  veiligWachtwoord: 'j1s0nvirA58',
+  /** E-mailbijlage openen. */
+  emailBijlage: 'uyoAqOIp29A',
+  /** Letters groter op telefoon. */
+  lettersGroterTelefoon: '4Mq2wXJDeHU',
+  /** App installeren. */
+  appsInstalleren: 'mhfPF9HFC2Y',
 } as const;
 
 /** Metadata voor VideoObject + YouTube Studio checklist. */
@@ -147,6 +157,37 @@ export const YOUTUBE_VIDEO_META: Record<
     description: 'Foto openen, opslaan, terugvinden in Foto’s of Galerij.',
     uploadDate: '2026-11-14',
     path: '/digitale-hulp/whatsapp-fotos-opslaan',
+  },
+  onlineBankieren: {
+    name: 'Veilig online bankieren — stap voor stap',
+    description:
+      'Bankadres zelf typen, inloggen zoals u kent, afschrijvingen controleren.',
+    uploadDate: '2026-11-22',
+    path: '/uitleg/online-bankieren',
+  },
+  veiligWachtwoord: {
+    name: 'Veilig wachtwoord maken — tip voor beginners',
+    description: 'Lang is sterker, niet overal hetzelfde, nooit doorgeven.',
+    uploadDate: '2026-11-22',
+    path: '/uitleg/wachtwoorden',
+  },
+  emailBijlage: {
+    name: 'E-mailbijlage openen — stap voor stap',
+    description: 'Bijlage herkennen, veilig openen, opslaan of juist niet klikken.',
+    uploadDate: '2026-11-22',
+    path: '/uitleg/email-bijlage',
+  },
+  lettersGroterTelefoon: {
+    name: 'Letters groter maken op telefoon',
+    description: 'Tekstgrootte aanpassen op iPhone en Android.',
+    uploadDate: '2026-11-22',
+    path: '/digitale-hulp/letters-groter-maken-telefoon',
+  },
+  appsInstalleren: {
+    name: 'Een app installeren — stap voor stap',
+    description: 'App Store of Play Store: zoeken, installeren, openen.',
+    uploadDate: '2026-11-22',
+    path: '/digitale-hulp/apps-installeren',
   },
 };
 
@@ -261,6 +302,31 @@ const YOUTUBE_BY_PATH: Record<string, YoutubeRef> = {
     kind: 'video',
     id: 'whatsappFotoOpslaan',
     label: 'Bekijk de video over foto opslaan',
+  },
+  '/uitleg/online-bankieren': {
+    kind: 'video',
+    id: 'onlineBankieren',
+    label: 'Bekijk de video over online bankieren',
+  },
+  '/uitleg/wachtwoorden': {
+    kind: 'video',
+    id: 'veiligWachtwoord',
+    label: 'Bekijk de video over wachtwoorden',
+  },
+  '/uitleg/email-bijlage': {
+    kind: 'video',
+    id: 'emailBijlage',
+    label: 'Bekijk de video over e-mailbijlagen',
+  },
+  '/digitale-hulp/letters-groter-maken-telefoon': {
+    kind: 'video',
+    id: 'lettersGroterTelefoon',
+    label: 'Bekijk de video over letters groter maken',
+  },
+  '/digitale-hulp/apps-installeren': {
+    kind: 'video',
+    id: 'appsInstalleren',
+    label: 'Bekijk de video over apps installeren',
   },
   '/foto-archief': {
     kind: 'video',
