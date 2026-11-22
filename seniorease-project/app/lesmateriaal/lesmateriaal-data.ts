@@ -22,6 +22,8 @@ export type LesmateriaalPakket = {
   code: string;
   title: string;
   subtitle: string;
+  /** Herkenbare vraag voor coördinatoren (shopkaart), geen jargon */
+  hookQuestion: string;
   device: string;
   price: number;
   status: 'klaar' | 'binnenkort';
@@ -50,6 +52,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'A',
     title: 'Telefoon & tablet — basis',
     subtitle: '4 lessen · telefoon/tablet',
+    hookQuestion: 'Weer thuis op mijn telefoon of tablet?',
     device: 'Telefoon of tablet',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -73,6 +76,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'B',
     title: 'Computer & laptop — basis',
     subtitle: '4 lessen · computer',
+    hookQuestion: 'Hoe bedien ik die computer of laptop?',
     device: 'Computer of laptop',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -96,6 +100,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'C',
     title: 'WhatsApp',
     subtitle: '4 lessen · telefoon/tablet',
+    hookQuestion: 'WhatsApp — berichten, foto’s of bellen?',
     device: 'Primair telefoon of tablet',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -126,6 +131,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'D',
     title: 'Veilig online',
     subtitle: '4 lessen · elk toestel',
+    hookQuestion: 'Verdacht bericht, link of betaalverzoek?',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -150,6 +156,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'E',
     title: 'DigiD & digitale overheid',
     subtitle: '4 lessen · tik/klik kaders',
+    hookQuestion: 'DigiD, MijnOverheid of een overheidsformulier?',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -171,6 +178,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'G',
     title: 'Internet — telefoon/tablet',
     subtitle: '4 lessen · telefoon/tablet',
+    hookQuestion: 'Internet op telefoon of tablet — zoeken en websites?',
     device: 'Telefoon of tablet',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -196,6 +204,7 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'F',
     title: 'Internet — computer',
     subtitle: '4 lessen · computer',
+    hookQuestion: 'Zoeken en websites op de computer?',
     device: 'Computer of laptop',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -217,8 +226,9 @@ export const LESMATERIAAL_PAKKETTEN: LesmateriaalPakket[] = [
     slug: 'pakket-h-ai',
     // Technische codes G1–G4 / fileIds g* · klantgericht: H1–H4 display
     code: 'H',
-    title: 'Pakket H — AI in het dagelijks leven',
+    title: 'AI in het dagelijks leven',
     subtitle: '4 lessen · tik/klik · add-on',
+    hookQuestion: 'Wat kan AI veilig voor mij doen?',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -259,6 +269,7 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
     code: 'F-t',
     title: 'Internet — telefoon/tablet',
     subtitle: '4 lessen · telefoon/tablet',
+    hookQuestion: 'Internet op telefoon of tablet — zoeken en websites?',
     device: 'Telefoon of tablet',
     price: PAKKET_PRIJS,
     status: 'klaar',
@@ -283,8 +294,9 @@ const LEGACY_COMPAT_PAKKETTEN: LesmateriaalPakket[] = [
     slug: 'pakket-g',
     // Legacy slug · customer-facing aligned met Pakket H · storage/entitlement ongewijzigd
     code: 'G',
-    title: 'Pakket H — AI in het dagelijks leven',
+    title: 'AI in het dagelijks leven',
     subtitle: '4 lessen · tik/klik · add-on',
+    hookQuestion: 'Wat kan AI veilig voor mij doen?',
     device: 'Telefoon, tablet of computer',
     price: PAKKET_PRIJS,
     status: 'klaar',

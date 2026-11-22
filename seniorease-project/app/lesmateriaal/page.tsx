@@ -18,6 +18,7 @@ import { LesmateriaalFaq } from './LesmateriaalFaq';
 import { LesmateriaalFeedback } from './LesmateriaalFeedback';
 import { LesmateriaalLicentieBlok } from './LesmateriaalLicentieBlok';
 import { LesmateriaalVerwachting } from './LesmateriaalVerwachting';
+import { LesmateriaalWaaromNu } from './LesmateriaalWaaromNu';
 import { LesmateriaalDoeMiddag } from './LesmateriaalDoeMiddag';
 import { LesmateriaalDoeMiddagIdeeen } from './LesmateriaalDoeMiddagIdeeen';
 import { LesmateriaalChatgptHub } from './LesmateriaalChatgptHub';
@@ -151,6 +152,8 @@ export default async function LesmateriaalPage({ searchParams }: HubProps) {
           <LesmateriaalVerwachting />
 
           <LesmateriaalChatgptHub />
+
+          <LesmateriaalWaaromNu />
 
           <LesmateriaalPakketten bestelLos={bestelLos} />
 

@@ -59,7 +59,7 @@ export function LesmateriaalPakketten({
                   </span>
                   <div className="min-w-0">
                     <p className="text-gold font-bold text-[0.85rem] uppercase tracking-wide">
-                      Pakket {pakket.code}
+                      Thema {pakket.code}
                     </p>
                     <h3 className="font-serif text-navy text-senior-sm font-semibold group-hover:text-gold transition-colors leading-snug truncate">
                       {pakket.title}
@@ -67,6 +67,9 @@ export function LesmateriaalPakketten({
                   </div>
                 </div>
 
+                <p className="text-navy font-semibold text-senior-sm leading-snug mb-2">
+                  {pakket.hookQuestion}
+                </p>
                 <p className="text-navy/60 text-[1.05rem] leading-relaxed flex-1 mb-4 line-clamp-2">
                   {pakket.subtitle}
                 </p>
