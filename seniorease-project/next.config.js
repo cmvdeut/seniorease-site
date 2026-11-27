@@ -45,6 +45,16 @@ const nextConfig = {
   async redirects() {
     return [
       { source: '/terms', destination: '/voorwaarden', permanent: true },
+      {
+        source: '/uitleg/bol-com',
+        destination: '/uitleg/online-bestellen',
+        permanent: true,
+      },
+      {
+        source: '/kijk-en-help',
+        destination: '/uitleg',
+        permanent: true,
+      },
       // Pakket G cutover: legacy shop URLs → canonical (geen loops; /pakket-g ≠ /pakket-g-telefoon)
       {
         source: '/lesmateriaal/pakket-f-telefoon',

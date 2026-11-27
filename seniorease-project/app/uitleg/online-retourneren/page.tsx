@@ -1,6 +1,5 @@
 import { buildPageMetadata } from '@/lib/seo';
 import Link from 'next/link';
-import UitlegGeenOnderwerpVideoCta from '@/app/components/UitlegGeenOnderwerpVideoCta';
 
 const breadcrumbSchema = {
   "@context": "https://schema.org",
@@ -34,7 +33,7 @@ const faqSchema = {
       "name": "Hoelang heb ik de tijd om iets terug te sturen?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Volgens de wet heeft u minimaal 14 dagen bedenktijd voor online aankopen. Veel winkels geven meer tijd: Bol.com geeft 30 dagen, en veel kledingwinkels geven ook 30 dagen of meer."
+        "text": "Volgens de wet heeft u minimaal 14 dagen bedenktijd voor online aankopen. Veel winkels geven meer tijd, vaak 30 dagen of langer. Dat staat in de voorwaarden of in uw bevestigingsmail."
       }
     },
     {
@@ -42,7 +41,7 @@ const faqSchema = {
       "name": "Kost retourneren geld?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Dit verschilt per winkel. Bij Bol.com is retourneren gratis. Bij sommige andere winkels worden retourkosten ingehouden op uw terugbetaling. Lees dit na in de winkelvoorwaarden voordat u iets koopt."
+        "text": "Dit verschilt per winkel. Soms is retourneren gratis, soms worden retourkosten ingehouden op uw terugbetaling. Lees dit na in de winkelvoorwaarden voordat u iets koopt."
       }
     },
     {
@@ -59,7 +58,7 @@ const faqSchema = {
 export const metadata = buildPageMetadata({
   path: '/uitleg/online-retourneren',
   title: "Online bestelling terugsturen – uitleg retourneren voor senioren",
-  description: "Hoe stuurt u een online bestelling terug? Stap-voor-stap uitleg voor senioren: retourlabel aanvragen, inpakken en insturen bij Bol.com en andere webwinkels.",
+  description: "Hoe stuurt u een online bestelling terug? Stap-voor-stap uitleg: retourlabel aanvragen, inpakken en insturen bij een afhaalpunt of pakketkluis.",
 });
 
 export default function OnlineRetournerenPage() {
@@ -87,7 +86,6 @@ export default function OnlineRetournerenPage() {
 
       <div className="max-w-senior mx-auto px-5 sm:px-6 py-12">
         <div className="max-w-4xl mx-auto space-y-10">
-          <UitlegGeenOnderwerpVideoCta onderwerp="retourneren" />
 
           {/* Intro */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
@@ -105,52 +103,59 @@ export default function OnlineRetournerenPage() {
             </p>
             <div className="grid sm:grid-cols-3 gap-4">
               {[
-                { icon: "📦", label: "Bol.com: 30 dagen" },
-                { icon: "👗", label: "Kleding: vaak 30+ dagen" },
-                { icon: "⚖️", label: "Wettelijk minimaal 14 dagen" },
-              ].map((item, i) => (
-                <div key={i} className="bg-cream border-2 border-navy/8/30 rounded-xl p-4 text-center">
-                  <div className="text-4xl mb-2">{item.icon}</div>
+                { label: 'Wettelijk minimaal 14 dagen' },
+                { label: 'Vaak 30 dagen of meer' },
+                { label: 'Staat in uw bevestigingsmail' },
+              ].map((item) => (
+                <div
+                  key={item.label}
+                  className="bg-cream border border-navy/10 rounded-xl p-4 text-center"
+                >
                   <p className="text-senior-sm font-bold text-navy">{item.label}</p>
                 </div>
               ))}
             </div>
           </section>
 
-          {/* Retourneren bij Bol.com */}
           <section className="bg-slate rounded-senior border border-navy/8 p-8 md:p-10">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-6">
-              Terugsturen bij Bol.com
+              Zo stuurt u iets terug
             </h2>
             <ol className="space-y-6">
               {[
                 {
-                  stap: "Log in op Bol.com",
-                  uitleg: "Ga naar bol.com en log in met uw e-mailadres en wachtwoord. Tik rechtsboven op uw naam of het icoontje van een persoon.",
+                  stap: 'Log in bij de webwinkel',
+                  uitleg:
+                    'Ga naar de website of app waar u heeft besteld. Log in met uw e-mailadres en wachtwoord.',
                 },
                 {
                   stap: "Ga naar 'Mijn bestellingen'",
-                  uitleg: "Klik op 'Mijn bestellingen' in het menu. U ziet een overzicht van al uw aankopen.",
+                  uitleg:
+                    "Zoek in het menu naar 'Mijn bestellingen', 'Mijn account' of 'Bestelgeschiedenis'. U ziet een overzicht van uw aankopen.",
                 },
                 {
-                  stap: "Kies de bestelling",
-                  uitleg: "Zoek de bestelling met het product dat u wilt terugsturen. Klik erop om de details te zien.",
+                  stap: 'Kies de bestelling',
+                  uitleg:
+                    'Open de bestelling met het product dat u wilt terugsturen.',
                 },
                 {
-                  stap: "Tik op 'Artikel retourneren'",
-                  uitleg: "Klik op de knop 'Retourneren' of 'Artikel terugsturen'. Vink het product aan dat u wilt terugsturen en geef aan waarom (bijv. 'past niet' of 'niet wat ik verwachtte').",
+                  stap: "Kies 'Retourneren'",
+                  uitleg:
+                    "Tik of klik op 'Retourneren' of 'Artikel terugsturen'. Vink het product aan en geef aan waarom (bijvoorbeeld 'past niet' of 'niet wat ik verwachtte').",
                 },
                 {
-                  stap: "Print het retourlabel",
-                  uitleg: "U ontvangt een retourlabel per e-mail of kunt het direct afdrukken. Heeft u geen printer? Geef dan de e-mail met de QR-code aan bij het PostNL-punt — zij printen het label voor u.",
-                  tip: "Geen printer nodig bij de meeste PostNL-punten. Laat de QR-code op uw telefoon zien.",
+                  stap: 'Retourlabel of QR-code',
+                  uitleg:
+                    'U krijgt een retourlabel per e-mail, of een QR-code. Heeft u geen printer? Bij veel afhaalpunten printen ze het label voor u als u de QR-code op uw telefoon laat zien.',
+                  tip: 'Geen printer nodig bij de meeste afhaalpunten. Laat de QR-code op uw telefoon zien.',
                 },
                 {
-                  stap: "Pak het product in en stuur het op",
-                  uitleg: "Pak het product goed in (bij voorkeur in de originele doos). Plak het retourlabel goed zichtbaar op het pakket. Breng het naar een PostNL-punt of pakketautomaat bij u in de buurt.",
+                  stap: 'Inpakken en inleveren',
+                  uitleg:
+                    'Pak het product goed in (bij voorkeur in de originele doos). Plak het label zichtbaar op het pakket — of volg de instructies bij een pakketkluis. Breng het naar een afhaalpunt of pakketkluis bij u in de buurt.',
                 },
               ].map((item, i) => (
-                <li key={i} className="flex gap-5 items-start list-none">
+                <li key={item.stap} className="flex gap-5 items-start list-none">
                   <div className="flex-shrink-0 w-11 h-11 bg-gold text-white rounded-full flex items-center justify-center font-bold text-senior-lg">
                     {i + 1}
                   </div>
@@ -198,11 +203,11 @@ export default function OnlineRetournerenPage() {
             <div className="space-y-6">
               <div>
                 <p className="text-senior-base font-bold text-navy mb-1">Hoelang heb ik de tijd om iets terug te sturen?</p>
-                <p className="text-senior-base text-navy/80">Minimaal 14 dagen volgens de wet. Bol.com geeft 30 dagen. Dit staat in de bevestigingsmail van uw bestelling.</p>
+                <p className="text-senior-base text-navy/80">Minimaal 14 dagen volgens de wet. Veel winkels geven 30 dagen of meer. Dit staat in de bevestigingsmail van uw bestelling.</p>
               </div>
               <div>
                 <p className="text-senior-base font-bold text-navy mb-1">Kost retourneren geld?</p>
-                <p className="text-senior-base text-navy/80">Bij Bol.com is retourneren gratis. Bij andere winkels kunnen retourkosten gelden. Kijk dit na voordat u iets bestelt.</p>
+                <p className="text-senior-base text-navy/80">Dat verschilt per winkel. Soms gratis, soms met retourkosten. Kijk dit na voordat u iets bestelt.</p>
               </div>
               <div>
                 <p className="text-senior-base font-bold text-navy mb-1">Wanneer krijg ik mijn geld terug?</p>
@@ -215,7 +220,7 @@ export default function OnlineRetournerenPage() {
           <section className="bg-slate rounded-senior border border-navy/8 p-8">
             <h2 className="font-serif text-senior-lg font-semibold text-navy mb-4">Meer uitleg over online winkelen</h2>
             <ul className="space-y-3">
-              <li><Link href="/uitleg/bol-com" className="text-senior-base font-semibold text-gold hover:text-gold-light">Bestellen bij Bol.com →</Link></li>
+              <li><Link href="/uitleg/online-bestellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Online bestellen →</Link></li>
               <li><Link href="/uitleg/boodschappen-bestellen" className="text-senior-base font-semibold text-gold hover:text-gold-light">Online boodschappen bestellen →</Link></li>
               <li><Link href="/uitleg/veiligheid" className="text-senior-base font-semibold text-gold hover:text-gold-light">Veilig op internet →</Link></li>
             </ul>

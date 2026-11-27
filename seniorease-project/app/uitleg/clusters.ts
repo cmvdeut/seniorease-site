@@ -31,7 +31,7 @@ export const UITLEG_CLUSTERS: UitlegCluster[] = [
     titel: 'Online winkelen',
     omschrijving: 'Veilig bestellen en laten bezorgen.',
     paginas: [
-      { href: '/uitleg/bol-com', label: 'Bestellen bij Bol.com' },
+      { href: '/uitleg/online-bestellen', label: 'Online bestellen' },
       { href: '/uitleg/boodschappen-bestellen', label: 'Online boodschappen bestellen' },
       { href: '/uitleg/online-retourneren', label: 'Iets terugsturen' },
     ],

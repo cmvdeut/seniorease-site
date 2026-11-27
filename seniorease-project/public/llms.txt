@@ -38,8 +38,9 @@ SeniorEase is een Nederlandse website (taal: nl-NL) met digitale hulp voor ouder
 - DigiD: https://www.seniorease.nl/uitleg/digid
 
 ### Online winkelen
-- Bol.com: https://www.seniorease.nl/uitleg/bol-com
+- Online bestellen: https://www.seniorease.nl/uitleg/online-bestellen
 - Boodschappen bestellen: https://www.seniorease.nl/uitleg/boodschappen-bestellen
+- Online retourneren: https://www.seniorease.nl/uitleg/online-retourneren
 
 ### Streaming & TV
 - Netflix: https://www.seniorease.nl/uitleg/netflix

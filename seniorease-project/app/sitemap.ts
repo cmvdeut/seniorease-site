@@ -14,7 +14,7 @@ const LM = {
   toolsGoLive: new Date('2026-08-07'),
   /** Homepage hybrid / trust strip */
   homeLegacy: new Date('2026-08-06'),
-  /** SEO/GEO canonicals, llms/ai, EN, kijk-en-help */
+  /** SEO/GEO canonicals, llms/ai, EN */
   seoGeoJuly: new Date('2026-07-18'),
   /** Oudere support-/extras-pagina’s */
   earlySite: new Date('2026-07-10'),
@@ -62,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'programma-installeren', 'digid', 'online-bankieren', 'ebooks',
     'muziek-radio', 'qr-code', 'google-maps', 'e-bike', 'hoofdtelefoon',
     'wifi', 'inspreken', 'betalen-ov', 'google-translate', '9292',
-    'bol-com', 'boodschappen-bestellen', 'online-retourneren', 'mobiel-parkeren',
+    'online-bestellen', 'boodschappen-bestellen', 'online-retourneren', 'mobiel-parkeren',
     'zoom', 'facetime', 'netflix', 'npo-start', 'youtube-tv',
   ];
 
@@ -109,7 +109,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     entry('/lesmateriaal/woordenlijst', 0.7, LM.lesmateriaalSupport),
     entry('/lesmateriaal/beamer', 0.65, LM.beamer),
     // noindex-pagina's (bedankt, /oefenen/*) bewust niet in sitemap
-    entry('/kijk-en-help', 0.95, LM.seoGeoJuly, 'weekly'),
     entry('/extras', 0.7, LM.earlySite),
     entry('/hobbys', 0.7, LM.seoGeoJuly),
     entry('/foto-archief', 0.6, LM.seoGeoJuly),

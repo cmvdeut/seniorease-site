@@ -35,21 +35,20 @@ const DEFAULT_FAQ: FAQItem[] = [
     question: 'Zijn er ook uitlegfilmpjes?',
     answer: (
       <>
-        Ja. Er staan al veel uitlegfilmpjes klaar, bijvoorbeeld bij{' '}
-        <Link href="/kijk-en-help" className={linkClass}>
-          Kijk &amp; Help
+        Ja. Bij verschillende{' '}
+        <Link href="/uitleg" className={linkClass}>
+          uitlegpagina&apos;s
         </Link>{' '}
-        en bij verschillende gidsen. Soms verwijzen we door naar{' '}
+        staan filmpjes. U kunt ook kijken op ons{' '}
         <a
           href="https://www.youtube.com/@SeniorEaseNL"
           target="_blank"
           rel="noopener noreferrer"
           className={linkClass}
         >
-          YouTube
+          YouTube-kanaal
         </a>
-        , zodat u het filmpje daar rustig kunt bekijken. We proberen de site en de
-        filmpjes regelmatig bij te werken met nieuwe uitleg.
+        . We werken de site en de filmpjes regelmatig bij met nieuwe uitleg.
       </>
     ),
   },

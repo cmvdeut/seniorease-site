@@ -23,7 +23,6 @@ const navCol = [
   { href: '/uitleg', label: 'Uitleg' },
   { href: '/lesmateriaal', label: 'Lesmateriaal', accent: 'lesmateriaal' as const },
   { href: '/tools', label: 'Tools' },
-  { href: '/kijk-en-help', label: 'Kijk & Help' },
   { href: '/over-ons', label: 'Over ons' },
 ];
 

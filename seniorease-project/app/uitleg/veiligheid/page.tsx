@@ -1,7 +1,6 @@
 import { buildPageMetadata } from '@/lib/seo';
 import UitlegJsonLd from '@/app/components/UitlegJsonLd';
 import YoutubeVideoJsonLd from '@/app/components/YoutubeVideoJsonLd';
-import KijkEnHelpCta from '@/app/components/KijkEnHelpCta';
 import Link from 'next/link';
 import { YOUTUBE_VIDEOS, YOUTUBE_PLAYLISTS, youtubePlaylistUrl } from '@/lib/youtube-videos';
 
@@ -92,8 +91,8 @@ export default function VeiligheidPage() {
         <div className="max-w-4xl mx-auto space-y-10">
 
           {/* Video */}
-          <section id="uitleg-video" className="my-8 mx-4 sm:mx-0 scroll-mt-24">
-            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden aspect-video bg-navy/5">
+          <section className="my-8 mx-4 sm:mx-0">
+            <div className="max-w-3xl mx-auto rounded-xl overflow-hidden  aspect-video">
               <iframe
                 width="100%"
                 height="100%"
@@ -378,9 +377,6 @@ export default function VeiligheidPage() {
               </Link>
               .
             </p>
-            <div className="mb-10">
-              <KijkEnHelpCta />
-            </div>
             <div className="flex flex-wrap gap-4">
               <Link href="/uitleg/wachtwoorden" className="inline-flex items-center gap-2 bg-gold text-white px-7 py-4 rounded-xl text-senior-lg font-bold hover:bg-gold-light transition-colors ">
                 Volgende: Wachtwoorden →

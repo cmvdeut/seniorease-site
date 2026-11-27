@@ -9,7 +9,6 @@ import {
   buildPageMetadata,
 } from '@/lib/seo';
 import JsonLd from '@/app/components/JsonLd';
-import KijkEnHelpCta from '@/app/components/KijkEnHelpCta';
 import { getGuideBadge } from '@/app/components/GuideTopicBadge';
 import WhatsAppBeginnersGuide from '@/app/components/guide/WhatsAppBeginnersGuide';
 import GoogleZoekenGuide from '@/app/components/guide/GoogleZoekenGuide';
@@ -965,9 +964,6 @@ export default async function DigitaleHulpArtikelPage({
                 ← Alle artikelen Digitale hulp
               </Link>
             </p>
-          </div>
-          <div className="mt-8">
-            <KijkEnHelpCta />
           </div>
         </div>
       </section>
