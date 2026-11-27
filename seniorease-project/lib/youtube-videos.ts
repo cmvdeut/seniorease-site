@@ -33,8 +33,8 @@ export const YOUTUBE_VIDEOS = {
   fotoArchief: 'F2SAvnGs0uI',
   /** Wifi werkt niet — router herstarten (tip). */
   wifi: 'OWShwHTjnSg',
-  /** QR-code scannen in 3 stappen. */
-  qrCode: 'KC5Vp9YeeFk',
+  /** QR-code scannen — HyperFrames schermbeelden (vervangt beige Short KC5Vp9YeeFk). */
+  qrCode: 'ZBlShCylXh8',
   /** DigiD veilig inloggen — HyperFrames schermbeelden (vervangt beige Short F_PxpPAhO-E). */
   digid: 'eVizlHbGB_w',
   /** WhatsApp-foto opslaan in galerij (HyperFrames + telefoonmockup). */
@@ -131,9 +131,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/wifi',
   },
   qrCode: {
-    name: 'QR-code scannen in 3 stappen',
-    description: 'Camera openen, richten, tikken op de melding — meestal geen aparte app nodig.',
-    uploadDate: '2026-11-14',
+    name: 'QR-code scannen — camera, richten, tikken',
+    description:
+      'Camera openen, richten, tikken op de melding — en even kijken of de link klopt. Meestal geen aparte app nodig.',
+    uploadDate: '2026-11-27',
     path: '/uitleg/qr-code',
   },
   digid: {
