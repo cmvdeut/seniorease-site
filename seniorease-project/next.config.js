@@ -55,6 +55,22 @@ const nextConfig = {
         destination: '/uitleg',
         permanent: true,
       },
+      // Oude/verkeerde sitemap-URL’s die Google nog crawlt → canonieke sitemap
+      {
+        source: '/sitemap_index.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+      {
+        source: '/sitemap-0.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
+      {
+        source: '/google-news.xml',
+        destination: '/sitemap.xml',
+        permanent: true,
+      },
       // Pakket G cutover: legacy shop URLs → canonical (geen loops; /pakket-g ≠ /pakket-g-telefoon)
       {
         source: '/lesmateriaal/pakket-f-telefoon',
