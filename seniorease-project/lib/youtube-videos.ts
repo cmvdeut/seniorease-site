@@ -35,8 +35,8 @@ export const YOUTUBE_VIDEOS = {
   wifi: 'OWShwHTjnSg',
   /** QR-code scannen in 3 stappen. */
   qrCode: 'KC5Vp9YeeFk',
-  /** Wat is DigiD — kort uitgelegd. */
-  digid: 'F_PxpPAhO-E',
+  /** DigiD veilig inloggen — HyperFrames schermbeelden (vervangt beige Short F_PxpPAhO-E). */
+  digid: 'eVizlHbGB_w',
   /** WhatsApp-foto opslaan in galerij (HyperFrames + telefoonmockup). */
   whatsappFotoOpslaan: 'y4VtLravg-s',
 } as const;
@@ -137,9 +137,10 @@ export const YOUTUBE_VIDEO_META: Record<
     path: '/uitleg/qr-code',
   },
   digid: {
-    name: 'Wat is DigiD? Kort uitgelegd',
-    description: 'DigiD als digitale sleutel voor de overheid, waar u het voor nodig heeft, en veilig goedkeuren.',
-    uploadDate: '2026-11-14',
+    name: 'DigiD veilig inloggen — stap voor stap met schermbeelden',
+    description:
+      'DigiD als digitale sleutel: digid.nl zelf typen, de app openen, alleen goedkeuren als ú zelf inlogt.',
+    uploadDate: '2026-11-27',
     path: '/uitleg/digid',
   },
   whatsappFotoOpslaan: {
